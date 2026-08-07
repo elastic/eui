@@ -215,52 +215,75 @@ jobs:
       - name: Sync EUI i18n tokens
         if: steps.save_old_tokens.outputs.SKIP != 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EUI_REF: ${{ inputs.eui_ref }}
-          OLD_TOKENS_PATH: ${{ steps.save_old_tokens.outputs.OLD_TOKENS_PATH }}
+          OLD_TOKENS: ${{ steps.save_old_tokens.outputs.OLD_TOKENS_PATH }}
+          MAPPING_FILE: src/core/packages/i18n/browser-internal/src/i18n_eui_mapping.tsx
         # language=bash
         run: |
           set -euo pipefail
 
-          new_tokens_path=$(node -e "console.log(require.resolve('@elastic/eui/i18ntokens.json'))" 2>/dev/null || true)
-          if [[ -z "$new_tokens_path" ]]; then
-            echo "::warning::Cannot resolve @elastic/eui/i18ntokens.json — skipping i18n token sync"
-            exit 0
+          export NEW_TOKENS
+          NEW_TOKENS=$(node -e "console.log(require.resolve('@elastic/eui/i18ntokens.json'))" 2>/dev/null || true)
+          if [[ -z "$NEW_TOKENS" || ! -f "$MAPPING_FILE" ]]; then
+            echo "::warning::Cannot locate token files — skipping i18n sync"; exit 0
           fi
 
-          mapping_file="src/core/packages/i18n/browser-internal/src/i18n_eui_mapping.tsx"
-          if [[ ! -f "$mapping_file" ]]; then
-            echo "::warning::$mapping_file not found — skipping i18n token sync"
-            exit 0
-          fi
+          node << 'SCRIPT'
+          const fs = require('fs');
+          const old = new Map(JSON.parse(fs.readFileSync(process.env.OLD_TOKENS)).map(t => [t.token, t.defString]));
+          const next = new Map(JSON.parse(fs.readFileSync(process.env.NEW_TOKENS)).map(t => [t.token, t.defString]));
+          const file = process.env.MAPPING_FILE;
 
-          # Fetch the sync script from the EUI repo at the published ref
-          gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_REF}" \
-            --header "Accept: application/vnd.github.raw" \
-            > /tmp/sync_kibana_i18n.mjs
+          const added = [], removed = [], modified = [];
+          for (const [t, d] of old) !next.has(t) ? removed.push(t) : next.get(t) !== d && modified.push({ token: t, defString: next.get(t) });
+          for (const [t, d] of next) !old.has(t) && added.push({ token: t, defString: d });
 
-          node /tmp/sync_kibana_i18n.mjs \
-            --old-tokens "$OLD_TOKENS_PATH" \
-            --new-tokens "$new_tokens_path" \
-            --mapping-file "$mapping_file"
+          if (!added.length && !removed.length && !modified.length) { console.log('No token changes'); process.exit(0); }
+          console.log(`Tokens: +${added.length} added  -${removed.length} removed  ~${modified.length} modified`);
 
-          # If the mapping was updated, refresh jest snapshots and commit separately
-          if ! git diff --quiet "$mapping_file"; then
-            echo "i18n mapping changed — updating snapshots"
-            node scripts/jest \
-              --testPathPattern 'i18n_eui_mapping' \
-              --updateSnapshot \
-              2>&1 || echo "::warning::jest --updateSnapshot exited non-zero"
+          function mkEntry(token, def) {
+            const vars = [...new Set((def.match(/\{([a-zA-Z0-9_]+)\}/g) || []).map(m => m.slice(1, -1)))];
+            const esc = def.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+            const k = `'core.${token}'`;
+            return vars.length
+              ? `    '${token}': ({ ${vars} }: EuiValues) =>\n      i18n.translate(${k}, {\n        defaultMessage: '${esc}',\n        values: { ${vars} },\n      }),`
+              : `    '${token}': i18n.translate(${k}, {\n      defaultMessage: '${esc}',\n    }),`;
+          }
 
-            git add "$mapping_file"
-            # The __snapshots__ directory may or may not have changed
+          function parseMap(content) {
+            const lines = content.split('\n');
+            const starts = [];
+            let closing = lines.length - 1;
+            lines.forEach((l, i) => { const m = /^    '(eui[^']+)':/.exec(l); if (m) starts.push({ token: m[1], i }); else if (/^  \};/.test(l)) closing = i; });
+            const map = new Map();
+            starts.forEach(({ token, i }, j) => { let e = j + 1 < starts.length ? starts[j + 1].i - 1 : closing - 1; while (e > i && !lines[e].trim()) e--; map.set(token, { s: i, e }); });
+            return { map, closing };
+          }
+
+          let lines = fs.readFileSync(file, 'utf8').split('\n');
+          const { map } = parseMap(lines.join('\n'));
+          const ops = [
+            ...removed.map(t => map.get(t) && { ...map.get(t), text: null }),
+            ...modified.map(({ token, defString }) => map.get(token) && { ...map.get(token), text: mkEntry(token, defString) }),
+          ].filter(Boolean).sort((a, b) => b.s - a.s);
+
+          for (const { s, e, text } of ops) lines.splice(s, e - s + 1, ...(text ? text.split('\n') : []));
+
+          if (added.length) {
+            const c = lines.join('\n');
+            const { closing } = parseMap(c);
+            lines = c.split('\n');
+            lines.splice(closing, 0, ...added.sort((a, b) => a.token.localeCompare(b.token)).flatMap(({ token, defString }) => mkEntry(token, defString).split('\n')));
+          }
+
+          fs.writeFileSync(file, lines.join('\n'));
+          console.log('Patched', file);
+          SCRIPT
+
+          if ! git diff --quiet "$MAPPING_FILE"; then
+            node scripts/jest --testPathPattern i18n_eui_mapping --updateSnapshot 2>&1 || true
+            git add "$MAPPING_FILE"
             git add "src/core/packages/i18n/browser-internal/src/__snapshots__/" 2>/dev/null || true
-
-            if ! git diff --cached --quiet; then
-              git commit -m "chore: sync EUI i18n tokens"
-            fi
-          else
-            echo "i18n mapping is already up to date"
+            git diff --cached --quiet || git commit -m "chore: sync EUI i18n tokens"
           fi
       - name: Commit changed files
         # language=bash
