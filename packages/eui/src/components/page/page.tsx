@@ -48,7 +48,7 @@ export interface EuiPageProps
 }
 
 /**
- * @see {@link https://eui.elastic.co/docs/components/layout/page_components/|EuiPage documentation}
+ * @see {@link https://eui.elastic.co/docs/layout/page-components/|EuiPage documentation}
  */
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
