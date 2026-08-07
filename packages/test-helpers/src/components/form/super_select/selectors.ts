@@ -30,8 +30,12 @@ export const EuiSuperSelectSelectors = {
    */
   LISTBOX_SELECTOR: '.euiSuperSelect__listbox[role="listbox"]',
 
-  /** The hidden form input holding the committed `value`. */
-  HIDDEN_INPUT_SELECTOR: 'input[type="hidden"]',
+  /**
+   * The hidden form input holding the committed `value` — a direct child of
+   * the popover wrapper, scoped as such so hidden inputs a consumer might
+   * render inside prepend/append content are never matched.
+   */
+  HIDDEN_INPUT_SELECTOR: ':scope > input[type="hidden"]',
 
   /**
    * An option addressed by its `value` — EUI renders every option with

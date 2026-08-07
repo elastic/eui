@@ -35,9 +35,6 @@ export const EuiDataGridSelectors = {
   /** The header cell's actions button, interactable on focus/hover. */
   HEADER_ACTIONS_BUTTON_SELECTOR: '.euiDataGridHeaderCell__button',
 
-  /** Label of an item inside the header actions menu (matched by `title`). */
-  ACTION_LABEL_SELECTOR: '.euiListGroupItem__label',
-
   FULL_SCREEN_BUTTON_TEST_SUBJ: 'dataGridFullScreenButton',
 
   /**

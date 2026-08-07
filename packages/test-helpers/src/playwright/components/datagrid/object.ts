@@ -76,9 +76,7 @@ export class EuiDataGridObject extends BaseObject {
       .page()
       .locator(EuiDataGridSelectors.headerActionsMenuFor(columnId));
     await actionsMenu.waitFor({ state: 'visible' });
-    await actionsMenu
-      .locator(`${EuiDataGridSelectors.ACTION_LABEL_SELECTOR}[title="${actionLabel}"]`)
-      .click();
+    await actionsMenu.getByTitle(actionLabel, { exact: true }).click();
     await actionsMenu.waitFor({ state: 'hidden' });
   }
 

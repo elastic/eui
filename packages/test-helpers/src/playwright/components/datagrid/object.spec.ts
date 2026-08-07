@@ -9,6 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiDataGridObject } from './object';
+import { EuiDataGridSelectors } from '../../../components/datagrid/selectors';
 import { storyUrl } from '../../../storybook';
 
 /**
@@ -54,7 +55,7 @@ test.describe('EuiDataGridObject', () => {
 
     test('excludes the column header cell', async () => {
       const headerText = await dataGrid.locator
-        .locator('.euiDataGridHeaderCell[data-gridcell-column-id="name"]')
+        .locator(EuiDataGridSelectors.headerCellFor('name'))
         .innerText();
       const cellTexts = await dataGrid.cells('name').allInnerTexts();
       expect(cellTexts).not.toContain(headerText);
@@ -74,12 +75,16 @@ test.describe('EuiDataGridObject', () => {
   test.describe('fullscreen', () => {
     test('enters and exits fullscreen mode', async ({ page }) => {
       await dataGrid.openFullScreenMode();
-      await expect(page.locator('.euiDataGrid--fullScreen')).toBeVisible();
+      await expect(
+        page.locator(EuiDataGridSelectors.FULL_SCREEN_ROOT_SELECTOR)
+      ).toBeVisible();
       // The grid keeps its rows across the mode change.
       await expect(dataGrid.rows).toHaveCount(10);
 
       await dataGrid.closeFullScreenMode();
-      await expect(page.locator('.euiDataGrid--fullScreen')).toHaveCount(0);
+      await expect(
+        page.locator(EuiDataGridSelectors.FULL_SCREEN_ROOT_SELECTOR)
+      ).toHaveCount(0);
       await expect(dataGrid.rows).toHaveCount(10);
     });
   });
