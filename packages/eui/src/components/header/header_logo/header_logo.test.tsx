@@ -37,7 +37,7 @@ describe('EuiHeaderLogo', () => {
   it('renders optional props', () => {
     const { container } = render(
       <EuiHeaderLogo
-        iconType="error"
+        logoType="full"
         iconTitle="Moby Dick"
         style={{ color: 'red' }}
       />
