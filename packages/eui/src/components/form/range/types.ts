@@ -122,7 +122,7 @@ export interface _SharedRangeInputProps {
   /**
    * Only impacts input popovers rendered when the `showInput` prop is set to `"inputWithPopover"`
    *
-   * Allows customizing the underlying [EuiInputPopover](https://eui.elastic.co/docs/components/containers/popover#popover-attached-to-input-element),
+   * Allows customizing the underlying [EuiInputPopover](https://eui.elastic.co/docs/components/containers/popover/),
    * except for props controlled by the range component
    */
   inputPopoverProps?: Omit<

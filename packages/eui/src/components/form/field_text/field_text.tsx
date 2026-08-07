@@ -64,7 +64,7 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   };
 
 /**
- * @see {@link https://eui.elastic.co/docs/components/forms/text/basic/|EuiFieldText documentation}
+ * @see {@link https://eui.elastic.co/docs/components/forms/text/|EuiFieldText documentation}
  */
 export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
   const { defaultFullWidth } = useFormContext();

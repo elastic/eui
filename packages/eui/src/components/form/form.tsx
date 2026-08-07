@@ -50,7 +50,7 @@ export type EuiFormProps = CommonProps &
   };
 
 /**
- * @see {@link https://eui.elastic.co/docs/components/forms/layouts/|EuiForm documentation}
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/row/|EuiForm documentation}
  */
 export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
   (

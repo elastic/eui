@@ -84,7 +84,7 @@ export type EuiFieldNumberProps = Omit<
   };
 
 /**
- * @see {@link https://eui.elastic.co/docs/components/forms/numeric/basic/|EuiFieldNumber documentation}
+ * @see {@link https://eui.elastic.co/docs/components/forms/numeric/|EuiFieldNumber documentation}
  */
 export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   props

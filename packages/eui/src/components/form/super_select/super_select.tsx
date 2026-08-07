@@ -72,7 +72,7 @@ export type EuiSuperSelectProps<T = string> = CommonProps &
     isOpen?: boolean;
 
     /**
-     * Optional props to pass to the underlying [EuiInputPopover](https://eui.elastic.co/docs/components/containers/popover#popover-attached-to-input-element).
+     * Optional props to pass to the underlying [EuiInputPopover](https://eui.elastic.co/docs/components/containers/popover/).
      * Allows fine-grained control of the popover dropdown menu, including
      * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
      * and customizing popover panel styling.
