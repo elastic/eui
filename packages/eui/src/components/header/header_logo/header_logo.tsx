@@ -17,7 +17,7 @@ import {
 import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonColorCSS } from '../../../global_styling';
 
-import { EuiIcon } from '../../icon';
+import { EuiIcon, type IconType } from '../../icon';
 import { CommonProps } from '../../common';
 
 import { euiHeaderLogoStyles } from './header_logo.styles';
@@ -29,11 +29,13 @@ export type EuiHeaderLogoProps = CommonProps &
     rel?: string;
     target?: string;
     iconTitle?: string;
+    iconType?: IconType;
     logoType?: 'glyph' | 'horizontal';
   };
 
 export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
   iconTitle = 'Elastic',
+  iconType = 'logoElastic',
   href,
   rel,
   target,
@@ -64,7 +66,7 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
           aria-label={iconTitle}
           className="euiHeaderLogo__icon"
           size="l"
-          type={'logoElastic'}
+          type={iconType}
         />
       )}
       {logoType === 'horizontal' && (
