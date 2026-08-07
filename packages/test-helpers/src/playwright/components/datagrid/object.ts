@@ -13,7 +13,7 @@ import { EuiDataGridSelectors } from '../../../components/datagrid/selectors';
 
 /**
  * Playwright Component Object for {@link
- * https://eui.elastic.co/docs/components/tables/data-grid/ EuiDataGrid}.
+ * https://eui.elastic.co/docs/components/data-grid EuiDataGrid}.
  *
  * `testSubj` must match the `data-test-subj` set by the consumer on the
  * `EuiDataGrid` itself (the component-type guard enforces it) — EUI toggles

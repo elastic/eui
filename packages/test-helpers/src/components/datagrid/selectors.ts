@@ -8,7 +8,7 @@
 
 /**
  * Stable selectors for
- * {@link https://eui.elastic.co/docs/components/tables/data-grid/|EuiDataGrid}.
+ * {@link https://eui.elastic.co/docs/components/data-grid|EuiDataGrid}.
  * `*_SELECTOR` values are CSS; `*_TEST_SUBJ` values are `data-test-subj` names.
  */
 export const EuiDataGridSelectors = {

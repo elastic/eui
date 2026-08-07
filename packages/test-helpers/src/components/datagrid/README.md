@@ -1,6 +1,6 @@
 # EuiDataGridObject
 
-Playwright Component Object for [EuiDataGrid](https://eui.elastic.co/docs/components/tables/data-grid/).
+Playwright Component Object for [EuiDataGrid](https://eui.elastic.co/docs/components/data-grid).
 
 ## Usage
 
