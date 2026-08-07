@@ -56,7 +56,7 @@ export type DefaultEuiMarkdownProcessingPlugins = [
 export type DefaultProcessingPluginsConfig = {
   /**
    * Allows customizing all formatted links.
-   * Accepts any prop that [EuiLink](/#/navigation/link) or any anchor link tag accepts.
+   * Accepts any prop that [EuiLink](https://eui.elastic.co/docs/components/navigation/link/) or any anchor link tag accepts.
    * Useful for, e.g. setting `target="_blank"` on all links
    */
   linkProps?: Partial<EuiLinkProps>;

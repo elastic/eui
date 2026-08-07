@@ -294,6 +294,9 @@ type PropsWithDefaults = Props & {
   panelPaddingSize: EuiPaddingSize;
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/popover/|EuiPopover documentation}
+ */
 export class EuiPopover extends Component<Props, State> {
   static contextType = EuiComponentDefaultsContext;
   declare context: ContextType<typeof EuiComponentDefaultsContext>;

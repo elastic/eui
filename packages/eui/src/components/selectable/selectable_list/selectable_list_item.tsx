@@ -71,7 +71,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      */
     toolTipContent?: EuiSelectableOption['toolTipContent'];
     /**
-     * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+     * Optional props to pass to the underlying **[EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/)**
      */
     toolTipProps?: EuiSelectableOption['toolTipProps'];
   };

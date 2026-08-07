@@ -34,7 +34,7 @@ describe('EuiSideNav', () => {
             {
               name: 'Item with href',
               id: htmlIdGenerator('basicExample')(),
-              href: '/#/navigation/side-nav',
+              href: 'https://eui.elastic.co/docs/components/navigation/side-nav/',
             },
             {
               name: 'Selected item',
@@ -94,7 +94,7 @@ describe('EuiSideNav', () => {
             {
               name: 'Item with href',
               id: htmlIdGenerator('basicExample')(),
-              href: '/#/navigation/side-nav',
+              href: 'https://eui.elastic.co/docs/components/navigation/side-nav/',
             },
             {
               name: 'Selected item',

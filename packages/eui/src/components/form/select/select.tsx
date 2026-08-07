@@ -76,6 +76,9 @@ export type EuiSelectProps = Omit<
     append?: EuiFormControlLayoutProps['append'];
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/selection/basic-select/|EuiSelect documentation}
+ */
 export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {

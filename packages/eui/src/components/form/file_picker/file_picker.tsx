@@ -375,5 +375,8 @@ export class EuiFilePickerClass extends Component<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/other/file-picker/|EuiFilePicker documentation}
+ */
 export const EuiFilePicker =
   withEuiStylesMemoizer<EuiFilePickerProps>(EuiFilePickerClass);
