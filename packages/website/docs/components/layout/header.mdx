@@ -321,7 +321,6 @@ The header is made up of **many** individual components starting with **EuiHeade
   export default () => {
     const renderLogo = () => (
       <EuiHeaderLogo
-        iconType="logoElastic"
         href="#"
         onClick={(e) => e.preventDefault()}
         aria-label="Go to home page"
@@ -454,7 +453,6 @@ import {
 export default () => {
   const renderLogo = (
     <EuiHeaderLogo
-      iconType="logoElastic"
       href="#"
       onClick={(e) => e.preventDefault()}
       aria-label="Go to home page"
@@ -640,7 +638,7 @@ export default () => {
       sections={[
         {
           items: [
-            <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
+            <EuiHeaderLogo logoType="horizontal" />,
             <EuiHeaderLinks aria-label="App navigation dark theme example">
               <EuiHeaderLink isActive>Docs</EuiHeaderLink>
               <EuiHeaderLink>Code</EuiHeaderLink>
@@ -1034,7 +1032,7 @@ export default () => {
       <EuiHeader position={position} theme={theme}>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
-            <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+            <EuiHeaderLogo logoType="horizontal" />
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
         <EuiHeaderSection side="right">
@@ -1181,7 +1179,7 @@ export default () => {
       <EuiHeader
         sections={[
           {
-            items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
+            items: [<EuiHeaderLogo logoType="horizontal" />],
           },
           {
             items: [
@@ -1242,7 +1240,7 @@ export default () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+              <EuiHeaderLogo logoType="horizontal" />,
             ],
           },
           {

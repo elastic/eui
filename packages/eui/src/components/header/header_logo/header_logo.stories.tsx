@@ -22,6 +22,10 @@ export default meta;
 type Story = StoryObj<EuiHeaderLogoProps>;
 
 export const Playground: Story = {
+  args: {
+    logoType: 'glyph',
+  },
+
   render: ({ ...args }) => (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem>
