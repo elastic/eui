@@ -34,6 +34,15 @@ describe('EuiHeaderLogo', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('supports the legacy iconType prop', () => {
+    const { container } = render(<EuiHeaderLogo iconType="logoElastic" />);
+
+    expect(container.querySelector('.euiHeaderLogo__icon')).toHaveAttribute(
+      'data-euiicon-type',
+      'logoElastic'
+    );
+  });
+
   it('renders optional props', () => {
     const { container } = render(
       <EuiHeaderLogo
