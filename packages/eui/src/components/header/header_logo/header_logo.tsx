@@ -29,7 +29,7 @@ export type EuiHeaderLogoProps = CommonProps &
     rel?: string;
     target?: string;
     iconTitle?: string;
-    logoType?: 'glyph' | 'full';
+    logoType?: 'glyph' | 'horizontal';
   };
 
 export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
@@ -67,7 +67,7 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
           type={'logoElastic'}
         />
       )}
-      {logoType === 'full' && (
+      {logoType === 'horizontal' && (
         <SvgElasticLogoFull
           title={iconTitle}
           style={{ maxHeight: euiTheme.size.l, width: 'auto' }}
