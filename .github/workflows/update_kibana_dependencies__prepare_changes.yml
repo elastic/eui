@@ -154,6 +154,42 @@ jobs:
               echo 'CHERRY_PICK_DELIMITER'
             } >> "$GITHUB_OUTPUT"
           fi
+      - name: Save current EUI i18n tokens
+        id: save_old_tokens
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          # Resolve the ref for the current @elastic/eui version in Kibana.
+          # Release builds have a git tag (v{version}); snapshot builds don't,
+          # so we fall back to eui_last_release as the stable baseline.
+          current_version=$(node -pe "
+            const p = require('./package.json');
+            (p.devDependencies?.['@elastic/eui'] || p.dependencies?.['@elastic/eui'] || '')
+              .replace(/^[^0-9]*/, '')
+          ")
+
+          if [[ "$current_version" == *"-snapshot"* ]]; then
+            if [[ -z "${EUI_LAST_RELEASE:-}" ]]; then
+              echo "::warning::Current @elastic/eui is a snapshot and eui_last_release was not provided — skipping i18n token sync"
+              echo "SKIP=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            ref="v${EUI_LAST_RELEASE}"
+          else
+            ref="v${current_version}"
+          fi
+
+          echo "Fetching i18ntokens.json from elastic/eui at ref $ref"
+          gh api "repos/elastic/eui/contents/packages/eui/i18ntokens.json?ref=${ref}" \
+            --header "Accept: application/vnd.github.raw" \
+            > /tmp/old_i18ntokens.json
+
+          echo "SKIP=false" >> "$GITHUB_OUTPUT"
+          echo "OLD_TOKENS_PATH=/tmp/old_i18ntokens.json" >> "$GITHUB_OUTPUT"
       - name: Update dependency versions
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
@@ -176,6 +212,56 @@ jobs:
           yarn kbn bootstrap
           node scripts/yarn_deduplicate
           yarn kbn bootstrap --force-install
+      - name: Sync EUI i18n tokens
+        if: steps.save_old_tokens.outputs.SKIP != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          OLD_TOKENS_PATH: ${{ steps.save_old_tokens.outputs.OLD_TOKENS_PATH }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          new_tokens_path=$(node -e "console.log(require.resolve('@elastic/eui/i18ntokens.json'))" 2>/dev/null || true)
+          if [[ -z "$new_tokens_path" ]]; then
+            echo "::warning::Cannot resolve @elastic/eui/i18ntokens.json — skipping i18n token sync"
+            exit 0
+          fi
+
+          mapping_file="src/core/packages/i18n/browser-internal/src/i18n_eui_mapping.tsx"
+          if [[ ! -f "$mapping_file" ]]; then
+            echo "::warning::$mapping_file not found — skipping i18n token sync"
+            exit 0
+          fi
+
+          # Fetch the sync script from the EUI repo at the published ref
+          gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_REF}" \
+            --header "Accept: application/vnd.github.raw" \
+            > /tmp/sync_kibana_i18n.mjs
+
+          node /tmp/sync_kibana_i18n.mjs \
+            --old-tokens "$OLD_TOKENS_PATH" \
+            --new-tokens "$new_tokens_path" \
+            --mapping-file "$mapping_file"
+
+          # If the mapping was updated, refresh jest snapshots and commit separately
+          if ! git diff --quiet "$mapping_file"; then
+            echo "i18n mapping changed — updating snapshots"
+            node scripts/jest \
+              --testPathPattern 'i18n_eui_mapping' \
+              --updateSnapshot \
+              2>&1 || echo "::warning::jest --updateSnapshot exited non-zero"
+
+            git add "$mapping_file"
+            # The __snapshots__ directory may or may not have changed
+            git add "src/core/packages/i18n/browser-internal/src/__snapshots__/" 2>/dev/null || true
+
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: sync EUI i18n tokens"
+            fi
+          else
+            echo "i18n mapping is already up to date"
+          fi
       - name: Commit changed files
         # language=bash
         run: |
