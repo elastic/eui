@@ -162,7 +162,7 @@ export interface _EuiComboBoxProps<T>
    */
   autoFocus?: boolean;
   /**
-   * Required when rendering without a visible label from [EuiFormRow](https://eui.elastic.co/docs/components/forms/layouts/).
+   * Required when rendering without a visible label from [EuiFormRow](https://eui.elastic.co/docs/components/forms/layouts/row/).
    */
   'aria-label'?: string;
   /**
