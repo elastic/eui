@@ -98,6 +98,7 @@ async function copySvgFiles() {
   );
 }
 
+// NOTE: eui-icons.json is for server-side/build-time use only; client-side imports will bundle all SVGs.
 async function buildSvgBundle() {
   const svgsRootDir = path.join(srcDir, 'components', 'icon', 'svgs');
   const distSvgsDir = path.join(packageRootDir, 'dist', 'svgs');
