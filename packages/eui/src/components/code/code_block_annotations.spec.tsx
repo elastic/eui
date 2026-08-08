@@ -47,6 +47,59 @@ describe('EuiCodeBlock annotations', () => {
         'Annotation'
       );
     });
+
+    // https://github.com/elastic/eui/issues/9023
+    // Real-browser layout is required to catch this: the popover's preferred
+    // position and its fallback when there isn't room both depend on actual
+    // element dimensions, which jsdom always reports as zero (see the unit
+    // test in code_block_annotations.test.tsx for what that leaves untested).
+    it('does not cover the annotated line, even in a narrow container', () => {
+      cy.mount(
+        <div style={{ maxWidth: 200 }}>
+          <EuiCodeBlock
+            language="json"
+            fontSize="m"
+            paddingSize="m"
+            lineNumbers={{
+              annotations: {
+                1: 'Annotation',
+              },
+            }}
+          >
+            {content}
+          </EuiCodeBlock>
+        </div>
+      );
+      cy.get('[data-test-subj="euiCodeBlockAnnotationIcon"]').click();
+      cy.get('[data-test-subj="euiCodeBlockAnnotationPopover"]').should(
+        'be.visible'
+      );
+      cy.get('[data-test-subj="euiCodeBlockAnnotationPopover"]').then(
+        ($popover) => {
+          const popoverRect = $popover[0].getBoundingClientRect();
+          cy.get('.euiCodeBlock__line')
+            .eq(1) // the line directly below the annotated first line
+            .then(($line) => {
+              const lineRect = $line[0].getBoundingClientRect();
+              // #9023's reported bug was the popover fully covering the code
+              // line below the annotation, not any pixel of geometric
+              // overlap — a popover taller than a line's own height will
+              // always brush an edge once centered near it. Assert against
+              // the actual symptom: the line's vertical span must not be
+              // entirely swallowed by the popover's.
+              const lineFullyCovered =
+                popoverRect.top <= lineRect.top &&
+                popoverRect.bottom >= lineRect.bottom;
+              expect(
+                lineFullyCovered,
+                `popover ${JSON.stringify(
+                  popoverRect
+                )} vs line ${JSON.stringify(lineRect)}`
+              ).to.equal(false);
+            });
+        }
+      );
+    });
   });
 
   describe('virtualized', () => {

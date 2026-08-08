@@ -14,10 +14,11 @@ import React, {
 } from 'react';
 
 import { useEuiTheme, useEuiMemoizedStyles } from '../../services';
+import type { EuiPopoverPosition } from '../../services/popover';
 import { useEuiButtonFocusCSS } from '../../global_styling/mixins/_button';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
-import { EuiPopover } from '../popover';
+import { EuiPopover, type EuiPopoverProps } from '../popover';
 import { EuiIcon } from '../icon';
 
 import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
@@ -33,6 +34,23 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
   EuiCodeBlockAnnotationProps
 > = ({ lineNumber, children, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // #9023 asks for a *specific* two-step fallback, not EuiPopover's generic
+  // one: prefer beside the code (`leftCenter`) when there's horizontal room,
+  // and drop to below the icon (`downLeft`) when there isn't. EuiPopover's
+  // own fallback chain for `leftCenter` (left -> right -> top -> bottom)
+  // doesn't stop at `downLeft` — on a narrow container it continues past
+  // `bottom` mis-aligned to `top`, covering the code above the annotation.
+  // `onPositionChange` reports which base side EuiPopover actually resolved
+  // to; anything other than the two horizontal sides means there wasn't
+  // room, so switch the anchor itself to the issue's named fallback.
+  const [resolvedAnchor, setResolvedAnchor] =
+    useState<EuiPopoverProps['anchorPosition']>('leftCenter');
+
+  const handlePositionChange = (position: EuiPopoverPosition) => {
+    setResolvedAnchor(
+      position === 'left' || position === 'right' ? 'leftCenter' : 'downLeft'
+    );
+  };
 
   const ariaLabel = useEuiI18n(
     'euiCodeBlockAnnotations.ariaLabel',
@@ -68,10 +86,8 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
         </button>
       }
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask
-      // Prefer rendering the annotation beside the code (instead of on top of
-      // it) when there is horizontal room. `EuiPopover` automatically falls
-      // back to the cross axis (i.e. below the icon) when space is too tight.
-      anchorPosition="leftCenter"
+      anchorPosition={resolvedAnchor}
+      onPositionChange={handlePositionChange}
       panelProps={{ 'data-test-subj': 'euiCodeBlockAnnotationPopover' }}
     >
       {children}
