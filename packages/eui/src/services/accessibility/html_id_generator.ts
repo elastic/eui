@@ -9,6 +9,8 @@
 import React, { useMemo } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 
+import { warnOnce } from '../console';
+
 /**
  * IDs containing whitespace are invalid HTML, and silently break attributes
  * that take a space-separated list of ID references (`aria-controls`,
@@ -19,8 +21,11 @@ import { v1 as uuidv1 } from 'uuid';
  * passed as a prefix/suffix, so warn consumers as early as possible.
  */
 const warnOnWhitespace = (value?: string) => {
+  if (process.env.NODE_ENV === 'production') return;
+
   if (value && /\s/.test(value)) {
-    console.warn(
+    warnOnce(
+      `generatedHtmlIdWhitespace:${value}`,
       `[EUI] Generated HTML ID: "${value}" contains whitespace, which generates an invalid HTML id ` +
         'and breaks attributes referencing it, such as `aria-controls` or `for`. ' +
         'Pass a static identifier instead of a human-readable or localized string.'
