@@ -80,6 +80,9 @@ export type EuiEmptyPromptProps = CommonProps &
     paddingSize?: PaddingSize;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/empty-prompt/|EuiEmptyPrompt documentation}
+ */
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   icon,
   iconType,

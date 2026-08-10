@@ -30,6 +30,9 @@ export interface EuiTimelineProps
   gutterSize?: EuiTimelineGutterSize;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/timeline/|EuiTimeline documentation}
+ */
 export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   className,
   items = [],

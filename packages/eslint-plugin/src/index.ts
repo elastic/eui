@@ -28,6 +28,7 @@ import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rul
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
 import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
+import { NoDeprecatedIconAliases } from './rules/no_deprecated_icon_aliases';
 import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
 
 const config = {
@@ -38,6 +39,7 @@ const config = {
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'href-or-on-click': HrefOnClick,
     'no-css-color': NoCssColor,
+    'no-deprecated-icon-aliases': NoDeprecatedIconAliases,
     'no-nested-copy-tooltip': NoNestedCopyTooltip,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
@@ -68,6 +70,7 @@ const config = {
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/no-deprecated-icon-aliases': 'warn',
         '@elastic/eui/no-nested-copy-tooltip': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-static-z-index': 'warn',

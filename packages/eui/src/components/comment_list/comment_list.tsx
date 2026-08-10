@@ -25,6 +25,9 @@ export type EuiCommentListProps = Omit<
   gutterSize?: EuiTimelineProps['gutterSize'];
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/comment-list/|EuiCommentList documentation}
+ */
 export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   children,
   className,

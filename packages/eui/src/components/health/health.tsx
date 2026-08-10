@@ -33,6 +33,9 @@ export type EuiHealthProps = CommonProps &
     textSize?: (typeof TEXT_SIZES)[number];
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/health/|EuiHealth documentation}
+ */
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   children,
   className,

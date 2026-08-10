@@ -87,14 +87,50 @@ async function copySvgFiles() {
     realpath: true,
   });
 
-  const destinationDirs = ['optimize/lib', 'lib'].map((dir) =>
-    path.join(packageRootDir, dir)
+  const destinationDirs = ['optimize/lib', 'optimize/es', 'lib', 'es'].map(
+    (dir) => path.join(packageRootDir, dir)
   );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
   console.log(
-    `Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`
+    `Successfully copied ${count} SVG files from src/ to lib/, es/, optimize/lib/, and optimize/es/`
+  );
+}
+
+// NOTE: eui-icons.json is for server-side/build-time use only; client-side imports will bundle all SVGs.
+async function buildSvgBundle() {
+  const svgsRootDir = path.join(srcDir, 'components', 'icon', 'svgs');
+  const distSvgsDir = path.join(packageRootDir, 'dist', 'svgs');
+  const manifest = {};
+
+  const files = glob.globIterate('components/icon/svgs/**/*.svg', {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  for await (const filePath of files) {
+    const fullSrcPath = path.join(srcDir, filePath);
+    // Use path.relative() to derive the path from the svgs root — handles both
+    // absolute paths and OS-specific separators correctly
+    const svgRelPath = path.relative(svgsRootDir, fullSrcPath);
+    const destPath = path.join(distSvgsDir, svgRelPath);
+
+    await fs.mkdir(path.dirname(destPath), { recursive: true });
+    await fs.copyFile(fullSrcPath, destPath);
+
+    const svgContent = await fs.readFile(fullSrcPath, 'utf8');
+    // Normalize to POSIX separators for cross-platform manifest keys
+    const key = svgRelPath.replace(/\\/g, '/').replace(/\.svg$/, '');
+    manifest[key] = svgContent;
+  }
+
+  const manifestPath = path.join(packageRootDir, 'dist', 'eui-icons.json');
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const count = Object.keys(manifest).length;
+  console.log(
+    `Successfully built SVG bundle: ${count} icons copied to dist/svgs/ and manifest written to dist/eui-icons.json`
   );
 }
 
@@ -295,6 +331,8 @@ async function compileBundle() {
 
     console.log(chalk.green('✔ Finished test utils files'));
   }
+
+  await buildSvgBundle();
 }
 
 async function cleanup() {

@@ -150,6 +150,9 @@ export interface EuiToolTipRef {
   id: string;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/tooltip/|EuiToolTip documentation}
+ */
 export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
   (
     {

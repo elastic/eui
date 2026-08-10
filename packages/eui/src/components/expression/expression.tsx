@@ -93,6 +93,9 @@ type Buttonlike = EuiExpressionProps &
 type Spanlike = EuiExpressionProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'value'>;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/search-and-filter/expression/|EuiExpression documentation}
+ */
 export const EuiExpression: FunctionComponent<
   ExclusiveUnion<Buttonlike, Spanlike>
 > = ({

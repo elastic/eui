@@ -97,7 +97,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
       mapping: {
         action: (
           <EuiButtonIcon
-            iconType="arrowRight"
+            iconType="chevronSingleRight"
             color="text"
             aria-label="Extra action"
           />
@@ -357,7 +357,7 @@ export const CustomContent: Story = {
         <EuiListItemLayout {...args}>
           <EuiFlexGroup alignItems="center" gutterSize="xs">
             <EuiFlexItem grow={false}>
-              <EuiIcon type="alert" color="warning" />
+              <EuiIcon type="warning" color="warning" />
             </EuiFlexItem>
             <EuiFlexItem>
               Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -463,7 +463,7 @@ const renderKitchenSink = (args: EuiListItemLayoutProps) => {
   const _append = <EuiBadge color="hollow">Badge</EuiBadge>;
   const _extraAction = (
     <EuiButtonIcon
-      iconType="arrowRight"
+      iconType="chevronSingleRight"
       color="text"
       isDisabled={isDisabled}
       aria-label="Button icon label"

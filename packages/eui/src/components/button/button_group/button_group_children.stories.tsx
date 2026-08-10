@@ -252,7 +252,7 @@ export const KitchenSink: Story = {
               <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
                 {(copy) => (
                   <EuiButtonIcon
-                    iconType="copyClipboard"
+                    iconType="copy"
                     aria-label="Copy"
                     color="primary"
                     onClick={copy}

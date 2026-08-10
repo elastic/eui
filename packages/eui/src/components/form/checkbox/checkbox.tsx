@@ -39,6 +39,9 @@ export interface EuiCheckboxProps
   labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/selection/checkbox-and-checkbox-group/|EuiCheckbox documentation}
+ */
 export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   className,
   id,

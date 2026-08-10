@@ -213,6 +213,9 @@ function notifyControllingParent(
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/search-and-filter/search-bar/|EuiSearchBar documentation}
+ */
 export const EuiSearchBar = (props: EuiSearchBarProps) => {
   const {
     box: { schema, 'aria-describedby': boxAriaDescribedBy, ...box } = {
