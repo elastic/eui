@@ -182,7 +182,10 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
             <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
               {effectiveTrailingActions.map((action, actionIndex) => (
-                <EuiFlexItem key={`trailing-action-${actionIndex}`} grow={false}>
+                <EuiFlexItem
+                  key={`trailing-action-${actionIndex}`}
+                  grow={false}
+                >
                   <MenuActionButton action={action} />
                 </EuiFlexItem>
               ))}
