@@ -183,9 +183,7 @@ export const EuiFilePicker: FunctionComponent<EuiFilePickerProps> = (props) => {
     [handleChange]
   );
 
-  const showDrop = useCallback(() => {
-    if (!disabled) {
-      setIsHoveringDrop(true);
+  const showDrop = () => !disabled && setIsHoveringDrop(true);
     }
   }, [disabled]);
 
