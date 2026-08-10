@@ -282,6 +282,19 @@ describe('EuiComboBox', () => {
         );
       });
 
+      it('does not apply option `title` to the option element', async () => {
+        const options = [{ label: 'Titan', title: 'Custom option title' }];
+        const { getByRole } = render(<EuiComboBox options={options} />);
+        await showEuiComboBoxOptions();
+
+        const option = getByRole('option');
+        expect(option).not.toHaveAttribute('title');
+        expect(option.querySelector('.euiListItemLayout__text')).toHaveAttribute(
+          'title',
+          'Custom option title'
+        );
+      });
+
       describe('placeholder', () => {
         it('renders', () => {
           const { getByTestSubject } = render(

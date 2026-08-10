@@ -174,6 +174,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       value,
       prepend,
       append,
+      title: optionTitle,
       truncationProps: _truncationProps,
       toolTipContent,
       toolTipProps,
@@ -243,6 +244,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     const hasNativeTruncation =
       !hasTruncationProps && !searchValue && rowHeight !== 'auto';
+    const title =
+      optionTitle ?? (hasNativeTruncation && !toolTipContent ? label : undefined);
 
     return (
       <EuiListItemLayout
@@ -255,7 +258,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
         // uses the original `options` array for the index to ensure a stable `id`, otherwise `aria-activedescendant`
         // loses focus on selecting an option (due to actively removing it from the list)
         id={rootId(`_option-${options.indexOf(option)}`)}
-        title={hasNativeTruncation && !toolTipContent ? label : undefined}
         key={option.key ?? option.label}
         prepend={option.prepend}
         append={
@@ -289,6 +291,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         contentProps={{
           className: 'euiComboBoxOption__content',
         }}
+        textProps={{ title }}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);
