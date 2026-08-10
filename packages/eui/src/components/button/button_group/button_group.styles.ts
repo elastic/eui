@@ -130,10 +130,11 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     &:where([data-layout='vertical'] &) {
       &:where(:is(${hasButtonIconOnlySelector}) &) {
         .euiButtonGroup__item::before {
+          inset-block-start: -${dividerOffset};
           inset-inline-start: auto;
           inline-size: calc(
-          var(--euiButtonGroupButtonInsetSize) - ${euiTheme.size.s}
-        );
+            var(--euiButtonGroupButtonInsetSize) - ${euiTheme.size.s}
+          );
         }
       }
     }
