@@ -161,6 +161,18 @@ describe('useGeneratedHtmlId', () => {
       expect(console.warn).not.toHaveBeenCalled();
     });
 
+    it('does not re-warn on rerender when prefix/suffix are unchanged', () => {
+      const { rerender } = renderHook(useGeneratedHtmlId, {
+        initialProps: { prefix: 'rerender prefix', suffix: 'rerender suffix' },
+      });
+
+      expect(console.warn).toHaveBeenCalledTimes(2);
+
+      rerender({ prefix: 'rerender prefix', suffix: 'rerender suffix' });
+
+      expect(console.warn).toHaveBeenCalledTimes(2);
+    });
+
     it('does not warn when a conditionalId takes precedence', () => {
       renderHook(() =>
         useGeneratedHtmlId({ prefix: 'my prefix', conditionalId: 'customId' })
@@ -168,7 +180,6 @@ describe('useGeneratedHtmlId', () => {
 
       expect(console.warn).not.toHaveBeenCalled();
     });
-  });
 
   describe('version-specific tests', () => {
     let MockComponent: FunctionComponent;
