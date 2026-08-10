@@ -83,11 +83,6 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
   const [primaryAction, secondaryAction] = children;
   const key = useGeneratedHtmlId({ suffix: 'EuiSplitButton' });
 
-  // manual cast as defensive behavior, because style is not an official prop
-  const { style: _style, ...cleanedRest } = rest as typeof rest & {
-    style?: React.CSSProperties;
-  };
-
   const commonProps = useMemo(
     () => ({
       size,
@@ -152,12 +147,9 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
     ]
   );
 
-  const inlineStyles = useMemo(
-    () => ({
-      '--euiSplitButtonBorderColor': dividerColor,
-      ..._style,
-    }),
-    [dividerColor, _style]
+  const cssVariables = useMemo(
+    () => ({ '--euiSplitButtonBorderColor': dividerColor }),
+    [dividerColor]
   ) as React.CSSProperties;
 
   // NOTE: dev-mode-only runtime check to evaluate if correct child components are passed
@@ -192,8 +184,8 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
       css={cssStyles}
       data-size={size}
       data-fill={fill || undefined}
-      style={inlineStyles}
-      {...cleanedRest}
+      {...rest}
+      style={{ ...cssVariables }}
     >
       <EuiSplitButtonContext.Provider value={commonProps}>
         <Fragment key={`${key}-primaryAction`}>{primaryAction}</Fragment>
