@@ -35,9 +35,9 @@ import {
 const EuiButtonGroup = EuiButtonGroupChildren;
 const buttons = (
   <>
-    <EuiButton color="danger">Delete</EuiButton>
-    <EuiButton color="text">Rename</EuiButton>
-    <EuiButton color="text">Disable</EuiButton>
+    <EuiButton>Delete</EuiButton>
+    <EuiButton>Rename</EuiButton>
+    <EuiButton>Disable</EuiButton>
     <EuiButton>Duplicate</EuiButton>
     <EuiButton fill>Save</EuiButton>
   </>
