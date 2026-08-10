@@ -3,7 +3,7 @@
 - Added new `@elastic/eui/no-nested-copy-tooltip` rule to improve `EuiCopy` usage ([#9852](https://github.com/elastic/eui/pull/9852))
 - Updated `@elastic/eui/tooltip-button-icon-wrap` with an exception for `EuiCopy` usage covered by `@elastic/eui/no-nested-copy-tooltip` ([#9852](https://github.com/elastic/eui/pull/9852))
 - Added `button-group-no-invalid-children` rule ([#9849](https://github.com/elastic/eui/pull/9849))
-- Add `no-deprecated-icon-aliases` rule ([#9815](https://github.com/elastic/eui/pull/9815))
+- Added `no-deprecated-icon-aliases` rule ([#9815](https://github.com/elastic/eui/pull/9815))
 
 ## [`v2.15.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.15.0)
 
