@@ -177,6 +177,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       truncationProps: _truncationProps,
       toolTipContent,
       toolTipProps,
+      title,
       ...rest
     } = option;
     const {
@@ -292,7 +293,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
           // `title` must not be set on the option element itself - it would
           // become the option's accessible description, causing screen readers
           // to announce the option name twice
-          title: hasNativeTruncation && !toolTipContent ? label : undefined,
+          title:
+            title ??
+            (hasNativeTruncation && !toolTipContent ? label : undefined),
         }}
         onClick={() => {
           if (onOptionClick) {
