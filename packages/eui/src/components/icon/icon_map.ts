@@ -120,12 +120,9 @@ export const typeToPathMap = {
   alignTopRight: withMetadata(() => import('./assets/align_top_right'), {
     synonyms: ['align', 'top', 'right', 'corner', 'position', 'layout'],
   }),
-  analyzeEvent: () => import('./assets/analyze_event'),
-  annotation: () => import('./assets/annotation'),
   chartAnomaly: withMetadata(() => import('./assets/chart_anomaly'), {
     synonyms: ['anomaly', 'chart', 'outlier', 'detection', 'spike', 'unusual'],
   }),
-  anomalySwimLane: () => import('./assets/anomaly_swim_lane'),
   apmApp: withMetadata(() => import('./assets/app_apm'), { category: 'app' }),
   chartWaterfall: withMetadata(() => import('./assets/chart_waterfall'), {
     synonyms: [
@@ -171,7 +168,6 @@ export const typeToPathMap = {
     () => import('./assets/chevron_limit_right'),
     { synonyms: ['chevron', 'limit', 'last', 'end', 'final', 'jump', 'skip'] }
   ),
-  article: () => import('./assets/article'),
   asterisk: withMetadata(() => import('./assets/asterisk'), {
     synonyms: [
       'star',
@@ -267,7 +263,6 @@ export const typeToPathMap = {
   briefcase: withMetadata(() => import('./assets/briefcase'), {
     synonyms: ['work', 'business', 'job', 'portfolio', 'office', 'career'],
   }),
-  branchUser: () => import('./assets/branch_user'),
   broom: withMetadata(() => import('./assets/broom'), {
     synonyms: ['clean', 'sweep', 'clear', 'tidy', 'wipe', 'brush off'],
   }),
@@ -493,11 +488,6 @@ export const typeToPathMap = {
   consoleApp: withMetadata(() => import('./assets/app_console'), {
     category: 'app',
   }),
-  container: () => import('./assets/container'),
-  continuityAbove: () => import('./assets/continuity_above'),
-  continuityAboveBelow: () => import('./assets/continuity_above_below'),
-  continuityBelow: () => import('./assets/continuity_below'),
-  continuityWithin: () => import('./assets/continuity_within'),
   contrast: withMetadata(() => import('./assets/contrast'), {
     synonyms: ['contrast', 'accessibility', 'visibility', 'a11y'],
   }),
@@ -651,7 +641,6 @@ export const typeToPathMap = {
   dot: withMetadata(() => import('./assets/dot'), {
     synonyms: ['dot', 'point', 'bullet', 'period', 'circle'],
   }),
-  dotInCircle: () => import('./assets/dot_in_circle'),
   chevronDoubleLeft: withMetadata(
     () => import('./assets/chevron_double_left'),
     { synonyms: ['chevron', 'double', 'left', 'rewind', 'back', 'previous'] }
@@ -760,7 +749,7 @@ export const typeToPathMap = {
       'filled',
     ],
   }),
-  esqlVis: () => import('./assets/esql_vis'),
+  esqlVis: () => import('./assets/esql_vis'), // Deprecated in favor of `query`
   logIn: withMetadata(() => import('./assets/log_in'), {
     synonyms: ['entry', 'incoming'],
   }),
@@ -844,7 +833,6 @@ export const typeToPathMap = {
   fleetApp: withMetadata(() => import('./assets/app_agent'), {
     category: 'app',
   }),
-  fold: () => import('./assets/fold'),
   folder: () => import('./assets/folder_close'),
   folderClosed: () => import('./assets/folder_close'),
   folderClose: withMetadata(() => import('./assets/folder_close'), {
@@ -857,14 +845,12 @@ export const typeToPathMap = {
   }),
   folderOpened: () => import('./assets/folder_open'), // Deprecated in favor of `folderOpen`
   frameNext: () => import('./assets/frame_next'),
-  framePrevious: () => import('./assets/frame_previous'),
   fullScreen: withMetadata(() => import('./assets/full_screen'), {
     synonyms: ['fullscreen'],
   }),
   fullScreenExit: withMetadata(() => import('./assets/full_screen_exit'), {
     synonyms: ['fullscreen', 'exit', 'minimize', 'window', 'restore', 'shrink'],
   }),
-  function: () => import('./assets/function'),
   gear: withMetadata(() => import('./assets/gear'), {
     synonyms: [
       'settings',
@@ -914,7 +900,6 @@ export const typeToPathMap = {
   image: withMetadata(() => import('./assets/image'), {
     synonyms: ['image', 'picture', 'photo', 'media', 'graphic'],
   }),
-  index: () => import('./assets/index'),
   indexClose: () => import('./assets/index_close'), // Deprecated in favor of `tableCross`
   tableCross: withMetadata(() => import('./assets/index_close'), {
     synonyms: [
@@ -1021,7 +1006,6 @@ export const typeToPathMap = {
   queryValue: withMetadata(() => import('./assets/query_value'), {
     synonyms: ['query', 'value', 'literal', 'data', 'input', 'filter'],
   }),
-  kubernetesNode: () => import('./assets/kubernetes_node'),
   kubernetesPod: () => import('./assets/kubernetes_pod'), // Deprecated in favor of `cube`
   cube: withMetadata(() => import('./assets/kubernetes_pod'), {
     synonyms: [
@@ -1273,14 +1257,12 @@ export const typeToPathMap = {
   logsApp: withMetadata(() => import('./assets/app_logs'), { category: 'app' }),
   logstashFilter: () => import('./assets/logstash_filter'),
   logstashInput: () => import('./assets/logstash_input'),
-  logstashOutput: () => import('./assets/logstash_output'),
   queue: withMetadata(() => import('./assets/queue'), {
     synonyms: ['queue', 'line', 'buffer', 'waiting', 'jobs'],
   }),
   machineLearningApp: withMetadata(() => import('./assets/app_ml'), {
     category: 'app',
   }),
-  magnet: () => import('./assets/magnet'),
   magnify: withMetadata(() => import('./assets/magnify'), {
     synonyms: [
       'search',
@@ -1418,7 +1400,6 @@ export const typeToPathMap = {
   packetbeatApp: withMetadata(() => import('./assets/app_packetbeat'), {
     category: 'app',
   }),
-  pageSelect: () => import('./assets/page_select'),
   pagesSelect: () => import('./assets/pages_select'), // Deprecated in favor of `documentsCheck`
   documentsCheck: withMetadata(() => import('./assets/pages_select'), {
     synonyms: [
@@ -1563,7 +1544,6 @@ export const typeToPathMap = {
   savedObjectsApp: withMetadata(() => import('./assets/app_saved_objects'), {
     category: 'app',
   }),
-  scale: () => import('./assets/scale'),
   searchProfilerApp: withMetadata(
     () => import('./assets/app_search_profiler'),
     { category: 'app' }
@@ -1578,12 +1558,9 @@ export const typeToPathMap = {
   securityApp: withMetadata(() => import('./assets/app_security'), {
     category: 'app',
   }),
-  securitySignalDetected: () => import('./assets/security_signal_detected'),
-  securitySignalResolved: () => import('./assets/security_signal_resolved'),
   server: withMetadata(() => import('./assets/server'), {
     synonyms: ['server', 'host', 'machine', 'infrastructure', 'backend'],
   }),
-  sessionViewer: () => import('./assets/session_viewer'),
   shard: withMetadata(() => import('./assets/shard'), {
     synonyms: ['shard', 'partition', 'segment', 'elastic', 'index'],
   }),
@@ -1600,7 +1577,6 @@ export const typeToPathMap = {
       'timeline',
     ],
   }),
-  singleMetricViewer: () => import('./assets/single_metric_viewer'),
   snowflake: withMetadata(() => import('./assets/snowflake'), {
     synonyms: ['snowflake', 'unique', 'id', 'data warehouse'],
   }),
@@ -1637,7 +1613,6 @@ export const typeToPathMap = {
     synonyms: ['star', 'favorite', 'rating', 'bookmark'],
   }),
   starEmpty: () => import('./assets/star'), // Deprecated in favor of `star`
-  starEmptySpace: () => import('./assets/star_empty_space'),
   starFill: withMetadata(() => import('./assets/star_fill'), {
     synonyms: [
       'star fill',
@@ -1651,11 +1626,6 @@ export const typeToPathMap = {
     ],
   }),
   starFilled: () => import('./assets/star_fill'), // Deprecated in favor of `starFill`
-  starFillSpace: () => import('./assets/star_fill_space'),
-  starMinusEmpty: () => import('./assets/star_minus_empty'),
-  starMinusFill: () => import('./assets/star_minus_fill'),
-  starPlusEmpty: () => import('./assets/star_plus_empty'),
-  starPlusFill: () => import('./assets/star_plus_fill'),
   stats: () => import('./assets/stats'),
   stop: withMetadata(() => import('./assets/stop'), {
     synonyms: ['stop', 'halt', 'end', 'terminate', 'square'],
@@ -1665,7 +1635,6 @@ export const typeToPathMap = {
   storage: withMetadata(() => import('./assets/storage'), {
     synonyms: ['storage', 'disk', 'drive', 'save', 'data store'],
   }),
-  string: () => import('./assets/string'),
   sun: withMetadata(() => import('./assets/sun'), {
     synonyms: ['sun', 'light', 'day', 'theme', 'bright'],
   }),
@@ -1683,7 +1652,6 @@ export const typeToPathMap = {
   tag: withMetadata(() => import('./assets/tag'), {
     synonyms: ['tag', 'label', 'category', 'keyword', 'badge'],
   }),
-  tear: () => import('./assets/tear'),
   thermometer: withMetadata(() => import('./assets/thermometer'), {
     synonyms: ['thermometer', 'temperature', 'heat', 'metric', 'gauge'],
   }),
@@ -1801,8 +1769,6 @@ export const typeToPathMap = {
     category: 'app',
   }),
   web: () => import('./assets/web'),
-  wordWrap: () => import('./assets/word_wrap'),
-  wordWrapDisabled: () => import('./assets/word_wrap_disabled'),
   workflowsApp: withMetadata(() => import('./assets/app_workflows'), {
     category: 'app',
   }),
