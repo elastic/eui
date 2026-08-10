@@ -240,7 +240,7 @@ export const EuiFilePicker: FunctionComponent<EuiFilePickerProps> = (props) => {
     ...(normalFormControl
       ? [
           styles.icon.normal,
-          compressed ? styles.icon.compresssed : styles.icon.uncompressed,
+          compressed ? styles.icon.compressed : styles.icon.uncompressed,
         ]
       : [styles.icon.large]),
   ];
