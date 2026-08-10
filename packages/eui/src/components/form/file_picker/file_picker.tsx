@@ -184,12 +184,8 @@ export const EuiFilePicker: FunctionComponent<EuiFilePickerProps> = (props) => {
   );
 
   const showDrop = () => !disabled && setIsHoveringDrop(true);
-    }
-  }, [disabled]);
 
-  const hideDrop = useCallback(() => {
-    setIsHoveringDrop(false);
-  }, []);
+  const hideDrop = () => setIsHoveringDrop(false);
 
   const generatedId = useGeneratedHtmlId();
   const promptId = `${id || generatedId}-filePicker__prompt`;
