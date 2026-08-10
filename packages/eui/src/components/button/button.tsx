@@ -93,24 +93,24 @@ export const EuiButton: FunctionComponent<Props> = ({
   buttonRef,
   size: _size = 'm',
   color: _color = 'primary',
-  fill,
+  fill: _fill,
   isDisabled: _isDisabled,
   hasAriaDisabled: _hasAriaDisabled,
   fullWidth: _fullWidth,
   ...rest
 }) => {
-  const { size, color, isDisabled, hasAriaDisabled, fullWidth } =
+  const { size, color, isDisabled, hasAriaDisabled, fullWidth, fill } =
     useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
       size: _size,
       color: _color,
       isDisabled: _isDisabled,
       hasAriaDisabled: _hasAriaDisabled,
       fullWidth: _fullWidth,
+      fill: _fill,
       href: rest.href,
       disabled: rest.disabled,
       isLoading: rest.isLoading,
     });
-
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
   })[isDisabled ? 'disabled' : color];
