@@ -180,6 +180,7 @@ describe('useGeneratedHtmlId', () => {
 
       expect(console.warn).not.toHaveBeenCalled();
     });
+  });
 
   describe('version-specific tests', () => {
     let MockComponent: FunctionComponent;
