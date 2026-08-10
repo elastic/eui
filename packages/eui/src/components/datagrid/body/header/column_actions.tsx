@@ -197,7 +197,7 @@ export const ColumnActions: FunctionComponent<
         css={styles.euiDataGridHeaderCell__popover}
         button={
           <EuiButtonIcon
-            iconType="boxesVertical"
+            iconType="ellipsis"
             iconSize="s"
             color="text"
             className="euiDataGridHeaderCell__button"

@@ -47,6 +47,9 @@ their own version at runtime.
 | Component | Documentation |
 |---|---|
 | `EuiComboBoxObject` | [src/components/combo_box/README.md](src/components/combo_box/README.md) |
+| `EuiDataGridObject` | [src/components/datagrid/README.md](src/components/datagrid/README.md) |
+| `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
+| `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
 
 ## Contributing
 

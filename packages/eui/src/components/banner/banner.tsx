@@ -88,6 +88,9 @@ export type EuiBannerProps = CommonProps & {
   announceOnMount?: boolean;
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/banner/|EuiBanner documentation}
+ */
 export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
   (
     {

@@ -109,6 +109,9 @@ type LegendProps = {
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/row/|EuiFormRow documentation}
+ */
 export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   className,
   children,

@@ -1,3 +1,9 @@
+## [`v1.3.0`](https://github.com/elastic/eui/releases/v1.3.0)
+
+- Added `EuiDataGridObject` with `rows`, `cell()`, `cells()`, `doActionOnColumn()` and `openFullScreenMode()`/`closeFullScreenMode()` ([#9874](https://github.com/elastic/eui/pull/9874))
+- Added `EuiSuperSelectObject` with `selectOptionByValue()`, `selectOptionByLabel()` and `getSelectedValue()` ([#9874](https://github.com/elastic/eui/pull/9874))
+- Added `EuiGlobalToastListObject` with a `toasts` locator and `closeAll()` ([#9874](https://github.com/elastic/eui/pull/9874))
+
 ## [`v1.2.0`](https://github.com/elastic/eui/releases/v1.2.0)
 
 - Fixed `EuiComboBoxObject.setSelectedOptions()` selecting the wrong option when a label is a substring of another (e.g. `ip` vs `clientip`) by matching options by exact text ([#9838](https://github.com/elastic/eui/pull/9838))

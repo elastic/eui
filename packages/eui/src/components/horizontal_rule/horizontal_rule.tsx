@@ -29,6 +29,9 @@ export interface EuiHorizontalRuleProps
   margin?: EuiHorizontalRuleMargin;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/horizontal-rule/|EuiHorizontalRule documentation}
+ */
 export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
   size = 'full',

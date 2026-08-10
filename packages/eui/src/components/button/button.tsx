@@ -87,6 +87,7 @@ export type Props = ExclusiveUnion<
 /**
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
+ * @see {@link https://eui.elastic.co/docs/components/navigation/buttons/button/|EuiButton documentation}
  */
 export const EuiButton: FunctionComponent<Props> = ({
   className,

@@ -20,6 +20,9 @@ import { euiCodeStyles } from './code.styles';
 
 export type EuiCodeProps = EuiCodeSharedProps;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/code/|EuiCode documentation}
+ */
 export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   transparentBackground = false,
   language: _language = DEFAULT_LANGUAGE,

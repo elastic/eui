@@ -7,3 +7,6 @@
  */
 
 export { EuiComboBoxSelectors } from './components/combo_box/selectors';
+export { EuiDataGridSelectors } from './components/datagrid/selectors';
+export { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
+export { EuiGlobalToastListSelectors } from './components/toast/selectors';

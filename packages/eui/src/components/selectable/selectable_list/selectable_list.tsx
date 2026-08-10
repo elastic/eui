@@ -112,7 +112,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
     textWrap?: EuiSelectableListItemProps['textWrap'];
     /**
      * If textWrap is set to `truncate`, you can pass a custom truncation configuration
-     * that accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop except for
+     * that accepts any [EuiTextTruncate](https://eui.elastic.co/docs/utilities/text-truncation/) prop except for
      * `text` and `children`.
      *
      * Note: when searching, custom truncation props are ignored. The highlighted search

@@ -495,5 +495,8 @@ export class EuiContextMenuClass extends Component<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/context-menu/|EuiContextMenu documentation}
+ */
 export const EuiContextMenu =
   withEuiStylesMemoizer<EuiContextMenuProps>(EuiContextMenuClass);

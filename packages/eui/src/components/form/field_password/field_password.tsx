@@ -74,6 +74,9 @@ export type EuiFieldPasswordProps = Omit<
     dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/text/password/|EuiFieldPassword documentation}
+ */
 export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
   props
 ) => {

@@ -55,6 +55,9 @@ export type EuiFormLabelProps = ExclusiveUnion<
   _EuiFormLabelSpanProps
 >;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/label/|EuiFormLabel documentation}
+ */
 export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   type = 'label',
   isFocused,

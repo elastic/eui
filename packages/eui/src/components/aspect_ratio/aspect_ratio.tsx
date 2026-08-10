@@ -35,6 +35,9 @@ export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
     children: ReactElement<any>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/aspect-ratio/|EuiAspectRatio documentation}
+ */
 export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   children,
   className,
