@@ -149,29 +149,33 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
         {showLeadingBoundaryDivider && <MenuDivider />}
 
-        {leadingActions.map((action, actionIndex) => (
-          <EuiFlexItem
-            key={`leading-action-${actionIndex}`}
-            grow={false}
-            css={styles.euiFlyoutMenu__actions}
-          >
-            <MenuActionButton action={action} />
+        {leadingActions.length > 0 && (
+          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
+            <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+              {leadingActions.map((action, actionIndex) => (
+                <EuiFlexItem key={`leading-action-${actionIndex}`} grow={false}>
+                  <MenuActionButton action={action} />
+                </EuiFlexItem>
+              ))}
+            </EuiFlexGroup>
           </EuiFlexItem>
-        ))}
+        )}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 
-        {effectiveTrailingActions.map((action, actionIndex) => (
-          <EuiFlexItem
-            key={`trailing-action-${actionIndex}`}
-            grow={false}
-            css={styles.euiFlyoutMenu__actions}
-          >
-            <MenuActionButton action={action} />
+        {effectiveTrailingActions.length > 0 && (
+          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
+            <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+              {effectiveTrailingActions.map((action, actionIndex) => (
+                <EuiFlexItem key={`trailing-action-${actionIndex}`} grow={false}>
+                  <MenuActionButton action={action} />
+                </EuiFlexItem>
+              ))}
+            </EuiFlexGroup>
           </EuiFlexItem>
-        ))}
+        )}
 
         {!hideCloseButton && (
           <CloseButtonSpacer showDivider={showTrailingCloseDivider} />
