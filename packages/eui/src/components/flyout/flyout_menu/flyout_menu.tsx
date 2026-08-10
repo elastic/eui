@@ -13,6 +13,7 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { useEuiI18n } from '../../i18n';
 import { EuiTitle } from '../../title';
+import { EuiToolTip } from '../../tool_tip';
 import { EuiFlyoutCloseButton } from '../_flyout_close_button';
 import { MIN_HISTORY_ITEMS } from '../const';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
@@ -75,6 +76,12 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   // Sub-components are presentational, so all `euiFlyoutMenu.*` tokens are
   // resolved here, in the file that owns the namespace
   const backButtonLabel = useEuiI18n('euiFlyoutMenu.back', 'Back');
+  const previousPageTitle = historyItems[historyItems.length - 1]?.title ?? '';
+  const backTooltipLabel = useEuiI18n(
+    'euiFlyoutMenu.back.tooltip',
+    'Back to {previousPage}',
+    { previousPage: previousPageTitle }
+  );
   const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
   const recentlyVisitedLabel = useEuiI18n(
     'euiFlyoutMenu.history.tooltip',
@@ -131,7 +138,13 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           <>
             {hasBackButton && (
               <EuiFlexItem grow={false}>
-                <BackButton label={backButtonLabel} {...backButtonProps} />
+                {previousPageTitle ? (
+                  <EuiToolTip content={backTooltipLabel}>
+                    <BackButton label={backButtonLabel} {...backButtonProps} />
+                  </EuiToolTip>
+                ) : (
+                  <BackButton label={backButtonLabel} {...backButtonProps} />
+                )}
               </EuiFlexItem>
             )}
             {showBackHistoryDivider && <MenuDivider />}
