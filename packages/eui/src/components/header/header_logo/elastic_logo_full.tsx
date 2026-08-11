@@ -8,6 +8,8 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
+import { useGeneratedHtmlId } from '../../../services';
+
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -18,7 +20,7 @@ const SvgElasticLogoFull = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generatedTitleId = React.useId();
+  const generatedTitleId = useGeneratedHtmlId();
   const resolvedTitleId = title ? titleId ?? generatedTitleId : undefined;
   return (
     <svg
