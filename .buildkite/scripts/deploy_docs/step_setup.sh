@@ -81,6 +81,11 @@ else
   exit 1
 fi
 
+if [[ "${FORCE_COPY_TO_ROOT:-}" == "true" ]]; then
+  copy_to_root_directory=true
+  echo "FORCE_COPY_TO_ROOT is set. The built files will be copied to the root directory."
+fi
+
 # Additional protection in case bucket_directory is ever unset
 if [[ -z "${bucket_directory}" ]] && [[ "${copy_to_root_directory}" != true ]]; then
   echo >&2 "Detected an unset 'bucket_directory' variable. This is likely a mistake."
