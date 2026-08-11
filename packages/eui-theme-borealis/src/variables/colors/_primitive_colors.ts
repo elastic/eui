@@ -11,6 +11,12 @@ export const PRIMITIVE_COLORS = {
   black: '#000000',
   mutedBlack: '#0E0F12',
   blueBlack: '#07101F',
+  /** Dark mode page / canvas (Interbana) */
+  darkCanvas: '#0B0F17',
+  /** Dark mode secondary / inner surface */
+  darkSurfaceNav: '#14171D',
+  /** Dark mode raised plain surface */
+  darkSurface: '#161B22',
   transparent: 'transparent',
 
   blueGrey8: '#F8F9FB',
