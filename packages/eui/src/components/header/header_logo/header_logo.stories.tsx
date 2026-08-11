@@ -43,7 +43,7 @@ export const WithText: Story = {
   render: ({ ...args }) => (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem>
-        <EuiHeaderLogo logoType="horizontal" {...args} />
+        <EuiHeaderLogo {...args} />
       </EuiHeaderSectionItem>
     </EuiHeader>
   ),
