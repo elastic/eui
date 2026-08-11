@@ -28,7 +28,8 @@ const EuiIconLogIn = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5V12h1v1h7V3H6v1H5V2.5a.5.5 0 0 1 .5-.5zm-1.793 6-3.353 3.354-.708-.707L9.793 8.5H2v-1h7.793L7.646 5.354l.708-.708z" />
+    <path d="M13 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3v-1h10V3H3V2z" />
+    <path d="m11.707 8-3.353 3.354-.708-.707L9.793 8.5H2v-1h7.793L7.646 5.354l.708-.708z" />
   </svg>
 );
 export const icon = EuiIconLogIn;
