@@ -7,9 +7,7 @@
  */
 
 import * as React from 'react';
-import { css } from '@emotion/react';
 import type { SVGProps } from 'react';
-import { useEuiTheme } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,8 +18,6 @@ const SvgElasticLogoFull = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const { euiTheme } = useEuiTheme();
-
   return (
     <svg
       width={105}
@@ -68,10 +64,8 @@ const SvgElasticLogoFull = ({
         </g>
         <g
           clipPath="url(#clip2_305_15)"
-          css={css`
-            color: ${euiTheme.colors.textParagraph};
-            fill: currentColor;
-          `}
+          fill="currentColor"
+          style={{ color: 'inherit' }}
         >
           <path d="M50.0109 25.2763L50.7287 25.2L50.7746 26.6662C48.8807 26.9258 47.2618 27.0633 45.9178 27.0633C44.1309 27.0633 42.8633 26.544 42.1149 25.5054C41.3665 24.4669 41 22.848 41 20.664C41 16.296 42.7411 14.112 46.208 14.112C47.888 14.112 49.1404 14.5854 49.9651 15.5171C50.7898 16.4487 51.2022 17.9302 51.2022 19.9309L51.0953 21.3513H42.8785C42.8785 22.7258 43.1229 23.7491 43.6269 24.4058C44.1309 25.0625 44.9862 25.3985 46.2233 25.3985C47.4756 25.4291 48.728 25.3833 50.0109 25.2763ZM49.3389 19.8851C49.3389 18.3578 49.0946 17.2734 48.6058 16.6473C48.1171 16.0211 47.3229 15.7003 46.2233 15.7003C45.1236 15.7003 44.2836 16.0363 43.7338 16.6931C43.184 17.3498 42.8938 18.4189 42.8785 19.8851H49.3389Z" />
           <path d="M53.7987 26.8342V8.96508H55.662V26.8342H53.7987Z" />

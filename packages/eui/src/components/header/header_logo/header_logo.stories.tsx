@@ -36,10 +36,14 @@ export const Playground: Story = {
 };
 
 export const WithText: Story = {
+  args: {
+    logoType: 'horizontal',
+  },
+
   render: ({ ...args }) => (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem>
-        <EuiHeaderLogo {...args} />
+        <EuiHeaderLogo logoType="horizontal" {...args} />
       </EuiHeaderSectionItem>
     </EuiHeader>
   ),
