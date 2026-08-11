@@ -253,6 +253,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiText: css`
       ${euiText(euiTheme, true)}
+      color: ${euiTheme.colors.textSubdued};
 
       /* EuiImage with floats are often used within EuiText. */
       clear: both;

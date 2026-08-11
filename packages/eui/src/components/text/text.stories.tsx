@@ -23,7 +23,6 @@ const meta: Meta<EuiTextProps> = {
   args: {
     size: 'm',
     grow: true,
-    color: 'default',
     textAlign: 'left',
     component: 'div',
   },
