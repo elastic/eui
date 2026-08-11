@@ -34,12 +34,17 @@ describe('EuiHeaderLogo', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('supports the legacy iconType prop', () => {
-    const { container } = render(<EuiHeaderLogo iconType="logoElastic" />);
+  it('ignores runtime iconType props and always renders the Elastic glyph icon', () => {
+    const { container } = render(
+      <EuiHeaderLogo {...({ iconType: 'logoKibana' } as unknown as {})} />
+    );
 
     expect(container.querySelector('.euiHeaderLogo__icon')).toHaveAttribute(
       'data-euiicon-type',
       'logoElastic'
+    );
+    expect(container.querySelector('.euiHeaderLogo')).not.toHaveAttribute(
+      'iconType'
     );
   });
 

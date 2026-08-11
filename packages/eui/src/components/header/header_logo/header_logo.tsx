@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
+import React, { AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -17,32 +17,35 @@ import {
 import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonColorCSS } from '../../../global_styling';
 
-import { EuiIcon, type IconType } from '../../icon';
+import { EuiIcon } from '../../icon';
 import { CommonProps } from '../../common';
 
 import { euiHeaderLogoStyles } from './header_logo.styles';
 import SvgElasticLogoFull from './elastic_logo_full';
 
 export type EuiHeaderLogoProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'> & {
     href?: string;
     rel?: string;
     target?: string;
     iconTitle?: string;
-    iconType?: IconType;
     logoType?: 'glyph' | 'horizontal';
   };
 
-export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
+export const EuiHeaderLogo = ({
   iconTitle = 'Elastic',
-  iconType = 'logoElastic',
   href,
   rel,
   target,
   className,
   logoType = 'glyph',
   ...rest
-}) => {
+}: EuiHeaderLogoProps) => {
+  // Keep this to prevent legacy runtime `iconType` props from being forwarded to the anchor.
+  const { iconType: _ignoredIconType, ...anchorProps } = rest as typeof rest & {
+    iconType?: unknown;
+  };
+
   const classes = classNames('euiHeaderLogo', className);
   const { euiTheme } = useEuiTheme();
   const styles = useEuiMemoizedStyles(euiHeaderLogoStyles);
@@ -59,14 +62,14 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
       target={target}
       css={cssStyles}
       className={classes}
-      {...rest}
+      {...anchorProps}
     >
       {logoType === 'glyph' && (
         <EuiIcon
           aria-label={iconTitle}
           className="euiHeaderLogo__icon"
           size="l"
-          type={iconType}
+          type="logoElastic"
         />
       )}
       {logoType === 'horizontal' && (
