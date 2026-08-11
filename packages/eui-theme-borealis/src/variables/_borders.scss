@@ -6,6 +6,9 @@ $euiBorderWidthThick: 2px !default;
 $euiBorderColor: $euiColorBorderBaseSubdued !default;
 $euiBorderRadius: $euiSizeS * .5 !default;
 $euiBorderRadiusSmall: $euiSizeS * .5 !default;
+$euiBorderRadiusControl: $euiSizeS !default; // 8px
+$euiBorderRadiusPanel: $euiSizeS * 1.5 !default; // 12px
+$euiBorderRadiusContainer: $euiSize !default; // 16px
 $euiBorderThick: $euiBorderWidthThick solid $euiBorderColor !default;
 $euiBorderThin: $euiBorderWidthThin solid $euiBorderColor !default;
 $euiBorderEditable: $euiBorderWidthThick dotted $euiBorderColor !default;

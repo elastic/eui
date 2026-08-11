@@ -13,7 +13,9 @@ export const PRIMITIVE_COLORS = {
   blueBlack: '#07101F',
   transparent: 'transparent',
 
+  blueGrey8: '#F8F9FB',
   blueGrey10: '#F6F9FC',
+  blueGrey12: '#EAEDF5',
   blueGrey15: '#ECF1F9',
   blueGrey20: '#E3E8F2',
   blueGrey25: '#D6DDEA',

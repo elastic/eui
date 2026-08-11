@@ -91,6 +91,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseRisk: SEMANTIC_COLORS.risk140,
   backgroundBaseDanger: SEMANTIC_COLORS.danger140,
   backgroundBaseAssistance: SEMANTIC_COLORS.assistance140,
+  // Dark canvas TBD; keep current body/subdued elevation for now
+  backgroundBaseCanvas: SEMANTIC_COLORS.plainDark,
   backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
   backgroundBasePlain: SEMANTIC_COLORS.shade145,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade130,

@@ -33,6 +33,21 @@ export interface _EuiThemeBorderRadiusValues {
    * - Default value: 4px
    */
   small: CSSProperties['borderRadius'];
+  /**
+   * Controls and form elements (buttons, inputs)
+   * - Default value: 8px
+   */
+  control: CSSProperties['borderRadius'];
+  /**
+   * Panels, cards, and popovers
+   * - Default value: 12px
+   */
+  panel: CSSProperties['borderRadius'];
+  /**
+   * Large containers and page sections
+   * - Default value: 16px
+   */
+  container: CSSProperties['borderRadius'];
 }
 
 export interface _EuiThemeBorderColorValues {
