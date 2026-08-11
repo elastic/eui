@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { queries, within, waitFor, fireEvent, expect } from '@storybook/test';
+import { queries, within, waitFor, fireEvent, expect } from 'storybook/test';
 import * as dataTestSubjQueries from '../src/test/rtl/data_test_subj_queries';
 
 /**

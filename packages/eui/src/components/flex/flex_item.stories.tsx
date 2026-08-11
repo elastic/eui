@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { EuiFlexGroup } from './flex_group';
 import { EuiFlexItem, EuiFlexItemProps } from './flex_item';
