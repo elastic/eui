@@ -8,7 +8,11 @@
 
 import { addons, API, types } from 'storybook/manager-api';
 
-import { ADDON_ID, PANEL_ID } from './addons/code-snippet/constants';
+import {
+  ADDON_ID,
+  ADDON_PARAMETER_KEY,
+  PANEL_ID,
+} from './addons/code-snippet/constants';
 import { Panel } from './addons/code-snippet/components/panel';
 import { setupCodeSnippetEvents } from './addons/code-snippet/event-handlers/setup';
 
@@ -36,6 +40,7 @@ addons.register(ADDON_ID, (api: API) => {
     type: types.PANEL,
     title: 'Code Snippet',
     match: ({ viewMode }) => viewMode === 'story',
+    disabled: (parameters) => parameters?.[ADDON_PARAMETER_KEY]?.skip === true,
     render: Panel,
   });
 });

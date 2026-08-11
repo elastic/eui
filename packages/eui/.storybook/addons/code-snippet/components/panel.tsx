@@ -19,7 +19,6 @@ import { STORY_RENDERED } from 'storybook/internal/core-events';
 
 import type { AddonError } from '../types';
 import { ADDON_ID, ADDON_PARAMETER_KEY, EVENTS } from '../constants';
-import { addHiddenStyle, clearHiddenStyle } from '../utils/addon_visibility';
 
 type CodeEvent = {
   id: string;
@@ -35,12 +34,6 @@ type AddonState = {
   isSkipped: boolean;
 };
 
-const addonTabStyles = (selector: string) => `
-    ${selector} {
-      display: none;
-    }
-  `;
-
 interface PanelProps {
   active?: boolean;
 }
@@ -54,23 +47,6 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
   });
   const { code, error, isLoaded, isSkipped } = addonState;
   const storybookApi = useStorybookApi();
-
-  useEffect(() => {
-    const addonTabId = `#tabbutton-${ADDON_ID.split('/').join('-')}-panel`;
-
-    /**
-     * we manually hide the addon tab element initially and show it only if it's not skipped.
-     * This uses style element injection over classes as we don't have access to the actual elements.
-     * We would need to wait for the elements to be rendered by Storybook to get them which is less
-     * consistent as controlling the styles.
-     * reference: https://storybook.js.org/docs/addons/writing-addons#style-the-addon
-     */
-    if (isSkipped) {
-      addHiddenStyle(ADDON_ID, addonTabStyles(addonTabId));
-    } else {
-      clearHiddenStyle(ADDON_ID);
-    }
-  }, [isSkipped]);
 
   const emit = useChannel({
     [EVENTS.SNIPPET_RENDERED]: (args: CodeEvent) => {
