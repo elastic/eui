@@ -20,7 +20,15 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
-      ${logicalCSS('height', '100%')}
+      flex-grow: 1;
+      /* Keep a floor under the body. Its automatic minimum size is zero (it is
+         a scroll container in the block axis), so without this a tall header
+         and footer shrink it to nothing on short viewports and its content
+         becomes unreachable. Below this height the flyout scrolls instead. */
+      ${logicalCSS('min-height', euiTheme.size.xxxxl)}
+      /* The below fixes scroll on Chrome and Safari */
+      display: flex;
+      flex-direction: column;
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,

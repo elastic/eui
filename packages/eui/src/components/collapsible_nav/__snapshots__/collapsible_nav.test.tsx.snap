@@ -43,6 +43,9 @@ exports[`EuiCollapsibleNav close button can be hidden 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -100,6 +103,9 @@ exports[`EuiCollapsibleNav is rendered 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -150,6 +156,9 @@ exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -208,6 +217,9 @@ exports[`EuiCollapsibleNav props button 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -261,6 +273,9 @@ exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -285,7 +300,11 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px; z-index: 1000;"
-    />
+    >
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
+    </nav>
   </div>
   <div
     data-focus-guard="true"
@@ -338,6 +357,9 @@ exports[`EuiCollapsibleNav props onClose 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div
@@ -367,7 +389,11 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px; z-index: 1000;"
-    />
+    >
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
+    </nav>
   </div>
   <div
     data-focus-guard="true"
@@ -420,6 +446,9 @@ exports[`EuiCollapsibleNav props size 1`] = `
           data-euiicon-type="cross"
         />
       </button>
+      <div
+        class="euiFlyout__scroll emotion-euiFlyout__scroll"
+      />
     </nav>
   </div>
   <div

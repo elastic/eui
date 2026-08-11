@@ -1156,7 +1156,9 @@ export const EuiFlyoutComponent = forwardRef(
                 onKeyDown={onKeyDownResizableButton}
               />
             )}
-            <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
+            <div className="euiFlyout__scroll" css={styles.euiFlyout__scroll}>
+              <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
+            </div>
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutOverlay>

@@ -18,6 +18,7 @@ import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
 import { EuiFlexGroup } from '../flex';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
+import { EuiFlyoutFooter } from './flyout_footer';
 import { EuiFlyoutHeader } from './flyout_header';
 import { EuiGlobalToastList } from '../toast';
 import {
@@ -28,6 +29,7 @@ import {
 import { EuiIcon } from '../icon';
 import { EuiPanel } from '../panel';
 import { EuiPopover } from '../popover';
+import { EuiTab, EuiTabs } from '../tabs';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { useEuiTheme } from '../../services';
@@ -581,6 +583,83 @@ describe('EuiFlyout', () => {
       // 3. Tab from the popover trigger into the popover content.
       cy.realPress('Tab');
       cy.get('[data-test-subj="popover-confirm-action"]').should('be.focused');
+    });
+  });
+
+  describe('Short viewports', () => {
+    // The flyout is as tall as the viewport, so a header carrying a title and
+    // tabs plus a footer carrying actions and helper text can leave the body
+    // with no room at all. The body is the only part of the flyout that can
+    // shrink (it is a scroll container, so its automatic minimum size is zero),
+    // which used to collapse it to 0px and put its content out of reach.
+    // https://github.com/elastic/eui/issues/9881
+    const ShortViewportFlyout = () => (
+      <Flyout>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Rule details</h2>
+          </EuiTitle>
+          <EuiTabs>
+            <EuiTab isSelected>Definition</EuiTab>
+            <EuiTab>Actions</EuiTab>
+            <EuiTab>History</EuiTab>
+          </EuiTabs>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>Index pattern</p>
+            <p>Query</p>
+            <p>Schedule</p>
+            <p>Severity</p>
+            <p>
+              <a href="#related" data-test-subj="lastBodyLink">
+                Related integrations
+              </a>
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton data-test-subj="footerAction">Save rule</EuiButton>
+          <EuiText size="s">
+            <p>Changes are applied on the next rule execution.</p>
+          </EuiText>
+        </EuiFlyoutFooter>
+      </Flyout>
+    );
+
+    it('keeps the body scrollable when the header and footer fill the viewport', () => {
+      cy.viewport(1280, 200);
+      cy.mount(<ShortViewportFlyout />);
+
+      cy.get('[data-test-subj="euiFlyoutBodyOverflow"]').then(([overflow]) => {
+        // This collapsed to exactly 0px before, so there was no scrollable
+        // region left and the content inside it could not be reached at all.
+        expect(overflow.clientHeight).to.be.greaterThan(0);
+        expect(overflow.scrollHeight).to.be.greaterThan(overflow.clientHeight);
+      });
+
+      cy.get('[data-test-subj="lastBodyLink"]').scrollIntoView();
+      cy.get('[data-test-subj="lastBodyLink"]').should('be.visible');
+    });
+
+    it('keeps the footer reachable when the header and footer fill the viewport', () => {
+      cy.viewport(1280, 200);
+      cy.mount(<ShortViewportFlyout />);
+
+      cy.get('[data-test-subj="footerAction"]').scrollIntoView();
+      cy.get('[data-test-subj="footerAction"]').should('be.visible');
+    });
+
+    it('leaves taller viewports laying out exactly as before', () => {
+      cy.viewport(1280, 800);
+      cy.mount(<ShortViewportFlyout />);
+
+      // Nothing overflows, so the flyout-level scroll never engages and the
+      // body still takes all the room the header and footer leave it.
+      cy.get('.euiFlyout__scroll').then(([wrapper]) => {
+        expect(wrapper.scrollHeight).to.eq(wrapper.clientHeight);
+      });
+      cy.get('[data-test-subj="footerAction"]').should('be.visible');
     });
   });
 });

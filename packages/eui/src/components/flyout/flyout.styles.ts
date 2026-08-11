@@ -19,6 +19,7 @@ import {
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
+  logicalCSSWithFallback,
   logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
@@ -100,6 +101,26 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${maxedFlyoutWidth(euiThemeContext)}
+    `,
+
+    /**
+     * Scrolls the header, body and footer together once a short viewport
+     * (400% browser zoom, for example) leaves less room than they need.
+     *
+     * This sits on a wrapper around the flyout's children rather than on
+     * `.euiFlyout` itself. The flyout also owns the `closeButtonPosition="outside"`
+     * button, which is positioned beyond the flyout's own bounds, and turning the
+     * flyout into a scroll container clips that button away at every viewport
+     * height. The `clip-path` above exists to keep the same area paintable.
+     */
+    euiFlyout__scroll: css`
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      /* Allow the wrapper itself to shrink below its content */
+      ${logicalCSS('min-height', 0)}
+      ${logicalCSSWithFallback('overflow-y', 'auto')}
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
     `,
 
     // Flyout sizes (media queries + % sizing)
