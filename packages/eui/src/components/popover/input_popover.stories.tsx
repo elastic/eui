@@ -7,7 +7,7 @@
  */
 
 import React, { MutableRefObject, useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { css } from '@emotion/react';
 
 import {
@@ -19,7 +19,7 @@ import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiFieldText } from '../form';
 import { EuiButton } from '../button';
 import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
-import { userEvent, within, waitFor, expect } from '@storybook/test';
+import { userEvent, within, waitFor, expect } from 'storybook/test';
 
 const meta: Meta<EuiInputPopoverProps> = {
   title: 'Layout/EuiInputPopover',

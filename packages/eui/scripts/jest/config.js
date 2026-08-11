@@ -66,7 +66,7 @@ const config = {
       configFile: path.resolve(__dirname, '../../.babelrc.js'),
     }],
   },
-  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',

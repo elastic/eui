@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { REFRESH_UNIT_OPTIONS } from '../types';

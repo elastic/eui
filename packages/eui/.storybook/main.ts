@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
+import { createRequire } from 'node:module';
 import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
+
+const require = createRequire(import.meta.url);
 
 /**
  * Get an absolute path to package's `node_modules` directory. It's compatible
@@ -24,13 +27,8 @@ const getAbsoluteDependencyPath = (packageName: string) =>
   path.dirname(require.resolve(path.join(packageName, 'package.json')));
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-webpack5-compiler-babel',
-  ],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-webpack5-compiler-babel'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
@@ -55,16 +53,13 @@ const config: StorybookConfig = {
           // we need to resolve to the modules file as otherwise
           // 'tty' and 'os' dependencies are not resolved correctly
           // https://github.com/storybookjs/storybook/issues/26997#issuecomment-2088494093
-          '@storybook/test': path.join(
-            getAbsoluteDependencyPath('@storybook/test'),
-            'dist/index.mjs'
+          'storybook/test': path.join(
+            getAbsoluteDependencyPath('storybook'),
+            'dist/test/index.js'
           ),
         },
       },
     };
-  },
-  docs: {
-    autodocs: 'tag',
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
