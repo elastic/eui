@@ -101,11 +101,13 @@ const TRAILING_ACTION_POOL = [
   { iconType: 'share', label: 'Share' },
 ];
 
+// Ordered most-recent-first to match what the flyout manager produces; index 0
+// is the entry the back button navigates to.
 const HISTORY_ITEM_POOL = [
-  'First item',
-  'Second item',
-  'Third item',
-  'Fourth item',
+  'Previous page',
+  'Two pages back',
+  'Three pages back',
+  'Four pages back',
 ];
 
 const buildHistoryItems = (count: number) =>

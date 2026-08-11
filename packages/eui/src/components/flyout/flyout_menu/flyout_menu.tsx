@@ -76,7 +76,9 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   // Sub-components are presentational, so all `euiFlyoutMenu.*` tokens are
   // resolved here, in the file that owns the namespace
   const backButtonLabel = useEuiI18n('euiFlyoutMenu.back', 'Back');
-  const previousPageTitle = historyItems[historyItems.length - 1]?.title ?? '';
+  // `historyItems` is ordered most-recent-first, so index 0 is the entry the
+  // back button navigates to
+  const previousPageTitle = historyItems[0]?.title ?? '';
   const backTooltipLabel = useEuiI18n(
     'euiFlyoutMenu.back.tooltip',
     'Back to {previousPage}',

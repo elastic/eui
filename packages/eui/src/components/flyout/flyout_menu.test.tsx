@@ -171,6 +171,37 @@ describe('EuiFlyoutMenu', () => {
       getByText('Back').click();
       expect(handleBack).toHaveBeenCalledTimes(1);
     });
+
+    it('does not render a tooltip on the back button when no history items are provided', () => {
+      const { queryByRole, getByTestSubject } = renderWithContext(
+        <EuiFlyoutMenu title="Test Title" showBackButton={true} />
+      );
+
+      fireEvent.mouseOver(getByTestSubject('euiFlyoutMenuBackButton'));
+
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+
+    it('shows a tooltip naming the most recent history item on the back button', () => {
+      // `historyItems` is ordered most-recent-first, matching what the back
+      // button navigates to
+      const { getByRole, getByTestSubject } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test Title"
+          showBackButton={true}
+          historyItems={[
+            { title: 'Most recent page', onClick: jest.fn() },
+            { title: 'Older page', onClick: jest.fn() },
+          ]}
+        />
+      );
+
+      fireEvent.mouseOver(getByTestSubject('euiFlyoutMenuBackButton'));
+
+      expect(getByRole('tooltip')).toHaveTextContent(
+        'Back to Most recent page'
+      );
+    });
   });
 
   describe('history items', () => {
