@@ -215,7 +215,7 @@ export default () => (
 
 ## Text can come in various sizes
 
-Using the `size` prop on **EuiText** you can get smaller sizes of text than the default. This demo compares the scaling for all sizes. The goal is that the every line-height lands on the `4px` baseline grid.
+Using the `size` prop on **EuiText** you can scale text relative to the default (`s`, ~14px — aligned with the unstyled body/html base). This demo compares the scaling for all sizes. The goal is that every line-height lands on the `4px` baseline grid. Pass `size="m"` when you need the previous ~16px default.
 
 ```tsx interactive
 import React, { useState, useContext } from 'react';
