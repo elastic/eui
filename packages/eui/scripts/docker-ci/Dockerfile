@@ -2,7 +2,7 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=20.19 or >=22.12 required (for Storybook 10). Matches .nvmrc.
-FROM --platform=linux/amd64 node:22.22.0-slim
+FROM --platform=linux/amd64 node:24.19.0-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
