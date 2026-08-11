@@ -129,6 +129,10 @@ export interface _EuiThemeTitle {
    * A font weight key for setting the base weight for titles and headings
    */
   weight: keyof _EuiThemeFontWeights;
+  /**
+   * Letter-spacing applied to titles and headings
+   */
+  letterSpacing?: CSSProperties['letterSpacing'];
 }
 
 /*
