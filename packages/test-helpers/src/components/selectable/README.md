@@ -20,7 +20,6 @@ Set `data-test-subj` on the `<EuiSelectable>` (EUI spreads it onto the `.euiSele
 |---|---|
 | `options` | `Locator` for the rendered options, keeping Playwright auto-retry for count and content assertions. The list is virtualized, so `search()` first rather than scanning a long list. |
 | `option(label)` | `Locator` for one option by its exact accessible name. Click it to select, or assert its visibility, `aria-disabled`, or `aria-checked` state. |
-| `checkedOptions` | `Locator` for the options that are `aria-checked`. |
 | `search(term)` | Types into the search box. Throws if the selectable is not searchable. |
 | `check(label)` | Ensures an option ends up checked for multi-select lists, re-clicking until `aria-checked` settles. Tolerates the list re-rendering mid-selection. |
 

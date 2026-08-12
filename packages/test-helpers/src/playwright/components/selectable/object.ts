@@ -63,11 +63,6 @@ export class EuiSelectableObject extends BaseObject {
       .filter({ has: this.root.page().locator('.euiSelectableListItem__text', { hasText: labelText }) });
   }
 
-  /** The currently checked options (`aria-checked="true"`). */
-  public get checkedOptions(): Locator {
-    return this.root.getByRole('option', { checked: true });
-  }
-
   /**
    * Type into the selectable's search box to filter the options. Throws if the
    * selectable is not searchable (no search box rendered).

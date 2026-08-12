@@ -62,9 +62,8 @@ test.describe('EuiSelectableObject', () => {
     });
   });
 
-  test.describe('checkedOptions', () => {
-    test('exposes the initially checked option', async () => {
-      await expect(selectable.checkedOptions).toHaveCount(1);
+  test.describe('checked state', () => {
+    test('reflects an initially checked option', async () => {
       await expect(selectable.option('Mimas')).toHaveAttribute('aria-checked', 'true');
     });
   });
