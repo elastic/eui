@@ -21,21 +21,16 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
     font-weight: ${euiTheme.font.weight.medium};
     ${logicalTextAlignCSS('left')}
     color: ${euiTheme.colors.textParagraph};
-    text-decoration: underline;
-    text-decoration-style: dotted;
+    text-decoration: underline dotted;
 
     &:hover,
     &:focus {
       color: ${euiTheme.colors.textPrimary};
-    }
-
-    &:hover {
-      text-decoration-style: solid;
+      text-decoration: underline solid;
     }
 
     &:focus {
       ${euiFocusRing(euiThemeContext, 'outset')}
-      text-decoration-style: solid;
       text-decoration-thickness: ${euiTheme.border.width.thick};
     }
   `;
