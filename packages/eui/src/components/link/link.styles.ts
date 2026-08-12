@@ -22,6 +22,7 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
     ${logicalTextAlignCSS('left')}
     color: ${euiTheme.colors.textParagraph};
     text-decoration: underline dotted;
+    text-decoration-thickness: from-font;
 
     &:hover,
     &:focus {
