@@ -50,8 +50,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
     controlCompressedPadding: euiTheme.size.s,
-    controlBorderRadius: euiTheme.border.radius.small,
-    controlCompressedBorderRadius: euiTheme.border.radius.small,
+    controlBorderRadius: euiTheme.border.radius.control,
+    controlCompressedBorderRadius: euiTheme.border.radius.control,
     iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
     iconCompressedAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
     stateUnderlineHeight: highContrastMode
@@ -92,10 +92,10 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       controlCompressedHeight,
       (x) => x - 2
     ),
-    controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.small,
-    controlLayoutBorderRadius: euiTheme.border.radius.small,
+    controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.control,
+    controlLayoutBorderRadius: euiTheme.border.radius.control,
     controlLayoutInnerBorderRadius: mathWithUnits(
-      euiTheme.border.radius.small,
+      euiTheme.border.radius.control,
       (x) => x / 2
     ),
   };
