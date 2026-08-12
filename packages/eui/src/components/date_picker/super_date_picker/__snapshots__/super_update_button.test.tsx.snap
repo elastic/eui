@@ -7,7 +7,7 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-euiButton-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       style="min-inline-size: 118px;"
       type="button"
     >
