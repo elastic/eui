@@ -2981,6 +2981,25 @@ exports[`EuiIcon props type cube is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type cursorDefault is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="cursorDefault"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.646 2.646a.5.5 0 0 1 .497-.125l10 3a.5.5 0 0 1 .134.895l-2.493 1.66 3.069 3.07a.5.5 0 0 1 0 .707l-2 2a.5.5 0 0 1-.707 0l-3.07-3.07-1.66 2.494a.5.5 0 0 1-.895-.134l-3-10a.5.5 0 0 1 .125-.497m3.526 9.192 1.411-2.116.072-.085a.503.503 0 0 1 .698.01l3.146 3.146 1.293-1.293-3.146-3.147a.5.5 0 0 1 .076-.77l2.115-1.41-8.093-2.428z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-app-isLoaded"
@@ -5069,6 +5088,26 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
     clip-rule="evenodd"
     d="M5 4a3 3 0 0 1 6 0v1h1V4a4 4 0 0 0-8 0v4H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H5V4ZM3 15V9h10v6H3Z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type logIn is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="logIn"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3v-1h10V3H3V2z"
+  />
+  <path
+    d="m11.707 8-3.353 3.354-.708-.707L9.793 8.5H2v-1h7.793L7.646 5.354l.708-.708z"
   />
 </svg>
 `;
@@ -9531,6 +9570,23 @@ exports[`EuiIcon props type rocket is rendered 1`] = `
   />
   <path
     d="m3.686 10.964-2.5 1-.372-.928 2.5-1 .372.928ZM11 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type routeSplit is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="routeSplit"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13 3a2 2 0 1 1 0 4 2 2 0 0 1-1.934-1.5H6.903C7.524 6.105 8 7.053 8 8.5c0 1.654.47 2.372.83 2.687.093.082.187.14.273.185a2 2 0 1 1-.056 1.053 2.3 2.3 0 0 1-.876-.487C7.53 11.378 7 10.346 7 8.5c0-1.574-.657-2.284-1.252-2.63a2.8 2.8 0 0 0-.828-.313A2 2 0 1 1 4.935 4.5h6.131A2 2 0 0 1 13 3m-2 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2M3 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2m10 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
   />
 </svg>
 `;
