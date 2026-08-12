@@ -24,6 +24,9 @@ export const border: _EuiThemeBorder = {
   radius: {
     medium: computed(sizeToPixel(0.25)),
     small: computed(sizeToPixel(0.25)),
+    control: computed(sizeToPixel(0.5)),
+    panel: computed(sizeToPixel(0.75)),
+    container: computed(sizeToPixel(1)),
   },
   thin: computed(
     ([width, color]) => `${width.thin} solid ${color}`,

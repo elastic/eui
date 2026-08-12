@@ -188,6 +188,13 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseRisk: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseAssistance: ColorModeSwitch;
+  /**
+   * Page / canvas background behind the app workspace
+   */
+  backgroundBaseCanvas: ColorModeSwitch;
+  /**
+   * Secondary / inner surface (e.g. nested steps, secondary nav)
+   */
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;

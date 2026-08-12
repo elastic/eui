@@ -45,6 +45,10 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundBaseAssistance',
         },
         {
+          value: euiTheme.colors.backgroundBaseCanvas,
+          token: 'colors.backgroundBaseCanvas',
+        },
+        {
           value: euiTheme.colors.backgroundBaseSubdued,
           token: 'colors.backgroundBaseSubdued',
         },
