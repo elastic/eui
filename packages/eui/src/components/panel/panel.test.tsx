@@ -25,9 +25,7 @@ describe('EuiPanel', () => {
   describe('props', () => {
     describe('hasShadow', () => {
       test('can be true (elevation opt-in)', () => {
-        const { container } = render(
-          <EuiPanel hasBorder={false} hasShadow />
-        );
+        const { container } = render(<EuiPanel hasBorder={false} hasShadow />);
 
         expect(container.firstChild).toMatchSnapshot();
       });
