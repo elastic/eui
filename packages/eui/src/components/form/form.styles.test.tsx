@@ -39,9 +39,9 @@ describe('euiFormVariables', () => {
         "borderHovered": "#B4C1D5",
         "borderInvalid": "#C61E25",
         "borderInvalidHovered": "#DA3737",
-        "controlBorderRadius": "4px",
+        "controlBorderRadius": "8px",
         "controlBoxShadow": "0 0 transparent",
-        "controlCompressedBorderRadius": "4px",
+        "controlCompressedBorderRadius": "8px",
         "controlCompressedHeight": "32px",
         "controlCompressedPadding": "8px",
         "controlDisabledColor": "#CAD3E2",
@@ -53,11 +53,11 @@ describe('euiFormVariables', () => {
           "xl": "32px",
           "xxl": "40px",
         },
-        "controlLayoutBorderRadius": "4px",
-        "controlLayoutGroupInputCompressedBorderRadius": "4px",
+        "controlLayoutBorderRadius": "8px",
+        "controlLayoutGroupInputCompressedBorderRadius": "8px",
         "controlLayoutGroupInputCompressedHeight": "30px",
         "controlLayoutGroupInputHeight": "38px",
-        "controlLayoutInnerBorderRadius": "2px",
+        "controlLayoutInnerBorderRadius": "4px",
         "controlPadding": "12px",
         "controlPlaceholderText": "#798EAF",
         "iconAffordance": "24px",
@@ -117,7 +117,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 8px;
             padding-inline-start: calc(8px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(8px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 4px;
+            border-radius: 8px;
           ",
         "disabled": "
           --euiFormControlStateColor: transparent;
@@ -257,7 +257,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 12px;
             padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 4px;
+            border-radius: 8px;
           ",
       }
     `);

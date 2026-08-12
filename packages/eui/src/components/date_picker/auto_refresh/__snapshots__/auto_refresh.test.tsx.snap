@@ -11,11 +11,11 @@ exports[`EuiAutoRefresh is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"
@@ -57,11 +57,11 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"
@@ -102,11 +102,11 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"

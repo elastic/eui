@@ -369,10 +369,10 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
     class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
   >
     <div
-      class="css-vmqubl-wrapper"
+      class="css-162bf1-wrapper"
     >
       <div
-        class="euiFormAppend css-7iwqdv-side-uncompressed"
+        class="euiFormAppend css-1mzyw8g-side-uncompressed"
       >
         <span
           class="euiFormLabel emotion-euiFormLabel"
@@ -429,10 +429,10 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
     class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <div
-      class="css-vmqubl-wrapper"
+      class="css-162bf1-wrapper"
     >
       <div
-        class="euiFormPrepend css-7iwqdv-side-uncompressed"
+        class="euiFormPrepend css-1mzyw8g-side-uncompressed"
       >
         <span
           class="euiFormLabel emotion-euiFormLabel"
