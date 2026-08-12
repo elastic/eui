@@ -202,10 +202,10 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
               class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
             >
               <div
-                class="css-vmqubl-wrapper"
+                class="css-162bf1-wrapper"
               >
                 <div
-                  class="euiFormPrepend css-7iwqdv-side-uncompressed"
+                  class="euiFormPrepend css-1mzyw8g-side-uncompressed"
                 >
                   <label
                     class="euiFormLabel emotion-euiFormLabel"

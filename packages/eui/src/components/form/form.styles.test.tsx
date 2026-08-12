@@ -117,7 +117,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 8px;
             padding-inline-start: calc(8px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(8px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 4px;
+            border-radius: 8px;
           ",
         "disabled": "
           --euiFormControlStateColor: transparent;
@@ -257,7 +257,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 12px;
             padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 4px;
+            border-radius: 8px;
           ",
       }
     `);
