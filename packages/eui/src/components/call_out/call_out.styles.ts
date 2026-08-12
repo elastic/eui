@@ -25,7 +25,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
     s: euiTheme.size.m,
     m: euiTheme.size.base,
   };
-  const borderRadius = euiTheme.border.radius.small;
+  const borderRadius = euiTheme.border.radius.panel;
   const highlightSize = mathWithUnits(
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
     (x, y) => x + y
