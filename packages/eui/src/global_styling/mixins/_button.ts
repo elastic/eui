@@ -380,8 +380,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
     (x) => x / 4
   );
 
-  // Control radius (~8px) for Empty/Icon and shared display sizing.
-  // EuiButton overrides to a full pill via its own styles.
+  // Control radius (~8px) shared by EuiButton, Empty, Icon, and ButtonGroup.
   return {
     xs: {
       minWidth: euiTheme.base * 6,
