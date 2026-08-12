@@ -1,0 +1,100 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { expect, type Locator } from '@playwright/test';
+
+import { BaseObject, type ObjectScope } from '../../base_object';
+import { EuiSelectableSelectors } from '../../../components/selectable/selectors';
+
+/**
+ * Playwright Component Object for {@link
+ * https://eui.elastic.co/docs/components/forms/selection/selectable/ EuiSelectable}.
+ *
+ * `testSubj` must match the `data-test-subj` set by the consumer on the
+ * `<EuiSelectable>` (EUI spreads it onto the `.euiSelectable` root). When the
+ * selectable renders inside a popover the consumer opens, pass that popover as
+ * `scope` and drive the open/close from the test — the popover is not this
+ * component's concern.
+ */
+export class EuiSelectableObject extends BaseObject {
+  constructor(scope: ObjectScope, testSubj: string) {
+    super(scope, testSubj, EuiSelectableSelectors.ROOT_SELECTOR);
+  }
+
+  /**
+   * The options currently mounted in the list, as a `Locator` so callers keep
+   * Playwright auto-retry for count and content assertions
+   * (e.g. `expect(options).toHaveCount(3)`). The list is virtualized, so this is
+   * the rendered window — `search()` first to filter the target into view
+   * rather than scanning a long list.
+   */
+  public get options(): Locator {
+    return this.root.getByRole('option');
+  }
+
+  /**
+   * A single option by its label. Returned as a `Locator` so callers own the
+   * action or assertion — click it to select, or assert its visibility /
+   * `aria-disabled` / `aria-checked` state.
+   *
+   * Matches on the option's label element (`.euiSelectableListItem__text`), not
+   * its accessible name. `append`/`prepend` badges render in a sibling element,
+   * so they are excluded. EUI appends screen-reader state text inside the label
+   * element (a checked option reads `"<label> . Checked option."`), which always
+   * starts with a `.`, so the match allows an optional `.`-prefixed suffix. That
+   * boundary is what keeps `option('New York')` from also matching
+   * `New York City`: a real longer label continues with a word, not a `.`.
+   *
+   * This is for lists in their default state. Once you call `search()`, EUI
+   * wraps the matched text in `<mark>` and injects highlight markers, so a label
+   * match no longer resolves. On a searched list, select via the option's own
+   * `data-test-subj`, or assert on {@link options}.
+   */
+  public option(label: string): Locator {
+    const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const labelText = new RegExp(`^${escaped}(\\s*\\..*)?$`);
+    return this.root
+      .getByRole('option')
+      .filter({ has: this.root.page().locator('.euiSelectableListItem__text', { hasText: labelText }) });
+  }
+
+  /** The currently checked options (`aria-checked="true"`). */
+  public get checkedOptions(): Locator {
+    return this.root.getByRole('option', { checked: true });
+  }
+
+  /**
+   * Type into the selectable's search box to filter the options. Throws if the
+   * selectable is not searchable (no search box rendered).
+   */
+  async search(term: string): Promise<void> {
+    // `fill()` auto-waits for the search box; if the selectable is not
+    // searchable it surfaces a clear locator-timeout on its own.
+    await this.root.locator(EuiSelectableSelectors.SEARCH_SELECTOR).fill(term);
+  }
+
+  /**
+   * Ensure the option with the exact accessible name `label` ends up checked,
+   * for multi-select lists that toggle `aria-checked`. Idempotent and tolerant
+   * of the list re-rendering mid-selection (a click can land during a re-render
+   * and miss), so it re-clicks until the option reports checked.
+   */
+  async check(label: string): Promise<void> {
+    const option = this.option(label);
+    await expect
+      .poll(
+        async () => {
+          if ((await option.getAttribute('aria-checked')) === 'true') return true;
+          await option.click();
+          return (await option.getAttribute('aria-checked')) === 'true';
+        },
+        { timeout: 15_000, intervals: [250, 500, 1000] }
+      )
+      .toBe(true);
+  }
+}
