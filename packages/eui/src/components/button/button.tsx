@@ -28,6 +28,7 @@ import {
   EuiButtonDisplayCommonProps,
 } from './button_display/_button_display';
 import { useEuiButtonCommonProps } from './use_button_common_props';
+import { euiButtonStyles } from './button.styles';
 
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
@@ -119,7 +120,11 @@ export const EuiButton: FunctionComponent<Props> = ({
   const buttonFocusStyle = useEuiButtonFocusCSS();
 
   const classes = classNames('euiButton', className);
-  const cssStyles = [buttonColorStyles, buttonFocusStyle];
+  const cssStyles = [
+    euiButtonStyles.euiButton,
+    buttonColorStyles,
+    buttonFocusStyle,
+  ];
 
   return (
     <EuiButtonDisplay

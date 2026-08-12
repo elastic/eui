@@ -374,15 +374,17 @@ const euiButtonFocusCSS = (_euiThemeContext: UseEuiTheme) => {
 export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  // TODO: replace with token once available
+  // Used by inset/split button treatments that sit inside a parent radius
   const radiusInset = '2px';
 
+  // Control radius (~8px) for Empty/Icon and shared display sizing.
+  // EuiButton overrides to a full pill via its own styles.
   return {
     xs: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.l,
       padding: mathWithUnits(euiTheme.size.m, (x) => x / 2),
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 'xs' as const,
     },
@@ -390,7 +392,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.xl,
       padding: euiTheme.size.s,
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 's' as const,
     },
@@ -398,7 +400,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
       padding: euiTheme.size.m,
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 's' as const,
     },
