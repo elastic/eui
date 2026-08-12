@@ -24,7 +24,7 @@ export type EuiTextProps = SharedTextProps &
   EuiTextAlignment & {
     /**
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
-     * Defaults to `s` (~14px) to match the unstyled body / html base size.
+     * Defaults to `s` to match the unstyled body / html base size.
      * @default s
      */
     size?: TextSize;

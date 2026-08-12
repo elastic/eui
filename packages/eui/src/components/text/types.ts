@@ -34,9 +34,7 @@ export type CloneElement = {
 export type EuiTextColors = {
   /**
    * Any of our named colors or a `hex`, `rgb` or `rgba` value.
-   * When omitted, **EuiText** uses the subdued text color. Pass `default`
-   * to restore full paragraph contrast.
-   * @default subdued
+   * @default inherit
    */
   color?: TextColor | CSSProperties['color'];
 };

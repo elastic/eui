@@ -56,13 +56,13 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
 
 export const dark_text_colors: _EuiThemeTextColors = {
   /* Legacy colors */
-  text: SEMANTIC_COLORS.shade30,
+  text: SEMANTIC_COLORS.shade40,
   title: SEMANTIC_COLORS.shade20,
   subduedText: SEMANTIC_COLORS.shade55,
   link: SEMANTIC_COLORS.primary60,
 
   /* New colors */
-  textParagraph: SEMANTIC_COLORS.shade30,
+  textParagraph: SEMANTIC_COLORS.shade40,
   textHeading: SEMANTIC_COLORS.shade20,
   textSubdued: SEMANTIC_COLORS.shade55,
   textDisabled: SEMANTIC_COLORS.shade80,
