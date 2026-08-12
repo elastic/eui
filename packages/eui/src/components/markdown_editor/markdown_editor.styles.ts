@@ -19,7 +19,7 @@ import {
 export const euiMarkdownEditorVariables = ({ euiTheme }: UseEuiTheme) => {
   return {
     minHeight: '150px',
-    borderRadius: euiTheme.border.radius.medium,
+    borderRadius: euiTheme.border.radius.panel,
     barsBackgroundColor: euiTheme.colors.lightestShade,
   };
 };
