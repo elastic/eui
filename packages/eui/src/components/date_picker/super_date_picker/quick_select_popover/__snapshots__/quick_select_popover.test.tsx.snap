@@ -242,7 +242,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
-            class="euiLink emotion-euiLink-primary"
+            class="euiLink emotion-euiLink"
             data-test-subj="superDatePickerCommonlyUsed_Today"
             type="button"
           >
@@ -271,7 +271,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
-            class="euiLink emotion-euiLink-primary"
+            class="euiLink emotion-euiLink"
             type="button"
           >
             Today
@@ -401,7 +401,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       class="emotion-euiQuickSelectPanel__section"
     >
       <button
-        class="euiLink emotion-euiLink-primary"
+        class="euiLink emotion-euiLink"
         data-test-subj="customComponentSelectPanel"
         type="button"
       >

@@ -9,7 +9,7 @@ exports[`EuiLink accent is rendered 1`] = `
 
 exports[`EuiLink button respects the type property 1`] = `
 <button
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   type="submit"
 />
 `;
@@ -30,14 +30,14 @@ exports[`EuiLink ghost is rendered 1`] = `
 
 exports[`EuiLink if href is not specified, it renders a button of type=button 1`] = `
 <button
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   type="button"
 />
 `;
 
 exports[`EuiLink it is an external link 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="/baz/bing"
   rel="noreferrer"
 >
@@ -57,7 +57,7 @@ exports[`EuiLink it is an external link 1`] = `
 exports[`EuiLink it passes the default props through 1`] = `
 <button
   aria-label="aria-label"
-  class="euiLink testClass1 testClass2 emotion-euiLink-primary-euiTestCss"
+  class="euiLink testClass1 testClass2 emotion-euiLink-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 />
@@ -65,7 +65,7 @@ exports[`EuiLink it passes the default props through 1`] = `
 
 exports[`EuiLink it supports both href and onClick 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="/imalink"
   rel="noreferrer"
 />
@@ -73,7 +73,7 @@ exports[`EuiLink it supports both href and onClick 1`] = `
 
 exports[`EuiLink primary is rendered 1`] = `
 <button
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   type="button"
 />
 `;
@@ -94,7 +94,7 @@ exports[`EuiLink success is rendered 1`] = `
 
 exports[`EuiLink supports children 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="#"
   rel="noreferrer"
 >
@@ -114,7 +114,7 @@ exports[`EuiLink supports disabled 1`] = `
 
 exports[`EuiLink supports href 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="/baz/bing"
   rel="noreferrer"
 />
@@ -122,7 +122,7 @@ exports[`EuiLink supports href 1`] = `
 
 exports[`EuiLink supports rel 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="hoi"
   rel="noreferrer stylesheet"
 />
@@ -130,7 +130,7 @@ exports[`EuiLink supports rel 1`] = `
 
 exports[`EuiLink supports target 1`] = `
 <a
-  class="euiLink emotion-euiLink-primary"
+  class="euiLink emotion-euiLink"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
@@ -150,7 +150,7 @@ exports[`EuiLink supports target 1`] = `
 
 exports[`EuiLink text is rendered 1`] = `
 <button
-  class="euiLink emotion-euiLink-text"
+  class="euiLink emotion-euiLink"
   type="button"
 />
 `;

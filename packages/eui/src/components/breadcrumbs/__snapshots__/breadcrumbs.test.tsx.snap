@@ -14,7 +14,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -123,7 +123,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -232,7 +232,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -397,7 +397,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -504,7 +504,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -612,7 +612,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
