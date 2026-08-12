@@ -99,6 +99,11 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   footer,
   ...rest
 }) => {
+  // Plain prompts need a border so main + footer read as one container on light
+  // surfaces. Transparent stays flush unless the consumer opts into a border.
+  // (Avoid inheriting EuiPanel's default `hasBorder` for transparent.)
+  const resolvedHasBorder = hasBorder ?? color === 'plain';
+
   const classes = classNames('euiEmptyPrompt', className);
   const styles = useEuiMemoizedStyles(euiEmptyPromptStyles);
   const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
@@ -166,14 +171,16 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       styles.footer.euiEmptyPrompt__footer,
       styles.footer[paddingSize],
       styles.footer[color],
-      color === 'transparent' && !hasBorder && styles.footer.roundedBorders,
+      color === 'transparent' &&
+        !resolvedHasBorder &&
+        styles.footer.roundedBorders,
     ];
     return (
       <div className="euiEmptyPrompt__footer" css={footerStyles}>
         {footer}
       </div>
     );
-  }, [footer, paddingSize, color, hasBorder, styles.footer]);
+  }, [footer, paddingSize, color, resolvedHasBorder, styles.footer]);
 
   return (
     <EuiPanel
@@ -182,7 +189,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       color={color}
       paddingSize="none"
       grow={false}
-      hasBorder={hasBorder}
+      hasBorder={resolvedHasBorder}
       {...rest}
     >
       <div className="euiEmptyPrompt__main" css={mainStyles}>

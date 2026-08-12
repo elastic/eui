@@ -39,8 +39,8 @@ const meta: Meta<EuiPanelProps> = {
     paddingSize: 'm',
     borderRadius: 'm',
     color: 'plain',
-    hasShadow: true,
-    hasBorder: false,
+    hasShadow: false,
+    hasBorder: true,
     grow: true,
   },
 };
