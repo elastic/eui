@@ -193,11 +193,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       get s() {
         return css`
           ${this.borders}
-          ${uncompressedBorderRadii(euiTheme.border.radius.small)}
+          ${uncompressedBorderRadii(euiTheme.border.radius.control)}
         `;
       },
       get m() {
-        const radius = euiTheme.border.radius.small;
+        const radius = euiTheme.border.radius.control;
         return css`
           ${this.borders}
           ${uncompressedBorderRadii(radius)}
@@ -218,7 +218,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       margin: ${euiTheme.size.xxs};
       border-radius: ${mathWithUnits(
-        euiTheme.border.radius.small,
+        euiTheme.border.radius.control,
         (x) => x / 2
       )};
 
