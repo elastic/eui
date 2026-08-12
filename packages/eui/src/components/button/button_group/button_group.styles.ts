@@ -40,11 +40,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 
-  const {
-    controlCompressedHeight,
-    backgroundColor,
-    borderColor,
-  } = euiFormVariables(euiThemeContext);
+  const { controlCompressedHeight, backgroundColor, borderColor } =
+    euiFormVariables(euiThemeContext);
 
   return {
     // Base
