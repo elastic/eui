@@ -22,12 +22,19 @@ const config: StorybookConfig = {
       plugins: [
         react({
           jsxImportSource: '@emotion/react',
-          // `pegjs-inline-precompile` is used by `EuiSearchBar`
-          // TODO: simplify with peggy CLI and drop Babel plugin
-          babel: (id: string) =>
-            /query[\\/]default_syntax\.ts$/.test(id)
-              ? { plugins: ['pegjs-inline-precompile'] }
-              : {},
+          babel: (id: string) => ({
+            plugins: [
+              [
+                '@emotion/babel-plugin',
+                { autoLabel: 'always', labelFormat: '[local]' },
+              ],
+              // `pegjs-inline-precompile` is used by `EuiSearchBar`
+              // TODO: simplify with peggy CLI and drop Babel plugin
+              ...(/query[\\/]default_syntax\.ts$/.test(id)
+                ? ['pegjs-inline-precompile']
+                : []),
+            ],
+          }),
         }),
       ],
       optimizeDeps: {

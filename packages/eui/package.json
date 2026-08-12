@@ -112,6 +112,7 @@
     "@elastic/eslint-plugin-eui": "workspace:*",
     "@elastic/eui-illustrations": "workspace:*",
     "@elastic/eui-theme-borealis": "workspace:*",
+    "@emotion/babel-plugin": "^11.11.0",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.0",

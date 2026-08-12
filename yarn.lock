@@ -7293,6 +7293,7 @@ __metadata:
     "@elastic/eui-theme-borealis": "workspace:*"
     "@elastic/eui-theme-common": "workspace:*"
     "@elastic/prismjs-esql": "npm:^4.13.0"
+    "@emotion/babel-plugin": "npm:^11.11.0"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.0"
