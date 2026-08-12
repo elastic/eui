@@ -43,7 +43,7 @@
     "release-backport": "node ./scripts/release.js --type=backport",
     "release-rc": "node ./scripts/release.js --type=prerelease",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "NODE_OPTIONS=--max-old-space-size=4096 storybook build",
     "serve-storybook": "http-server storybook-static --port 6006 --silent",
     "test-storybook": "test-storybook",
     "pre-push": "yarn test-staged",
