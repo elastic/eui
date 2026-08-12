@@ -520,7 +520,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
@@ -539,7 +539,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
@@ -677,7 +677,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
@@ -696,7 +696,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
@@ -834,7 +834,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
@@ -853,7 +853,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 id="generated-id-wrapper"
               >
                 <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
                   type="button"
                 >
                   <span
