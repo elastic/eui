@@ -70,7 +70,7 @@ exports[`EuiComment props event is rendered 1`] = `
         class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
+          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent-hasBorder"
         >
           <div
             class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -131,7 +131,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
         class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
+          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent-hasBorder"
         >
           <div
             class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"

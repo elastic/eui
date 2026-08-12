@@ -10,7 +10,7 @@ keywords: [EuiPanel, EuiSplitPanel]
 
 ### Default
 
-Panels have several possible style combinations with color, borders, and shadow. Use them sparingly and favor the default.
+Panels default to a flat bordered look (`hasBorder`, no shadow) with `border.radius.panel` corners. Use shadow only when you need elevation.
 
 ```tsx interactive
 import React from 'react';
@@ -33,7 +33,7 @@ import SplitPanel from './_split_panel.mdx';
 
 ### Padding
 
-The most basic use is to simply add padding around your content.
+The preferred padding set is `none`, `s`, `m` (default), and `l`. Prefer these over `xs` / `xl`, which remain available but are soft-deprecated on **EuiPanel**.
 
 ```tsx interactive
 import React from 'react';
@@ -68,7 +68,7 @@ export default () => (
 
 ### Shadow and border
 
-**EuiPanel** can give depth to your container with `hasShadow` while `hasBorder` can add containment. Just be sure not to include too many [nested panels](#guidelines) with these settings.
+By default, **EuiPanel** is flat: `hasBorder` on and `hasShadow` off. Use `hasShadow` when you need elevation (incompatible with border). Just be sure not to include too many [nested panels](#guidelines) with these settings.
 
 :::warning Certain allowed combinations of shadow, border, and color depend on the current theme.
 
@@ -83,14 +83,14 @@ import { EuiPanel, EuiCode, EuiSpacer } from '@elastic/eui';
 export default () => {
   return (
     <div>
-      <EuiPanel hasShadow={false}>
-        <EuiCode>{'hasShadow={false}'}</EuiCode>
+      <EuiPanel>
+        <EuiCode>Default (hasBorder, no shadow)</EuiCode>
       </EuiPanel>
 
       <EuiSpacer />
 
-      <EuiPanel hasBorder={true}>
-        <EuiCode>{'hasBorder={true}'}</EuiCode>
+      <EuiPanel hasBorder={false} hasShadow>
+        <EuiCode>{'hasBorder={false} hasShadow'}</EuiCode>
       </EuiPanel>
     </div>
   );
