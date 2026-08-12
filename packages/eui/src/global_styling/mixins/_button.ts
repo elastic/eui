@@ -374,8 +374,11 @@ const euiButtonFocusCSS = (_euiThemeContext: UseEuiTheme) => {
 export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  // Used by inset/split button treatments that sit inside a parent radius
-  const radiusInset = '2px';
+  // Nested radius for inset/split treatments inside a control-radius parent
+  const radiusInset = mathWithUnits(
+    euiTheme.border.radius.control,
+    (x) => x / 4
+  );
 
   // Control radius (~8px) for Empty/Icon and shared display sizing.
   // EuiButton overrides to a full pill via its own styles.
