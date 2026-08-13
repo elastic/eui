@@ -46,7 +46,7 @@ test.describe('EuiSelectableObject (searchable)', () => {
 
       await selectable.search('');
 
-      await expect(selectable.option('Titan')).toBeVisible();
+      await expect(selectable.options.filter({ hasText: 'Titan' })).not.toHaveCount(0);
     });
   });
 });

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { expect, type Locator } from '@playwright/test';
+import type { Locator } from '@playwright/test';
 
 import { BaseObject, type ObjectScope } from '../../base_object';
 import { EuiSelectableSelectors } from '../../../components/selectable/selectors';
@@ -38,29 +38,32 @@ export class EuiSelectableObject extends BaseObject {
   }
 
   /**
-   * A single option by its label. Returned as a `Locator` so callers own the
-   * action or assertion — click it to select, or assert its visibility /
-   * `aria-disabled` / `aria-checked` state.
+   * Selects the option with the given label. A no-op if it is already selected
+   * (checked, or the sole active option in a single-selection list).
    *
    * Matches on the option's label element (`.euiSelectableListItem__text`), not
    * its accessible name. `append`/`prepend` badges render in a sibling element,
    * so they are excluded. EUI appends screen-reader state text inside the label
    * element (a checked option reads `"<label> . Checked option."`), which always
    * starts with a `.`, so the match allows an optional `.`-prefixed suffix. That
-   * boundary is what keeps `option('New York')` from also matching
+   * boundary is what keeps `selectOption('New York')` from also matching
    * `New York City`: a real longer label continues with a word, not a `.`.
    *
    * This is for lists in their default state. Once you call `search()`, EUI
    * wraps the matched text in `<mark>` and injects highlight markers, so a label
    * match no longer resolves. On a searched list, select via the option's own
-   * `data-test-subj`, or assert on {@link options}.
+   * `data-test-subj`, or drive it through {@link options} directly.
    */
-  public option(label: string): Locator {
+  async selectOption(label: string): Promise<void> {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const labelText = new RegExp(`^${escaped}(\\s*\\..*)?$`);
-    return this.root
+    const option = this.root
       .getByRole('option')
       .filter({ has: this.root.page().locator('.euiSelectableListItem__text', { hasText: labelText }) });
+    if ((await option.getAttribute('aria-checked')) === 'true') {
+      return;
+    }
+    await option.click();
   }
 
   /**
@@ -71,25 +74,5 @@ export class EuiSelectableObject extends BaseObject {
     // `fill()` auto-waits for the search box; if the selectable is not
     // searchable it surfaces a clear locator-timeout on its own.
     await this.root.locator(EuiSelectableSelectors.SEARCH_SELECTOR).fill(term);
-  }
-
-  /**
-   * Ensure the option with the exact accessible name `label` ends up checked,
-   * for multi-select lists that toggle `aria-checked`. Idempotent and tolerant
-   * of the list re-rendering mid-selection (a click can land during a re-render
-   * and miss), so it re-clicks until the option reports checked.
-   */
-  async check(label: string): Promise<void> {
-    const option = this.option(label);
-    await expect
-      .poll(
-        async () => {
-          if ((await option.getAttribute('aria-checked')) === 'true') return true;
-          await option.click();
-          return (await option.getAttribute('aria-checked')) === 'true';
-        },
-        { timeout: 15_000, intervals: [250, 500, 1000] }
-      )
-      .toBe(true);
   }
 }

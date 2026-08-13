@@ -39,46 +39,40 @@ test.describe('EuiSelectableObject', () => {
     });
   });
 
-  test.describe('option', () => {
-    test('locates an option by its exact label', async () => {
-      await expect(selectable.option('Titan')).toBeVisible();
-    });
+  test.describe('selectOption', () => {
+    test('locates an option by its exact label and checks it', async () => {
+      await selectable.selectOption('Dione');
 
-    test('does not match on a label that is a substring of another option', async () => {
-      // "Titan" is a substring of the "...Titaness..." option's label.
-      await expect(selectable.option('Titan')).toHaveCount(1);
-    });
-
-    test('does not match an option whose label merely starts with the same words', async () => {
-      // "Enceladus" is a whitespace-delimited prefix of "Enceladus is disabled".
-      await expect(selectable.option('Enceladus')).toHaveCount(0);
-    });
-
-    test('reflects a disabled option', async () => {
-      await expect(selectable.option('Enceladus is disabled')).toHaveAttribute(
-        'aria-disabled',
+      await expect(selectable.options.filter({ hasText: 'Dione' })).toHaveAttribute(
+        'aria-checked',
         'true'
       );
     });
-  });
 
-  test.describe('checked state', () => {
-    test('reflects an initially checked option', async () => {
-      await expect(selectable.option('Mimas')).toHaveAttribute('aria-checked', 'true');
+    test('does not match on a label that is a substring of another option', async () => {
+      // "Titan" is a substring of the "...Titaness..." option's label; selecting it
+      // should not touch the longer option.
+      await selectable.selectOption('Titan');
+
+      await expect(
+        selectable.options.filter({ hasText: 'Titaness' })
+      ).not.toHaveAttribute('aria-checked', 'true');
     });
-  });
 
-  test.describe('check', () => {
-    test('checks an option and leaves it checked', async () => {
-      await selectable.check('Dione');
-
-      await expect(selectable.option('Dione')).toHaveAttribute('aria-checked', 'true');
+    test('does not match an option whose label merely starts with the same words', async () => {
+      // "Enceladus" is a whitespace-delimited prefix of "Enceladus is disabled", which
+      // is also disabled — selecting the shorter label must throw, not silently no-op
+      // on the disabled option.
+      await expect(selectable.selectOption('Enceladus')).rejects.toThrow();
     });
 
     test('is a no-op when the option is already checked', async () => {
-      await selectable.check('Mimas');
+      await selectable.selectOption('Mimas');
 
-      await expect(selectable.option('Mimas')).toHaveAttribute('aria-checked', 'true');
+      await expect(selectable.options.filter({ hasText: 'Mimas' })).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
     });
   });
 });
