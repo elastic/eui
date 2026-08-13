@@ -183,6 +183,28 @@ declare -A pr_comment_rows_by_component
 # Preserve component insertion order
 component_order=()
 
+# Extracts and formats the diff percent reported by `jest-image-snapshot`.
+get_diff_percentage() {
+  local filename="$1"
+  local percentage
+
+  percentage=$(
+    grep -F -B 3 -- "${filename}" "${vrt_output_file}" \
+      | grep -oE '[0-9]+([.][0-9]+)?% different' \
+      | tail -n 1 \
+      | cut -d '%' -f 1 \
+      || true
+  )
+
+  if [[ -z "${percentage}" ]]; then
+    echo "n/a"
+  elif awk -v value="${percentage}" 'BEGIN { exit !(value > 0 && value < 0.01) }'; then
+    echo "&lt;0.01%"
+  else
+    awk -v value="${percentage}" 'BEGIN { printf "%.2f%%\n", value }'
+  fi
+}
+
 while IFS= read -r diff_file; do
   filename="$(basename "${diff_file}")"
   story_name="${filename%-diff.png}"
@@ -199,6 +221,7 @@ while IFS= read -r diff_file; do
   # Derive a readable story label from the story-name portion after "--"
   story_label="${story_id##*--}"
   story_label="${story_label//-/ }"
+  diff_percentage="$(get_diff_percentage "${filename}")"
 
   gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${diff_file}" "${vrt_gcs_base}/${filename}"
   if [[ -f "${CURRENT_DIR}/${story_name}-received.png" ]]; then
@@ -218,6 +241,7 @@ while IFS= read -r diff_file; do
   annotation_rows_by_component[$component]+="
   <tr>
     <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"artifact://${REF_DIR}/${story_name}.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${CURRENT_DIR}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${DIFF_DIR}/${filename}\" width=\"180\"/></td>
@@ -226,6 +250,7 @@ while IFS= read -r diff_file; do
   pr_comment_rows_by_component[$component]+="
   <tr>
     <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"${vrt_public_base}/${story_name}-before.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${filename}\" width=\"180\"/></td>
@@ -250,7 +275,7 @@ make_diff_html() {
 <p><strong>${component}</strong> (${count} difference$([ "$count" -ne 1 ] && echo 's'))</p>
 <table>
 <thead>
-  <tr><th>Story</th><th>Before</th><th>After</th><th>Diff</th></tr>
+  <tr><th>Story</th><th>Diff %</th><th>Before</th><th>After</th><th>Diff</th></tr>
 </thead>
 <tbody>${rows}
 </tbody>
