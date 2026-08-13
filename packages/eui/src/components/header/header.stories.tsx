@@ -62,11 +62,7 @@ export const Sections: Story = {
     sections: [
       {
         items: [
-          <EuiHeaderLogo
-            iconType="logoElastic"
-            href="#"
-            aria-label="Go to home page"
-          />,
+          <EuiHeaderLogo href="#" aria-label="Go to home page" />,
           <EuiHeaderSectionItemButton aria-label="Spaces menu">
             <EuiAvatar type="space" name="Sales Team" size="s" />
           </EuiHeaderSectionItemButton>,
@@ -118,11 +114,7 @@ export const DarkThemeWithSitewideSearch: Story = {
     position: 'fixed',
     sections: [
       {
-        items: [
-          <EuiHeaderLogo iconType="logoElastic" href="">
-            Elastic
-          </EuiHeaderLogo>,
-        ],
+        items: [<EuiHeaderLogo logoType="horizontal" href="" />],
       },
       {
         items: [
@@ -185,13 +177,7 @@ const MultipleFixedHeadersExample = () => {
 
   const sections = [
     {
-      items: [
-        <EuiHeaderLogo
-          iconType="logoElastic"
-          href="#"
-          aria-label="Go to home page"
-        />,
-      ],
+      items: [<EuiHeaderLogo href="#" aria-label="Go to home page" />],
     },
     {
       items: [
@@ -539,9 +525,7 @@ const ElasticNavigationPatternExample = () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo iconType="logoElastic" href="">
-                Elastic
-              </EuiHeaderLogo>,
+              <EuiHeaderLogo logoType="horizontal" href="" />,
               deploymentMenu,
             ],
           },
