@@ -30,8 +30,6 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
     (x, y) => x + y
   );
-  const highlightOffset = euiTheme.border.width.thin;
-  const highlightSizeOffset = mathWithUnits([highlightOffset], (x) => x * 2);
   const separatorSize = mathWithUnits(
     [euiTheme.size.s, euiTheme.size.xxs],
     (x, y) => x + y
@@ -43,6 +41,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       max-inline-size: 100%;
       align-items: center;
+      overflow: hidden;
       border: ${euiTheme.border.width.thin} solid;
       border-radius: ${borderRadius};
 
@@ -50,15 +49,14 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         outline-offset: 2px;
       }
 
+      /* Solid bar (not border-inline-start) so corners follow panel radius via overflow clip */
       &::before {
         content: '';
         position: absolute;
-        inset-block-start: -${euiTheme.border.width.thin};
-        inset-inline-start: -${euiTheme.border.width.thin};
-        block-size: calc(100% + ${highlightSizeOffset});
-        border-inline-start: ${highlightSize} solid var(--euiCallOutTypeColor);
-        border-start-start-radius: ${borderRadius};
-        border-end-start-radius: ${borderRadius};
+        inset-block: 0;
+        inset-inline-start: 0;
+        inline-size: ${highlightSize};
+        background-color: var(--euiCallOutTypeColor);
         pointer-events: none;
 
         ${preventForcedColors(euiThemeContext)}
