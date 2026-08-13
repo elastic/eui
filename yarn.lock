@@ -7356,6 +7356,7 @@ __metadata:
     cypress-plugin-tab: "npm:^1.0.5"
     cypress-real-events: "npm:^1.7.0"
     dedent: "npm:^0.7.0"
+    diff-match-patch: "npm:^1.0.5"
     dts-generator: "npm:^3.0.0"
     enzyme: "npm:^3.11.0"
     enzyme-to-json: "npm:^3.5.0"
@@ -7425,7 +7426,6 @@ __metadata:
     stylelint-config-standard: "npm:^33.0.0"
     stylelint-config-standard-scss: "npm:^9.0.0"
     tabbable: "npm:^5.3.3"
-    text-diff: "npm:^1.0.1"
     typescript: "npm:^5.8.3"
     unified: "npm:^9.2.2"
     unist-util-visit: "npm:^2.0.3"
@@ -19467,6 +19467,13 @@ __metadata:
     asap: "npm:^2.0.0"
     wrappy: "npm:1"
   checksum: 10c0/8a870ed42eade9a397e6141fe5c025148a59ed52f1f28b1db5de216b4d57f0af7a257070c3af7ce3d5508c1ce9dd5009028a76f4b2cc9370dc56551d2355fad8
+  languageName: node
+  linkType: hard
+
+"diff-match-patch@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "diff-match-patch@npm:1.0.5"
+  checksum: 10c0/142b6fad627b9ef309d11bd935e82b84c814165a02500f046e2773f4ea894d10ed3017ac20454900d79d4a0322079f5b713cf0986aaf15fce0ec4a2479980c86
   languageName: node
   linkType: hard
 
@@ -38533,13 +38540,6 @@ __metadata:
     glob: "npm:^7.1.4"
     minimatch: "npm:^3.0.4"
   checksum: 10c0/019d33d81adff3f9f1bfcff18125fb2d3c65564f437d9be539270ee74b994986abb8260c7c2ce90e8f30162178b09dbbce33c6389273afac4f36069c48521f57
-  languageName: node
-  linkType: hard
-
-"text-diff@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "text-diff@npm:1.0.1"
-  checksum: 10c0/7b94d2371ef9154920a67834a9e25854d5e5afd41c953f7e9cca7fc36c811e0ccde9da04e3e54f154e53a6a92b1982263fdaf2188a64e1e992a53a00127e1bca
   languageName: node
   linkType: hard
 

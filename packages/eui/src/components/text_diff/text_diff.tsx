@@ -7,7 +7,7 @@
  */
 
 import React, { HTMLAttributes, useMemo, ElementType, JSX } from 'react';
-import Diff from 'text-diff';
+import DiffMatchPatch from 'diff-match-patch';
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
@@ -58,9 +58,10 @@ export const useEuiTextDiff = ({
   ...rest
 }: EuiTextDiffProps) => {
   const textDiff = useMemo(() => {
-    const diff = new Diff({ timeout }); // options may be passed to constructor
+    const diff = new DiffMatchPatch();
+    diff.Diff_Timeout = timeout;
 
-    return diff.main(beforeText, afterText);
+    return diff.diff_main(beforeText, afterText);
   }, [beforeText, afterText, timeout]); // produces diff array
 
   const styles = useEuiMemoizedStyles(euiTextDiffStyles);
