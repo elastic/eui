@@ -23,3 +23,5 @@ Set `data-test-subj` on the `<EuiSelectable>` (EUI spreads it onto the `.euiSele
 | `search(term)` | Types into the search box. Throws if the selectable is not searchable. |
 
 `selectOption(label)` matches the label element and suits lists in their default state. It tolerates the screen-reader state text EUI appends (a checked option reads `<label> . Checked option.`) and `append` badges, and it will not match a different option whose label merely starts with the same text. Once you call `search()`, EUI injects highlight markers into the option's label, so a label match no longer resolves. On a searched list, select via the option's own `data-test-subj` or drive it through `options` directly.
+
+It also only matches the plain label. A consumer using a custom `renderOption` to add its own content (e.g. a description) inside the option renders that content in the same label element, which breaks the anchored match. Select those options via `options` instead (e.g. `options.filter({ hasText: label })`).

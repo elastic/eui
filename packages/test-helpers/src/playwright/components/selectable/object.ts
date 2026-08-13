@@ -53,6 +53,12 @@ export class EuiSelectableObject extends BaseObject {
    * wraps the matched text in `<mark>` and injects highlight markers, so a label
    * match no longer resolves. On a searched list, select via the option's own
    * `data-test-subj`, or drive it through {@link options} directly.
+   *
+   * Only matches the plain label. A consumer using a custom `renderOption` to
+   * add its own content (e.g. a description) inside the option renders that
+   * content in the same label element, which breaks the anchored match. Select
+   * those options via {@link options} instead (e.g.
+   * `options.filter({ hasText: label })`).
    */
   async selectOption(label: string): Promise<void> {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
