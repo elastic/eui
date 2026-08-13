@@ -29,7 +29,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.control};
       color: ${euiTheme.colors
         .textParagraph}; /* Override possible link color */
 
