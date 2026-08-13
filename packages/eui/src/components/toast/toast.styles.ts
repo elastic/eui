@@ -35,6 +35,7 @@ const euiToastAnimation = keyframes`
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const borderRadius = euiTheme.border.radius.panel;
   const highlightSize = mathWithUnits(
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
     (x, y) => x + y
@@ -54,7 +55,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       container-type: inline-size;
       container-name: ${CONTAINER_NAME};
       position: relative;
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${borderRadius};
       ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
       ${logicalCSS('padding-top', paddingTop)}
@@ -71,10 +72,20 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       overflow: hidden;
       inset-block-start: 0;
       inset-inline: 0;
-      ${logicalCSS('height', highlightSize)}
-      border-start-start-radius: ${euiTheme.border.radius.medium};
-      border-start-end-radius: ${euiTheme.border.radius.medium};
-      background-color: var(--euiToastTypeBackgroundColor);
+      /*
+       * Tall enough for panel radius (a ${highlightSize} strip would clamp
+       * border-radius). Gradient keeps only the top highlight painted.
+       */
+      ${logicalCSS('height', borderRadius)}
+      border-start-start-radius: ${borderRadius};
+      border-start-end-radius: ${borderRadius};
+      background: linear-gradient(
+        to bottom,
+        var(--euiToastTypeBackgroundColor) 0,
+        var(--euiToastTypeBackgroundColor) ${highlightSize},
+        transparent ${highlightSize}
+      );
+      pointer-events: none;
 
       ${preventForcedColors(euiThemeContext)}
 
@@ -85,11 +96,11 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
         z-index: ${euiTheme.levels.content};
         inset-block-start: 0;
         inset-inline: 0;
-        ${logicalCSS('height', '100%')}
+        ${logicalCSS('height', highlightSize)}
+        /* Progress tip rounding; outer top corners follow decor overflow clip */
         border-radius: 1px;
         border-end-start-radius: 0;
         background-color: var(--euiToastTypeColor);
-        pointer-events: none;
         ${preventForcedColors(euiThemeContext)}
         transform-origin: left center;
 
