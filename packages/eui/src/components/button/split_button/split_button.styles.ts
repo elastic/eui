@@ -33,7 +33,7 @@ export const euiSplitButtonStyles = (
       position: absolute;
       inset: 0;
       border: ${euiTheme.border.width.thin} solid ${color};
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
       pointer-events: none;
     }
   `;
@@ -45,7 +45,7 @@ export const euiSplitButtonStyles = (
       align-items: center;
       flex-wrap: nowrap;
       padding: ${euiTheme.size.xs};
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
       background-color: ${backgroundColor};
 
       &:where([data-size='s']) {
