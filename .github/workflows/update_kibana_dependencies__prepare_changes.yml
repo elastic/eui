@@ -154,6 +154,26 @@ jobs:
               echo 'CHERRY_PICK_DELIMITER'
             } >> "$GITHUB_OUTPUT"
           fi
+      - name: Save current EUI i18n tokens
+        id: save_old_tokens
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          current_version=$(node -pe "
+            const p = require('./package.json');
+            p.devDependencies?.['@elastic/eui'] || p.dependencies?.['@elastic/eui'] || ''
+          ")
+          if [[ -z "$current_version" ]]; then
+            echo "::error::Cannot resolve the current @elastic/eui version"
+            exit 1
+          fi
+
+          old_tokens_path="$RUNNER_TEMP/eui_old_i18ntokens.json"
+          package_file=$(npm pack "@elastic/eui@$current_version" --pack-destination "$RUNNER_TEMP" --silent)
+          tar -xOf "$RUNNER_TEMP/$package_file" package/i18ntokens.json > "$old_tokens_path"
+
+          echo "OLD_TOKENS_PATH=$old_tokens_path" >> "$GITHUB_OUTPUT"
       - name: Update dependency versions
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
@@ -176,6 +196,46 @@ jobs:
           yarn kbn bootstrap
           node scripts/yarn_deduplicate
           yarn kbn bootstrap --force-install
+      - name: Sync EUI i18n tokens
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OLD_TOKENS: ${{ steps.save_old_tokens.outputs.OLD_TOKENS_PATH }}
+          MAPPING_DIR: src/core/packages/i18n/browser-internal
+          # Load trusted workflow code, never code from the tested snapshot.
+          EUI_WORKFLOW_REF: ${{ github.workflow_sha }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          mapping_file="$MAPPING_DIR/src/i18n_eui_mapping.tsx"
+          NEW_TOKENS=$(node -e "console.log(require.resolve('@elastic/eui/i18ntokens.json'))" 2>/dev/null || true)
+          if [[ -z "$NEW_TOKENS" || ! -f "$mapping_file" ]]; then
+            echo "::error::Cannot locate the installed EUI tokens or Kibana mapping"
+            exit 1
+          fi
+
+          # Handles strings, interpolation, plurals, and token additions, changes,
+          # or removals. Preserves Kibana comments and translator descriptions.
+          # Unknown function forms fail instead of creating an incomplete mapping.
+          sync_script="$RUNNER_TEMP/sync_kibana_i18n.mjs"
+          gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_WORKFLOW_REF}" \
+            --header "Accept: application/vnd.github.raw" \
+            > "$sync_script"
+          node "$sync_script" \
+            --old-tokens "$OLD_TOKENS" \
+            --new-tokens "$NEW_TOKENS" \
+            --mapping-file "$mapping_file"
+
+          if ! git diff --quiet "$mapping_file"; then
+            node scripts/eslint --fix "$mapping_file"
+            node scripts/jest --config "$MAPPING_DIR/jest.config.js" --updateSnapshot
+            git add "$mapping_file"
+            git add "$MAPPING_DIR/src/__snapshots__"
+            git diff --cached --quiet || git commit -m "chore: sync EUI i18n tokens"
+          fi
+
+          # Catch missing snapshot tokens before opening the Kibana PR.
+          node scripts/type_check --project "$MAPPING_DIR/tsconfig.json"
       - name: Commit changed files
         # language=bash
         run: |
