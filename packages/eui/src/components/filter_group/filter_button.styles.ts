@@ -58,7 +58,7 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:focus-visible {
           z-index: 1;
           outline-offset: -${euiTheme.border.width.thick};
-          border-radius: ${euiTheme.border.radius.small};
+          border-radius: ${euiTheme.border.radius.control};
           transition: none;
         }
       `,
