@@ -7,9 +7,9 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent, waitFor, within } from '@storybook/test';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
-import type { PlayFunctionContext } from '@storybook/csf';
+import { fireEvent, waitFor, within } from 'storybook/test';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { PlayFunctionContext } from 'storybook/internal/csf';
 import { VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiHeader } from '../../header';

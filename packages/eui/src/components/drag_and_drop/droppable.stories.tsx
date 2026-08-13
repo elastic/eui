@@ -8,7 +8,7 @@
 
 import React, { ReactElement, useState } from 'react';
 import { OnDragEndResponder, OnDragUpdateResponder } from '@hello-pangea/dnd';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { htmlIdGenerator } from '../../services';

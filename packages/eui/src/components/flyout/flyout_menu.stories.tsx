@@ -8,8 +8,8 @@
 
 import React, { useState } from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { Meta, StoryObj } from '@storybook/react';
+import { action } from 'storybook/actions';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';

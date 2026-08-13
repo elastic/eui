@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { action, actions } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
+import { action, actions } from 'storybook/actions';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import React, { useState } from 'react';
 
 import { EuiBreakpointSize } from '../../../services';

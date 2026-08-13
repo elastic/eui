@@ -6,11 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="@emotion/react/types/css-prop" />
-
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
 import { setEuiDevProviderWarning } from '../src/services';
 
@@ -34,7 +32,7 @@ const preview: Preview = {
     (Story, context) => (
       <EuiProviderDecorator
         colorMode={context.globals.colorMode}
-        highContrastMode={context.globals.highContrastMode}
+        highContrastMode={String(context.globals.highContrastMode) === 'true'}
         {...(context.componentId === 'theming-euiprovider' && context.args)}
         writingMode={context.globals.writingMode}
         themeName={context.globals.theme}
