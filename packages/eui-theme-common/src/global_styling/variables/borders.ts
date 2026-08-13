@@ -34,6 +34,11 @@ export interface _EuiThemeBorderRadiusValues {
    */
   small: CSSProperties['borderRadius'];
   /**
+   * Inline / text-adjacent marks (skeleton bars, swatches, inline code)
+   * - Default value: 4px
+   */
+  inline: CSSProperties['borderRadius'];
+  /**
    * Controls and form elements (buttons, inputs)
    * - Default value: 8px
    */
