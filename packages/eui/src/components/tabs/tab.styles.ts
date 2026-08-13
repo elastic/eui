@@ -81,7 +81,7 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTab__content: css`
-      font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+      font-weight: ${euiTheme.font.weight.semiBold};
     `,
     // sizes
     s: css`
