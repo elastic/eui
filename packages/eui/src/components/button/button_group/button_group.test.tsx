@@ -565,7 +565,7 @@ describe('EuiButtonGroup', () => {
     describe('layout', () => {
       it('sets `data-layout="horizontal"` as default', () => {
         const { getByRole } = render(
-          <EuiButtonGroup legend="test" variant="segmented" layout="horizontal">
+          <EuiButtonGroup legend="test" variant="segmented">
             <EuiButtonIcon iconType="bolt" aria-label="One" />
           </EuiButtonGroup>
         );
@@ -595,9 +595,28 @@ describe('EuiButtonGroup', () => {
         );
 
         expect(
-          getByTestSubject('group').querySelector('.euiButtonGroup__buttons')!
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
             .className
         ).not.toContain('fullWidth');
+      });
+
+      it('applies `fullWidth` to the buttons container when `layout="horizontal"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="segmented"
+            isFullWidth
+            layout="horizontal"
+            data-test-subj="group"
+          >
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+
+        expect(
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
+            .className
+        ).toContain('fullWidth');
       });
     });
 

@@ -245,8 +245,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Ensure buttons shrink properly (resulting in truncation) */
         ${buttonOnlyItemSelector} {
-          flex: 0;
-          flex-basis: auto;
+          flex: 0 1 auto;
           min-inline-size: 0;
 
           .euiButton .eui-textTruncate {
