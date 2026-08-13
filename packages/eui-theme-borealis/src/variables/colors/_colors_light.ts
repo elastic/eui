@@ -190,7 +190,7 @@ export const border_colors: _EuiThemeBorderColors = {
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: SEMANTIC_COLORS.shade8,
+  body: SEMANTIC_COLORS.shade17,
   highlight: SEMANTIC_COLORS.primary10,
   disabled: SEMANTIC_COLORS.shade20,
   disabledText: SEMANTIC_COLORS.shade80,
