@@ -33,7 +33,10 @@ steps:
   
   - label: ":loudspeaker: Notify"
     key: "notify"
-    depends_on: "vrt"
+    depends_on:
+      - "build-website"
+      - "build-storybook"
+      - "vrt"
     allow_dependency_failure: true
     command: .buildkite/scripts/deploy_docs/step_notify.sh
 

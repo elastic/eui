@@ -25,4 +25,4 @@ See the package [CONTRIBUTING](../../../packages/test-helpers/CONTRIBUTING.md) f
 
 ### Component ↔ helper correlation
 
-The correlation is **by directory name**: a change under `packages/eui/src/components/<name>` (or the helper's own specs) re-runs `packages/test-helpers/src/playwright/components/<name>`. Keeping that directory parity is all that is required — there is no map to maintain.
+The correlation is by directory path, so keeping the helper's directory in parity with the EUI component's is all that is required. See [Flake detection in the package CONTRIBUTING guide](../../../packages/test-helpers/CONTRIBUTING.md#ci-integration) for the exact rule.

@@ -10,17 +10,17 @@ source .buildkite/scripts/common/utils.sh
 #                      Configuration                       #
 ############################################################
 
-bucket_directory="$(buildkite-agent meta-data get bucket_directory)"
-copy_to_root_directory="$(buildkite-agent meta-data get copy_to_root_directory)"
+bucket_directory="$(buildkite-agent meta-data get bucket_directory --default "")"
+copy_to_root_directory="$(buildkite-agent meta-data get copy_to_root_directory --default "")"
 # Default to "true" for non-PR builds where VRT never runs
 vrt_passed="$(buildkite-agent meta-data get vrt_passed --default true)"
 
-published_website_url="https://eui.elastic.co/${bucket_directory}"
-published_storybook_url="https://eui.elastic.co/${bucket_directory}storybook/"
+website_links="[Documentation website](https://eui.elastic.co/${bucket_directory})"
+storybook_links="[Storybook](https://eui.elastic.co/${bucket_directory}storybook/)"
 
 if [[ "${copy_to_root_directory}" == "true" ]]; then
-  published_website_url="https://eui.elastic.co/ (root) and https://eui.elastic.co/${bucket_directory}"
-  published_storybook_url="https://eui.elastic.co/storybook/ (root) and https://eui.elastic.co/${bucket_directory}storybook/"
+  website_links="[Documentation website (root)](https://eui.elastic.co/) and [${bucket_directory}](https://eui.elastic.co/${bucket_directory})"
+  storybook_links="[Storybook (root)](https://eui.elastic.co/storybook/) and [${bucket_directory}storybook](https://eui.elastic.co/${bucket_directory}storybook/)"
 fi
 
 ############################################################
@@ -58,11 +58,11 @@ fi
 
 # Buildkite annotation (visible in the build page)
 buildkite-agent annotate --style "${annotation_style}" --context "deployed" << ANNOTATION
-- :docusaurus: [Documentation website](${published_website_url})
-- :book: [Storybook](${published_storybook_url})
+- :docusaurus: ${website_links}
+- :book: ${storybook_links}
 ${vrt_annotation}
 ANNOTATION
 
 # GitHub PR comment (via the pr_comment meta-data convention)
-echo -e "* [Documentation website](${published_website_url})\n* [Storybook](${published_storybook_url})${vrt_pr_comment}" \
+echo -e "* ${website_links}\n* ${storybook_links}${vrt_pr_comment}" \
   | buildkite-agent meta-data set pr_comment:docs_deployment_link:head
