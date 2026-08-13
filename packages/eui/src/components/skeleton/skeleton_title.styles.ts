@@ -21,7 +21,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
     euiSkeletonTitle: css`
       display: block;
       ${logicalCSS('width', '45%')}
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.inline};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
       ${preventForcedColors(euiThemeContext)}
     `,
@@ -43,7 +43,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     xxxs: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'xxxs').lineHeight)}
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
   };
 };
