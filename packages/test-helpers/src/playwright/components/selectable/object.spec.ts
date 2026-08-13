@@ -23,6 +23,10 @@ import { storyUrl } from '../../../storybook';
 const TEST_SUBJ = 'testSelectable';
 
 const PLAYGROUND_URL = storyUrl('forms-euiselectable--playground', `data-test-subj:${TEST_SUBJ}`);
+const SINGLE_SELECTION_URL = storyUrl(
+  'forms-euiselectable--single-selection',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiSelectableObject', () => {
   let selectable: EuiSelectableObject;
@@ -60,9 +64,10 @@ test.describe('EuiSelectableObject', () => {
     });
 
     test('does not match an option whose label merely starts with the same words', async () => {
-      // "Enceladus" is a whitespace-delimited prefix of "Enceladus is disabled", which
-      // is also disabled — selecting the shorter label must throw, not silently no-op
-      // on the disabled option.
+      // "Enceladus" is a whitespace-delimited prefix of "Enceladus is disabled" — the
+      // anchored match must reject that longer label, leaving zero matching options, so
+      // the call throws on the empty locator (not because that option happens to be
+      // disabled).
       await expect(selectable.selectOption('Enceladus')).rejects.toThrow();
     });
 
@@ -71,6 +76,26 @@ test.describe('EuiSelectableObject', () => {
 
       await expect(selectable.options.filter({ hasText: 'Mimas' })).toHaveAttribute(
         'aria-checked',
+        'true'
+      );
+    });
+  });
+
+  test.describe('single-selection lists', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto(SINGLE_SELECTION_URL);
+      await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
+      selectable = new EuiSelectableObject(page, TEST_SUBJ);
+    });
+
+    test('is a no-op when the option is already selected, keeping it selected', async () => {
+      // Single-selection lists report selection via `aria-selected`, not `aria-checked`,
+      // and clicking a selected option deselects it — so re-selecting must no-op.
+      await selectable.selectOption('Dione');
+      await selectable.selectOption('Dione');
+
+      await expect(selectable.options.filter({ hasText: 'Dione' })).toHaveAttribute(
+        'aria-selected',
         'true'
       );
     });

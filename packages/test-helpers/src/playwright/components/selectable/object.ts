@@ -38,8 +38,9 @@ export class EuiSelectableObject extends BaseObject {
   }
 
   /**
-   * Selects the option with the given label. A no-op if it is already selected
-   * (checked, or the sole active option in a single-selection list).
+   * Selects the option with the given label. A no-op if it is already selected.
+   * EUI reports that as `aria-checked` for a multi-selection list, or
+   * `aria-selected` for a single-selection one, so both are checked.
    *
    * Matches on the option's label element (`.euiSelectableListItem__text`), not
    * its accessible name. `append`/`prepend` badges render in a sibling element,
@@ -66,7 +67,11 @@ export class EuiSelectableObject extends BaseObject {
     const option = this.root
       .getByRole('option')
       .filter({ has: this.root.page().locator('.euiSelectableListItem__text', { hasText: labelText }) });
-    if ((await option.getAttribute('aria-checked')) === 'true') {
+    const [ariaChecked, ariaSelected] = await Promise.all([
+      option.getAttribute('aria-checked'),
+      option.getAttribute('aria-selected'),
+    ]);
+    if (ariaChecked === 'true' || ariaSelected === 'true') {
       return;
     }
     await option.click();
