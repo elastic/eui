@@ -17,9 +17,12 @@ export const SpecialColorsTable = () => {
               Provides denominator (background) value for{' '}
               <strong>contrast calculations</strong>
               <br />
-              @deprecated - use <code>backgroundBaseCanvas</code> for page
-              chrome, or <code>backgroundBasePlain</code> /{' '}
-              <code>backgroundBaseSubdued</code> for surfaces
+              @deprecated - whole-app chrome background (
+              <code>$euiPageBackgroundColor</code>). Not the same as{' '}
+              <code>backgroundBaseCanvas</code>, which is for nested workspace
+              surfaces (e.g. dashboard body). Use{' '}
+              <code>backgroundBasePlain</code> /{' '}
+              <code>backgroundBaseSubdued</code> for general surfaces.
             </>
           ),
         },
