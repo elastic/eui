@@ -20,7 +20,7 @@ export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
     border: css`
       border-width: ${euiTheme.border.width.thin};
       border-style: solid;
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
     `,
   };
 };
