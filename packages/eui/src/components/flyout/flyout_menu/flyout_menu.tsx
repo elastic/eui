@@ -13,6 +13,7 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { useEuiI18n } from '../../i18n';
 import { EuiTitle } from '../../title';
+import { EuiToolTip } from '../../tool_tip';
 import { EuiFlyoutCloseButton } from '../_flyout_close_button';
 import { MIN_HISTORY_ITEMS } from '../const';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
@@ -75,6 +76,14 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   // Sub-components are presentational, so all `euiFlyoutMenu.*` tokens are
   // resolved here, in the file that owns the namespace
   const backButtonLabel = useEuiI18n('euiFlyoutMenu.back', 'Back');
+  // `historyItems` is ordered most-recent-first, so index 0 is the entry the
+  // back button navigates to
+  const previousPageTitle = historyItems[0]?.title ?? '';
+  const backTooltipLabel = useEuiI18n(
+    'euiFlyoutMenu.back.tooltip',
+    'Back to {previousPage}',
+    { previousPage: previousPageTitle }
+  );
   const historyLabel = useEuiI18n('euiFlyoutMenu.history', 'History');
   const recentlyVisitedLabel = useEuiI18n(
     'euiFlyoutMenu.history.tooltip',
@@ -131,7 +140,13 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
           <>
             {hasBackButton && (
               <EuiFlexItem grow={false}>
-                <BackButton label={backButtonLabel} {...backButtonProps} />
+                {previousPageTitle ? (
+                  <EuiToolTip content={backTooltipLabel}>
+                    <BackButton label={backButtonLabel} {...backButtonProps} />
+                  </EuiToolTip>
+                ) : (
+                  <BackButton label={backButtonLabel} {...backButtonProps} />
+                )}
               </EuiFlexItem>
             )}
             {showBackHistoryDivider && <MenuDivider />}
@@ -149,29 +164,36 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
         {showLeadingBoundaryDivider && <MenuDivider />}
 
-        {leadingActions.map((action, actionIndex) => (
-          <EuiFlexItem
-            key={`leading-action-${actionIndex}`}
-            grow={false}
-            css={styles.euiFlyoutMenu__actions}
-          >
-            <MenuActionButton action={action} />
+        {leadingActions.length > 0 && (
+          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
+            <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+              {leadingActions.map((action, actionIndex) => (
+                <EuiFlexItem key={`leading-action-${actionIndex}`} grow={false}>
+                  <MenuActionButton action={action} />
+                </EuiFlexItem>
+              ))}
+            </EuiFlexGroup>
           </EuiFlexItem>
-        ))}
+        )}
 
         {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
 
         <EuiFlexItem grow={true}></EuiFlexItem>
 
-        {effectiveTrailingActions.map((action, actionIndex) => (
-          <EuiFlexItem
-            key={`trailing-action-${actionIndex}`}
-            grow={false}
-            css={styles.euiFlyoutMenu__actions}
-          >
-            <MenuActionButton action={action} />
+        {effectiveTrailingActions.length > 0 && (
+          <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__actions}>
+            <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+              {effectiveTrailingActions.map((action, actionIndex) => (
+                <EuiFlexItem
+                  key={`trailing-action-${actionIndex}`}
+                  grow={false}
+                >
+                  <MenuActionButton action={action} />
+                </EuiFlexItem>
+              ))}
+            </EuiFlexGroup>
           </EuiFlexItem>
-        ))}
+        )}
 
         {!hideCloseButton && (
           <CloseButtonSpacer showDivider={showTrailingCloseDivider} />

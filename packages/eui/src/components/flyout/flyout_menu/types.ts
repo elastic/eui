@@ -151,7 +151,9 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
     /**
-     * List of history items for the history popover. Not shown if there is just a single item.
+     * List of history items for the history popover, ordered most-recent-first.
+     * Index 0 is the page the back button navigates to. Not shown if there is
+     * just a single item.
      */
     historyItems?: EuiFlyoutHistoryItem[];
     /**
