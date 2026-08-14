@@ -54,11 +54,12 @@ VRT_RELEVANT_PATHS=(
   '^\.buildkite/scripts/common/'
 )
 
-# Sets the meta-data the downstream update-baselines step reads, then exits.
+# Sets the status and reason meta-data used by downstream steps, then exits.
 # $1: human-readable reason for the build log.
 skip_vrt() {
   echo "$1 - skipping visual regression tests"
   buildkite-agent meta-data set vrt_passed "skipped"
+  buildkite-agent meta-data set vrt_skip_reason "$1"
   exit 0
 }
 
