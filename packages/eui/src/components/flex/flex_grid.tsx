@@ -68,6 +68,9 @@ export interface EuiFlexGridProps {
   component?: ElementType;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/flex/grid/|EuiFlexGrid documentation}
+ */
 export const EuiFlexGrid: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
 > = ({

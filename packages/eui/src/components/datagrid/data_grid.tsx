@@ -114,6 +114,9 @@ const cellPaddingsToClassMap: {
 
 const emptyVirtualizationOptions = {};
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/data-grid/|EuiDataGrid documentation}
+ */
 export const EuiDataGrid = memo(
   forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
     const {

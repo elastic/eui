@@ -77,10 +77,11 @@ function compileIcons({ svgsDir, outputDir, servicesImportPath }) {
             hasIds
               ? tpl`
 ${imports}
-import { htmlIdGenerator } from '${servicesImportPath}';
+import { useGeneratedHtmlId } from '${servicesImportPath}';
 ${interfaces}
 const ${componentName} = (${props}) => {
-  const generateId = htmlIdGenerator('${fileName}');
+  const generatedId = useGeneratedHtmlId({ prefix: '${fileName}' });
+  const generateId = (suffix: string) => \`\${generatedId}_\${suffix}\`;
   return (
     ${jsx}
   );
@@ -99,7 +100,7 @@ export const icon = ${componentName};
         }
       );
 
-      // Replace static SVGs IDs with dynamic JSX that uses the htmlIdGenerator
+      // Replace static SVG IDs with dynamic JSX that uses useGeneratedHtmlId
       if (hasIds) {
         jsxSource = jsxSource
           .replace(/id="(\S+)"/gi, "id={generateId('$1')}")

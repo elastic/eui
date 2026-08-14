@@ -75,6 +75,9 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/link/|EuiLink documentation}
+ */
 const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {

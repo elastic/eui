@@ -114,7 +114,7 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
                 <EuiToolTip content="actions" disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-hidden="true"
-                    iconType="boxesVertical"
+                    iconType="ellipsis"
                     color="text"
                   />
                 </EuiToolTip>

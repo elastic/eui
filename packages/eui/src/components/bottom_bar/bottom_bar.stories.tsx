@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiBottomBar, EuiBottomBarProps } from './bottom_bar';

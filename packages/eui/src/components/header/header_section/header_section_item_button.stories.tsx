@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, useRef } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { COLORS } from '../../badge/notification_badge/badge_notification';
 import { EuiIcon, EuiAvatar, EuiButton } from '../../../components';

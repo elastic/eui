@@ -29,6 +29,16 @@ We don't use `no-restricted-imports` because ESLint doesn't allow multiple error
 
 All deprecations still must follow our [deprecation process](../../wiki/eui-team-processes/deprecations.md).
 
+### `@elastic/eui/no-deprecated-icon-aliases`
+
+Disallows deprecated EUI icon aliases in static JSX props on components imported
+from `@elastic/eui`. The rule checks props ending in `IconType`, the `type` prop
+on `EuiIcon` and `EuiIconTip`, and component-specific icon props such as
+`timelineAvatar`, `icon`, `logo`, `iconLeft`, and `iconRight`. It automatically
+replaces deprecated aliases with their supported icon handles.
+
+See the full table of icon replacements here: https://github.com/elastic/eui/issues/9561
+
 ### `@elastic/eui/no-css-color`
 
 This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
@@ -362,6 +372,86 @@ This rule reports the pattern but does not autofix it, because the tooltip's `co
 ```
 
 When the render-prop child is not an `EuiToolTip`, `beforeMessage` simply configures `EuiCopy`'s own tooltip and the pattern is left untouched.
+
+### `@elastic/eui/button-group-no-invalid-children`
+
+Enforce that `EuiButtonGroup` children (when using the Children API) are valid button components.
+
+Valid direct children are:
+- `variant="default"`: `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`
+
+Besides those button components, these three wrapper components are also allowed: `EuiPopover`, `EuiToolTip` and `EuiCopy`.
+
+#### Examples
+
+```tsx
+// ✗ Bad - non-button elements
+<EuiButtonGroup legend="Actions">
+  <div>Not a button</div>
+  <EuiFlexGroup>...</EuiFlexGroup>
+</EuiButtonGroup>
+
+// ✓ Good - direct buttons
+<EuiButtonGroup legend="Actions">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✓ Good - icon button with tooltip
+<EuiButtonGroup legend="Actions">
+  <EuiButton>Save</EuiButton>
+  <EuiToolTip content="Delete">
+    <EuiButtonIcon iconType="trash" aria-label="Delete" />
+  </EuiToolTip>
+</EuiButtonGroup>
+
+// ✓ Good - EuiCopy with render prop (expression or block body)
+<EuiButtonGroup legend="Actions">
+  <EuiCopy textToCopy="text">
+    {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+  </EuiCopy>
+</EuiButtonGroup>
+
+// ✓ Good - .map() with expression or block body
+<EuiButtonGroup legend="Actions">
+  {buttons.map((b) => <EuiButton key={b.id} onClick={b.onClick}>{b.label}</EuiButton>)}
+</EuiButtonGroup>
+
+// ✓ Good - EuiPopover with a button trigger
+<EuiButtonGroup legend="Actions">
+  <EuiPopover
+    button={<EuiButton onClick={togglePopover}>More</EuiButton>}
+    isOpen={isOpen}
+    closePopover={closePopover}
+  >
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - EuiPopover with an EuiToolTip-wrapped icon trigger
+<EuiButtonGroup legend="Actions">
+  <EuiPopover
+    button={
+      <EuiToolTip content="More options">
+        <EuiButtonIcon iconType="boxesVertical" aria-label="More options" />
+      </EuiToolTip>
+    }
+    isOpen={isOpen}
+    closePopover={closePopover}
+  >
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+```
+
+#### Custom button wrapper components
+
+If a project-specific button component (e.g. `<SaveButton />`) is used as a child and the rule cannot resolve it statically, it reports `invalidUnresolvableChild` which suggests suppressing the rule inline with a comment:
+
+```tsx
+// eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton returns EuiButton
+<SaveButton />
+```
 
 ## Testing
 

@@ -7,7 +7,7 @@
  */
 
 import React, { ReactElement } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { STORY_ARGS_MARKER } from '../../../.storybook/addons/code-snippet/constants';

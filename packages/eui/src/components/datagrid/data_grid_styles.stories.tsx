@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { css } from '@emotion/css';
-import { expect, waitFor } from '@storybook/test';
+import { expect, waitFor } from 'storybook/test';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { within } from '../../../.storybook/test';

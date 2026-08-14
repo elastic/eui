@@ -583,7 +583,7 @@ const DraggablePanel = memo(function DraggablePanel({
                 <EuiToolTip content={moreActionsLabel} disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-label={moreActionsLabel}
-                    iconType="boxesVertical"
+                    iconType="ellipsis"
                     onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                   />
                 </EuiToolTip>

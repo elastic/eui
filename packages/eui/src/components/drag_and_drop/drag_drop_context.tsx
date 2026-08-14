@@ -27,6 +27,9 @@ export const EuiDragDropContextContext = createContext<EuiDragDropContextProps>(
   }
 );
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/drag-and-drop/|EuiDragDropContext documentation}
+ */
 export const EuiDragDropContext: FunctionComponent<DragDropContextProps> = ({
   onBeforeDragStart,
   onDragStart,

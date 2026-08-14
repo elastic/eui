@@ -8,6 +8,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
 import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
@@ -27,6 +28,8 @@ import {
  * preventing stability timeouts on infinite looping animations (spinners etc.).
  */
 const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
+
+const configDir = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * The active variant for this run, determined by the `VRT_VARIANT` env var.
@@ -60,9 +63,19 @@ const waitForImagesToLoad = async (page: Page) => {
 const config: TestRunnerConfig = {
   setup() {
     expect.extend({ toMatchImageSnapshot });
-    jest.retryTimes(2, { logErrorsBeforeRetry: true });
   },
   async preVisit(page) {
+    // Storybook 10 pauses CSS animations which breaks some components;
+    // Remove animations entirely so components render base styles
+    await page.evaluate(() => {
+      if (!document.getElementById('eui-vrt-no-animation')) {
+        const style = document.createElement('style');
+        style.id = 'eui-vrt-no-animation';
+        style.textContent =
+          '*, *::before, *::after { animation: none !important; transition: none !important; }';
+        document.head.appendChild(style);
+      }
+    });
     // Set the viewport before the story renders (and before its `play` runs) so
     // both layout and interactions happen at the active variant's dimensions.
     await page.setViewportSize(activeVariant.viewport);
@@ -96,7 +109,7 @@ const config: TestRunnerConfig = {
 
     const snapshotId = `${context.id}-${activeVariant.name}`;
     const snapshotPath = path.join(
-      __dirname,
+      configDir,
       '..',
       '.vrt',
       'reference',
@@ -110,9 +123,9 @@ const config: TestRunnerConfig = {
       fs.writeFileSync(snapshotPath, new Uint8Array(image));
     } else {
       expect(image).toMatchImageSnapshot({
-        customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
-        customDiffDir: path.join(__dirname, '..', '.vrt', 'diff'),
-        customReceivedDir: path.join(__dirname, '..', '.vrt', 'current'),
+        customSnapshotsDir: path.join(configDir, '..', '.vrt', 'reference'),
+        customDiffDir: path.join(configDir, '..', '.vrt', 'diff'),
+        customReceivedDir: path.join(configDir, '..', '.vrt', 'current'),
         storeReceivedOnFailure: true,
         customSnapshotIdentifier: snapshotId,
       });

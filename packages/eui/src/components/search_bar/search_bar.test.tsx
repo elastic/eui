@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import { fireEvent, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { render, renderHook } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -265,13 +265,16 @@ describe('SearchBar', () => {
     });
   });
   describe('error tooltip', () => {
-    test('renders an error tooltip by default on parse error', () => {
+    test('renders an error tooltip by default on parse error', async () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiSearchBar box={{ 'data-test-subj': 'searchbar' }} />
       );
 
-      act(() => {
-        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      await act(async () => {
+        await userEvent.type(
+          getByTestSubject('searchbar'),
+          'tag:value OR{enter}'
+        );
       });
 
       expect(getByTestSubject('searchbar')).toHaveAttribute(
@@ -281,14 +284,14 @@ describe('SearchBar', () => {
 
       // The tooltip only renders its content on hover/focus-visible, so
       // trigger a hover to confirm the error tooltip is present
-      act(() => {
-        userEvent.hover(getByTestSubject('searchbar'));
+      await act(async () => {
+        await userEvent.hover(getByTestSubject('searchbar'));
       });
 
       expect(queryByRole('tooltip')).toBeInTheDocument();
     });
 
-    test('does not render an error tooltip when showErrorTooltip is false', () => {
+    test('does not render an error tooltip when showErrorTooltip is false', async () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiSearchBar
           box={{ 'data-test-subj': 'searchbar' }}
@@ -296,8 +299,11 @@ describe('SearchBar', () => {
         />
       );
 
-      act(() => {
-        userEvent.type(getByTestSubject('searchbar'), 'tag:value OR{enter}');
+      await act(async () => {
+        await userEvent.type(
+          getByTestSubject('searchbar'),
+          'tag:value OR{enter}'
+        );
       });
 
       expect(getByTestSubject('searchbar')).toHaveAttribute(
@@ -305,8 +311,8 @@ describe('SearchBar', () => {
         'true'
       );
 
-      act(() => {
-        userEvent.hover(getByTestSubject('searchbar'));
+      await act(async () => {
+        await userEvent.hover(getByTestSubject('searchbar'));
       });
 
       expect(queryByRole('tooltip')).toBeNull();

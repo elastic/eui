@@ -143,7 +143,7 @@ export type EuiListGroupItemProps = CommonProps &
 
     /**
      * Allows customizing the tooltip shown when `showToolTip` is true.
-     * Accepts any props that [EuiToolTip](/#/display/tooltip) accepts.
+     * Accepts any props that [EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/) accepts.
      */
     toolTipProps?: Partial<EuiToolTipProps>;
   };

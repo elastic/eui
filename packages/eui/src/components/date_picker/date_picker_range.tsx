@@ -103,6 +103,9 @@ export type EuiDatePickerRangeProps = CommonProps &
     onFocus?: FocusEventHandler<HTMLInputElement>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/date-and-time/date-picker-range/|EuiDatePickerRange documentation}
+ */
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   children,
   className,

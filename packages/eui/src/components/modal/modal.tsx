@@ -70,6 +70,9 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   outsideClickCloses?: boolean;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/containers/modal/|EuiModal documentation}
+ */
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
   className,
   children,

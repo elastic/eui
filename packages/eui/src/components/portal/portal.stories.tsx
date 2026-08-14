@@ -7,8 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { userEvent, waitFor, within, expect } from 'storybook/test';
 
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';

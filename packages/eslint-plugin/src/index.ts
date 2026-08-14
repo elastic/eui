@@ -28,6 +28,8 @@ import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rul
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
 import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
+import { NoDeprecatedIconAliases } from './rules/no_deprecated_icon_aliases';
+import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
 
 const config = {
   rules: {
@@ -37,6 +39,7 @@ const config = {
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'href-or-on-click': HrefOnClick,
     'no-css-color': NoCssColor,
+    'no-deprecated-icon-aliases': NoDeprecatedIconAliases,
     'no-nested-copy-tooltip': NoNestedCopyTooltip,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
@@ -54,17 +57,20 @@ const config = {
     'require-href-for-link': RequireHrefForLink,
     'tooltip-no-interactive-content': TooltipNoInteractiveContent,
     'tooltip-button-icon-wrap': TooltipButtonIconWrap,
+    'button-group-no-invalid-children': ButtonGroupNoInvalidChildren,
   },
   configs: {
     recommended: {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/accessible-interactive-element': 'warn',
+        '@elastic/eui/button-group-no-invalid-children': 'error',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/no-deprecated-icon-aliases': 'warn',
         '@elastic/eui/no-nested-copy-tooltip': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-static-z-index': 'warn',
