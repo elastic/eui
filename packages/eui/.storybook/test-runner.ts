@@ -20,6 +20,7 @@ import {
   VRT_VARIANT_ATTRIBUTE,
   isVariantName,
   isVariantSkipped,
+  type VariantName,
   type VrtSkip,
 } from './vrt';
 
@@ -40,9 +41,10 @@ const configDir = path.dirname(fileURLToPath(import.meta.url));
  * The active variant for this run, determined by the `VRT_VARIANT` env var.
  * Falls back to desktop when run directly (e.g. `yarn test-storybook`).
  */
-const activeVariant = isVariantName(process.env.VRT_VARIANT)
-  ? VARIANTS[process.env.VRT_VARIANT]
-  : VARIANTS.desktop;
+const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
+  ? process.env.VRT_VARIANT
+  : 'desktop';
+const activeVariant = VARIANTS[activeVariantName];
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
@@ -118,7 +120,7 @@ const config: TestRunnerConfig = {
     const storyContext = await getStoryContext(page, context);
 
     const skip: VrtSkip | undefined = storyContext.parameters?.vrt?.skip;
-    if (isVariantSkipped(skip, activeVariant.name)) return;
+    if (isVariantSkipped(skip, activeVariantName)) return;
 
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;

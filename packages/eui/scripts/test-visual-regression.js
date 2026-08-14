@@ -17,11 +17,14 @@ function findRepoRoot(start) {
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const REPO_ROOT = findRepoRoot(PACKAGE_ROOT);
 
-/**
- * The test-runner is invoked once per variant.
- * These names must match the keys of the `VARIANTS` map in `.storybook/vrt.ts`.
- */
-const VARIANTS = ['desktop', 'mobile'];
+const VARIANTS = Object.keys(
+  JSON.parse(
+    fs.readFileSync(
+      path.join(PACKAGE_ROOT, '.storybook/vrt-variants.json'),
+      'utf8'
+    )
+  )
+);
 
 const { argv } = yargs(hideBin(process.argv))
   .parserConfiguration({

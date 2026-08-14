@@ -24,6 +24,7 @@ const config: StorybookConfig = {
           jsxImportSource: '@emotion/react',
           babel: (id: string) => ({
             plugins: [
+              '@babel/plugin-syntax-import-attributes',
               [
                 '@emotion/babel-plugin',
                 { autoLabel: 'always', labelFormat: '[local]' },

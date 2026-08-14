@@ -57,7 +57,7 @@ Each story is snapshotted under multiple **variants** to catch e.g. responsive-l
       navigation-euibutton--playground-desktop.png
       navigation-euibutton--playground-mobile.png
 
-The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in the `VARIANTS` map in [`.storybook/vrt.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt.ts); [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) selects the active one per run using the `VRT_VARIANT` environment variable.
+The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in [`.storybook/vrt-variants.json`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt-variants.json). CI runs one variant per parallel job. Locally, [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) reads that file and sets `VRT_VARIANT` for each run.
 
 Current variants:
 
@@ -312,13 +312,14 @@ flowchart TD
     PR[Pull request] --> WS[Build and deploy website]
     PR --> SB[Build and deploy Storybook]
     SB --> VRT[Test visual regression]
+    VRT --> R[Report visual regression]
 
-    VRT -->|skip-vrt label| N[Notify]
-    VRT -->|Pass, new stories| C1[Commit baselines\nto PR branch]
-    VRT -->|Pass, no changes| N
-    VRT -->|Fail, infrastructure error| N
+    R -->|skip-vrt label| N[Notify]
+    R -->|Pass, new stories| C1[Commit baselines\nto PR branch]
+    R -->|Pass, no changes| N
+    R -->|Fail, infrastructure error| N
 
-    VRT -->|Fail, visual diffs found| D[Post diff table\nto PR comment]
+    R -->|Fail, visual diffs found| D[Post diff table\nto PR comment]
     D --> B[Approve visual changes]
     B --> U[Update VRT baselines]
     U --> N
