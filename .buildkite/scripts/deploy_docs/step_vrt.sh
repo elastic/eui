@@ -1,12 +1,15 @@
 #!/bin/bash
 # Run visual regression tests against the deployed Storybook.
 #
-# On success: commits any newly created reference screenshots (first-run baseline generation),
-# sets `vrt_passed=true` meta-data so the static update-baselines step short-circuits.
+# On success:
+# - stages any newly created reference screenshots (first-run baseline generation)
+# for `step_vrt_report.sh` to commit,
+# - sets `vrt_passed_<variant>=true` meta-data.
 #
-# On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with
-# a Before/After/Diff table, sets `vrt_passed=false` so the static `update-baselines` step
-# (after the user approves the block step) actually updates the baselines.
+# On failure:
+# - uploads diff artifacts to GCS,
+# - writes HTML fragments for `step_vrt_report.sh` to combine into the annotation and PR comment,
+# - sets `vrt_passed_<variant>=false` so the `update-baselines` step updates the baselines.
 
 set -eo pipefail
 
@@ -23,12 +26,12 @@ echo "Yarn version: $(yarn -v)"
 
 STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
 
-VRT_DIR="packages/eui/.vrt"
-REF_DIR="${VRT_DIR}/reference"
 DIFF_DIR="${VRT_DIR}/diff"
 CURRENT_DIR="${VRT_DIR}/current"
 
-export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
+get_vrt_variants _VARIANTS
+VRT_VARIANT="${_VARIANTS[${BUILDKITE_PARALLEL_JOB:-0}]}"
+echo "Variant: ${VRT_VARIANT} (parallel job ${BUILDKITE_PARALLEL_JOB:-0} of ${#_VARIANTS[@]})"
 
 ############################################################
 #                       Skip checks                        #
@@ -57,8 +60,8 @@ VRT_RELEVANT_PATHS=(
 # Sets the status and reason meta-data used by downstream steps, then exits.
 # $1: human-readable reason for the build log.
 skip_vrt() {
-  echo "$1 - skipping visual regression tests"
-  buildkite-agent meta-data set vrt_passed "skipped"
+  echo "$1 - skipping visual regression tests for variant ${VRT_VARIANT}"
+  buildkite-agent meta-data set "vrt_passed_${VRT_VARIANT}" "skipped"
   buildkite-agent meta-data set vrt_skip_reason "$1"
   exit 0
 }
@@ -98,33 +101,30 @@ yarn
 #                    Run VRT (check mode)                  #
 ############################################################
 
-echo "+++ Running visual regression tests against ${STORYBOOK_URL}"
+echo "+++ Running visual regression tests (${VRT_VARIANT}) against ${STORYBOOK_URL}"
 
 vrt_output_file=$(mktemp)
 VRT_PASSED=true
-yarn workspace @elastic/eui test-visual-regression -- --url "${STORYBOOK_URL}" 2>&1 \
+VRT_VARIANT="${VRT_VARIANT}" yarn workspace @elastic/eui test-storybook \
+  --url "${STORYBOOK_URL}" 2>&1 \
   | tee "${vrt_output_file}" \
   || VRT_PASSED=false
 
 ############################################################
-#          Commit any new baselines (first run)            #
+#          Stage any new baselines (first run)             #
 ############################################################
 
 # `test-runner.ts` writes a baseline directly to disk the first time it
-# encounters a story without one. Commit those net-new baselines now,
-# *regardless* of whether VRT overall passed or failed.
+# encounters a story without one. Stage those files for `step_vrt_report.sh` to commit,
+# regardless of whether VRT passed or failed.
 new_files="$(git ls-files --others --exclude-standard -- "${REF_DIR}")"
 if [[ -n "${new_files}" ]]; then
-  echo "+++ Committing new VRT baseline screenshots (first run)"
-
-  github_user_vault="secret/ci/elastic-eui/github_machine_user"
-  git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
-  git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
-  gh auth setup-git
-  git add -- ${new_files}
-  git commit -m "chore(eui): add VRT baseline screenshots" --no-verify
-  git_push_to_pr_branch
-  echo "New VRT baseline screenshots committed and pushed"
+  echo "+++ Staging new VRT baseline screenshots for commit"
+  NEW_BASELINES_DIR="${VRT_DIR}/new-baselines"
+  mkdir -p "${NEW_BASELINES_DIR}"
+  while IFS= read -r f; do
+    cp "${f}" "${NEW_BASELINES_DIR}/"
+  done <<< "${new_files}"
 fi
 
 ############################################################
@@ -132,7 +132,7 @@ fi
 ############################################################
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
-  buildkite-agent meta-data set vrt_passed "true"
+  buildkite-agent meta-data set "vrt_passed_${VRT_VARIANT}" "true"
   exit 0
 fi
 
@@ -143,7 +143,7 @@ fi
 echo "^^^ +++"
 echo "Visual regression tests failed."
 
-buildkite-agent meta-data set vrt_passed "false"
+buildkite-agent meta-data set "vrt_passed_${VRT_VARIANT}" "false"
 
 diff_count=$(find "${DIFF_DIR}" -name "*-diff.png" 2>/dev/null | wc -l | tr -d ' ')
 
@@ -155,12 +155,7 @@ fi
 
 echo "Found ${diff_count} visual difference(s). Uploading artifacts and generating annotation..."
 
-if compgen -G "${DIFF_DIR}/*-diff.png" > /dev/null 2>&1; then
-  buildkite-agent artifact upload "${DIFF_DIR}/*-diff.png"
-fi
-if compgen -G "${CURRENT_DIR}/*-received.png" > /dev/null 2>&1; then
-  buildkite-agent artifact upload "${CURRENT_DIR}/*-received.png"
-fi
+buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "${diff_count}"
 
 # Upload diff images to GCS for public URLs in the GitHub PR comment
 GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
@@ -177,7 +172,7 @@ GCS_UPLOAD_ARGS=(
 )
 
 # Associative arrays keyed by component (e.g. "euidatagrid"), each holding
-# accumulated `<tr>`` rows for the Buildkite annotation and GitHub PR comment.
+# accumulated `<tr>` rows for the Buildkite annotation and GitHub PR comment.
 declare -A annotation_rows_by_component
 declare -A pr_comment_rows_by_component
 # Preserve component insertion order
@@ -186,10 +181,7 @@ component_order=()
 while IFS= read -r diff_file; do
   filename="$(basename "${diff_file}")"
   story_name="${filename%-diff.png}"
-  story_id="${story_name%-desktop}"
-  story_id="${story_id%-mobile}"
-  viewport="desktop"
-  [[ "${story_name}" == *-mobile ]] && viewport="mobile"
+  story_id="${story_name%-${VRT_VARIANT}}"
   story_url="${STORYBOOK_URL}/?path=/story/${story_id}"
 
   # Extract the component key: the first segment starting with "eui"
@@ -217,7 +209,8 @@ while IFS= read -r diff_file; do
 
   annotation_rows_by_component[$component]+="
   <tr>
-    <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td><a href=\"${story_url}\">${story_label}</a> <code>${VRT_VARIANT}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"artifact://${REF_DIR}/${story_name}.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${CURRENT_DIR}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${DIFF_DIR}/${filename}\" width=\"180\"/></td>
@@ -225,14 +218,15 @@ while IFS= read -r diff_file; do
 
   pr_comment_rows_by_component[$component]+="
   <tr>
-    <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td><a href=\"${story_url}\">${story_label}</a> <code>${VRT_VARIANT}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"${vrt_public_base}/${story_name}-before.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${filename}\" width=\"180\"/></td>
   </tr>"
 done < <(find "${DIFF_DIR}" -name "*-diff.png" | sort)
 
-# Builds the full HTML comment body from the per-component row maps.
+# Builds the HTML fragment for this variant.
 # $1: "annotation" or "pr_comment"
 make_diff_html() {
   local mode="$1"
@@ -260,32 +254,16 @@ make_diff_html() {
 
   cat << DIFF_HTML
 <details>
-<summary><strong>${diff_count} visual difference(s) found</strong> - expand to review, then click <em><a href="${BUILDKITE_BUILD_URL}">Approve visual changes</a></em> to update baselines</summary>
+<summary><strong>${VRT_VARIANT}: ${diff_count} visual difference(s) found</strong></summary>
 <br>
 ${tables}
 </details>
 DIFF_HTML
 }
 
-buildkite-agent annotate --style "error" --context "vrt-diff" \
-  <<< "$(make_diff_html "annotation")"
+# Write fragments that will later be combined and posted.
+make_diff_html "annotation" > "${VRT_DIR}/annotation-${VRT_VARIANT}.html"
+make_diff_html "pr_comment" > "${VRT_DIR}/pr-comment-${VRT_VARIANT}.html"
 
-vrt_comment_body="$(make_diff_html "pr_comment")"
-
-# GitHub enforces a 65536-character limit on PR comment bodies.
-if [[ "${#vrt_comment_body}" -gt 60000 ]]; then
-  vrt_comment_body="${vrt_comment_body:0:60000}"$'\n\n_Table truncated - see the [Buildkite annotation]('"${BUILDKITE_BUILD_URL}"') for the full diff._'
-fi
-
-if vrt_comment_url="$(gh pr comment "${BUILDKITE_PULL_REQUEST}" \
-  --repo elastic/eui \
-  --body-file <(printf '%s' "${vrt_comment_body}") 2>/dev/null)"; then
-  buildkite-agent meta-data set vrt_comment_url "${vrt_comment_url}"
-else
-  echo "Failed to post PR comment (GH_TOKEN missing or gh CLI error); skipping"
-fi
-
-# Fail the step. The "Approve visual changes" block + "Update VRT baselines"
-# steps are declared statically in deploy_docs.yml; step_vrt_update.sh gates
-# itself on the `vrt_passed=false` meta-data set above.
+# Fail the step so Buildkite marks it red.
 exit 1

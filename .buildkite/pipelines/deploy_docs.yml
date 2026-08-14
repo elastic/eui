@@ -25,18 +25,29 @@ steps:
     key: "vrt"
     depends_on: "build-storybook"
     if: build.pull_request.id != null
-    timeout_in_minutes: 30
+    parallelism: 2
+    timeout_in_minutes: 20
     command: .buildkite/scripts/deploy_docs/step_vrt.sh
     artifact_paths:
       - "packages/eui/.vrt/diff/**/*.png"
       - "packages/eui/.vrt/current/**/*-received.png"
-  
+      - "packages/eui/.vrt/new-baselines/**/*.png"
+      - "packages/eui/.vrt/*.html"
+
+  - label: ":camera: Report visual regression"
+    key: "vrt-report"
+    depends_on: "vrt"
+    allow_dependency_failure: true
+    if: build.pull_request.id != null
+    timeout_in_minutes: 10
+    command: .buildkite/scripts/deploy_docs/step_vrt_report.sh
+
   - label: ":loudspeaker: Notify"
     key: "notify"
     depends_on:
       - "build-website"
       - "build-storybook"
-      - "vrt"
+      - "vrt-report"
     allow_dependency_failure: true
     command: .buildkite/scripts/deploy_docs/step_notify.sh
 
@@ -50,7 +61,7 @@ steps:
   - block: "Approve visual changes"
     key: "approve-vrt"
     prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
-    depends_on: "vrt"
+    depends_on: "vrt-report"
     allow_dependency_failure: true
     allowed_teams: "eui-team"
     if: build.pull_request.id != null

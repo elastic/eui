@@ -9,20 +9,31 @@
 import type { PlayFunction } from 'storybook/internal/csf';
 import type { ReactRenderer } from '@storybook/react';
 
+import variants from './vrt-variants.json' assert { type: 'json' };
+
 /**
- * Viewport variants every story is screenshotted under. The test-runner is
- * invoked once per variant (see `scripts/test-visual-regression.js`) using the
- * `VRT_VARIANT` env var.
+ * Type union of all variant names.
  *
- * Keys are the variant names, used both as the baseline suffix
+ * Variant names are used both as the baseline suffix
  * (e.g. `${context.id}-desktop.png`) and in `parameters.vrt.skip`.
  */
-export const VARIANTS = {
-  desktop: { name: 'desktop', viewport: { width: 1440, height: 900 } },
-  mobile: { name: 'mobile', viewport: { width: 390, height: 844 } },
-} as const;
+export type VariantName = keyof typeof variants;
 
-export type VariantName = keyof typeof VARIANTS;
+export type Viewport = {
+  width: number;
+  height: number;
+};
+
+/**
+ * Object mapping variant names to their properties.
+ *
+ * Every story is screenshotted against all variants. The test-runner is
+ * invoked once per variant.
+ */
+export const VARIANTS = variants satisfies Record<
+  VariantName,
+  { name: string; viewport: Viewport }
+>;
 
 /**
  * `parameters.vrt.skip` opts a story out of VRT:
@@ -33,8 +44,9 @@ export type VrtSkip = boolean | VariantName[];
 
 export const isVariantSkipped = (
   skip: VrtSkip | undefined,
-  variant: VariantName
-): boolean => skip === true || (Array.isArray(skip) && skip.includes(variant));
+  variant: string
+): boolean =>
+  skip === true || (Array.isArray(skip) && skip.some((v) => v === variant));
 
 export const isVariantName = (
   value: string | null | undefined
