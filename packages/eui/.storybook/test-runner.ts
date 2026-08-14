@@ -41,8 +41,6 @@ const activeVariant = isVariantName(process.env.VRT_VARIANT)
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
- * `waitForPageReady` does not guarantee image decode completion, which causes
- * layout shifts in stories that use `<EuiImage>` or similar components.
  */
 const waitForImagesToLoad = async (page: Page) => {
   await page.evaluate(() =>
@@ -57,6 +55,27 @@ const waitForImagesToLoad = async (page: Page) => {
             })
         )
     )
+  );
+};
+
+/**
+ * Ensure all fonts are loaded before taking a screenshot.
+ */
+const waitForFonts = async (page: Page) => {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+  });
+};
+
+/**
+ * Ensure the page is layout has stabilized before taking a screenshot.
+ */
+const waitForLayout = async (page: Page) => {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      )
   );
 };
 
@@ -101,6 +120,8 @@ const config: TestRunnerConfig = {
 
     await waitForPageReady(page);
     await waitForImagesToLoad(page);
+    await waitForFonts(page);
+    await waitForLayout(page);
 
     const image =
       selector === 'page'

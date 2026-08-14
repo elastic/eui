@@ -8,8 +8,8 @@
 
 import React from 'react';
 import { fireEvent, waitFor, expect } from 'storybook/test';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
-import type { PlayFunctionContext } from 'storybook/internal/csf';
+import type { Meta, StoryObj } from '@storybook/react';
+
 import { within } from '../../../../.storybook/test';
 import { VRT_SELECTORS, playDecorator } from '../../../../.storybook/vrt';
 
@@ -56,6 +56,12 @@ export const NoToolbar: StoryObj<Pick<EuiDataGridProps, 'toolbarVisibility'>> =
     render: (args: Pick<EuiDataGridProps, 'toolbarVisibility'>) => (
       <StatefulDataGrid {...defaultStorybookArgs} {...args} />
     ),
+    play: playDecorator(async ({ canvasElement }) => {
+      const canvas = within(canvasElement);
+      await waitFor(() =>
+        expect(canvas.getAllByRole('gridcell').length).toBeGreaterThan(0)
+      );
+    }),
   };
 
 export const ToolbarVisibilityOptions: StoryObj<EuiDataGridToolBarVisibilityOptions> =
@@ -275,19 +281,25 @@ export const ColumnSelector: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
-  play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
+  play: playDecorator(async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     await step('Open column selector popover', async () => {
+      await waitFor(() =>
+        expect(
+          canvas.getByTestSubject('dataGridColumnSortingButton')
+        ).toBeVisible()
+      );
       await canvas.waitForAndClick('dataGridColumnSelectorButton');
       await canvas.waitForEuiPopoverVisible();
     });
+
     await step('Hide all columns', async () => {
       await fireEvent.click(
         canvas.getByTestSubject('dataGridColumnSelectorHideAllButton')
       );
     });
-  },
+  }),
 };
 
 export const ColumnSorting: Story = {
@@ -296,7 +308,7 @@ export const ColumnSorting: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
-  play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
+  play: playDecorator(async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     await step('Open column sorting and field selection popovers', async () => {
@@ -304,6 +316,7 @@ export const ColumnSorting: Story = {
       await canvas.waitForEuiPopoverVisible();
       await canvas.waitForAndClick('dataGridColumnSortingSelectionButton');
     });
+
     await step('Sort descending', async () => {
       await canvas.waitForAndClick(
         'dataGridColumnSortingPopoverColumnSelection-Test'
@@ -313,7 +326,7 @@ export const ColumnSorting: Story = {
       );
       await canvas.waitForEuiPopoverVisible(); // Without an extra wait, the screenshot diff is flaky
     });
-  },
+  }),
 };
 
 export const KeyboardShortcuts: Story = {
@@ -324,6 +337,7 @@ export const KeyboardShortcuts: Story = {
   render: () => <StatefulDataGrid {...vrtProps} />,
   play: playDecorator(async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+
     await waitFor(() =>
       expect(canvas.getAllByRole('gridcell').length).toBeGreaterThan(0)
     );
@@ -338,18 +352,19 @@ export const DisplaySelector: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} />,
-  play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
+  play: playDecorator(async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     await step('Open display selector popover', async () => {
       await canvas.waitForAndClick('dataGridDisplaySelectorButton');
       await canvas.waitForEuiPopoverVisible();
     });
+
     await step('Toggle density and row height settings', async () => {
       await fireEvent.click(canvas.getByTestSubject('compact'));
       await fireEvent.click(canvas.getByTestSubject('auto'));
     });
-  },
+  }),
 };
 
 export const FullScreenToggle: Story = {
@@ -358,8 +373,8 @@ export const FullScreenToggle: Story = {
     vrt: { selector: VRT_SELECTORS.portal },
   },
   render: () => <StatefulDataGrid {...vrtProps} />,
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: playDecorator(async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await canvas.waitForAndClick('dataGridFullScreenButton');
-  },
+  }),
 };

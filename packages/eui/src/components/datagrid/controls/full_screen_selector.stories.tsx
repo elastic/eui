@@ -7,10 +7,10 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent, waitFor, within } from 'storybook/test';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
-import type { PlayFunctionContext } from 'storybook/internal/csf';
-import { VRT_SELECTORS } from '../../../../.storybook/vrt';
+import { expect, fireEvent, waitFor, within } from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { playDecorator, VRT_SELECTORS } from '../../../../.storybook/vrt';
 
 import { EuiHeader } from '../../header';
 import { EuiPageTemplate } from '../../page_template';
@@ -57,11 +57,17 @@ export const FullScreenWithHeader: Story = {
       </EuiPageTemplate>
     </>
   ),
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: playDecorator(async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await waitFor(() => canvas.getByLabelText('Enter fullscreen'));
     await fireEvent.click(canvas.getByLabelText('Enter fullscreen'));
-  },
+    await waitFor(() => {
+      expect(canvas.getByLabelText('Exit fullscreen')).toBeVisible();
+      expect(canvas.getByRole('grid').getBoundingClientRect().width).toBe(
+        window.innerWidth
+      );
+    });
+  }),
 };
 
 export const FullScreenWithFlyout: Story = {
@@ -86,7 +92,10 @@ export const FullScreenWithFlyout: Story = {
           />
         </EuiPageTemplate>
         {openFlyout && (
-          <EuiFlyout onClose={() => setOpenFlyout(false)}>
+          <EuiFlyout
+            aria-label="Example flyout"
+            onClose={() => setOpenFlyout(false)}
+          >
             Flyout should not be below header in full screen mode
           </EuiFlyout>
         )}

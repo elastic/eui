@@ -12,9 +12,10 @@ import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
 import type { StoryContext } from 'storybook/internal/csf';
 import { expect, fireEvent, waitFor } from 'storybook/test';
 import { action } from 'storybook/actions';
+
 import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { VRT_SELECTORS } from '../../../.storybook/vrt';
+import { playDecorator, VRT_SELECTORS } from '../../../.storybook/vrt';
 
 import { EuiButtonIcon } from '../button';
 import { EuiIconTip, EuiToolTip } from '../tool_tip';
@@ -221,6 +222,9 @@ export const CellExpansionPopover: Story = {
 
     return <EuiDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
   },
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
 };
 
 export const ColumnActions: Story = {
