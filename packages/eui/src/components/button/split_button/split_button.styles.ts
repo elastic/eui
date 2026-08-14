@@ -44,6 +44,7 @@ export const euiSplitButtonStyles = (
       display: inline-flex;
       align-items: center;
       flex-wrap: nowrap;
+      max-inline-size: fit-content;
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.border.radius.small};
       background-color: ${backgroundColor};
@@ -128,11 +129,11 @@ export const euiSplitButtonActionStyles = (
       ${commonStyles}
       z-index: ${euiTheme.levels.content};
 
-      &:not(:has(svg:only-child)) {
+      &:not(.euiButtonIcon) {
         min-inline-size: ${buttonMinWidth}px;
       }
 
-      &:has(svg:only-child) {
+      &.euiButtonIcon {
         inline-size: ${buttonSize};
       }
     `,
