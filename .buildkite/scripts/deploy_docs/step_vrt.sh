@@ -66,6 +66,7 @@ VRT_RELEVANT_PATHS=(
 skip_vrt() {
   echo "$1 - skipping visual regression tests for variant ${VRT_VARIANT}"
   buildkite-agent meta-data set "vrt_passed_${VRT_VARIANT}" "skipped"
+  buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "0"
   buildkite-agent meta-data set vrt_skip_reason "$1"
   exit 0
 }
@@ -141,6 +142,7 @@ fi
 
 if [[ "${VRT_PASSED}" == "true" ]]; then
   buildkite-agent meta-data set "vrt_passed_${VRT_VARIANT}" "true"
+  buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "0"
   exit 0
 fi
 
@@ -158,6 +160,7 @@ diff_count=$(find "${DIFF_DIR}" -name "*-diff.png" 2>/dev/null | wc -l | tr -d '
 if [[ "${diff_count}" -eq 0 ]]; then
   echo "No diff images found. This looks like an infrastructure failure."
   echo "Check the Playwright output above for connection or timeout errors."
+  buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "0"
   exit 1
 fi
 
