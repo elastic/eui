@@ -9,7 +9,7 @@
 import type { PlayFunction } from 'storybook/internal/csf';
 import type { ReactRenderer } from '@storybook/react';
 
-import variants from './vrt-variants.json' assert { type: 'json' };
+import variants from './vrt-variants.json' with { type: 'json' };
 
 /**
  * Type union of all variant names.

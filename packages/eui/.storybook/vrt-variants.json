@@ -1,4 +1,7 @@
 {
-  "desktop": { "name": "desktop", "viewport": { "width": 1440, "height": 900 } },
+  "desktop": {
+    "name": "desktop",
+    "viewport": { "width": 1440, "height": 900 }
+  },
   "mobile": { "name": "mobile", "viewport": { "width": 390, "height": 844 } }
 }

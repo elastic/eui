@@ -25,6 +25,7 @@ module.exports = {
   "plugins": [
     `${__dirname}/scripts/babel/proptypes-from-ts-props`,
     "add-module-exports",
+    "@babel/plugin-syntax-import-attributes",
     // stage 3
     "@babel/proposal-object-rest-spread",
     // stage 2
