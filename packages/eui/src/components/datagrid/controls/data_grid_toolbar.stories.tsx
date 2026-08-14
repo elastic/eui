@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent, waitFor, expect } from 'storybook/test';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { within } from '../../../../.storybook/test';
 import { VRT_SELECTORS, playDecorator } from '../../../../.storybook/vrt';
@@ -297,6 +297,11 @@ export const ColumnSelector: Story = {
     await step('Hide all columns', async () => {
       await fireEvent.click(
         canvas.getByTestSubject('dataGridColumnSelectorHideAllButton')
+      );
+      await waitFor(() =>
+        expect(
+          canvas.getByTestSubject('dataGridColumnSortingButton')
+        ).toBeVisible()
       );
     });
   }),

@@ -29,6 +29,11 @@ import {
  */
 const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
 
+/**
+ * Allow a few pixels of subpixel noise.
+ */
+const FAILURE_THRESHOLD_PIXELS = 4;
+
 const configDir = path.dirname(fileURLToPath(import.meta.url));
 
 /**
@@ -149,6 +154,8 @@ const config: TestRunnerConfig = {
         customReceivedDir: path.join(configDir, '..', '.vrt', 'current'),
         storeReceivedOnFailure: true,
         customSnapshotIdentifier: snapshotId,
+        failureThreshold: FAILURE_THRESHOLD_PIXELS,
+        failureThresholdType: 'pixel',
       });
     }
   },

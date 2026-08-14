@@ -264,12 +264,19 @@ export const VisibleColumns: Story = {
       { id: 'date', displayAsText: 'Date' },
     ],
   },
-  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
-  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
+  render: (args: EuiDataGridProps) => (
+    <StatefulDataGrid {...args} minSizeForControls={1} />
+  ),
+  play: playDecorator(async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await waitFor(() =>
+      expect(
+        canvas.getByTestSubject('dataGridColumnSelectorButton')
+      ).toBeVisible()
+    );
     await canvas.waitForAndClick('dataGridColumnSelectorButton');
     await canvas.waitForEuiPopoverVisible();
-  },
+  }),
 };
 
 export const HeaderVisibility: Story = {
