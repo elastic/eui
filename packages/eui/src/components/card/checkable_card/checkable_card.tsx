@@ -35,8 +35,10 @@ interface EuiCheckableCardBaseProps {
 }
 
 // if `checkableType` is left out or set to 'radio', use EuiRadioProps
-interface EuiCheckableCardAsRadioProps
-  extends Omit<EuiRadioProps, 'compressed'> {
+interface EuiCheckableCardAsRadioProps extends Omit<
+  EuiRadioProps,
+  'compressed'
+> {
   /**
    * Whether the control is a radio button or checkbox
    */
@@ -44,8 +46,10 @@ interface EuiCheckableCardAsRadioProps
 }
 
 // if `checkableType` is set to 'checkbox', use EuiCheckboxProps
-interface EuiCheckableCardAsCheckboxProps
-  extends Omit<EuiCheckboxProps, 'compressed'> {
+interface EuiCheckableCardAsCheckboxProps extends Omit<
+  EuiCheckboxProps,
+  'compressed'
+> {
   checkableType: 'checkbox';
 }
 

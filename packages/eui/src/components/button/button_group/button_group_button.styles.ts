@@ -72,7 +72,8 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.normal} ease-in-out,
+        transition:
+          background-color ${euiTheme.animation.normal} ease-in-out,
           color ${euiTheme.animation.normal} ease-in-out;
       }
 
@@ -249,11 +250,14 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // States
     disabledAndSelected: css`
       color: ${euiTheme.colors.textDisabled};
-      background-color: ${euiTheme.components
-        .buttonGroupBackgroundDisabledSelected};
-      border: ${highContrastMode
-        ? `${euiTheme.border.width.thin} solid ${euiTheme.components.buttonGroupBackgroundDisabledSelected}`
-        : `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain}`};
+      background-color: ${
+        euiTheme.components.buttonGroupBackgroundDisabledSelected
+      };
+      border: ${
+        highContrastMode
+          ? `${euiTheme.border.width.thin} solid ${euiTheme.components.buttonGroupBackgroundDisabledSelected}`
+          : `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain}`
+      };
     `,
     // Skip css`` to avoid generating a className
     hasBorder: `
@@ -293,14 +297,17 @@ export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const colors = [...BUTTON_COLORS, 'disabled'] as const;
 
-  return colors.reduce((acc, color) => {
-    return {
-      ...acc,
-      [color]: css`
-        &:focus-visible {
-          ${euiOutline(euiThemeContext, 'outset', euiTheme.focus.color)}
-        }
-      `,
-    };
-  }, {} as Record<_EuiButtonColor | 'disabled', SerializedStyles>);
+  return colors.reduce(
+    (acc, color) => {
+      return {
+        ...acc,
+        [color]: css`
+          &:focus-visible {
+            ${euiOutline(euiThemeContext, 'outset', euiTheme.focus.color)}
+          }
+        `,
+      };
+    },
+    {} as Record<_EuiButtonColor | 'disabled', SerializedStyles>
+  );
 };

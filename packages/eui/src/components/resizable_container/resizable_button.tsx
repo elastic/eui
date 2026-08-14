@@ -196,5 +196,6 @@ export const EuiResizableButtonControlled: FunctionComponent<
 };
 
 export const euiResizableButtonWithControls =
-  (controls: EuiResizableButtonControls) => (props: CommonProps) =>
-    <EuiResizableButtonControlled {...controls} {...props} />;
+  (controls: EuiResizableButtonControls) => (props: CommonProps) => (
+    <EuiResizableButtonControlled {...controls} {...props} />
+  );

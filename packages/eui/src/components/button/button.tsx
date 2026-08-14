@@ -59,9 +59,7 @@ interface BaseProps extends EuiDisabledProps {
 }
 
 export interface EuiButtonProps
-  extends BaseProps,
-    Omit<EuiButtonDisplayCommonProps, 'size'>,
-    CommonProps {}
+  extends BaseProps, Omit<EuiButtonDisplayCommonProps, 'size'>, CommonProps {}
 
 export type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,

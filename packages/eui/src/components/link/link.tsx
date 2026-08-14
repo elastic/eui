@@ -46,7 +46,8 @@ export interface LinkButtonProps {
 }
 
 export interface EuiLinkButtonProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'color' | 'onClick'>,
     LinkButtonProps {}
 
@@ -64,7 +65,8 @@ export interface LinkAnchorProps {
 }
 
 export interface EuiLinkAnchorProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color' | 'onClick'>,
     LinkAnchorProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>;

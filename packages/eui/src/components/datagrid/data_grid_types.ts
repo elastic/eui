@@ -154,11 +154,10 @@ export type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   EuiDataGridHeaderRowPropsSpecificProps;
 
-export interface EuiDataGridHeaderCellProps
-  extends Omit<
-    EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns' | 'trailingControlColumns' | 'visibleColCount'
-  > {
+export interface EuiDataGridHeaderCellProps extends Omit<
+  EuiDataGridHeaderRowPropsSpecificProps,
+  'leadingControlColumns' | 'trailingControlColumns' | 'visibleColCount'
+> {
   index: number;
   column: EuiDataGridColumn;
   isLastColumn: boolean;
@@ -602,8 +601,7 @@ export type EuiDataGridSetCellProps = CommonProps &
     isExpandable?: boolean;
   };
 
-export interface EuiDataGridCellValueElementProps
-  extends SharedRenderCellElementProps {
+export interface EuiDataGridCellValueElementProps extends SharedRenderCellElementProps {
   /**
    * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
@@ -623,8 +621,7 @@ export interface EuiDataGridCellValueElementProps
   isDetails: boolean;
 }
 
-export interface EuiDataGridCellPopoverElementProps
-  extends SharedRenderCellElementProps {
+export interface EuiDataGridCellPopoverElementProps extends SharedRenderCellElementProps {
   /**
    * The default `children` passed to the cell popover comes from the passed `renderCellValue` prop as a ReactElement.
    *
@@ -987,16 +984,14 @@ export interface EuiDataGridToolBarVisibilityOptions {
    * @default true
    */
   showColumnSelector?:
-    | boolean
-    | EuiDataGridToolBarVisibilityColumnSelectorOptions;
+    boolean | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
    * Allows the ability for the user to customize display settings such as grid density and row heights.
    * User changes will override what is provided in {@link EuiDataGridStyle} and {@link EuiDataGridRowHeightsOptions}
    * @default true
    */
   showDisplaySelector?:
-    | boolean
-    | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
+    boolean | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
    * @default true
@@ -1129,9 +1124,7 @@ export type EuiDataGridOnColumnResizeHandler = (
 export type EuiDataGridScrollAnchorRow = 'start' | 'center' | undefined;
 
 export type EuiDataGridRowHeightOption =
-  | number
-  | 'auto'
-  | ExclusiveUnion<{ lineCount: number }, { height: number }>;
+  number | 'auto' | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
 export interface EuiDataGridRowHeightsOptions {
   /**

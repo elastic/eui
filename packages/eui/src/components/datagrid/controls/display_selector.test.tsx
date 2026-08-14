@@ -589,8 +589,7 @@ describe('useDataGridDisplaySelector', () => {
     // Test helpers
     const MockComponent = ({
       initialRowHeightsOptions = undefined as
-        | EuiDataGridRowHeightsOptions
-        | undefined,
+        EuiDataGridRowHeightsOptions | undefined,
     }) => {
       const [displaySelector, , rowHeightsOptions] = useDataGridDisplaySelector(
         true,

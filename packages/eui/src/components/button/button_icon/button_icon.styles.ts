@@ -62,8 +62,9 @@ export const _emptyHoverStyles = (euiThemeContext: UseEuiTheme) =>
       ...styles,
       [color]: css`
         &:hover {
-          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-            .backgroundColor};
+          background-color: ${
+            euiButtonEmptyColor(euiThemeContext, color).backgroundColor
+          };
         }
       `,
     }),

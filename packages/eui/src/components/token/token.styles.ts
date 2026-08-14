@@ -71,8 +71,8 @@ const getTokenColor = (
   const boxShadowColor = highContrastMode
     ? iconColor
     : isDarkMode
-    ? shade(iconColor, 0.6)
-    : tint(iconColor, 0.2);
+      ? shade(iconColor, 0.6)
+      : tint(iconColor, 0.2);
 
   const darkColor = isColorDark(...chroma(backgroundDarkColor).rgb())
     ? euiTheme.colors.textGhost

@@ -51,9 +51,7 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
    * @default undefined (auto-inherit when nested, otherwise 'never')
    */
   session?:
-    | typeof SESSION_START
-    | typeof SESSION_INHERIT
-    | typeof SESSION_NEVER;
+    typeof SESSION_START | typeof SESSION_INHERIT | typeof SESSION_NEVER;
   /**
    * Optional Symbol to scope flyout history. Only flyouts that receive the same Symbol reference share Back button and history; omit to get a unique group per session.
    * @default undefined (each session gets a unique key and does not share history)
@@ -93,7 +91,7 @@ export const EuiFlyout = forwardRef<
   const effectiveSession =
     session === undefined && isInsideParentFlyout && hasActiveSession
       ? SESSION_INHERIT
-      : session ?? SESSION_NEVER;
+      : (session ?? SESSION_NEVER);
 
   if (effectiveSession !== SESSION_NEVER) {
     if (effectiveSession === SESSION_START) {

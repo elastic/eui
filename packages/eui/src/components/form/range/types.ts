@@ -49,8 +49,7 @@ export type _SingleRangeChangeEvent =
   | React.KeyboardEvent<HTMLInputElement>
   | React.MouseEvent<HTMLButtonElement>;
 export type _DualRangeChangeEvent =
-  | _SingleRangeChangeEvent
-  | React.KeyboardEvent<HTMLDivElement>;
+  _SingleRangeChangeEvent | React.KeyboardEvent<HTMLDivElement>;
 
 export interface _SharedRangeDataStructures {
   /**
@@ -149,7 +148,8 @@ export type _SharedRangeInputSide = {
  */
 
 export interface EuiRangeProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'min' | 'max' | 'step' | 'onChange'
@@ -184,7 +184,8 @@ export interface EuiRangeProps
 }
 
 export interface EuiDualRangeProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'min' | 'max' | 'step' | 'onChange'
@@ -244,8 +245,7 @@ export interface EuiRangeTick {
 }
 
 export interface EuiRangeLevel
-  extends CommonProps,
-    Pick<_SharedRangeValuesProps, 'min' | 'max'> {
+  extends CommonProps, Pick<_SharedRangeValuesProps, 'min' | 'max'> {
   /**
    * Accepts one of `["primary", "success", "warning", "danger"]` or a valid CSS color value.
    */

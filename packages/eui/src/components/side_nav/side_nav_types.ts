@@ -15,7 +15,8 @@ import {
 } from './side_nav_item';
 
 export interface EuiSideNavItemType<T>
-  extends Omit<_EuiSideNavItemButtonProps, 'children'>,
+  extends
+    Omit<_EuiSideNavItemButtonProps, 'children'>,
     Omit<
       _EuiSideNavItemProps,
       'isParent' | 'depth' | 'isOpen' | 'childrenOnly' | 'items'

@@ -20,14 +20,7 @@ import moment from 'moment';
 import { Value } from './ast';
 
 export type FieldValue =
-  | string
-  | number
-  | boolean
-  | any[]
-  | Date
-  | moment.Moment
-  | null
-  | undefined;
+  string | number | boolean | any[] | Date | moment.Moment | null | undefined;
 
 export type ClauseValue = Value | Date | moment.Moment | null | undefined;
 

@@ -152,7 +152,7 @@ export const KitchenSink: Story = {
         ...props,
         buttonSize,
         options,
-      } as EuiButtonGroupProps);
+      }) as EuiButtonGroupProps;
 
     const renderRow = ({
       content,

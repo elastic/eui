@@ -31,8 +31,8 @@ export const EuiSystemDefaultsProvider: FunctionComponent<
   const systemHighContrastMode = windowsHighContrast
     ? 'forced'
     : macHighContrast
-    ? 'preferred'
-    : false;
+      ? 'preferred'
+      : false;
 
   return (
     <EuiColorModeContext.Provider value={systemColorMode}>

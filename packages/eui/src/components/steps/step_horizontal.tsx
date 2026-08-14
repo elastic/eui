@@ -38,7 +38,8 @@ import {
 } from './step_horizontal.styles';
 
 export interface EuiStepHorizontalProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
+  extends
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
     CommonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
   /**

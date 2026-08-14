@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,19 +20,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import moment from "moment";
+import moment from 'moment';
 
 const dayOfWeekCodes = {
-  1: "mon",
-  2: "tue",
-  3: "wed",
-  4: "thu",
-  5: "fri",
-  6: "sat",
-  7: "sun"
+  1: 'mon',
+  2: 'tue',
+  3: 'wed',
+  4: 'thu',
+  5: 'fri',
+  6: 'sat',
+  7: 'sun',
 };
 
 // These functions are not exported so
@@ -72,9 +72,7 @@ export function newDate(point) {
 }
 
 export function newDateWithOffset(utcOffset) {
-  return moment()
-    .utc()
-    .utcOffset(utcOffset);
+  return moment().utc().utcOffset(utcOffset);
 }
 
 export function now(maybeFixedUtcOffset) {
@@ -88,7 +86,7 @@ export function cloneDate(date) {
   return date.clone();
 }
 
-export function parseDate(value, { dateFormat, locale, strictParsing}) {
+export function parseDate(value, { dateFormat, locale, strictParsing }) {
   const m = moment(value, dateFormat, locale || moment.locale(), strictParsing);
   return m.isValid() ? m : null;
 }
@@ -116,7 +114,7 @@ export function safeDateFormat(date, { dateFormat, locale }) {
         .clone()
         .locale(locale || moment.locale())
         .format(Array.isArray(dateFormat) ? dateFormat[0] : dateFormat)) ||
-    ""
+    ''
   );
 }
 
@@ -128,11 +126,11 @@ export function setTime(date, { hour, minute, second, millisecond }) {
 }
 
 export function setMonth(date, month) {
-  return set(date, "month", month);
+  return set(date, 'month', month);
 }
 
 export function setYear(date, year) {
-  return set(date, "year", year);
+  return set(date, 'year', year);
 }
 
 export function setUTCOffset(date, offset) {
@@ -142,41 +140,41 @@ export function setUTCOffset(date, offset) {
 // ** Date Getters **
 
 export function getMillisecond(date) {
-  return get(date, "millisecond");
+  return get(date, 'millisecond');
 }
 
 export function getSecond(date) {
-  return get(date, "second");
+  return get(date, 'second');
 }
 
 export function getMinute(date) {
-  return get(date, "minute");
+  return get(date, 'minute');
 }
 
 export function getHour(date) {
-  return get(date, "hour");
+  return get(date, 'hour');
 }
 
 // Returns day of week
 export function getDay(date) {
-  return get(date, "day");
+  return get(date, 'day');
 }
 
 export function getWeek(date) {
-  return get(date, "week");
+  return get(date, 'week');
 }
 
 export function getMonth(date) {
-  return get(date, "month");
+  return get(date, 'month');
 }
 
 export function getYear(date) {
-  return get(date, "year");
+  return get(date, 'year');
 }
 
 // Returns day of month
 export function getDate(date) {
-  return get(date, "date");
+  return get(date, 'date');
 }
 
 export function getUTCOffset() {
@@ -190,28 +188,28 @@ export function getDayOfWeekCode(day) {
 // *** Start of ***
 
 export function getStartOfDay(date) {
-  return getStartOf(date, "day");
+  return getStartOf(date, 'day');
 }
 
 export function getStartOfWeek(date) {
-  return getStartOf(date, "week");
+  return getStartOf(date, 'week');
 }
 export function getStartOfMonth(date) {
-  return getStartOf(date, "month");
+  return getStartOf(date, 'month');
 }
 
 export function getStartOfDate(date) {
-  return getStartOf(date, "date");
+  return getStartOf(date, 'date');
 }
 
 // *** End of ***
 
 export function getEndOfWeek(date) {
-  return getEndOf(date, "week");
+  return getEndOf(date, 'week');
 }
 
 export function getEndOfMonth(date) {
-  return getEndOf(date, "month");
+  return getEndOf(date, 'month');
 }
 
 // ** Date Math **
@@ -219,44 +217,44 @@ export function getEndOfMonth(date) {
 // *** Addition ***
 
 export function addMinutes(date, amount) {
-  return add(date, amount, "minutes");
+  return add(date, amount, 'minutes');
 }
 
 export function addHours(date, amount) {
-  return add(date, amount, "hours");
+  return add(date, amount, 'hours');
 }
 
 export function addDays(date, amount) {
-  return add(date, amount, "days");
+  return add(date, amount, 'days');
 }
 
 export function addWeeks(date, amount) {
-  return add(date, amount, "weeks");
+  return add(date, amount, 'weeks');
 }
 
 export function addMonths(date, amount) {
-  return add(date, amount, "months");
+  return add(date, amount, 'months');
 }
 
 export function addYears(date, amount) {
-  return add(date, amount, "years");
+  return add(date, amount, 'years');
 }
 
 // *** Subtraction ***
 export function subtractDays(date, amount) {
-  return subtract(date, amount, "days");
+  return subtract(date, amount, 'days');
 }
 
 export function subtractWeeks(date, amount) {
-  return subtract(date, amount, "weeks");
+  return subtract(date, amount, 'weeks');
 }
 
 export function subtractMonths(date, amount) {
-  return subtract(date, amount, "months");
+  return subtract(date, amount, 'months');
 }
 
 export function subtractYears(date, amount) {
-  return subtract(date, amount, "years");
+  return subtract(date, amount, 'years');
 }
 
 // ** Date Comparison **
@@ -275,7 +273,7 @@ export function equals(date1, date2) {
 
 export function isSameYear(date1, date2) {
   if (date1 && date2) {
-    return date1.isSame(date2, "year");
+    return date1.isSame(date2, 'year');
   } else {
     return !date1 && !date2;
   }
@@ -283,7 +281,7 @@ export function isSameYear(date1, date2) {
 
 export function isSameMonth(date1, date2) {
   if (date1 && date2) {
-    return date1.isSame(date2, "month");
+    return date1.isSame(date2, 'month');
   } else {
     return !date1 && !date2;
   }
@@ -291,7 +289,7 @@ export function isSameMonth(date1, date2) {
 
 export function isSameDay(moment1, moment2) {
   if (moment1 && moment2) {
-    return moment1.isSame(moment2, "day");
+    return moment1.isSame(moment2, 'day');
   } else {
     return !moment1 && !moment2;
   }
@@ -299,7 +297,7 @@ export function isSameDay(moment1, moment2) {
 
 export function isSameTime(moment1, moment2) {
   if (moment1 && moment2) {
-    return moment1.isSame(moment2, "second");
+    return moment1.isSame(moment2, 'second');
   } else {
     return !moment1 && !moment2;
   }
@@ -314,24 +312,15 @@ export function isSameUtcOffset(moment1, moment2) {
 }
 
 export function isDayInRange(day, startDate, endDate) {
-  const before = startDate
-    .clone()
-    .startOf("day")
-    .subtract(1, "seconds");
-  const after = endDate
-    .clone()
-    .startOf("day")
-    .add(1, "seconds");
-  return day
-    .clone()
-    .startOf("day")
-    .isBetween(before, after);
+  const before = startDate.clone().startOf('day').subtract(1, 'seconds');
+  const after = endDate.clone().startOf('day').add(1, 'seconds');
+  return day.clone().startOf('day').isBetween(before, after);
 }
 
 // *** Diffing ***
 
 export function getDaysDiff(date1, date2) {
-  return getDiff(date1, date2, "days");
+  return getDiff(date1, date2, 'days');
 }
 
 // ** Date Localization **
@@ -388,12 +377,12 @@ export function isDayDisabled(
   { minDate, maxDate, excludeDates, includeDates, filterDate } = {}
 ) {
   return (
-    (minDate && day.isBefore(minDate, "day")) ||
-    (maxDate && day.isAfter(maxDate, "day")) ||
+    (minDate && day.isBefore(minDate, 'day')) ||
+    (maxDate && day.isAfter(maxDate, 'day')) ||
     (excludeDates &&
-      excludeDates.some(excludeDate => isSameDay(day, excludeDate))) ||
+      excludeDates.some((excludeDate) => isSameDay(day, excludeDate))) ||
     (includeDates &&
-      !includeDates.some(includeDate => isSameDay(day, includeDate))) ||
+      !includeDates.some((includeDate) => isSameDay(day, includeDate))) ||
     (filterDate && !filterDate(day.clone())) ||
     false
   );
@@ -401,8 +390,8 @@ export function isDayDisabled(
 
 export function isOutOfBounds(day, { minDate, maxDate } = {}) {
   return (
-    (minDate && day.isBefore(minDate, "day")) ||
-    (maxDate && day.isAfter(maxDate, "day"))
+    (minDate && day.isBefore(minDate, 'day')) ||
+    (maxDate && day.isAfter(maxDate, 'day'))
   );
 }
 
@@ -410,8 +399,8 @@ export function isTimeDisabled(time, disabledTimes) {
   const l = disabledTimes.length;
   for (let i = 0; i < l; i++) {
     if (
-      disabledTimes[i].get("hours") === time.get("hours") &&
-      disabledTimes[i].get("minutes") === time.get("minutes")
+      disabledTimes[i].get('hours') === time.get('hours') &&
+      disabledTimes[i].get('minutes') === time.get('minutes')
     ) {
       return true;
     }
@@ -422,25 +411,22 @@ export function isTimeDisabled(time, disabledTimes) {
 
 export function isTimeInDisabledRange(time, { minTime, maxTime }) {
   if (!minTime || !maxTime) {
-    throw new Error("Both minTime and maxTime props required");
+    throw new Error('Both minTime and maxTime props required');
   }
 
-  const base = moment()
-    .hours(0)
-    .minutes(0)
-    .seconds(0);
+  const base = moment().hours(0).minutes(0).seconds(0);
   const baseTime = base
     .clone()
-    .hours(time.get("hours"))
-    .minutes(time.get("minutes"));
+    .hours(time.get('hours'))
+    .minutes(time.get('minutes'));
   const min = base
     .clone()
-    .hours(minTime.get("hours"))
-    .minutes(minTime.get("minutes"));
+    .hours(minTime.get('hours'))
+    .minutes(minTime.get('minutes'));
   const max = base
     .clone()
-    .hours(maxTime.get("hours"))
-    .minutes(maxTime.get("minutes"));
+    .hours(maxTime.get('hours'))
+    .minutes(maxTime.get('minutes'));
 
   return !(baseTime.isSameOrAfter(min) && baseTime.isSameOrBefore(max));
 }
@@ -454,7 +440,7 @@ export function allDaysDisabledBefore(
   return (
     (minDate && dateBefore.isBefore(minDate, unit)) ||
     (includeDates &&
-      includeDates.every(includeDate =>
+      includeDates.every((includeDate) =>
         dateBefore.isBefore(includeDate, unit)
       )) ||
     false
@@ -470,7 +456,7 @@ export function allDaysDisabledAfter(
   return (
     (maxDate && dateAfter.isAfter(maxDate, unit)) ||
     (includeDates &&
-      includeDates.every(includeDate =>
+      includeDates.every((includeDate) =>
         dateAfter.isAfter(includeDate, unit)
       )) ||
     false
@@ -480,8 +466,8 @@ export function allDaysDisabledAfter(
 export function getEffectiveMinDate({ minDate, includeDates }) {
   if (includeDates && minDate) {
     return moment.min(
-      includeDates.filter(includeDate =>
-        minDate.isSameOrBefore(includeDate, "day")
+      includeDates.filter((includeDate) =>
+        minDate.isSameOrBefore(includeDate, 'day')
       )
     );
   } else if (includeDates) {
@@ -494,8 +480,8 @@ export function getEffectiveMinDate({ minDate, includeDates }) {
 export function getEffectiveMaxDate({ maxDate, includeDates }) {
   if (includeDates && maxDate) {
     return moment.max(
-      includeDates.filter(includeDate =>
-        maxDate.isSameOrAfter(includeDate, "day")
+      includeDates.filter((includeDate) =>
+        maxDate.isSameOrAfter(includeDate, 'day')
       )
     );
   } else if (includeDates) {
@@ -507,25 +493,25 @@ export function getEffectiveMaxDate({ maxDate, includeDates }) {
 
 export function getHightLightDaysMap(
   highlightDates = [],
-  defaultClassName = "react-datepicker__day--highlighted"
+  defaultClassName = 'react-datepicker__day--highlighted'
 ) {
   const dateClasses = new Map();
   for (let i = 0, len = highlightDates.length; i < len; i++) {
     const obj = highlightDates[i];
     if (isMoment(obj)) {
-      const key = obj.format("MM.DD.YYYY");
+      const key = obj.format('MM.DD.YYYY');
       const classNamesArr = dateClasses.get(key) || [];
       if (!classNamesArr.includes(defaultClassName)) {
         classNamesArr.push(defaultClassName);
         dateClasses.set(key, classNamesArr);
       }
-    } else if (typeof obj === "object") {
+    } else if (typeof obj === 'object') {
       const keys = Object.keys(obj);
       const className = keys[0];
       const arrOfMoments = obj[keys[0]];
-      if (typeof className === "string" && arrOfMoments.constructor === Array) {
+      if (typeof className === 'string' && arrOfMoments.constructor === Array) {
         for (let k = 0, len = arrOfMoments.length; k < len; k++) {
-          const key = arrOfMoments[k].format("MM.DD.YYYY");
+          const key = arrOfMoments[k].format('MM.DD.YYYY');
           const classNamesArr = dateClasses.get(key) || [];
           if (!classNamesArr.includes(className)) {
             classNamesArr.push(className);

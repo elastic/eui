@@ -46,8 +46,7 @@ import {
 import { euiResizableContainerStyles as styles } from './resizable_container.styles';
 
 export interface EuiResizableContainerProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
-    CommonProps {
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>, CommonProps {
   /**
    * Specify the container direction
    */

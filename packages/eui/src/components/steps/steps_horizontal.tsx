@@ -16,8 +16,7 @@ export const SIZES = ['xs', 's', 'm'] as const;
 export type EuiStepsHorizontalSizes = (typeof SIZES)[number];
 
 export interface EuiStepsHorizontalProps
-  extends OlHTMLAttributes<HTMLOListElement>,
-    CommonProps {
+  extends OlHTMLAttributes<HTMLOListElement>, CommonProps {
   /**
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */

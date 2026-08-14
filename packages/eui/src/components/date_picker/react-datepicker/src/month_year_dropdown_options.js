@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import {
   addMonths,
   cloneDate,
@@ -34,8 +34,8 @@ import {
   isAfter,
   isSameMonth,
   isSameYear,
-  isBefore
-} from "./date_utils";
+  isBefore,
+} from './date_utils';
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -64,7 +64,7 @@ export default class MonthYearDropdownOptions extends React.Component {
     scrollableMonthYearDropdown: PropTypes.bool,
     date: PropTypes.object.isRequired,
     dateFormat: PropTypes.string.isRequired,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   constructor(props) {
@@ -76,16 +76,16 @@ export default class MonthYearDropdownOptions extends React.Component {
         this.props.maxDate
       ),
       preSelection: getStartOfMonth(cloneDate(this.props.date)),
-      readInstructions: false
+      readInstructions: false,
     };
   }
 
   componentDidMount() {
     if (this.preSelectionDiv) {
       this.preSelectionDiv.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }
@@ -93,15 +93,15 @@ export default class MonthYearDropdownOptions extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.preSelectionDiv) {
       this.preSelectionDiv.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }
 
   renderOptions = () => {
-    return this.state.monthYearsList.map(monthYear => {
+    return this.state.monthYearsList.map((monthYear) => {
       const monthYearPoint = monthYear.valueOf();
 
       const isSameMonthYear =
@@ -114,13 +114,13 @@ export default class MonthYearDropdownOptions extends React.Component {
 
       return (
         <div
-          className={classNames("react-datepicker__month-year-option", {
-            "--selected_month-year": isSameMonthYear,
-            "react-datepicker__month-year-option--preselected":
-              this.props.accessibleMode && isPreselectionSameMonthYear
+          className={classNames('react-datepicker__month-year-option', {
+            '--selected_month-year': isSameMonthYear,
+            'react-datepicker__month-year-option--preselected':
+              this.props.accessibleMode && isPreselectionSameMonthYear,
           })}
           key={monthYearPoint}
-          ref={div => {
+          ref={(div) => {
             if (this.props.accessibleMode && isPreselectionSameMonthYear) {
               this.preSelectionDiv = div;
             }
@@ -132,7 +132,7 @@ export default class MonthYearDropdownOptions extends React.Component {
               ✓
             </span>
           ) : (
-            ""
+            ''
           )}
           {formatDate(monthYear, this.props.dateFormat)}
         </div>
@@ -146,33 +146,33 @@ export default class MonthYearDropdownOptions extends React.Component {
     }
   };
 
-  onChange = monthYear => this.props.onChange(monthYear);
+  onChange = (monthYear) => this.props.onChange(monthYear);
 
   handleClickOutside = () => {
     this.props.onCancel();
   };
 
-  onInputKeyDown = event => {
+  onInputKeyDown = (event) => {
     const eventKey = event.key;
     let newSelection;
     switch (eventKey) {
-      case "ArrowUp":
+      case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
         newSelection = addMonths(cloneDate(this.state.preSelection), -1);
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
         newSelection = addMonths(cloneDate(this.state.preSelection), 1);
         break;
-      case "Escape":
+      case 'Escape':
         event.preventDefault();
         event.stopPropagation();
         this.props.onCancel();
         break;
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.props.onChange(this.state.preSelection.valueOf());
@@ -180,9 +180,8 @@ export default class MonthYearDropdownOptions extends React.Component {
     }
     if (newSelection) {
       const minMonthYear = this.state.monthYearsList[0];
-      const maxMonthYear = this.state.monthYearsList[
-        this.state.monthYearsList.length - 1
-      ];
+      const maxMonthYear =
+        this.state.monthYearsList[this.state.monthYearsList.length - 1];
       if (isBefore(newSelection, minMonthYear)) newSelection = maxMonthYear;
       if (isAfter(newSelection, maxMonthYear)) newSelection = minMonthYear;
       this.setState({ preSelection: newSelection });
@@ -191,9 +190,9 @@ export default class MonthYearDropdownOptions extends React.Component {
 
   render() {
     let dropdownClass = classNames({
-      "react-datepicker__month-year-dropdown": true,
-      "react-datepicker__month-year-dropdown--scrollable": this.props
-        .scrollableMonthYearDropdown
+      'react-datepicker__month-year-dropdown': true,
+      'react-datepicker__month-year-dropdown--scrollable':
+        this.props.scrollableMonthYearDropdown,
     });
 
     let screenReaderInstructions;

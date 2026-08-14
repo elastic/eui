@@ -74,8 +74,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const display = isSelected
     ? 'fill'
     : isCompressed || hasBorder
-    ? 'empty'
-    : 'base';
+      ? 'empty'
+      : 'base';
   const hasToolTip = !!toolTipContent;
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonStyles);

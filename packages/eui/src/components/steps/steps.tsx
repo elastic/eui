@@ -15,8 +15,7 @@ import { EuiStepProps, EuiStep } from './step';
 export type EuiContainedStepProps = Omit<EuiStepProps, 'step'>;
 
 export interface EuiStepsProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
   /**
    * An array of `EuiStep` objects excluding the `step` prop
    */

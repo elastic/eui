@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,20 +20,20 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { EuiIcon } from "../../../icon";
+import { EuiIcon } from '../../../icon';
 
-import MonthDropdownOptions from "./month_dropdown_options";
-import * as utils from "./date_utils";
+import MonthDropdownOptions from './month_dropdown_options';
+import * as utils from './date_utils';
 
 export default class MonthDropdown extends React.Component {
   static propTypes = {
-    dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']).isRequired,
     locale: PropTypes.string,
     dateFormat: PropTypes.string.isRequired,
     month: PropTypes.number.isRequired,
@@ -41,7 +41,7 @@ export default class MonthDropdown extends React.Component {
     useShortMonthInDropdown: PropTypes.bool,
     accessibleMode: PropTypes.bool,
     onDropdownToggle: PropTypes.func,
-    buttonRef: PropTypes.func
+    buttonRef: PropTypes.func,
   };
 
   constructor(props) {
@@ -49,9 +49,9 @@ export default class MonthDropdown extends React.Component {
     this.localeData = utils.getLocaleDataForLocale(this.props.locale);
     this.monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
       this.props.useShortMonthInDropdown
-        ? M =>
+        ? (M) =>
             utils.getMonthShortInLocale(this.localeData, utils.newDate({ M }))
-        : M =>
+        : (M) =>
             utils.getMonthInLocale(
               this.localeData,
               utils.newDate({ M }),
@@ -60,7 +60,7 @@ export default class MonthDropdown extends React.Component {
     );
 
     this.state = {
-      dropdownVisible: false
+      dropdownVisible: false,
     };
   }
 
@@ -77,9 +77,9 @@ export default class MonthDropdown extends React.Component {
       this.localeData = utils.getLocaleDataForLocale(this.props.locale);
       this.monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
         this.props.useShortMonthInDropdown
-          ? M =>
+          ? (M) =>
               utils.getMonthShortInLocale(this.localeData, utils.newDate({ M }))
-          : M =>
+          : (M) =>
               utils.getMonthInLocale(
                 this.localeData,
                 utils.newDate({ M }),
@@ -90,16 +90,16 @@ export default class MonthDropdown extends React.Component {
     }
   }
 
-  setReadViewRef = ref => {
+  setReadViewRef = (ref) => {
     this.readViewref = ref;
     this.props.buttonRef(ref);
   };
 
-  onReadViewKeyDown = event => {
+  onReadViewKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -107,11 +107,11 @@ export default class MonthDropdown extends React.Component {
     }
   };
 
-  onDropDownKeyDown = event => {
+  onDropDownKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -119,18 +119,18 @@ export default class MonthDropdown extends React.Component {
     }
   };
 
-  renderSelectOptions = monthNames =>
+  renderSelectOptions = (monthNames) =>
     monthNames.map((M, i) => (
       <option key={i} value={i}>
         {M}
       </option>
     ));
 
-  renderSelectMode = monthNames => (
+  renderSelectMode = (monthNames) => (
     <select
       value={this.props.month}
       className="react-datepicker__month-select"
-      onChange={e => this.onChange(e.target.value)}
+      onChange={(e) => this.onChange(e.target.value)}
     >
       {this.renderSelectOptions(monthNames)}
     </select>
@@ -140,11 +140,11 @@ export default class MonthDropdown extends React.Component {
     <div
       key="read"
       ref={this.setReadViewRef}
-      style={{ visibility: visible ? "visible" : "hidden" }}
+      style={{ visibility: visible ? 'visible' : 'hidden' }}
       className="react-datepicker__month-read-view"
       onClick={this.toggleDropdown}
       onKeyDown={this.onReadViewKeyDown}
-      tabIndex={this.props.accessibleMode ? "0" : undefined}
+      tabIndex={this.props.accessibleMode ? '0' : undefined}
       aria-label={`Button. Open the month selector. ${
         monthNames[this.props.month]
       } is currently selected.`}
@@ -161,7 +161,7 @@ export default class MonthDropdown extends React.Component {
     </div>
   );
 
-  renderDropdown = monthNames => (
+  renderDropdown = (monthNames) => (
     <MonthDropdownOptions
       key="dropdown"
       ref="options"
@@ -173,7 +173,7 @@ export default class MonthDropdown extends React.Component {
     />
   );
 
-  renderScrollMode = monthNames => {
+  renderScrollMode = (monthNames) => {
     const { dropdownVisible } = this.state;
     let result = [this.renderReadView(!dropdownVisible, monthNames)];
     if (dropdownVisible) {
@@ -182,7 +182,7 @@ export default class MonthDropdown extends React.Component {
     return result;
   };
 
-  onChange = month => {
+  onChange = (month) => {
     this.toggleDropdown();
     if (month !== this.props.month) {
       this.props.onChange(month);
@@ -190,20 +190,20 @@ export default class MonthDropdown extends React.Component {
   };
 
   toggleDropdown = () => {
-    const isOpen = !this.state.dropdownVisible
+    const isOpen = !this.state.dropdownVisible;
     this.setState({
-      dropdownVisible: isOpen
+      dropdownVisible: isOpen,
     });
     this.props.onDropdownToggle(isOpen, 'month');
-  }
+  };
 
   render() {
     let renderedDropdown;
     switch (this.props.dropdownMode) {
-      case "scroll":
+      case 'scroll':
         renderedDropdown = this.renderScrollMode(this.monthNames);
         break;
-      case "select":
+      case 'select':
         renderedDropdown = this.renderSelectMode(this.monthNames);
         break;
     }

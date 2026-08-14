@@ -283,8 +283,8 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
 
       ${euiCanAnimate} {
-        transition-property: inset-inline-start, transform, background-color,
-          border-color;
+        transition-property:
+          inset-inline-start, transform, background-color, border-color;
         transition-duration: ${animation.speed};
         transition-timing-function: ${animation.easing};
       }

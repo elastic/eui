@@ -29,7 +29,8 @@ import {
 } from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+  extends
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     Pick<
       EuiDualRangeProps,
       'min' | 'max' | 'value' | 'disabled' | 'showTicks'

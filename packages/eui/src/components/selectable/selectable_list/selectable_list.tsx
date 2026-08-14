@@ -47,8 +47,10 @@ import {
 } from './selectable_list.styles';
 import { getListItemSize } from './utils/get_list_item_size';
 
-interface ListChildComponentProps<T>
-  extends Omit<ReactWindowListChildComponentProps, 'style'> {
+interface ListChildComponentProps<T> extends Omit<
+  ReactWindowListChildComponentProps,
+  'style'
+> {
   data: Array<EuiSelectableOption<T>>;
   style?: CSSProperties;
 }
@@ -527,10 +529,10 @@ export class EuiSelectableList<T> extends Component<
               searchValue
             )
           : highlightSearch
-          ? this.renderSearchedText(label, truncationProps)
-          : truncationProps
-          ? this.renderTruncatedText(label, truncationProps)
-          : label}
+            ? this.renderSearchedText(label, truncationProps)
+            : truncationProps
+              ? this.renderTruncatedText(label, truncationProps)
+              : label}
       </EuiSelectableListItem>
     );
   }, areEqual);

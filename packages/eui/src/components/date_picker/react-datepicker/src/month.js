@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,14 +20,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-import Week from "./week";
-import * as utils from "./date_utils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import Week from './week';
+import * as utils from './date_utils';
 
 import { EuiScreenReaderOnly } from '../../../accessibility';
 
@@ -65,15 +65,15 @@ export default class Month extends React.Component {
     utcOffset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     renderDayContents: PropTypes.func,
     updateSelection: PropTypes.func.isRequired,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
 
-    this.dayFormat = "MMMM D, YYYY.";
+    this.dayFormat = 'MMMM D, YYYY.';
     this.state = {
-      readInstructions: false
+      readInstructions: false,
     };
   }
 
@@ -83,7 +83,7 @@ export default class Month extends React.Component {
     }
   };
 
-  handleDayMouseEnter = day => {
+  handleDayMouseEnter = (day) => {
     if (this.props.onDayMouseEnter) {
       this.props.onDayMouseEnter(day);
     }
@@ -107,38 +107,40 @@ export default class Month extends React.Component {
     }
   };
 
-  onInputKeyDown = event => {
+  onInputKeyDown = (event) => {
     const eventKey = event.key;
     // `preSelection` can be `null` but `day` is required. Use it as a fallback if necessary for invalid entries.
-    const copy = this.props.preSelection ? utils.newDate(this.props.preSelection) : utils.newDate(this.props.day);
+    const copy = this.props.preSelection
+      ? utils.newDate(this.props.preSelection)
+      : utils.newDate(this.props.day);
     let newSelection;
     switch (eventKey) {
-      case "ArrowLeft":
+      case 'ArrowLeft':
         newSelection = utils.subtractDays(copy, 1);
         break;
-      case "ArrowRight":
+      case 'ArrowRight':
         newSelection = utils.addDays(copy, 1);
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         newSelection = utils.subtractWeeks(copy, 1);
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         newSelection = utils.addWeeks(copy, 1);
         break;
-      case "PageUp":
+      case 'PageUp':
         newSelection = utils.subtractMonths(copy, 1);
         break;
-      case "PageDown":
+      case 'PageDown':
         newSelection = utils.addMonths(copy, 1);
         break;
-      case "Home":
+      case 'Home':
         newSelection = utils.subtractYears(copy, 1);
         break;
-      case "End":
+      case 'End':
         newSelection = utils.addYears(copy, 1);
         break;
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         this.handleDayClick(copy, event);
         break;
@@ -148,7 +150,7 @@ export default class Month extends React.Component {
     this.props.updateSelection(newSelection);
   };
 
-  isWeekInMonth = startOfWeek => {
+  isWeekInMonth = (startOfWeek) => {
     const day = this.props.day;
     const endOfWeek = utils.addDays(utils.cloneDate(startOfWeek), 6);
     return (
@@ -226,11 +228,10 @@ export default class Month extends React.Component {
 
   getClassNames = () => {
     const { selectingDate, selectsStart, selectsEnd } = this.props;
-    return classnames("react-datepicker__month", {
-      "react-datepicker__month--accessible":
-        this.props.accessibleMode,
-      "react-datepicker__month--selecting-range":
-        selectingDate && (selectsStart || selectsEnd)
+    return classnames('react-datepicker__month', {
+      'react-datepicker__month--accessible': this.props.accessibleMode,
+      'react-datepicker__month--selecting-range':
+        selectingDate && (selectsStart || selectsEnd),
     });
   };
 
@@ -242,8 +243,10 @@ export default class Month extends React.Component {
           You are focused on a calendar. Use the arrow keys to navigate the days
           in the month. Use the page up and down keys to navigate from month to
           month. Use the home and end keys to navigate from year to year.
-          {this.props.preSelection ? `${utils.formatDate(this.props.preSelection, this.dayFormat)} is the
-          currently focused date.` : `No date is currently focused.`}
+          {this.props.preSelection
+            ? `${utils.formatDate(this.props.preSelection, this.dayFormat)} is the
+          currently focused date.`
+            : `No date is currently focused.`}
         </p>
       );
     }
@@ -253,7 +256,7 @@ export default class Month extends React.Component {
         className={this.getClassNames()}
         onMouseLeave={this.handleMouseLeave}
         role="listbox"
-        aria-label={this.props.day.format("MMMM, YYYY")}
+        aria-label={this.props.day.format('MMMM, YYYY')}
         tabIndex={this.props.accessibleMode ? 0 : -1}
         onKeyDown={this.onInputKeyDown}
         onFocus={this.onFocus}

@@ -30,8 +30,7 @@ import { useEuiTableStoreUniqueColumnId } from './store/use_unique_column_id';
 export type EuiTableHeaderCellCheckboxScope =
   (typeof HEADER_CELL_SCOPE)[number];
 
-export interface EuiTableHeaderCellCheckboxProps
-  extends EuiTableSharedWidthProps {
+export interface EuiTableHeaderCellCheckboxProps extends EuiTableSharedWidthProps {
   scope?: EuiTableHeaderCellCheckboxScope;
   append?: ReactNode;
 }

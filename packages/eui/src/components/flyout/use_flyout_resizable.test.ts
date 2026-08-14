@@ -23,7 +23,7 @@ describe('useEuiFlyoutResizable', () => {
 
   // Mock DOM element with offsetWidth
   const createMockElement = (offsetWidth = 600) =>
-    ({ offsetWidth, style: { direction: 'ltr' } } as HTMLElement);
+    ({ offsetWidth, style: { direction: 'ltr' } }) as HTMLElement;
 
   beforeEach(() => {
     jest.clearAllMocks();

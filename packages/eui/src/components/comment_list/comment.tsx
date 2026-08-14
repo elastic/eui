@@ -16,7 +16,8 @@ import {
 } from './comment_timeline';
 
 export interface EuiCommentProps
-  extends EuiCommentEventProps,
+  extends
+    EuiCommentEventProps,
     EuiCommentTimelineProps,
     Omit<EuiTimelineItemProps, 'children' | 'icon' | 'iconAriaLabel'> {}
 

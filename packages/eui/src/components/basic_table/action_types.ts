@@ -58,8 +58,9 @@ export interface DefaultItemActionBase<T extends object> {
   showOnHover?: boolean;
 }
 
-export interface DefaultItemEmptyButtonAction<T extends object>
-  extends DefaultItemActionBase<T> {
+export interface DefaultItemEmptyButtonAction<
+  T extends object,
+> extends DefaultItemActionBase<T> {
   /**
    * The type of action
    */
@@ -67,8 +68,9 @@ export interface DefaultItemEmptyButtonAction<T extends object>
   color?: EuiButtonEmptyProps['color'] | EuiButtonIconColorFunction<T>;
 }
 
-export interface DefaultItemIconButtonAction<T extends object>
-  extends DefaultItemActionBase<T> {
+export interface DefaultItemIconButtonAction<
+  T extends object,
+> extends DefaultItemActionBase<T> {
   type: 'icon';
   /**
    * Associates an icon with the button
@@ -101,8 +103,7 @@ export type CustomItemAction<T> = {
 } & Pick<DefaultItemActionBase<{}>, 'isPrimary' | 'showOnHover'>;
 
 export type Action<T extends object> =
-  | DefaultItemAction<T>
-  | CustomItemAction<T>;
+  DefaultItemAction<T> | CustomItemAction<T>;
 
 export const isCustomItemAction = <T extends object>(
   action: DefaultItemAction<T> | CustomItemAction<T>

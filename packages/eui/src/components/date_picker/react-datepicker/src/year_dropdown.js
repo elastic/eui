@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,21 +20,21 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { EuiIcon } from "../../../icon";
+import { EuiIcon } from '../../../icon';
 
-import YearDropdownOptions from "./year_dropdown_options";
-import { getYear } from "./date_utils";
+import YearDropdownOptions from './year_dropdown_options';
+import { getYear } from './date_utils';
 
 export default class YearDropdown extends React.Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
-    dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']).isRequired,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     onChange: PropTypes.func.isRequired,
@@ -46,11 +46,11 @@ export default class YearDropdown extends React.Component {
     setOpen: PropTypes.func,
     accessibleMode: PropTypes.bool,
     onDropdownToggle: PropTypes.func,
-    buttonRef: PropTypes.func
+    buttonRef: PropTypes.func,
   };
 
   state = {
-    dropdownVisible: false
+    dropdownVisible: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -63,16 +63,16 @@ export default class YearDropdown extends React.Component {
     }
   }
 
-  setReadViewRef = ref => {
+  setReadViewRef = (ref) => {
     this.readViewref = ref;
     this.props.buttonRef(ref);
   };
 
-  onReadViewKeyDown = event => {
+  onReadViewKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -80,11 +80,11 @@ export default class YearDropdown extends React.Component {
     }
   };
 
-  onDropDownKeyDown = event => {
+  onDropDownKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -107,7 +107,7 @@ export default class YearDropdown extends React.Component {
     return options;
   };
 
-  onSelectChange = e => {
+  onSelectChange = (e) => {
     this.onChange(e.target.value);
   };
 
@@ -121,15 +121,15 @@ export default class YearDropdown extends React.Component {
     </select>
   );
 
-  renderReadView = visible => (
+  renderReadView = (visible) => (
     <div
       key="read"
       ref={this.setReadViewRef}
-      style={{ visibility: visible ? "visible" : "hidden" }}
+      style={{ visibility: visible ? 'visible' : 'hidden' }}
       className="react-datepicker__year-read-view"
-      onClick={event => this.toggleDropdown(event)}
+      onClick={(event) => this.toggleDropdown(event)}
       onKeyDown={this.onReadViewKeyDown}
-      tabIndex={this.props.accessibleMode ? "0" : undefined}
+      tabIndex={this.props.accessibleMode ? '0' : undefined}
       aria-label={`Button. Open the year selector. ${
         this.props.year
       } is currently selected.`}
@@ -170,7 +170,7 @@ export default class YearDropdown extends React.Component {
     return result;
   };
 
-  onChange = year => {
+  onChange = (year) => {
     this.toggleDropdown();
     if (year === this.props.year) return;
     this.props.onChange(year);
@@ -179,7 +179,7 @@ export default class YearDropdown extends React.Component {
   toggleDropdown = () => {
     const isOpen = !this.state.dropdownVisible;
     this.setState({
-      dropdownVisible: isOpen
+      dropdownVisible: isOpen,
     });
     this.props.onDropdownToggle(isOpen, 'year');
   };
@@ -193,10 +193,10 @@ export default class YearDropdown extends React.Component {
   render() {
     let renderedDropdown;
     switch (this.props.dropdownMode) {
-      case "scroll":
+      case 'scroll':
         renderedDropdown = this.renderScrollMode();
         break;
-      case "select":
+      case 'select':
         renderedDropdown = this.renderSelectMode();
         break;
     }

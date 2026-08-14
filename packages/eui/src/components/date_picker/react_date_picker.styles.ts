@@ -323,7 +323,8 @@ const _dayCalendarStyles = (
       border-radius: ${euiTheme.border.radius.small};
 
       ${euiCanAnimate} {
-        transition: transform ${animationSpeed} ease-in-out,
+        transition:
+          transform ${animationSpeed} ease-in-out,
           background-color ${animationSpeed} ease-in;
       }
 

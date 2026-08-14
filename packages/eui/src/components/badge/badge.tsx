@@ -201,8 +201,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         ? color === 'hollow'
           ? 'hollow'
           : !fill
-          ? 'base'
-          : 'fill'
+            ? 'base'
+            : 'fill'
         : 'custom'
     ];
   const iconOnClickCssStyles = isNamedColor

@@ -46,9 +46,7 @@ import { euiSelectableTemplateSitewideStyles } from './selectable_template_sitew
 import { EuiSelectableTemplateSitewidePopover } from './selectable_template_sitewide_popover';
 
 export type EuiSelectableTemplateSitewideTheme =
-  | 'default'
-  | 'global'
-  | EuiThemeColorMode;
+  'default' | 'global' | EuiThemeColorMode;
 
 export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
@@ -132,10 +130,10 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     return isStaticTheme
       ? (_searchColorMode as EuiThemeColorModeStandard)
       : _searchColorMode === 'inverse'
-      ? colorMode === COLOR_MODES_STANDARD.dark
-        ? COLOR_MODES_STANDARD.light
-        : COLOR_MODES_STANDARD.dark
-      : colorMode;
+        ? colorMode === COLOR_MODES_STANDARD.dark
+          ? COLOR_MODES_STANDARD.light
+          : COLOR_MODES_STANDARD.dark
+        : colorMode;
   }, [colorMode, _searchColorMode]);
 
   const popoverColorMode = useMemo(() => {
@@ -156,10 +154,10 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     return isStaticTheme
       ? (_popoverColorMode as EuiThemeColorModeStandard)
       : _popoverColorMode === 'inverse'
-      ? inverseColorMode
-      : _popoverColorMode === 'global'
-      ? globalColorMode
-      : colorMode;
+        ? inverseColorMode
+        : _popoverColorMode === 'global'
+          ? globalColorMode
+          : colorMode;
   }, [hasDifferentColorFromGlobalTheme, colorMode, _popoverColorMode]);
 
   /**

@@ -78,9 +78,11 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         /* Hover styles */
         &:where(:not(:has(*:is(${euiDisabledSelector}), [readOnly])):hover) {
           &::after {
-            border: ${highContrastMode
+            border: ${
+              highContrastMode
                 ? euiTheme.border.width.thick
-                : euiTheme.border.width.thin}
+                : euiTheme.border.width.thin
+            }
               solid ${highContrastMode ? form.borderColor : form.borderHovered};
           }
         }

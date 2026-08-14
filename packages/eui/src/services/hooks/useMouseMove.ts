@@ -23,7 +23,7 @@ export function useMouseMove<T = HTMLDivElement>(
   interactionConditional: any = true
 ): [
   (e: MouseEvent<T>) => void,
-  (e: MouseEvent<T> | TouchEvent<T>, isFirstInteraction?: boolean) => void
+  (e: MouseEvent<T> | TouchEvent<T>, isFirstInteraction?: boolean) => void,
 ] {
   useEffect(() => {
     return unbindEventListeners;

@@ -114,8 +114,8 @@ export const EuiSwitch: FunctionComponent<
     disabled
       ? styles.body.disabled[size]
       : checked
-      ? styles.body.on
-      : styles.body.off,
+        ? styles.body.on
+        : styles.body.off,
   ];
   const iconsStyles = [
     styles.icons.euiSwitch__icons,

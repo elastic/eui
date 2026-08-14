@@ -16,7 +16,8 @@ import type { EuiRangeProps } from './types';
 import { euiRangeThumbStyles } from './range_thumb.styles';
 
 interface BaseProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Pick<
       EuiRangeProps,
       'min' | 'max' | 'value' | 'disabled' | 'showInput' | 'showTicks'
@@ -24,7 +25,8 @@ interface BaseProps
 
 interface ButtonLike extends BaseProps, HTMLAttributes<HTMLButtonElement> {}
 interface DivLike
-  extends BaseProps,
+  extends
+    BaseProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'onMouseDown'> {}
 
 export type EuiRangeThumbProps = ExclusiveUnion<ButtonLike, DivLike>;

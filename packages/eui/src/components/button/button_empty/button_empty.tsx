@@ -48,9 +48,7 @@ export type EuiButtonEmptyFlush = (typeof FLUSH_TYPES)[number];
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface CommonEuiButtonEmptyProps
-  extends EuiButtonDisplayContentProps,
-    EuiDisabledProps,
-    CommonProps {
+  extends EuiButtonDisplayContentProps, EuiDisabledProps, CommonProps {
   /**
    * Any of the named color palette options.
    *

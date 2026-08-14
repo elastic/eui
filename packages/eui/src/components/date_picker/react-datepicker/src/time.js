@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import {
   getHour,
   getMinute,
@@ -37,8 +37,8 @@ import {
   isTimeInDisabledRange,
   isTimeDisabled,
   timesToInjectAfter,
-  setTime
-} from "./date_utils";
+  setTime,
+} from './date_utils';
 
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { htmlIdGenerator } from '../../../../services/accessibility/html_id_generator';
@@ -64,7 +64,7 @@ export default class Time extends React.Component {
     monthRef: PropTypes.object,
     timeCaption: PropTypes.string,
     injectTimes: PropTypes.array,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   static get defaultProps() {
@@ -72,7 +72,7 @@ export default class Time extends React.Component {
       intervals: 30,
       onTimeChange: () => {},
       todayButton: null,
-      timeCaption: "Time"
+      timeCaption: 'Time',
     };
   }
 
@@ -108,12 +108,12 @@ export default class Time extends React.Component {
     }
 
     this.timeOptionId = htmlIdGenerator();
-    this.timeFormat = "hh:mm A";
+    this.timeFormat = 'hh:mm A';
     this.state = {
       preSelection,
       needsScrollToPreSelection: false,
       readInstructions: false,
-      isFocused: false
+      isFocused: false,
     };
   }
 
@@ -137,20 +137,23 @@ export default class Time extends React.Component {
 
   componentDidUpdate(prevProps) {
     // if selection changed, scroll to the selected item
-    if (this.props.selected && this.props.selected.isSame(prevProps.selected) === false) {
+    if (
+      this.props.selected &&
+      this.props.selected.isSame(prevProps.selected) === false
+    ) {
       const scrollToElement = this.selectedLi;
 
       if (scrollToElement) {
         // an element matches the selected time, scroll to it
         scrollToElement.scrollIntoView({
-          behavior: "instant",
-          block: "nearest",
-          inline: "nearest"
+          behavior: 'instant',
+          block: 'nearest',
+          inline: 'nearest',
         });
       }
 
       // update preSelection to the selection
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         preSelection: prevState.selected,
       }));
     }
@@ -161,9 +164,9 @@ export default class Time extends React.Component {
       if (scrollToElement) {
         // an element matches the selected time, scroll to it
         scrollToElement.scrollIntoView({
-          behavior: "instant",
-          block: "nearest",
-          inline: "nearest"
+          behavior: 'instant',
+          block: 'nearest',
+          inline: 'nearest',
         });
       }
 
@@ -183,19 +186,19 @@ export default class Time extends React.Component {
     }
   };
 
-  onInputKeyDown = event => {
+  onInputKeyDown = (event) => {
     const eventKey = event.key;
     const copy = newDate(this.state.preSelection);
     let newSelection;
     switch (eventKey) {
-      case "ArrowUp":
+      case 'ArrowUp':
         newSelection = addMinutes(copy, -this.props.intervals);
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         newSelection = addMinutes(copy, this.props.intervals);
         break;
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         this.handleClick(this.state.preSelection);
         break;
@@ -208,7 +211,7 @@ export default class Time extends React.Component {
     });
   };
 
-  handleClick = time => {
+  handleClick = (time) => {
     if (
       ((this.props.minTime || this.props.maxTime) &&
         isTimeInDisabledRange(time, this.props)) ||
@@ -220,21 +223,19 @@ export default class Time extends React.Component {
       return;
     }
 
-
-
     this.props.onChange(time);
   };
 
   liClasses = (time, activeTime) => {
-    let classes = ["react-datepicker__time-list-item"];
+    let classes = ['react-datepicker__time-list-item'];
 
     if (doHoursAndMinutesAlign(time, activeTime)) {
-      classes.push("react-datepicker__time-list-item--selected");
+      classes.push('react-datepicker__time-list-item--selected');
     } else if (
       this.state.preSelection &&
       doHoursAndMinutesAlign(time, this.state.preSelection)
     ) {
-      classes.push("react-datepicker__time-list-item--preselected");
+      classes.push('react-datepicker__time-list-item--preselected');
     }
     if (
       ((this.props.minTime || this.props.maxTime) &&
@@ -244,16 +245,16 @@ export default class Time extends React.Component {
       (this.props.includeTimes &&
         !isTimeDisabled(time, this.props.includeTimes))
     ) {
-      classes.push("react-datepicker__time-list-item--disabled");
+      classes.push('react-datepicker__time-list-item--disabled');
     }
     if (
       this.props.injectTimes &&
       (getHour(time) * 60 + getMinute(time)) % this.props.intervals !== 0
     ) {
-      classes.push("react-datepicker__time-list-item--injected");
+      classes.push('react-datepicker__time-list-item--injected');
     }
 
-    return classes.join(" ");
+    return classes.join(' ');
   };
 
   generateTimes = () => {
@@ -263,7 +264,7 @@ export default class Time extends React.Component {
     const multiplier = 1440 / intervals;
     const sortedInjectTimes =
       this.props.injectTimes &&
-      this.props.injectTimes.sort(function(a, b) {
+      this.props.injectTimes.sort(function (a, b) {
         return a - b;
       });
     for (let i = 0; i < multiplier; i++) {
@@ -295,11 +296,11 @@ export default class Time extends React.Component {
         key={i}
         onClick={this.handleClick.bind(this, time)}
         className={this.liClasses(time, activeTime)}
-        ref={li => {
+        ref={(li) => {
           if (
             li &&
             li.classList.contains(
-              "react-datepicker__time-list-item--preselected"
+              'react-datepicker__time-list-item--preselected'
             )
           ) {
             this.preselectedLi = li;
@@ -307,9 +308,7 @@ export default class Time extends React.Component {
 
           if (
             li &&
-            li.classList.contains(
-              "react-datepicker__time-list-item--selected"
-            )
+            li.classList.contains('react-datepicker__time-list-item--selected')
           ) {
             this.selectedLi = li;
           }
@@ -323,14 +322,14 @@ export default class Time extends React.Component {
   };
 
   render() {
-    const classNames = classnames("react-datepicker__time-container", {
-      "react-datepicker__time-container--with-today-button": this.props
-        .todayButton,
-      "react-datepicker__time-container--focus": this.state.isFocused
+    const classNames = classnames('react-datepicker__time-container', {
+      'react-datepicker__time-container--with-today-button':
+        this.props.todayButton,
+      'react-datepicker__time-container--focus': this.state.isFocused,
     });
 
-    const timeBoxClassNames = classnames("react-datepicker__time-box", {
-      "react-datepicker__time-box--accessible": this.props.accessibleMode
+    const timeBoxClassNames = classnames('react-datepicker__time-box', {
+      'react-datepicker__time-box--accessible': this.props.accessibleMode,
     });
 
     let screenReaderInstructions;
@@ -338,13 +337,15 @@ export default class Time extends React.Component {
       screenReaderInstructions = (
         <>
           <p>
-            You are a in a time selector. Use the up and down keys to select from
-            other common times then press enter to confirm.
+            You are a in a time selector. Use the up and down keys to select
+            from other common times then press enter to confirm.
           </p>
           {/* Note: needs to be separate paragraph nodes for aria-atomic="false" to work correctly */}
           <p>
-            {this.state.preSelection ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
-            focused.`: `No time is currently focused.`}
+            {this.state.preSelection
+              ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
+            focused.`
+              : `No time is currently focused.`}
           </p>
         </>
       );
@@ -354,7 +355,8 @@ export default class Time extends React.Component {
       <div className={classNames}>
         <EuiScreenReaderOnly>
           <div
-            aria-live="polite" aria-atomic="false"
+            aria-live="polite"
+            aria-atomic="false"
             className="react-datepicker__header react-datepicker__header--time"
           >
             {screenReaderInstructions}

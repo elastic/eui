@@ -110,10 +110,10 @@ module.exports = function ({ types }) {
                 template.default.ast(`
               try{
               ${exportName}.__docgenInfo = ${util.inspect(docgenResult, {
-                  showHidden: false,
-                  depth: null,
-                  maxArrayLength: null,
-                })}
+                showHidden: false,
+                depth: null,
+                maxArrayLength: null,
+              })}
             } catch(e) {}
             `)
               );

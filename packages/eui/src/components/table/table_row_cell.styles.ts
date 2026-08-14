@@ -140,9 +140,11 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
     euiTableRowCell__mobileHeader: css`
       /* Always truncate */
       ${euiTextTruncate()}
-      font-size: ${euiFontSize(euiThemeContext, 's', {
-        customScale: 'xxs',
-      }).fontSize};
+      font-size: ${
+        euiFontSize(euiThemeContext, 's', {
+          customScale: 'xxs',
+        }).fontSize
+      };
 
       display: block;
       color: ${euiTheme.colors.textSubdued};

@@ -25,8 +25,7 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
     type: IconType;
     size?: EuiIconProps['size'];
     iconRef?:
-      | string
-      | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
+      string | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
   };
 
 export const EuiFormControlLayoutCustomIcon: FunctionComponent<

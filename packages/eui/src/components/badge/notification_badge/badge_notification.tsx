@@ -21,8 +21,7 @@ export const SIZES = ['s', 'm'] as const;
 export type BadgeNotificationSize = (typeof SIZES)[number];
 
 export interface EuiNotificationBadgeProps
-  extends CommonProps,
-    Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
+  extends CommonProps, Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
   /**
    * ReactNode to render as this component's content
    */

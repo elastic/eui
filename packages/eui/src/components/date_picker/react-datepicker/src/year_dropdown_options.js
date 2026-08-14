@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -64,7 +64,7 @@ export default class YearDropdownOptions extends React.Component {
     scrollableYearDropdown: PropTypes.bool,
     year: PropTypes.number.isRequired,
     yearDropdownItemNumber: PropTypes.number,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   constructor(props) {
@@ -81,16 +81,16 @@ export default class YearDropdownOptions extends React.Component {
         this.props.maxDate
       ),
       preSelection: this.props.year,
-      readInstructions: false
+      readInstructions: false,
     };
   }
 
   componentDidMount() {
     if (this.preSelectionDiv) {
       this.preSelectionDiv.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }
@@ -101,24 +101,24 @@ export default class YearDropdownOptions extends React.Component {
       prevState.preSelection !== this.state.preSelection
     ) {
       this.preSelectionDiv.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+        behavior: 'instant',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }
 
   renderOptions = () => {
     var selectedYear = this.props.year;
-    var options = this.state.yearsList.map(year => (
+    var options = this.state.yearsList.map((year) => (
       <div
-        className={classNames("react-datepicker__year-option", {
-          "react-datepicker__year-option--selected_year": selectedYear === year,
-          "react-datepicker__year-option--preselected":
-            this.props.accessibleMode && this.state.preSelection === year
+        className={classNames('react-datepicker__year-option', {
+          'react-datepicker__year-option--selected_year': selectedYear === year,
+          'react-datepicker__year-option--preselected':
+            this.props.accessibleMode && this.state.preSelection === year,
         })}
         key={year}
-        ref={div => {
+        ref={(div) => {
           if (this.props.accessibleMode && this.state.preSelection === year) {
             this.preSelectionDiv = div;
           }
@@ -128,7 +128,7 @@ export default class YearDropdownOptions extends React.Component {
         {selectedYear === year ? (
           <span className="react-datepicker__year-option--selected">✓</span>
         ) : (
-          ""
+          ''
         )}
         {year}
       </div>
@@ -139,7 +139,7 @@ export default class YearDropdownOptions extends React.Component {
 
     // These elements were hidden with `display: none;` by custom EUI styles,
     // which caused problems when `minDate` or `maxDate` were configured: https://github.com/elastic/eui/issues/5058
-    // Keeping a reference for now, but we may opt for removing these 
+    // Keeping a reference for now, but we may opt for removing these
     // elements entirely during https://github.com/elastic/eui/issues/3901
     // if (!maxYear || !this.state.yearsList.find(year => year === maxYear)) {
     //   options.unshift(
@@ -176,7 +176,7 @@ export default class YearDropdownOptions extends React.Component {
     }
   };
 
-  onChange = year => {
+  onChange = (year) => {
     this.props.onChange(year);
   };
 
@@ -184,13 +184,13 @@ export default class YearDropdownOptions extends React.Component {
     this.props.onCancel();
   };
 
-  shiftYears = amount => {
-    var years = this.state.yearsList.map(function(year) {
+  shiftYears = (amount) => {
+    var years = this.state.yearsList.map(function (year) {
       return year + amount;
     });
 
     this.setState({
-      yearsList: years
+      yearsList: years,
     });
   };
 
@@ -202,27 +202,27 @@ export default class YearDropdownOptions extends React.Component {
     return this.shiftYears(-1);
   };
 
-  onInputKeyDown = event => {
+  onInputKeyDown = (event) => {
     const eventKey = event.key;
     let selectionChange = 0;
     switch (eventKey) {
-      case "ArrowUp":
+      case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
         selectionChange = -1;
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
         selectionChange = 1;
         break;
-      case "Escape":
+      case 'Escape':
         event.preventDefault();
         event.stopPropagation();
         this.props.onCancel();
         break;
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.props.onChange(this.state.preSelection);
@@ -242,9 +242,9 @@ export default class YearDropdownOptions extends React.Component {
 
   render() {
     let dropdownClass = classNames({
-      "react-datepicker__year-dropdown": true,
-      "react-datepicker__year-dropdown--scrollable": this.props
-        .scrollableYearDropdown
+      'react-datepicker__year-dropdown': true,
+      'react-datepicker__year-dropdown--scrollable':
+        this.props.scrollableYearDropdown,
     });
 
     let screenReaderInstructions;

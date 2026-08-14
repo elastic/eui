@@ -19,25 +19,23 @@ interface GetMatchingOptions<T> {
   showPrevSelected?: boolean;
   sortMatchesBy?: SortMatchesBy;
 }
-interface CollectMatchingOption<T>
-  extends Pick<
-    GetMatchingOptions<T>,
-    | 'isCaseSensitive'
-    | 'isPreFiltered'
-    | 'showPrevSelected'
-    | 'optionMatcher'
-    | 'searchValue'
-  > {
+interface CollectMatchingOption<T> extends Pick<
+  GetMatchingOptions<T>,
+  | 'isCaseSensitive'
+  | 'isPreFiltered'
+  | 'showPrevSelected'
+  | 'optionMatcher'
+  | 'searchValue'
+> {
   accumulator: Array<EuiComboBoxOptionOption<T>>;
   option: EuiComboBoxOptionOption<T>;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   normalizedSearchValue: string;
 }
-interface GetSelectedOptionForSearchValue<T>
-  extends Pick<
-    GetMatchingOptions<T>,
-    'isCaseSensitive' | 'searchValue' | 'selectedOptions'
-  > {
+interface GetSelectedOptionForSearchValue<T> extends Pick<
+  GetMatchingOptions<T>,
+  'isCaseSensitive' | 'searchValue' | 'selectedOptions'
+> {
   optionKey?: string;
 }
 
@@ -219,7 +217,7 @@ export const getMatchingOptions = <T>({
  * It matches all options with labels including the searched string.
  */
 export const createPartialStringEqualityOptionMatcher = <
-  TOption
+  TOption,
 >(): EuiComboBoxOptionMatcher<TOption> => {
   return ({ option, isCaseSensitive, normalizedSearchValue }) => {
     if (!normalizedSearchValue) {

@@ -299,8 +299,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         {renderOption
           ? renderOption(option, searchValue, 'euiComboBoxOption__renderOption')
           : rowHeight === 'auto'
-          ? this.renderVariableHeightOption(label)
-          : this.renderTruncatedOption(label, truncationProps)}
+            ? this.renderVariableHeightOption(label)
+            : this.renderTruncatedOption(label, truncationProps)}
       </EuiListItemLayout>
     );
   };

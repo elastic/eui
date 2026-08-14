@@ -11,8 +11,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 export interface EuiPageHeaderSectionProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {}
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {}
 
 export const EuiPageHeaderSection: FunctionComponent<
   EuiPageHeaderSectionProps

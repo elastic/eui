@@ -46,8 +46,8 @@ export const euiCardStyles = (
 
         /* Apply the outline to the whole card when the internal text button has focus */
         &:has(
-            [class*='euiCard__text'][class*='-interactive']:focus:focus-visible
-          ) {
+          [class*='euiCard__text'][class*='-interactive']:focus:focus-visible
+        ) {
           outline: ${euiTheme.focus.width} solid currentColor;
         }
       `,
@@ -160,8 +160,9 @@ export const euiCardStyles = (
           'border-top-left-radius',
           `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
         )}
-        ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
-          .medium} - ${euiTheme.border.width.thin});
+        ${logicals['border-top-right-radius']}: calc(${
+          euiTheme.border.radius.medium
+        } - ${euiTheme.border.width.thin});
 
         img {
           ${logicalCSS('width', '100%')}/* 4 */

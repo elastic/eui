@@ -120,7 +120,7 @@ const EuiFlexItemInternal = <TComponent extends ElementType>(
  */
 export const EuiFlexItem = forwardRef(EuiFlexItemInternal) as (<
   TComponent extends ElementType,
-  TComponentRef = ReactElement<any, TComponent>
+  TComponentRef = ReactElement<any, TComponent>,
 >(
   props: EuiFlexItemProps<TComponent> & {
     ref?: Ref<TComponentRef>;

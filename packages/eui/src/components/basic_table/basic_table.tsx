@@ -211,8 +211,10 @@ type CellPropsCallback<T extends object> = (
 ) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
-interface BasicTableProps<T extends object>
-  extends Omit<EuiTableProps, 'onChange'> {
+interface BasicTableProps<T extends object> extends Omit<
+  EuiTableProps,
+  'onChange'
+> {
   /**
    * Describes how to extract a unique ID from each item, used for selections & expanded rows
    */

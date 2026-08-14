@@ -25,9 +25,11 @@ export const euiOverlayMaskStyles = ({
     justify-content: center;
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in forwards;
     animation-iteration-count: 1;
-    background: ${highContrastMode
-      ? euiTheme.components.overlayMaskBackgroundHighContrast
-      : euiTheme.components.overlayMaskBackground};
+    background: ${
+      highContrastMode
+        ? euiTheme.components.overlayMaskBackgroundHighContrast
+        : euiTheme.components.overlayMaskBackground
+    };
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};

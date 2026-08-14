@@ -17,11 +17,10 @@ import {
   euiRangeTooltipValueStyles,
 } from './range_tooltip.styles';
 
-export interface EuiRangeTooltipProps
-  extends Pick<
-    EuiRangeProps,
-    'min' | 'max' | 'value' | 'valueAppend' | 'valuePrepend' | 'showTicks'
-  > {
+export interface EuiRangeTooltipProps extends Pick<
+  EuiRangeProps,
+  'min' | 'max' | 'value' | 'valueAppend' | 'valuePrepend' | 'showTicks'
+> {
   name?: string;
 }
 

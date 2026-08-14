@@ -74,8 +74,8 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
         ? styles.input.disabled.selected
         : styles.input.disabled.unselected
       : checked
-      ? styles.input.enabled.selected
-      : styles.input.enabled.unselected,
+        ? styles.input.enabled.selected
+        : styles.input.enabled.unselected,
   ];
 
   const labelClasses = classNames('euiRadio__label', labelProps?.className);

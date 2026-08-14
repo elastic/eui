@@ -62,7 +62,7 @@ describe('EuiSkipLink', () => {
         fireEvent.click(getByTestSubject('skip-link'));
         expect(scrollSpy).not.toHaveBeenCalled();
 
-        mockElement.getBoundingClientRect = () => ({ top: 1000 } as any);
+        mockElement.getBoundingClientRect = () => ({ top: 1000 }) as any;
         fireEvent.click(getByTestSubject('skip-link'));
         expect(scrollSpy).toHaveBeenCalled();
       });

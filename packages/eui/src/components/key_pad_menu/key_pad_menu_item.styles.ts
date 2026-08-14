@@ -30,11 +30,13 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
       border-radius: ${euiTheme.border.radius.medium};
-      color: ${euiTheme.colors
-        .textParagraph}; /* Override possible link color */
+      color: ${
+        euiTheme.colors.textParagraph
+      }; /* Override possible link color */
 
       ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.fast} ease-in,
+        transition:
+          background-color ${euiTheme.animation.fast} ease-in,
           box-shadow ${euiTheme.animation.fast} ease-in;
       }
     `,

@@ -42,8 +42,7 @@ export interface EuiResizableContainerRegistry {
 }
 
 export type EuiResizableButtonMouseEvent =
-  | MouseEvent<HTMLButtonElement>
-  | TouchEvent<HTMLButtonElement>;
+  MouseEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>;
 
 export type EuiResizableButtonKeyEvent = KeyboardEvent<HTMLButtonElement>;
 

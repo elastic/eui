@@ -24,8 +24,7 @@ import { EuiCheckboxControl } from './checkbox_control';
 import { euiCheckboxStyles } from './checkbox.styles';
 
 export interface EuiCheckboxProps
-  extends CommonProps,
-    InputHTMLAttributes<HTMLInputElement> {
+  extends CommonProps, InputHTMLAttributes<HTMLInputElement> {
   id: string;
   checked?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required

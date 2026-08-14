@@ -187,8 +187,8 @@ const getQueryFromSearch = (
 
   const searchProps = search as EuiSearchBarProps;
   const queryString = defaultQuery
-    ? searchProps.defaultQuery ?? searchProps.query ?? ''
-    : searchProps.query ?? '';
+    ? (searchProps.defaultQuery ?? searchProps.query ?? '')
+    : (searchProps.query ?? '');
 
   if (searchFormat === 'text') {
     return `"${queryString}"`;
@@ -227,11 +227,11 @@ const getInitialPagination = (
   const initialPageIndex =
     pagination === true
       ? 0
-      : pagination.pageIndex ?? pagination.initialPageIndex ?? 0;
+      : (pagination.pageIndex ?? pagination.initialPageIndex ?? 0);
   const initialPageSize =
     pagination === true
       ? defaultPageSize
-      : pagination.pageSize ?? pagination.initialPageSize ?? defaultPageSize;
+      : (pagination.pageSize ?? pagination.initialPageSize ?? defaultPageSize);
 
   if (
     showPerPageOptions &&
@@ -611,8 +611,8 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
       const displayQuery = isString(query)
         ? query
         : isString(defaultQuery)
-        ? defaultQuery
-        : '';
+          ? defaultQuery
+          : '';
 
       searchBar = (
         <EuiSearchBox

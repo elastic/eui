@@ -33,7 +33,7 @@ export const useInMemoryValues = (
   rowCount: number
 ): [
   EuiDataGridInMemoryValues,
-  EuiDataGridInMemoryRendererProps['onCellRender']
+  EuiDataGridInMemoryRendererProps['onCellRender'],
 ] => {
   /**
    * For performance, `onCellRender` below mutates the inMemoryValues object

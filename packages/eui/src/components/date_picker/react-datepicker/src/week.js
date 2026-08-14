@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,19 +20,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import Day from "./day";
-import WeekNumber from "./week_number";
-import * as utils from "./date_utils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Day from './day';
+import WeekNumber from './week_number';
+import * as utils from './date_utils';
 
 export default class Week extends React.Component {
   static get defaultProps() {
     return {
-      shouldCloseOnSelect: true
+      shouldCloseOnSelect: true,
     };
   }
   static propTypes = {
@@ -63,7 +63,7 @@ export default class Week extends React.Component {
     shouldCloseOnSelect: PropTypes.bool,
     utcOffset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     renderDayContents: PropTypes.func,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   handleDayClick = (day, event) => {
@@ -72,14 +72,14 @@ export default class Week extends React.Component {
     }
   };
 
-  handleDayMouseEnter = day => {
+  handleDayMouseEnter = (day) => {
     if (this.props.onDayMouseEnter) {
       this.props.onDayMouseEnter(day);
     }
   };
 
   handleWeekClick = (day, weekNumber, event) => {
-    if (typeof this.props.onWeekSelect === "function") {
+    if (typeof this.props.onWeekSelect === 'function') {
       this.props.onWeekSelect(day, weekNumber, event);
     }
     if (this.props.shouldCloseOnSelect) {
@@ -87,7 +87,7 @@ export default class Week extends React.Component {
     }
   };
 
-  formatWeekNumber = startOfWeek => {
+  formatWeekNumber = (startOfWeek) => {
     if (this.props.formatWeekNumber) {
       return this.props.formatWeekNumber(startOfWeek);
     }
@@ -107,7 +107,7 @@ export default class Week extends React.Component {
       );
     }
     return days.concat(
-      [0, 1, 2, 3, 4, 5, 6].map(offset => {
+      [0, 1, 2, 3, 4, 5, 6].map((offset) => {
         const day = utils.addDays(utils.cloneDate(startOfWeek), offset);
         return (
           <Day

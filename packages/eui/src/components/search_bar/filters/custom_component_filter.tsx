@@ -18,7 +18,7 @@ export interface CustomComponentProps {
 }
 
 export interface CustomComponentFilterConfigType<
-  T extends CustomComponentProps = CustomComponentProps
+  T extends CustomComponentProps = CustomComponentProps,
 > {
   type: 'custom_component';
   component: React.ComponentType<T>;
@@ -26,7 +26,7 @@ export interface CustomComponentFilterConfigType<
 }
 
 export interface CustomComponentFilterProps<
-  T extends CustomComponentProps = CustomComponentProps
+  T extends CustomComponentProps = CustomComponentProps,
 > {
   index: number;
   config: CustomComponentFilterConfigType<T>;

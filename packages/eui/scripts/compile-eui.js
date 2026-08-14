@@ -351,7 +351,9 @@ async function cleanup() {
 
         if (!shouldRetry) throw error;
 
-        await new Promise((resolve) => setTimeout(resolve, CLEANUP_RETRY_DELAY_MS));
+        await new Promise((resolve) =>
+          setTimeout(resolve, CLEANUP_RETRY_DELAY_MS)
+        );
       }
     }
   };

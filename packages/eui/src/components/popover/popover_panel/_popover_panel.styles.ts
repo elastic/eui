@@ -72,12 +72,14 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     /* 4 */
     light: css`
-      --euiPopoverBackgroundColor: ${euiTheme.components
-        .popoverPanelBackground};
+      --euiPopoverBackgroundColor: ${
+        euiTheme.components.popoverPanelBackground
+      };
     `,
     dark: css`
-      --euiPopoverBackgroundColor: ${euiTheme.components
-        .popoverPanelBackground};
+      --euiPopoverBackgroundColor: ${
+        euiTheme.components.popoverPanelBackground
+      };
     `,
 
     // Regular popover with an arrow, a transform animation/transition, and a
@@ -85,9 +87,11 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasTransform: {
       hasTransform: css`
         transform: translateY(0) translateX(0) translateZ(0); /* 2 */
-        ${hasShadow
-          ? euiShadowMedium(euiThemeContext, { property: 'filter' })
-          : ''}
+        ${
+          hasShadow
+            ? euiShadowMedium(euiThemeContext, { property: 'filter' })
+            : ''
+        }
 
         ${euiCanAnimate} {
           transition: ${opacityTransition}, ${transformTransition}; /* 2 */

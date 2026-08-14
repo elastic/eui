@@ -65,8 +65,9 @@ export const euiHeaderSectionItemButtonStyles = (
       badge: css`
         ${logicalCSS('top', '9%')}
         ${logicalCSS('right', badgeOffset)}
-        box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors
-          .emptyShade};
+        box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${
+          euiTheme.colors.emptyShade
+        };
       `,
     },
   };

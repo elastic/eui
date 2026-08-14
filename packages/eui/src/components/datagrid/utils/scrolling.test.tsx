@@ -85,7 +85,7 @@ describe('useScroll', () => {
               offsetLeft: 150,
               offsetWidth: 100,
               offsetHeight: 20,
-            } as any),
+            }) as any,
           contains: outerGrid.contains.bind(outerGrid),
         } as any,
       },

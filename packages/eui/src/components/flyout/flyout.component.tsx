@@ -419,7 +419,7 @@ export const EuiFlyoutComponent = forwardRef(
 
     const managerSessions = managerState?.sessions;
     const currentSession = managerSessions
-      ? managerSessions[managerSessions.length - 1] ?? null
+      ? (managerSessions[managerSessions.length - 1] ?? null)
       : null;
     const layoutMode = managerState?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
     const isActiveManagedFlyout =
@@ -490,8 +490,8 @@ export const EuiFlyoutComponent = forwardRef(
 
     // Derive sibling flyout data from manager state (single read, no extra hooks)
     const siblingFlyout = siblingFlyoutId
-      ? managerState?.flyouts.find((f) => f.flyoutId === siblingFlyoutId) ??
-        null
+      ? (managerState?.flyouts.find((f) => f.flyoutId === siblingFlyoutId) ??
+        null)
       : null;
     const _siblingFlyoutWidth = siblingFlyout?.width;
     const isSiblingFill = siblingFlyout?.size === 'fill';
@@ -551,7 +551,7 @@ export const EuiFlyoutComponent = forwardRef(
         ? managerRefWidth != null
           ? Math.min(managerRefWidth, containerReferenceWidth)
           : containerReferenceWidth
-        : managerRefWidth ?? containerReferenceWidth;
+        : (managerRefWidth ?? containerReferenceWidth);
 
     const {
       onMouseDown: onMouseDownResizableButton,
@@ -571,7 +571,7 @@ export const EuiFlyoutComponent = forwardRef(
       // below its configured minimum.
       siblingFlyoutWidth: isSiblingFill
         ? siblingFlyoutMinWidth
-        : siblingFlyoutWidth ?? undefined,
+        : (siblingFlyoutWidth ?? undefined),
       referenceWidth: effectiveReferenceWidth,
       onResize,
       side,

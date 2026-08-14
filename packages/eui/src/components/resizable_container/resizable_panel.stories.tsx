@@ -78,8 +78,8 @@ export const Playground: Story = {
       mode === 'collapsible'
         ? 'main'
         : mode === 'main'
-        ? 'collapsible'
-        : 'custom';
+          ? 'collapsible'
+          : 'custom';
     return (
       <EuiResizableContainer>
         {(EuiResizablePanel, EuiResizableButton) => (

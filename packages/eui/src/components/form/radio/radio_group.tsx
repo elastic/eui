@@ -21,8 +21,10 @@ import {
 import { EuiRadio, EuiRadioProps } from './radio';
 import { euiRadioGroupStyles } from './radio_group.styles';
 
-export interface EuiRadioGroupOption
-  extends Omit<EuiRadioProps, 'checked' | 'onChange'> {
+export interface EuiRadioGroupOption extends Omit<
+  EuiRadioProps,
+  'checked' | 'onChange'
+> {
   id: string;
 }
 

@@ -31,7 +31,7 @@ function errorOnMissingValues(token: string): never {
 
 interface lookupTokenOptions<
   T extends RenderableValues,
-  DEFAULT extends Renderable<T>
+  DEFAULT extends Renderable<T>,
 > {
   token: string;
   i18nMapping: I18nShape['mapping'];
@@ -44,7 +44,7 @@ interface lookupTokenOptions<
 function lookupToken<
   T extends RenderableValues,
   DEFAULT extends Renderable<T>,
-  RESOLVED extends ResolvedType<DEFAULT>
+  RESOLVED extends ResolvedType<DEFAULT>,
 >(options: lookupTokenOptions<T, DEFAULT>): RESOLVED {
   const { token, i18nMapping, valueDefault, i18nMappingFunc, values, render } =
     options;
@@ -110,7 +110,7 @@ export interface I18nTokensShape<T extends any[]> {
 export type EuiI18nProps<
   T,
   DEFAULT extends Renderable<T>,
-  DEFAULTS extends any[]
+  DEFAULTS extends any[],
 > = ExclusiveUnion<I18nTokenShape<T, DEFAULT>, I18nTokensShape<DEFAULTS>>;
 
 function isI18nTokensShape<T extends any[]>(
@@ -125,7 +125,7 @@ function isI18nTokensShape<T extends any[]>(
 const EuiI18n = <
   T extends {},
   DEFAULT extends Renderable<T>,
-  DEFAULTS extends any[]
+  DEFAULTS extends any[],
 >(
   props: EuiI18nProps<T, DEFAULT, DEFAULTS>
 ) => (
@@ -169,8 +169,8 @@ const EuiI18n = <
 type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactNode
   ? K
   : K extends () => infer RetValue
-  ? RetValue
-  : never;
+    ? RetValue
+    : never;
 
 // An array with multiple defaults can only be an array of strings or elements
 type DefaultsRenderType<K extends Array<string | ReactElement>> =

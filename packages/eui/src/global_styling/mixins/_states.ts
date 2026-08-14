@@ -11,10 +11,7 @@ import { useEuiTheme, UseEuiTheme } from '../../services';
 import { mathWithUnits } from '../functions';
 
 export type _EuiFocusRingOffset =
-  | 'inset'
-  | 'outset'
-  | 'center'
-  | CSSProperties['outlineOffset'];
+  'inset' | 'outset' | 'center' | CSSProperties['outlineOffset'];
 
 /**
  * It is best practice to utilize the browser's default `outline` property for handling focus rings.

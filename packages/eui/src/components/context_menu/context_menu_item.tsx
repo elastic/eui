@@ -38,7 +38,8 @@ export type EuiContextMenuItemIcon = IconType | ReactElement<any> | HTMLElement;
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export interface EuiContextMenuItemProps
-  extends PropsWithChildren,
+  extends
+    PropsWithChildren,
     CommonProps,
     Pick<EuiDisabledProps, 'hasAriaDisabled'> {
   icon?: EuiContextMenuItemIcon;

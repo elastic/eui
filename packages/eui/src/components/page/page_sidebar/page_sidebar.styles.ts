@@ -27,7 +27,8 @@ export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => {
       position: sticky;
     `,
     embellish: css`
-      background: linear-gradient(
+      background:
+        linear-gradient(
           160deg,
           ${embellishColor} 0,
           ${embellishColor} ${euiTheme.size.xl},

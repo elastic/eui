@@ -219,8 +219,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
       // NOTE: Keeping this as placeholder for potential future usage during Borealis changes
       // TODO: remove once visual refresh is completed and flags are obsolete
       const flagsToRecompute:
-        | Array<{ flag: string; componentKey: string }>
-        | [] = [];
+        Array<{ flag: string; componentKey: string }> | [] = [];
 
       const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
 

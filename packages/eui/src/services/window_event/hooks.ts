@@ -25,8 +25,7 @@ export const useEuiWindowEvent = <EventName extends keyof WindowEventMap>(
     ev: WindowEventMap[EventName]
   ) {
     return handlerRef.current.call(this, ev);
-  },
-  []);
+  }, []);
 
   useEffect(() => {
     window.addEventListener(event, stableHandler);

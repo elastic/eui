@@ -216,8 +216,7 @@ export const useEuiDisabledElement = <T extends HTMLElement>({
   onKeyUp,
   onKeyPress,
 }: EuiDisabledElementArgs):
-  | DisabledElementProps<T>
-  | AriaDisabledElementProps<T> => {
+  DisabledElementProps<T> | AriaDisabledElementProps<T> => {
   const elementRef = useRef<T | null>(null);
   const { preventElementEvents, resetElementEvents } =
     useCustomDisabledEvents();

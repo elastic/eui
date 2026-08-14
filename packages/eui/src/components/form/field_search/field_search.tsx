@@ -28,8 +28,7 @@ import { FormContext, FormContextValue } from '../eui_form_context';
 import { euiFieldSearchStyles } from './field_search.styles';
 
 export interface EuiFieldSearchProps
-  extends CommonProps,
-    InputHTMLAttributes<HTMLInputElement> {
+  extends CommonProps, InputHTMLAttributes<HTMLInputElement> {
   name?: string;
   id?: string;
   placeholder?: string;

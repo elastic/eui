@@ -324,8 +324,8 @@ export class EuiComboBoxInput<T> extends Component<
           const stateCss = isListOpen
             ? styles.open
             : isInvalid
-            ? styles.invalid
-            : undefined;
+              ? styles.invalid
+              : undefined;
 
           const cssStyles = [
             styles.euiComboBoxInputWrapper,

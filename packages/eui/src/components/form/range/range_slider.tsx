@@ -27,7 +27,8 @@ import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeSliderStyles } from './range_slider.styles';
 
 export interface EuiRangeSliderProps
-  extends Omit<
+  extends
+    Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'min' | 'max' | 'step' | 'onResize'
     >,

@@ -30,15 +30,17 @@ export const euiMarkdownEditorDropZoneStyles = (
     isDragging: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${euiTheme.colors
-          .backgroundBasePrimary} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${
+          euiTheme.colors.backgroundBasePrimary
+        } !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     isDraggingError: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${euiTheme.colors
-          .backgroundBaseDanger} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${
+          euiTheme.colors.backgroundBaseDanger
+        } !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     hasError: css`

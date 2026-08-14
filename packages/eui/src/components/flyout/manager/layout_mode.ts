@@ -42,31 +42,31 @@ export const useApplyFlyoutLayoutMode = () => {
     defaultContainerRaw == null
       ? null
       : typeof defaultContainerRaw === 'function'
-      ? defaultContainerRaw()
-      : typeof defaultContainerRaw === 'string'
-      ? (() => {
-          if (typeof document === 'undefined') return null;
-          const el = document.querySelector(defaultContainerRaw);
-          return el instanceof HTMLElement ? el : null;
-        })()
-      : defaultContainerRaw instanceof HTMLElement
-      ? defaultContainerRaw
-      : null;
+        ? defaultContainerRaw()
+        : typeof defaultContainerRaw === 'string'
+          ? (() => {
+              if (typeof document === 'undefined') return null;
+              const el = document.querySelector(defaultContainerRaw);
+              return el instanceof HTMLElement ? el : null;
+            })()
+          : defaultContainerRaw instanceof HTMLElement
+            ? defaultContainerRaw
+            : null;
   const container = stateContainerElement ?? defaultContainer ?? null;
 
   // Derive all session/flyout data from the single context read above
   const sessions = state?.sessions;
   const currentSession = sessions
-    ? sessions[sessions.length - 1] ?? null
+    ? (sessions[sessions.length - 1] ?? null)
     : null;
   const parentFlyoutId = currentSession?.mainFlyoutId;
   const childFlyoutId = currentSession?.childFlyoutId;
 
   const parentFlyout = parentFlyoutId
-    ? state?.flyouts.find((f) => f.flyoutId === parentFlyoutId) ?? null
+    ? (state?.flyouts.find((f) => f.flyoutId === parentFlyoutId) ?? null)
     : null;
   const childFlyout = childFlyoutId
-    ? state?.flyouts.find((f) => f.flyoutId === childFlyoutId) ?? null
+    ? (state?.flyouts.find((f) => f.flyoutId === childFlyoutId) ?? null)
     : null;
 
   const parentWidth = parentFlyout?.width;

@@ -61,7 +61,10 @@ const meta: Meta<EuiRangeProps> = {
       mapping: {
         icon: (
           <>
-            <EuiIcon type="faceHappy" style={{ verticalAlign: 'text-top' }} />{' '}
+            <EuiIcon
+              type="faceHappy"
+              style={{ verticalAlign: 'text-top' }}
+            />{' '}
           </>
         ),
         text: 'Prepended ',

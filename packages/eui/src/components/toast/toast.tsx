@@ -52,8 +52,7 @@ export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
 };
 
 export interface EuiToastProps
-  extends CommonProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  extends CommonProps, Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * Title of the toast. Should be used with text only. Do not pass complex content or custom components.
    * Ensure to always pass a title. It's currently marked as optional for backwards compatibility.

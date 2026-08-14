@@ -80,7 +80,7 @@ export const useFlyoutActivityStage = ({
   // Derive all needed values from single context read
   const sessions = state?.sessions;
   const currentSession = sessions
-    ? sessions[sessions.length - 1] ?? null
+    ? (sessions[sessions.length - 1] ?? null)
     : null;
   const isActive =
     currentSession?.mainFlyoutId === flyoutId ||

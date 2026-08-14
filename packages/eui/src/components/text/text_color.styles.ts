@@ -33,8 +33,9 @@ export const euiTextColorStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.textWarning};
   `,
   ghost: css`
-    color: ${euiTheme.colors
-      .textGhost} !important; /* stylelint-disable-line declaration-no-important */
+    color: ${
+      euiTheme.colors.textGhost
+    } !important; /* stylelint-disable-line declaration-no-important */
   `,
   inherit: css`
     color: inherit;

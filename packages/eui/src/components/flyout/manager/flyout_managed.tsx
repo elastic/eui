@@ -113,7 +113,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
     const managerSessions = managerState?.sessions;
     const currentSession = managerSessions
-      ? managerSessions[managerSessions.length - 1] ?? null
+      ? (managerSessions[managerSessions.length - 1] ?? null)
       : null;
     const layoutMode = managerState?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
     const isActive =
@@ -123,7 +123,8 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
     // Derive parentFlyout and parentSize from single state read
     const parentFlyoutId = currentSession?.mainFlyoutId;
     const parentFlyout = parentFlyoutId
-      ? managerState?.flyouts.find((f) => f.flyoutId === parentFlyoutId) ?? null
+      ? (managerState?.flyouts.find((f) => f.flyoutId === parentFlyoutId) ??
+        null)
       : null;
 
     // parentSize: the size of the parent (main) flyout for a child flyout

@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
 import React from 'react';
@@ -42,7 +42,7 @@ const range = (start, end, step = 1) =>
 describe('MonthDropdown', () => {
   let monthDropdown;
   let handleChangeResult;
-  const mockHandleChange = function(changeInput) {
+  const mockHandleChange = function (changeInput) {
     handleChangeResult = changeInput;
   };
   let sandbox;
@@ -70,7 +70,7 @@ describe('MonthDropdown', () => {
   });
 
   describe('scroll mode', () => {
-    beforeEach(function() {
+    beforeEach(function () {
       monthDropdown = getMonthDropdown();
     });
 
@@ -98,7 +98,7 @@ describe('MonthDropdown', () => {
     });
 
     it('closes the dropdown if outside is clicked', () => {
-      const monthNames = range(0, 12).map(M =>
+      const monthNames = range(0, 12).map((M) =>
         getMonthInLocale(getDefaultLocaleData(), newDate({ M }))
       );
       const onCancelSpy = sandbox.spy();
@@ -169,13 +169,13 @@ describe('MonthDropdown', () => {
       expect(select).to.have.length(1);
       expect(select.prop('value')).to.eq(11);
       var options = select.find('option');
-      expect(options.map(o => o.prop('value'))).to.eql(range(0, 12));
+      expect(options.map((o) => o.prop('value'))).to.eql(range(0, 12));
     });
 
     it('renders month options with default locale', () => {
       monthDropdown = getMonthDropdown({ dropdownMode: 'select' });
       var options = monthDropdown.find('option');
-      expect(options.map(o => o.text())).to.eql([
+      expect(options.map((o) => o.text())).to.eql([
         'January',
         'February',
         'March',
@@ -197,7 +197,7 @@ describe('MonthDropdown', () => {
         useShortMonthInDropdown: true,
       });
       var options = monthDropdown.find('option');
-      expect(options.map(o => o.text())).to.eql([
+      expect(options.map((o) => o.text())).to.eql([
         'Jan',
         'Feb',
         'Mar',
@@ -220,7 +220,7 @@ describe('MonthDropdown', () => {
         locale: 'zh-cn',
       });
       var options = monthDropdown.find('option');
-      expect(options.map(o => o.text())).to.eql([
+      expect(options.map((o) => o.text())).to.eql([
         '一月',
         '二月',
         '三月',

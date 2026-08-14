@@ -52,8 +52,7 @@ interface EuiTableRowCellSharedPropsShape extends EuiTableSharedWidthProps {
   truncateText?: boolean | { lines: number };
 }
 
-export interface EuiTableRowCellMobileOptionsShape
-  extends EuiTableRowCellSharedPropsShape {
+export interface EuiTableRowCellMobileOptionsShape extends EuiTableRowCellSharedPropsShape {
   /**
    * If false, will not render the cell at all for mobile
    * @default true

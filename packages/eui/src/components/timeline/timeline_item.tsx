@@ -22,7 +22,8 @@ export const VERTICAL_ALIGN = ['top', 'center'] as const;
 export type EuiTimelineItemVerticalAlign = (typeof VERTICAL_ALIGN)[number];
 
 export interface EuiTimelineItemProps
-  extends Omit<HTMLAttributes<HTMLElement>, 'children'>,
+  extends
+    Omit<HTMLAttributes<HTMLElement>, 'children'>,
     CommonProps,
     Omit<EuiTimelineItemIconProps, 'verticalAlign'>,
     Omit<EuiTimelineItemEventProps, 'verticalAlign'> {

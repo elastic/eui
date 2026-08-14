@@ -47,7 +47,10 @@ import {
 class MarkdownActions {
   styles: Record<string, EuiMarkdownEditorUiPlugin>;
 
-  constructor(public editorID: string, uiPlugins: EuiMarkdownEditorUiPlugin[]) {
+  constructor(
+    public editorID: string,
+    uiPlugins: EuiMarkdownEditorUiPlugin[]
+  ) {
     /**
      * This object is in the format:
      * [nameOfAction]: {[styles to apply]}

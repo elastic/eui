@@ -158,8 +158,9 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${notDisabledSelector} {
         &:hover {
-          background-color: ${euiTheme.colors
-            .backgroundBaseInteractiveSelectHover};
+          background-color: ${
+            euiTheme.colors.backgroundBaseInteractiveSelectHover
+          };
         }
       }
 
@@ -177,8 +178,9 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isSelectedFocused: css`
       ${notDisabledSelector} {
-        background-color: ${euiTheme.colors
-          .backgroundBaseInteractiveSelectHover};
+        background-color: ${
+          euiTheme.colors.backgroundBaseInteractiveSelectHover
+        };
       }
     `,
     tooltip: {

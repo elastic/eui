@@ -62,9 +62,12 @@ const config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(js|tsx?)$': ['babel-jest', {
-      configFile: path.resolve(__dirname, '../../.babelrc.js'),
-    }],
+    '^.+\\.(js|tsx?)$': [
+      'babel-jest',
+      {
+        configFile: path.resolve(__dirname, '../../.babelrc.js'),
+      },
+    ],
   },
   transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
   snapshotSerializers: [
@@ -87,9 +90,8 @@ const config = {
 };
 
 if (reactVersion === '17') {
-  config.moduleNameMapper[
-    '^@testing-library/react((\\\\/.*)?)$'
-  ] = `@testing-library/react-17$1`;
+  config.moduleNameMapper['^@testing-library/react((\\\\/.*)?)$'] =
+    `@testing-library/react-17$1`;
   config.moduleNameMapper['^react((\\/.*)?)$'] = `react-${reactVersion}$1`;
 
   // This import override is here just to make jest module resolver happy.
@@ -98,9 +100,8 @@ if (reactVersion === '17') {
   // React versions
   config.moduleNameMapper['^react-dom/client'] = 'react-dom';
 
-  config.moduleNameMapper[
-    '^react-dom((\\/.*)?)$'
-  ] = `react-dom-${reactVersion}$1`;
+  config.moduleNameMapper['^react-dom((\\/.*)?)$'] =
+    `react-dom-${reactVersion}$1`;
 }
 
 module.exports = config;

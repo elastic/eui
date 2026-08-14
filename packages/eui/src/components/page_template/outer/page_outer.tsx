@@ -16,8 +16,7 @@ export const PAGE_DIRECTIONS = ['row', 'column'] as const;
 type PageDirections = (typeof PAGE_DIRECTIONS)[number];
 
 export interface _EuiPageOuterProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
    * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`

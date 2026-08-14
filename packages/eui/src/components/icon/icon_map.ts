@@ -11,12 +11,7 @@ import type { ComponentType } from 'react';
 type IconImportLoader = () => Promise<{ icon: ComponentType }>;
 
 export type IconCategory =
-  | 'glyph'
-  | 'app'
-  | 'elasticLogo'
-  | 'thirdPartyLogo'
-  | 'ml'
-  | 'token';
+  'glyph' | 'app' | 'elasticLogo' | 'thirdPartyLogo' | 'ml' | 'token';
 
 type IconMetadata = {
   category?: IconCategory;

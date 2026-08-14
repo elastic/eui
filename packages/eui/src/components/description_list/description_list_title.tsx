@@ -17,8 +17,7 @@ import { euiDescriptionListTitleStyles } from './description_list_title.styles';
 
 // Export required for correct inference by HOCs
 export interface EuiDescriptionListTitleProps
-  extends CommonProps,
-    HTMLAttributes<HTMLElement> {}
+  extends CommonProps, HTMLAttributes<HTMLElement> {}
 
 export const EuiDescriptionListTitle: FunctionComponent<
   EuiDescriptionListTitleProps

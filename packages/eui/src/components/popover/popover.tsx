@@ -606,8 +606,8 @@ export class EuiPopover extends Component<Props, State> {
       offset: this.props.attachToAnchor
         ? offset
         : this.props.hasArrow
-        ? 16 + offset
-        : 8 + offset,
+          ? 16 + offset
+          : 8 + offset,
       arrowConfig: this.props.hasArrow
         ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },

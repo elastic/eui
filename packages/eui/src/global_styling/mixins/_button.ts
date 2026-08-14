@@ -91,8 +91,8 @@ const getButtonVariantTokenValues = (
   const highContrastForeground = ['warning', 'neutral', 'risk'].includes(color)
     ? euiTheme.colors.textInk
     : color === 'disabled'
-    ? euiTheme.components.buttons[textTokenName]
-    : euiTheme.colors.textInverse;
+      ? euiTheme.components.buttons[textTokenName]
+      : euiTheme.colors.textInverse;
 
   const foreground =
     variant === 'filled'
@@ -109,8 +109,8 @@ const getButtonVariantTokenValues = (
     borderColor: highContrastMode
       ? foreground
       : color === 'text'
-      ? euiTheme.colors.borderBasePlain
-      : 'transparent',
+        ? euiTheme.colors.borderBasePlain
+        : 'transparent',
   };
 };
 
@@ -306,12 +306,13 @@ export const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
             ${euiButtonFillColor(euiThemeContext, color)}
 
             /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
-              outline-color: ${euiThemeContext.colorMode === 'DARK' &&
-            color === 'text'
-              ? 'currentColor'
-              : color !== 'disabled'
-              ? euiThemeContext.euiTheme.colors.fullShade
-              : ''};
+              outline-color: ${
+                euiThemeContext.colorMode === 'DARK' && color === 'text'
+                  ? 'currentColor'
+                  : color !== 'disabled'
+                    ? euiThemeContext.euiTheme.colors.fullShade
+                    : ''
+              };
 
             ${euiButtonInteractionStyles(euiThemeContext, buttonColors)}
           `;

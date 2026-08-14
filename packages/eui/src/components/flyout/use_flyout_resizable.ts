@@ -50,8 +50,8 @@ export const useEuiFlyoutResizable = ({
     referenceWidth !== undefined
       ? referenceWidth
       : typeof window !== 'undefined'
-      ? window.innerWidth
-      : Infinity;
+        ? window.innerWidth
+        : Infinity;
 
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {

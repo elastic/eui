@@ -89,8 +89,8 @@ module.exports = {
               messageId: match.groups.shorthand
                 ? 'preferLogicalShorthand'
                 : match.groups.value
-                ? 'preferLogicalValue'
-                : 'preferLogicalProperty',
+                  ? 'preferLogicalValue'
+                  : 'preferLogicalProperty',
               data: { property },
               fix: function (fixer) {
                 if (match.groups.shorthand) return false;

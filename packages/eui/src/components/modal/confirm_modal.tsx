@@ -31,8 +31,10 @@ import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
 
-export interface EuiConfirmModalProps
-  extends Omit<EuiModalProps, 'children' | 'onClose' | 'title'> {
+export interface EuiConfirmModalProps extends Omit<
+  EuiModalProps,
+  'children' | 'onClose' | 'title'
+> {
   /**
    * ReactNode to render as this component's content
    */

@@ -50,7 +50,7 @@ export interface Rehype2ReactOptions {
 export type DefaultEuiMarkdownProcessingPlugins = [
   [Plugin, Remark2RehypeOptions], // first is well known
   [typeof rehype2react, Rehype2ReactOptions], // second is well known
-  ...PluggableList // any additional are generic
+  ...PluggableList, // any additional are generic
 ];
 
 export type DefaultProcessingPluginsConfig = {
