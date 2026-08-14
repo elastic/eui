@@ -22,7 +22,7 @@ import {
   isVariantSkipped,
   type VariantName,
   type VrtSkip,
-} from './vrt';
+} from './vrt.ts';
 
 /**
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
