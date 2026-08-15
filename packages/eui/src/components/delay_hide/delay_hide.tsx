@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { Component, ReactNode } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+
+export interface EuiDelayHideProps {
+  hide?: boolean;
+  minimumDuration?: number;
+  render: () => ReactNode;
+}
 
 function isComponentBecomingVisible(
   prevHide: boolean = false,
@@ -15,91 +21,62 @@ function isComponentBecomingVisible(
   return prevHide === true && nextHide === false;
 }
 
-export interface EuiDelayHideProps {
-  hide: boolean;
-  minimumDuration: number;
-  render: () => ReactNode;
-}
+export const EuiDelayHide = ({
+  hide = false,
+  minimumDuration = 1000,
+  render,
+}: EuiDelayHideProps) => {
+  const [countdownExpired, setCountdownExpired] = useState(hide);
+  const timeoutId = useRef<ReturnType<typeof setTimeout>>();
+  const prevHide = useRef<boolean>();
 
-interface EuiDelayHideState {
-  hide: boolean;
-  countdownExpired?: boolean;
-}
-
-export class EuiDelayHide extends Component<
-  EuiDelayHideProps,
-  EuiDelayHideState
-> {
-  static defaultProps = {
-    hide: false,
-    minimumDuration: 1000,
+  const finishCountdown = () => {
+    timeoutId.current = undefined;
+    setCountdownExpired(true);
   };
 
-  static getDerivedStateFromProps(
-    nextProps: EuiDelayHideProps,
-    prevState: EuiDelayHideState
-  ) {
-    const isBecomingVisible = isComponentBecomingVisible(
-      prevState.hide,
-      nextProps.hide
-    );
-    return {
-      hide: nextProps.hide,
-      countdownExpired: isBecomingVisible ? false : prevState.countdownExpired,
-    };
-  }
-
-  state = {
-    hide: this.props.hide,
-    countdownExpired: this.props.hide,
-  };
-
-  private timeoutId?: ReturnType<typeof setTimeout>;
-
-  componentDidMount() {
-    // if the component begins visible start counting
-    if (this.props.hide === false) {
-      this.startCountdown();
-    }
-  }
-
-  componentDidUpdate(prevProps: EuiDelayHideProps) {
-    const isBecomingVisible = isComponentBecomingVisible(
-      prevProps.hide,
-      this.props.hide
-    );
-    if (isBecomingVisible) {
-      this.startCountdown();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.timeoutId != null) {
-      clearTimeout(this.timeoutId);
-    }
-  }
-
-  startCountdown = () => {
+  const startCountdown = () => {
     // only start the countdown if there is not one in progress
-    if (this.timeoutId == null) {
-      this.timeoutId = setTimeout(
-        this.finishCountdown,
+    if (timeoutId.current == null) {
+      timeoutId.current = setTimeout(
+        finishCountdown,
         // even though `minimumDuration` cannot be undefined, passing a strict number type to setTimeout makes TS interpret
         // it as a NodeJS.Timer instead of a number. The DOM lib defines the setTimeout call as taking `number | undefined`
         // so we cast minimumDuration to this type instead to force TS's cooperation
-        this.props.minimumDuration as number | undefined
+        minimumDuration as number | undefined
       );
     }
   };
 
-  finishCountdown = () => {
-    this.timeoutId = undefined;
-    this.setState({ countdownExpired: true });
-  };
+  useEffect(() => {
+    const isFirstRender = prevHide.current === undefined;
+    const isBecomingVisible = isComponentBecomingVisible(
+      prevHide.current,
+      hide
+    );
+    prevHide.current = hide;
 
-  render() {
-    const shouldHideContent =
-      this.props.hide === true && this.state.countdownExpired;
-    return shouldHideContent ? null : this.props.render();
-  }
-}
+    if (isBecomingVisible) {
+      setCountdownExpired(false);
+    }
+
+    const shouldStartTimer =
+      (isFirstRender && hide === false) || isBecomingVisible;
+    if (shouldStartTimer) {
+      startCountdown();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hide]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutId.current != null) {
+        clearTimeout(timeoutId.current);
+      }
+    };
+  }, []);
+
+  return hide === true && countdownExpired ? null : render();
+};
+
+EuiDelayHide.displayName = 'EuiDelayHide';
