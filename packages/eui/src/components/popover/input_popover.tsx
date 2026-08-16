@@ -80,6 +80,9 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   inputRef: _inputRef,
   panelRef: _panelRef,
   offset = 2,
+  id,
+  disabled,
+  'aria-describedby': ariaDescribedBy,
   ...props
 }) => {
   const classes = classnames('euiInputPopover', className);
@@ -223,12 +226,29 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     }
   }, [closeOnScroll, closePopover, panelEl, inputEl]);
 
+  // Forward form-control attributes (id, disabled, aria-describedby) from EuiFormRow
+  // to the input element instead of letting them fall through to the anchor div.
+  // See https://github.com/elastic/eui/issues/9914
+  const inputWithFormProps = useMemo(() => {
+    if (input == null) return input;
+    if (React.isValidElement(input)) {
+      const injectedProps: Record<string, any> = {};
+      if (id !== undefined) injectedProps.id = id;
+      if (disabled !== undefined) injectedProps.disabled = disabled;
+      if (ariaDescribedBy !== undefined) injectedProps['aria-describedby'] = ariaDescribedBy;
+      if (Object.keys(injectedProps).length > 0) {
+        return React.cloneElement(input, injectedProps);
+      }
+    }
+    return input;
+  }, [input, id, disabled, ariaDescribedBy]);
+
   return (
     <EuiPopover
       className={classes}
       css={css(fullWidth ? undefined : logicalCSS('max-width', formMaxWidth))}
       display={display}
-      button={input}
+      button={inputWithFormProps}
       popoverRef={inputRef}
       panelRef={panelRef}
       ref={popoverClassRef}
