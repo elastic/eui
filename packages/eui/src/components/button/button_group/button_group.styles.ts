@@ -227,6 +227,10 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${splitPadding};
         overflow: hidden;
 
+        *:where(.euiButton, .euiButtonIcon):is(${euiDisabledSelector}) {
+          background-color: transparent;
+        }
+
         &:where([data-dividers='true'] &) {
           ${dividerStyles}
         }
