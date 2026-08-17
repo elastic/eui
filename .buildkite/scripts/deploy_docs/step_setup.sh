@@ -64,7 +64,7 @@ if is_pipeline_trigger_pull_request; then
   copy_to_root_directory=false
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
 elif is_pipeline_trigger_tag; then
-  latest_release_tag_on_main=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
+  latest_release_tag_on_main=$(git tag --list --merged main --sort=-version:refname | grep -E "^${release_tag_pattern}$" | head -1)
   bucket_directory="${BUILDKITE_TAG}/"
   copy_to_root_directory=false
   if [[ "${BUILDKITE_TAG}" == "${latest_release_tag_on_main}" ]]; then

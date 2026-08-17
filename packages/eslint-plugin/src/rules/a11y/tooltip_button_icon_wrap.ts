@@ -8,9 +8,12 @@
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { hasSpread } from '../../utils/has_spread';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 
 const BUTTON_ICON = 'EuiButtonIcon';
 const TOOLTIP = 'EuiToolTip';
+const COPY = 'EuiCopy';
+const BEFORE_MESSAGE = 'beforeMessage';
 
 function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
   let current: TSESTree.Node | undefined | null = node.parent;
@@ -36,6 +39,41 @@ function isWrappedByTooltip(node: TSESTree.JSXElement): boolean {
         break;
       default:
         return false;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * `EuiCopy` renders its render-prop child inside its own `EuiToolTip`, but only
+ * when `beforeMessage` is set — that prop is the tooltip's `content`, and
+ * `EuiToolTip` suppresses itself when the content is empty. So an
+ * `EuiButtonIcon` rendered within an `<EuiCopy beforeMessage="…">` already has a
+ * tooltip for sighted users and wrapping it in another `EuiToolTip` would create
+ * nested, conflicting tooltips — see the `no-nested-copy-tooltip` rule. Without
+ * a meaningful `beforeMessage` there is no such tooltip, so the button must
+ * still be wrapped.
+ *
+ * The exemption only applies to buttons in the render-prop output. If the walk
+ * crosses a `JSXAttribute` before reaching the `EuiCopy`, the button lives in a
+ * prop value (e.g. `beforeMessage={<EuiButtonIcon />}`) rather than the child
+ * `EuiCopy` renders, so it is not covered by the built-in tooltip.
+ */
+function isInsideEuiCopyWithBeforeMessage(node: TSESTree.JSXElement): boolean {
+  for (
+    let current: TSESTree.Node | undefined | null = node.parent;
+    current;
+    current = current.parent
+  ) {
+    if (current.type === 'JSXAttribute') return false;
+
+    if (
+      current.type === 'JSXElement' &&
+      current.openingElement.name.type === 'JSXIdentifier' &&
+      current.openingElement.name.name === COPY
+    ) {
+      return hasMeaningfulAttr(current.openingElement, BEFORE_MESSAGE);
     }
   }
 
@@ -76,6 +114,7 @@ export const TooltipButtonIconWrap = ESLintUtils.RuleCreator.withoutDocs({
 
         if (
           !isWrappedByTooltip(node) &&
+          !isInsideEuiCopyWithBeforeMessage(node) &&
           !hasSpread(openingElement.attributes)
         ) {
           context.report({

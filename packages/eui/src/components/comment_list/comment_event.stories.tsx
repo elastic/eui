@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { _eventColorArgType, _actionsExampleArgType } from './comment.stories';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';

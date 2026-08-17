@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
 import { euiPaletteColorBlind } from '../../services';

@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { StoryContext } from '@storybook/react';
-import type { API } from '@storybook/manager-api';
-import { STORY_PREPARED } from '@storybook/core-events';
+import type { StoryContext } from '@storybook/react';
+import type { API } from 'storybook/manager-api';
+import { STORY_PREPARED } from 'storybook/internal/core-events';
 
 import { EVENTS } from '../constants';
 import {

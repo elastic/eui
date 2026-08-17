@@ -64,7 +64,6 @@ export type EuiTokenMapType =
   | 'tokenTokenCount'
   | 'tokenVariable'
   | 'tokenVectorDense'
-  | 'tokenDenseVector' // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
   | 'tokenVectorSparse';
 
 /**
@@ -293,10 +292,6 @@ export const TOKEN_MAP: {
     color: 'euiColorVis4',
   },
   tokenVectorDense: {
-    shape: 'square',
-    color: 'euiColorVis8',
-  },
-  tokenDenseVector: {
     shape: 'square',
     color: 'euiColorVis8',
   },

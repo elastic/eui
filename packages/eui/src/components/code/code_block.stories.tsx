@@ -7,8 +7,8 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
-import type { PlayFunctionContext } from '@storybook/csf';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { PlayFunctionContext } from 'storybook/internal/csf';
 import { css } from '@emotion/react';
 
 import { within } from '../../../.storybook/test';
@@ -16,7 +16,7 @@ import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { mathWithUnits } from '../../global_styling';
 
 import { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
-import { expect, userEvent, waitFor } from '@storybook/test';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 

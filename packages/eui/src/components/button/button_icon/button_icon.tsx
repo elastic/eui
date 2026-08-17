@@ -24,6 +24,11 @@ import {
   useEuiDisabledElement,
 } from '../../../services/hooks/useEuiDisabledElement';
 import {
+  useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
+  _EuiExtendedButtonColor,
+} from '../../../global_styling/mixins/_button';
+import {
   CommonProps,
   ExclusiveUnion,
   PropsForAnchor,
@@ -31,12 +36,7 @@ import {
 } from '../../common';
 import { IconType, IconSize, EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
-import {
-  useEuiButtonColorCSS,
-  useEuiButtonFocusCSS,
-  _EuiExtendedButtonColor,
-} from '../../../global_styling/mixins/_button';
-import { isButtonDisabled } from '../button_display/_button_display';
+import { useEuiButtonCommonProps } from '../use_button_common_props';
 import { euiButtonIconStyles } from './button_icon.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -115,24 +115,33 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   className,
   iconType,
   iconSize = 'm',
-  color = 'primary',
+  color: _color = 'primary',
   isDisabled: _isDisabled,
   disabled,
-  hasAriaDisabled = false,
+  hasAriaDisabled: _hasAriaDisabled,
   href,
   type = 'button',
   display = 'empty',
   target,
   rel,
-  size = 'xs',
+  size: _size = 'xs',
   buttonRef,
   isSelected,
   isLoading,
   ...rest
 }) => {
-  const isDisabled = isButtonDisabled({
-    isDisabled: _isDisabled || disabled,
+  const {
+    size,
+    color,
+    isDisabled,
+    hasAriaDisabled = false,
+  } = useEuiButtonCommonProps<EuiButtonIconSizes, _EuiExtendedButtonColor>({
+    size: _size,
+    color: _color,
+    isDisabled: _isDisabled,
+    hasAriaDisabled: _hasAriaDisabled,
     href,
+    disabled,
     isLoading,
   });
   const { ref: disabledRef, ...disabledButtonProps } =

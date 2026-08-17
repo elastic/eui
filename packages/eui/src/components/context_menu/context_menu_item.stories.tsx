@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { disableStorybookControls } from '../../../.storybook/utils';
 
 import {
@@ -25,12 +25,20 @@ const meta: Meta<EuiContextMenuItemProps> = {
       control: 'radio',
       options: [undefined, true, false],
     },
+    hasAriaDisabled: {
+      description: `NOTE: Beta feature, may be changed or removed in the future.<br/>
+      Changes the native \`disabled\` attribute to \`aria-disabled\` to preserve focusability.
+      This results in a semantically disabled item without the default browser handling of the disabled state.<br/>
+      Use e.g. when a disabled item should have a tooltip.
+      `,
+    },
   },
   args: {
     // Component defaults
     layoutAlign: 'center',
     hasPanel: false,
     disabled: false,
+    hasAriaDisabled: false,
     external: undefined,
   },
 };

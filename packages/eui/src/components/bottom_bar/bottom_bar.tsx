@@ -245,6 +245,9 @@ const _EuiBottomBar = forwardRef<
   }
 );
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/bottom-bar/|EuiBottomBar documentation}
+ */
 export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
     const BottomBar = _EuiBottomBar;

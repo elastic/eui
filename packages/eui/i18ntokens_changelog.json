@@ -1,5 +1,66 @@
 [
   {
+    "version": "118.0.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.history.tooltip",
+        "changeType": "added",
+        "value": "Recently visited"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.first",
+        "changeType": "added",
+        "value": "First"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.last",
+        "changeType": "added",
+        "value": "Last"
+      }
+    ]
+  },
+  {
+    "version": "118.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavBeta.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.groupLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsedNavButton.ariaLabelButtonIcon",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "116.4.0",
     "changes": [
       {

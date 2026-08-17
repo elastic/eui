@@ -26,8 +26,8 @@ import {
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
-  isButtonDisabled,
 } from './button_display/_button_display';
+import { useEuiButtonCommonProps } from './use_button_common_props';
 
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
@@ -87,20 +87,30 @@ export type Props = ExclusiveUnion<
 /**
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
+ * @see {@link https://eui.elastic.co/docs/components/navigation/buttons/button/|EuiButton documentation}
  */
 export const EuiButton: FunctionComponent<Props> = ({
   className,
   buttonRef,
-  size = 'm',
-  color = 'primary',
+  size: _size = 'm',
+  color: _color = 'primary',
   fill,
+  isDisabled: _isDisabled,
+  hasAriaDisabled: _hasAriaDisabled,
+  fullWidth: _fullWidth,
   ...rest
 }) => {
-  const isDisabled = isButtonDisabled({
-    href: rest.href,
-    isDisabled: rest.isDisabled || rest.disabled,
-    isLoading: rest.isLoading,
-  });
+  const { size, color, isDisabled, hasAriaDisabled, fullWidth } =
+    useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
+      size: _size,
+      color: _color,
+      isDisabled: _isDisabled,
+      hasAriaDisabled: _hasAriaDisabled,
+      fullWidth: _fullWidth,
+      href: rest.href,
+      disabled: rest.disabled,
+      isLoading: rest.isLoading,
+    });
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
@@ -117,6 +127,9 @@ export const EuiButton: FunctionComponent<Props> = ({
       css={cssStyles}
       ref={buttonRef}
       size={size}
+      isDisabled={isDisabled}
+      hasAriaDisabled={hasAriaDisabled}
+      fullWidth={fullWidth}
       {...rest}
     />
   );

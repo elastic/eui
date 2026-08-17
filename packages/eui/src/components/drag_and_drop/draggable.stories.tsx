@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiPanel } from '../panel';

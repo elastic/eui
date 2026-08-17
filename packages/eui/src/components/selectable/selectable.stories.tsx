@@ -7,8 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { userEvent, waitFor, within, expect } from 'storybook/test';
 
 import {
   enableFunctionToggleControls,
@@ -123,6 +123,15 @@ export const WithSearch: Story = {
       'data-test-subj': 'selectableSearchHere',
       'aria-label': 'Filter options',
     },
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
+export const SingleSelection: Story = {
+  args: {
+    options,
+    singleSelection: true,
+    searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };

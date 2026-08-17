@@ -11,7 +11,9 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ButtonHTMLAttributes,
+  ReactElement,
   ReactNode,
+  useMemo,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../services';
@@ -23,6 +25,7 @@ import { _EuiButtonColor } from '../../../global_styling/mixins';
 import { EuiToolTipProps } from '../../../components/tool_tip';
 import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
 import { EuiButtonGroupButton } from './button_group_button';
+import { EuiButtonContext } from '../button_context';
 import {
   euiButtonGroupStyles,
   euiButtonGroupButtonsStyles,
@@ -59,7 +62,7 @@ export interface EuiButtonGroupOptionProps
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   * Optional props to pass to the underlying **[EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/)**
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
@@ -144,10 +147,13 @@ export type EuiButtonGroupProps = CommonProps &
       }
   );
 
-type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange' | 'color'> &
+type OptionsModeProps = Omit<
+  HTMLAttributes<HTMLFieldSetElement>,
+  'onChange' | 'color'
+> &
   EuiButtonGroupProps;
 
-export const EuiButtonGroup: FunctionComponent<Props> = ({
+const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
   className,
   buttonSize = 's',
   color = 'text',
@@ -173,7 +179,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     isFullWidth && styles.fullWidth,
-    styles[buttonSize],
+    styles.size[buttonSize],
   ];
 
   const classes = classNames(
@@ -227,4 +233,143 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
       </div>
     </fieldset>
   );
+};
+
+export const BUTTON_GROUP_GUTTER_SIZES = [
+  'none',
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+] as const;
+export type EuiButtonGroupGutterSize =
+  (typeof BUTTON_GROUP_GUTTER_SIZES)[number];
+
+export type EuiButtonGroupChildrenProps = CommonProps &
+  EuiDisabledProps & {
+    options?: never; // Prevents the `options` API from being used in this mode
+    /**
+     * A group title (required for accessibility).
+     * Rendered as `aria-label` on the group element.
+     */
+    legend: string;
+    /**
+     * Pass button components (`EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`) as children,
+     * some specific wrappers, like `EuiToolTip` and `EuiPopover` are allowed.
+     */
+    children: ReactNode;
+    /**
+     * Typical sizing is `s`. Medium `m` size should be reserved for major features.
+     */
+    buttonSize?: 's' | 'm';
+    /**
+     * Defines the type of a button group, which renders visually and functionally different:
+     * - default: arranges buttons in a horizontal row with optional gutter via `gutterSize`
+     */
+    variant?: 'default';
+    /**
+     * Defines the gutter size between children buttons.
+     * Applies only when `variant="default"`.
+     */
+    gutterSize?: EuiButtonGroupGutterSize;
+    /**
+     * Expands the whole group to the full width of the container.
+     * `EuiButton` children will stretch to fill the available space via their `fullWidth` prop.
+     */
+    isFullWidth?: boolean;
+    /**
+     * Callback fired when a child button is selected.
+     * Returns the `id` of the clicked option.
+     * Applies only for `variant="selection"`.
+     */
+    onChange?: (id: string) => void;
+  };
+
+type ChildrenModeProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
+  EuiButtonGroupChildrenProps;
+
+const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
+  className,
+  children,
+  legend,
+  buttonSize = 's',
+  variant = 'default',
+  gutterSize = 's',
+  isDisabled = false,
+  hasAriaDisabled = false,
+  isFullWidth = false,
+  // consumed by variant="selection" in a later chunk; destructured to prevent spread
+  onChange: _onChange,
+  ...rest
+}) => {
+  const wrapperCssStyles = [
+    euiButtonGroupStyles.euiButtonGroup,
+    isFullWidth && euiButtonGroupStyles.fullWidth,
+  ];
+
+  const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
+  const cssStyles = [
+    styles.euiButtonGroup__buttons,
+    isFullWidth && styles.fullWidth,
+    gutterSize && gutterSize !== 'none' && styles.gutterSize[gutterSize],
+  ];
+
+  const classes = classNames(
+    'euiButtonGroup',
+    { 'euiButtonGroup-isDisabled': isDisabled },
+    className
+  );
+
+  const contextValue = useMemo(() => {
+    return {
+      size: buttonSize,
+      isDisabled: isDisabled || undefined,
+      hasAriaDisabled: hasAriaDisabled || undefined,
+      fullWidth: isFullWidth,
+    };
+  }, [buttonSize, isDisabled, hasAriaDisabled, isFullWidth]);
+
+  return (
+    <div
+      css={wrapperCssStyles}
+      className={classes}
+      role="group"
+      data-variant={variant}
+      data-size={buttonSize}
+      aria-label={legend}
+      aria-disabled={isDisabled || undefined}
+      {...rest}
+    >
+      <div css={cssStyles} className="euiButtonGroup__buttons">
+        <EuiButtonContext.Provider value={contextValue}>
+          {children}
+        </EuiButtonContext.Provider>
+      </div>
+    </div>
+  );
+};
+
+/* Overloaded call signatures let one `EuiButtonGroup` component support both
+the `options` API and the `children` API, each with its own precise prop
+type, without adding another union layer. */
+interface EuiButtonGroupComponent {
+  (props: OptionsModeProps): ReactElement | null;
+  (props: ChildrenModeProps): ReactElement | null;
+  // A trailing catch-all signature to ensure that `ComponentProps<typeof EuiButtonGroup>`
+  // resolves to the full union
+  (props: OptionsModeProps | ChildrenModeProps): ReactElement | null;
+}
+
+// Renders either the (legacy) `options` API or the `children` API depending on which props are provided.
+export const EuiButtonGroup: EuiButtonGroupComponent = (
+  props: OptionsModeProps | ChildrenModeProps
+) => {
+  const { options } = props;
+
+  if (options) {
+    return <EuiButtonGroupOptions {...(props as OptionsModeProps)} />;
+  }
+
+  return <EuiButtonGroupChildren {...(props as ChildrenModeProps)} />;
 };

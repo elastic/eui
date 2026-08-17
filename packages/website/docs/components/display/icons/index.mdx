@@ -420,9 +420,28 @@ import customSvgSource from '!raw-loader!./custom.svg';
   ```
 </Demo>
 
-### Using icons as background images
+### Using icons outside of React
 
-EUI only lets you use icons by referring to their names in components (like `<EuiIcon type="grid" />`). The actual icon files aren’t exported, so you can’t use them directly in CSS as background images.
+EUI publishes raw SVG files and a JSON manifest for consumers who need to use icons outside of the React component layer - for example, to generate canvas images, produce CSS background images at build time, or render icons in non-React environments.
+
+**Individual SVG files** are available under `@elastic/eui/dist/svgs/`. For example:
+
+```
+@elastic/eui/dist/svgs/accessibility.svg
+@elastic/eui/dist/svgs/tokens/tokenAlias.svg
+```
+
+**JSON manifest** (`@elastic/eui/dist/eui-icons.json`) maps icon filename stems to their raw SVG content strings:
+
+```js
+import icons from ‘@elastic/eui/dist/eui-icons.json’;
+const svg = icons[‘accessibility’];         // plain glyph
+const tokenSvg = icons[‘tokens/tokenAlias’]; // token icon
+```
+
+:::warning Server-side and build-time use only
+`eui-icons.json` is intended for **server-side or build-time use** (e.g. Node.js scripts, SSR, canvas rasterization). Importing it in client-side code will inline all SVG strings into your JavaScript bundle.
+:::
 
 
 ## Tokens

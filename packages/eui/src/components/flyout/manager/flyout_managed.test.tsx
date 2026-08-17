@@ -19,11 +19,12 @@ jest.mock('react-dom', () => {
 
 import React from 'react';
 import { act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import * as ReactDOM from 'react-dom';
 
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
+import type { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiManagedFlyout } from './flyout_managed';
 import { EuiFlyoutManager } from './provider';
 import {
@@ -41,7 +42,16 @@ import { getFlyoutManagerStore, _resetFlyoutManagerStore } from './store';
 
 const mockFlushSync: jest.Mock = jest.mocked(ReactDOM.flushSync);
 
-// Mock base flyout to a simple div to avoid complex internals
+// Spied on by the mocked flyout below, so tests can assert what `flyoutMenuProps`
+// the manager derives and forwards to the menu. Must be prefixed with `mock` so
+// Jest allows referencing it from inside the `jest.mock` factory.
+const mockFlyoutRender = jest.fn();
+
+/** The `flyoutMenuProps` most recently forwarded to the underlying flyout. */
+const getLastMenuProps = (): EuiFlyoutMenuProps | undefined =>
+  mockFlyoutRender.mock.calls.at(-1)?.[0];
+
+// Mock base flyout to a simple div to avoid complex internals.
 jest.mock('../flyout.component', () => {
   const React = require('react');
   return {
@@ -51,6 +61,7 @@ jest.mock('../flyout.component', () => {
     ) {
       // Extract non-DOM props to prevent them from being passed to DOM
       const { flyoutMenuProps, minWidth, container, ...domProps } = props;
+      mockFlyoutRender(flyoutMenuProps);
       return React.createElement('div', {
         ref,
         ...domProps,
@@ -141,15 +152,15 @@ describe('EuiManagedFlyout', () => {
     expect(el).toHaveAttribute(PROPERTY_LEVEL, LEVEL_MAIN);
   });
 
-  it('calls closeAllFlyouts during cleanup when main flyout unmounts', () => {
+  it('calls closeAllFlyouts during cleanup when main flyout unmounts', async () => {
     const onClose = jest.fn();
 
     const { getByTestSubject, unmount } = renderInProvider(
       <EuiManagedFlyout id="close-me" level={LEVEL_MAIN} onClose={onClose} />
     );
 
-    act(() => {
-      userEvent.click(getByTestSubject('managed-flyout'));
+    await act(async () => {
+      await userEvent.click(getByTestSubject('managed-flyout'));
     });
 
     // The onClose should be called when the flyout is clicked
@@ -164,15 +175,15 @@ describe('EuiManagedFlyout', () => {
     expect(mockCloseFlyout).not.toHaveBeenCalled();
   });
 
-  it('calls closeFlyout during cleanup when child flyout unmounts', () => {
+  it('calls closeFlyout during cleanup when child flyout unmounts', async () => {
     const onClose = jest.fn();
 
     const { getByTestSubject, unmount } = renderInProvider(
       <EuiManagedFlyout id="close-me" level={LEVEL_CHILD} onClose={onClose} />
     );
 
-    act(() => {
-      userEvent.click(getByTestSubject('managed-flyout'));
+    await act(async () => {
+      await userEvent.click(getByTestSubject('managed-flyout'));
     });
 
     // The onClose should be called when the flyout is clicked
@@ -199,20 +210,21 @@ describe('EuiManagedFlyout', () => {
   });
 
   describe('flyoutMenuProps integration', () => {
-    it('passes flyoutMenuProps to the underlying flyout component', () => {
+    afterEach(() => {
+      mockFlyoutManager.historyItems = [];
+    });
+
+    it('forwards consumer-supplied menu props through to the flyout', () => {
+      const onClick = jest.fn();
       const flyoutMenuProps = {
         title: 'Test Menu',
         hideCloseButton: true,
-        customActions: [
-          {
-            iconType: 'gear',
-            onClick: jest.fn(),
-            'aria-label': 'Settings',
-          },
+        trailingActions: [
+          { iconType: 'gear', onClick, 'aria-label': 'Settings' },
         ],
       };
 
-      const { getByTestSubject } = renderInProvider(
+      renderInProvider(
         <EuiManagedFlyout
           id="test-flyout"
           level={LEVEL_MAIN}
@@ -221,47 +233,174 @@ describe('EuiManagedFlyout', () => {
         />
       );
 
-      const el = getByTestSubject('managed-flyout');
-      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
-    });
-
-    it('merges flyoutMenuProps with extracted title from flyoutMenuProps.title', () => {
-      const flyoutMenuProps = {
-        title: 'Original Title',
-        hideCloseButton: false,
-      };
-
-      const { getByTestSubject } = renderInProvider(
-        <EuiManagedFlyout
-          id="test-flyout"
-          level={LEVEL_MAIN}
-          onClose={() => {}}
-          flyoutMenuProps={flyoutMenuProps}
-        />
-      );
-
-      const el = getByTestSubject('managed-flyout');
-      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
-    });
-
-    it('merges flyoutMenuProps with extracted title from aria-label', () => {
-      const flyoutMenuProps = {
+      expect(getLastMenuProps()).toMatchObject({
+        title: 'Test Menu',
         hideCloseButton: true,
-        customActions: [],
-      };
+        trailingActions: [
+          { iconType: 'gear', onClick, 'aria-label': 'Settings' },
+        ],
+      });
+    });
 
-      const { getByTestSubject } = renderInProvider(
+    it('prefers flyoutMenuProps.title over aria-label for the menu title', () => {
+      renderInProvider(
         <EuiManagedFlyout
           id="test-flyout"
           level={LEVEL_MAIN}
           onClose={() => {}}
           aria-label="Aria Label Title"
-          flyoutMenuProps={flyoutMenuProps}
+          flyoutMenuProps={{ title: 'Original Title', hideCloseButton: false }}
         />
       );
 
-      const el = getByTestSubject('managed-flyout');
-      expect(el).toHaveAttribute('data-test-subj', 'managed-flyout');
+      expect(getLastMenuProps()?.title).toBe('Original Title');
+    });
+
+    it('falls back to aria-label for the menu title', () => {
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          aria-label="Aria Label Title"
+          flyoutMenuProps={{ hideCloseButton: true, trailingActions: [] }}
+        />
+      );
+
+      expect(getLastMenuProps()?.title).toBe('Aria Label Title');
+    });
+
+    it('forwards leadingActions alongside manager-controlled pagination', () => {
+      const pagination = {
+        currentIndex: 0,
+        total: 5,
+        onPrevious: jest.fn(),
+        onNext: jest.fn(),
+      };
+      const leadingActions = [
+        {
+          iconType: 'documents',
+          onClick: jest.fn(),
+          'aria-label': 'View surrounding documents',
+        },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{ pagination, leadingActions }}
+        />
+      );
+
+      expect(getLastMenuProps()?.pagination).toEqual(pagination);
+      expect(getLastMenuProps()?.leadingActions).toEqual(leadingActions);
+    });
+
+    it('derives showBackButton from history depth for main flyouts', () => {
+      mockFlyoutManager.historyItems = [
+        { title: 'Previous', onClick: jest.fn() },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Current' }}
+        />
+      );
+
+      // A single entry still gets a back button; the menu is what withholds the
+      // history popover, since the popover would duplicate the back button
+      expect(getLastMenuProps()?.showBackButton).toBe(true);
+      expect(getLastMenuProps()?.historyItems).toHaveLength(1);
+    });
+
+    it('does not show a back button when there is no history', () => {
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Current' }}
+        />
+      );
+
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
+    });
+
+    it('suppresses back button and history when pagination controls are shown', () => {
+      mockFlyoutManager.historyItems = [
+        { title: 'Previous', onClick: jest.fn() },
+        { title: 'Older', onClick: jest.fn() },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            pagination: {
+              currentIndex: 0,
+              total: 5,
+              onPrevious: jest.fn(),
+              onNext: jest.fn(),
+            },
+          }}
+        />
+      );
+
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
+    });
+
+    it('suppresses back button and history when pagination has a single item', () => {
+      mockFlyoutManager.historyItems = [
+        { title: 'Previous', onClick: jest.fn() },
+        { title: 'Older', onClick: jest.fn() },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          flyoutMenuProps={{
+            pagination: {
+              currentIndex: 0,
+              total: 1,
+              onPrevious: jest.fn(),
+              onNext: jest.fn(),
+            },
+          }}
+        />
+      );
+
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toEqual([]);
+    });
+
+    it('omits history controls for child flyouts', () => {
+      mockFlyoutManager.historyItems = [
+        { title: 'Previous', onClick: jest.fn() },
+        { title: 'Older', onClick: jest.fn() },
+      ];
+
+      renderInProvider(
+        <EuiManagedFlyout
+          id="test-flyout"
+          level={LEVEL_CHILD}
+          onClose={() => {}}
+          flyoutMenuProps={{ title: 'Child' }}
+        />
+      );
+
+      expect(getLastMenuProps()?.showBackButton).toBe(false);
+      expect(getLastMenuProps()?.historyItems).toBeUndefined();
     });
   });
 
@@ -487,7 +626,7 @@ describe('EuiManagedFlyout', () => {
       expect(onClose).not.toHaveBeenCalled();
     });
 
-    it('does not call onClose multiple times (double-firing prevention)', () => {
+    it('does not call onClose multiple times (double-firing prevention)', async () => {
       const onClose = jest.fn();
 
       const { getByTestSubject, unmount } = renderInProvider(
@@ -500,8 +639,8 @@ describe('EuiManagedFlyout', () => {
       );
 
       // First call via direct onClick
-      act(() => {
-        userEvent.click(getByTestSubject('managed-flyout'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('managed-flyout'));
       });
 
       expect(onClose).toHaveBeenCalledTimes(1);
@@ -517,7 +656,7 @@ describe('EuiManagedFlyout', () => {
   });
 
   describe('manager state update ordering', () => {
-    it('calls closeAllFlyouts before parent onClose callback', () => {
+    it('calls closeAllFlyouts before parent onClose callback', async () => {
       const onClose = jest.fn();
       const callOrder: string[] = [];
 
@@ -539,8 +678,8 @@ describe('EuiManagedFlyout', () => {
       );
 
       // Trigger close via user interaction (simulates X button)
-      act(() => {
-        userEvent.click(getByTestSubject('managed-flyout'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('managed-flyout'));
       });
 
       // Verify closeAllFlyouts was called BEFORE onClose
@@ -549,7 +688,7 @@ describe('EuiManagedFlyout', () => {
       expect(onClose).toHaveBeenCalled();
     });
 
-    it('prevents duplicate closeAllFlyouts calls when closing via user interaction', () => {
+    it('prevents duplicate closeAllFlyouts calls when closing via user interaction', async () => {
       const onClose = jest.fn();
 
       const { getByTestSubject, unmount } = renderInProvider(
@@ -565,8 +704,8 @@ describe('EuiManagedFlyout', () => {
       mockCloseAllFlyouts.mockClear();
 
       // User closes the flyout
-      act(() => {
-        userEvent.click(getByTestSubject('managed-flyout'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('managed-flyout'));
       });
 
       // closeAllFlyouts should be called once from the onClose handler
@@ -581,7 +720,7 @@ describe('EuiManagedFlyout', () => {
       expect(mockCloseAllFlyouts).toHaveBeenCalledTimes(1);
     });
 
-    it('handles cascade close correctly when main flyout closes', () => {
+    it('handles cascade close correctly when main flyout closes', async () => {
       const onCloseMain = jest.fn();
       const onCloseChild = jest.fn();
 
@@ -609,9 +748,9 @@ describe('EuiManagedFlyout', () => {
       expect(mainFlyout).toBeInTheDocument();
 
       // Close the main flyout
-      act(() => {
+      await act(async () => {
         if (mainFlyout) {
-          userEvent.click(mainFlyout);
+          await userEvent.click(mainFlyout);
         }
       });
 
@@ -745,7 +884,7 @@ describe('EuiManagedFlyout', () => {
       selectors.useIsFlyoutRegistered.mockReturnValue(false);
     });
 
-    it('calls closeFlyout when closing a child flyout', () => {
+    it('calls closeFlyout when closing a child flyout', async () => {
       const onCloseMain = jest.fn();
       const onCloseChild = jest.fn();
 
@@ -773,9 +912,9 @@ describe('EuiManagedFlyout', () => {
       expect(childFlyout).toBeInTheDocument();
 
       // Close the child flyout
-      act(() => {
+      await act(async () => {
         if (childFlyout) {
-          userEvent.click(childFlyout);
+          await userEvent.click(childFlyout);
         }
       });
 
@@ -786,7 +925,7 @@ describe('EuiManagedFlyout', () => {
       expect(onCloseChild).toHaveBeenCalled();
     });
 
-    it('uses flushSync to ensure synchronous state update before DOM cleanup', () => {
+    it('uses flushSync to ensure synchronous state update before DOM cleanup', async () => {
       const onClose = jest.fn();
 
       const { getByTestSubject } = renderInProvider(
@@ -803,8 +942,8 @@ describe('EuiManagedFlyout', () => {
       mockCloseAllFlyouts.mockClear();
 
       // Trigger close via user interaction
-      act(() => {
-        userEvent.click(getByTestSubject('managed-flyout'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('managed-flyout'));
       });
 
       // Verify flushSync was called
@@ -818,7 +957,7 @@ describe('EuiManagedFlyout', () => {
       expect(onClose).toHaveBeenCalled();
     });
 
-    it('calls closeAllFlyouts inside flushSync callback', () => {
+    it('calls closeAllFlyouts inside flushSync callback', async () => {
       const onClose = jest.fn();
       const callOrder: string[] = [];
 
@@ -850,8 +989,8 @@ describe('EuiManagedFlyout', () => {
       callOrder.length = 0;
 
       // Trigger close
-      act(() => {
-        userEvent.click(getByTestSubject('managed-flyout'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('managed-flyout'));
       });
 
       // Verify closeAllFlyouts is called INSIDE flushSync, and onClose is called AFTER

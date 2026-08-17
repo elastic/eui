@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { PlayFunction } from '@storybook/csf';
+import type { PlayFunction } from 'storybook/internal/csf';
 import type { ReactRenderer } from '@storybook/react';
 
 /**

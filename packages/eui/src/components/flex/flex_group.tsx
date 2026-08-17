@@ -115,6 +115,9 @@ const EuiFlexGroupInternal = <TComponent extends ElementType>(
 
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/flex/|EuiFlexGroup documentation}
+ */
 export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as (<
   TComponent extends ElementType = 'div',
   TComponentRef = ReactElement<any, TComponent>

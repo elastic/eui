@@ -1,3 +1,49 @@
+## [`v119.0.0`](https://github.com/elastic/eui/releases/v119.0.0)
+
+- Bundled icon glyph files into `dist/svgs/` and added `dist/eui-icons.json` manifest (mapping icon filename stems to SVG content strings) ([#9873](https://github.com/elastic/eui/pull/9873))
+- Added `hasAriaDisabled` prop to `EuiContextMenuItem` ([#9870](https://github.com/elastic/eui/pull/9870))
+- Updated `EuiButtonGroup`: ([#9845](https://github.com/elastic/eui/pull/9845))
+  - Added new render API via `children` prop that allows passing button components as children
+  - Added `variant` prop (usable only with `children` prop)
+  - Added `gutterSize` prop (usable only with `children` and `variant="default"` prop)
+- Updated `EuiButton`, `EuiButtonEmpty` and `EuiButtonIcon` to consume a `EuiButtonContext` allowing the group to control common props ([#9845](https://github.com/elastic/eui/pull/9845))
+- Updated `EuiFlyoutMenu`: ([#9856](https://github.com/elastic/eui/pull/9856))
+  - Added `leadingActions` and `trailingActions` props, which accept the new `EuiFlyoutMenuAction` type supporting `toolTipContent` and `toolTipProps`
+  - Changed the history trigger icon to `clockCounter`
+  - Added control-group dividers between built-in controls
+  - Added `onFirst`, `onLast` to `pagination`, which render optional buttons for jumping to the beginning and end of the list.
+- Deprecated additional `EuiIcon` types that are not represented in Figma ([#9815](https://github.com/elastic/eui/pull/9815))
+
+**Bug fixes**
+
+- Fixed the missing type declaration for the `focusEuiToolTipTrigger` test helper ([#9870](https://github.com/elastic/eui/pull/9870))
+- Fixed generated icon IDs to remain stable during server-side rendering ([#9866](https://github.com/elastic/eui/pull/9866))
+- Fixed a visual bug in `EuiButtonGroup` that rendered duplicate borders on disabled buttons ([#9845](https://github.com/elastic/eui/pull/9845))
+- The `EuiFlyoutMenu` history popover now only appears when `historyItems` has more than one entry. When there is a single entry in history, only the Back button is shown. ([#9856](https://github.com/elastic/eui/pull/9856))
+- Fixed `EuiFlyoutMenu` pagination controls disappearing when `pagination.total` is `1`; the controls now render (as "1 of 1" with both Prev/Next disabled) for any `total` of at least `1` ([#9856](https://github.com/elastic/eui/pull/9856))
+
+**Deprecations**
+
+- Deprecated `customActions` and `EuiFlyoutMenuCustomAction` in `EuiFlyoutMenu`; use `trailingActions` and `EuiFlyoutMenuAction` instead ([#9856](https://github.com/elastic/eui/pull/9856))
+
+**Breaking changes**
+
+- Removed most deprecated `EuiIcon` types and their icon assets. 16 widely-used deprecated aliases (e.g. `alert`, `search`, `visPie`) remain temporarily and will be removed in a future release ([#9832](https://github.com/elastic/eui/issues/9832)) ([#9815](https://github.com/elastic/eui/pull/9815))
+
+## [`v118.0.0`](https://github.com/elastic/eui/releases/v118.0.0)
+
+- Added new `translate` icon. ([#9842](https://github.com/elastic/eui/pull/9842))
+- Updated `EuiToolTip` to skip the entry animation when hovering between adjacent triggers in quick succession, so a group of tooltips behaves like a single continuous tooltip following the cursor ([#9749](https://github.com/elastic/eui/pull/9749))
+
+**Bug fixes**
+
+- Fixed `EuiToolTip` rare flicker when the cursor moved between inner children of the trigger ([#9749](https://github.com/elastic/eui/pull/9749))
+
+**Breaking changes**
+
+- Removed `EuiCollapsibleNavBeta` and all related beta navigation components (`EuiCollapsibleNavItem`, `EuiCollapsibleNavButton`, `KibanaCollapsibleNavSolution`, etc.). ([#9813](https://github.com/elastic/eui/pull/9813))
+- Hover behavior for nested `EuiToolTip` triggers has changed - parent tooltips will not open when the pointer is over a child tooltip trigger (only the innermost tooltip is shown) ([#9749](https://github.com/elastic/eui/pull/9749))
+
 ## [`v117.1.0`](https://github.com/elastic/eui/releases/v117.1.0)
 
 - Updated the outer border width on `EuiFlyout` to `1px` ([#9803](https://github.com/elastic/eui/pull/9803))

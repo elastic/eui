@@ -88,6 +88,9 @@ const initialState: EuiResizableContainerState = {
   resizers: {},
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/resizable-container/|EuiResizableContainer documentation}
+ */
 export const EuiResizableContainer: FunctionComponent<
   EuiResizableContainerProps
 > = ({

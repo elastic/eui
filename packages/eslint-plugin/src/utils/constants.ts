@@ -132,3 +132,44 @@ export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS = [
   'EuiBetaBadge',
   'EuiCard',
 ];
+
+export const HTML_TEXT_ELEMENTS = new Set([
+  'p',
+  'span',
+  'strong',
+  'em',
+  'b',
+  'i',
+  'small',
+  'code',
+]);
+
+export const EUI_TEXT_COMPONENTS = new Set([
+  'EuiText',
+  'EuiTextColor',
+  'EuiTextAlign',
+  'EuiCode',
+  'EuiMark',
+  'EuiHighlight',
+]);
+
+export const HTML_ACTION_ELEMENTS = new Set(['button', 'a']);
+
+/**
+ * Transparent layout wrappers inside `EuiCallOut` children that the rule should
+ * traverse rather than treat as opaque custom components.
+ */
+export const CALLOUT_LAYOUT_CONTAINERS = new Set([
+  'Fragment',
+  'EuiFlexGroup',
+  'EuiFlexGrid',
+  'EuiFlexItem',
+  'div',
+]);
+
+/**
+ * Third-party i18n components that render plain text and are common in EUI consumers
+ * (e.g. `FormattedMessage` from react-intl used extensively in Kibana).
+ * Rules treat these the same as `HTML_TEXT_ELEMENTS` / `EUI_TEXT_COMPONENTS`.
+ */
+export const I18N_TEXT_COMPONENTS = new Set(['FormattedMessage']);
