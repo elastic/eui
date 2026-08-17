@@ -1384,7 +1384,7 @@ export const typeToPathMap = {
   menu: withMetadata(() => import('./assets/menu'), {
     synonyms: ['menu', 'hamburger', 'navigation', 'options', 'bars'],
   }),
-  menuDown: () => import('./assets/menu_down'),
+  menuDown: () => import('./assets/transition_bottom_out'), // Deprecated in favor of `transitionBottomOut`
   menuLeft: withMetadata(() => import('./assets/menu_left'), {
     synonyms: [
       'menu left',
@@ -1407,7 +1407,7 @@ export const typeToPathMap = {
       'right',
     ],
   }),
-  menuUp: () => import('./assets/menu_up'),
+  menuUp: () => import('./assets/transition_top_out'), // Deprecated in favor of `transitionTopOut`
   merge: withMetadata(() => import('./assets/merge'), {
     synonyms: ['merge', 'combine', 'join', 'unite', 'git'],
   }),

@@ -122,6 +122,8 @@ export const DEPRECATED_ICON_ALIASES = {
   magnifyWithMinus: 'magnifyMinus',
   magnifyWithPlus: 'magnifyPlus',
   mapMarker: 'waypoint',
+  menuDown: 'transitionBottomOut',
+  menuUp: 'transitionTopOut',
   minusInCircle: 'minusCircle',
   minusInCircleFilled: 'minusCircle',
   minusInSquare: 'minusSquare',
