@@ -258,7 +258,17 @@ export const typeToPathMap = {
     synonyms: ['greek', 'test', 'experimental', 'preview', 'version', 'letter'],
   }),
   bolt: withMetadata(() => import('./assets/bolt'), {
-    synonyms: ['lightning', 'fast', 'power', 'electric', 'speed', 'energy'],
+    synonyms: [
+      'lightning',
+      'fast',
+      'power',
+      'electric',
+      'speed',
+      'energy',
+      'thunder',
+      'storm',
+      'serverless',
+    ],
   }),
   boxesVertical: () => import('./assets/boxes_vertical'), // Deprecated in favor of `ellipsis`
   branch: withMetadata(() => import('./assets/branch'), {
@@ -463,8 +473,56 @@ export const typeToPathMap = {
   cloud: withMetadata(() => import('./assets/cloud'), {
     synonyms: ['cloud', 'online', 'hosting', 'saas', 'remote'],
   }),
+  cloudBolt: withMetadata(() => import('./assets/cloud_bolt'), {
+    synonyms: [
+      'cloud',
+      'online',
+      'hosting',
+      'saas',
+      'remote',
+      'lightning',
+      'thunder',
+      'storm',
+      'status',
+      'fast',
+      'power',
+      'electric',
+      'speed',
+      'energy',
+    ],
+  }),
   cloudDrizzle: () => import('./assets/cloud_drizzle'),
+  cloudRain: withMetadata(() => import('./assets/cloud_rain'), {
+    synonyms: [
+      'cloud',
+      'online',
+      'hosting',
+      'saas',
+      'remote',
+      'rain',
+      'precipitation',
+      'storm',
+      'status',
+    ],
+  }),
   cloudStormy: () => import('./assets/cloud_stormy'),
+  cloudSun: withMetadata(() => import('./assets/cloud_sun'), {
+    synonyms: [
+      'cloud',
+      'online',
+      'hosting',
+      'saas',
+      'remote',
+      'sun',
+      'shine',
+      'overcast',
+      'status',
+      'light',
+      'day',
+      'theme',
+      'bright',
+    ],
+  }),
   cloudSunny: () => import('./assets/cloud_sunny'),
   cluster: withMetadata(() => import('./assets/cluster'), {
     synonyms: ['cluster', 'nodes', 'group', 'collection', 'distributed'],
@@ -1021,6 +1079,10 @@ export const typeToPathMap = {
   queryValue: withMetadata(() => import('./assets/query_value'), {
     synonyms: ['query', 'value', 'literal', 'data', 'input', 'filter'],
   }),
+  kubernetesNamespace: withMetadata(
+    () => import('./assets/kubernetes_namespace'),
+    { synonyms: ['kubernetes', 'k8s', 'namespace', 'ns', 'heptagon'] }
+  ),
   kubernetesNode: () => import('./assets/kubernetes_node'),
   kubernetesPod: () => import('./assets/kubernetes_pod'), // Deprecated in favor of `cube`
   cube: withMetadata(() => import('./assets/kubernetes_pod'), {
@@ -1316,7 +1378,9 @@ export const typeToPathMap = {
   megaphone: withMetadata(() => import('./assets/megaphone'), {
     synonyms: ['megaphone', 'announce', 'broadcast', 'marketing', 'loud'],
   }),
-  memory: () => import('./assets/memory'),
+  memory: withMetadata(() => import('./assets/memory'), {
+    synonyms: ['random access memory', 'ram', 'module'],
+  }),
   menu: withMetadata(() => import('./assets/menu'), {
     synonyms: ['menu', 'hamburger', 'navigation', 'options', 'bars'],
   }),
@@ -1466,7 +1530,21 @@ export const typeToPathMap = {
   play: withMetadata(() => import('./assets/play'), {
     synonyms: ['play', 'start', 'run', 'media', 'video'],
   }),
-  plugs: () => import('./assets/plugs'),
+  plugs: withMetadata(() => import('./assets/plugs'), {
+    synonyms: [
+      'plug',
+      'plugs',
+      'connector',
+      'connectors',
+      'plugin',
+      'plug in',
+      'plug-in',
+      'extension',
+      'add on',
+      'add-on',
+      'connected',
+    ],
+  }),
   plus: withMetadata(() => import('./assets/plus'), {
     synonyms: ['plus', 'add', 'new', 'create', 'increment'],
   }),
@@ -1520,6 +1598,32 @@ export const typeToPathMap = {
       ],
     }
   ),
+  productTimelion: withMetadata(() => import('./assets/product_timelion'), {
+    synonyms: ['timelion', 'clock', 'timer', 'time', 'lion'],
+  }),
+  productTSVB: withMetadata(() => import('./assets/product_tsvb'), {
+    synonyms: [
+      'tsvb',
+      'wrench',
+      'tool',
+      'fix',
+      'settings',
+      'repair',
+      'build',
+      'bar chart',
+      'vertical',
+      'graph',
+      'columns',
+      'visualization',
+      'plot',
+      'entity',
+      'analytics',
+      'time series',
+    ],
+  }),
+  push: withMetadata(() => import('./assets/push'), {
+    synonyms: ['push', 'move', 'force', 'right', 'pass'],
+  }),
   send: withMetadata(() => import('./assets/send'), {
     synonyms: ['send', 'submit', 'dispatch', 'arrow', 'share'],
   }),
@@ -1730,6 +1834,14 @@ export const typeToPathMap = {
     () => import('./assets/transition_left_out'),
     { synonyms: ['transition', 'left', 'out', 'animate', 'exit', 'motion'] }
   ),
+  transitionRightIn: withMetadata(
+    () => import('./assets/transition_right_in'),
+    { synonyms: ['transition', 'right', 'in', 'animate', 'enter', 'motion'] }
+  ),
+  transitionRightOut: withMetadata(
+    () => import('./assets/transition_right_out'),
+    { synonyms: ['transition', 'right', 'out', 'animate', 'exit', 'motion'] }
+  ),
   transitionTopIn: withMetadata(() => import('./assets/transition_top_in'), {
     synonyms: ['transition', 'top', 'in', 'animate', 'enter', 'motion'],
   }),
@@ -1814,7 +1926,7 @@ export const typeToPathMap = {
     { category: 'app' }
   ),
   wrench: withMetadata(() => import('./assets/wrench'), {
-    synonyms: ['wrench', 'tool', 'fix', 'settings', 'repair'],
+    synonyms: ['wrench', 'tool', 'fix', 'settings', 'repair', 'build'],
   }),
   // Token Icon Imports
   tokenAlias: withMetadata(() => import('./assets/token_alias'), {
