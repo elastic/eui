@@ -6,7 +6,7 @@ exports[`EuiFilterButton does not render a badge or count if numFilters is not p
 >
   <button
     aria-label="aria-label"
-    class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wjzv-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
+    class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
     data-test-subj="test subject string"
     type="button"
   >
@@ -226,7 +226,7 @@ exports[`EuiFilterButton renders 1`] = `
 >
   <button
     aria-label="aria-label"
-    class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wjzv-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
+    class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
     data-test-subj="test subject string"
     type="button"
   >
@@ -247,7 +247,7 @@ exports[`EuiFilterButton renders zero properly 1`] = `
 >
   <button
     aria-label="aria-label"
-    class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 css-wjzv-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
+    class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default-euiTestCss"
     data-test-subj="test subject string"
     type="button"
   >
