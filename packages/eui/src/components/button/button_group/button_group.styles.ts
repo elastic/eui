@@ -48,6 +48,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
   const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
   const containerPadding = euiTheme.size.xs;
+  const splitPadding = mathWithUnits(containerPadding, (x) => x / 2);
   const insetSize = (height: string) =>
     mathWithUnits([height, containerPadding], (x, y) => x - y * 2);
   const buttonGroupVariables = {
@@ -180,7 +181,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         display: inline-flex;
         align-items: center;
         max-inline-size: 100%;
-        padding: ${containerPadding};
+        /* splits padding between outer and inner container to ensure focus outlines are not clipped */
+        padding: ${splitPadding};
         border-radius: ${buttonGroupVariables.radius.outer};
         background-color: ${euiTheme.colors.backgroundBasePlain};
 
@@ -222,6 +224,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         flex-wrap: wrap;
         gap: ${buttonGroupVariables.gap.regular};
         max-inline-size: 100%;
+        padding: ${splitPadding};
         overflow: hidden;
 
         &:where([data-dividers='true'] &) {
