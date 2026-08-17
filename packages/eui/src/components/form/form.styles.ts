@@ -92,7 +92,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       controlCompressedHeight,
       (x) => x - 2
     ),
-    controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.control,
+    controlLayoutGroupInputCompressedBorderRadius:
+      euiTheme.border.radius.control,
     controlLayoutBorderRadius: euiTheme.border.radius.control,
     controlLayoutInnerBorderRadius: mathWithUnits(
       euiTheme.border.radius.control,
