@@ -491,7 +491,7 @@ export const typeToPathMap = {
       'energy',
     ],
   }),
-  cloudDrizzle: () => import('./assets/cloud_drizzle'),
+  cloudDrizzle: () => import('./assets/cloud_rain'), // Deprecated in favor of `cloudRain`
   cloudRain: withMetadata(() => import('./assets/cloud_rain'), {
     synonyms: [
       'cloud',
@@ -505,7 +505,7 @@ export const typeToPathMap = {
       'status',
     ],
   }),
-  cloudStormy: () => import('./assets/cloud_stormy'),
+  cloudStormy: () => import('./assets/cloud_bolt'), // Deprecated in favor of `cloudBolt`
   cloudSun: withMetadata(() => import('./assets/cloud_sun'), {
     synonyms: [
       'cloud',
@@ -523,7 +523,7 @@ export const typeToPathMap = {
       'bright',
     ],
   }),
-  cloudSunny: () => import('./assets/cloud_sunny'),
+  cloudSunny: () => import('./assets/cloud_sun'), // Deprecated in favor of `cloudSun`
   cluster: withMetadata(() => import('./assets/cluster'), {
     synonyms: ['cluster', 'nodes', 'group', 'collection', 'distributed'],
   }),
@@ -1069,7 +1069,7 @@ export const typeToPathMap = {
   queryField: withMetadata(() => import('./assets/query_field'), {
     synonyms: ['query', 'field', 'filter', 'column', 'attribute', 'selector'],
   }),
-  kqlFunction: () => import('./assets/kql_function'),
+  kqlFunction: () => import('./assets/push'), // Deprecated in favor of `push`
   queryOperand: withMetadata(() => import('./assets/query_operand'), {
     synonyms: ['query', 'operand', 'operator', 'logic', 'condition', 'rule'],
   }),
@@ -1446,7 +1446,7 @@ export const typeToPathMap = {
   move: withMetadata(() => import('./assets/move'), {
     synonyms: ['move', 'relocate', 'drag', 'position', 'transfer'],
   }),
-  namespace: () => import('./assets/namespace'),
+  namespace: () => import('./assets/kubernetes_namespace'), // Deprecated in favor of `kubernetesNamespace`
   nested: withMetadata(() => import('./assets/nested'), {
     synonyms: ['nested', 'hierarchy', 'tree', 'child', 'indent'],
   }),
@@ -1884,8 +1884,8 @@ export const typeToPathMap = {
   chartMetric: withMetadata(() => import('./assets/chart_metric'), {
     synonyms: ['metric', 'chart', 'kpi', 'measurement', 'stat', 'indicator'],
   }),
-  visTimelion: () => import('./assets/vis_timelion'),
-  visVisualBuilder: () => import('./assets/vis_visual_builder'),
+  visTimelion: () => import('./assets/product_timelion'), // Deprecated in favor of `productTimelion`
+  visVisualBuilder: () => import('./assets/product_tsvb'), // Deprecated in favor of `productTSVB`
   visualizeApp: withMetadata(() => import('./assets/app_visualize'), {
     category: 'app',
   }),
