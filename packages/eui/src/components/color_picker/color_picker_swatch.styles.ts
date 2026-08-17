@@ -9,10 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
-import {
-  logicalSizeCSS,
-  euiOutline,
-} from '../../global_styling';
+import { logicalSizeCSS, euiOutline } from '../../global_styling';
 import {
   highContrastModeStyles,
   preventForcedColors,
