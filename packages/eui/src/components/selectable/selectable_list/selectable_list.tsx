@@ -163,6 +163,7 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
    */
   allowExclusions?: boolean;
   searchable?: boolean;
+  isInvalid?: boolean;
   isPreFiltered?: EuiSelectableProps['isPreFiltered'];
   makeOptionId: (index: number | undefined) => string;
   listId: string;
@@ -272,6 +273,18 @@ export class EuiSelectableList<T> extends Component<
         // use last stack execution to prevent potential focus order issues
         setTimeout(() => ref.focus());
       }
+
+      this.updateListBoxAriaInvalid();
+    }
+  };
+
+  updateListBoxAriaInvalid = () => {
+    if (!this.listBoxRef) return;
+
+    if (this.props.isInvalid) {
+      this.listBoxRef.setAttribute('aria-invalid', 'true');
+    } else {
+      this.listBoxRef.removeAttribute('aria-invalid');
     }
   };
 
@@ -318,6 +331,7 @@ export class EuiSelectableList<T> extends Component<
       onFocusBadge,
       searchable,
       singleSelection,
+      isInvalid,
     } = this.props;
 
     if (prevProps.activeOptionIndex !== activeOptionIndex) {
@@ -347,6 +361,10 @@ export class EuiSelectableList<T> extends Component<
           }
         }
       }
+    }
+
+    if (prevProps.isInvalid !== isInvalid) {
+      this.updateListBoxAriaInvalid();
     }
 
     const optionArray = visibleOptions || options;
@@ -762,6 +780,7 @@ export class EuiSelectableList<T> extends Component<
       textWrap,
       truncationProps,
       autoFocus,
+      isInvalid: _isInvalid,
       ...rest
     } = this.props;
 

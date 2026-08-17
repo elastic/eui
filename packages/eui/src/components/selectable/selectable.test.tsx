@@ -106,6 +106,36 @@ describe('EuiSelectable', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    test('isInvalid', () => {
+      const renderSelectable = (isInvalid: boolean) => (
+        <EuiSelectable options={options} searchable isInvalid={isInvalid}>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      const { getByPlaceholderText, getByRole, rerender } = render(
+        renderSelectable(true)
+      );
+
+      expect(getByPlaceholderText('Filter options')).toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
+      expect(getByRole('listbox')).toHaveAttribute('aria-invalid', 'true');
+
+      rerender(renderSelectable(false));
+
+      expect(getByPlaceholderText('Filter options')).not.toHaveAttribute(
+        'aria-invalid',
+        'true'
+      );
+      expect(getByRole('listbox')).not.toHaveAttribute('aria-invalid', 'true');
+    });
+
     test('height can be forced', () => {
       const { container } = render(
         <EuiSelectable options={options} height={200} />

@@ -145,6 +145,10 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     isLoading?: boolean;
     /**
+     * Marks the search input and options list as invalid for assistive technology
+     */
+    isInvalid?: boolean;
+    /**
      * Sets the max height in pixels or pass `full` to allow
      * the whole group to fill the height of its container and
      * allows the list grow as well
@@ -560,6 +564,7 @@ export class EuiSelectable<T = {}> extends Component<
       searchProps,
       singleSelection,
       isLoading,
+      isInvalid,
       listProps,
       renderOption,
       height,
@@ -775,6 +780,7 @@ export class EuiSelectable<T = {}> extends Component<
                 ? searchAccessibleName
                 : { 'aria-label': placeholderName })}
               {...cleanedSearchProps}
+              isInvalid={isInvalid || cleanedSearchProps.isInvalid}
             />
 
             <EuiScreenReaderOnly>
@@ -858,6 +864,7 @@ export class EuiSelectable<T = {}> extends Component<
                   ? listAccessibleName
                   : searchable && { 'aria-label': placeholderName })}
                 {...cleanedListProps}
+                isInvalid={isInvalid}
                 {...virtualizedProps}
               />
             )}
