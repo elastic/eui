@@ -883,6 +883,19 @@ export type EuiDataGridStyleFooter = 'shade' | 'overline' | 'striped';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
+/**
+ * When `always`, the column header actions (⋮) control stays visible instead of
+ * appearing only on row hover or focus, which keeps header height stable when
+ * header labels wrap to multiple lines.
+ */
+export type EuiDataGridStyleHeaderColumnActionsVisibility = 'hover' | 'always';
+
+/**
+ * When `overlay`, the column header actions control is absolutely positioned over
+ * the header cell so toggling its visibility does not change flex layout or header height.
+ */
+export type EuiDataGridStyleHeaderColumnActionsDisplay = 'inline' | 'overlay';
+
 export interface EuiDataGridStyle {
   /**
    * Size of fonts used within the row and column cells
@@ -924,6 +937,17 @@ export interface EuiDataGridStyle {
    * @default hover
    */
   rowHover?: EuiDataGridStyleRowHover;
+  /**
+   * Controls visibility of the per-column header actions menu (⋮).
+   * @default hover
+   */
+  headerColumnActionsVisibility?: EuiDataGridStyleHeaderColumnActionsVisibility;
+  /**
+   * Whether the column header actions control participates in flex layout (`inline`)
+   * or is layered on top of the header cell content (`overlay`), avoiding layout shift on hover.
+   * @default inline
+   */
+  headerColumnActionsDisplay?: EuiDataGridStyleHeaderColumnActionsDisplay;
   /**
    * Optionally pass custom classes to highlight or customize certain rows
    */

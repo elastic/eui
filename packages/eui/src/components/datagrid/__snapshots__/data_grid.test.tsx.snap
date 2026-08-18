@@ -774,7 +774,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   A
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -826,7 +826,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   B
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -1241,7 +1241,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   A
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -1293,7 +1293,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   B
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -1861,7 +1861,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   Column A
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -1914,7 +1914,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   </div>
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -2304,7 +2304,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   A
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"
@@ -2356,7 +2356,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   B
                 </div>
                 <div
-                  class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+                  class="euiPopover euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
                 >
                   <button
                     aria-expanded="false"

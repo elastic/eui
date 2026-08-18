@@ -61,6 +61,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         {
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
           'euiDataGridHeaderCell--hasColumnActions': hasColumnActions,
+          'euiDataGridHeaderCell--columnActionsAlwaysVisible':
+            hasColumnActions &&
+            gridStyles.headerColumnActionsVisibility === 'always',
+          'euiDataGridHeaderCell--columnActionsOverlay':
+            hasColumnActions &&
+            gridStyles.headerColumnActionsDisplay === 'overlay',
         },
         displayHeaderCellProps?.className
       );
@@ -137,6 +143,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                         css={[
                           styles.euiDataGridHeaderCell__actions.action,
                           styles.euiDataGridHeaderCell__actions.start,
+                          gridStyles.headerColumnActionsVisibility === 'always'
+                            ? styles.euiDataGridHeaderCell__actionAlwaysVisible
+                            : undefined,
                         ]}
                       />
                     </span>
@@ -176,6 +185,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       hasFocusTrap={hasFocusTrap}
                       setPropsFromColumnActions={setPropsFromColumnActions}
                       actionsButtonRef={actionsButtonRef}
+                      showColumnActionsAlways={
+                        gridStyles.headerColumnActionsVisibility === 'always'
+                      }
                     />
                   )}
                 </>
