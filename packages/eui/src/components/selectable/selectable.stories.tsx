@@ -127,6 +127,15 @@ export const WithSearch: Story = {
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
 
+export const SingleSelection: Story = {
+  args: {
+    options,
+    singleSelection: true,
+    searchable: false,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
 export const WithTooltip: Story = {
   parameters: {
     controls: {

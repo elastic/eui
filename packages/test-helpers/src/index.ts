@@ -11,3 +11,4 @@ export { EuiComboBoxObject } from './playwright/components/combo_box/object';
 export { EuiDataGridObject } from './playwright/components/datagrid/object';
 export { EuiSuperSelectObject } from './playwright/components/form/super_select/object';
 export { EuiGlobalToastListObject } from './playwright/components/toast/object';
+export { EuiSelectableObject } from './playwright/components/selectable/object';
