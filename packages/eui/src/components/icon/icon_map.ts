@@ -2121,12 +2121,16 @@ const getTypeToPathMapMetadata = (
     synonyms: metadata?.synonyms,
   };
 };
+// Sorted alphabetically rather than by `typeToPathMap` insertion order, which has
+// drifted over time. These lists are only consumed by the docs site, where icons
+// are expected to be browsable in alphabetical order.
 const getTypeToPathMapCategoryIconTypes = (category: IconCategory) =>
   Object.entries(typeToPathMap)
     .filter(
       ([, loader]) => getTypeToPathMapMetadata(loader).category === category
     )
-    .map(([iconType]) => iconType as keyof typeof typeToPathMap);
+    .map(([iconType]) => iconType as keyof typeof typeToPathMap)
+    .sort((a, b) => a.localeCompare(b));
 
 export const typeToPathMapAppIconTypes =
   getTypeToPathMapCategoryIconTypes('app');
@@ -2148,6 +2152,9 @@ export const typeToPathMapDocsAppIconTypes = typeToPathMapAppIconTypes;
 const deprecatedIconsExcludedFromDocs = new Set([
   'alert',
   'boxesVertical',
+  'cloudDrizzle',
+  'cloudStormy',
+  'cloudSunny',
   'compute',
   'documents',
   'editorComment',
@@ -2159,11 +2166,15 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'indexOpen',
   'indexRuntime',
   'indexSettings',
+  'kqlFunction',
   'kubernetesPod',
   'list',
   'logRateAnalysis',
   'mapMarker',
+  'menuDown',
+  'menuUp',
   'mobile',
+  'namespace',
   'pagesSelect',
   'pinFilled',
   'search',
@@ -2177,6 +2188,8 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'visLine',
   'visPie',
   'visTable',
+  'visTimelion',
+  'visVisualBuilder',
 ]);
 
 export const typeToPathMapDocsGlyphIconTypes =
