@@ -29,8 +29,7 @@ import { euiFilterSelectItemStyles } from './filter_select_item.styles';
 
 export type FilterChecked = 'on' | 'off';
 export interface EuiFilterSelectItemProps
-  extends CommonProps,
-    ButtonHTMLAttributes<HTMLButtonElement> {
+  extends CommonProps, ButtonHTMLAttributes<HTMLButtonElement> {
   checked?: FilterChecked;
   showIcons?: boolean;
   isFocused?: boolean;

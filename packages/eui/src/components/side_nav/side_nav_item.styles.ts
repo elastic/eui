@@ -25,7 +25,8 @@ export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textHeading};
 
       /* The large y values allow the shadow to stretch beyond the side nav bounds to it's parents container */
-      box-shadow: 100px 0 0 0 ${emphasizedBackgroundColor},
+      box-shadow:
+        100px 0 0 0 ${emphasizedBackgroundColor},
         -100px 0 0 0 ${emphasizedBackgroundColor};
 
       /* Remove any extra box-shadows from nested emphasized items */

@@ -20,8 +20,10 @@ import {
 import { EuiCheckbox, EuiCheckboxProps } from './checkbox';
 import { euiCheckboxGroupStyles } from './checkbox_group.styles';
 
-export interface EuiCheckboxGroupOption
-  extends Omit<EuiCheckboxProps, 'checked' | 'onChange'> {
+export interface EuiCheckboxGroupOption extends Omit<
+  EuiCheckboxProps,
+  'checked' | 'onChange'
+> {
   id: string;
 }
 

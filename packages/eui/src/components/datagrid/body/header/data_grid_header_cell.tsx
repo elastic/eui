@@ -151,8 +151,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       displayAsText
                         ? displayAsText
                         : typeof children === 'string'
-                        ? children
-                        : undefined
+                          ? children
+                          : undefined
                     }
                   >
                     {children}

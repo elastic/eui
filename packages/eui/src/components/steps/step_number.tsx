@@ -44,8 +44,7 @@ export const STATUS = [
 export type EuiStepStatus = (typeof STATUS)[number];
 
 export interface EuiStepNumberProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
   /**
    * May replace the number provided in props.number with alternate styling
    */

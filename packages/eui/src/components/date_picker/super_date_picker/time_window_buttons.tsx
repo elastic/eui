@@ -126,8 +126,8 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   const zoomInTooltipContent = isInvalid
     ? invalidZoomInDescription
     : isWindowDurationZero
-    ? cannotZoomInDescription
-    : zoomInLabel;
+      ? cannotZoomInDescription
+      : zoomInLabel;
 
   const zoomOutId = useGeneratedHtmlId({ prefix: 'zoom_out' });
   const zoomOutLabel = useEuiI18n(

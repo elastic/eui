@@ -151,8 +151,8 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
                 invalidValue
                   ? numberInputError
                   : invalidDate
-                  ? dateInputError
-                  : null
+                    ? dateInputError
+                    : null
               }
             >
               <EuiFieldNumber

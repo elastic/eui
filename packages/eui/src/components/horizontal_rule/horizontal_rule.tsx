@@ -20,8 +20,7 @@ export type EuiHorizontalRuleSize = (typeof SIZES)[number];
 export type EuiHorizontalRuleMargin = (typeof MARGINS)[number];
 
 export interface EuiHorizontalRuleProps
-  extends CommonProps,
-    HTMLAttributes<HTMLHRElement> {
+  extends CommonProps, HTMLAttributes<HTMLHRElement> {
   /**
    * Defines the width of the HR.
    */

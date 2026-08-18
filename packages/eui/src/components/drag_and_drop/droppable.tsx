@@ -25,8 +25,7 @@ import { euiDroppableStyles } from './droppable.styles';
 export const SPACINGS = ['none', 's', 'm', 'l'] as const;
 
 export interface EuiDroppableProps
-  extends CommonProps,
-    Omit<DroppableProps, 'children'> {
+  extends CommonProps, Omit<DroppableProps, 'children'> {
   /**
    * ReactNode to render as this component's content
    */

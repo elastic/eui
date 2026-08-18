@@ -151,7 +151,10 @@ const hasStep = (step) => {
 
   if (hasStep('tag') && !isDryRun) {
     // Create a tag
-    execSync(`git tag -a -m "v${versionTarget}" "v${versionTarget}"`, execOptions);
+    execSync(
+      `git tag -a -m "v${versionTarget}" "v${versionTarget}"`,
+      execOptions
+    );
 
     // Skip prepush test hook on all pushes - we should have already tested previously,
     // or we skipped the test step for a reason
@@ -189,12 +192,10 @@ async function ensureCorrectSetup() {
     const upstreamRemote = execSync('git config --get remote.upstream.url')
       .toString()
       .trim();
-    if (
-      !(
-        upstreamRemote.endsWith(':elastic/eui.git') || // : for SSH, / for HTTPS
-        upstreamRemote.endsWith('/elastic/eui.git')
-      )
-    ) {
+    if (!(
+      upstreamRemote.endsWith(':elastic/eui.git') || // : for SSH, / for HTTPS
+      upstreamRemote.endsWith('/elastic/eui.git')
+    )) {
       console.error(
         'Your `upstream` remote must be pointed to https://github.com/elastic/eui.\nPlease run `git remote -v` to ensure you have an `upstream` remote pointed at the correct repo.\n'
       );

@@ -79,13 +79,13 @@ export interface _EuiPanelProps extends CommonProps {
 }
 
 export interface _EuiPanelDivlike
-  extends _EuiPanelProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+  extends _EuiPanelProps, Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
   element?: 'div';
 }
 
 export interface _EuiPanelButtonlike
-  extends _EuiPanelProps,
+  extends
+    _EuiPanelProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   element?: 'button';
 }

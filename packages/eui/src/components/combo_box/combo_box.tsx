@@ -64,7 +64,8 @@ type DrillProps<T> = Pick<
 >;
 
 export interface _EuiComboBoxProps<T>
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     DrillProps<T> {
   'data-test-subj'?: string;
@@ -922,7 +923,7 @@ export class EuiComboBox<T> extends Component<
                     compressed={compressed}
                     focusedOptionId={
                       this.hasActiveOption()
-                        ? this.state.listOptionRefs[
+                        ? (this.state.listOptionRefs[
                             this.state.activeOptionIndex
                           ]?.id ??
                           // uses the original `options` array to ensure a stable `id`, otherwise `aria-activedescendant`
@@ -931,7 +932,7 @@ export class EuiComboBox<T> extends Component<
                             `_option-${this.props.options.indexOf(
                               matchingOptions[activeOptionIndex]
                             )}`
-                          )
+                          ))
                         : undefined
                     }
                     fullWidth={fullWidth}

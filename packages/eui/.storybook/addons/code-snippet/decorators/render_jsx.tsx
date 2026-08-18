@@ -346,148 +346,161 @@ const _simplifyNodeForStringify = ({
     const updatedProps = updatedNode.props
       ? Object.keys(updatedNode.props).reduce<{
           [key: string]: any;
-        }>((acc, cur) => {
-          // filter out default props
-          if (defaultProps?.includes(cur)) {
-            return acc;
-          }
-          // check if the story has manual prop overrides that should be
-          // used instead of the original value
-          if (argsOverride?.[cur]) {
-            acc[cur] = argsOverride?.[cur];
+        }>(
+          (acc, cur) => {
+            // filter out default props
+            if (defaultProps?.includes(cur)) {
+              return acc;
+            }
+            // check if the story has manual prop overrides that should be
+            // used instead of the original value
+            if (argsOverride?.[cur]) {
+              acc[cur] = argsOverride?.[cur];
 
-            return acc;
-          }
-          // resolve css Emotion object back to css prop
-          // ensures tokens are output as is and not its resolved value
-          if (cur === 'css') {
-            // example:
-            //   css={({ euiTheme }) => ({})}
-            if (
-              typeof updatedNode.props[cur] === 'function' &&
-              euiTheme != null
-            ) {
-              const styles = updatedNode.props[cur]?.(euiTheme);
-              const fnString = String(updatedNode.props[cur]);
+              return acc;
+            }
+            // resolve css Emotion object back to css prop
+            // ensures tokens are output as is and not its resolved value
+            if (cur === 'css') {
+              // example:
+              //   css={({ euiTheme }) => ({})}
+              if (
+                typeof updatedNode.props[cur] === 'function' &&
+                euiTheme != null
+              ) {
+                const styles = updatedNode.props[cur]?.(euiTheme);
+                const fnString = String(updatedNode.props[cur]);
 
-              /**
-               *  get the style definitions from the function body
-               *  example:
-               *    "return {
-               *      backgroundColor: euiTheme.colors.emptyShade,
-               *      minBlockSize: '150vh'
-               *     };"
-               */
-              const regex = /return([\S\s]*?)\{([\S\s]*?)(};?)$/gm;
-              const matches = fnString.match(regex);
+                /**
+                 *  get the style definitions from the function body
+                 *  example:
+                 *    "return {
+                 *      backgroundColor: euiTheme.colors.emptyShade,
+                 *      minBlockSize: '150vh'
+                 *     };"
+                 */
+                const regex = /return([\S\s]*?)\{([\S\s]*?)(};?)$/gm;
+                const matches = fnString.match(regex);
 
-              if (matches) {
-                const rules = matches[0]
-                  .replace('return {\n', '')
-                  .replace('return{', '')
-                  .replace(/(\/\/)([\S\s]*?)$/g, '')
-                  .replaceAll(' ', '')
-                  .replaceAll('\n', '')
-                  .replace(/}}/g, '')
-                  .split(',');
+                if (matches) {
+                  const rules = matches[0]
+                    .replace('return {\n', '')
+                    .replace('return{', '')
+                    .replace(/(\/\/)([\S\s]*?)$/g, '')
+                    .replaceAll(' ', '')
+                    .replaceAll('\n', '')
+                    .replace(/}}/g, '')
+                    .split(',');
 
-                // transform string to styles object
-                const cssStyles = rules.reduce((acc, cur) => {
-                  const [property, value] = cur.split(':');
-                  const isToken = value.includes('euiTheme');
-                  const cleanedValue = isToken
-                    ? value.replace(/.+?(?=euiTheme)/g, '')
-                    : value.replaceAll("'", '').replaceAll('"', '');
+                  // transform string to styles object
+                  const cssStyles = rules.reduce(
+                    (acc, cur) => {
+                      const [property, value] = cur.split(':');
+                      const isToken = value.includes('euiTheme');
+                      const cleanedValue = isToken
+                        ? value.replace(/.+?(?=euiTheme)/g, '')
+                        : value.replaceAll("'", '').replaceAll('"', '');
 
-                  // if the value is a token, we pass the token name with variable
-                  // markers which are removed in a later step.
-                  // this way the value won't be coerced to another type when
-                  // transforming the element to a jsx string
-                  acc[property] = isToken
-                    ? `{{${cleanedValue}}}`
-                    : cleanedValue;
+                      // if the value is a token, we pass the token name with variable
+                      // markers which are removed in a later step.
+                      // this way the value won't be coerced to another type when
+                      // transforming the element to a jsx string
+                      acc[property] = isToken
+                        ? `{{${cleanedValue}}}`
+                        : cleanedValue;
+
+                      return acc;
+                    },
+                    {} as Record<string, any>
+                  );
+
+                  acc[cur] = {
+                    ...acc.style,
+                    ...cssStyles,
+                  };
 
                   return acc;
-                }, {} as Record<string, any>);
+                }
 
                 acc[cur] = {
                   ...acc.style,
-                  ...cssStyles,
+                  ...styles,
                 };
-
-                return acc;
               }
 
-              acc[cur] = {
-                ...acc.style,
-                ...styles,
-              };
+              /** resolves Emotion css object styles string to a styles object
+               *  example:
+               *    styles: "background-color:rgba(0, 119, 204, 0.1);:first-child{min-height:5em;};label:flexItem;"
+               *  returns:
+               *    {
+               *      "backgroundColor": "rgba(0, 119, 204, 0.1)",
+               *      ":first-child": {
+               *        "min-height": "5em"
+               *      }
+               *    }
+               */
+              if (
+                typeof updatedNode.props[cur] === 'object' &&
+                !Array.isArray(cur)
+              ) {
+                const styles: string[] = updatedNode.props[cur].styles
+                  .replace(';};', '};')
+                  .split(';');
+
+                const styleRules = styles.reduce(
+                  (acc, cur) => {
+                    if (
+                      cur &&
+                      !cur.startsWith(':') &&
+                      !cur.startsWith('label')
+                    ) {
+                      const [property, value] = cur.split(':');
+                      const propertyName = camelCase(property);
+
+                      acc[propertyName] = value;
+                    } else if (cur.startsWith(':')) {
+                      const string = cur.replace('{', ';').replace('}', '');
+                      const [property, propertyValue] = string.split(';');
+                      const [key, value] = propertyValue.split(':');
+
+                      acc[property] = {
+                        [key]: value,
+                      };
+                    }
+
+                    return acc;
+                  },
+                  {} as Record<string, any>
+                );
+
+                acc[cur] = {
+                  ...acc.style,
+                  ...styleRules,
+                };
+              }
+
+              return acc;
             }
 
-            /** resolves Emotion css object styles string to a styles object
-             *  example:
-             *    styles: "background-color:rgba(0, 119, 204, 0.1);:first-child{min-height:5em;};label:flexItem;"
-             *  returns:
-             *    {
-             *      "backgroundColor": "rgba(0, 119, 204, 0.1)",
-             *      ":first-child": {
-             *        "min-height": "5em"
-             *      }
-             *    }
-             */
-            if (
-              typeof updatedNode.props[cur] === 'object' &&
-              !Array.isArray(cur)
-            ) {
-              const styles: string[] = updatedNode.props[cur].styles
-                .replace(';};', '};')
-                .split(';');
-
-              const styleRules = styles.reduce((acc, cur) => {
-                if (cur && !cur.startsWith(':') && !cur.startsWith('label')) {
-                  const [property, value] = cur.split(':');
-                  const propertyName = camelCase(property);
-
-                  acc[propertyName] = value;
-                } else if (cur.startsWith(':')) {
-                  const string = cur.replace('{', ';').replace('}', '');
-                  const [property, propertyValue] = string.split(';');
-                  const [key, value] = propertyValue.split(':');
-
-                  acc[property] = {
-                    [key]: value,
-                  };
-                }
-
-                return acc;
-              }, {} as Record<string, any>);
-
-              acc[cur] = {
-                ...acc.style,
-                ...styleRules,
-              };
+            if (cur === 'style') {
+              return (acc[cur] = {
+                // prevent resolving style attribute
+                style: {
+                  ...acc[cur],
+                  ...updatedNode.props[cur],
+                },
+              });
             }
+
+            acc[cur] = _simplifyNodeForStringify({
+              node: updatedNode.props[cur],
+              context,
+            });
 
             return acc;
-          }
-
-          if (cur === 'style') {
-            return (acc[cur] = {
-              // prevent resolving style attribute
-              style: {
-                ...acc[cur],
-                ...updatedNode.props[cur],
-              },
-            });
-          }
-
-          acc[cur] = _simplifyNodeForStringify({
-            node: updatedNode.props[cur],
-            context,
-          });
-
-          return acc;
-        }, {} as Record<string, any>)
+          },
+          {} as Record<string, any>
+        )
       : {};
 
     return {

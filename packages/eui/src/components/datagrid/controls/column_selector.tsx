@@ -49,7 +49,7 @@ export const useDataGridColumnSelector = (
   ReactNode,
   EuiDataGridColumn[],
   (columns: string[]) => void,
-  (colFrom: string, colTo: string) => void
+  (colFrom: string, colTo: string) => void,
 ] => {
   const allowColumnHiding = getNestedObjectOptions(
     showColumnSelector,

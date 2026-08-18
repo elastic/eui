@@ -45,8 +45,8 @@ const withContainerQuery = ({
     .map(
       (sizeKey) => `
         @container ${CONTAINER_NAME}--${sizeKey} ${
-        CQC_BREAKPOINTS[sizeKey as EuiBannerSize][layout]
-      } {
+          CQC_BREAKPOINTS[sizeKey as EuiBannerSize][layout]
+        } {
           ${styles}
         }
       `

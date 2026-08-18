@@ -49,8 +49,8 @@ export const euiLoadingChartBarStyles = (euiThemeContext: UseEuiTheme) => {
       highContrastMode === 'forced'
         ? euiTheme.colors.fullShade
         : highContrastMode
-        ? euiTheme.colors.darkShade
-        : color
+          ? euiTheme.colors.darkShade
+          : color
     }`;
   });
 

@@ -23,7 +23,8 @@ import type { _SingleRangeValue, _SharedRangeInputSide } from './types';
 import { euiRangeInputStyles } from './range_input.styles';
 
 export interface EuiRangeInputProps
-  extends Omit<EuiFieldNumberProps, 'max' | 'min' | 'value' | 'step'>,
+  extends
+    Omit<EuiFieldNumberProps, 'max' | 'min' | 'value' | 'step'>,
     Omit<_SingleRangeValue, 'onChange'>,
     _SharedRangeInputSide {
   autoSize?: boolean;

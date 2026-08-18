@@ -48,8 +48,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         display: block;
 
         ${euiCanAnimate} {
-          transition: width ${transition}, height ${transition},
-            margin ${transition}, background-color ${transition};
+          transition:
+            width ${transition},
+            height ${transition},
+            margin ${transition},
+            background-color ${transition};
         }
       }
 
@@ -85,7 +88,9 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           /* Overrides default transition so that "grab" background-color doesn't animate */
           ${euiCanAnimate} {
-            transition: width ${transition}, height ${transition};
+            transition:
+              width ${transition},
+              height ${transition};
             transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
           }
         }

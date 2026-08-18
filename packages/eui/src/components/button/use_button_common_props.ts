@@ -13,7 +13,7 @@ import { isButtonDisabled } from './button_display/_button_display';
 
 export interface EuiButtonCommonPropsInput<
   TSize extends string,
-  TColor extends string
+  TColor extends string,
 > {
   size: TSize;
   color: TColor;
@@ -27,7 +27,7 @@ export interface EuiButtonCommonPropsInput<
 
 export interface EuiButtonCommonPropsOutput<
   TSize extends string,
-  TColor extends string
+  TColor extends string,
 > {
   size: TSize;
   color: TColor;
@@ -42,7 +42,7 @@ export interface EuiButtonCommonPropsOutput<
  */
 export function useEuiButtonCommonProps<
   TSize extends string,
-  TColor extends string
+  TColor extends string,
 >({
   size,
   color,

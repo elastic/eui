@@ -32,7 +32,8 @@ import {
 } from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends Omit<EuiButtonDisplayContentProps, 'size'>,
+  extends
+    Omit<EuiButtonDisplayContentProps, 'size'>,
     CommonProps,
     EuiDisabledProps {
   /**

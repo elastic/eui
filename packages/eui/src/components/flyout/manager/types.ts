@@ -27,8 +27,7 @@ import {
 // Core domain types for the flyout manager
 
 export type EuiFlyoutLayoutMode =
-  | typeof LAYOUT_MODE_STACKED
-  | typeof LAYOUT_MODE_SIDE_BY_SIDE;
+  typeof LAYOUT_MODE_STACKED | typeof LAYOUT_MODE_SIDE_BY_SIDE;
 
 export type EuiFlyoutLevel = typeof LEVEL_MAIN | typeof LEVEL_CHILD;
 

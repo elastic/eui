@@ -17,7 +17,8 @@ import type { _SharedRangeInputProps } from './types';
 import { euiRangeWrapperStyles } from './range_wrapper.styles';
 
 export interface EuiRangeWrapperProps
-  extends CommonProps,
+  extends
+    CommonProps,
     HTMLAttributes<HTMLDivElement>,
     Pick<_SharedRangeInputProps, 'fullWidth' | 'compressed'> {}
 

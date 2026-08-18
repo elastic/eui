@@ -36,12 +36,10 @@ const meta: Meta<EuiSuperDatePickerProps> = {
   decorators: [
     (Story, { args }) => (
       <div
-        css={({ euiTheme }) =>
-          css`
-            /* create space for popover to open without overlapping the inputs */
-            padding: ${euiTheme.size.s};
-          `
-        }
+        css={({ euiTheme }) => css`
+          /* create space for popover to open without overlapping the inputs */
+          padding: ${euiTheme.size.s};
+        `}
       >
         <Story {...args} />
       </div>

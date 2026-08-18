@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,22 +20,22 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import YearDropdown from "./year_dropdown";
-import MonthDropdown from "./month_dropdown";
-import MonthYearDropdown from "./month_year_dropdown";
-import Month from "./month";
-import Time from "./time";
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-import CalendarContainer from "./calendar_container";
+import YearDropdown from './year_dropdown';
+import MonthDropdown from './month_dropdown';
+import MonthYearDropdown from './month_year_dropdown';
+import Month from './month';
+import Time from './time';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import CalendarContainer from './calendar_container';
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility/screen_reader_only';
-import { EuiButtonIcon } from "../../../button";
+import { EuiButtonIcon } from '../../../button';
 import {
   now,
   setMonth,
@@ -61,21 +61,23 @@ import {
   allDaysDisabledBefore,
   allDaysDisabledAfter,
   getEffectiveMinDate,
-  getEffectiveMaxDate
-} from "./date_utils";
+  getEffectiveMaxDate,
+} from './date_utils';
 
-const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
+const FocusTrapContainer = React.forwardRef((props, ref) => (
+  <div ref={ref} className="react-datepicker__focusTrap" {...props} />
+));
 
 const DROPDOWN_FOCUS_CLASSNAMES = [
-  "react-datepicker__year-select",
-  "react-datepicker__month-select",
-  "react-datepicker__month-year-select"
+  'react-datepicker__year-select',
+  'react-datepicker__month-select',
+  'react-datepicker__month-year-select',
 ];
 
 const isDropdownSelect = (element = {}) => {
-  const classNames = (element.className || "").split(/\s+/);
+  const classNames = (element.className || '').split(/\s+/);
   return DROPDOWN_FOCUS_CLASSNAMES.some(
-    testClassname => classNames.indexOf(testClassname) >= 0
+    (testClassname) => classNames.indexOf(testClassname) >= 0
   );
 };
 
@@ -89,7 +91,7 @@ export default class Calendar extends React.Component {
       .isRequired,
     dayClassName: PropTypes.func,
     disabledKeyboardNavigation: PropTypes.bool,
-    dropdownMode: PropTypes.oneOf(["scroll", "select"]),
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']),
     endDate: PropTypes.object,
     excludeDates: PropTypes.array,
     filterDate: PropTypes.func,
@@ -150,7 +152,7 @@ export default class Calendar extends React.Component {
     renderDayContents: PropTypes.func,
     updateSelection: PropTypes.func.isRequired,
     accessibleMode: PropTypes.bool,
-    enableFocusTrap: PropTypes.bool
+    enableFocusTrap: PropTypes.bool,
   };
 
   static get defaultProps() {
@@ -158,10 +160,10 @@ export default class Calendar extends React.Component {
       onDropdownFocus: () => {},
       monthsShown: 1,
       forceShowMonthNavigation: false,
-      timeCaption: "Time",
-      previousMonthButtonLabel: "Previous Month",
-      nextMonthButtonLabel: "Next Month",
-      enableFocusTrap: true
+      timeCaption: 'Time',
+      previousMonthButtonLabel: 'Previous Month',
+      nextMonthButtonLabel: 'Next Month',
+      enableFocusTrap: true,
     };
   }
 
@@ -171,7 +173,7 @@ export default class Calendar extends React.Component {
       date: this.localizeDate(this.getDateInView()),
       selectingDate: null,
       monthContainer: null,
-      pauseFocusTrap: false
+      pauseFocusTrap: false,
     };
     this.monthRef = React.createRef();
     this.yearRef = React.createRef();
@@ -195,28 +197,28 @@ export default class Calendar extends React.Component {
       !isSameDay(this.props.preSelection, prevProps.preSelection)
     ) {
       this.setState({
-        date: this.localizeDate(this.props.preSelection)
+        date: this.localizeDate(this.props.preSelection),
       });
     } else if (
       this.props.openToDate &&
       !isSameDay(this.props.openToDate, prevProps.openToDate)
     ) {
       this.setState({
-        date: this.localizeDate(this.props.openToDate)
+        date: this.localizeDate(this.props.openToDate),
       });
     }
   }
 
   setMonthRef = (node) => {
     this.monthRef = node;
-  }
+  };
 
   setYearRef = (node) => {
     this.yearRef = node;
-  }
+  };
 
   handleOnDropdownToggle = (isOpen, dropdown) => {
-    this.setState({pauseFocusTrap: isOpen});
+    this.setState({ pauseFocusTrap: isOpen });
     if (!isOpen) {
       const element = dropdown === 'month' ? this.monthRef : this.yearRef;
       if (element) {
@@ -227,13 +229,13 @@ export default class Calendar extends React.Component {
         setTimeout(() => element.focus(), 25);
       }
     }
-  }
+  };
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     this.props.onClickOutside(event);
   };
 
-  handleDropdownFocus = event => {
+  handleDropdownFocus = (event) => {
     if (isDropdownSelect(event.target)) {
       this.props.onDropdownFocus();
     }
@@ -257,12 +259,12 @@ export default class Calendar extends React.Component {
     return current;
   };
 
-  localizeDate = date => localizeDate(date, this.props.locale);
+  localizeDate = (date) => localizeDate(date, this.props.locale);
 
   increaseMonth = () => {
     this.setState(
       {
-        date: addMonths(cloneDate(this.state.date), 1)
+        date: addMonths(cloneDate(this.state.date), 1),
       },
       () => this.handleMonthChange(this.state.date)
     );
@@ -271,7 +273,7 @@ export default class Calendar extends React.Component {
   decreaseMonth = () => {
     this.setState(
       {
-        date: subtractMonths(cloneDate(this.state.date), 1)
+        date: subtractMonths(cloneDate(this.state.date), 1),
       },
       () => this.handleMonthChange(this.state.date)
     );
@@ -279,11 +281,11 @@ export default class Calendar extends React.Component {
 
   handleDayClick = (day, event) => this.props.onSelect(day, event);
 
-  handleDayMouseEnter = day => this.setState({ selectingDate: day });
+  handleDayMouseEnter = (day) => this.setState({ selectingDate: day });
 
   handleMonthMouseLeave = () => this.setState({ selectingDate: null });
 
-  handleYearChange = date => {
+  handleYearChange = (date) => {
     if (this.props.onYearChange) {
       this.props.onYearChange(date);
     }
@@ -292,7 +294,7 @@ export default class Calendar extends React.Component {
     }
   };
 
-  handleMonthChange = date => {
+  handleMonthChange = (date) => {
     if (this.props.onMonthChange) {
       this.props.onMonthChange(date);
     }
@@ -301,44 +303,44 @@ export default class Calendar extends React.Component {
     }
   };
 
-  handleSelectionChange = date => {
+  handleSelectionChange = (date) => {
     if (this.props.adjustDateOnChange) {
       this.props.updateSelection(date);
     } else {
       this.props.updateSelection(getStartOfMonth(cloneDate(date)));
     }
-  }
+  };
 
-  handleMonthYearChange = date => {
+  handleMonthYearChange = (date) => {
     this.handleYearChange(date);
     this.handleMonthChange(date);
   };
 
-  changeYear = year => {
+  changeYear = (year) => {
     this.setState(
       {
-        date: setYear(cloneDate(this.state.date), year)
+        date: setYear(cloneDate(this.state.date), year),
       },
       () => this.handleYearChange(this.state.date)
     );
   };
 
-  changeMonth = month => {
+  changeMonth = (month) => {
     this.setState(
       {
-        date: setMonth(cloneDate(this.state.date), month)
+        date: setMonth(cloneDate(this.state.date), month),
       },
       () => this.handleMonthChange(this.state.date)
     );
   };
 
-  changeMonthYear = monthYear => {
+  changeMonthYear = (monthYear) => {
     this.setState(
       {
         date: setYear(
           setMonth(cloneDate(this.state.date), getMonth(monthYear)),
           getYear(monthYear)
-        )
+        ),
       },
       () => this.handleMonthYearChange(this.state.date)
     );
@@ -350,13 +352,13 @@ export default class Calendar extends React.Component {
     if (this.props.showWeekNumbers) {
       dayNames.push(
         <div key="W" className="react-datepicker__day-name">
-          {this.props.weekLabel || "#"}
+          {this.props.weekLabel || '#'}
         </div>
       );
     }
 
     return dayNames.concat(
-      [0, 1, 2, 3, 4, 5, 6].map(offset => {
+      [0, 1, 2, 3, 4, 5, 6].map((offset) => {
         const day = addDays(cloneDate(startOfWeek), offset);
         const localeData = getLocaleData(day);
         const weekDayName = this.formatWeekday(localeData, day);
@@ -396,7 +398,7 @@ export default class Calendar extends React.Component {
 
     const allPrevDaysDisabled = allDaysDisabledBefore(
       this.state.date,
-      "month",
+      'month',
       this.props
     );
 
@@ -410,14 +412,14 @@ export default class Calendar extends React.Component {
     }
 
     const classes = [
-      "react-datepicker__navigation",
-      "react-datepicker__navigation--previous"
+      'react-datepicker__navigation',
+      'react-datepicker__navigation--previous',
     ];
 
     let clickHandler = this.decreaseMonth;
 
     if (allPrevDaysDisabled && this.props.showDisabledMonthNavigation) {
-      classes.push("react-datepicker__navigation--previous--disabled");
+      classes.push('react-datepicker__navigation--previous--disabled');
       clickHandler = null;
     }
 
@@ -428,7 +430,7 @@ export default class Calendar extends React.Component {
         iconType="sortLeft"
         size="s"
         color="text"
-        className={classes.join(" ")}
+        className={classes.join(' ')}
         onClick={clickHandler}
         disabled={!this.props.accessibleMode}
         aria-label={this.props.previousMonthButtonLabel}
@@ -445,7 +447,7 @@ export default class Calendar extends React.Component {
 
     const allNextDaysDisabled = allDaysDisabledAfter(
       this.state.date,
-      "month",
+      'month',
       this.props
     );
 
@@ -459,20 +461,20 @@ export default class Calendar extends React.Component {
     }
 
     const classes = [
-      "react-datepicker__navigation",
-      "react-datepicker__navigation--next"
+      'react-datepicker__navigation',
+      'react-datepicker__navigation--next',
     ];
     if (this.props.showTimeSelect) {
-      classes.push("react-datepicker__navigation--next--with-time");
+      classes.push('react-datepicker__navigation--next--with-time');
     }
     if (this.props.todayButton) {
-      classes.push("react-datepicker__navigation--next--with-today-button");
+      classes.push('react-datepicker__navigation--next--with-today-button');
     }
 
     let clickHandler = this.increaseMonth;
 
     if (allNextDaysDisabled && this.props.showDisabledMonthNavigation) {
-      classes.push("react-datepicker__navigation--next--disabled");
+      classes.push('react-datepicker__navigation--next--disabled');
       clickHandler = null;
     }
 
@@ -483,7 +485,7 @@ export default class Calendar extends React.Component {
         iconType="sortRight"
         size="s"
         color="text"
-        className={classes.join(" ")}
+        className={classes.join(' ')}
         onClick={clickHandler}
         disabled={!this.props.accessibleMode}
         aria-label={this.props.nextMonthButtonLabel}
@@ -562,7 +564,7 @@ export default class Calendar extends React.Component {
     return (
       <div
         className="react-datepicker__today-button"
-        onClick={e =>
+        onClick={(e) =>
           this.props.onSelect(getStartOfDate(now(this.props.utcOffset)), e)
         }
       >
@@ -596,13 +598,13 @@ export default class Calendar extends React.Component {
 
     const prevMonthButtonDisabled = allDaysDisabledBefore(
       this.state.date,
-      "month",
+      'month',
       this.props
     );
 
     const nextMonthButtonDisabled = allDaysDisabledAfter(
       this.state.date,
-      "month",
+      'month',
       this.props
     );
 
@@ -618,7 +620,7 @@ export default class Calendar extends React.Component {
           decreaseMonth: this.decreaseMonth,
           increaseMonth: this.increaseMonth,
           prevMonthButtonDisabled,
-          nextMonthButtonDisabled
+          nextMonthButtonDisabled,
         })}
         <div className="react-datepicker__day-names">
           {this.header(monthDate)}
@@ -639,7 +641,7 @@ export default class Calendar extends React.Component {
       monthList.push(
         <div
           key={monthKey}
-          ref={div => {
+          ref={(div) => {
             this.monthContainer = div;
           }}
           className="react-datepicker__month-container"
@@ -719,15 +721,15 @@ export default class Calendar extends React.Component {
     const Container = this.props.container || CalendarContainer;
     const dataTestSubj = this.props['data-test-subj'];
 
-    const classes = classnames("react-datepicker", this.props.className, {
-      "react-datepicker--time-only": this.props.showTimeSelectOnly,
-      "react-datepicker--non-interactive": !this.props.isCalendarInteractive,
+    const classes = classnames('react-datepicker', this.props.className, {
+      'react-datepicker--time-only': this.props.showTimeSelectOnly,
+      'react-datepicker--non-interactive': !this.props.isCalendarInteractive,
     });
 
     const trapFocus = this.props.accessibleMode && !this.props.inline;
     const initialFocusTarget = this.props.showTimeSelectOnly
-      ? ".react-datepicker__time-box--accessible"
-      : ".react-datepicker__month--accessible";
+      ? '.react-datepicker__time-box--accessible'
+      : '.react-datepicker__month--accessible';
 
     if (trapFocus) {
       return (

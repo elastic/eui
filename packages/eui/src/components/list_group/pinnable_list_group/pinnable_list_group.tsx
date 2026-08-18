@@ -30,8 +30,7 @@ export type EuiPinnableListGroupItemProps = EuiListGroupItemProps & {
 };
 
 export interface EuiPinnableListGroupProps
-  extends CommonProps,
-    EuiListGroupProps {
+  extends CommonProps, EuiListGroupProps {
   /**
    * Extends `EuiListGroupItemProps`, at the very least, expecting a `label`.
    * See {@link EuiPinnableListGroupItemProps}

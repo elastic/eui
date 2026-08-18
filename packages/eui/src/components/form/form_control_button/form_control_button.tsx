@@ -141,7 +141,7 @@ export const EuiFormControlButton: FunctionComponent<
   } as EuiButtonEmptyPropsForAnchor;
 
   const buttonProps = {
-    value: value ? innerText ?? '' : undefined,
+    value: value ? (innerText ?? '') : undefined,
     ...rest,
   } as EuiButtonEmptyPropsForButton;
 

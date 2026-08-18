@@ -111,7 +111,7 @@ export const useComponentDefaults = () => {
 // Merge individual component props with component defaults
 export const usePropsWithComponentDefaults = <
   TComponentName extends keyof EuiComponentDefaults,
-  TComponentProps
+  TComponentProps,
 >(
   componentName: TComponentName,
   props: TComponentProps

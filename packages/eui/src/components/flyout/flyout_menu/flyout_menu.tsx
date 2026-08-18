@@ -63,7 +63,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 
   // `trailingActions` takes precedence over the deprecated `customActions` alias
   const effectiveTrailingActions =
-    trailingActions !== undefined ? trailingActions : customActions ?? [];
+    trailingActions !== undefined ? trailingActions : (customActions ?? []);
 
   const hasBuiltInLeadingContent =
     showPaginationControls || hasBackButton || hasHistory;

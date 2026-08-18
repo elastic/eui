@@ -158,9 +158,9 @@ export const euiSplitButtonDividerStyles = (
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)};
 
       &:where(
-          ${primaryDisabledSelector} + &,
-          :has(~ ${secondaryDisabledSelector})
-        ) {
+        ${primaryDisabledSelector} + &,
+        :has(~ ${secondaryDisabledSelector})
+      ) {
         border-color: ${euiTheme.colors.borderBaseDisabled};
       }
     `,

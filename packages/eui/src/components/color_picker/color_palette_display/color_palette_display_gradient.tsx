@@ -13,7 +13,8 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
 export interface EuiColorPaletteDisplayGradientProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     CommonProps,
     EuiColorPaletteDisplayShared {}
 

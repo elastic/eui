@@ -156,7 +156,7 @@ const DefaultRenderItem = ({
 
 export const EuiSideNavItem = <
   T extends _EuiSideNavItemButtonProps &
-    _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element }
+    _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element },
 >({
   isOpen,
   isSelected,

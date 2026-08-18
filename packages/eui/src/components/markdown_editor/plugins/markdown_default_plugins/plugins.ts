@@ -22,15 +22,10 @@ import {
 } from './processing_plugins';
 
 export type ExcludableDefaultPlugins =
-  | 'emoji'
-  | 'lineBreaks'
-  | 'linkValidator'
-  | 'checkbox'
-  | 'tooltip';
+  'emoji' | 'lineBreaks' | 'linkValidator' | 'checkbox' | 'tooltip';
 
 export type DefaultPluginsConfig =
-  | undefined
-  | { exclude?: ExcludableDefaultPlugins[] };
+  undefined | { exclude?: ExcludableDefaultPlugins[] };
 
 export const getDefaultEuiMarkdownPlugins = (
   config: DefaultPluginsConfig & {

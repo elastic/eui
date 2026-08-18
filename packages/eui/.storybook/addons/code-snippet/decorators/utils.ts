@@ -44,16 +44,16 @@ export const isForwardRef = (component: ReactElement | ExoticComponent) => {
   return isReactElement(component) && isExoticComponent(component.type)
     ? component.type?.$$typeof === Symbol.for('react.forward_ref')
     : isExoticComponent(component)
-    ? component.$$typeof === Symbol.for('react.forward_ref')
-    : false;
+      ? component.$$typeof === Symbol.for('react.forward_ref')
+      : false;
 };
 export const isFragment = (component: ReactElement | ExoticComponent) => {
   // use type guards to ensure keys are available
   return isReactElement(component)
     ? component.type?.toString().includes('fragment')
     : isExoticComponent(component)
-    ? component.$$typeof?.toString().includes('fragment')
-    : false;
+      ? component.$$typeof?.toString().includes('fragment')
+      : false;
 };
 
 /* Helpers */
@@ -98,8 +98,8 @@ export const getEmotionComponentDisplayName = (
     const replacementName: string | undefined = isForwardRefComponent
       ? emotionTypeName
       : typeof emotionTypeData === 'string'
-      ? emotionTypeData ?? emotionLabelData
-      : emotionTypeName ?? emotionLabelData?.displayName;
+        ? (emotionTypeData ?? emotionLabelData)
+        : (emotionTypeName ?? emotionLabelData?.displayName);
 
     // remove internal component underscore markings
     return replacementName ?? displayName;

@@ -28,8 +28,10 @@ import { EUI_TABLE_CSS_CONTAINER_NAME } from '../const';
 /**
  * @internal
  */
-export interface EuiTableStickyHeaderProps
-  extends Pick<EuiTableProps, 'scrollableInline' | 'compressed'> {
+export interface EuiTableStickyHeaderProps extends Pick<
+  EuiTableProps,
+  'scrollableInline' | 'compressed'
+> {
   tableRef: RefObject<HTMLTableElement>;
   tableWrapperRef: RefObject<HTMLDivElement>;
   isResponsive: boolean;

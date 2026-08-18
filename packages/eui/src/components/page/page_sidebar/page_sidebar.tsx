@@ -24,8 +24,7 @@ import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { euiPageSidebarStyles } from './page_sidebar.styles';
 
 export interface EuiPageSidebarProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+  extends CommonProps, HTMLAttributes<HTMLDivElement> {
   /**
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages.

@@ -19,7 +19,10 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     inline: css``,
     column: css`
       display: grid;
-      grid-template-columns: minmax(auto, max-content) minmax(auto, max-content);
+      grid-template-columns: minmax(auto, max-content) minmax(
+          auto,
+          max-content
+        );
       align-items: baseline;
     `,
     columnGap: {

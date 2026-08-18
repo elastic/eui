@@ -26,8 +26,7 @@ import { EuiTableStickyHeader } from './sticky_header/sticky_header';
 import { EuiTableStoreProvider } from './store/provider';
 
 export interface EuiTableProps
-  extends CommonProps,
-    TableHTMLAttributes<HTMLTableElement> {
+  extends CommonProps, TableHTMLAttributes<HTMLTableElement> {
   compressed?: boolean;
   /**
    * Named breakpoint. Below this size, the table will collapse

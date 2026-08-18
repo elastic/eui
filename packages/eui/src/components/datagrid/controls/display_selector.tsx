@@ -398,7 +398,7 @@ export const useDataGridDisplaySelector = (
   const additionalDisplaySettings =
     typeof showDisplaySelector === 'boolean'
       ? null
-      : showDisplaySelector?.additionalDisplaySettings ?? null;
+      : (showDisplaySelector?.additionalDisplaySettings ?? null);
 
   const customRender =
     typeof showDisplaySelector === 'boolean'

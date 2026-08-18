@@ -26,11 +26,10 @@ import {
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
-export interface EuiRangeLevelsProps
-  extends Pick<
-    EuiRangeProps,
-    'levels' | 'min' | 'max' | 'showTicks' | 'showRange'
-  > {
+export interface EuiRangeLevelsProps extends Pick<
+  EuiRangeProps,
+  'levels' | 'min' | 'max' | 'showTicks' | 'showRange'
+> {
   trackWidth: number;
   style?: CSSProperties;
 }

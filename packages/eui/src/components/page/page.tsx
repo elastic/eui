@@ -22,9 +22,7 @@ import { euiPageStyles } from './page.styles';
 import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement>,
-    _EuiPageRestrictWidth {
+  extends CommonProps, HTMLAttributes<HTMLDivElement>, _EuiPageRestrictWidth {
   /**
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages

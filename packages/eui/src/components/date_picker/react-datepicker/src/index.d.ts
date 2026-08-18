@@ -194,7 +194,7 @@ export interface ReactDatePickerProps {
   value?: string;
   weekLabel?: string;
   withPortal?: boolean;
-  
+
   /**
    * The total number of years to show as options in years selection dropdown
    */

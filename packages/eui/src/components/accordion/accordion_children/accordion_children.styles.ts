@@ -48,7 +48,8 @@ export const euiAccordionChildWrapperStyles = (
       overflow: hidden;
 
       ${euiCanAnimate} {
-        transition: ${logicals.height} ${euiTheme.animation.normal}
+        transition:
+          ${logicals.height} ${euiTheme.animation.normal}
             ${euiTheme.animation.resistance},
           opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
       }

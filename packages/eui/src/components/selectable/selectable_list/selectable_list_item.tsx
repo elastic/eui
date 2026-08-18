@@ -209,8 +209,8 @@ export const EuiSelectableListItem: FunctionComponent<
         instructions = allowExclusions
           ? screenReaderStrings.excluded.instructions
           : searchable
-          ? screenReaderStrings.unchecked.instructions
-          : undefined;
+            ? screenReaderStrings.unchecked.instructions
+            : undefined;
         break;
       case 'off':
         state = screenReaderStrings.excluded.state;

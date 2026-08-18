@@ -45,8 +45,7 @@ export type EuiContextMenuPanelItemDescriptorEntry = Omit<
   panel?: EuiContextMenuPanelId;
 };
 
-export interface EuiContextMenuPanelItemSeparator
-  extends EuiHorizontalRuleProps {
+export interface EuiContextMenuPanelItemSeparator extends EuiHorizontalRuleProps {
   isSeparator: true;
   key?: string;
 }
@@ -345,10 +344,10 @@ export class EuiContextMenuClass extends Component<
         panel == null || targetPanel == null
           ? undefined
           : targetPanel &&
-            Array.isArray(targetPanel.items) &&
-            targetPanel.items.length > 0
-          ? 'menu'
-          : 'true'; // for custom content (no items) we shouldn't indicate it as "menu"
+              Array.isArray(targetPanel.items) &&
+              targetPanel.items.length > 0
+            ? 'menu'
+            : 'true'; // for custom content (no items) we shouldn't indicate it as "menu"
 
       const onClickHandler = panel
         ? (event: React.MouseEvent) => {

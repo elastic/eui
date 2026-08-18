@@ -47,7 +47,8 @@ export type EuiButtonDisplaySizes = (typeof SIZES)[number];
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface EuiButtonDisplayCommonProps
-  extends Omit<EuiButtonDisplayContentProps, 'disabled'>,
+  extends
+    Omit<EuiButtonDisplayContentProps, 'disabled'>,
     EuiDisabledProps,
     CommonProps {
   element?: 'a' | 'button' | 'span';

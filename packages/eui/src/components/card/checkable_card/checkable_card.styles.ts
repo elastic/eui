@@ -46,8 +46,8 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
             position: absolute;
             inset: 0;
             border: ${euiTheme.border.width.thick} solid ${
-          euiTheme.colors.primary
-        };
+              euiTheme.colors.primary
+            };
             border-radius: inherit;
             pointer-events: none;
 

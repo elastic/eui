@@ -102,8 +102,8 @@ export const DeterminateLoading: Story = {
       typeof value === 'number'
         ? value
         : typeof value === 'string'
-        ? parseInt(value)
-        : 0
+          ? parseInt(value)
+          : 0
     );
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
       undefined

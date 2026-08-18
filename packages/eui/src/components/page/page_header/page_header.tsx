@@ -27,7 +27,8 @@ import { _EuiPageBottomBorder } from '../_bottom_border';
 import { euiPageHeaderStyles } from './page_header.styles';
 
 export interface EuiPageHeaderProps
-  extends CommonProps,
+  extends
+    CommonProps,
     HTMLAttributes<HTMLElement>,
     Omit<_EuiPageHeaderContentProps, 'bottomBorder'>,
     // The following are also inherited by page header content,

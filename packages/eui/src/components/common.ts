@@ -57,25 +57,24 @@ export function keysOf<T extends object, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
 
-export type PropsOf<C> = C extends FunctionComponent<infer SFCProps>
-  ? SFCProps
-  : C extends FunctionComponent<infer FunctionProps>
-  ? FunctionProps
-  : C extends Component<infer ComponentProps>
-  ? ComponentProps
-  : never;
+export type PropsOf<C> =
+  C extends FunctionComponent<infer SFCProps>
+    ? SFCProps
+    : C extends FunctionComponent<infer FunctionProps>
+      ? FunctionProps
+      : C extends Component<infer ComponentProps>
+        ? ComponentProps
+        : never;
 
 // Returns the props of a given HTML element
 export type PropsOfElement<
-  C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+  C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>,
 > = JSX.LibraryManagedAttributes<C, ComponentProps<C>>;
 
 // Utility methods for ApplyClassComponentDefaults
 type ExtractDefaultProps<T> = T extends { defaultProps: infer D } ? D : never;
-type ExtractProps<
-  C extends new (...args: any) => any,
-  IT = InstanceType<C>
-> = IT extends Component<infer P> ? P : never;
+type ExtractProps<C extends new (...args: any) => any, IT = InstanceType<C>> =
+  IT extends Component<infer P> ? P : never;
 
 /**
  * Because of how TypeScript's LibraryManagedAttributes is designed to handle defaultProps (https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
@@ -87,7 +86,7 @@ type ExtractProps<
 export type ApplyClassComponentDefaults<
   C extends new (...args: any) => any,
   D = ExtractDefaultProps<C>,
-  P = ExtractProps<C>
+  P = ExtractProps<C>,
 > =
   // definition of Props that are not defaulted
   Omit<P, keyof D> & { [K in keyof D]?: K extends keyof P ? P[K] : never }; // definition of Props, made optional, that are have keys in defaultProps

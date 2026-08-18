@@ -64,10 +64,10 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
         ? styles.disabled.selected
         : styles.disabled.unselected
       : isExcluded
-      ? styles.enabled.excluded
-      : isSelected
-      ? styles.enabled.selected
-      : styles.enabled.unselected,
+        ? styles.enabled.excluded
+        : isSelected
+          ? styles.enabled.selected
+          : styles.enabled.unselected,
   ];
 
   const iconStyles = [
@@ -78,10 +78,10 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
   const iconType = indeterminate
     ? 'stopFill'
     : excluded
-    ? 'cross'
-    : checked
-    ? 'check'
-    : 'empty';
+      ? 'cross'
+      : checked
+        ? 'check'
+        : 'empty';
 
   return (
     <span css={cssStyles} className={classes} {...rest}>

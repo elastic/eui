@@ -273,10 +273,10 @@ export const EuiListItemLayout = forwardRef<
     Single-action: component (li/div) is the outermost element and owns all styles. */
     const isMultiAction = extraAction != null && isInteractiveComponent;
     const WrapperElement = isMultiAction
-      ? wrapperElement ?? 'li'
+      ? (wrapperElement ?? 'li')
       : isInteractiveComponent
-      ? wrapperElement
-      : undefined;
+        ? wrapperElement
+        : undefined;
     const hasWrapper = WrapperElement != null;
 
     // aria-checked is intended to be used with role="checkbox" but

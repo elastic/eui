@@ -21,8 +21,10 @@ import {
 } from './range_highlight.styles';
 import { EuiRangeLevels } from './range_levels';
 
-export interface EuiRangeHighlightProps
-  extends Pick<EuiRangeProps, 'min' | 'max' | 'levels' | 'showTicks'> {
+export interface EuiRangeHighlightProps extends Pick<
+  EuiRangeProps,
+  'min' | 'max' | 'levels' | 'showTicks'
+> {
   className?: string;
   background?: string;
   trackWidth: number;

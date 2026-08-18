@@ -28,7 +28,8 @@ import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
 
 export interface EuiRangeTicksProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'>,
+  extends
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'>,
     _SharedRangesValues,
     Pick<_SharedRangeInputProps, 'compressed' | 'disabled'>,
     Pick<_SharedRangeDataStructures, 'ticks' | 'tickInterval'> {

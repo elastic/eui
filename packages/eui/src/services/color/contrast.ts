@@ -34,7 +34,7 @@ export const makeHighContrastColor =
   ) => {
     const foreground = (
       typeof themeOrBackground === 'object'
-        ? getOn(themeOrBackground, _foreground) ?? _foreground
+        ? (getOn(themeOrBackground, _foreground) ?? _foreground)
         : _foreground
     ) as string;
     const background =

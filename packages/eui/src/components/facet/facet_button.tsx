@@ -33,8 +33,7 @@ import {
 } from '../button/button_display/_button_display';
 
 export interface EuiFacetButtonProps
-  extends EuiButtonDisplayCommonProps,
-    HTMLAttributes<HTMLButtonElement> {
+  extends EuiButtonDisplayCommonProps, HTMLAttributes<HTMLButtonElement> {
   buttonRef?: RefCallback<HTMLButtonElement>;
   /**
    * ReactNode to render as this component's content

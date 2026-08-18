@@ -36,9 +36,11 @@ export const euiIconStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
       /* Use the negative fill on SVG elements that need to flip portions
          of the icon to light and dark compatible modes. You can see this
          in use on the Elastic logo icons. */
-      fill: ${colorMode === 'DARK'
-        ? euiTheme.colors.fullShade
-        : euiTheme.colors.darkestShade};
+      fill: ${
+        colorMode === 'DARK'
+          ? euiTheme.colors.fullShade
+          : euiTheme.colors.darkestShade
+      };
     }
   `,
   // Colors

@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import {
   getDay,
   getMonth,
@@ -34,8 +34,8 @@ import {
   isSameDay,
   isDayDisabled,
   isDayInRange,
-  getDayOfWeekCode
-} from "./date_utils";
+  getDayOfWeekCode,
+} from './date_utils';
 
 export default class Day extends React.Component {
   static propTypes = {
@@ -56,22 +56,22 @@ export default class Day extends React.Component {
     startDate: PropTypes.object,
     utcOffset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     renderDayContents: PropTypes.func,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
-  handleClick = event => {
+  handleClick = (event) => {
     if (!this.isDisabled() && this.props.onClick) {
       this.props.onClick(event);
     }
   };
 
-  handleMouseEnter = event => {
+  handleMouseEnter = (event) => {
     if (!this.isDisabled() && this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
   };
 
-  isSameDay = other => isSameDay(this.props.day, other);
+  isSameDay = (other) => isSameDay(this.props.day, other);
 
   isKeyboardSelected = () =>
     !this.props.disabledKeyboardNavigation &&
@@ -81,7 +81,7 @@ export default class Day extends React.Component {
 
   isDisabled = () => isDayDisabled(this.props.day, this.props);
 
-  getHighLightedClass = defaultClassName => {
+  getHighLightedClass = (defaultClassName) => {
     const { day, highlightDates } = this.props;
 
     if (!highlightDates) {
@@ -89,7 +89,7 @@ export default class Day extends React.Component {
     }
 
     // Looking for className in the Map of {'day string, 'className'}
-    const dayStr = day.format("MM.DD.YYYY");
+    const dayStr = day.format('MM.DD.YYYY');
     return highlightDates.get(dayStr);
   };
 
@@ -102,14 +102,8 @@ export default class Day extends React.Component {
   };
 
   isInSelectingRange = () => {
-    const {
-      day,
-      selectsStart,
-      selectsEnd,
-      selectingDate,
-      startDate,
-      endDate
-    } = this.props;
+    const { day, selectsStart, selectsEnd, selectingDate, startDate, endDate } =
+      this.props;
 
     if (!(selectsStart || selectsEnd) || !selectingDate || this.isDisabled()) {
       return false;
@@ -182,31 +176,33 @@ export default class Day extends React.Component {
     );
   };
 
-  getClassNames = date => {
+  getClassNames = (date) => {
     const dayClassName = this.props.dayClassName
       ? this.props.dayClassName(date)
       : undefined;
     return classnames(
-      "react-datepicker__day",
+      'react-datepicker__day',
       dayClassName,
-      "react-datepicker__day--" + getDayOfWeekCode(this.props.day),
+      'react-datepicker__day--' + getDayOfWeekCode(this.props.day),
       {
-        "react-datepicker__day--disabled": this.isDisabled(),
-        "react-datepicker__day--selected": this.isSameDay(this.props.selected),
-        "react-datepicker__day--keyboard-selected": this.isKeyboardSelected(),
-        "react-datepicker__day--range-start": this.isRangeStart(),
-        "react-datepicker__day--range-end": this.isRangeEnd(),
-        "react-datepicker__day--in-range": this.isInRange(),
-        "react-datepicker__day--in-selecting-range": this.isInSelectingRange(),
-        "react-datepicker__day--selecting-range-start": this.isSelectingRangeStart(),
-        "react-datepicker__day--selecting-range-end": this.isSelectingRangeEnd(),
-        "react-datepicker__day--today": this.isSameDay(
+        'react-datepicker__day--disabled': this.isDisabled(),
+        'react-datepicker__day--selected': this.isSameDay(this.props.selected),
+        'react-datepicker__day--keyboard-selected': this.isKeyboardSelected(),
+        'react-datepicker__day--range-start': this.isRangeStart(),
+        'react-datepicker__day--range-end': this.isRangeEnd(),
+        'react-datepicker__day--in-range': this.isInRange(),
+        'react-datepicker__day--in-selecting-range': this.isInSelectingRange(),
+        'react-datepicker__day--selecting-range-start':
+          this.isSelectingRangeStart(),
+        'react-datepicker__day--selecting-range-end':
+          this.isSelectingRangeEnd(),
+        'react-datepicker__day--today': this.isSameDay(
           now(this.props.utcOffset)
         ),
-        "react-datepicker__day--weekend": this.isWeekend(),
-        "react-datepicker__day--outside-month": this.isOutsideMonth()
+        'react-datepicker__day--weekend': this.isWeekend(),
+        'react-datepicker__day--outside-month': this.isOutsideMonth(),
       },
-      this.getHighLightedClass("react-datepicker__day--highlighted")
+      this.getHighLightedClass('react-datepicker__day--highlighted')
     );
   };
 

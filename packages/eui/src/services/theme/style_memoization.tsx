@@ -81,7 +81,7 @@ const getMemoizedStyles = (
  * per-theme
  */
 export const useEuiMemoizedStyles = <
-  T extends (theme: UseEuiTheme) => StylesMap
+  T extends (theme: UseEuiTheme) => StylesMap,
 >(
   stylesGenerator: T
 ): ReturnType<T> => {

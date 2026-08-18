@@ -92,8 +92,7 @@ export interface EuiPageHeaderContentTabs {
  * Or a custom node
  */
 interface EuiPageHeaderContentLeft
-  extends EuiPageHeaderContentTitle,
-    EuiPageHeaderContentTabs {
+  extends EuiPageHeaderContentTitle, EuiPageHeaderContentTabs {
   /**
    * Position is dependent on existing with a `pageTitle` or `tabs`
    * Automatically get wrapped in a single paragraph tag inside an EuiText block
@@ -102,8 +101,7 @@ interface EuiPageHeaderContentLeft
 }
 
 export interface _EuiPageHeaderContentProps
-  extends EuiPageHeaderContentLeft,
-    _EuiPageRestrictWidth {
+  extends EuiPageHeaderContentLeft, _EuiPageRestrictWidth {
   /**
    * If not set, defaults to true if `tabs` are passed and render at the bottom of the page.
    * Otherwise, defaults to false.
@@ -141,7 +139,8 @@ export interface _EuiPageHeaderContentProps
 }
 
 export interface EuiPageHeaderContentProps
-  extends CommonProps,
+  extends
+    CommonProps,
     HTMLAttributes<HTMLDivElement>,
     _EuiPageHeaderContentProps {}
 
@@ -399,8 +398,8 @@ export const EuiPageHeaderContent: FunctionComponent<
           alignItems === 'bottom'
             ? 'flexEnd'
             : alignItems === 'top'
-            ? 'flexStart'
-            : alignItems
+              ? 'flexStart'
+              : alignItems
         }
         gutterSize="l"
         wrap

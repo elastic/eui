@@ -615,10 +615,10 @@ export class EuiSuperDatePickerInternal extends Component<
         isDisabled
           ? styles.states.disabled
           : isInvalid
-          ? styles.states.invalid
-          : hasChanged
-          ? styles.states.needsUpdating
-          : styles.states.default,
+            ? styles.states.invalid
+            : hasChanged
+              ? styles.states.needsUpdating
+              : styles.states.default,
       ],
     };
 
@@ -856,7 +856,7 @@ export class EuiSuperDatePickerInternal extends Component<
     });
 
     // Force reduction in width if showing quick select only
-    const width = isQuickSelectOnly ? 'auto' : _width ?? 'restricted';
+    const width = isQuickSelectOnly ? 'auto' : (_width ?? 'restricted');
 
     const cssStyles = [
       styles.euiSuperDatePicker,

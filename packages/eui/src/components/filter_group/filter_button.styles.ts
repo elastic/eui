@@ -45,8 +45,9 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:hover,
         &:active {
           .euiFilterButton__notification[class*='subdued'] {
-            background-color: ${euiTheme.components
-              .filterButtonBadgeBackgroundHover};
+            background-color: ${
+              euiTheme.components.filterButtonBadgeBackgroundHover
+            };
           }
         }
       }

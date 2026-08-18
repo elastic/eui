@@ -233,7 +233,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     });
 
     const CellComponent = children ? 'th' : 'td';
-    const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
+    const cellScope = CellComponent === 'th' ? (scope ?? 'col') : undefined; // `scope` is only valid on `th` elements
 
     const canSort = !!(onSort && !readOnly);
     let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];

@@ -60,9 +60,7 @@ export interface SchemaType {
 }
 
 export type EuiSearchBarOnChangeArgs =
-  | ArgsWithQuery
-  | ArgsWithPlainText
-  | ArgsWithError;
+  ArgsWithQuery | ArgsWithPlainText | ArgsWithError;
 
 type HintPopOverProps = Partial<
   Pick<

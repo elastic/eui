@@ -118,8 +118,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         Jump animation states immediately unless
         prefers-reduced-motion: reduce is *not* set
       */
-      animation: ${euiFlyoutSlideInRight} 0s ${euiTheme.animation
-        .resistance} forwards;
+      animation: ${euiFlyoutSlideInRight} 0s ${
+        euiTheme.animation.resistance
+      } forwards;
 
       ${euiCanAnimate} {
         animation-duration: ${euiTheme.animation.normal};

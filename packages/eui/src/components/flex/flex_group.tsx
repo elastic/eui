@@ -120,7 +120,7 @@ const EuiFlexGroupInternal = <TComponent extends ElementType>(
  */
 export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as (<
   TComponent extends ElementType = 'div',
-  TComponentRef = ReactElement<any, TComponent>
+  TComponentRef = ReactElement<any, TComponent>,
 >(
   props: EuiFlexGroupProps<TComponent> & {
     ref?: Ref<TComponentRef>;

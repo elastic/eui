@@ -23,8 +23,7 @@ import { euiDraggableStyles, euiDraggableItemStyles } from './draggable.styles';
 import { EuiPortal } from '../portal';
 
 export interface EuiDraggableProps
-  extends CommonProps,
-    Omit<DraggableProps, 'children'> {
+  extends CommonProps, Omit<DraggableProps, 'children'> {
   /**
    * ReactNode to render as this component's content
    */
@@ -131,8 +130,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                 isFullyCustomDragHandle
                   ? undefined // prevent wrapper role from removing semantics of the children
                   : hasInteractiveChildren
-                  ? 'group'
-                  : provided.dragHandleProps?.role
+                    ? 'group'
+                    : provided.dragHandleProps?.role
               }
               // If the container includes an interactive element, we remove the tabindex=0
               // because [role="group"] does not permit or warrant a tab stop

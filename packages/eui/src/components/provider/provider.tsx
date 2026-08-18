@@ -40,7 +40,8 @@ const isEmotionCacheObject = (
 ): obj is EmotionCache => obj.hasOwnProperty('key');
 
 export interface EuiProviderProps<T>
-  extends PropsWithChildren,
+  extends
+    PropsWithChildren,
     EuiGlobalStylesProps,
     Pick<EuiThemeProviderProps<T>, 'modify'> {
   /**

@@ -135,7 +135,7 @@ export const getMatchingOptions = <TOption>({
  * It matches all options with labels including the searched string.
  */
 export const createPartialStringEqualityOptionMatcher = <
-  TOption
+  TOption,
 >(): EuiSelectableOptionMatcher<TOption> => {
   return ({ option, normalizedSearchValue }) => {
     const normalizedOption = getSearchableLabel(option);

@@ -62,7 +62,7 @@ export type EuiSplitButtonProps = CommonProps &
       ReactElement<
         EuiSplitButtonActionSecondaryProps,
         typeof EuiSplitButtonActionSecondary
-      >
+      >,
     ];
   };
 

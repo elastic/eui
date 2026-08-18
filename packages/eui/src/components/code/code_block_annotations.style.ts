@@ -38,8 +38,8 @@ export const euiCodeBlockAnnotationsStyles = (euiThemeContext: UseEuiTheme) => {
         // Windows high contrast themes ignore background-color
         forced: `
           border: ${mathWithUnits(buttonIconSize, (x) => x / 2)} solid ${
-          euiTheme.colors.primary
-        };`,
+            euiTheme.colors.primary
+          };`,
       })}
     `,
   };

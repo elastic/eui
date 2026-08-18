@@ -31,7 +31,8 @@ import { type EuiSuperSelectOption } from './super_select_item';
 import { euiSuperSelectControlStyles } from './super_select.styles';
 
 export interface EuiSuperSelectControlProps<T>
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value' | 'placeholder'> {
   buttonRef?: Ref<HTMLButtonElement>;
   /**

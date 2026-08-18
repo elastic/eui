@@ -59,7 +59,8 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
         max-inline-size: 24px;
 
         ${euiCanAnimate} {
-          transition: transform ${euiTheme.animation.fast} ease-in,
+          transition:
+            transform ${euiTheme.animation.fast} ease-in,
             opacity ${euiTheme.animation.slow} ease-in,
             margin-left ${euiTheme.animation.fast} ease-in;
 

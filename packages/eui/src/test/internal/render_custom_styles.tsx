@@ -76,9 +76,12 @@ export const shouldRenderCustomStyles = (
   options: ShouldRenderCustomStylesOptions = {}
 ) => {
   // Account for any skipped props
-  const testProps = keysOf(customStyles).reduce((map, key) => {
-    return options.skip?.[key] ? map : { ...map, [key]: customStyles[key] };
-  }, {} as Partial<typeof customStyles>);
+  const testProps = keysOf(customStyles).reduce(
+    (map, key) => {
+      return options.skip?.[key] ? map : { ...map, [key]: customStyles[key] };
+    },
+    {} as Partial<typeof customStyles>
+  );
 
   // Generate a grammatically excellent list of props being tested
   let propsToTest = '';

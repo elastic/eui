@@ -31,9 +31,11 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.medium};
-      background-color: ${colorMode === 'DARK'
-        ? euiTheme.colors.lightShade
-        : euiTheme.colors.lightestShade};
+      background-color: ${
+        colorMode === 'DARK'
+          ? euiTheme.colors.lightShade
+          : euiTheme.colors.lightestShade
+      };
       ${logicalCSS('margin-vertical', '0')}
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
 

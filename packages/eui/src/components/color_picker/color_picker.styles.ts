@@ -61,9 +61,11 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorPicker__swatchInputIcon: css`
       .euiSwatchInput__stroke {
         fill: none;
-        stroke: ${highContrastMode
-          ? euiTheme.colors.fullShade
-          : euiTheme.colors.borderBaseFormsColorSwatch};
+        stroke: ${
+          highContrastMode
+            ? euiTheme.colors.fullShade
+            : euiTheme.colors.borderBaseFormsColorSwatch
+        };
       }
     `,
   };

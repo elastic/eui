@@ -34,8 +34,7 @@ import { EuiFormControlLayoutClearButton } from '../form_control_layout/form_con
 import { euiFilePickerStyles } from './file_picker.styles';
 
 export interface EuiFilePickerProps
-  extends CommonProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends CommonProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   id?: string;
   name?: string;
   className?: string;

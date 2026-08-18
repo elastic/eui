@@ -112,25 +112,28 @@ export const useEuiBackgroundColor = (
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
-  BACKGROUND_COLORS.reduce((acc, color) => {
-    const tokenName = getTokenName(
-      'backgroundBase',
-      color
-    ) as keyof _EuiThemeBackgroundColors;
+  BACKGROUND_COLORS.reduce(
+    (acc, color) => {
+      const tokenName = getTokenName(
+        'backgroundBase',
+        color
+      ) as keyof _EuiThemeBackgroundColors;
 
-    const backgroundColor =
-      color === 'transparent'
-        ? 'transparent'
-        : euiThemeContext.euiTheme.colors[tokenName];
+      const backgroundColor =
+        color === 'transparent'
+          ? 'transparent'
+          : euiThemeContext.euiTheme.colors[tokenName];
 
-    return {
-      ...acc,
-      [color]: css`
-        background-color: ${backgroundColor};
-        label: ${color};
-      `,
-    };
-  }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
+      return {
+        ...acc,
+        [color]: css`
+          background-color: ${backgroundColor};
+          label: ${color};
+        `,
+      };
+    },
+    {} as Record<_EuiBackgroundColor, SerializedStyles>
+  );
 
 /**
  * Hook to retrieve background style for a background color variant
@@ -171,27 +174,30 @@ export const euiBorderColor = (
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
-  BACKGROUND_COLORS.reduce((acc, color) => {
-    // border tokens are overridden in for high contrast mode
-    // in high_contrast_overrides.ts
-    const borderToken = getTokenName(
-      'borderBase',
-      color
-    ) as keyof _EuiThemeBorderColors;
+  BACKGROUND_COLORS.reduce(
+    (acc, color) => {
+      // border tokens are overridden in for high contrast mode
+      // in high_contrast_overrides.ts
+      const borderToken = getTokenName(
+        'borderBase',
+        color
+      ) as keyof _EuiThemeBorderColors;
 
-    const borderColor =
-      color === 'transparent'
-        ? euiThemeContext.euiTheme.border.color
-        : euiThemeContext.euiTheme.colors[borderToken];
+      const borderColor =
+        color === 'transparent'
+          ? euiThemeContext.euiTheme.border.color
+          : euiThemeContext.euiTheme.colors[borderToken];
 
-    return {
-      ...acc,
-      [color]: css`
-        border-color: ${borderColor};
-        label: ${color};
-      `,
-    };
-  }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
+      return {
+        ...acc,
+        [color]: css`
+          border-color: ${borderColor};
+          label: ${color};
+        `,
+      };
+    },
+    {} as Record<_EuiBackgroundColor, SerializedStyles>
+  );
 
 /**
  * Hook to retrieve border style for a border variant

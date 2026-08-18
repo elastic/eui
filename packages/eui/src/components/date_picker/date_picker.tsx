@@ -68,8 +68,10 @@ const unsupportedProps = [
 
 type UnsupportedProps = (typeof unsupportedProps)[number];
 
-interface EuiExtendedDatePickerProps
-  extends Omit<ReactDatePickerProps, UnsupportedProps> {
+interface EuiExtendedDatePickerProps extends Omit<
+  ReactDatePickerProps,
+  UnsupportedProps
+> {
   /**
    * Applies classes to the numbered days provided. Check docs for example.
    */

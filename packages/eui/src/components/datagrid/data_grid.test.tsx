@@ -504,7 +504,7 @@ describe('EuiDataGrid', () => {
       window.Element.prototype.getBoundingClientRect;
     beforeAll(() => {
       window.Element.prototype.getBoundingClientRect = () =>
-        ({ width: 100, height: 100 } as DOMRect);
+        ({ width: 100, height: 100 }) as DOMRect;
     });
     afterAll(() => {
       window.Element.prototype.getBoundingClientRect = getBoundingClientRect;

@@ -107,16 +107,18 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow--marked) {
         &:hover {
-          background-color: ${euiTheme.components
-            .dataGridRowBackgroundMarkedHover};
+          background-color: ${
+            euiTheme.components.dataGridRowBackgroundMarkedHover
+          };
         }
       }
 
       *:where(
-          &.euiDataGrid--rowHoverHighlight .euiDataGridRow--selected:hover
-        ) {
-        background-color: ${euiTheme.components
-          .dataGridRowBackgroundSelectHover};
+        &.euiDataGrid--rowHoverHighlight .euiDataGridRow--selected:hover
+      ) {
+        background-color: ${
+          euiTheme.components.dataGridRowBackgroundSelectHover
+        };
       }
 
       /* Stripes */
@@ -126,29 +128,33 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
-        background-color: ${euiTheme.components
-          .dataGridRowStripesBackgroundStriped};
+        background-color: ${
+          euiTheme.components.dataGridRowStripesBackgroundStriped
+        };
       }
 
       *:where(
-          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
-            .euiDataGridRow:hover
-        ) {
-        background-color: ${euiTheme.components
-          .dataGridRowStripesBackgroundHover};
+        &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+          .euiDataGridRow:hover
+      ) {
+        background-color: ${
+          euiTheme.components.dataGridRowStripesBackgroundHover
+        };
       }
 
       *:where(
-          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
-            .euiDataGridRow--striped:hover
-        ) {
-        background-color: ${euiTheme.components
-          .dataGridRowStripesBackgroundStripedHover};
+        &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+          .euiDataGridRow--striped:hover
+      ) {
+        background-color: ${
+          euiTheme.components.dataGridRowStripesBackgroundStripedHover
+        };
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--selected) {
-        background-color: ${euiTheme.components
-          .dataGridRowStripesBackgroundSelect};
+        background-color: ${
+          euiTheme.components.dataGridRowStripesBackgroundSelect
+        };
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--marked) {
@@ -156,11 +162,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       *:where(
-          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
-            .euiDataGridRow--selected:hover
-        ) {
-        background-color: ${euiTheme.components
-          .dataGridRowStripesBackgroundSelectHover};
+        &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+          .euiDataGridRow--selected:hover
+      ) {
+        background-color: ${
+          euiTheme.components.dataGridRowStripesBackgroundSelectHover
+        };
       }
 
       /* Hover colors are semitransparent and .euiDataGrid__content has

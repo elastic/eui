@@ -19,8 +19,7 @@ import { EuiI18n } from '../i18n';
 export type EuiTourStepStatus = 'complete' | 'incomplete' | 'active';
 
 export interface EuiTourStepIndicatorProps
-  extends CommonProps,
-    HTMLAttributes<HTMLLIElement> {
+  extends CommonProps, HTMLAttributes<HTMLLIElement> {
   number: number;
   status: EuiTourStepStatus;
 }

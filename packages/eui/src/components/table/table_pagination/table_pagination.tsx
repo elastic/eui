@@ -26,8 +26,10 @@ import { euiTablePaginationDefaults } from './table_pagination_defaults';
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
-export interface EuiTablePaginationProps
-  extends Omit<EuiPaginationProps, 'onPageClick'> {
+export interface EuiTablePaginationProps extends Omit<
+  EuiPaginationProps,
+  'onPageClick'
+> {
   /**
    * Option to completely hide the "Rows per page" selector.
    *

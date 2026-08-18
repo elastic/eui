@@ -11,8 +11,7 @@ import { CommonProps } from '../../common';
 import { EuiFormLegendProps, EuiFormLegend } from './form_legend';
 
 export interface EuiFormFieldsetProps
-  extends CommonProps,
-    HTMLAttributes<HTMLFieldSetElement> {
+  extends CommonProps, HTMLAttributes<HTMLFieldSetElement> {
   /**
    * Adds an EuiFormLegend element as the first child
    */

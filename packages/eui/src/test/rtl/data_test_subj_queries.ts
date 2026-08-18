@@ -18,7 +18,7 @@ type ByTestSubjectArguments = [
   // Note: We could use Parameters<AllByAttribute>, but the generated TS defs is less specific
   container: HTMLElement,
   id: Matcher,
-  options?: MatcherOptions
+  options?: MatcherOptions,
 ];
 const queryAllByTestSubject = (...args: ByTestSubjectArguments) =>
   queryHelpers.queryAllByAttribute('data-test-subj', ...args);

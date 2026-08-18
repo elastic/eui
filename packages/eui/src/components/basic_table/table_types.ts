@@ -23,11 +23,7 @@ export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
 
 export type EuiTableDataType =
-  | 'auto'
-  | 'string'
-  | 'number'
-  | 'boolean'
-  | 'date';
+  'auto' | 'string' | 'number' | 'boolean' | 'date';
 
 export interface EuiTableFooterProps<T> {
   items: T[];
@@ -52,7 +48,8 @@ export type EuiTableColumnNameTooltipProps = {
 };
 
 export interface EuiTableFieldDataColumnType<T>
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width' | 'align'> {
   /**
    * A field of the item (may be a nested field)
@@ -151,9 +148,7 @@ export interface EuiTableFieldDataColumnType<T>
    * Content to display in the footer beneath this column
    */
   footer?:
-    | string
-    | ReactElement
-    | ((props: EuiTableFooterProps<T>) => ReactNode);
+    string | ReactElement | ((props: EuiTableFooterProps<T>) => ReactNode);
   /**
    * If passing `itemIdToExpandedRowMap` to your table, set this flag to `true`
    * for the custom column or cell used to toggle the expanded row.

@@ -23,8 +23,9 @@ export const euiCollapsibleNavGroupStyles = ({ euiTheme }: UseEuiTheme) => {
       background-color: ${euiTheme.components.collapsibleNavGroupBackground};
     `,
     dark: css`
-      background-color: ${euiTheme.components
-        .collapsibleNavGroupBackgroundDark};
+      background-color: ${
+        euiTheme.components.collapsibleNavGroupBackgroundDark
+      };
 
       .euiCollapsibleNavGroup__title,
       .euiCollapsibleNavGroup__heading,

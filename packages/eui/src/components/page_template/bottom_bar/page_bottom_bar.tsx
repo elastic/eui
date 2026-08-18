@@ -15,7 +15,8 @@ import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
 
 export interface _EuiPageBottomBarProps
-  extends Pick<EuiPageSectionProps, 'paddingSize'>,
+  extends
+    Pick<EuiPageSectionProps, 'paddingSize'>,
     _EuiPageRestrictWidth,
     Omit<EuiBottomBarProps, 'paddingSize'> {
   /**

@@ -14,7 +14,8 @@ import { EuiColorPaletteDisplayShared } from './color_palette_display';
 import { euiColorPaletteDisplayFixed__bleedArea } from './color_palette_display_fixed.styles';
 
 export interface EuiColorPaletteDisplayFixedProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     CommonProps,
     EuiColorPaletteDisplayShared {}
 

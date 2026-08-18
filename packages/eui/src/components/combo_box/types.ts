@@ -14,9 +14,9 @@ import { EuiToolTipProps } from '../tool_tip';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
 export interface EuiComboBoxOptionOption<
-  T = string | number | string[] | undefined
-> extends CommonProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
+  T = string | number | string[] | undefined,
+>
+  extends CommonProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
   isGroupLabelOption?: boolean;
   label: string;
   key?: string;

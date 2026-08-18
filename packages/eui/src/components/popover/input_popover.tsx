@@ -30,8 +30,10 @@ import { euiFormMaxWidth } from '../form/form.styles';
 
 import { EuiPopover, EuiPopoverProps } from './popover';
 
-export interface _EuiInputPopoverProps
-  extends Omit<EuiPopoverProps, 'button' | 'buttonRef' | 'anchorPosition'> {
+export interface _EuiInputPopoverProps extends Omit<
+  EuiPopoverProps,
+  'button' | 'buttonRef' | 'anchorPosition'
+> {
   /**
    * Alignment of the popover relative to the input
    */

@@ -45,11 +45,11 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
     const state = context?.state;
     const sessions = state?.sessions;
     const currentSession = sessions
-      ? sessions[sessions.length - 1] ?? null
+      ? (sessions[sessions.length - 1] ?? null)
       : null;
     const mainFlyoutId = currentSession?.mainFlyoutId;
     const mainFlyout = mainFlyoutId
-      ? state?.flyouts.find((f) => f.flyoutId === mainFlyoutId) ?? null
+      ? (state?.flyouts.find((f) => f.flyoutId === mainFlyoutId) ?? null)
       : null;
     const mainWidth = mainFlyout?.width;
     const layoutMode = state?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;

@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,15 +20,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { EuiIcon } from "../../../icon";
+import { EuiIcon } from '../../../icon';
 
-import MonthYearDropdownOptions from "./month_year_dropdown_options";
+import MonthYearDropdownOptions from './month_year_dropdown_options';
 import {
   addMonths,
   formatDate,
@@ -37,12 +37,12 @@ import {
   isSameMonth,
   isSameYear,
   localizeDate,
-  newDate
-} from "./date_utils";
+  newDate,
+} from './date_utils';
 
 export default class MonthYearDropdown extends React.Component {
   static propTypes = {
-    dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']).isRequired,
     dateFormat: PropTypes.string.isRequired,
     locale: PropTypes.string,
     maxDate: PropTypes.object.isRequired,
@@ -50,11 +50,11 @@ export default class MonthYearDropdown extends React.Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     scrollableMonthYearDropdown: PropTypes.bool,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   state = {
-    dropdownVisible: false
+    dropdownVisible: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,15 +67,15 @@ export default class MonthYearDropdown extends React.Component {
     }
   }
 
-  setReadViewRef = ref => {
+  setReadViewRef = (ref) => {
     this.readViewref = ref;
   };
 
-  onReadViewKeyDown = event => {
+  onReadViewKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -83,11 +83,11 @@ export default class MonthYearDropdown extends React.Component {
     }
   };
 
-  onDropDownKeyDown = event => {
+  onDropDownKeyDown = (event) => {
     const eventKey = event.key;
     switch (eventKey) {
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdown();
@@ -119,7 +119,7 @@ export default class MonthYearDropdown extends React.Component {
     return options;
   };
 
-  onSelectChange = e => {
+  onSelectChange = (e) => {
     this.onChange(e.target.value);
   };
 
@@ -133,7 +133,7 @@ export default class MonthYearDropdown extends React.Component {
     </select>
   );
 
-  renderReadView = visible => {
+  renderReadView = (visible) => {
     const yearMonth = formatDate(
       localizeDate(newDate(this.props.date), this.props.locale),
       this.props.dateFormat
@@ -143,11 +143,11 @@ export default class MonthYearDropdown extends React.Component {
       <div
         key="read"
         ref={this.setReadViewRef}
-        style={{ visibility: visible ? "visible" : "hidden" }}
+        style={{ visibility: visible ? 'visible' : 'hidden' }}
         className="react-datepicker__month-year-read-view"
-        onClick={event => this.toggleDropdown(event)}
+        onClick={(event) => this.toggleDropdown(event)}
         onKeyDown={this.onReadViewKeyDown}
-        tabIndex={this.props.accessibleMode ? "0" : undefined}
+        tabIndex={this.props.accessibleMode ? '0' : undefined}
         aria-label={`Button. Open the month selector. ${yearMonth} is currently selected.`}
       >
         <span className="react-datepicker__month-year-read-view--selected-month-year">
@@ -187,7 +187,7 @@ export default class MonthYearDropdown extends React.Component {
     return result;
   };
 
-  onChange = monthYearPoint => {
+  onChange = (monthYearPoint) => {
     this.toggleDropdown();
 
     const changedDate = newDate(parseInt(monthYearPoint));
@@ -204,16 +204,16 @@ export default class MonthYearDropdown extends React.Component {
 
   toggleDropdown = () =>
     this.setState({
-      dropdownVisible: !this.state.dropdownVisible
+      dropdownVisible: !this.state.dropdownVisible,
     });
 
   render() {
     let renderedDropdown;
     switch (this.props.dropdownMode) {
-      case "scroll":
+      case 'scroll':
         renderedDropdown = this.renderScrollMode();
         break;
-      case "select":
+      case 'select':
         renderedDropdown = this.renderSelectMode();
         break;
     }

@@ -79,7 +79,8 @@ interface HTMLDivElementOverrides {
   onFocus?: () => void;
 }
 export interface EuiColorPickerProps
-  extends CommonProps,
+  extends
+    CommonProps,
     Omit<HTMLAttributes<HTMLDivElement>, keyof HTMLDivElementOverrides>,
     HTMLDivElementOverrides {
   /**
@@ -377,8 +378,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleInputActivity = (
     event:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLInputElement>
+      React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>
   ) => {
     if (isKeyboardEvent(event)) {
       if (event.key === keys.ENTER) {
@@ -646,8 +646,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             _ariaLabel
               ? _ariaLabel
               : id || ariaLabelledby
-              ? undefined
-              : ariaLabel
+                ? undefined
+                : ariaLabel
           }
           aria-labelledby={ariaLabelledby}
           aria-describedby={classNames(

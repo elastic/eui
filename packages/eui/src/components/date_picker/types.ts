@@ -18,21 +18,9 @@ export type TimeUnitId = 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y';
 export type TimeUnitFromNowId = 's+' | 'm+' | 'h+' | 'd+' | 'w+' | 'M+' | 'y+';
 export type TimeUnitAllId = TimeUnitId | TimeUnitFromNowId;
 export type TimeUnitLabel =
-  | 'second'
-  | 'minute'
-  | 'hour'
-  | 'day'
-  | 'week'
-  | 'month'
-  | 'year';
+  'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
 export type TimeUnitLabelPlural =
-  | 'seconds'
-  | 'minutes'
-  | 'hours'
-  | 'days'
-  | 'weeks'
-  | 'months'
-  | 'years';
+  'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years';
 export type AbsoluteDateMode = 'absolute';
 export type RelativeDateMode = 'relative';
 export type NowDateMode = 'now';

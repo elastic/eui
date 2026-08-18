@@ -17,8 +17,7 @@ import { euiDescriptionListDescriptionStyles } from './description_list_descript
 
 // Export required for correct inference by HOCs
 export interface EuiDescriptionListDescriptionProps
-  extends CommonProps,
-    HTMLAttributes<HTMLElement> {}
+  extends CommonProps, HTMLAttributes<HTMLElement> {}
 
 export const EuiDescriptionListDescription: FunctionComponent<
   EuiDescriptionListDescriptionProps

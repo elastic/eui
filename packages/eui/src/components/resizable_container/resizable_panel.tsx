@@ -52,8 +52,7 @@ export interface ToggleOptions {
 }
 
 export type ModeOptions =
-  | PanelModeType
-  | [PanelModeType, Partial<ToggleOptions>];
+  PanelModeType | [PanelModeType, Partial<ToggleOptions>];
 
 export type ToggleCollapseCallback = (
   panelId: EuiResizablePanelController['id'],
@@ -87,9 +86,7 @@ export interface EuiResizablePanelControls {
 }
 
 export interface EuiResizablePanelProps
-  extends _EuiPanelProps,
-    CommonProps,
-    Partial<EuiResizablePanelControls> {
+  extends _EuiPanelProps, CommonProps, Partial<EuiResizablePanelControls> {
   /**
    * Specify a desired minimum panel size in pixels or percents,
    * for example "300px" or "30%"

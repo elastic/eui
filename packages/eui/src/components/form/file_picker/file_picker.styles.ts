@@ -41,9 +41,11 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:hover {
-        --euiFormControlStateColor: ${highContrastMode
-          ? euiTheme.border.color
-          : euiTheme.colors.borderInteractiveFormsHoverProminent};
+        --euiFormControlStateColor: ${
+          highContrastMode
+            ? euiTheme.border.color
+            : euiTheme.colors.borderInteractiveFormsHoverProminent
+        };
         --euiFormControlStateStyle: ${highContrastMode ? 'solid' : 'dashed'};
       }
 
@@ -60,9 +62,9 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isDroppingFile: css`
       --euiFormControlStateColor: ${euiTheme.colors.borderStrongSuccess};
-      --euiFormControlStateStyle: ${highContrastMode === 'forced'
-        ? 'solid'
-        : 'dashed'};
+      --euiFormControlStateStyle: ${
+        highContrastMode === 'forced' ? 'solid' : 'dashed'
+      };
 
       background-color: ${euiTheme.components.forms.backgroundDropping};
     `,
@@ -149,7 +151,8 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         var(--euiFormControlStateColor, ${euiTheme.colors.borderBaseProminent});
 
       ${euiCanAnimate} {
-        transition: border-color ${euiTheme.animation.fast} ease-in,
+        transition:
+          border-color ${euiTheme.animation.fast} ease-in,
           background-color ${euiTheme.animation.fast} ease-in;
       }
     `,

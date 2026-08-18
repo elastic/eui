@@ -346,7 +346,7 @@ export const EuiMarkdownEditor = forwardRef<
     useEffect(() => {
       if (onParse) {
         const messages = parsed ? parsed.messages : [];
-        const ast = parsed ? parsed.result ?? parsed.contents : null;
+        const ast = parsed ? (parsed.result ?? parsed.contents) : null;
         onParse(parseError, { messages, ast });
       }
     }, [onParse, parsed, parseError]);

@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -36,7 +36,7 @@ export default class MonthDropdownOptions extends React.Component {
     onChange: PropTypes.func.isRequired,
     month: PropTypes.number.isRequired,
     monthNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    accessibleMode: PropTypes.bool
+    accessibleMode: PropTypes.bool,
   };
 
   constructor(...args) {
@@ -44,17 +44,18 @@ export default class MonthDropdownOptions extends React.Component {
 
     this.state = {
       preSelection: this.props.month,
-      readInstructions: false
+      readInstructions: false,
     };
   }
 
   renderOptions = () => {
     return this.props.monthNames.map((month, i) => (
       <div
-        className={classnames("react-datepicker__month-option", {
-          "react-datepicker__month-option--selected_month": this.props.month === i,
-          "react-datepicker__month-option--preselected":
-            this.props.accessibleMode && this.state.preSelection === i
+        className={classnames('react-datepicker__month-option', {
+          'react-datepicker__month-option--selected_month':
+            this.props.month === i,
+          'react-datepicker__month-option--preselected':
+            this.props.accessibleMode && this.state.preSelection === i,
         })}
         key={month}
         ref={month}
@@ -63,7 +64,7 @@ export default class MonthDropdownOptions extends React.Component {
         {this.props.month === i ? (
           <span className="react-datepicker__month-option--selected">✓</span>
         ) : (
-          ""
+          ''
         )}
         {month}
       </div>
@@ -76,31 +77,31 @@ export default class MonthDropdownOptions extends React.Component {
     }
   };
 
-  onChange = month => this.props.onChange(month);
+  onChange = (month) => this.props.onChange(month);
 
   handleClickOutside = () => this.props.onCancel();
 
-  onInputKeyDown = event => {
+  onInputKeyDown = (event) => {
     const eventKey = event.key;
     let selectionChange = 0;
     switch (eventKey) {
-      case "ArrowUp":
+      case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
         selectionChange = -1;
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
         selectionChange = 1;
         break;
-      case "Escape":
+      case 'Escape':
         event.preventDefault();
         event.stopPropagation();
         this.props.onCancel();
         break;
-      case " ":
-      case "Enter":
+      case ' ':
+      case 'Enter':
         event.preventDefault();
         event.stopPropagation();
         this.props.onChange(this.state.preSelection);

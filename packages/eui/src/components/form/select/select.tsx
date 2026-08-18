@@ -27,8 +27,7 @@ import { EuiValidatableControl } from '../validatable_control';
 
 import { euiSelectStyles } from './select.styles';
 
-export interface EuiSelectOption
-  extends OptionHTMLAttributes<HTMLOptionElement> {
+export interface EuiSelectOption extends OptionHTMLAttributes<HTMLOptionElement> {
   text: React.ReactNode;
 }
 
@@ -102,7 +101,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   } = props;
   // if this is injecting an empty option for `hasNoInitialSelection` then
   // value needs to fallback to an empty string to interact properly with `defaultValue`
-  const value = hasNoInitialSelection ? _value ?? '' : _value;
+  const value = hasNoInitialSelection ? (_value ?? '') : _value;
 
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
@@ -140,8 +139,8 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
         ? styles.lineHeight.inGroup.compressed
         : styles.lineHeight.inGroup.uncompressed
       : compressed
-      ? styles.lineHeight.compressed
-      : styles.lineHeight.uncompressed,
+        ? styles.lineHeight.compressed
+        : styles.lineHeight.uncompressed,
   ];
 
   return (

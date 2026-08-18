@@ -39,8 +39,10 @@ export const euiSideNavMobileStyles = (euiThemeContext: UseEuiTheme) => {
     content: {
       euiSideNav__mobileContent: css`
         ${euiCanAnimate} {
-          transition: max-block-size ${fastTransition},
-            padding-block ${fastTransition}, opacity ${slowTransition},
+          transition:
+            max-block-size ${fastTransition},
+            padding-block ${fastTransition},
+            opacity ${slowTransition},
             visibility ${slowTransition};
         }
       `,

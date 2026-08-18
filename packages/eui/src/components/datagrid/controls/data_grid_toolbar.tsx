@@ -131,7 +131,7 @@ function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
 }
 
 export function checkOrDefaultToolBarDisplayOptions<
-  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions,
 >(
   arg: EuiDataGridProps['toolbarVisibility'],
   option: OptionKey

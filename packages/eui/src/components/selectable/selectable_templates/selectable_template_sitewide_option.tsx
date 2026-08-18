@@ -30,12 +30,7 @@ export interface EuiSelectableTemplateSitewideMetaData extends CommonProps {
    * Appends the string to the class name as `euiSelectableTemplateSitewide__optionMeta--[type]`
    */
   type?:
-    | 'application'
-    | 'deployment'
-    | 'article'
-    | 'case'
-    | 'platform'
-    | string;
+    'application' | 'deployment' | 'article' | 'case' | 'platform' | string;
   /**
    * Will wrap the meta tag in EuiHighlight to mark the portions that match the search text
    */

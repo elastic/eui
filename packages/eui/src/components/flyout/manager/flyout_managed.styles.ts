@@ -49,12 +49,14 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       `;
 
       const inactiveFlyout = css`
-        ${side === 'left'
-          ? logicalCSS('right', '100vw')
-          : logicalCSS('left', '100vw')}
-        transform: translateX(${side === 'left'
-          ? 'calc(-100vw - 100%)'
-          : 'calc(100vw + 100%)'});
+        ${
+          side === 'left'
+            ? logicalCSS('right', '100vw')
+            : logicalCSS('left', '100vw')
+        }
+        transform: translateX(${
+          side === 'left' ? 'calc(-100vw - 100%)' : 'calc(100vw + 100%)'
+        });
       `;
 
       switch (activeStage) {

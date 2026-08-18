@@ -93,10 +93,9 @@ export const euiTextTruncate = (
  */
 export const euiTextTruncateCSS = (
   maxWidth: CSSProperties['maxWidth'] = '100%'
-) =>
-  css`
-    ${euiTextTruncate(maxWidth)}
-  `;
+) => css`
+  ${euiTextTruncate(maxWidth)}
+`;
 
 /**
  * Fixed-width numbers for tabular data
