@@ -158,6 +158,26 @@ test('repairs missing and extra mapping keys even when the token diff is empty',
   assert.doesNotMatch(result.content, /'euiExtra':/);
 });
 
+test('locates mapping entries regardless of indent', () => {
+  const tokens = [stringToken('euiKeep', 'Keep')];
+  const mappingContent = `export const mapping = () => {
+return {
+'euiKeep': i18n.translate('core.euiKeep', {
+defaultMessage: 'Keep',
+}),
+};
+};
+`;
+
+  const result = syncMappingContent({
+    oldTokens: tokens,
+    newTokens: [stringToken('euiKeep', 'Kept')],
+    mappingContent,
+  });
+
+  assert.match(result.content, /defaultMessage: 'Kept'/);
+});
+
 test('rejects unknown function defaults instead of creating an incomplete mapping', () => {
   const functionToken = codeToken(
     'euiUnknown',

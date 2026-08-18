@@ -2,8 +2,7 @@ import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 
-const TOKEN_LINE_RE = /^    '(eui[^']+)':/;
-const MAPPING_CLOSING_RE = /^  \};/;
+const TOKEN_LINE_RE = /^'(eui[^']+)':/;
 
 const readTokenMap = (tokens) => {
   const tokenMap = new Map();
@@ -83,11 +82,26 @@ const parseEntries = (content) => {
   const lines = content.split('\n');
   const starts = [];
   let closing = -1;
+  let inMapping = false;
 
   lines.forEach((line, index) => {
-    const tokenMatch = TOKEN_LINE_RE.exec(line);
-    if (tokenMatch) starts.push({ token: tokenMatch[1], start: index });
-    else if (MAPPING_CLOSING_RE.test(line)) closing = index;
+    const trimmed = line.trim();
+
+    if (!inMapping) {
+      if (/^return\s*\{/.test(trimmed)) inMapping = true;
+      return;
+    }
+
+    const tokenMatch = TOKEN_LINE_RE.exec(trimmed);
+    if (tokenMatch) {
+      starts.push({ token: tokenMatch[1], start: index });
+      return;
+    }
+
+    if (trimmed === '};') {
+      closing = index;
+      inMapping = false;
+    }
   });
 
   if (closing === -1 || starts.length === 0) {
