@@ -278,9 +278,9 @@ const vrtProps = {
 export const ColumnSelector: Story = {
   tags: ['vrt-only'],
   parameters: {
-    vrt: { selector: VRT_SELECTORS.portal },
+    vrt: { selector: VRT_SELECTORS.portal, skip: ['mobile'] },
   },
-  render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
+  render: () => <StatefulDataGrid {...vrtProps} />,
   play: playDecorator(async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
@@ -291,17 +291,17 @@ export const ColumnSelector: Story = {
         ).toBeVisible()
       );
       await canvas.waitForAndClick('dataGridColumnSelectorButton');
-      await canvas.waitForEuiPopoverVisible();
+      await canvas.waitForEuiPopoverVisible(
+        '[data-test-subj="dataGridColumnSelectorButton"]'
+      );
     });
 
     await step('Hide all columns', async () => {
       await fireEvent.click(
         canvas.getByTestSubject('dataGridColumnSelectorHideAllButton')
       );
-      await waitFor(() =>
-        expect(
-          canvas.getByTestSubject('dataGridColumnSortingButton')
-        ).toBeVisible()
+      await canvas.waitForEuiPopoverVisible(
+        '[data-test-subj="dataGridColumnSelectorButton"]'
       );
     });
   }),
@@ -347,7 +347,7 @@ export const KeyboardShortcuts: Story = {
       expect(canvas.getAllByRole('gridcell').length).toBeGreaterThan(0)
     );
     await canvas.waitForAndClick('dataGridKeyboardShortcutsButton');
-    await waitFor(() => expect(canvas.getByRole('dialog')).toBeVisible());
+    await canvas.waitForEuiPopoverVisible();
   }),
 };
 

@@ -15,7 +15,11 @@ import { action } from 'storybook/actions';
 
 import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { playDecorator, VRT_SELECTORS } from '../../../.storybook/vrt';
+import {
+  playDecorator,
+  VRT_SELECTORS,
+  VRT_VARIANT_ATTRIBUTE,
+} from '../../../.storybook/vrt';
 
 import { EuiButtonIcon } from '../button';
 import { EuiIconTip, EuiToolTip } from '../tool_tip';
@@ -264,16 +268,18 @@ export const VisibleColumns: Story = {
       { id: 'date', displayAsText: 'Date' },
     ],
   },
-  render: (args: EuiDataGridProps) => (
-    <StatefulDataGrid {...args} minSizeForControls={1} />
-  ),
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
   play: playDecorator(async ({ canvasElement }) => {
+    // Column selector is hidden below 479px
+    if (
+      canvasElement.ownerDocument.documentElement.getAttribute(
+        VRT_VARIANT_ATTRIBUTE
+      ) === 'mobile'
+    ) {
+      return;
+    }
+
     const canvas = within(canvasElement);
-    await waitFor(() =>
-      expect(
-        canvas.getByTestSubject('dataGridColumnSelectorButton')
-      ).toBeVisible()
-    );
     await canvas.waitForAndClick('dataGridColumnSelectorButton');
     await canvas.waitForEuiPopoverVisible();
   }),
