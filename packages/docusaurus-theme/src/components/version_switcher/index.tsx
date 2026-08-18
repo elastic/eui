@@ -8,7 +8,6 @@
 
 import { ComponentProps, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import { FixedSizeList } from 'react-window';
 import {
   EuiButtonEmpty,
   euiFocusRing,
@@ -25,6 +24,13 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     button: css`
       font-weight: ${euiTheme.font.weight.bold};
       color: ${euiTheme.colors.primary};
+    `,
+    list: css`
+      inline-size: 120px;
+      max-block-size: 200px;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
     `,
     listItem: css`
       .euiListGroupItem__button:focus-visible {
@@ -144,18 +150,10 @@ export const VersionSwitcher = ({
       panelPaddingSize="xs"
       aria-label={ariaLabel}
     >
-      <FixedSizeList
-        className="eui-yScroll"
-        itemCount={allVersions.length}
-        itemSize={24}
-        height={200}
-        width={120}
-        innerElementType="ul"
-      >
-        {({ index, style }) => {
-          const version = allVersions[index];
+      <ul className="eui-yScroll" css={styles.list}>
+        {allVersions.map((version) => {
           const isCurrentVersion = version === currentVersion;
-          const screenReaderVersion = pronounceVersion(version!);
+          const screenReaderVersion = pronounceVersion(version);
 
           const url =
             version === latestVersion
@@ -164,8 +162,8 @@ export const VersionSwitcher = ({
 
           return (
             <EuiListGroupItem
+              key={version}
               css={styles.listItem}
-              style={style}
               label={`v${version}`}
               aria-label={screenReaderVersion}
               href={url}
@@ -174,8 +172,8 @@ export const VersionSwitcher = ({
               extraAction={extraAction?.(version)}
             />
           );
-        }}
-      </FixedSizeList>
+        })}
+      </ul>
     </EuiPopover>
   );
 };
