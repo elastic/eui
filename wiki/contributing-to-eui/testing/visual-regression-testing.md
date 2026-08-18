@@ -184,10 +184,10 @@ play: playDecorator(async (context) => { ... }, false)
 
 ## Authoring stable stories
 
-VRT compares screenshots pixel-for-pixel, so anything non-deterministic (network requests, animations, randomness, timing or capturing the wrong element) produces false diffs or flaky failures. The test-runner already neutralizes several sources globally:
+VRT compares screenshots pixel-for-pixel (4-pixel allowance for subpixel diff), so anything non-deterministic (network requests, animations, randomness, timing or capturing the wrong element) produces false diffs or flaky failures. The test-runner already neutralizes several sources globally:
 
 - CSS animations are paused before the screenshot (`animations: 'disabled'`) and `prefers-reduced-motion: reduce` is emulated.
-- The runner waits for the page to be ready and for all `<img>` elements to finish loading before capturing.
+- The runner waits for the page to be ready: for all `<img>` elements to finish loading before capturing, for all fonts to be ready and for layout to be stabilized.
 - Failed screenshots are retried automatically.
 
 Some common failures and how to fix them:
