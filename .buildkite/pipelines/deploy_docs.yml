@@ -28,8 +28,8 @@ steps:
     timeout_in_minutes: 30
     command: .buildkite/scripts/deploy_docs/step_vrt.sh
     artifact_paths:
-      - "packages/eui/.vrt/diff/**/*.png"
-      - "packages/eui/.vrt/current/**/*-received.png"
+      - "packages/eui/.vrt/diff/*-diff.png"
+      - "packages/eui/.vrt/current/*-received.png"
   
   - label: ":loudspeaker: Notify"
     key: "notify"
@@ -49,7 +49,7 @@ steps:
 
   - block: "Approve visual changes"
     key: "approve-vrt"
-    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+    prompt: "Review the visual diff annotation in this build. If it's expected, click Approve to update the baselines on this branch."
     depends_on: "vrt"
     allow_dependency_failure: true
     allowed_teams: "eui-team"

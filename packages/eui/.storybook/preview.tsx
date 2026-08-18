@@ -10,6 +10,8 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
+import './fonts.css';
+
 import { setEuiDevProviderWarning } from '../src/services';
 
 /**

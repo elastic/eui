@@ -46,23 +46,37 @@ const customWithin = (canvasElement: HTMLElement) => {
       await fonts.ready;
       defaultView?.dispatchEvent(new defaultView.Event('resize'));
 
-      if (!anchorSelector) return;
+      if (anchorSelector) {
+        await waitFor(() =>
+          expect(canvasElement.querySelector(anchorSelector)).toBeTruthy()
+        );
+      }
+
+      // Popover takes the available space so it can shift depending on the anchor position.
+      // Wait until the panel stops moving.
+
+      let lastLeft: number | undefined;
+      let lastTop: number | undefined;
 
       await waitFor(() => {
-        const panel = canvasElement.ownerDocument.querySelector(
-          '[data-popover-panel]'
-        );
-        const anchor = canvasElement.querySelector(anchorSelector);
+        const panel =
+          canvasElement.ownerDocument.querySelector('[data-popover-panel]') ??
+          canvasElement.querySelector('[data-popover-open]');
 
-        if (!panel || !anchor) {
-          throw new Error('Popover did not render');
-        }
+        if (!panel) throw new Error('Popover did not render');
 
-        expect(panel.getBoundingClientRect().left).toBe(
-          anchor.getBoundingClientRect().left
-        );
+        const { left, top } = panel.getBoundingClientRect();
+        const nextLeft = Math.round(left);
+        const nextTop = Math.round(top);
+        const settled = lastLeft === nextLeft && lastTop === nextTop;
+
+        lastLeft = nextLeft;
+        lastTop = nextTop;
+
+        expect(settled).toBe(true);
       });
     },
+
     waitForEuiPopoverHidden: async () =>
       await waitFor(() =>
         expect(

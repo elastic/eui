@@ -6,7 +6,7 @@
 #
 # On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with
 # a Before/After/Diff table, sets `vrt_passed=false` so the static `update-baselines` step
-# (after the user approves the block step) actually updates the baselines.
+# (after the user approves the block step) copies those reported screenshots into baselines.
 
 set -eo pipefail
 
@@ -183,6 +183,28 @@ declare -A pr_comment_rows_by_component
 # Preserve component insertion order
 component_order=()
 
+# Extracts and formats the diff percent reported by `jest-image-snapshot`.
+get_diff_percentage() {
+  local filename="$1"
+  local percentage
+
+  percentage=$(
+    grep -F -B 3 -- "${filename}" "${vrt_output_file}" \
+      | grep -oE '[0-9]+([.][0-9]+)?% different' \
+      | tail -n 1 \
+      | cut -d '%' -f 1 \
+      || true
+  )
+
+  if [[ -z "${percentage}" ]]; then
+    echo "n/a"
+  elif awk -v value="${percentage}" 'BEGIN { exit !(value > 0 && value < 0.01) }'; then
+    echo "&lt;0.01%"
+  else
+    awk -v value="${percentage}" 'BEGIN { printf "%.2f%%\n", value }'
+  fi
+}
+
 while IFS= read -r diff_file; do
   filename="$(basename "${diff_file}")"
   story_name="${filename%-diff.png}"
@@ -199,6 +221,7 @@ while IFS= read -r diff_file; do
   # Derive a readable story label from the story-name portion after "--"
   story_label="${story_id##*--}"
   story_label="${story_label//-/ }"
+  diff_percentage="$(get_diff_percentage "${filename}")"
 
   gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${diff_file}" "${vrt_gcs_base}/${filename}"
   if [[ -f "${CURRENT_DIR}/${story_name}-received.png" ]]; then
@@ -218,6 +241,7 @@ while IFS= read -r diff_file; do
   annotation_rows_by_component[$component]+="
   <tr>
     <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"artifact://${REF_DIR}/${story_name}.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${CURRENT_DIR}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"artifact://${DIFF_DIR}/${filename}\" width=\"180\"/></td>
@@ -226,6 +250,7 @@ while IFS= read -r diff_file; do
   pr_comment_rows_by_component[$component]+="
   <tr>
     <td><a href=\"${story_url}\">${story_label}</a> <code>${viewport}</code></td>
+    <td>${diff_percentage}</td>
     <td><img src=\"${vrt_public_base}/${story_name}-before.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${story_name}-received.png\" width=\"180\"/></td>
     <td><img src=\"${vrt_public_base}/${filename}\" width=\"180\"/></td>
@@ -250,7 +275,7 @@ make_diff_html() {
 <p><strong>${component}</strong> (${count} difference$([ "$count" -ne 1 ] && echo 's'))</p>
 <table>
 <thead>
-  <tr><th>Story</th><th>Before</th><th>After</th><th>Diff</th></tr>
+  <tr><th>Story</th><th>Diff %</th><th>Before</th><th>After</th><th>Diff</th></tr>
 </thead>
 <tbody>${rows}
 </tbody>
@@ -259,8 +284,14 @@ make_diff_html() {
   done
 
   cat << DIFF_HTML
+## :camera: ${diff_count} visual difference(s) found
+
+Look at the visual diff below. If everything is expected, run [Approve visual changes](${BUILDKITE_BUILD_URL}) to update baselines, re-run the job or make appropriate fixes.
+
+See the [visual regression testing](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md) wiki for more information.
+
 <details>
-<summary><strong>${diff_count} visual difference(s) found</strong> - expand to review, then click <em><a href="${BUILDKITE_BUILD_URL}">Approve visual changes</a></em> to update baselines</summary>
+<summary>Expand to review</summary>
 <br>
 ${tables}
 </details>
@@ -287,5 +318,6 @@ fi
 
 # Fail the step. The "Approve visual changes" block + "Update VRT baselines"
 # steps are declared statically in deploy_docs.yml; step_vrt_update.sh gates
-# itself on the `vrt_passed=false` meta-data set above.
+# itself on the `vrt_passed=false` meta-data set above, then copies the
+# reported received screenshots into baselines.
 exit 1
