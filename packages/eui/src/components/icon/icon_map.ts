@@ -1084,8 +1084,8 @@ export const typeToPathMap = {
     { synonyms: ['kubernetes', 'k8s', 'namespace', 'ns', 'heptagon'] }
   ),
   kubernetesNode: () => import('./assets/kubernetes_node'),
-  kubernetesPod: () => import('./assets/kubernetes_pod'), // Deprecated in favor of `cube`
-  cube: withMetadata(() => import('./assets/kubernetes_pod'), {
+  kubernetesPod: () => import('./assets/cube'), // Deprecated in favor of `cube`
+  cube: withMetadata(() => import('./assets/cube'), {
     synonyms: [
       'cube',
       'kubernetes',

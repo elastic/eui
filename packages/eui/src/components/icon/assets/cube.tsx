@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconKubernetesPod = ({
+const EuiIconCube = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,7 @@ const EuiIconKubernetesPod = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m2.5 11.213 5 2.916V8.286l-5-2.916v5.843Zm6-2.927v5.843l5-2.916V5.37l-5 2.916ZM2.991 4.5 8 7.42l5.008-2.92L8 1.578 2.991 4.5Zm11.509 7a.5.5 0 0 1-.248.432L8.5 15.286v.214h-1v-.214l-5.752-3.354A.5.5 0 0 1 1.5 11.5v-7a.5.5 0 0 1 .248-.432l6-3.5a.5.5 0 0 1 .504 0l6 3.5a.5.5 0 0 1 .248.432v7Z" />
+    <path d="M7.66.06a1 1 0 0 1 .787.045l6 3A1 1 0 0 1 15 4v8a1 1 0 0 1-.553.895l-6 3a1 1 0 0 1-.894 0l-6-3A1 1 0 0 1 1 12V4a1 1 0 0 1 .553-.895l6-3zM2 12l5.5 2.75V7.309L2 4.559zm6.5-4.691v7.441L14 12V4.559zm-5.941-3.59L8 6.44l5.44-2.72L8 1z" />
   </svg>
 );
-export const icon = EuiIconKubernetesPod;
+export const icon = EuiIconCube;
