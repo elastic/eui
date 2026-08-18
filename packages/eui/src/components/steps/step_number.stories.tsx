@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiStepNumber, EuiStepNumberProps, STATUS } from './step_number';

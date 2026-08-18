@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiHeader } from '../header';
 import { EuiHeaderSection, EuiHeaderSectionProps } from './header_section';
