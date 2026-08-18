@@ -49,7 +49,7 @@ steps:
 
   - block: "Approve visual changes"
     key: "approve-vrt"
-    prompt: "Review the diff annotation in this build, then click Approve to update the baselines on this branch."
+    prompt: "Review the visual diff annotation in this build. If it's expected, click Approve to update the baselines on this branch."
     depends_on: "vrt"
     allow_dependency_failure: true
     allowed_teams: "eui-team"

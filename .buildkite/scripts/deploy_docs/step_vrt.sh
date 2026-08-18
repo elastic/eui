@@ -6,7 +6,7 @@
 #
 # On failure: uploads diff artifacts, posts a Buildkite annotation and a GitHub PR comment with
 # a Before/After/Diff table, sets `vrt_passed=false` so the static `update-baselines` step
-# (after the user approves the block step) actually updates the baselines.
+# (after the user approves the block step) copies those reported screenshots into baselines.
 
 set -eo pipefail
 
@@ -284,8 +284,14 @@ make_diff_html() {
   done
 
   cat << DIFF_HTML
+## :camera: ${diff_count} visual difference(s) found
+
+Look at the visual diff below. If everything is expected, run [Approve visual changes](${BUILDKITE_BUILD_URL}) to update baselines, re-run the job or make appropriate fixes.
+
+See the [visual regression testing](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md) wiki for more information.
+
 <details>
-<summary><strong>${diff_count} visual difference(s) found</strong> - expand to review, then click <em><a href="${BUILDKITE_BUILD_URL}">Approve visual changes</a></em> to update baselines</summary>
+<summary>Expand to review</summary>
 <br>
 ${tables}
 </details>
@@ -312,5 +318,6 @@ fi
 
 # Fail the step. The "Approve visual changes" block + "Update VRT baselines"
 # steps are declared statically in deploy_docs.yml; step_vrt_update.sh gates
-# itself on the `vrt_passed=false` meta-data set above.
+# itself on the `vrt_passed=false` meta-data set above, then copies the
+# reported received screenshots into baselines.
 exit 1
