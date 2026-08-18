@@ -7298,6 +7298,8 @@ __metadata:
     "@emotion/jest": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.0"
     "@faker-js/faker": "npm:^8.0.2"
+    "@fontsource-variable/inter": "npm:^5.3.0"
+    "@fontsource-variable/roboto-mono": "npm:^5.3.0"
     "@hello-pangea/dnd": "npm:^16.6.0"
     "@playwright/test": "npm:^1.44.0"
     "@storybook/addon-webpack5-compiler-babel": "npm:^4.0.1"
@@ -8072,6 +8074,20 @@ __metadata:
   version: 8.0.2
   resolution: "@faker-js/faker@npm:8.0.2"
   checksum: 10c0/a7851d4abfcd93c8c9d40ca7f1a7ad2218b9dcac1b11afe9dcf0fe38f5c1d91610e56bcedf5193a5b178dc10e052baab35977853342e84ec12b1fb27b425b356
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/inter@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/inter@npm:5.3.0"
+  checksum: 10c0/46fbe41e8482a718f99634c8254346c6081d615415059be12e177224c903d688199125967825e75d4b8122668fd83f70880e11d4e02d08c20b503c65fe2a96d1
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/roboto-mono@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/roboto-mono@npm:5.3.0"
+  checksum: 10c0/dbb0234b3b637e2f145e693cad525c81371af26251fcf3cc9683931bda6b53e3c9c2680f89cf0c87c2a52723d01e873cf893982178b63a7afdd4c0a4ca929d61
   languageName: node
   linkType: hard
 
