@@ -28,8 +28,8 @@ steps:
     timeout_in_minutes: 30
     command: .buildkite/scripts/deploy_docs/step_vrt.sh
     artifact_paths:
-      - "packages/eui/.vrt/diff/**/*.png"
-      - "packages/eui/.vrt/current/**/*-received.png"
+      - "packages/eui/.vrt/diff/*-diff.png"
+      - "packages/eui/.vrt/current/*-received.png"
   
   - label: ":loudspeaker: Notify"
     key: "notify"

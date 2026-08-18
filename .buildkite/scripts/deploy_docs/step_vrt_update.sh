@@ -42,7 +42,8 @@ export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 
 echo "+++ Downloading reported VRT screenshots"
 mkdir -p "${CURRENT_DIR}"
-buildkite-agent artifact download "packages/eui/.vrt/current/**/*-received.png" .
+
+buildkite-agent artifact download "packages/eui/.vrt/current/*-received.png" .
 
 if ! compgen -G "${CURRENT_DIR}/*-received.png" > /dev/null; then
   echo "No received screenshots found in artifacts from the VRT step."
