@@ -73,7 +73,7 @@ const waitForFonts = async (page: Page) => {
 };
 
 /**
- * Ensure the page is layout has stabilized before taking a screenshot.
+ * Ensure the page layout has stabilized before taking a screenshot.
  */
 const waitForLayout = async (page: Page) => {
   await page.evaluate(
