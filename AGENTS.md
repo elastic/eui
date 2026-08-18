@@ -15,3 +15,7 @@ If the wiki disagrees with this file, the wiki wins — open a PR to fix it.
 
 - Use the [`gh` CLI](https://cli.github.com/) when interacting with GitHub.
 - Use the [`bk` CLI](https://buildkite.com/docs/platform/cli) when interacting with Buildkite.
+
+## Testing
+
+- Never run visual regression tests locally unless the user explicitly asks you to.

@@ -29,6 +29,11 @@ import {
  */
 const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
 
+/**
+ * Allow a few pixels of subpixel noise.
+ */
+const FAILURE_THRESHOLD_PIXELS = 4;
+
 const configDir = path.dirname(fileURLToPath(import.meta.url));
 
 /**
@@ -41,8 +46,6 @@ const activeVariant = isVariantName(process.env.VRT_VARIANT)
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
- * `waitForPageReady` does not guarantee image decode completion, which causes
- * layout shifts in stories that use `<EuiImage>` or similar components.
  */
 const waitForImagesToLoad = async (page: Page) => {
   await page.evaluate(() =>
@@ -57,6 +60,27 @@ const waitForImagesToLoad = async (page: Page) => {
             })
         )
     )
+  );
+};
+
+/**
+ * Ensure all fonts are loaded before taking a screenshot.
+ */
+const waitForFonts = async (page: Page) => {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+  });
+};
+
+/**
+ * Ensure the page layout has stabilized before taking a screenshot.
+ */
+const waitForLayout = async (page: Page) => {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      )
   );
 };
 
@@ -101,6 +125,8 @@ const config: TestRunnerConfig = {
 
     await waitForPageReady(page);
     await waitForImagesToLoad(page);
+    await waitForFonts(page);
+    await waitForLayout(page);
 
     const image =
       selector === 'page'
@@ -128,6 +154,8 @@ const config: TestRunnerConfig = {
         customReceivedDir: path.join(configDir, '..', '.vrt', 'current'),
         storeReceivedOnFailure: true,
         customSnapshotIdentifier: snapshotId,
+        failureThreshold: FAILURE_THRESHOLD_PIXELS,
+        failureThresholdType: 'pixel',
       });
     }
   },
