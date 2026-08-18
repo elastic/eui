@@ -255,15 +255,8 @@ export const InputWithPopover: Story = {
       { min: 20, max: 100, color: 'success' },
     ],
   },
-  // Force input popover open via programmatic ref
-  render: function Render(args) {
-    const [ref, setRef] = useState<any>();
-    useEffect(() => {
-      // Wrapping in a timeout avoids a width/render error during VRT.
-      // This doesn't happen on production
-      if (ref) setTimeout(() => ref.onInputFocus(), 1);
-    }, [ref]);
-    return <EuiRange {...args} ref={setRef} />;
+  play: async ({ canvasElement }) => {
+    canvasElement.querySelector<HTMLInputElement>('.euiRangeInput')?.focus();
   },
 };
 
