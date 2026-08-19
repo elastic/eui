@@ -334,6 +334,130 @@ export default () => {
 };
 ```
 
+### Selection
+
+Use `variant="selection"` to give buttons toggle behaviour — clicks fire `onChange` with the button's `id`, and the selected state is reflected via `aria-pressed` on each button.
+
+Every child button **must** have a unique `id` prop so the group can track and communicate selection state.
+
+- **Single selection** (`type="single"`, the default): at most one button is selected at a time. Pass the selected button's `id` as `idSelected`.
+- **Multi selection** (`type="multi"`): any number of buttons can be selected simultaneously. Pass a map of `id → boolean` as `idToSelectedMap`.
+
+Use the `display` prop to alter the visual style of the component. 
+
+- `display="regular"`: Renders a subdued toggle state on light background. (default)
+- `display="highlighted"`: Renders a prominent toggle state on light background. Use when you have more than one segmented control and want to highlight one over the others.
+- `display="inverse"`: Renders a light toggle state on subdued/tinted background.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [type, setType] = useState('single');
+  const [display, setDisplay] = useState('regular');
+  const [idSelected, setIdSelected] = useState('edit');
+  const [idToSelectedMap, setIdToSelectedMap] = useState({ edit: true });
+
+  const commonProps = {
+    legend: 'Document actions',
+    variant: 'selection',
+    display,
+  };
+
+  const buttons = (
+    <>
+      <EuiButton id="save">Save</EuiButton>
+      <EuiButton id="edit">Edit</EuiButton>
+      <EuiButton id="delete">Delete</EuiButton>
+    </>
+  );
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
+        <EuiSelect
+          compressed
+          prepend="type"
+          options={[
+            { value: 'single', text: 'single' },
+            { value: 'multi', text: 'multi' },
+          ]}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          aria-label="Select type"
+        />
+        <EuiSelect
+          compressed
+          prepend="display"
+          options={[
+            { value: 'regular', text: 'regular' },
+            { value: 'highlighted', text: 'highlighted' },
+            { value: 'inverse', text: 'inverse' },
+          ]}
+          value={display}
+          onChange={(e) => setDisplay(e.target.value)}
+          aria-label="Select display"
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      {type === 'multi' ? (
+        <EuiButtonGroup
+          {...commonProps}
+          type="multi"
+          idToSelectedMap={idToSelectedMap}
+          onChange={(id) =>
+            setIdToSelectedMap((prev) => ({ ...prev, [id]: !prev[id] }))
+          }
+        >
+          {buttons}
+        </EuiButtonGroup>
+      ) : (
+        <EuiButtonGroup
+          {...commonProps}
+          idSelected={idSelected}
+          onChange={(id) => setIdSelected(id)}
+        >
+          {buttons}
+        </EuiButtonGroup>
+      )}
+
+      <EuiSpacer />
+      
+      <EuiFlexGroup gutterSize="s">
+        <EuiButtonGroup
+          legend="View mode"
+          variant="selection"
+          display={display}
+          idSelected={idSelected}
+          onChange={(id) => setIdSelected(id)}
+        >
+          <EuiToolTip content="Grid view" disableScreenReaderOutput>
+            <EuiButtonIcon id="grid" iconType="grid" aria-label="Grid view" />
+          </EuiToolTip>
+          <EuiToolTip content="List view" disableScreenReaderOutput>
+            <EuiButtonIcon id="list" iconType="list" aria-label="List view" />
+          </EuiToolTip>
+          <EuiToolTip content="Map view" disableScreenReaderOutput>
+            <EuiButtonIcon id="map" iconType="mapMarker" aria-label="Map view" />
+          </EuiToolTip>
+        </EuiButtonGroup>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
 ## Options API
 
 Use the `options` array when buttons need radio or checkbox semantics. Set `type="single"` (default) for a radio-like single selection, or `type="multi"` for multi-selection.
