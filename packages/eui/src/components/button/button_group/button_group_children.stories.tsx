@@ -86,7 +86,15 @@ type Story = StoryObj<typeof EuiButtonGroup>;
 export const WithChildren: Story = {
   args: {
     legend: 'EuiButtonGroup - Children API',
-    children: buttons,
+    children: (
+      <>
+        <EuiButton color="danger">Delete</EuiButton>
+        <EuiButton color="text">Rename</EuiButton>
+        <EuiButton color="text">Disable</EuiButton>
+        <EuiButton>Duplicate</EuiButton>
+        <EuiButton fill>Save</EuiButton>
+      </>
+    ),
   },
 };
 
