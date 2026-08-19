@@ -24,8 +24,9 @@ import { CommonProps } from '../../common';
 import { _EuiButtonColor } from '../../../global_styling/mixins';
 import { EuiToolTipProps } from '../../../components/tool_tip';
 import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
-import { EuiButtonGroupButton } from './button_group_button';
 import { EuiButtonContext } from '../button_context';
+import { EuiButtonGroupButton } from './button_group_button';
+import { useEuiButtonGroupSelection } from './use_button_group_selection';
 import {
   euiButtonGroupStyles,
   euiButtonGroupButtonsStyles,
@@ -266,6 +267,24 @@ export const BUTTON_GROUP_GUTTER_SIZES = [
 export type EuiButtonGroupGutterSize =
   (typeof BUTTON_GROUP_GUTTER_SIZES)[number];
 
+type SelectionVariantCommonProps = {
+  /**
+   * Visual display variant for the selection container background.
+   * Applies only when `variant="selection"`.
+   * - `'regular'`: subdued toggle state, light container background
+   * - `'highlighted'`: highlighted toggle state, light container background
+   * - `'inverse'`: light toggle state, dark container background
+   * @default 'regular'
+   */
+  display?: 'regular' | 'highlighted' | 'inverse';
+  /**
+   * Callback fired when a child button is selected.
+   * Returns the `id` of the clicked option.
+   * Applies only when `variant="selection"`.
+   */
+  onChange?: (id: string) => void;
+};
+
 export type EuiButtonGroupChildrenProps = CommonProps &
   EuiDisabledProps & {
     options?: never; // Prevents the `options` API from being used in this mode
@@ -291,9 +310,11 @@ export type EuiButtonGroupChildrenProps = CommonProps &
      * - default: arranges buttons in a horizontal row with optional gutter via `gutterSize`
      * - segmented: arranges buttons in a horizontal or vertical row with no gutter.
      *   The buttons are placed inset and dividers can optionally be shown between them.
+     * - selection: arranges buttons inset with toggle selection state (single or multi).
+     *   Each child button must have a unique `id` prop.
      * @default 'default'
      */
-    variant?: 'default' | 'segmented';
+    variant?: 'default' | 'segmented' | 'selection';
     /**
      * Defines the gutter size between children buttons.
      * Applies only when `variant="default"`.
@@ -302,7 +323,8 @@ export type EuiButtonGroupChildrenProps = CommonProps &
     gutterSize?: EuiButtonGroupGutterSize;
     /**
      * Expands the whole group to the full width of the container.
-     * `EuiButton` children will stretch to fill the available space via their `fullWidth` prop.
+     * Only `EuiButton` children will stretch to fill the available space.
+     * `EuiButtonIcon` groups will not stretch.
      * Does not apply when `layout="vertical"`.
      * @default false
      */
@@ -326,13 +348,47 @@ export type EuiButtonGroupChildrenProps = CommonProps &
      * @default true
      */
     wrap?: boolean;
-    /**
-     * Callback fired when a child button is selected.
-     * Returns the `id` of the clicked option.
-     * Applies only for `variant="selection"`.
-     */
-    onChange?: (id: string) => void;
-  };
+  } & (
+    | ({
+        /**
+         * Determines selection behavior.
+         * With `'single'` only one button can be selected at a time.
+         * Applies only when `variant="selection"`.
+         * @default 'single'
+         */
+        type?: 'single';
+        /**
+         * The currently selected button `id`.
+         * Omit or pass `undefined` for no initial selection.
+         * Applies only when `variant="selection"` and `type="single"`.
+         */
+        idSelected?: string;
+        idToSelectedMap?: never;
+      } & SelectionVariantCommonProps)
+    | ({
+        /**
+         * Determines selection behavior.
+         * With `'multi'` multiple buttons can be selected simultaneously.
+         * Applies only when `variant="selection"`.
+         */
+        type: 'multi';
+        /**
+         * A map of button `id`s to their selected boolean values.
+         * Omit or pass `{}` for no initial selection.
+         * The consumer must update this value via `onChange` to reflect new selections.
+         * Applies only when `variant="selection"` and `type="multi"`.
+         */
+        idToSelectedMap?: Record<string, boolean>;
+        idSelected?: never;
+      } & SelectionVariantCommonProps)
+    | {
+        type?: never;
+        idSelected?: never;
+        idToSelectedMap?: never;
+        display?: never;
+        onChange?: never;
+      }
+  );
 
 type ChildrenModeProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupChildrenProps;
@@ -350,12 +406,24 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   showDividers = false,
   wrap = true,
   layout = 'horizontal',
-  // consumed by variant="selection" in a later chunk; destructured to prevent spread
-  onChange: _onChange,
+  display = 'regular',
+  type,
+  idSelected,
+  idToSelectedMap,
+  onChange,
   ...rest
 }) => {
   const isSegmented = variant === 'segmented';
+  const isSelection = variant === 'selection';
+  const hasSegmentedStyle = isSegmented || isSelection;
   const hasGutterSize = variant === 'default' && gutterSize !== 'none';
+
+  const { isSelected, onSelect } = useEuiButtonGroupSelection({
+    type,
+    idSelected,
+    idToSelectedMap,
+    onChange,
+  });
 
   const wrapperCssStyles = [
     euiButtonGroupStyles.euiButtonGroup,
@@ -366,7 +434,7 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     hasGutterSize && styles.gutterSize[gutterSize],
-    isSegmented && !wrap && styles.noWrap,
+    hasSegmentedStyle && !wrap && styles.noWrap,
   ];
 
   const containerCssStyles = [
@@ -380,31 +448,63 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
     className
   );
 
-  const contextValue = useMemo(() => {
-    return {
+  const contextValue = useMemo(
+    () => ({
       size: buttonSize,
       isDisabled: isDisabled || undefined,
       hasAriaDisabled: hasAriaDisabled || undefined,
       fullWidth: isFullWidth,
+      ...((isSegmented || isSelection) && {
+        color: 'text' as const,
+      }),
       ...(isSegmented && {
         display: 'base' as const,
-        color: 'text' as const,
         fill: false,
       }),
-    };
-  }, [buttonSize, isDisabled, hasAriaDisabled, isFullWidth, isSegmented]);
+      ...(isSelection && {
+        getSelectionProps: (id: string) => {
+          const selected = isSelected(id);
+          const isInverse = display === 'inverse';
+          const hasFill = selected && display === 'highlighted';
 
-  // wrap children in a wrapper to be able to apply required styles
-  const children = isSegmented
-    ? flattenButtonGroupChildren(_children).map((child, index) => (
-        <div
-          key={child.key ?? `euiButtonGroupItem-${index}`}
-          className="euiButtonGroup__item"
-        >
-          {child}
-        </div>
-      ))
-    : _children;
+          return {
+            isSelected: selected,
+            fill: isInverse ? false : hasFill,
+            display: isInverse
+              ? ('base' as const)
+              : hasFill
+              ? ('fill' as const)
+              : undefined,
+            onSelect: () => onSelect(id),
+          };
+        },
+      }),
+    }),
+    [
+      buttonSize,
+      isDisabled,
+      hasAriaDisabled,
+      isFullWidth,
+      isSegmented,
+      isSelection,
+      isSelected,
+      onSelect,
+      display,
+    ]
+  );
+
+  // wrap children in a wrapper to apply required inset styles
+  const children =
+    isSegmented || isSelection
+      ? flattenButtonGroupChildren(_children).map((child, index) => (
+          <div
+            key={child.key ?? `euiButtonGroupItem-${index}`}
+            className="euiButtonGroup__item"
+          >
+            {child}
+          </div>
+        ))
+      : _children;
 
   return (
     <div
@@ -413,8 +513,9 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       role="group"
       data-variant={variant}
       data-size={buttonSize}
-      data-layout={isSegmented ? layout : undefined}
-      data-dividers={(isSegmented && showDividers) || undefined}
+      data-display={isSelection ? display : undefined}
+      data-layout={hasSegmentedStyle ? layout : undefined}
+      data-dividers={(hasSegmentedStyle && showDividers) || undefined}
       aria-label={legend}
       aria-disabled={isDisabled || undefined}
       {...rest}

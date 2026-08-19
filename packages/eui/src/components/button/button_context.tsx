@@ -27,6 +27,16 @@ export const EuiButtonContext = createContext<{
   fullWidth?: boolean;
   display?: 'base' | 'fill' | 'empty';
   fill?: boolean;
+  /**
+   * Set by `EuiButtonGroup` with `variant="selection"` to resolve per-button
+   * selected state and its derived display props.
+   */
+  getSelectionProps?: (id: string) => {
+    isSelected: boolean;
+    fill: boolean;
+    display?: 'fill' | 'base';
+    onSelect: () => void;
+  };
 }>({});
 
 /**

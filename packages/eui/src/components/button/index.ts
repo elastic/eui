@@ -21,6 +21,7 @@ export { EuiButtonIcon } from './button_icon';
 export type {
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
+  EuiButtonGroupChildrenProps,
 } from './button_group';
 export { EuiButtonGroup } from './button_group';
 
