@@ -19,13 +19,7 @@ import { EuiBasicTableSelectors } from '../../../components/basic_table/selector
  *
  * `testSubj` must match the `data-test-subj` set by the consumer on the
  * `<EuiBasicTable>`/`<EuiInMemoryTable>` (EUI spreads it onto the `.euiBasicTable`
- * root).
- *
- * Deliberately minimal: only {@link rows} and {@link cells} are exposed. Row
- * actions (consumer-supplied popovers/buttons), sorting, and pagination are not
- * covered — they are either app-specific wiring rather than EUI-internal DOM
- * knowledge, or have no evidenced consumer need yet. Open an issue if you have a
- * real use case one of those would resolve.
+ * root). See the package README for what's deliberately excluded from v1.
  */
 export class EuiBasicTableObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string) {
