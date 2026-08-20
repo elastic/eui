@@ -411,7 +411,7 @@
   "euiColorBackgroundBaseRisk": "#FFF3E3",
   "euiColorBackgroundBaseDanger": "#FFF3F1",
   "euiColorBackgroundBaseAssistance": "#F7F2FF",
-  "euiColorBackgroundBaseCanvas": "#F6F9FC",
+  "euiColorBackgroundBaseRecessed": "#F6F9FC",
   "euiColorBackgroundBaseSubdued": "#F6F9FC",
   "euiColorBackgroundBasePlain": "#FFFFFF",
   "euiColorBackgroundBaseDisabled": "#ECF1F9",

@@ -154,8 +154,7 @@ export type _EuiThemeSpecialColors = {
   /**
    * The background color for the **whole window (body)** and is a computed value of `colors.lightestShade`.
    * Provides denominator (background) value for **contrast calculations**.
-   * @deprecated - app chrome background; prefer `$euiPageBackgroundColor` / theme vars for document root.
-   * Do not conflate with `backgroundBaseCanvas` (nested workspace surfaces).
+   * @deprecated - use backgroundBasePlain or backgroundBaseSubdued instead
    */
   body: ColorModeSwitch;
   /**
@@ -190,10 +189,11 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseAssistance: ColorModeSwitch;
   /**
-   * Nested workspace / panel canvas (e.g. dashboard body under the page header).
-   * Not the whole-app chrome background — use `colors.body` / `$euiPageBackgroundColor` for that.
+   * Intermediate layer between page chrome and raised surfaces.
+   * Seldom used — e.g. dashboard or Workflows wrappers. Prefer
+   * `backgroundBasePlain` / `backgroundBaseSubdued` for general UI.
    */
-  backgroundBaseCanvas: ColorModeSwitch;
+  backgroundBaseRecessed: ColorModeSwitch;
   /**
    * Secondary / inner surface (e.g. nested steps, secondary nav)
    */
