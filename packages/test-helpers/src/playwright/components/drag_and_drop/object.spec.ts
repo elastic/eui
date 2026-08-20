@@ -62,5 +62,15 @@ test.describe('EuiDraggableObject', () => {
       // tracks.
       await expect(page.getByTestId(ITEM_1)).toHaveCount(1);
     });
+
+    test('rejects a disabled draggable (its handle carries no rfd attribute)', async ({
+      page,
+    }) => {
+      await page.goto(storyUrl('display-euidraggable--playground', 'isDragDisabled:true'));
+      await page.getByTestId('draggable').waitFor({ state: 'visible' });
+      const disabledItem = new EuiDraggableObject(page, 'draggable');
+
+      await expect(disabledItem.reorder(1)).rejects.toThrow(/does not/);
+    });
   });
 });
