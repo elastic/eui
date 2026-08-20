@@ -49,10 +49,10 @@ export interface _EuiThemeBorderRadiusValues {
    */
   panel: CSSProperties['borderRadius'];
   /**
-   * Large containers and page sections
+   * App / layout chrome (e.g. framed shell, side nav)
    * - Default value: 16px
    */
-  container: CSSProperties['borderRadius'];
+  frame: CSSProperties['borderRadius'];
 }
 
 export interface _EuiThemeBorderColorValues {

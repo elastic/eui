@@ -29,7 +29,7 @@
   "euiBorderRadiusInline": "4px",
   "euiBorderRadiusControl": "8px",
   "euiBorderRadiusPanel": "12px",
-  "euiBorderRadiusContainer": "16px",
+  "euiBorderRadiusFrame": "16px",
   "euiBorderThick": "2px solid #E3E8F2",
   "euiBorderThin": "1px solid #E3E8F2",
   "euiBorderEditable": "2px dotted #E3E8F2",

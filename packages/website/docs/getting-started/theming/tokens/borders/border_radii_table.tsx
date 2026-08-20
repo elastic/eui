@@ -12,7 +12,7 @@ const borderRadii: Array<keyof _EuiThemeBorderRadiusValues> = [
   'inline',
   'control',
   'panel',
-  'container',
+  'frame',
 ];
 
 export const BorderRadiiTable = () => {
