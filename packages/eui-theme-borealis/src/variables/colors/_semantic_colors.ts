@@ -148,10 +148,8 @@ const _semantic_colors = {
   assistance130: PRIMITIVE_COLORS.purple130,
   assistance140: PRIMITIVE_COLORS.purple140,
 
-  shade8: PRIMITIVE_COLORS.blueGrey8,
   shade10: PRIMITIVE_COLORS.blueGrey10,
   shade15: PRIMITIVE_COLORS.blueGrey15,
-  shade17: PRIMITIVE_COLORS.blueGrey17,
   shade20: PRIMITIVE_COLORS.blueGrey20,
   shade25: PRIMITIVE_COLORS.blueGrey25,
   shade30: PRIMITIVE_COLORS.blueGrey30,

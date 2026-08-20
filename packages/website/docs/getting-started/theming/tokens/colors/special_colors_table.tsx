@@ -13,13 +13,14 @@ export const SpecialColorsTable = () => {
           token: 'colors.body',
           description: (
             <>
-              The background color for the <strong>whole window (body)</strong>.
+              The background color for the <strong>whole window (body)</strong>{' '}
+              and is a computed value of <strong>colors.lightestShade</strong>.
               Provides denominator (background) value for{' '}
               <strong>contrast calculations</strong>
               <br />
-              @deprecated - use <code>backgroundBaseCanvas</code> for page
-              chrome, or <code>backgroundBasePlain</code> /{' '}
-              <code>backgroundBaseSubdued</code> for surfaces
+              @deprecated - use <code>backgroundBasePlain</code> or{' '}
+              <code>backgroundBaseSubdued</code>
+              instead
             </>
           ),
         },
