@@ -91,7 +91,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseRisk: SEMANTIC_COLORS.risk10,
   backgroundBaseDanger: SEMANTIC_COLORS.danger10,
   backgroundBaseAssistance: SEMANTIC_COLORS.assistance10,
-  backgroundBaseCanvas: SEMANTIC_COLORS.shade10,
+  backgroundBaseRecessed: SEMANTIC_COLORS.shade10,
   backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
   backgroundBasePlain: SEMANTIC_COLORS.plainLight,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
