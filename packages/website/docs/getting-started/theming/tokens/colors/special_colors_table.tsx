@@ -18,9 +18,9 @@ export const SpecialColorsTable = () => {
               Provides denominator (background) value for{' '}
               <strong>contrast calculations</strong>
               <br />
-              @deprecated - use <code>backgroundBaseCanvas</code> for page
-              chrome, or <code>backgroundBasePlain</code> /{' '}
-              <code>backgroundBaseSubdued</code> for surfaces
+              @deprecated - use <code>backgroundBasePlain</code> or{' '}
+              <code>backgroundBaseSubdued</code>
+              instead
             </>
           ),
         },

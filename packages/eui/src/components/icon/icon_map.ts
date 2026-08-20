@@ -566,6 +566,9 @@ export const typeToPathMap = {
   crosshair: withMetadata(() => import('./assets/crosshair'), {
     synonyms: ['crosshair'],
   }),
+  cursorDefault: withMetadata(() => import('./assets/cursor_default'), {
+    synonyms: ['cursor', 'ui'],
+  }),
   money: withMetadata(() => import('./assets/money'), {
     synonyms: ['money', 'payment', 'billing', 'cost', 'finance', 'currency'],
   }),
@@ -758,6 +761,9 @@ export const typeToPathMap = {
     ],
   }),
   esqlVis: () => import('./assets/esql_vis'),
+  logIn: withMetadata(() => import('./assets/log_in'), {
+    synonyms: ['entry', 'incoming'],
+  }),
   logOut: withMetadata(() => import('./assets/log_out'), {
     synonyms: ['log out', 'log', 'out', 'exit'],
   }),
@@ -1547,6 +1553,9 @@ export const typeToPathMap = {
   }),
   return: withMetadata(() => import('./assets/return'), {
     synonyms: ['return', 'enter', 'keyboard', 'submit', 'back', 'revert'],
+  }),
+  routeSplit: withMetadata(() => import('./assets/route_split'), {
+    synonyms: ['tree', 'parent'],
   }),
   save: withMetadata(() => import('./assets/save'), {
     synonyms: ['save', 'store', 'disk', 'persist', 'keep'],

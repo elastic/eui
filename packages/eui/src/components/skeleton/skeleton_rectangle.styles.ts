@@ -26,10 +26,10 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Border radius
     s: css`
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     m: css`
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     none: css`
       border-radius: 0;
