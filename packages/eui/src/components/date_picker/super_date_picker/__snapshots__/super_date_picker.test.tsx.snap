@@ -19,12 +19,12 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -105,12 +105,12 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-14f0j69-side-compressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-z6m1ho-side-compressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -187,11 +187,11 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
       >
         <div
-          class="css-vmqubl-wrapper"
+          class="css-162bf1-wrapper"
         >
           <button
             aria-expanded="false"
-            class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+            class="euiFormPrepend euiFormControlLayout__prepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
           >
             <span
               data-euiicon-type="refreshTime"
@@ -237,10 +237,10 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-disabled-readOnly"
       >
         <div
-          class="css-vmqubl-wrapper"
+          class="css-162bf1-wrapper"
         >
           <button
-            class="euiFormPrepend euiFormControlLayout__prepend css-rq5qm0-side-uncompressed-disabled"
+            class="euiFormPrepend euiFormControlLayout__prepend css-kikmiu-side-uncompressed-disabled"
             disabled=""
           >
             <span
@@ -310,11 +310,11 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-label="Date quick select"
-              class="euiFormPrepend css-rq5qm0-side-uncompressed-disabled"
+              class="euiFormPrepend css-kikmiu-side-uncompressed-disabled"
               data-test-subj="superDatePickerToggleQuickMenuButton"
               disabled=""
             >
@@ -398,12 +398,12 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -463,12 +463,12 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -528,12 +528,12 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -617,12 +617,12 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -703,12 +703,12 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -790,12 +790,12 @@ exports[`EuiSuperDatePicker renders 1`] = `
           id="generated-id_euiToolTipAnchor"
         >
           <div
-            class="css-vmqubl-wrapper"
+            class="css-162bf1-wrapper"
           >
             <button
               aria-expanded="false"
               aria-label="Date quick select"
-              class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+              class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
@@ -880,12 +880,12 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
             id="generated-id_euiToolTipAnchor"
           >
             <div
-              class="css-vmqubl-wrapper"
+              class="css-162bf1-wrapper"
             >
               <button
                 aria-expanded="false"
                 aria-label="Date quick select"
-                class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+                class="euiFormPrepend css-10v9aep-side-uncompressed-empty-primary-isInteractive"
                 data-test-subj="superDatePickerToggleQuickMenuButton"
               >
                 <span

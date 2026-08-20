@@ -43,7 +43,7 @@ const listItemCommonStyles = (euiThemeContext: UseEuiTheme) => {
     display: inline-flex; /* Necessary to make sure it doesn't force the whole popover to be too wide */
     align-items: center;
     ${logicalCSS('width', '100%')}
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.control};
     line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     color: ${euiTheme.colors.textParagraph};

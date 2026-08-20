@@ -20,9 +20,9 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { backgroundColor, controlHeight, controlCompressedHeight } =
     euiFormVariables(euiThemeContext);
 
-  const borderRadius = euiTheme.border.radius.small;
+  const borderRadius = euiTheme.border.radius.control;
 
-  const borderRadiusCompressed = euiTheme.border.radius.small;
+  const borderRadiusCompressed = euiTheme.border.radius.control;
 
   return {
     euiFilterGroup: css`
