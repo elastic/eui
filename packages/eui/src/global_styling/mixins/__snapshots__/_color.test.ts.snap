@@ -40,7 +40,7 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: risk 1`] = `"#FFF3E3"`;
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#F8F9FB"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#F6F9FC"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: success 1`] = `"#E9FFF7"`;
 
@@ -64,7 +64,7 @@ exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-c
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: risk 1`] = `"background-color:#FFF3E3;label:risk;"`;
 
-exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: subdued 1`] = `"background-color:#F8F9FB;label:subdued;"`;
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: subdued 1`] = `"background-color:#F6F9FC;label:subdued;"`;
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: success 1`] = `"background-color:#E9FFF7;label:success;"`;
 
