@@ -76,7 +76,7 @@ describe('euiFormVariables', () => {
       wrapper: darkModeWrapper,
     });
     // Check custom dark-mode logic
-    expect(result.current.backgroundColor).toEqual('#161B22');
+    expect(result.current.backgroundColor).toEqual('#111C2C');
     expect(result.current.controlPlaceholderText).toEqual('#6A7FA0');
   });
 });

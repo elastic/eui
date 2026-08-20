@@ -34,6 +34,11 @@ export interface _EuiThemeBorderRadiusValues {
    */
   small: CSSProperties['borderRadius'];
   /**
+   * Inline / text-adjacent marks (skeleton bars, swatches, inline code)
+   * - Default value: 4px
+   */
+  inline: CSSProperties['borderRadius'];
+  /**
    * Controls and form elements (buttons, inputs)
    * - Default value: 8px
    */
@@ -44,10 +49,10 @@ export interface _EuiThemeBorderRadiusValues {
    */
   panel: CSSProperties['borderRadius'];
   /**
-   * Large containers and page sections
+   * App / layout chrome (e.g. framed shell, side nav)
    * - Default value: 16px
    */
-  container: CSSProperties['borderRadius'];
+  frame: CSSProperties['borderRadius'];
 }
 
 export interface _EuiThemeBorderColorValues {

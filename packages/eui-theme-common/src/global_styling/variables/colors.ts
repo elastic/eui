@@ -189,9 +189,11 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseAssistance: ColorModeSwitch;
   /**
-   * Page / canvas background behind the app workspace
+   * Intermediate layer between page chrome and raised surfaces.
+   * Seldom used — e.g. dashboard or Workflows wrappers. Prefer
+   * `backgroundBasePlain` / `backgroundBaseSubdued` for general UI.
    */
-  backgroundBaseCanvas: ColorModeSwitch;
+  backgroundBaseRecessed: ColorModeSwitch;
   /**
    * Secondary / inner surface (e.g. nested steps, secondary nav)
    */

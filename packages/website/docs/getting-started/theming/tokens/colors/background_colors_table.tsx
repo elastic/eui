@@ -45,8 +45,16 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundBaseAssistance',
         },
         {
-          value: euiTheme.colors.backgroundBaseCanvas,
-          token: 'colors.backgroundBaseCanvas',
+          value: euiTheme.colors.backgroundBaseRecessed,
+          token: 'colors.backgroundBaseRecessed',
+          description: (
+            <>
+              Intermediate layer between page chrome and raised surfaces.
+              Seldom used (e.g. dashboard or Workflows wrappers). Prefer{' '}
+              <code>backgroundBasePlain</code> /{' '}
+              <code>backgroundBaseSubdued</code> for general UI.
+            </>
+          ),
         },
         {
           value: euiTheme.colors.backgroundBaseSubdued,
