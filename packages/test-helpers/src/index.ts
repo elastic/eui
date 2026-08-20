@@ -12,3 +12,4 @@ export { EuiDataGridObject } from './playwright/components/datagrid/object';
 export { EuiSuperSelectObject } from './playwright/components/form/super_select/object';
 export { EuiGlobalToastListObject } from './playwright/components/toast/object';
 export { EuiSelectableObject } from './playwright/components/selectable/object';
+export { EuiDraggableObject } from './playwright/components/drag_and_drop/object';
