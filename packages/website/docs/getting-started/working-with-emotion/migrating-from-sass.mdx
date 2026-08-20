@@ -370,7 +370,7 @@ const SomeComponent = () => {
   </EuiTableRow>
   <EuiTableRow>
     <EuiTableRowCell>`@include euiTitle`</EuiTableRowCell>
-    <EuiTableRowCell>Deprecated. Use `<EuiTitle />` instead (strongly recommended)<br/> If absolutely necessary, you may reach into the EuiTitle component via `import { euiTitle } from '@elastic/eui/lib/components/title/title.styles';`, <br />but this is generally not recommended as Kibana has issues typing `@elastic/eui/lib`</EuiTableRowCell>
+    <EuiTableRowCell>Deprecated. Use `<EuiTitle />` instead (strongly recommended)<br/> If absolutely necessary, you may reach into the EuiTitle component via `import { euiTitle } from '@elastic/eui/es/components/title/title.styles.js';`, <br />but this is generally not recommended as deep imports are not part of the public API</EuiTableRowCell>
   </EuiTableRow>
   <EuiTableRow>
       <EuiTableRowCell>`@include euiTextTruncate` and `@include euiTextBreakWord`</EuiTableRowCell>

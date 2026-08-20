@@ -16,7 +16,7 @@ Tree-shaking (dead code elimination) allows bundlers to remove unused code from 
 EUI publishes two build outputs:
 
 - **`es/`** — ES modules (used by modern bundlers via the `module` field in `package.json`)
-- **`lib/`** — CommonJS (used as fallback via the `main` field)
+- **`test-env/`** — Jest-only CommonJS build (see [mapping to the test-env directory](../../../../wiki/consuming-eui/README.md#mapping-to-the-test-env-directory))
 
 The `es/` build preserves `import`/`export` syntax, which bundlers like Webpack, Rollup, and esbuild can statically analyze to determine which exports are actually used.
 
@@ -68,15 +68,15 @@ To confirm tree-shaking is working:
 
 A minimal app importing only `EuiButton` should produce a production bundle significantly smaller than the full EUI library.
 
-## CommonJS consumers
+## (Advanced) Deep imports
 
-If your project resolves to the **`lib/`** (CommonJS) build, tree-shaking will **not** work because CommonJS modules are not statically analyzable. In this case, you can use direct subpath imports to limit what gets included:
+If you need to limit what gets included without relying on top-level tree-shaking, you can use direct subpath imports from the `es/` build:
 
 ```tsx
-import { EuiButton } from '@elastic/eui/lib/components/button';
-import { keys } from '@elastic/eui/lib/services';
+import { EuiButton } from '@elastic/eui/es/components/button';
+import { keys } from '@elastic/eui/es/services';
 ```
 
 :::warning
-Subpath imports are not a guaranteed API and may change between versions. Prefer using the ES module build with top-level imports for reliable tree-shaking.
+Subpath imports are not a guaranteed public API and may change between versions. Prefer top-level imports from `@elastic/eui` for reliable tree-shaking.
 :::
