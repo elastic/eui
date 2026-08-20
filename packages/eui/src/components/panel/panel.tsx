@@ -49,21 +49,28 @@ export type PanelColor = _EuiBackgroundColor | 'highlighted';
 
 export interface _EuiPanelProps extends CommonProps {
   /**
-   * Adds a medium shadow to the panel;
-   * Only works when `color="plain"`
+   * Adds a medium shadow to the panel (elevation opt-in).
+   * Only works when `color="plain"` and `hasBorder` is false.
+   * @default false
    */
   hasShadow?: boolean;
   /**
    * Adds a slight 1px border on all edges.
-   * Only works when `color="plain | transparent"`
+   * Only works when `color="plain | transparent"`.
+   * @default true
    */
   hasBorder?: boolean;
   /**
-   * Padding for all four sides
+   * Padding for all four sides.
+   * Preferred values: `none`, `s`, `m` (default), `l`.
+   * `xs` and `xl` remain available but are soft-deprecated on **EuiPanel** only.
+   * @default m
    */
   paddingSize?: EuiPaddingSize;
   /**
-   * Corner border radius
+   * Corner border radius.
+   * `m` maps to `border.radius.panel`.
+   * @default m
    */
   borderRadius?: PanelBorderRadius;
   /**
@@ -104,8 +111,8 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   paddingSize = 'm',
   borderRadius = 'm',
   color = 'plain',
-  hasShadow = true,
-  hasBorder = false,
+  hasShadow = false,
+  hasBorder = true,
   grow = true,
   panelRef,
   element,

@@ -407,7 +407,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={isDisabled || display ? false : true}
-      hasBorder={display ? false : undefined}
+      // Elevated cards opt out of Panel's default border so shadow can apply
+      hasBorder={false}
       paddingSize={paddingSize}
       {...rest}
     >
