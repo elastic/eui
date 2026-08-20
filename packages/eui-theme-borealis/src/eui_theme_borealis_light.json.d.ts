@@ -30,7 +30,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiBorderRadiusInline: string;
     euiBorderRadiusControl: string;
     euiBorderRadiusPanel: string;
-    euiBorderRadiusContainer: string;
+    euiBorderRadiusFrame: string;
     euiBorderThick: string;
     euiBorderThin: string;
     euiBorderEditable: string;
