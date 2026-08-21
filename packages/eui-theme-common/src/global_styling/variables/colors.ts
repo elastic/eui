@@ -188,6 +188,15 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseRisk: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseAssistance: ColorModeSwitch;
+  /**
+   * Intermediate layer between page chrome and raised surfaces.
+   * Seldom used — e.g. dashboard or Workflows wrappers. Prefer
+   * `backgroundBasePlain` / `backgroundBaseSubdued` for general UI.
+   */
+  backgroundBaseRecessed: ColorModeSwitch;
+  /**
+   * Secondary / inner surface (e.g. nested steps, secondary nav)
+   */
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;
