@@ -31,6 +31,26 @@ import {
   euiButtonGroupButtonsStyles,
 } from './button_group.styles';
 
+// removes outer fragment wrappers only; no nested traversal of children
+// uses forEach over .toArray() to avoid mutating keys; only unwraps one Fragment level
+function flattenButtonGroupChildren(children: ReactNode): ReactElement[] {
+  const result: ReactElement[] = [];
+  React.Children.forEach(children, (child) => {
+    if (!React.isValidElement(child)) return;
+    if (child.type === React.Fragment) {
+      React.Children.forEach(
+        (child as ReactElement<{ children: ReactNode }>).props.children,
+        (fragmentChild) => {
+          if (React.isValidElement(fragmentChild)) result.push(fragmentChild);
+        }
+      );
+    } else {
+      result.push(child);
+    }
+  });
+  return result;
+}
+
 export interface EuiButtonGroupOptionProps
   extends Omit<EuiButtonDisplayContentProps, 'size'>,
     CommonProps,
@@ -257,27 +277,55 @@ export type EuiButtonGroupChildrenProps = CommonProps &
     /**
      * Pass button components (`EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`) as children,
      * some specific wrappers, like `EuiToolTip` and `EuiPopover` are allowed.
+     *
+     * Do not pass children as combined custom component. Each child needs to be a standalone component.
      */
     children: ReactNode;
     /**
      * Typical sizing is `s`. Medium `m` size should be reserved for major features.
+     * @default 's'
      */
     buttonSize?: 's' | 'm';
     /**
      * Defines the type of a button group, which renders visually and functionally different:
      * - default: arranges buttons in a horizontal row with optional gutter via `gutterSize`
+     * - segmented: arranges buttons in a horizontal or vertical row with no gutter.
+     *   The buttons are placed inset and dividers can optionally be shown between them.
+     * @default 'default'
      */
-    variant?: 'default';
+    variant?: 'default' | 'segmented';
     /**
      * Defines the gutter size between children buttons.
      * Applies only when `variant="default"`.
+     * @default 's'
      */
     gutterSize?: EuiButtonGroupGutterSize;
     /**
      * Expands the whole group to the full width of the container.
      * `EuiButton` children will stretch to fill the available space via their `fullWidth` prop.
+     * Does not apply when `layout="vertical"`.
+     * @default false
      */
     isFullWidth?: boolean;
+    /**
+     * Shows dividers between buttons.
+     * Applies only when `variant="segmented"`.
+     * @default false
+     */
+    showDividers?: boolean;
+    /**
+     * Defines the layout direction of the button group.
+     * `layout="vertical"` should only be used with EuiButtonIcon children.
+     * Applies only when `variant="segmented"`.
+     * @default 'horizontal'
+     */
+    layout?: 'horizontal' | 'vertical';
+    /**
+     * Defines if buttons wrap or shrink.
+     * Applies only when `variant="segmented"`.
+     * @default true
+     */
+    wrap?: boolean;
     /**
      * Callback fired when a child button is selected.
      * Returns the `id` of the clicked option.
@@ -289,9 +337,9 @@ export type EuiButtonGroupChildrenProps = CommonProps &
 type ChildrenModeProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   EuiButtonGroupChildrenProps;
 
-const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
+export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   className,
-  children,
+  children: _children,
   legend,
   buttonSize = 's',
   variant = 'default',
@@ -299,10 +347,16 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   isDisabled = false,
   hasAriaDisabled = false,
   isFullWidth = false,
+  showDividers = false,
+  wrap = true,
+  layout = 'horizontal',
   // consumed by variant="selection" in a later chunk; destructured to prevent spread
   onChange: _onChange,
   ...rest
 }) => {
+  const isSegmented = variant === 'segmented';
+  const hasGutterSize = variant === 'default' && gutterSize !== 'none';
+
   const wrapperCssStyles = [
     euiButtonGroupStyles.euiButtonGroup,
     isFullWidth && euiButtonGroupStyles.fullWidth,
@@ -311,8 +365,13 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
   const cssStyles = [
     styles.euiButtonGroup__buttons,
-    isFullWidth && styles.fullWidth,
-    gutterSize && gutterSize !== 'none' && styles.gutterSize[gutterSize],
+    hasGutterSize && styles.gutterSize[gutterSize],
+    isSegmented && !wrap && styles.noWrap,
+  ];
+
+  const containerCssStyles = [
+    styles.euiButtonGroup__container,
+    isFullWidth && layout !== 'vertical' && styles.fullWidth,
   ];
 
   const classes = classNames(
@@ -327,8 +386,25 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       isDisabled: isDisabled || undefined,
       hasAriaDisabled: hasAriaDisabled || undefined,
       fullWidth: isFullWidth,
+      ...(isSegmented && {
+        display: 'base' as const,
+        color: 'text' as const,
+        fill: false,
+      }),
     };
-  }, [buttonSize, isDisabled, hasAriaDisabled, isFullWidth]);
+  }, [buttonSize, isDisabled, hasAriaDisabled, isFullWidth, isSegmented]);
+
+  // wrap children in a wrapper to be able to apply required styles
+  const children = isSegmented
+    ? flattenButtonGroupChildren(_children).map((child, index) => (
+        <div
+          key={child.key ?? `euiButtonGroupItem-${index}`}
+          className="euiButtonGroup__item"
+        >
+          {child}
+        </div>
+      ))
+    : _children;
 
   return (
     <div
@@ -337,14 +413,18 @@ const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       role="group"
       data-variant={variant}
       data-size={buttonSize}
+      data-layout={isSegmented ? layout : undefined}
+      data-dividers={(isSegmented && showDividers) || undefined}
       aria-label={legend}
       aria-disabled={isDisabled || undefined}
       {...rest}
     >
-      <div css={cssStyles} className="euiButtonGroup__buttons">
-        <EuiButtonContext.Provider value={contextValue}>
-          {children}
-        </EuiButtonContext.Provider>
+      <div css={containerCssStyles} className="euiButtonGroup__container">
+        <div css={cssStyles} className="euiButtonGroup__buttons">
+          <EuiButtonContext.Provider value={contextValue}>
+            {children}
+          </EuiButtonContext.Provider>
+        </div>
       </div>
     </div>
   );

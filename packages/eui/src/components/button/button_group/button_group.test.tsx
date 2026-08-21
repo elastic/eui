@@ -410,6 +410,19 @@ describe('EuiButtonGroup', () => {
       });
 
       describe('default', () => {
+        it('does not wrap children in `euiButtonGroup__item`', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="default">
+              <EuiButton>One</EuiButton>
+              <EuiButton>Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(0);
+        });
+
         describe('gutterSize', () => {
           test.each<{
             gutterSize: EuiButtonGroupGutterSize;
@@ -449,6 +462,161 @@ describe('EuiButtonGroup', () => {
             }
           );
         });
+      });
+
+      describe('segmented', () => {
+        it('applies data-variant="segmented"', () => {
+          const { getByRole } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton>Save</EuiButton>
+            </EuiButtonGroup>
+          );
+          expect(getByRole('group')).toHaveAttribute(
+            'data-variant',
+            'segmented'
+          );
+        });
+
+        it('wraps each child in a `euiButtonGroup__item` wrapper', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton data-test-subj="child-1">One</EuiButton>
+              <EuiButton data-test-subj="child-2">Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          const items = container.querySelectorAll('.euiButtonGroup__item');
+
+          expect(items).toHaveLength(2);
+          expect(items[0]).toContainElement(
+            container.querySelector('[data-test-subj="child-1"]')
+          );
+          expect(items[1]).toContainElement(
+            container.querySelector('[data-test-subj="child-2"]')
+          );
+        });
+
+        it('correctly removes fragment wrappers', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <>
+                <EuiButton data-test-subj="child-1">One</EuiButton>
+                <EuiButton data-test-subj="child-2">Two</EuiButton>
+              </>
+              <EuiButton data-test-subj="child-3">Three</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(3);
+        });
+
+        it('drops non-element nodes (null, booleans) when wrapping', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton>One</EuiButton>
+              {false}
+              {null}
+              <EuiButton>Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(2);
+        });
+
+        it('overrides children button `color` to `text`', () => {
+          const { getByTestSubject } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton color="danger" data-test-subj="child">
+                One
+              </EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(getByTestSubject('child').className).not.toContain('danger');
+          expect(getByTestSubject('child').className).toContain('text');
+        });
+      });
+    });
+
+    describe('showDividers', () => {
+      it('does not set `data-dividers` when false (default)', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented">
+            <EuiButton>One</EuiButton>
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).not.toHaveAttribute('data-dividers');
+      });
+
+      it('sets `data-dividers` when true', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented" showDividers>
+            <EuiButton>One</EuiButton>
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-dividers', 'true');
+      });
+    });
+
+    describe('layout', () => {
+      it('sets `data-layout="horizontal"` as default', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented">
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-layout', 'horizontal');
+      });
+
+      it('sets `data-layout="vertical"`', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented" layout="vertical">
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-layout', 'vertical');
+      });
+
+      it('does not apply `fullWidth` to the buttons container when `layout="vertical"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="segmented"
+            isFullWidth
+            layout="vertical"
+            data-test-subj="group"
+          >
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+
+        expect(
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
+            .className
+        ).not.toContain('fullWidth');
+      });
+
+      it('applies `fullWidth` to the buttons container when `layout="horizontal"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="segmented"
+            isFullWidth
+            layout="horizontal"
+            data-test-subj="group"
+          >
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+
+        expect(
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
+            .className
+        ).toContain('fullWidth');
       });
     });
 
