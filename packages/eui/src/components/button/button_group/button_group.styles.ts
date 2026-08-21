@@ -267,11 +267,13 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:where([data-variant='selection'] &) {
         *:where(.euiButton, .euiButtonIcon) {
-          ${highContrastModeStyles(euiThemeContext, {
-            forced: `
+          &:is(${euiDisabledSelector}) {
+            ${highContrastModeStyles(euiThemeContext, {
+              forced: `
               opacity: 0.5;
             `,
-          })}
+            })}
+          }
 
           &:is([aria-pressed='true']) {
             /* Ensure selected buttons are visually distinguishable in forced HCM */
@@ -294,12 +296,31 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       &:where([data-variant='selection'][data-display='regular'] &) {
         *:where(.euiButton, .euiButtonIcon):is([aria-pressed='true']) {
           background-color: ${euiTheme.colors.backgroundLightText};
+
+          ${highContrastModeStyles(euiThemeContext, {
+            none: `
+              background-color: ${euiTheme.colors.backgroundLightText};
+            `,
+            preferred: `
+              border: ${euiTheme.border.thin};
+            `,
+            forced: `
+              background-color: ${euiTheme.colors.fullShade};
+              border: none;
+            `,
+          })}
         }
       }
 
       &:where([data-variant='selection'][data-display='inverse'] &) {
         *:where(.euiButton, .euiButtonIcon):is([aria-pressed='true']) {
           ${euiShadowXSmall(euiThemeContext)}
+
+          ${highContrastModeStyles(euiThemeContext, {
+            forced: `
+              border: none;
+            `,
+          })}
         }
       }
     `,
