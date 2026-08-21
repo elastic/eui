@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import {
   EuiButtonEmpty,
   euiFocusRing,
+  EuiListGroup,
   EuiListGroupItem,
   EuiPopover,
   useEuiMemoizedStyles,
@@ -26,10 +27,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.primary};
     `,
     list: css`
-      inline-size: 120px;
       max-block-size: 200px;
-      margin: 0;
-      padding: 0;
       overflow-y: auto;
     `,
     listItem: css`
@@ -150,7 +148,7 @@ export const VersionSwitcher = ({
       panelPaddingSize="xs"
       aria-label={ariaLabel}
     >
-      <ul className="eui-yScroll" css={styles.list}>
+      <EuiListGroup css={styles.list}>
         {allVersions.map((version) => {
           const isCurrentVersion = version === currentVersion;
           const screenReaderVersion = pronounceVersion(version);
@@ -173,7 +171,7 @@ export const VersionSwitcher = ({
             />
           );
         })}
-      </ul>
+      </EuiListGroup>
     </EuiPopover>
   );
 };
