@@ -31,21 +31,17 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
   const buttonSizes = {
     s: `
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
       ${_highContrastStyles(euiThemeContext)}
     `,
     m: `
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.control};
       ${_highContrastStyles(euiThemeContext)}
     `,
   };
 
-  const {
-    controlCompressedHeight,
-    controlCompressedBorderRadius,
-    backgroundColor,
-    borderColor,
-  } = euiFormVariables(euiThemeContext);
+  const { controlCompressedHeight, backgroundColor, borderColor } =
+    euiFormVariables(euiThemeContext);
 
   return {
     // Base
@@ -98,7 +94,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('height', controlCompressedHeight)}
         background-color: ${backgroundColor};
         border: ${euiTheme.border.width.thin} solid ${borderColor};
-        border-radius: ${controlCompressedBorderRadius};
+        border-radius: ${euiTheme.border.radius.control};
         ${_highContrastStyles(euiThemeContext, true)}
       `,
     },
