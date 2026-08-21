@@ -336,7 +336,7 @@ export default () => {
 
 ### Selection
 
-Use `variant="selection"` to give buttons toggle behaviour — clicks fire `onChange` with the button's `id`, and the selected state is reflected via `aria-pressed` on each button.
+Use `variant="selection"` to give buttons toggle behavior — clicks fire `onChange` with the button's `id` (if provided), and the selected state is reflected via `aria-pressed` on each button.
 
 Every child button **must** have a unique `id` prop so the group can track and communicate selection state.
 
@@ -366,8 +366,9 @@ import {
 export default () => {
   const [type, setType] = useState('single');
   const [display, setDisplay] = useState('regular');
-  const [idSelected, setIdSelected] = useState('edit');
+  const [actionsIdSelected, setActionsIdSelected] = useState('edit');
   const [idToSelectedMap, setIdToSelectedMap] = useState({ edit: true });
+  const [viewIdSelected, setViewIdSelected] = useState('grid');
 
   const commonProps = {
     legend: 'Document actions',
@@ -425,8 +426,8 @@ export default () => {
       ) : (
         <EuiButtonGroup
           {...commonProps}
-          idSelected={idSelected}
-          onChange={(id) => setIdSelected(id)}
+          idSelected={actionsIdSelected}
+          onChange={(id) => setActionsIdSelected(id)}
         >
           {buttons}
         </EuiButtonGroup>
@@ -439,8 +440,8 @@ export default () => {
           legend="View mode"
           variant="selection"
           display={display}
-          idSelected={idSelected}
-          onChange={(id) => setIdSelected(id)}
+          idSelected={viewIdSelected}
+          onChange={(id) => setViewIdSelected(id)}
         >
           <EuiToolTip content="Grid view" disableScreenReaderOutput>
             <EuiButtonIcon id="grid" iconType="grid" aria-label="Grid view" />
