@@ -76,6 +76,7 @@ const meta: Meta<EuiButtonGroupChildrenProps> = {
     gutterSize: 's',
     showDividers: false,
     layout: 'horizontal',
+    display: 'regular',
     wrap: true,
   },
 };
