@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
@@ -218,6 +218,268 @@ describe('EuiRange', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('behavior', () => {
+    afterEach(() => {
+      jest.useRealTimers();
+      jest.restoreAllMocks();
+    });
+
+    test('keeps its generated ID stable across rerenders', () => {
+      const { getByRole, rerender } = render(<EuiRange {...props} />);
+      const initialId = getByRole('slider').id;
+
+      rerender(<EuiRange {...props} value="20" />);
+
+      expect(initialId).not.toBe('');
+      expect(getByRole('slider')).toHaveAttribute('id', initialId);
+    });
+
+    test('keeps its initial custom ID across rerenders', () => {
+      const { getByRole, rerender } = render(
+        <EuiRange {...props} id="initial-id" />
+      );
+
+      rerender(<EuiRange {...props} id="updated-id" />);
+
+      expect(getByRole('slider')).toHaveAttribute('id', 'initial-id');
+    });
+
+    test('keeps the number input and slider synchronized', () => {
+      const onChange = jest.fn();
+      const ControlledRange = () => {
+        const [value, setValue] = React.useState<string | number>(8);
+
+        return (
+          <EuiRange
+            {...props}
+            value={value}
+            showInput
+            onChange={(event, isValid) => {
+              onChange(event.currentTarget.value, isValid);
+              setValue(event.currentTarget.value);
+            }}
+          />
+        );
+      };
+      const { container, getByRole } = render(<ControlledRange />);
+      const input = getByRole('spinbutton');
+      const slider = container.querySelector('.euiRangeSlider')!;
+
+      fireEvent.change(input, { target: { value: '20' } });
+      expect(onChange).toHaveBeenLastCalledWith('20', true);
+      expect(input).toHaveValue(20);
+      expect(slider).toHaveValue('20');
+
+      fireEvent.change(slider, { target: { value: '40' } });
+      expect(onChange).toHaveBeenLastCalledWith('40', true);
+      expect(input).toHaveValue(40);
+      expect(slider).toHaveValue('40');
+    });
+
+    test.each([
+      ['0', true],
+      ['100', true],
+      ['-1', false],
+      ['101', false],
+      ['', false],
+    ])('reports whether a changed value of %p is valid', (value, isValid) => {
+      const onChange = jest.fn();
+      const { getByRole } = render(
+        <EuiRange {...props} showInput onChange={onChange} />
+      );
+
+      fireEvent.change(getByRole('spinbutton'), { target: { value } });
+
+      expect(onChange).toHaveBeenCalledWith(expect.anything(), isValid);
+    });
+
+    test('only renders the range highlight for valid values', () => {
+      const { container, rerender } = render(
+        <EuiRange {...props} showRange value="20" />
+      );
+
+      expect(container.querySelector('.euiRangeHighlight')).toBeInTheDocument();
+
+      rerender(<EuiRange {...props} showRange value="101" />);
+      expect(
+        container.querySelector('.euiRangeHighlight')
+      ).not.toBeInTheDocument();
+
+      rerender(<EuiRange {...props} showRange value="" />);
+      expect(
+        container.querySelector('.euiRangeHighlight')
+      ).not.toBeInTheDocument();
+    });
+
+    test('uses the latest event callbacks after rerendering', () => {
+      jest.useFakeTimers();
+      const initialOnChange = jest.fn();
+      const initialOnFocus = jest.fn();
+      const initialOnBlur = jest.fn();
+      const updatedOnChange = jest.fn();
+      const updatedOnFocus = jest.fn();
+      const updatedOnBlur = jest.fn();
+      const latestOnBlur = jest.fn();
+      const { getByRole, rerender } = render(
+        <EuiRange
+          {...props}
+          showInput="inputWithPopover"
+          onChange={initialOnChange}
+          onFocus={initialOnFocus}
+          onBlur={initialOnBlur}
+        />
+      );
+
+      rerender(
+        <EuiRange
+          {...props}
+          showInput="inputWithPopover"
+          onChange={updatedOnChange}
+          onFocus={updatedOnFocus}
+          onBlur={updatedOnBlur}
+        />
+      );
+      const input = getByRole('spinbutton');
+      fireEvent.focus(input);
+      fireEvent.change(input, { target: { value: '20' } });
+      fireEvent.blur(input);
+      rerender(
+        <EuiRange
+          {...props}
+          showInput="inputWithPopover"
+          onChange={updatedOnChange}
+          onFocus={updatedOnFocus}
+          onBlur={latestOnBlur}
+        />
+      );
+      act(() => jest.advanceTimersByTime(200));
+
+      expect(initialOnChange).not.toHaveBeenCalled();
+      expect(initialOnFocus).not.toHaveBeenCalled();
+      expect(initialOnBlur).not.toHaveBeenCalled();
+      expect(updatedOnChange).toHaveBeenCalledTimes(1);
+      expect(updatedOnFocus).toHaveBeenCalledTimes(1);
+      expect(updatedOnBlur).not.toHaveBeenCalled();
+      expect(latestOnBlur).toHaveBeenCalledTimes(1);
+    });
+
+    test('forwards input focus events without opening a popover', () => {
+      const onFocus = jest.fn();
+      const onBlur = jest.fn();
+      const { getByRole, queryByTestSubject } = render(
+        <EuiRange
+          {...props}
+          showInput
+          onFocus={onFocus}
+          onBlur={onBlur}
+          inputPopoverProps={{
+            panelProps: { 'data-test-subj': 'rangePopover' },
+          }}
+        />
+      );
+      const input = getByRole('spinbutton');
+
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+
+      expect(onFocus).toHaveBeenCalledTimes(1);
+      expect(onBlur).toHaveBeenCalledTimes(1);
+      expect(queryByTestSubject('rangePopover')).not.toBeInTheDocument();
+    });
+
+    test('waits 200ms after input blur before closing the popover', () => {
+      jest.useFakeTimers();
+      const onBlur = jest.fn();
+      const { getByRole, getByTestSubject, queryByTestSubject } = render(
+        <EuiRange
+          {...props}
+          showInput="inputWithPopover"
+          onBlur={onBlur}
+          inputPopoverProps={{
+            panelProps: { 'data-test-subj': 'rangePopover' },
+          }}
+        />
+      );
+      const input = getByRole('spinbutton');
+
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+      act(() => jest.advanceTimersByTime(199));
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(getByTestSubject('rangePopover')).toBeInTheDocument();
+
+      act(() => jest.advanceTimersByTime(1));
+      expect(onBlur).toHaveBeenCalledTimes(1);
+      act(() => jest.advanceTimersByTime(250));
+      expect(queryByTestSubject('rangePopover')).not.toBeInTheDocument();
+    });
+
+    test('keeps the popover open when the slider is clicked during input blur', () => {
+      jest.useFakeTimers();
+      const onBlur = jest.fn();
+      const { baseElement, getByRole, getByTestSubject, queryByTestSubject } =
+        render(
+          <EuiRange
+            {...props}
+            showInput="inputWithPopover"
+            onBlur={onBlur}
+            inputPopoverProps={{
+              panelProps: { 'data-test-subj': 'rangePopover' },
+            }}
+          />
+        );
+      const input = getByRole('spinbutton');
+
+      fireEvent.focus(input);
+      fireEvent.mouseDown(baseElement.querySelector('input[type="range"]')!);
+      fireEvent.blur(input);
+      act(() => jest.advanceTimersByTime(200));
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(getByTestSubject('rangePopover')).toBeInTheDocument();
+
+      fireEvent.blur(input);
+      act(() => jest.advanceTimersByTime(200));
+      expect(onBlur).toHaveBeenCalledTimes(1);
+      act(() => jest.advanceTimersByTime(250));
+      expect(queryByTestSubject('rangePopover')).not.toBeInTheDocument();
+    });
+
+    test('updates levels when the slider track is measured', () => {
+      jest
+        .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+        .mockReturnValue({ width: 400, height: 20 } as DOMRect);
+      const { container } = render(
+        <EuiRange
+          {...props}
+          value="50"
+          showRange
+          levels={[{ min: 0, max: 100, color: 'success' }]}
+        />
+      );
+
+      expect(
+        container.querySelector('.euiRangeHighlight > div > div')
+      ).toHaveStyle({ inlineSize: '400px' });
+    });
+
+    test('reports valid tick changes through onChange', () => {
+      const onChange = jest.fn();
+      const { getByRole } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[{ label: 'Twenty', value: 20 }]}
+          onChange={onChange}
+        />
+      );
+
+      fireEvent.click(getByRole('button', { name: 'Twenty' }));
+
+      expect(onChange).toHaveBeenCalledWith(expect.anything(), true);
+    });
   });
 
   describe('inherits', () => {
