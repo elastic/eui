@@ -52,7 +52,7 @@ export const DefaultItemAction = <T extends object>({
 
   const color: EuiButtonIconProps['color'] = action.color
     ? callWithItemIfFunction(item)(action.color)
-    : 'primary';
+    : 'text';
   const icon = action.icon
     ? callWithItemIfFunction(item)(action.icon)
     : undefined;

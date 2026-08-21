@@ -61,10 +61,10 @@ export const EuiDataGridCellActions = ({
             <EuiButtonIcon
               aria-hidden
               className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
-              color="primary"
+              color="text"
               css={styles.euiDataGridRowCell__actionButtonIcon}
               data-test-subj="euiDataGridCellExpandButton"
-              display="fill"
+              display="empty"
               iconSize="s"
               iconType="maximize"
               onClick={onExpandClick}
@@ -88,8 +88,8 @@ export const EuiDataGridCellActions = ({
         // Don't allow consumers to override sizes or colors for cell actions on hover/focus
         size="xs"
         iconSize="s"
-        display="fill"
-        color="primary"
+        display="empty"
+        color="text"
       />
     );
 
