@@ -15,6 +15,7 @@ import {
   EuiListGroupItem,
   EuiPopover,
   useEuiMemoizedStyles,
+  useEuiYScroll,
   UseEuiTheme,
 } from '@elastic/eui';
 
@@ -28,7 +29,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     list: css`
       max-block-size: 200px;
-      overflow-y: auto;
     `,
     listItem: css`
       .euiListGroupItem__button:focus-visible {
@@ -148,7 +148,7 @@ export const VersionSwitcher = ({
       panelPaddingSize="xs"
       aria-label={ariaLabel}
     >
-      <EuiListGroup css={styles.list}>
+      <EuiListGroup css={[styles.list, useEuiYScroll()]}>
         {allVersions.map((version) => {
           const isCurrentVersion = version === currentVersion;
           const screenReaderVersion = pronounceVersion(version);
