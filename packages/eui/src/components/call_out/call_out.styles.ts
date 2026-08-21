@@ -25,7 +25,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
     s: euiTheme.size.m,
     m: euiTheme.size.base,
   };
-  const borderRadius = euiTheme.border.radius.small;
+  const borderRadius = euiTheme.border.radius.panel;
   const highlightSize = mathWithUnits(
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
     (x, y) => x + y
@@ -50,13 +50,23 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         outline-offset: 2px;
       }
 
+      /*
+       * Overpaint the start border (same idea as before), but use a real-width bar
+       * sized to the panel radius so border-radius isn't clamped by a ~3px box.
+       */
       &::before {
         content: '';
         position: absolute;
-        inset-block-start: -${euiTheme.border.width.thin};
-        inset-inline-start: -${euiTheme.border.width.thin};
+        inset-block-start: -${highlightOffset};
+        inset-inline-start: -${highlightOffset};
         block-size: calc(100% + ${highlightSizeOffset});
-        border-inline-start: ${highlightSize} solid var(--euiCallOutTypeColor);
+        inline-size: ${borderRadius};
+        background: linear-gradient(
+          to right,
+          var(--euiCallOutTypeColor) 0,
+          var(--euiCallOutTypeColor) ${highlightSize},
+          transparent ${highlightSize}
+        );
         border-start-start-radius: ${borderRadius};
         border-end-start-radius: ${borderRadius};
         pointer-events: none;
