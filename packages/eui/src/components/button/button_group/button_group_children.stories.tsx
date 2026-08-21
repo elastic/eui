@@ -761,11 +761,11 @@ export const KitchenSink: Story = {
                 variant="selection"
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
-                idSelected="delete"
+                idSelected="single-delete"
               >
-                <EuiButton id="delete">Delete</EuiButton>
-                <EuiButton id="rename">Rename</EuiButton>
-                <EuiButton id="save">Save</EuiButton>
+                <EuiButton id="single-delete">Delete</EuiButton>
+                <EuiButton id="single-rename">Rename</EuiButton>
+                <EuiButton id="single-save">Save</EuiButton>
               </StatefulButtonGroupSelection>
 
               <StatefulButtonGroupSelection
@@ -773,25 +773,25 @@ export const KitchenSink: Story = {
                 variant="selection"
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
-                idSelected="grid"
+                idSelected="single-grid"
               >
                 <EuiToolTip content="Grid view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="grid"
+                    id="single-grid"
                     iconType="grid"
                     aria-label="Grid view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="List view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="list"
+                    id="single-list"
                     iconType="list"
                     aria-label="List view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Map view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="map"
+                    id="single-map"
                     iconType="mapMarker"
                     aria-label="Map view"
                   />
@@ -816,11 +816,11 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ delete: true, rename: true }}
+                idToSelectedMap={{ 'multi-delete': true, 'multi-rename': true }}
               >
-                <EuiButton id="delete">Delete</EuiButton>
-                <EuiButton id="rename">Rename</EuiButton>
-                <EuiButton id="save">Save</EuiButton>
+                <EuiButton id="multi-delete">Delete</EuiButton>
+                <EuiButton id="multi-rename">Rename</EuiButton>
+                <EuiButton id="multi-save">Save</EuiButton>
               </StatefulButtonGroupSelection>
 
               <StatefulButtonGroupSelection
@@ -829,25 +829,25 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ grid: true, list: true }}
+                idToSelectedMap={{ 'multi-grid': true, 'multi-list': true }}
               >
                 <EuiToolTip content="Grid view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="grid"
+                    id="multi-grid"
                     iconType="grid"
                     aria-label="Grid view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="List view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="list"
+                    id="multi-list"
                     iconType="list"
                     aria-label="List view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Map view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="map"
+                    id="multi-map"
                     iconType="mapMarker"
                     aria-label="Map view"
                   />
@@ -872,12 +872,12 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ delete: true }}
+                idToSelectedMap={{ 'highlighted-delete': true }}
                 display="highlighted"
               >
-                <EuiButton id="delete">Delete</EuiButton>
-                <EuiButton id="rename">Rename</EuiButton>
-                <EuiButton id="save">Save</EuiButton>
+                <EuiButton id="highlighted-delete">Delete</EuiButton>
+                <EuiButton id="highlighted-rename">Rename</EuiButton>
+                <EuiButton id="highlighted-save">Save</EuiButton>
               </StatefulButtonGroupSelection>
 
               <StatefulButtonGroupSelection
@@ -886,26 +886,26 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ grid: true }}
+                idToSelectedMap={{ 'highlighted-grid': true }}
                 display="highlighted"
               >
                 <EuiToolTip content="Grid view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="grid"
+                    id="highlighted-grid"
                     iconType="grid"
                     aria-label="Grid view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="List view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="list"
+                    id="highlighted-list"
                     iconType="list"
                     aria-label="List view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Map view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="map"
+                    id="highlighted-map"
                     iconType="mapMarker"
                     aria-label="Map view"
                   />
@@ -930,12 +930,12 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ delete: true }}
+                idToSelectedMap={{ 'inverse-delete': true }}
                 display="inverse"
               >
-                <EuiButton id="delete">Delete</EuiButton>
-                <EuiButton id="rename">Rename</EuiButton>
-                <EuiButton id="save">Save</EuiButton>
+                <EuiButton id="inverse-delete">Delete</EuiButton>
+                <EuiButton id="inverse-rename">Rename</EuiButton>
+                <EuiButton id="inverse-save">Save</EuiButton>
               </StatefulButtonGroupSelection>
 
               <StatefulButtonGroupSelection
@@ -944,26 +944,26 @@ export const KitchenSink: Story = {
                 buttonSize={buttonSizeChildren}
                 gutterSize={gutterSize}
                 type="multi"
-                idToSelectedMap={{ grid: true }}
+                idToSelectedMap={{ 'inverse-grid': true }}
                 display="inverse"
               >
                 <EuiToolTip content="Grid view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="grid"
+                    id="inverse-grid"
                     iconType="grid"
                     aria-label="Grid view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="List view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="list"
+                    id="inverse-list"
                     iconType="list"
                     aria-label="List view"
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Map view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    id="map"
+                    id="inverse-map"
                     iconType="mapMarker"
                     aria-label="Map view"
                   />
