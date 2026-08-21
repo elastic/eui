@@ -229,7 +229,8 @@ describe('draggable columns', () => {
     it('should close its own column actions popover', () => {
       cy.realMount(<StatefulDataGrid />);
 
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').click();
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').realClick();
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
       cy.realPress('Enter');
       cy.get('[data-popover-open]').should('have.focus');
 
