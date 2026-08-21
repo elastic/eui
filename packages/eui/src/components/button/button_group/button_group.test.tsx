@@ -901,7 +901,7 @@ describe('EuiButtonGroup', () => {
       expect(getByRole('group')).toHaveAttribute('data-display', 'regular');
     });
 
-    it('sets `data-display="highlighted"` by default', () => {
+    it('sets `data-display="highlighted"` with `display="highlighted"`', () => {
       const { getByRole } = render(
         <EuiButtonGroup
           legend="test"
