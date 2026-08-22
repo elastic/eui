@@ -49,7 +49,14 @@ export const EuiResizeObserver: FunctionComponent<EuiResizeObserverProps> = ({
   }, []);
 
   const beginObserve = useCallback(
-    (node: Element) => makeResizeObserver(node, resizeCallback),
+    (node: Element) => {
+      // Reset cached dimensions so the first callback after (re)connecting
+      // always fires onResize. Required for React Strict Mode, which preserves
+      // refs across the simulated unmount/remount while state updates from the
+      // first mount may be discarded.
+      sizeRef.current = { height: 0, width: 0 };
+      return makeResizeObserver(node, resizeCallback);
+    },
     [resizeCallback]
   );
 

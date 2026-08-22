@@ -9,6 +9,9 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { EuiAccordion, EuiAccordionProps } from './accordion';
+import { EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader } from '../flyout';
+import { EuiTitle } from '../title';
+import React, { StrictMode } from 'react';
 
 const meta: Meta<EuiAccordionProps> = {
   title: 'Layout/EuiAccordion',
@@ -40,4 +43,62 @@ export const Playground: Story = {
     buttonContent: 'Accordion toggle content',
     children: 'Accordion content',
   },
+};
+
+export const StrictModeInitialOpen: Story = {
+  args: {
+    id: 'accordion-strict-mode',
+    initialIsOpen: true,
+    buttonContent: 'Open on load',
+    children: (
+      <div
+        css={({ euiTheme }) => ({
+          padding: 16,
+          background: euiTheme.colors.backgroundBaseSubdued,
+        })}
+      >
+        This content should be visible immediately.
+      </div>
+    ),
+  },
+  decorators: [
+    (Story) => (
+      <StrictMode>
+        <Story />
+      </StrictMode>
+    ),
+  ],
+};
+
+/**
+ * Reproduction for https://github.com/elastic/eui/issues/9029
+ */
+export const StrictModeInFlyout: Story = {
+  render: () => (
+    <StrictMode>
+      <EuiFlyout onClose={() => {}} aria-labelledby="flyout-9029-title">
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id="flyout-9029-title">Flyout with accordion</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiAccordion
+            id="accordion-in-flyout-9029"
+            initialIsOpen
+            buttonContent="Accordion in flyout"
+          >
+            <div
+              css={({ euiTheme }) => ({
+                padding: 16,
+                background: euiTheme.colors.backgroundBaseSubdued,
+              })}
+            >
+              Accordion content inside flyout (issue #9029)
+            </div>
+          </EuiAccordion>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    </StrictMode>
+  ),
 };

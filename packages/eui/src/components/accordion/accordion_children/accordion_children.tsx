@@ -93,10 +93,19 @@ export const EuiAccordionChildren: FunctionComponent<
     ({ height }: { height: number }) => setContentHeight(Math.round(height)),
     []
   );
-  const heightInlineStyle = useMemo(
-    () => ({ blockSize: isOpen ? contentHeight : 0 }),
-    [isOpen, contentHeight]
-  );
+  const heightInlineStyle = useMemo(() => {
+    if (!isOpen) {
+      return { blockSize: 0 };
+    }
+
+    // Avoid overriding CSS `height: auto` with `0` before the first resize
+    // measurement (e.g. `initialIsOpen` under React Strict Mode).
+    if (contentHeight === 0) {
+      return undefined;
+    }
+
+    return { blockSize: contentHeight };
+  }, [isOpen, contentHeight]);
 
   return (
     <div
