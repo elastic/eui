@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconKubernetesPod = ({
+const EuiIconProductTsvb = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,9 @@ const EuiIconKubernetesPod = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="m2.5 11.213 5 2.916V8.286l-5-2.916v5.843Zm6-2.927v5.843l5-2.916V5.37l-5 2.916ZM2.991 4.5 8 7.42l5.008-2.92L8 1.578 2.991 4.5Zm11.509 7a.5.5 0 0 1-.248.432L8.5 15.286v.214h-1v-.214l-5.752-3.354A.5.5 0 0 1 1.5 11.5v-7a.5.5 0 0 1 .248-.432l6-3.5a.5.5 0 0 1 .504 0l6 3.5a.5.5 0 0 1 .248.432v7Z" />
+    <path d="M2 14h13v1H2a1 1 0 0 1-1-1V1h1z" />
+    <path d="M5 6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm-1 6h1V7H4zm5-4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm-1 4h1V9H8z" />
+    <path d="M13.436 1.56a.88.88 0 0 1 .846-.064l.123.067.176.123A3.498 3.498 0 0 1 14 7.66v3.84a1.5 1.5 0 0 1-3 0V7.66a3.498 3.498 0 0 1-.405-6.097l.123-.067a.88.88 0 0 1 .847.065.97.97 0 0 1 .435.817V4h1V2.378c0-.34.17-.645.435-.817M14 4v1h-3V2.5a2.502 2.502 0 0 0 .667 4.358l.333.118V11.5a.5.5 0 0 0 1 0V6.976l.333-.118A2.502 2.502 0 0 0 14 2.5z" />
   </svg>
 );
-export const icon = EuiIconKubernetesPod;
+export const icon = EuiIconProductTsvb;
