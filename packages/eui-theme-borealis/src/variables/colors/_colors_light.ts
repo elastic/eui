@@ -91,6 +91,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseRisk: SEMANTIC_COLORS.risk10,
   backgroundBaseDanger: SEMANTIC_COLORS.danger10,
   backgroundBaseAssistance: SEMANTIC_COLORS.assistance10,
+  backgroundBaseRecessed: SEMANTIC_COLORS.shade10,
   backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
   backgroundBasePlain: SEMANTIC_COLORS.plainLight,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
@@ -189,7 +190,7 @@ export const border_colors: _EuiThemeBorderColors = {
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: SEMANTIC_COLORS.shade10,
+  body: SEMANTIC_COLORS.shade15,
   highlight: SEMANTIC_COLORS.primary10,
   disabled: SEMANTIC_COLORS.shade20,
   disabledText: SEMANTIC_COLORS.shade80,

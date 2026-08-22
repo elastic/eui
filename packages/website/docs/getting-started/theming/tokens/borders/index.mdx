@@ -123,8 +123,8 @@ import { BorderRadiiTable } from './border_radii_table';
 
 <BorderRadiiTable />
 
-:::info We recently reduced `border.radius.medium` in size
+:::info Prefer semantic radius tokens
 
-It is now the same as `border.radius.small`. We plan to [update or remove the small size](https://github.com/elastic/eui/issues/8645). In the meantime, use `border.radius.medium`.
+Use `border.radius.inline` (4px), `control` (8px), `panel` (12px), and `frame` (16px) for reviewed surfaces. Legacy `small` / `medium` still resolve to 4px until migrated.
 
 :::
