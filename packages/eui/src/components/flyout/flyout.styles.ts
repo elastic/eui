@@ -19,6 +19,7 @@ import {
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
+  logicalCSSWithFallback,
   logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
@@ -89,6 +90,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
       align-items: stretch;
+      /* Keep all flyout regions reachable when their minimum heights exceed the viewport */
+      ${logicalCSSWithFallback('overflow-y', 'auto')}
 
       &:focus {
         /* Remove focus ring because of tabindex=0 */

@@ -18,6 +18,7 @@ import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
 import { EuiFlexGroup } from '../flex';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
+import { EuiFlyoutFooter } from './flyout_footer';
 import { EuiFlyoutHeader } from './flyout_header';
 import { EuiGlobalToastList } from '../toast';
 import {
@@ -73,6 +74,58 @@ const Flyout = ({
 };
 
 describe('EuiFlyout', () => {
+  describe('Layout behavior', () => {
+    it('keeps the body accessible when the viewport is shorter than the flyout chrome', () => {
+      cy.viewport(640, 360);
+      cy.mount(
+        <Flyout>
+          <EuiFlyoutHeader data-test-subj="flyoutHeader">
+            <div
+              css={css`
+                block-size: 160px;
+              `}
+            >
+              Header content
+            </div>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <div
+              css={css`
+                block-size: 400px;
+                display: flex;
+                align-items: flex-end;
+              `}
+            >
+              <button data-test-subj="bodyAction">Body action</button>
+            </div>
+          </EuiFlyoutBody>
+          <EuiFlyoutFooter data-test-subj="flyoutFooter">
+            <div
+              css={css`
+                block-size: 160px;
+              `}
+            >
+              Footer content
+            </div>
+          </EuiFlyoutFooter>
+        </Flyout>
+      );
+
+      cy.get('[data-test-subj="euiFlyoutBodyOverflow"]').should(($body) => {
+        expect($body[0].clientHeight).to.be.greaterThan(0);
+        expect($body[0].scrollHeight).to.be.greaterThan($body[0].clientHeight);
+      });
+      cy.get('[data-test-subj="flyoutHeader"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutFooter"]').should('be.visible');
+      cy.get('[data-test-subj="bodyAction"]')
+        .scrollIntoView()
+        .should('be.visible');
+      cy.get('[data-test-subj="euiFlyoutBodyOverflow"]')
+        .its('0.scrollTop')
+        .should('be.greaterThan', 0);
+    });
+  });
+
   describe('Focus behavior', () => {
     it('focuses the flyout wrapper by default', () => {
       cy.mount(<Flyout />);

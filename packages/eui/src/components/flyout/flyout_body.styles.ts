@@ -21,6 +21,8 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
+      /* Preserve enough space for one standard control at short viewport heights */
+      ${logicalCSS('min-height', euiTheme.size.xxl)}
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,
