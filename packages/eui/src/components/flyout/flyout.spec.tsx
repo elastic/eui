@@ -43,6 +43,8 @@ const childrenDefault = (
   </>
 );
 
+const shortViewport = { viewportWidth: 640, viewportHeight: 360 };
+
 const Flyout = ({
   children = childrenDefault,
   hasTrigger = false,
@@ -75,8 +77,7 @@ const Flyout = ({
 
 describe('EuiFlyout', () => {
   describe('Layout behavior', () => {
-    it('keeps the body accessible when the viewport is shorter than the flyout chrome', () => {
-      cy.viewport(640, 360);
+    it('keeps body accessible in short viewports', shortViewport, () => {
       cy.mount(
         <Flyout>
           <EuiFlyoutHeader data-test-subj="flyoutHeader">
@@ -116,7 +117,12 @@ describe('EuiFlyout', () => {
         expect($body[0].scrollHeight).to.be.greaterThan($body[0].clientHeight);
       });
       cy.get('[data-test-subj="flyoutHeader"]').should('be.visible');
-      cy.get('[data-test-subj="flyoutFooter"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutFooter"]')
+        .scrollIntoView()
+        .should('be.visible');
+      cy.get('[data-test-subj="flyoutSpec"]')
+        .its('0.scrollTop')
+        .should('be.greaterThan', 0);
       cy.get('[data-test-subj="bodyAction"]')
         .scrollIntoView()
         .should('be.visible');
