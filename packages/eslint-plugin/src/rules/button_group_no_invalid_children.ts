@@ -18,8 +18,12 @@ import { walkJsxChildren } from '../utils/walk_jsx_children';
 import { findAttrValue } from '../utils/get_attr_value';
 
 const BUTTON_GROUP = 'EuiButtonGroup';
-const VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonEmpty', 'EuiButtonIcon']);
-const SEGMENTED_VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonIcon']);
+export const VALID_BUTTONS = new Set([
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiButtonIcon',
+]);
+export const SEGMENTED_VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonIcon']);
 const VALID_WRAPPERS = new Set(['EuiToolTip', 'EuiPopover', 'EuiCopy']);
 
 const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');

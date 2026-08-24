@@ -8,7 +8,11 @@
 
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { ButtonGroupNoInvalidChildren } from './button_group_no_invalid_children';
+import {
+  ButtonGroupNoInvalidChildren,
+  VALID_BUTTONS,
+  SEGMENTED_VALID_BUTTONS,
+} from './button_group_no_invalid_children';
 
 const languageOptions = {
   parserOptions: {
@@ -18,8 +22,8 @@ const languageOptions = {
   },
 };
 
-const DEFAULT_ALLOWED = 'EuiButton, EuiButtonEmpty, EuiButtonIcon';
-const SEGMENTED_ALLOWED = 'EuiButton, EuiButtonIcon';
+const DEFAULT_ALLOWED = Array.from(VALID_BUTTONS).join(', ');
+const SEGMENTED_ALLOWED = Array.from(SEGMENTED_VALID_BUTTONS).join(', ');
 
 const ruleTester = new RuleTester();
 
