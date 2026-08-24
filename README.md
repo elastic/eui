@@ -33,7 +33,7 @@ Traditionally releases are made weekly against whatever is in the `main` branch 
 
 ### Can I contribute to EUI?
 
-Yes! We welcome community-contributed PRs, especially around feature requests that the EUI team may not have bandwidth to carry out alone. You can find documentation around creating and submitting new components in [our wiki](wiki/contributing-to-eui/).
+We accept external contributions for issues labeled [**help wanted**](https://github.com/elastic/eui/labels/help%20wanted). You can find documentation around creating and submitting new components in [our wiki](wiki/contributing-to-eui/).
 
 ### What about reporting bugs and feature requests?
 
@@ -43,7 +43,7 @@ Please note that in order to keep our backlog manageable and focused on tasks we
 
 This activity counter can be soft reset by commenting on the issue directly, but please do so mindfully. We would ask that you proactively let the EUI team know why this request matters to you or how it impacts you or your users, in order to help us prioritize accordingly.
 
-The EUI team, like everyone else, has a finite amount of time and resources, and it is not humanly possible for us to implement every task or feature requested of us. However, that's where the beauty of open source comes in - if your request is important to you, we strongly encourage you to [contribute code directly to EUI](wiki/contributing-to-eui/) that addresses your issue or request!
+The EUI team, like everyone else, has a finite amount of time and resources, and it is not humanly possible for us to implement every task or feature requested of us. If you are interested in contributing an implementation, keep an eye out for issues labeled [**help wanted**](https://github.com/elastic/eui/labels/help%20wanted).
 
 ### I have more questions!
 
