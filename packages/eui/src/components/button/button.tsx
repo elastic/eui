@@ -26,8 +26,6 @@ import {
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
-  EuiButtonDisplayPropsForAnchor,
-  EuiButtonDisplayPropsForButton,
 } from './button_display/_button_display';
 import { useEuiButtonCommonProps } from './use_button_common_props';
 
@@ -138,16 +136,6 @@ export const EuiButton: FunctionComponent<Props> = ({
   const classes = classNames('euiButton', className);
   const cssStyles = [buttonColorStyles, buttonFocusStyle];
 
-  const buttonProps = {
-    onClick,
-    ...rest,
-  } as EuiButtonDisplayPropsForButton;
-
-  const anchorProps = {
-    onClick,
-    ...rest,
-  } as EuiButtonDisplayPropsForAnchor;
-
   return (
     <EuiButtonDisplay
       ref={buttonRef}
@@ -157,9 +145,10 @@ export const EuiButton: FunctionComponent<Props> = ({
       isDisabled={isDisabled}
       hasAriaDisabled={hasAriaDisabled}
       fullWidth={fullWidth}
+      {...rest}
       id={id}
       isSelected={isSelected}
-      {...(rest.href ? anchorProps : buttonProps)}
+      onClick={onClick}
     />
   );
 };
