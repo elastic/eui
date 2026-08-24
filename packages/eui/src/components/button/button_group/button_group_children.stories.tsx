@@ -76,7 +76,6 @@ const meta: Meta<EuiButtonGroupChildrenProps> = {
     gutterSize: 's',
     showDividers: false,
     layout: 'horizontal',
-    display: 'regular',
     wrap: true,
   },
 };
@@ -85,6 +84,21 @@ export default meta;
 type Story = StoryObj<typeof EuiButtonGroup>;
 
 export const WithChildren: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'variant',
+        'wrap',
+        'onChange',
+        'showDividers',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API',
     children: (
@@ -100,6 +114,21 @@ export const WithChildren: Story = {
 };
 
 export const WithMixedChildren: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'variant',
+        'wrap',
+        'onChange',
+        'showDividers',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API',
     children: (
@@ -123,7 +152,15 @@ export const WithMixedChildren: Story = {
 export const Segmented: Story = {
   parameters: {
     controls: {
-      exclude: ['layout'],
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
+      ],
     },
   },
   args: {
@@ -134,6 +171,18 @@ export const Segmented: Story = {
 };
 
 export const SegmentedIconOnly: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API - segmented (icon only)',
     variant: 'segmented',
@@ -144,12 +193,13 @@ export const SegmentedIconOnly: Story = {
 export const LayoutVertical: Story = {
   parameters: {
     controls: {
-      include: [
-        'layout',
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'showDividers',
+      exclude: [
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
       ],
     },
   },
@@ -164,15 +214,7 @@ export const LayoutVertical: Story = {
 export const Selection: Story = {
   parameters: {
     controls: {
-      include: [
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'display',
-        'showDividers',
-        'type',
-        'wrap',
-      ],
+      exclude: ['gutterSize', 'layout'],
     },
   },
   args: {
@@ -201,15 +243,7 @@ export const Selection: Story = {
 export const SelectionMulti: Story = {
   parameters: {
     controls: {
-      include: [
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'display',
-        'showDividers',
-        'type',
-        'wrap',
-      ],
+      exclude: ['gutterSize', 'layout'],
     },
   },
   args: {
@@ -238,14 +272,7 @@ export const SelectionMulti: Story = {
 export const SelectionIconOnly: Story = {
   parameters: {
     controls: {
-      include: [
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'display',
-        'showDividers',
-        'type',
-      ],
+      exclude: ['gutterSize'],
     },
   },
   args: {
@@ -279,15 +306,7 @@ export const SelectionIconOnly: Story = {
 export const SelectionDisplayInverse: Story = {
   parameters: {
     controls: {
-      include: [
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'display',
-        'showDividers',
-        'type',
-        'wrap',
-      ],
+      exclude: ['gutterSize', 'layout'],
     },
   },
   args: {
@@ -1352,6 +1371,7 @@ const StatefulButtonGroupSelection = ({
     return (
       <EuiButtonGroup
         {...(props as Extract<EuiButtonGroupChildrenProps, { type: 'multi' }>)}
+        variant="selection"
         type="multi"
         idToSelectedMap={idToSelectedMap}
         onChange={(id) =>
@@ -1366,6 +1386,7 @@ const StatefulButtonGroupSelection = ({
   return (
     <EuiButtonGroup
       {...props}
+      variant="selection"
       type="single"
       idSelected={idSelected}
       onChange={(id) => setIdSelected(id)}
