@@ -377,10 +377,13 @@ When the render-prop child is not an `EuiToolTip`, `beforeMessage` simply config
 
 Enforce that `EuiButtonGroup` children (when using the Children API) are valid button components.
 
-Valid direct children are:
-- `variant="default"`: `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`
+Valid direct children depend on the variant:
+- `variant="default"` (or no variant): `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`
+- `variant="segmented"`: `EuiButton` and `EuiButtonIcon` only (`EuiButtonEmpty` is not allowed)
 
-Besides those button components, these three wrapper components are also allowed: `EuiPopover`, `EuiToolTip` and `EuiCopy`.
+In addition, these wrapper components are allowed for both variants: `EuiPopover`, `EuiToolTip`, and `EuiCopy`.
+
+For `variant="segmented"`, all children must also use the **same button type** — either all `EuiButton` or all `EuiButtonIcon`. Mixing both types is reported as an error, including when buttons appear inside `EuiToolTip`, as an `EuiPopover` trigger, or in an `EuiCopy` render prop.
 
 #### Examples
 
@@ -389,6 +392,18 @@ Besides those button components, these three wrapper components are also allowed
 <EuiButtonGroup legend="Actions">
   <div>Not a button</div>
   <EuiFlexGroup>...</EuiFlexGroup>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="segmented" with EuiButtonEmpty (not allowed)
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="segmented" mixing EuiButton and EuiButtonIcon
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonIcon iconType="trash" aria-label="Delete" />
 </EuiButtonGroup>
 
 // ✓ Good - direct buttons
@@ -441,6 +456,18 @@ Besides those button components, these three wrapper components are also allowed
   >
     Panel content
   </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - variant="segmented" with all EuiButton
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButton color="danger">Delete</EuiButton>
+</EuiButtonGroup>
+
+// ✓ Good - variant="segmented" with all EuiButtonIcon
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButtonIcon iconType="pencil" aria-label="Edit" />
+  <EuiButtonIcon iconType="trash" aria-label="Delete" />
 </EuiButtonGroup>
 ```
 
