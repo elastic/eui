@@ -70,19 +70,6 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       ${logicalCSS('width', '100%')}
     `,
-    defaultMinWidth: {
-      defaultMinWidth: css``,
-      // Skip css`` for the sizes as we already add classes for sizes and defaultMinWidth
-      xs: `
-        ${logicalCSS('min-width', `${sizes.xs.minWidth}px`)}
-      `,
-      s: `
-        ${logicalCSS('min-width', `${sizes.s.minWidth}px`)}
-      `,
-      m: `
-        ${logicalCSS('min-width', `${sizes.m.minWidth}px`)}
-      `,
-    },
     // Sizes
     xs: css(_buttonSize('xs')),
     s: css(_buttonSize('s')),

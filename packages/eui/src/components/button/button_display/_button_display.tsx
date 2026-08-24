@@ -63,7 +63,8 @@ export interface EuiButtonDisplayCommonProps
    */
   fullWidth?: boolean;
   /**
-   * Override the default minimum width
+   * Applies a minimum width. Useful for keeping the button width
+   * stable when its label changes between states
    */
   minWidth?: CSSProperties['minWidth'] | false;
   /**
@@ -161,10 +162,6 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
-      minWidth == null && [
-        styles.defaultMinWidth.defaultMinWidth,
-        styles.defaultMinWidth[size],
-      ],
       buttonIsDisabled && styles.isDisabled,
     ];
 

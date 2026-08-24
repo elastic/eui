@@ -10,7 +10,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsPrevious"
       title=""
       type="button"
@@ -36,7 +36,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id_euiToolTipAnchor"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsZoomOut"
       title=""
       type="button"
@@ -62,7 +62,7 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-defaultMinWidth-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-m-euiButtonGroupButton-iconOnly-hasToolTip-uncompressed-base-text"
       data-test-subj="timeWindowButtonsNext"
       title=""
       type="button"

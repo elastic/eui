@@ -100,8 +100,6 @@ export const euiSplitButtonActionStyles = (
   // uses smaller sizes due to the buttons being inset into the parent container
   const buttonSize =
     size === 's' ? buttonSizeMap.xs.height : buttonSizeMap.s.height;
-  const buttonMinWidth =
-    size === 's' ? buttonSizeMap.xs.minWidth : buttonSizeMap.s.minWidth;
   const buttonRadius =
     size === 's' ? buttonSizeMap.xs.radiusInset : buttonSizeMap.s.radiusInset;
 
@@ -128,10 +126,6 @@ export const euiSplitButtonActionStyles = (
     euiSplitButtonActionPrimary: css`
       ${commonStyles}
       z-index: ${euiTheme.levels.content};
-
-      &:not(.euiButtonIcon) {
-        min-inline-size: ${buttonMinWidth}px;
-      }
 
       &.euiButtonIcon {
         inline-size: ${buttonSize};

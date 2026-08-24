@@ -30,7 +30,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const forms = euiFormVariables(euiThemeContext);
 
   const inputWidth = euiTheme.base * 30;
-  const buttonWidth = euiTheme.base * 7; // @see _button_display.styles.ts
+  const buttonWidth = euiTheme.base * 7; // @see euiButtonSizeMap
   const gap = euiTheme.size.s;
 
   // Default restricted width
