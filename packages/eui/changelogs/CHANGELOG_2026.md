@@ -1,3 +1,22 @@
+## [`v119.1.0`](https://github.com/elastic/eui/releases/v119.1.0)
+
+- Updated `EuiFlyoutMenu` action icon spacing: `leadingActions` and `trailingActions` icons are now grouped with a consistent gap between each icon ([#9887](https://github.com/elastic/eui/pull/9887))
+- Updated `EuiFlyoutMenu` back button to show a tooltip with the previous page title (e.g. "Back to Page 1") when history context is available ([#9887](https://github.com/elastic/eui/pull/9887))
+- Added `cursorDefault`, `logIn`, and `routeSplit` glyphs to `EuiIcon` ([#9885](https://github.com/elastic/eui/pull/9885))
+- Updated `EuiSplitButton` to apply redesign style changes ([#9865](https://github.com/elastic/eui/pull/9865))
+- Added a development warning to `useGeneratedHtmlId` and `htmlIdGenerator` when the passed `prefix`/`suffix` contains whitespace, which generates invalid HTML IDs ([#9868](https://github.com/elastic/eui/pull/9868))
+- Updated `EuiButtonGroup`: ([#9862](https://github.com/elastic/eui/pull/9862))
+    - Added `variant="segmented"` which renders the group as visually connected control group
+    - Added `showDividers` prop to optionally render dividers between group children
+    - Added `layout` prop to optionally render icon button groups vertically
+    - Added `wrap` prop to manually control the group wrapping behavior
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` header cell actions popover not opening when pressing Enter on a focused actions button ([#9931](https://github.com/elastic/eui/pull/9931))
+- Fixed `EuiFilePicker` losing imperative `ref` support when migrated from class to function component ([#9879](https://github.com/elastic/eui/pull/9879)). Use `useRef<EuiFilePickerRef>()` where `useRef<EuiFilePickerClass>()` was previously used. ([#9930](https://github.com/elastic/eui/pull/9930))
+- Fixed `EuiSplitButton` having a wrong `inline-size` when `textProps={false}` is set on an action button that has `iconType` ([#9917](https://github.com/elastic/eui/pull/9917))
+
 ## [`v119.0.0`](https://github.com/elastic/eui/releases/v119.0.0)
 
 - Bundled icon glyph files into `dist/svgs/` and added `dist/eui-icons.json` manifest (mapping icon filename stems to SVG content strings) ([#9873](https://github.com/elastic/eui/pull/9873))
