@@ -306,16 +306,6 @@ export type EuiButtonGroupChildrenProps = CommonProps &
      */
     buttonSize?: 's' | 'm';
     /**
-     * Defines the type of a button group, which renders visually and functionally different:
-     * - default: arranges buttons in a horizontal row with optional gutter via `gutterSize`
-     * - segmented: arranges buttons in a horizontal or vertical row with no gutter.
-     *   The buttons are placed inset and dividers can optionally be shown between them.
-     * - selection: arranges buttons inset with toggle selection state (single or multi).
-     *   Each child button must have a unique `id` prop.
-     * @default 'default'
-     */
-    variant?: 'default' | 'segmented' | 'selection';
-    /**
      * Defines the gutter size between children buttons.
      * Applies only when `variant="default"`.
      * @default 's'
@@ -331,25 +321,35 @@ export type EuiButtonGroupChildrenProps = CommonProps &
     isFullWidth?: boolean;
     /**
      * Shows dividers between buttons.
-     * Applies only when `variant="segmented"`.
+     * Does not apply when `variant="default"`.
      * @default false
      */
     showDividers?: boolean;
     /**
      * Defines the layout direction of the button group.
      * `layout="vertical"` should only be used with EuiButtonIcon children.
-     * Applies only when `variant="segmented"`.
+     * Does not apply when `variant="default"`.
      * @default 'horizontal'
      */
     layout?: 'horizontal' | 'vertical';
     /**
      * Defines if buttons wrap or shrink.
-     * Applies only when `variant="segmented"`.
+     * Does not apply when `variant="default"`.
      * @default true
      */
     wrap?: boolean;
   } & (
     | ({
+        /**
+         * Defines the type of a button group, which renders visually and functionally different:
+         * - default: arranges buttons in a horizontal row with optional gutter via `gutterSize`
+         * - segmented: arranges buttons in a horizontal or vertical row with no gutter.
+         *   The buttons are placed inset and dividers can optionally be shown between them.
+         * - selection: arranges buttons inset with toggle selection state (single or multi).
+         *   Each child button must have a unique `id` prop.
+         * @default 'default'
+         */
+        variant: 'selection';
         /**
          * Determines selection behavior.
          * With `'single'` only one button can be selected at a time.
@@ -366,6 +366,7 @@ export type EuiButtonGroupChildrenProps = CommonProps &
         idToSelectedMap?: never;
       } & SelectionVariantCommonProps)
     | ({
+        variant: 'selection';
         /**
          * Determines selection behavior.
          * With `'multi'` multiple buttons can be selected simultaneously.
@@ -382,6 +383,7 @@ export type EuiButtonGroupChildrenProps = CommonProps &
         idSelected?: never;
       } & SelectionVariantCommonProps)
     | {
+        variant?: 'default' | 'segmented';
         type?: never;
         idSelected?: never;
         idToSelectedMap?: never;
