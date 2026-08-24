@@ -18,10 +18,14 @@ import { walkJsxChildren } from '../utils/walk_jsx_children';
 import { findAttrValue } from '../utils/get_attr_value';
 
 const BUTTON_GROUP = 'EuiButtonGroup';
-const VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonEmpty', 'EuiButtonIcon']);
+export const VALID_BUTTONS = new Set([
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiButtonIcon',
+]);
+export const SEGMENTED_VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonIcon']);
 const VALID_WRAPPERS = new Set(['EuiToolTip', 'EuiPopover', 'EuiCopy']);
 
-const VALID_BUTTONS_LIST = Array.from(VALID_BUTTONS).join(', ');
 const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');
 
 function isCustomComponent(name: string): boolean {
@@ -47,21 +51,34 @@ function collectJsxChildren(
 
 function reportInvalidWrapperChildren<
   TContext extends TSESLint.RuleContext<string, unknown[]>,
->(wrapper: TSESTree.JSXElement, wrapperName: string, context: TContext): void {
+>(
+  wrapper: TSESTree.JSXElement,
+  wrapperName: string,
+  context: TContext,
+  validButtons: Set<string>,
+  allowed: string,
+  seenButtonTypes?: Set<string>
+): void {
   const children = flatMap(wrapper.children, (c) =>
     collectJsxChildren(c, context.sourceCode)
   );
   for (const wrapperChild of children) {
     if (hasSpread(wrapperChild.openingElement.attributes)) continue;
+
     const wrapperChildName = getElementName(wrapperChild.openingElement);
-    if (wrapperChildName === null || VALID_BUTTONS.has(wrapperChildName))
+
+    if (wrapperChildName === null) continue;
+
+    if (validButtons.has(wrapperChildName)) {
+      seenButtonTypes?.add(wrapperChildName);
       continue;
+    }
     context.report({
       node: wrapperChild.openingElement,
-      messageId: isCustomComponent(wrapperChildName)
+      messageId: isCustomComponent(wrapperChildName) && !VALID_BUTTONS.has(wrapperChildName)
         ? 'invalidUnresolvableWrapperChild'
         : 'invalidWrapperChild',
-      data: { name: wrapperChildName, wrapper: wrapperName },
+      data: { name: wrapperChildName, wrapper: wrapperName, allowed },
     });
   }
 }
@@ -80,31 +97,56 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
             return;
           }
 
-          // Only validate when the variant is "default" (or absent — the default).
-          // Rules for "segmented" and "selection" are added in later chunks.
+          // Validate "default" and "segmented" variants.
           // Dynamic variant values (variables) are conservatively skipped.
           const variant = findAttrValue(
             context,
             openingElement.attributes,
             'variant'
           );
-          if (variant !== undefined && variant !== 'default') return;
+          if (
+            variant !== undefined &&
+            variant !== 'default' &&
+            variant !== 'segmented'
+          )
+            return;
+
+          const isSegmented = variant === 'segmented';
+          const validButtons = isSegmented
+            ? SEGMENTED_VALID_BUTTONS
+            : VALID_BUTTONS;
+          const allowed = Array.from(validButtons).join(', ');
 
           const children = flatMap(node.children, (c) =>
             collectJsxChildren(c, context.sourceCode)
           );
           if (children.length === 0) return;
 
+          // Collect seen button types for the segmented mixed-type check.
+          // Populated during the main loop to avoid a second traversal.
+          const seenButtonTypes = isSegmented ? new Set<string>() : null;
+
           for (const child of children) {
             const name = getElementName(child.openingElement);
             if (name === null) continue;
 
-            if (VALID_BUTTONS.has(name)) continue;
+            if (validButtons.has(name)) {
+              seenButtonTypes?.add(name);
+              continue;
+            }
 
             if (VALID_WRAPPERS.has(name)) {
               if (name === 'EuiToolTip') {
                 // Validate JSX children (expanding fragments/conditionals).
-                reportInvalidWrapperChildren(child, name, context);
+                // Also collects button types for the segmented mixed-type check.
+                reportInvalidWrapperChildren(
+                  child,
+                  name,
+                  context,
+                  validButtons,
+                  allowed,
+                  seenButtonTypes ?? undefined
+                );
               } else if (name === 'EuiPopover') {
                 // The trigger is the `button` prop, not JSX children (panel
                 // content). The prop value may be a JSXExpressionContainer or
@@ -131,11 +173,12 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                       triggerElement.openingElement
                     );
 
-                    if (
-                      triggerElementName === null ||
-                      VALID_BUTTONS.has(triggerElementName)
-                    )
+                    if (triggerElementName === null) continue;
+
+                    if (validButtons.has(triggerElementName)) {
+                      seenButtonTypes?.add(triggerElementName);
                       continue;
+                    }
 
                     if (triggerElementName === 'EuiToolTip') {
                       // EuiToolTip wrapping the trigger — validate its children.
@@ -152,28 +195,29 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                           tooltipChild.openingElement
                         );
 
-                        if (
-                          tooltipChildName === null ||
-                          VALID_BUTTONS.has(tooltipChildName)
-                        )
+                        if (tooltipChildName === null) continue;
+
+                        if (validButtons.has(tooltipChildName)) {
+                          seenButtonTypes?.add(tooltipChildName);
                           continue;
+                        }
 
                         context.report({
                           node: tooltipChild.openingElement,
-                          messageId: isCustomComponent(tooltipChildName)
+                          messageId: isCustomComponent(tooltipChildName) && !VALID_BUTTONS.has(tooltipChildName)
                             ? 'invalidUnresolvablePopoverButton'
                             : 'invalidPopoverButton',
-                          data: { name: tooltipChildName },
+                          data: { name: tooltipChildName, allowed },
                         });
                       }
                       continue;
                     }
                     context.report({
                       node: triggerElement.openingElement,
-                      messageId: isCustomComponent(triggerElementName)
+                      messageId: isCustomComponent(triggerElementName) && !VALID_BUTTONS.has(triggerElementName)
                         ? 'invalidUnresolvablePopoverButton'
                         : 'invalidPopoverButton',
-                      data: { name: triggerElementName },
+                      data: { name: triggerElementName, allowed },
                     });
                   }
                 }
@@ -181,7 +225,15 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                 // Children is a render prop: {(copy) => <EuiButton />}
                 // ArrowFunctionExpression with expression body is expanded by
                 // collectJsxChildren, so validation works the same as EuiToolTip.
-                reportInvalidWrapperChildren(child, name, context);
+                // Also collects button types for the segmented mixed-type check.
+                reportInvalidWrapperChildren(
+                  child,
+                  name,
+                  context,
+                  validButtons,
+                  allowed,
+                  seenButtonTypes ?? undefined
+                );
               }
               continue;
             }
@@ -192,10 +244,23 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
             context.report({
               node: child.openingElement,
-              messageId: isCustomComponent(name)
+              messageId: isCustomComponent(name) && !VALID_BUTTONS.has(name)
                 ? 'invalidUnresolvableChild'
                 : 'invalidChild',
-              data: { name },
+              data: { name, allowed },
+            });
+          }
+
+          // For segmented, all children must be the same button type — either
+          // all EuiButton or all EuiButtonIcon. Types are collected during the
+          // main loop above, including from EuiToolTip, EuiPopover, and EuiCopy.
+          if (
+            seenButtonTypes?.has('EuiButton') &&
+            seenButtonTypes.has('EuiButtonIcon')
+          ) {
+            context.report({
+              node: openingElement,
+              messageId: 'invalidSegmentedMixedTypes',
             });
           }
         },
@@ -204,18 +269,18 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
     meta: {
       type: 'problem',
       docs: {
-        description: `Enforce that EuiButtonGroup children are ${VALID_BUTTONS_LIST}, or a supported wrapper (${VALID_WRAPPERS_LIST})`,
+        description: `Enforce that EuiButtonGroup children are valid button components, or a supported wrapper (${VALID_WRAPPERS_LIST})`,
       },
       schema: [],
       messages: {
         invalidChild: [
           `{{ name }} is not a valid child of EuiButtonGroup.`,
-          `Allowed children: ${VALID_BUTTONS_LIST}.`,
+          `Allowed children: {{ allowed }}.`,
           `Allowed wrappers: ${VALID_WRAPPERS_LIST}.`,
         ].join(' '),
         invalidUnresolvableChild: [
           `{{ name }} cannot be verified as a valid child of EuiButtonGroup.`,
-          `Allowed children: ${VALID_BUTTONS_LIST}.`,
+          `Allowed children: {{ allowed }}.`,
           `Allowed wrappers: ${VALID_WRAPPERS_LIST}.`,
           `If {{ name }} is a shared button wrapper component only containing`,
           `valid button children, suppress this rule inline with a comment`,
@@ -224,11 +289,11 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
         ].join(' '),
         invalidPopoverButton: [
           `{{ name }} is not a valid trigger button for EuiPopover in EuiButtonGroup.`,
-          `The \`button\` prop must be ${VALID_BUTTONS_LIST}.`,
+          `The \`button\` prop must be {{ allowed }}.`,
         ].join(' '),
         invalidUnresolvablePopoverButton: [
           `{{ name }} cannot be verified as a valid trigger button for EuiPopover in EuiButtonGroup.`,
-          `The \`button\` prop must be ${VALID_BUTTONS_LIST}.`,
+          `The \`button\` prop must be {{ allowed }}.`,
           `If {{ name }} is a shared button wrapper component only containing`,
           `valid button children, suppress this rule inline with a comment`,
           `explaining why it's valid.`,
@@ -236,14 +301,18 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
         ].join(' '),
         invalidWrapperChild: [
           `{{ name }} inside {{ wrapper }} is not a valid button for EuiButtonGroup.`,
-          `The wrapper must contain ${VALID_BUTTONS_LIST}.`,
+          `The wrapper must contain {{ allowed }}.`,
         ].join(' '),
         invalidUnresolvableWrapperChild: [
           `{{ name }} inside {{ wrapper }} cannot be verified as a valid button for EuiButtonGroup.`,
-          `The wrapper must contain ${VALID_BUTTONS_LIST}.`,
+          `The wrapper must contain {{ allowed }}.`,
           `If {{ name }} is a shared button wrapper component, suppress this rule inline`,
           `with a comment explaining why it renders valid button children:`,
           `// eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton wraps EuiButton`,
+        ].join(' '),
+        invalidSegmentedMixedTypes: [
+          `EuiButtonGroup with variant="segmented" must use a single button type throughout.`,
+          `Use either all EuiButton or all EuiButtonIcon children — not both.`,
         ].join(' '),
       },
     },
