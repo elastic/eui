@@ -1531,7 +1531,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvableChild',
+            messageId: 'invalidChild',
             data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
           },
         ],
@@ -1580,7 +1580,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvableChild',
+            messageId: 'invalidChild',
             data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
           },
         ],
@@ -1612,7 +1612,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvableWrapperChild',
+            messageId: 'invalidWrapperChild',
             data: {
               name: 'EuiButtonEmpty',
               wrapper: 'EuiToolTip',
@@ -1654,7 +1654,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvablePopoverButton',
+            messageId: 'invalidPopoverButton',
             data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
           },
         ],
@@ -1692,7 +1692,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvablePopoverButton',
+            messageId: 'invalidPopoverButton',
             data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
           },
         ],
@@ -1709,7 +1709,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'invalidUnresolvableWrapperChild',
+            messageId: 'invalidWrapperChild',
             data: {
               name: 'EuiButtonEmpty',
               wrapper: 'EuiCopy',
@@ -1750,6 +1750,49 @@ ruleTester.run(
             <EuiToolTip content="Delete">
               <EuiButtonIcon iconType="trash" aria-label="Delete" />
             </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiPopover button={<EuiButtonIcon iconType="menu" aria-label="More" />} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover with EuiToolTip-wrapped trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiPopover
+              button={<EuiToolTip content="More"><EuiButtonIcon iconType="menu" aria-label="More" /></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiCopy render prop is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButtonIcon iconType="plus" aria-label="Add" />
+            <EuiCopy textToCopy="text">
+              {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+            </EuiCopy>
           </EuiButtonGroup>
         `,
         languageOptions,

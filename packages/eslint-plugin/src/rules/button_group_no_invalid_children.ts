@@ -56,19 +56,26 @@ function reportInvalidWrapperChildren<
   wrapperName: string,
   context: TContext,
   validButtons: Set<string>,
-  allowed: string
+  allowed: string,
+  seenButtonTypes?: Set<string>
 ): void {
   const children = flatMap(wrapper.children, (c) =>
     collectJsxChildren(c, context.sourceCode)
   );
   for (const wrapperChild of children) {
     if (hasSpread(wrapperChild.openingElement.attributes)) continue;
+
     const wrapperChildName = getElementName(wrapperChild.openingElement);
-    if (wrapperChildName === null || validButtons.has(wrapperChildName))
+
+    if (wrapperChildName === null) continue;
+
+    if (validButtons.has(wrapperChildName)) {
+      seenButtonTypes?.add(wrapperChildName);
       continue;
+    }
     context.report({
       node: wrapperChild.openingElement,
-      messageId: isCustomComponent(wrapperChildName)
+      messageId: isCustomComponent(wrapperChildName) && !VALID_BUTTONS.has(wrapperChildName)
         ? 'invalidUnresolvableWrapperChild'
         : 'invalidWrapperChild',
       data: { name: wrapperChildName, wrapper: wrapperName, allowed },
@@ -115,21 +122,30 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           );
           if (children.length === 0) return;
 
+          // Collect seen button types for the segmented mixed-type check.
+          // Populated during the main loop to avoid a second traversal.
+          const seenButtonTypes = isSegmented ? new Set<string>() : null;
+
           for (const child of children) {
             const name = getElementName(child.openingElement);
             if (name === null) continue;
 
-            if (validButtons.has(name)) continue;
+            if (validButtons.has(name)) {
+              seenButtonTypes?.add(name);
+              continue;
+            }
 
             if (VALID_WRAPPERS.has(name)) {
               if (name === 'EuiToolTip') {
                 // Validate JSX children (expanding fragments/conditionals).
+                // Also collects button types for the segmented mixed-type check.
                 reportInvalidWrapperChildren(
                   child,
                   name,
                   context,
                   validButtons,
-                  allowed
+                  allowed,
+                  seenButtonTypes ?? undefined
                 );
               } else if (name === 'EuiPopover') {
                 // The trigger is the `button` prop, not JSX children (panel
@@ -157,11 +173,12 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                       triggerElement.openingElement
                     );
 
-                    if (
-                      triggerElementName === null ||
-                      validButtons.has(triggerElementName)
-                    )
+                    if (triggerElementName === null) continue;
+
+                    if (validButtons.has(triggerElementName)) {
+                      seenButtonTypes?.add(triggerElementName);
                       continue;
+                    }
 
                     if (triggerElementName === 'EuiToolTip') {
                       // EuiToolTip wrapping the trigger — validate its children.
@@ -178,15 +195,16 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                           tooltipChild.openingElement
                         );
 
-                        if (
-                          tooltipChildName === null ||
-                          validButtons.has(tooltipChildName)
-                        )
+                        if (tooltipChildName === null) continue;
+
+                        if (validButtons.has(tooltipChildName)) {
+                          seenButtonTypes?.add(tooltipChildName);
                           continue;
+                        }
 
                         context.report({
                           node: tooltipChild.openingElement,
-                          messageId: isCustomComponent(tooltipChildName)
+                          messageId: isCustomComponent(tooltipChildName) && !VALID_BUTTONS.has(tooltipChildName)
                             ? 'invalidUnresolvablePopoverButton'
                             : 'invalidPopoverButton',
                           data: { name: tooltipChildName, allowed },
@@ -196,7 +214,7 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                     }
                     context.report({
                       node: triggerElement.openingElement,
-                      messageId: isCustomComponent(triggerElementName)
+                      messageId: isCustomComponent(triggerElementName) && !VALID_BUTTONS.has(triggerElementName)
                         ? 'invalidUnresolvablePopoverButton'
                         : 'invalidPopoverButton',
                       data: { name: triggerElementName, allowed },
@@ -207,12 +225,14 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                 // Children is a render prop: {(copy) => <EuiButton />}
                 // ArrowFunctionExpression with expression body is expanded by
                 // collectJsxChildren, so validation works the same as EuiToolTip.
+                // Also collects button types for the segmented mixed-type check.
                 reportInvalidWrapperChildren(
                   child,
                   name,
                   context,
                   validButtons,
-                  allowed
+                  allowed,
+                  seenButtonTypes ?? undefined
                 );
               }
               continue;
@@ -224,7 +244,7 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
             context.report({
               node: child.openingElement,
-              messageId: isCustomComponent(name)
+              messageId: isCustomComponent(name) && !VALID_BUTTONS.has(name)
                 ? 'invalidUnresolvableChild'
                 : 'invalidChild',
               data: { name, allowed },
@@ -232,42 +252,16 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           }
 
           // For segmented, all children must be the same button type — either
-          // all EuiButton or all EuiButtonIcon. EuiToolTip children are
-          // inspected to determine the wrapped type. EuiPopover triggers and
-          // EuiCopy render props are not inspected (too indirect to resolve
-          // reliably), so mixing through those wrappers is not detected.
-          if (isSegmented) {
-            const seenButtonTypes = new Set<string>();
-
-            for (const child of children) {
-              const name = getElementName(child.openingElement);
-              if (name === 'EuiButton' || name === 'EuiButtonIcon') {
-                seenButtonTypes.add(name);
-              } else if (name === 'EuiToolTip') {
-                const tooltipInner = flatMap(child.children, (c) =>
-                  collectJsxChildren(c, context.sourceCode)
-                );
-                for (const inner of tooltipInner) {
-                  const innerName = getElementName(inner.openingElement);
-                  if (
-                    innerName === 'EuiButton' ||
-                    innerName === 'EuiButtonIcon'
-                  ) {
-                    seenButtonTypes.add(innerName);
-                  }
-                }
-              }
-            }
-
-            if (
-              seenButtonTypes.has('EuiButton') &&
-              seenButtonTypes.has('EuiButtonIcon')
-            ) {
-              context.report({
-                node: openingElement,
-                messageId: 'invalidSegmentedMixedTypes',
-              });
-            }
+          // all EuiButton or all EuiButtonIcon. Types are collected during the
+          // main loop above, including from EuiToolTip, EuiPopover, and EuiCopy.
+          if (
+            seenButtonTypes?.has('EuiButton') &&
+            seenButtonTypes.has('EuiButtonIcon')
+          ) {
+            context.report({
+              node: openingElement,
+              messageId: 'invalidSegmentedMixedTypes',
+            });
           }
         },
       };
