@@ -20,6 +20,8 @@ export interface EuiButtonCommonPropsInput<
   isDisabled?: boolean;
   hasAriaDisabled?: boolean;
   fullWidth?: boolean;
+  fill?: boolean;
+  display?: 'base' | 'fill' | 'empty';
   href?: string;
   disabled?: boolean;
   isLoading?: boolean;
@@ -34,6 +36,8 @@ export interface EuiButtonCommonPropsOutput<
   isDisabled: boolean;
   hasAriaDisabled?: boolean;
   fullWidth?: boolean;
+  display?: 'base' | 'fill' | 'empty';
+  fill?: boolean;
 }
 
 /**
@@ -49,6 +53,8 @@ export function useEuiButtonCommonProps<
   isDisabled: _isDisabled,
   hasAriaDisabled,
   fullWidth,
+  fill,
+  display,
   href,
   disabled,
   isLoading,
@@ -71,5 +77,7 @@ export function useEuiButtonCommonProps<
     isDisabled,
     hasAriaDisabled: groupContext.hasAriaDisabled ?? hasAriaDisabled,
     fullWidth: groupContext.fullWidth ?? fullWidth,
+    display: groupContext.display ?? display,
+    fill: groupContext.fill ?? fill,
   };
 }

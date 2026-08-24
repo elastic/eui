@@ -6,19 +6,16 @@
  * Side Public License, v 1.
  */
 
-import { useContext, JSX } from 'react';
+import { useContext, type CSSProperties, type JSX } from 'react';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {
-  useColorMode,
-  useThemeConfig,
-  type NavbarLogo,
-} from '@docusaurus/theme-common';
+import { useThemeConfig, type NavbarLogo } from '@docusaurus/theme-common';
 import type { Props } from '@theme-original/Logo';
 import {
   EuiImage,
+  euiCanAnimate,
   euiTextTruncate,
   useEuiMemoizedStyles,
   UseEuiTheme,
@@ -26,11 +23,14 @@ import {
 
 import { AppThemeContext } from '../../components/theme_context';
 
+const EUI_LOGO = 'eui_logo.svg';
+const LOGO_DISTANCE = '5px';
+
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   wrapper: css`
-    ${euiTextTruncate()}
     // create space to prevent focus outline from being cut off
     padding: ${euiTheme.size.xs};
+    min-inline-size: 0;
 
     @media (min-width: 997px) {
       border-right: ${euiTheme.border.thin};
@@ -39,7 +39,6 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     .navbar__brand {
       display: flex;
       align-items: center;
-
       margin-inline-end: ${euiTheme.size.m};
 
       @media (min-width: 997px) {
@@ -48,19 +47,123 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     .navbar__logo {
-      height: 100%;
+      overflow: visible;
+      height: auto;
+    }
+
+    .navbar__title {
+      ${euiTextTruncate()}
     }
   `,
   imageWrapper: css`
+    overflow: visible;
     margin-inline-end: ${euiTheme.size.m};
   `,
   image: css`
     position: relative;
+    display: block;
     block-size: ${euiTheme.size.l};
     inline-size: ${euiTheme.size.l};
     margin: 0;
   `,
+  logo: css`
+    display: block;
+    overflow: visible;
+    block-size: ${euiTheme.size.l};
+    inline-size: ${euiTheme.size.l};
+    margin: 0;
+    // Firefox clips transformed SVG descendants to the viewport even
+    // with overflow: visible. Expand the clip so pieces can travel 5px.
+    @supports (-moz-appearance: none) {
+      clip-path: inset(-8px);
+    }
+
+    .euiNavbarLogo__piece {
+      transform: translate(0, 0);
+
+      ${euiCanAnimate} {
+        transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+      }
+    }
+
+    ${euiCanAnimate} {
+      &:hover {
+        .euiNavbarLogo__pink {
+          transform: translate(-${LOGO_DISTANCE}, -${LOGO_DISTANCE});
+        }
+
+        .euiNavbarLogo__yellow {
+          transform: translate(${LOGO_DISTANCE}, ${LOGO_DISTANCE});
+        }
+
+        .euiNavbarLogo__teal {
+          transform: translate(${LOGO_DISTANCE}, -${LOGO_DISTANCE});
+        }
+
+        .euiNavbarLogo__blue {
+          transform: translate(-${LOGO_DISTANCE}, ${LOGO_DISTANCE});
+        }
+      }
+    }
+  `,
 });
+
+function EuiNavbarLogo({
+  alt,
+  className,
+  style,
+}: {
+  alt: string;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  const styles = useEuiMemoizedStyles(getStyles);
+  const isDecorative = alt === '';
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      fill="none"
+      overflow="visible"
+      className={className}
+      style={style}
+      css={styles.logo}
+      aria-hidden={isDecorative ? true : undefined}
+      role={isDecorative ? undefined : 'img'}
+      aria-label={isDecorative ? undefined : alt}
+    >
+      <path
+        fill="#FF957D"
+        d="M18 25c-.5-5.5-5.5-10.5-11-11l7-7c.5 5.5 5.5 10.5 11 11l-7 7z"
+      />
+      <circle
+        className="euiNavbarLogo__piece euiNavbarLogo__pink"
+        cx="7"
+        cy="7"
+        r="7"
+        fill="#F04E98"
+      />
+      <circle
+        className="euiNavbarLogo__piece euiNavbarLogo__yellow"
+        cx="25"
+        cy="25"
+        r="7"
+        fill="#FEC514"
+      />
+      <path
+        className="euiNavbarLogo__piece euiNavbarLogo__teal"
+        fill="#00BFB3"
+        d="M31 14c-7.18 0-13-5.82-13-13h13v13z"
+      />
+      <path
+        className="euiNavbarLogo__piece euiNavbarLogo__blue"
+        fill="#1BA9F5"
+        d="M1 18c7.18 0 13 5.82 13 13H1V18z"
+      />
+    </svg>
+  );
+}
 
 function LogoThemedImage({
   logo,
@@ -75,12 +178,15 @@ function LogoThemedImage({
   const isDarkMode = colorMode === 'dark';
 
   const styles = useEuiMemoizedStyles(getStyles);
+  const isEuiLogo = logo.src.includes(EUI_LOGO);
 
   const src = isDarkMode
     ? useBaseUrl(logo.srcDark || logo.src)
     : useBaseUrl(logo.src);
 
-  const themedImage = (
+  const themedImage = isEuiLogo ? (
+    <EuiNavbarLogo alt={alt} className={logo.className} style={logo.style} />
+  ) : (
     <EuiImage
       src={src}
       size="fullWidth"
