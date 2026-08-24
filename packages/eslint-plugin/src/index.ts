@@ -30,6 +30,7 @@ import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
 import { NoDeprecatedIconAliases } from './rules/no_deprecated_icon_aliases';
 import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
+import { ButtonGroupSelectionRequireId } from './rules/button_group_selection_require_id';
 
 const config = {
   rules: {
@@ -58,6 +59,7 @@ const config = {
     'tooltip-no-interactive-content': TooltipNoInteractiveContent,
     'tooltip-button-icon-wrap': TooltipButtonIconWrap,
     'button-group-no-invalid-children': ButtonGroupNoInvalidChildren,
+    'button-group-selection-require-id': ButtonGroupSelectionRequireId,
   },
   configs: {
     recommended: {
@@ -65,6 +67,7 @@ const config = {
       rules: {
         '@elastic/eui/accessible-interactive-element': 'warn',
         '@elastic/eui/button-group-no-invalid-children': 'error',
+        '@elastic/eui/button-group-selection-require-id': 'error',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
