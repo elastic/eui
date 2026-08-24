@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover } from '../../popover';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
@@ -16,37 +16,56 @@ import { EuiText } from '../../text';
 import { EuiSpacer } from '../../spacer';
 import { EuiCode } from '../../code';
 import { EuiCopy } from '../../copy';
+import { EuiFieldSearch } from '../../form';
 import { EuiButton } from '../button';
 import { EuiButtonEmpty } from '../button_empty/button_empty';
 import { EuiButtonIcon } from '../button_icon/button_icon';
 import {
   EuiButtonGroup as EuiButtonGroupBase,
+  EuiButtonGroupChildren,
   EuiButtonGroupProps,
   EuiButtonGroupChildrenProps,
   EuiButtonGroupOptionProps,
-  BUTTON_GROUP_GUTTER_SIZES,
 } from './button_group';
 
-// Typed proxy — gives react-docgen-typescript a concrete EuiButtonGroupChildrenProps
-// type to analyze. Without this, docgen sees the overloaded function and cannot
-// extract JSDoc descriptions for the children API props properly.
-const EuiButtonGroup: FunctionComponent<EuiButtonGroupChildrenProps> =
-  EuiButtonGroupBase;
+// Typed proxy - EuiButtonGroupChildren is exported from the component file so that
+// react-docgen-typescript analyzes button_group.tsx directly and picks up
+// JSDoc from EuiButtonGroupChildrenProps.
+// Can be removed once the Options API is replaced by the Children API.
+const EuiButtonGroup = EuiButtonGroupChildren;
+const buttons = (
+  <>
+    <EuiButton>Delete</EuiButton>
+    <EuiButton>Rename</EuiButton>
+    <EuiButton>Disable</EuiButton>
+    <EuiButton>Duplicate</EuiButton>
+    <EuiButton fill>Save</EuiButton>
+  </>
+);
+const iconButtons = (
+  <>
+    <EuiToolTip content="Delete" disableScreenReaderOutput>
+      <EuiButtonIcon iconType="trash" aria-label="Delete" />
+    </EuiToolTip>
+    <EuiToolTip content="Rename" disableScreenReaderOutput>
+      <EuiButtonIcon iconType="pencil" aria-label="Rename" />
+    </EuiToolTip>
+    <EuiToolTip content="Disable" disableScreenReaderOutput>
+      <EuiButtonIcon iconType="pause" aria-label="Disable" />
+    </EuiToolTip>
+    <EuiToolTip content="Duplicate" disableScreenReaderOutput>
+      <EuiButtonIcon iconType="copy" aria-label="Duplicate" />
+    </EuiToolTip>
+    <EuiToolTip content="Save" disableScreenReaderOutput>
+      <EuiButtonIcon iconType="save" aria-label="Save" />
+    </EuiToolTip>
+  </>
+);
 
 const meta: Meta<EuiButtonGroupChildrenProps> = {
   title: 'Navigation/EuiButtonGroup',
   // @ts-ignore — EuiButtonGroup is overloaded; Storybook can't infer it directly
   component: EuiButtonGroup,
-  argTypes: {
-    variant: {
-      options: ['default'],
-      control: { type: 'radio' },
-    },
-    gutterSize: {
-      options: BUTTON_GROUP_GUTTER_SIZES,
-      control: { type: 'select' },
-    },
-  },
   args: {
     legend: 'EuiButtonGroup',
     buttonSize: 's',
@@ -55,6 +74,9 @@ const meta: Meta<EuiButtonGroupChildrenProps> = {
     isFullWidth: false,
     variant: 'default',
     gutterSize: 's',
+    showDividers: false,
+    layout: 'horizontal',
+    wrap: true,
   },
 };
 
@@ -70,9 +92,7 @@ export const WithChildren: Story = {
         <EuiButton color="text">Rename</EuiButton>
         <EuiButton color="text">Disable</EuiButton>
         <EuiButton>Duplicate</EuiButton>
-        <EuiButton iconType="save" fill>
-          Save
-        </EuiButton>
+        <EuiButton fill>Save</EuiButton>
       </>
     ),
   },
@@ -99,6 +119,47 @@ export const WithMixedChildren: Story = {
   },
 };
 
+export const Segmented: Story = {
+  parameters: {
+    controls: {
+      exclude: ['layout'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented',
+    variant: 'segmented',
+    children: buttons,
+  },
+};
+
+export const SegmentedIconOnly: Story = {
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented (icon only)',
+    variant: 'segmented',
+    children: iconButtons,
+  },
+};
+
+export const LayoutVertical: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'layout',
+        'buttonSize',
+        'isDisabled',
+        'hasAriaDisabled',
+        'showDividers',
+      ],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented (vertical layout)',
+    variant: 'segmented',
+    layout: 'vertical',
+    children: iconButtons,
+  },
+};
+
 const options: EuiButtonGroupOptionProps[] = [
   {
     id: 'button1',
@@ -114,11 +175,66 @@ const options: EuiButtonGroupOptionProps[] = [
   },
 ];
 
+/* VRT-only */
+
+export const Dividers: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['showDividers', 'buttonSize', 'isDisabled', 'hasAriaDisabled'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented (with dividers)',
+    variant: 'segmented',
+    showDividers: true,
+  },
+  render: function Render(args) {
+    return (
+      <EuiFlexGroup direction="column" gutterSize="m">
+        <EuiButtonGroup {...args}>{buttons}</EuiButtonGroup>
+        <EuiButtonGroup {...args}>{iconButtons}</EuiButtonGroup>
+      </EuiFlexGroup>
+    );
+  },
+};
+
+export const PartiallyDisabled: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['showDividers', 'buttonSize', 'isDisabled', 'hasAriaDisabled'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented (with dividers)',
+    variant: 'segmented',
+    showDividers: true,
+  },
+  render: function Render(args) {
+    return (
+      <EuiFlexGroup direction="column" gutterSize="m">
+        <EuiButtonGroup {...args}>
+          <EuiButton color="danger">Delete</EuiButton>
+          <EuiButton color="text" isDisabled>
+            Rename
+          </EuiButton>
+          <EuiButton color="text" isDisabled>
+            Disable
+          </EuiButton>
+          <EuiButton>Duplicate</EuiButton>
+          <EuiButton fill>Save</EuiButton>
+        </EuiButtonGroup>
+      </EuiFlexGroup>
+    );
+  },
+};
+
 export const KitchenSink: Story = {
   tags: ['vrt-only'],
   parameters: {
     controls: {
-      include: ['isDisabled', 'hasAriaDisabled', 'isFullWidth', 'buttonSize'],
+      exclude: ['children', 'onChange', 'legend', 'options', 'variant'],
     },
     codeSnippet: {
       skip: true,
@@ -136,7 +252,9 @@ export const KitchenSink: Story = {
     gutterSize,
     ...rest
   }: EuiButtonGroupChildrenProps) {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const [isPopoverOpenA, setIsPopoverOpenA] = useState(false);
+    const [isPopoverOpenB, setIsPopoverOpenB] = useState(false);
+    const [isPopoverOpenC, setIsPopoverOpenC] = useState(false);
 
     const buttonSizeChildren =
       // @ts-expect-error - Children API doesn't support 'compressed', but it's added for demonstration with the Options API
@@ -215,22 +333,23 @@ export const KitchenSink: Story = {
           content: (
             <EuiButtonGroup
               {...commonProps}
+              variant="default"
               buttonSize={buttonSizeChildren}
               gutterSize={gutterSize}
               legend="Children API - default"
             >
-              <EuiButton size="s">Save</EuiButton>
+              <EuiButton>Save</EuiButton>
               <EuiPopover
                 aria-label="Actions popover"
-                closePopover={() => setIsPopoverOpen(false)}
-                isOpen={isPopoverOpen}
+                closePopover={() => setIsPopoverOpenA(false)}
+                isOpen={isPopoverOpenA}
                 button={
                   <EuiToolTip content="Actions" disableScreenReaderOutput>
                     <EuiButtonIcon
                       iconType="menu"
                       aria-label="Actions"
                       color="text"
-                      onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+                      onClick={() => setIsPopoverOpenA((isOpen) => !isOpen)}
                     />
                   </EuiToolTip>
                 }
@@ -262,7 +381,584 @@ export const KitchenSink: Story = {
             </EuiButtonGroup>
           ),
         })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="segmented"</EuiCode> - wrap
+            </span>
+          ),
+          content: (
+            <EuiButtonGroup
+              {...commonProps}
+              variant="segmented"
+              buttonSize={buttonSizeChildren}
+              gutterSize={gutterSize}
+              legend="Children API - segmented"
+              wrap
+            >
+              <EuiButton>Delete</EuiButton>
+              <EuiButton>Rename</EuiButton>
+              <EuiButton>Disable</EuiButton>
+              <EuiButton>Duplicate</EuiButton>
+              <EuiToolTip content="Save" disableScreenReaderOutput>
+                <EuiButton>Save</EuiButton>
+              </EuiToolTip>
+              <EuiPopover
+                aria-label="Actions popover"
+                closePopover={() => setIsPopoverOpenB(false)}
+                isOpen={isPopoverOpenB}
+                button={
+                  <EuiToolTip
+                    content="Actions"
+                    display="block"
+                    disableScreenReaderOutput
+                  >
+                    <EuiButton
+                      onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+                    >
+                      Actions
+                    </EuiButton>
+                  </EuiToolTip>
+                }
+              >
+                <p>Popover content</p>
+                <EuiButton>Popover action</EuiButton>
+              </EuiPopover>
+              <EuiButton>Undo</EuiButton>
+              <EuiButton>Cancel</EuiButton>
+              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+              </EuiCopy>
+            </EuiButtonGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="segmented"</EuiCode> (icon only)
+              - wrap
+            </span>
+          ),
+          content: (
+            <EuiButtonGroup
+              {...commonProps}
+              variant="segmented"
+              buttonSize={buttonSizeChildren}
+              gutterSize={gutterSize}
+              legend="Children API - segmented"
+              wrap
+            >
+              {iconButtons}
+
+              <EuiPopover
+                aria-label="Actions popover"
+                closePopover={() => setIsPopoverOpenC(false)}
+                isOpen={isPopoverOpenC}
+                button={
+                  <EuiToolTip
+                    content="Actions"
+                    display="block"
+                    disableScreenReaderOutput
+                  >
+                    <EuiButtonIcon
+                      iconType="menu"
+                      aria-label="Actions"
+                      onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
+                    />
+                  </EuiToolTip>
+                }
+              >
+                <p>Popover content</p>
+                <EuiButton>Popover action</EuiButton>
+              </EuiPopover>
+
+              <EuiToolTip content="Undo" disableScreenReaderOutput>
+                <EuiButtonIcon iconType="undo" aria-label="Undo" />
+              </EuiToolTip>
+
+              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                {(copy) => (
+                  <EuiButtonIcon
+                    iconType="copy"
+                    aria-label="Copy"
+                    onClick={copy}
+                  />
+                )}
+              </EuiCopy>
+
+              {iconButtons}
+            </EuiButtonGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="segmented"</EuiCode> - no wrap
+            </span>
+          ),
+          content: (
+            <EuiButtonGroup
+              {...commonProps}
+              variant="segmented"
+              buttonSize={buttonSizeChildren}
+              gutterSize={gutterSize}
+              legend="Children API - segmented"
+              wrap={false}
+            >
+              <EuiButton>Delete</EuiButton>
+              <EuiButton>Rename</EuiButton>
+              <EuiButton>Disable</EuiButton>
+              <EuiButton>Duplicate</EuiButton>
+              <EuiToolTip content="Save" disableScreenReaderOutput>
+                <EuiButton>Save</EuiButton>
+              </EuiToolTip>
+              <EuiPopover
+                aria-label="Actions popover"
+                closePopover={() => setIsPopoverOpenB(false)}
+                isOpen={isPopoverOpenB}
+                button={
+                  <EuiToolTip
+                    content="Actions"
+                    display="block"
+                    disableScreenReaderOutput
+                  >
+                    <EuiButton
+                      onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+                    >
+                      Actions
+                    </EuiButton>
+                  </EuiToolTip>
+                }
+              >
+                <p>Popover content</p>
+                <EuiButton>Popover action</EuiButton>
+              </EuiPopover>
+              <EuiButton>Undo</EuiButton>
+              <EuiButton>Cancel</EuiButton>
+              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+              </EuiCopy>
+            </EuiButtonGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="segmented"</EuiCode> (icon only)
+              - no wrap
+            </span>
+          ),
+          content: (
+            <EuiButtonGroup
+              {...commonProps}
+              variant="segmented"
+              buttonSize={buttonSizeChildren}
+              gutterSize={gutterSize}
+              legend="Children API - segmented"
+              wrap={false}
+            >
+              {iconButtons}
+
+              <EuiPopover
+                aria-label="Actions popover"
+                closePopover={() => setIsPopoverOpenC(false)}
+                isOpen={isPopoverOpenC}
+                button={
+                  <EuiToolTip
+                    content="Actions"
+                    display="block"
+                    disableScreenReaderOutput
+                  >
+                    <EuiButtonIcon
+                      iconType="menu"
+                      aria-label="Actions"
+                      onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
+                    />
+                  </EuiToolTip>
+                }
+              >
+                <p>Popover content</p>
+                <EuiButton>Popover action</EuiButton>
+              </EuiPopover>
+
+              <EuiToolTip content="Undo" disableScreenReaderOutput>
+                <EuiButtonIcon iconType="undo" aria-label="Undo" />
+              </EuiToolTip>
+
+              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                {(copy) => (
+                  <EuiButtonIcon
+                    iconType="copy"
+                    aria-label="Copy"
+                    onClick={copy}
+                  />
+                )}
+              </EuiCopy>
+
+              {iconButtons}
+            </EuiButtonGroup>
+          ),
+        })}
       </EuiFlexGroup>
+    );
+  },
+};
+
+export const FlexLayoutBehavior: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['showDividers', 'buttonSize', 'isDisabled', 'hasAriaDisabled'],
+    },
+    codeSnippet: {
+      skip: true,
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - segmented (with dividers)',
+    variant: 'segmented',
+    showDividers: true,
+  },
+  render: function Render(args) {
+    const renderTitle = (text: string) => (
+      <>
+        <EuiText size="s">{text}</EuiText>
+        <EuiSpacer size="s" />
+      </>
+    );
+    return (
+      <>
+        <EuiFlexGroup direction="column" gutterSize="xl">
+          <EuiFlexItem>
+            {renderTitle(
+              'FlexGroup(responsive=false, wrap=false), FlexItem(grow=true), ButtonGroup(wrap=false)'
+            )}
+
+            <EuiFlexGroup direction="row" gutterSize="s" responsive={false}>
+              <EuiFlexItem>
+                <EuiFieldSearch compressed />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup direction="row" gutterSize="m" responsive={false}>
+              <EuiFlexItem>
+                <EuiFieldSearch compressed />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              '⭐ FlexGroup(responsive=false, wrap=true), FlexItem(grow=false), ButtonGroup(wrap=true)'
+            )}
+
+            <EuiFlexGroup
+              direction="row"
+              gutterSize="s"
+              responsive={false}
+              wrap
+            >
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup
+              direction="row"
+              gutterSize="s"
+              responsive={false}
+              wrap
+            >
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              '🌟 FlexGroup(responsive=false, wrap=true), FlexItem(grow=true + grow=false), ButtonGroup(wrap=true)'
+            )}
+
+            <EuiFlexGroup
+              direction="row"
+              gutterSize="s"
+              responsive={false}
+              wrap
+            >
+              <EuiFlexItem>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup
+              direction="row"
+              gutterSize="s"
+              responsive={false}
+              wrap
+            >
+              <EuiFlexItem>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              '⭐ FlexGroup(responsive=true, wrap=true), FlexItem(grow=false), ButtonGroup(wrap=true)'
+            )}
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              '🌟 FlexGroup(responsive=true, wrap=true), FlexItem(grow=true + grow=false), ButtonGroup(wrap=true)'
+            )}
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={true}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              'FlexGroup(responsive=true, wrap=false), FlexItem(grow=false), ButtonGroup(wrap=false)'
+            )}
+
+            <EuiFlexGroup direction="row" gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            {renderTitle(
+              'FlexGroup(responsive=true, wrap=true), FlexItem(grow=false), ButtonGroup(wrap=false)'
+            )}
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup direction="row" gutterSize="s" wrap>
+              <EuiFlexItem grow={false}>
+                <EuiFieldSearch compressed fullWidth />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {buttons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup {...args} wrap={false}>
+                  {iconButtons}
+                </EuiButtonGroup>
+              </EuiFlexItem>
+              <EuiButton size="s">Action</EuiButton>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          {/* CUSTOM */}
+
+          <EuiFlexItem>
+            {renderTitle('Custom css - button group no shrink')}
+            <div
+              css={({ euiTheme }) => css`
+                display: flex;
+                flex-wrap: wrap;
+                gap: ${euiTheme.size.s};
+              `}
+            >
+              <EuiFieldSearch compressed />
+
+              <EuiButtonGroup {...args} wrap={false}>
+                {iconButtons}
+              </EuiButtonGroup>
+
+              <EuiButtonGroup
+                {...args}
+                css={css`
+                  flex-shrink: 0;
+                `}
+              >
+                {buttons}
+              </EuiButtonGroup>
+
+              <EuiButton size="s">Action</EuiButton>
+            </div>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </>
     );
   },
 };

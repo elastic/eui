@@ -7,7 +7,7 @@ keywords: [EuiButtonGroup]
 
 **EuiButtonGroup** groups related buttons together. There are two APIs available:
 
-- **Children API** — pass **EuiButton**, **EuiButtonEmpty**, or **EuiButtonIcon** directly as `children` for an arrangement of mixed button types in a row.
+- **Children API** — pass **EuiButton**, **EuiButtonEmpty**, or **EuiButtonIcon** directly as `children`. Supports multiple `variant` values for different visual layouts.
 - **Options API** — pass an `options` array when buttons need radio or checkbox semantics (`type="single"` or `"multi"`).
 
 :::accessibility Accessibility recommendation
@@ -31,17 +31,27 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
+  EuiSelect,
   EuiSwitch,
   EuiToolTip,
 } from '@elastic/eui';
 
 export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
   const [isDisabled, setIsDisabled] = useState(false);
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   return (
     <>
       <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
         <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
@@ -62,6 +72,7 @@ export default () => {
       <EuiSpacer />
       <EuiButtonGroup
         legend="Document actions"
+        buttonSize={buttonSize}
         isDisabled={isDisabled}
         isFullWidth={isFullWidth}
       >
@@ -121,6 +132,201 @@ export default () => {
         <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
         <EuiToolTip content="Delete" disableScreenReaderOutput>
           <EuiButtonIcon iconType="trash" aria-label="Delete" color="danger" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+### Segmented
+
+Use `variant="segmented"` for a visually unified row where all buttons are treated as a single connected control. The buttons sit flush against each other with no gap, rendering the group as one cohesive element.
+
+Unlike the default variant, segmented groups have two constraints:
+
+- Only **EuiButton** or **EuiButtonIcon** are accepted — **EuiButtonEmpty** is not supported.
+- All children must use the **same button type**: either all **EuiButton** or all **EuiButtonIcon** — not a mix of both.
+
+Add `showDividers` to render a separator line between buttons.
+
+By default the segmented group will wrap depending on available space. Use `wrap={false}` to prevent wrapping.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
+  const [showDividers, setShowDividers] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
+  const [wrap, setWrap] = useState(true);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Show dividers"
+            checked={showDividers}
+            onChange={() => setShowDividers(!showDividers)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={isFullWidth}
+            onChange={() => setIsFullWidth(!isFullWidth)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Wrap"
+            checked={wrap}
+            onChange={() => setWrap(!wrap)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiFlexGroup direction="column" gutterSize="s">
+        <EuiFlexItem grow={isFullWidth}>
+          <EuiButtonGroup
+            legend="Document actions"
+            variant="segmented"
+            buttonSize={buttonSize}
+            showDividers={showDividers}
+            isFullWidth={isFullWidth}
+            wrap={wrap}
+          >
+            <EuiButton>Delete</EuiButton>
+            <EuiButton>Rename</EuiButton>
+            <EuiButton>Disable</EuiButton>
+            <EuiButton>Duplicate</EuiButton>
+            <EuiButton>Save</EuiButton>
+          </EuiButtonGroup>
+        </EuiFlexItem>
+        <EuiFlexItem grow={isFullWidth}>
+          <EuiButtonGroup
+            legend="Icon actions"
+            variant="segmented"
+            buttonSize={buttonSize}
+            showDividers={showDividers}
+            isFullWidth={isFullWidth}
+            wrap={wrap}
+          >
+            <EuiToolTip content="Delete" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            </EuiToolTip>
+            <EuiToolTip content="Rename" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="pencil" aria-label="Rename" />
+            </EuiToolTip>
+            <EuiToolTip content="Disable" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="pause" aria-label="Disable" />
+            </EuiToolTip>
+            <EuiToolTip content="Duplicate" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="copy" aria-label="Duplicate" />
+            </EuiToolTip>
+            <EuiToolTip content="Save" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="save" aria-label="Save" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+#### Vertical layout
+
+Use `layout="vertical"` to stack buttons in a column instead of a row. This layout should only be used with **EuiButtonIcon** children.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
+  const [showDividers, setShowDividers] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Show dividers"
+            checked={showDividers}
+            onChange={() => setShowDividers(!showDividers)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Icon actions"
+        variant="segmented"
+        layout="vertical"
+        buttonSize={buttonSize}
+        showDividers={showDividers}
+      >
+        <EuiToolTip content="Delete" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="trash" aria-label="Delete" />
+        </EuiToolTip>
+        <EuiToolTip content="Rename" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="pencil" aria-label="Rename" />
+        </EuiToolTip>
+        <EuiToolTip content="Disable" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="pause" aria-label="Disable" />
+        </EuiToolTip>
+        <EuiToolTip
+          content="Duplicate"
+          disableScreenReaderOutput
+          position="right"
+        >
+          <EuiButtonIcon iconType="copy" aria-label="Duplicate" />
+        </EuiToolTip>
+        <EuiToolTip content="Save" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="save" aria-label="Save" />
         </EuiToolTip>
       </EuiButtonGroup>
     </>
