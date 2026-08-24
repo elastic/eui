@@ -1,5 +1,15 @@
 [
   {
+    "version": "119.1.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.back.tooltip",
+        "changeType": "added",
+        "value": "Back to {previousPage}"
+      }
+    ]
+  },
+  {
     "version": "118.0.0",
     "changes": [
       {
