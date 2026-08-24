@@ -380,10 +380,11 @@ Enforce that `EuiButtonGroup` children (when using the Children API) are valid b
 Valid direct children depend on the variant:
 - `variant="default"` (or no variant): `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`
 - `variant="segmented"`: `EuiButton` and `EuiButtonIcon` only (`EuiButtonEmpty` is not allowed)
+- `variant="selection"`: `EuiButton` and `EuiButtonIcon` only (`EuiButtonEmpty` is not allowed)
 
-In addition, these wrapper components are allowed for both variants: `EuiPopover`, `EuiToolTip`, and `EuiCopy`.
+In addition, these wrapper components are allowed for all variants: `EuiPopover`, `EuiToolTip`, and `EuiCopy`.
 
-For `variant="segmented"`, all children must also use the **same button type** — either all `EuiButton` or all `EuiButtonIcon`. Mixing both types is reported as an error, including when buttons appear inside `EuiToolTip`, as an `EuiPopover` trigger, or in an `EuiCopy` render prop.
+For `variant="segmented"` and `variant="selection"`, all children must also use the **same button type** — either all `EuiButton` or all `EuiButtonIcon`. Mixing both types is reported as an error, including when buttons appear inside `EuiToolTip`, as an `EuiPopover` trigger, or in an `EuiCopy` render prop.
 
 #### Examples
 
@@ -404,6 +405,17 @@ For `variant="segmented"`, all children must also use the **same button type** �
 <EuiButtonGroup legend="Actions" variant="segmented">
   <EuiButton>Save</EuiButton>
   <EuiButtonIcon iconType="trash" aria-label="Delete" />
+</EuiButtonGroup>
+
+// ✗ Bad - variant="selection" with EuiButtonEmpty (not allowed)
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButtonEmpty color="text">Bold</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="selection" mixing EuiButton and EuiButtonIcon
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiButtonIcon id="italic" iconType="italic" aria-label="Italic" />
 </EuiButtonGroup>
 
 // ✓ Good - direct buttons
@@ -469,6 +481,18 @@ For `variant="segmented"`, all children must also use the **same button type** �
   <EuiButtonIcon iconType="pencil" aria-label="Edit" />
   <EuiButtonIcon iconType="trash" aria-label="Delete" />
 </EuiButtonGroup>
+
+// ✓ Good - variant="selection" with all EuiButton
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiButton id="italic">Italic</EuiButton>
+</EuiButtonGroup>
+
+// ✓ Good - variant="selection" with all EuiButtonIcon
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButtonIcon id="bold" iconType="bold" aria-label="Bold" />
+  <EuiButtonIcon id="italic" iconType="italic" aria-label="Italic" />
+</EuiButtonGroup>
 ```
 
 #### Custom button wrapper components
@@ -478,6 +502,51 @@ If a project-specific button component (e.g. `<SaveButton />`) is used as a chil
 ```tsx
 // eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton returns EuiButton
 <SaveButton />
+```
+
+### `@elastic/eui/button-group-selection-require-id`
+
+Enforce that every `EuiButton` and `EuiButtonIcon` child of an `EuiButtonGroup` with `variant="selection"` has an `id` prop. The selection variant uses the `id` of each button to track which buttons are selected, so a missing `id` will cause incorrect or broken selection state at runtime.
+
+The rule only fires when `variant="selection"` is set as a static string. Dynamic variants (`variant={myVar}`) are skipped conservatively. It traverses the same nesting depth as `button-group-no-invalid-children`: fragments, conditionals, variable resolution, `.map()`, and the three supported wrappers (`EuiToolTip`, `EuiPopover` trigger, `EuiCopy` render prop). Children with spread props (`{...props}`) are skipped — the `id` may be provided via the spread.
+
+#### Examples
+
+```tsx
+// ✗ Bad - missing id on direct child
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton>Bold</EuiButton>
+</EuiButtonGroup>
+
+// ✗ Bad - missing id on button inside EuiToolTip
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiToolTip content="Italic">
+    <EuiButton>Italic</EuiButton>
+  </EuiToolTip>
+</EuiButtonGroup>
+
+// ✗ Bad - missing id on EuiPopover trigger
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiPopover button={<EuiButton>More</EuiButton>} isOpen={false} closePopover={() => {}}>
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - all children have id
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiToolTip content="Italic">
+    <EuiButton id="italic">Italic</EuiButton>
+  </EuiToolTip>
+  <EuiPopover button={<EuiButton id="more">More</EuiButton>} isOpen={false} closePopover={() => {}}>
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - spread props are skipped (id may come from the spread)
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton {...buttonProps} />
+</EuiButtonGroup>
 ```
 
 ## Testing
