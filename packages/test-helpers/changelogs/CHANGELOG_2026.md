@@ -1,3 +1,7 @@
+## [`v1.4.0`](https://github.com/elastic/eui/releases/v1.4.0)
+
+- Added `EuiSelectableObject` with `options`, `selectOption(label)` and `search(term)` ([#9908](https://github.com/elastic/eui/pull/9908))
+
 ## [`v1.3.0`](https://github.com/elastic/eui/releases/v1.3.0)
 
 - Added `EuiDataGridObject` with `rows`, `cell()`, `cells()`, `doActionOnColumn()` and `openFullScreenMode()`/`closeFullScreenMode()` ([#9874](https://github.com/elastic/eui/pull/9874))
