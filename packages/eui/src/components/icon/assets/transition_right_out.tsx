@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconKqlFunction = ({
+const EuiIconTransitionRightOut = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,8 @@ const EuiIconKqlFunction = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M7 7H3v2h4v2l3-3-3-3v2ZM6 6V5a1 1 0 0 1 1.707-.707l3 3a1 1 0 0 1 0 1.414l-3 3A1 1 0 0 1 6 11v-1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3Zm7.5-3a.5.5 0 0 1 .5.5v9a.5.5 0 1 1-1 0v-9a.5.5 0 0 1 .5-.5Z" />
+    <path d="M5.146 5.854 6.793 7.5H3v1h3.793l-1.647 1.646.708.707L8.707 8 5.854 5.146z" />
+    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm12 12.207V14h-.793L11 11.793v-1.586zM11.793 14H11v-.793zM10 14H2V2h8zm4-3.793v1.586l-3-3V7.207zm0-3v1.586l-3-3V4.207zm0-3v1.586l-3-3V2h.793zm0-1.414L13.207 2H14z" />
   </svg>
 );
-export const icon = EuiIconKqlFunction;
+export const icon = EuiIconTransitionRightOut;

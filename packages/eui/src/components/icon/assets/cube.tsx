@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconVisVisualBuilder = ({
+const EuiIconCube = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,7 @@ const EuiIconVisVisualBuilder = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M9.837 7c.11.93.165 1.886.165 2.869V13.5a.5.5 0 1 1-1 0V9.869A23.3 23.3 0 0 0 8.83 7H7.29c-.195 1.04-.292 1.985-.292 2.835V13.5a.5.5 0 1 1-1 0V9.835c0-.864.092-1.809.276-2.835H2.5a.5.5 0 0 1-.495-.57c.285-2.023 1.626-3.358 3.931-3.96 1.967-.514 4.22-.606 6.756-.278A1.5 1.5 0 0 1 14 3.679V5.5A1.5 1.5 0 0 1 12.5 7H9.837Zm-.569-1H12.5a.5.5 0 0 0 .5-.5V3.68a.5.5 0 0 0-.436-.497c-2.416-.311-4.54-.225-6.375.254C4.494 3.88 3.491 4.724 3.117 6H9.268ZM2 10v3.5a.5.5 0 1 1-1 0v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V10H2Zm10 3.5a.5.5 0 1 1-1 0v-2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v2a.5.5 0 1 1-1 0V12h-2v1.5ZM1.016 16.026a.5.5 0 0 1 0-1H15a.5.5 0 1 1 0 1H1.016Z" />
+    <path d="M7.66.06a1 1 0 0 1 .787.045l6 3A1 1 0 0 1 15 4v8a1 1 0 0 1-.553.895l-6 3a1 1 0 0 1-.894 0l-6-3A1 1 0 0 1 1 12V4a1 1 0 0 1 .553-.895l6-3zM2 12l5.5 2.75V7.309L2 4.559zm6.5-4.691v7.441L14 12V4.559zm-5.941-3.59L8 6.44l5.44-2.72L8 1z" />
   </svg>
 );
-export const icon = EuiIconVisVisualBuilder;
+export const icon = EuiIconCube;
