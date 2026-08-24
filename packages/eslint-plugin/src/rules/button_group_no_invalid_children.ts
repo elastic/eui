@@ -14,39 +14,20 @@ import {
 import { hasSpread } from '../utils/has_spread';
 import { flatMap } from '../utils/flat_map';
 import { getElementName } from '../utils/get_element_name';
-import { walkJsxChildren } from '../utils/walk_jsx_children';
 import { findAttrValue } from '../utils/get_attr_value';
-
-const BUTTON_GROUP = 'EuiButtonGroup';
-export const VALID_BUTTONS = new Set([
-  'EuiButton',
-  'EuiButtonEmpty',
-  'EuiButtonIcon',
-]);
-export const SEGMENTED_VALID_BUTTONS = new Set(['EuiButton', 'EuiButtonIcon']);
-const VALID_WRAPPERS = new Set(['EuiToolTip', 'EuiPopover', 'EuiCopy']);
+import { collectJsxChildren } from '../utils/collect_jsx_children';
+import {
+  BUTTON_GROUP,
+  VALID_BUTTONS,
+  SEGMENTED_VALID_BUTTONS,
+  SELECTION_VALID_BUTTONS,
+  VALID_WRAPPERS,
+} from '../utils/button_group_constants';
 
 const VALID_WRAPPERS_LIST = Array.from(VALID_WRAPPERS).join(', ');
 
 function isCustomComponent(name: string): boolean {
   return name[0] === name[0].toUpperCase();
-}
-
-function collectJsxChildren(
-  node: TSESTree.Node,
-  sourceCode: TSESLint.SourceCode
-): TSESTree.JSXElement[] {
-  const results: TSESTree.JSXElement[] = [];
-  walkJsxChildren(
-    node,
-    (leaf) => {
-      if (leaf.type === 'JSXElement') {
-        results.push(leaf as TSESTree.JSXElement);
-      }
-    },
-    { sourceCode }
-  );
-  return results;
 }
 
 function reportInvalidWrapperChildren<
@@ -97,7 +78,7 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
             return;
           }
 
-          // Validate "default" and "segmented" variants.
+          // Validate "default", "segmented", and "selection" variants.
           // Dynamic variant values (variables) are conservatively skipped.
           const variant = findAttrValue(
             context,
@@ -107,14 +88,17 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           if (
             variant !== undefined &&
             variant !== 'default' &&
-            variant !== 'segmented'
+            variant !== 'segmented' &&
+            variant !== 'selection'
           )
             return;
 
           const isSegmented = variant === 'segmented';
-          const validButtons = isSegmented
-            ? SEGMENTED_VALID_BUTTONS
-            : VALID_BUTTONS;
+          const isSelection = variant === 'selection';
+          const validButtons =
+            isSegmented || isSelection
+              ? SEGMENTED_VALID_BUTTONS
+              : VALID_BUTTONS;
           const allowed = Array.from(validButtons).join(', ');
 
           const children = flatMap(node.children, (c) =>
@@ -122,9 +106,10 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           );
           if (children.length === 0) return;
 
-          // Collect seen button types for the segmented mixed-type check.
+          // Collect seen button types for the segmented/selection mixed-type check.
           // Populated during the main loop to avoid a second traversal.
-          const seenButtonTypes = isSegmented ? new Set<string>() : null;
+          const seenButtonTypes =
+            isSegmented || isSelection ? new Set<string>() : null;
 
           for (const child of children) {
             const name = getElementName(child.openingElement);
@@ -251,16 +236,17 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
             });
           }
 
-          // For segmented, all children must be the same button type — either
-          // all EuiButton or all EuiButtonIcon. Types are collected during the
-          // main loop above, including from EuiToolTip, EuiPopover, and EuiCopy.
+          // For segmented/selection, all children must be the same button type —
+          // either all EuiButton or all EuiButtonIcon. Types are collected during
+          // the main loop above, including from EuiToolTip, EuiPopover, and EuiCopy.
           if (
             seenButtonTypes?.has('EuiButton') &&
             seenButtonTypes.has('EuiButtonIcon')
           ) {
             context.report({
               node: openingElement,
-              messageId: 'invalidSegmentedMixedTypes',
+              messageId: 'invalidMixedTypes',
+              data: { variant: isSelection ? 'selection' : 'segmented' },
             });
           }
         },
@@ -310,8 +296,8 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           `with a comment explaining why it renders valid button children:`,
           `// eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton wraps EuiButton`,
         ].join(' '),
-        invalidSegmentedMixedTypes: [
-          `EuiButtonGroup with variant="segmented" must use a single button type throughout.`,
+        invalidMixedTypes: [
+          `EuiButtonGroup with variant="{{ variant }}" must use a single button type throughout.`,
           `Use either all EuiButton or all EuiButtonIcon children — not both.`,
         ].join(' '),
       },
