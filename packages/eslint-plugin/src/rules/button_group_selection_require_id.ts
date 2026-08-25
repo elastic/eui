@@ -15,23 +15,13 @@ import { hasSpread } from '../utils/has_spread';
 import { flatMap } from '../utils/flat_map';
 import { getElementName } from '../utils/get_element_name';
 import { findAttrValue } from '../utils/get_attr_value';
+import { hasMeaningfulAttr } from '../utils/has_meaningful_attr';
 import { collectJsxChildren } from '../utils/collect_jsx_children';
 import {
   BUTTON_GROUP,
   SELECTION_VALID_BUTTONS,
   VALID_WRAPPERS,
 } from '../utils/button_group_constants';
-
-function hasIdAttr(
-  attributes: TSESTree.JSXOpeningElement['attributes']
-): boolean {
-  return attributes.some(
-    (attr): attr is TSESTree.JSXAttribute =>
-      attr.type === 'JSXAttribute' &&
-      attr.name.type === 'JSXIdentifier' &&
-      attr.name.name === 'id'
-  );
-}
 
 function checkButtonForId<
   TContext extends TSESLint.RuleContext<string, unknown[]>,
@@ -40,7 +30,7 @@ function checkButtonForId<
   if (name === null || !SELECTION_VALID_BUTTONS.has(name)) return;
 
   const { attributes } = element.openingElement;
-  if (hasIdAttr(attributes)) return;
+  if (hasMeaningfulAttr(element.openingElement, 'id')) return;
   if (hasSpread(attributes)) return;
 
   context.report({
