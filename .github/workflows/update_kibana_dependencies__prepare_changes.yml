@@ -141,10 +141,18 @@ jobs:
 
             echo "Cherry-picking $sha from PR #$pr_number"
             git fetch origin "pull/$pr_number/head"
-            git cherry-pick "$sha"
 
-            short_sha="${sha:0:8}"
-            notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
+            if git cherry-pick "$sha"; then
+              short_sha="${sha:0:8}"
+              notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
+            elif git diff --quiet && git diff --cached --quiet; then
+              echo "Skipping $sha: already applied on this branch"
+              git cherry-pick --skip
+            else
+              echo "::error::Cherry-pick of $sha from PR #$pr_number failed"
+              git cherry-pick --abort || true
+              exit 1
+            fi
           done <<< "$prep_commits"
 
           if [[ -n "$notes" ]]; then

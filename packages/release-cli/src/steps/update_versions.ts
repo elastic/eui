@@ -7,7 +7,6 @@
  */
 
 import path from 'node:path';
-import fs from 'node:fs/promises';
 import { type ReleaseOptions } from '../release';
 import { type YarnWorkspace, updateWorkspaceVersion } from '../yarn_utils';
 import {
@@ -32,23 +31,6 @@ import {
   isFileAddedToGit,
   stageFiles,
 } from '../git_utils';
-
-const KIBANA_PREP_COMMITS_FILE = 'packages/release-cli/kibana-prep-commits';
-
-const clearKibanaPrepCommits = async (
-  rootWorkspaceDir: string
-): Promise<string | null> => {
-  const filePath = path.join(rootWorkspaceDir, KIBANA_PREP_COMMITS_FILE);
-  const content = await fs.readFile(filePath, 'utf-8').catch(() => null);
-
-  if (content === null) return null;
-
-  const cleared = content.replace(/^(?!\s*#).*\S.*\n?/gm, '');
-  if (cleared === content) return null;
-
-  await fs.writeFile(filePath, cleared, 'utf-8');
-  return filePath;
-};
 
 /**
  * Update version numbers and yearly changelogs based on workspace
@@ -146,13 +128,6 @@ export const stepUpdateVersions = async (
     const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
     filesToCommit.push(yarnLockPath);
     await stageFiles([yarnLockPath]);
-
-    // Clear Kibana prep commits and include in the release commit
-    const kibanaPrepCommitsPath =
-      await clearKibanaPrepCommits(rootWorkspaceDir);
-    if (kibanaPrepCommitsPath) {
-      filesToCommit.push(kibanaPrepCommitsPath);
-    }
 
     // Stage updated package.json files
     const uniqueFilesToCommit = [...new Set(filesToCommit)];
