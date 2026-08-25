@@ -14,7 +14,7 @@ import { storyUrl } from '../../../storybook';
 const TEST_SUBJ = 'testRange';
 
 test.describe('EuiRangeObject', () => {
-  test.describe('showInput (EuiRange only — a real EUI collision)', () => {
+  test.describe('showInput (EuiRange only, a real EUI collision)', () => {
     // The Playground story's `showInput` control is a mixed-type radio
     // (`[false, true, 'inputWithPopover']`), so it needs Storybook's `!`-typed
     // arg syntax to deserialize to the boolean `true` rather than the string
@@ -29,7 +29,7 @@ test.describe('EuiRangeObject', () => {
     }) => {
       await page.goto(SHOW_INPUT_URL);
       const range = new EuiRangeObject(page, TEST_SUBJ);
-      // A plain `getByTestId(TEST_SUBJ)` would already be ambiguous here —
+      // A plain `getByTestId(TEST_SUBJ)` would already be ambiguous here, so
       // wait on the disambiguated `slider` instead.
       await range.slider.waitFor({ state: 'visible' });
 

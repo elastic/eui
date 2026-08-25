@@ -18,16 +18,15 @@ import { EuiRangeSelectors } from '../../../components/range/selectors';
  *
  * `testSubj` must match the `data-test-subj` set by the consumer on the
  * `<EuiRange>`/`<EuiDualRange>`. EUI always spreads it onto the native
- * `<input type="range">` slider — but for a plain `EuiRange` rendered with
- * `showInput`, EUI spreads the *same* `data-test-subj` onto the visible
- * number input too, so a plain `getByTestId` resolves to two elements and
- * throws in Playwright's strict mode. {@link slider} and {@link numberInput}
+ * `<input type="range">` slider. For a plain `EuiRange` rendered with
+ * `showInput`, EUI also spreads the *same* `data-test-subj` onto the visible
+ * number input, so a plain `getByTestId` resolves to two elements and throws
+ * in Playwright's strict mode. {@link slider} and {@link numberInput}
  * disambiguate by class so each resolves to exactly one.
  *
- * Does not cover `EuiDualRange`'s min/max number inputs — those need their
- * own separate `data-test-subj` via `minInputProps`/`maxInputProps`, which is
- * the consumer's own test-subj to target directly, not this component's
- * concern.
+ * Does not cover `EuiDualRange`'s min/max number inputs. Those need their own
+ * separate `data-test-subj` via `minInputProps`/`maxInputProps`, which is the
+ * consumer's own test-subj to target directly, not this component's concern.
  */
 export class EuiRangeObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string) {
@@ -45,7 +44,7 @@ export class EuiRangeObject extends BaseObject {
 
   /**
    * The visible number input, present only on a plain `EuiRange` rendered
-   * with `showInput`. Resolves to zero elements otherwise — assert presence
+   * with `showInput`. Resolves to zero elements otherwise, so assert presence
    * first if that is in question.
    */
   public get numberInput(): Locator {

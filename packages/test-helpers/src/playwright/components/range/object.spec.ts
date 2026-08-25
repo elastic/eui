@@ -14,7 +14,7 @@ import { storyUrl } from '../../../storybook';
 /**
  * Validates `EuiRangeObject` against the live component in EUI Storybook. The
  * Playground story renders a plain `EuiRange` with `showInput` unset
- * (default `false`) — the slider is the only element `data-test-subj`
+ * (default `false`), so the slider is the only element `data-test-subj`
  * resolves to. `object.props.spec.ts` covers the `showInput` collision case.
  */
 
