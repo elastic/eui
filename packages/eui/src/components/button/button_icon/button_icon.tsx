@@ -126,8 +126,10 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   rel,
   size: _size = 'xs',
   buttonRef,
-  isSelected,
+  isSelected: _isSelected,
   isLoading,
+  id,
+  onClick: _onClick,
   ...rest
 }) => {
   const {
@@ -136,6 +138,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     isDisabled,
     hasAriaDisabled = false,
     display,
+    isSelected,
+    onClick,
   } = useEuiButtonCommonProps<EuiButtonIconSizes, _EuiExtendedButtonColor>({
     size: _size,
     color: _color,
@@ -145,7 +149,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     href,
     disabled,
     isLoading,
+    id,
+    isSelected: _isSelected,
+    onClick: _onClick,
   });
+
   const { ref: disabledRef, ...disabledButtonProps } =
     useEuiDisabledElement<HTMLButtonElement>({
       isDisabled: isDisabled,
@@ -231,6 +239,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         target={target}
         rel={secureRel}
         ref={setCombinedRef as Ref<HTMLAnchorElement>}
+        id={id}
+        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {buttonIcon}
@@ -248,6 +258,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       aria-pressed={isSelected}
       type={type as typeof buttonType}
       ref={setCombinedRef as Ref<HTMLButtonElement>}
+      id={id}
+      onClick={onClick as ButtonHTMLAttributes<HTMLButtonElement>['onClick']}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       {...disabledButtonProps}
     >

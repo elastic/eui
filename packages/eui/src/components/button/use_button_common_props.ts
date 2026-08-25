@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useContext } from 'react';
+import React, { MouseEventHandler, useContext } from 'react';
 
 import { EuiButtonContext } from './button_context';
 import { isButtonDisabled } from './button_display/_button_display';
@@ -25,6 +25,19 @@ export interface EuiButtonCommonPropsInput<
   href?: string;
   disabled?: boolean;
   isLoading?: boolean;
+  /**
+   * The button's `id` attribute. Required for selection-group wiring via context.
+   */
+  id?: string;
+  /**
+   * The button's own `isSelected` prop, if any.
+   */
+  isSelected?: boolean;
+  /**
+   * The button's own `onClick` handler, if any. When inside a selection group,
+   * it is merged with the group's `onSelect` callback.
+   */
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 export interface EuiButtonCommonPropsOutput<
@@ -38,6 +51,8 @@ export interface EuiButtonCommonPropsOutput<
   fullWidth?: boolean;
   display?: 'base' | 'fill' | 'empty';
   fill?: boolean;
+  isSelected?: boolean;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 /**
@@ -54,16 +69,18 @@ export function useEuiButtonCommonProps<
   hasAriaDisabled,
   fullWidth,
   fill,
-  display,
+  display: _display,
   href,
   disabled,
   isLoading,
+  id,
+  isSelected: _isSelected,
+  onClick: _onClick,
 }: EuiButtonCommonPropsInput<TSize, TColor>): EuiButtonCommonPropsOutput<
   TSize,
   TColor
 > {
-  const buttonContext = useContext(EuiButtonContext);
-  const groupContext = buttonContext;
+  const groupContext = useContext(EuiButtonContext);
 
   const isDisabled = isButtonDisabled({
     href,
@@ -71,13 +88,30 @@ export function useEuiButtonCommonProps<
     isLoading,
   });
 
+  const selectionProps =
+    id != null ? groupContext.getSelectionProps?.(id) : undefined;
+
+  const onClick = selectionProps
+    ? (event: React.MouseEvent<HTMLElement>) => {
+        selectionProps.onSelect();
+        _onClick?.(event);
+      }
+    : _onClick;
+
   return {
     size: (groupContext.size ?? size) as TSize,
     color: (groupContext.color ?? color) as TColor,
     isDisabled,
     hasAriaDisabled: groupContext.hasAriaDisabled ?? hasAriaDisabled,
     fullWidth: groupContext.fullWidth ?? fullWidth,
-    display: groupContext.display ?? display,
-    fill: groupContext.fill ?? fill,
+    display: groupContext.display ?? selectionProps?.display ?? _display,
+    fill:
+      selectionProps?.fill !== undefined
+        ? selectionProps.fill
+        : groupContext.fill !== undefined
+        ? groupContext.fill
+        : fill,
+    isSelected: selectionProps?.isSelected ?? _isSelected,
+    onClick,
   };
 }

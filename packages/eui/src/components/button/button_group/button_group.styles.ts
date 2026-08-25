@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../../services';
 import {
   euiButtonSizeMap,
   euiDisabledSelector,
+  euiShadowXSmall,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
@@ -25,6 +26,7 @@ const hasButtonIconOnlySelector = ':not(:has(.euiButton, .euiButtonEmpty))';
 const buttonItemSelector =
   '.euiButtonGroup__item, .euiToolTipAnchor, .euiPopover, .euiButton';
 const buttonOnlyItemSelector = `*:is(${buttonItemSelector}):not(:has(.euiButtonIcon))`;
+const segmentedStyledSelector = `*:is([data-variant='segmented'], [data-variant='selection'])`;
 
 export const euiButtonGroupStyles = {
   euiButtonGroup: css`
@@ -32,7 +34,7 @@ export const euiButtonGroupStyles = {
     ${logicalCSS('max-width', '100%')}
     position: relative; /* Ensures the EuiScreenReaderOnly component is positioned relative to this component */
 
-    &:where([data-variant='segmented']) {
+    &:where(${segmentedStyledSelector}) {
       &${hasButtonIconOnlySelector} {
         display: flex;
       }
@@ -140,6 +142,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 
+  // Shared inset styles for both segmented and selection variants.
   const segmentedChildrenStyles = `
     /* Buttons are used inset and shouldn't have their own borders */
     .euiButton,
@@ -150,10 +153,14 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         border-radius: inherit;
       }
+
+      &:focus-visible {
+        outline-offset: 0;
+      }
     }
 
     /* Adjust children for inset behavior */
-    ${buttonItemSelector}, 
+    ${buttonItemSelector},
     .euiButtonIcon {
       display: inline-flex;
       align-items: center;
@@ -176,7 +183,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiButtonGroup__container: css`
-      &:where([data-variant='segmented'] &) {
+      /* Shared structural styles for segmented and selection inset containers */
+      &:where(${segmentedStyledSelector} &) {
         position: relative;
         display: inline-flex;
         align-items: center;
@@ -207,6 +215,10 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
           pointer-events: none;
         }
       }
+
+      &:where([data-variant='selection'][data-display='inverse'] &) {
+        background-color: ${euiTheme.colors.backgroundBaseSubdued};
+      }
     `,
     euiButtonGroup__buttons: css`
       ${logicalCSS('max-width', '100%')}
@@ -217,7 +229,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         flex-wrap: wrap;
       }
 
-      &:where([data-variant='segmented'] &) {
+      /* Shared layout for segmented inset containers */
+      &:where(${segmentedStyledSelector} &) {
         position: relative;
         display: inline-flex;
         align-items: center;
@@ -227,6 +240,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${splitPadding};
         overflow: hidden;
 
+        ${segmentedChildrenStyles}
+
         *:where(.euiButton, .euiButtonIcon):is(${euiDisabledSelector}) {
           background-color: transparent;
         }
@@ -234,8 +249,6 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         &:where([data-dividers='true'] &) {
           ${dividerStyles}
         }
-
-        ${segmentedChildrenStyles}
 
         &:where([data-layout='vertical'] &) {
           flex-direction: column;
@@ -245,9 +258,74 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
           }
         }
       }
+
+      &:where([data-variant='segmented'] &) {
+        *:where(.euiButton, .euiButtonIcon):is(${euiDisabledSelector}) {
+          background-color: transparent;
+        }
+      }
+
+      &:where([data-variant='selection'] &) {
+        *:where(.euiButton, .euiButtonIcon) {
+          &:is(${euiDisabledSelector}) {
+            ${highContrastModeStyles(euiThemeContext, {
+              forced: `
+              opacity: 0.5;
+            `,
+            })}
+          }
+
+          &:is([aria-pressed='true']) {
+            /* Ensure selected buttons are visually distinguishable in forced HCM */
+            ${highContrastModeStyles(euiThemeContext, {
+              forced: `
+              --highContrastHoverIndicatorColor: ${euiTheme.colors.textInverse};
+              ${preventForcedColors(euiThemeContext)}
+              background-color: ${euiTheme.colors.fullShade};
+              color: ${euiTheme.colors.emptyShade};
+            `,
+            })}
+          }
+
+          &:is([aria-pressed='false']) {
+            background-color: transparent;
+          }
+        }
+      }
+
+      &:where([data-variant='selection'][data-display='regular'] &) {
+        *:where(.euiButton, .euiButtonIcon):is([aria-pressed='true']) {
+          background-color: ${euiTheme.colors.backgroundLightText};
+
+          ${highContrastModeStyles(euiThemeContext, {
+            none: `
+              background-color: ${euiTheme.colors.backgroundLightText};
+            `,
+            preferred: `
+              border: ${euiTheme.border.thin};
+            `,
+            forced: `
+              background-color: ${euiTheme.colors.fullShade};
+              border: none;
+            `,
+          })}
+        }
+      }
+
+      &:where([data-variant='selection'][data-display='inverse'] &) {
+        *:where(.euiButton, .euiButtonIcon):is([aria-pressed='true']) {
+          ${euiShadowXSmall(euiThemeContext)}
+
+          ${highContrastModeStyles(euiThemeContext, {
+            forced: `
+              border: none;
+            `,
+          })}
+        }
+      }
     `,
     noWrap: css`
-      &:where([data-variant='segmented'] &) {
+      &:where(${segmentedStyledSelector} &) {
         flex-wrap: nowrap;
 
         /* Ensure buttons shrink properly (resulting in truncation) */
@@ -287,7 +365,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      &:where([data-variant='segmented'] &) {
+      &:where(${segmentedStyledSelector} &) {
         &${hasButtonIconOnlySelector} {
           inline-size: auto;
         }

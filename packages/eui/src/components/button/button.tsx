@@ -98,20 +98,35 @@ export const EuiButton: FunctionComponent<Props> = ({
   isDisabled: _isDisabled,
   hasAriaDisabled: _hasAriaDisabled,
   fullWidth: _fullWidth,
+  id,
+  onClick: _onClick,
+  isSelected: _isSelected,
   ...rest
 }) => {
-  const { size, color, isDisabled, hasAriaDisabled, fullWidth, fill } =
-    useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
-      size: _size,
-      color: _color,
-      isDisabled: _isDisabled,
-      hasAriaDisabled: _hasAriaDisabled,
-      fullWidth: _fullWidth,
-      fill: _fill,
-      href: rest.href,
-      disabled: rest.disabled,
-      isLoading: rest.isLoading,
-    });
+  const {
+    size,
+    color,
+    isDisabled,
+    hasAriaDisabled,
+    fullWidth,
+    fill,
+    isSelected,
+    onClick,
+  } = useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
+    size: _size,
+    color: _color,
+    isDisabled: _isDisabled,
+    hasAriaDisabled: _hasAriaDisabled,
+    fullWidth: _fullWidth,
+    fill: _fill,
+    isSelected: _isSelected,
+    href: rest.href,
+    disabled: rest.disabled,
+    isLoading: rest.isLoading,
+    id,
+    onClick: _onClick,
+  });
+
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
   })[isDisabled ? 'disabled' : color];
@@ -123,14 +138,17 @@ export const EuiButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
+      ref={buttonRef}
       className={classes}
       css={cssStyles}
-      ref={buttonRef}
       size={size}
       isDisabled={isDisabled}
       hasAriaDisabled={hasAriaDisabled}
       fullWidth={fullWidth}
       {...rest}
+      id={id}
+      isSelected={isSelected}
+      onClick={onClick}
     />
   );
 };

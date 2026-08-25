@@ -84,6 +84,21 @@ export default meta;
 type Story = StoryObj<typeof EuiButtonGroup>;
 
 export const WithChildren: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'variant',
+        'wrap',
+        'onChange',
+        'showDividers',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API',
     children: (
@@ -99,6 +114,21 @@ export const WithChildren: Story = {
 };
 
 export const WithMixedChildren: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'variant',
+        'wrap',
+        'onChange',
+        'showDividers',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API',
     children: (
@@ -122,7 +152,15 @@ export const WithMixedChildren: Story = {
 export const Segmented: Story = {
   parameters: {
     controls: {
-      exclude: ['layout'],
+      exclude: [
+        'layout',
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
+      ],
     },
   },
   args: {
@@ -133,6 +171,18 @@ export const Segmented: Story = {
 };
 
 export const SegmentedIconOnly: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
+      ],
+    },
+  },
   args: {
     legend: 'EuiButtonGroup - Children API - segmented (icon only)',
     variant: 'segmented',
@@ -143,12 +193,13 @@ export const SegmentedIconOnly: Story = {
 export const LayoutVertical: Story = {
   parameters: {
     controls: {
-      include: [
-        'layout',
-        'buttonSize',
-        'isDisabled',
-        'hasAriaDisabled',
-        'showDividers',
+      exclude: [
+        'idSelected',
+        'idToSelectedMap',
+        'type',
+        'display',
+        'gutterSize',
+        'onChange',
       ],
     },
   },
@@ -157,6 +208,127 @@ export const LayoutVertical: Story = {
     variant: 'segmented',
     layout: 'vertical',
     children: iconButtons,
+  },
+};
+
+export const Selection: Story = {
+  parameters: {
+    controls: {
+      exclude: ['gutterSize', 'layout'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - selection (single)',
+    variant: 'selection',
+    type: 'single',
+  },
+  render: function Render(args) {
+    const { idSelected: _, idToSelectedMap: __, type, ...controlArgs } = args;
+    return (
+      <StatefulButtonGroupSelection
+        {...controlArgs}
+        type={type}
+        idSelected={type !== 'multi' ? 'save' : undefined}
+        idToSelectedMap={type === 'multi' ? { save: true } : undefined}
+      >
+        <EuiButton id="save">Save</EuiButton>
+        <EuiButton id="edit">Edit</EuiButton>
+        <EuiButton id="undo">Undo</EuiButton>
+        <EuiButton id="delete">Delete</EuiButton>
+      </StatefulButtonGroupSelection>
+    );
+  },
+};
+
+export const SelectionMulti: Story = {
+  parameters: {
+    controls: {
+      exclude: ['gutterSize', 'layout'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - selection (multi)',
+    variant: 'selection',
+    type: 'multi',
+  },
+  render: function Render(args) {
+    const { idSelected: _, idToSelectedMap: __, type, ...controlArgs } = args;
+    return (
+      <StatefulButtonGroupSelection
+        {...controlArgs}
+        type={type}
+        idSelected={type === 'single' ? 'save' : undefined}
+        idToSelectedMap={type === 'multi' ? { save: true } : undefined}
+      >
+        <EuiButton id="save">Save</EuiButton>
+        <EuiButton id="edit">Edit</EuiButton>
+        <EuiButton id="undo">Undo</EuiButton>
+        <EuiButton id="delete">Delete</EuiButton>
+      </StatefulButtonGroupSelection>
+    );
+  },
+};
+
+export const SelectionIconOnly: Story = {
+  parameters: {
+    controls: {
+      exclude: ['gutterSize'],
+    },
+  },
+  args: {
+    legend: 'EuiButtonGroup - Children API - selection (icon only)',
+    variant: 'selection',
+    type: 'single',
+  },
+  render: function Render(args) {
+    const { idSelected: _, idToSelectedMap: __, type, ...controlArgs } = args;
+    return (
+      <StatefulButtonGroupSelection
+        {...controlArgs}
+        type={type}
+        idSelected={type !== 'multi' ? 'grid' : undefined}
+        idToSelectedMap={type === 'multi' ? { grid: true } : undefined}
+      >
+        <EuiToolTip content="Grid view" disableScreenReaderOutput>
+          <EuiButtonIcon id="grid" iconType="grid" aria-label="Grid view" />
+        </EuiToolTip>
+        <EuiToolTip content="List view" disableScreenReaderOutput>
+          <EuiButtonIcon id="list" iconType="list" aria-label="List view" />
+        </EuiToolTip>
+        <EuiToolTip content="Map view" disableScreenReaderOutput>
+          <EuiButtonIcon id="map" iconType="mapMarker" aria-label="Map view" />
+        </EuiToolTip>
+      </StatefulButtonGroupSelection>
+    );
+  },
+};
+
+export const SelectionDisplayInverse: Story = {
+  parameters: {
+    controls: {
+      exclude: ['gutterSize', 'layout'],
+    },
+  },
+  args: {
+    display: 'inverse',
+    variant: 'selection',
+    type: 'multi',
+  },
+  render: function Render(args) {
+    const { idSelected: _, idToSelectedMap: __, type, ...controlArgs } = args;
+    return (
+      <StatefulButtonGroupSelection
+        {...controlArgs}
+        type={type}
+        idSelected={type !== 'multi' ? 'save' : undefined}
+        idToSelectedMap={type === 'multi' ? { save: true } : undefined}
+      >
+        <EuiButton id="save">Save</EuiButton>
+        <EuiButton id="edit">Edit</EuiButton>
+        <EuiButton id="undo">Undo</EuiButton>
+        <EuiButton id="delete">Delete</EuiButton>
+      </StatefulButtonGroupSelection>
+    );
   },
 };
 
@@ -250,6 +422,11 @@ export const KitchenSink: Story = {
   render: function Render({
     buttonSize,
     gutterSize,
+    type: _type,
+    idSelected: _idSelected,
+    idToSelectedMap: _idToSelectedMap,
+    onChange: _onChange,
+    display: _display,
     ...rest
   }: EuiButtonGroupChildrenProps) {
     const [isPopoverOpenA, setIsPopoverOpenA] = useState(false);
@@ -261,12 +438,12 @@ export const KitchenSink: Story = {
       (buttonSize === 'compressed' ? 's' : buttonSize) as 's' | 'm';
     const commonProps = {
       ...rest,
-      onChange: () => {},
     };
 
     const getOptionsProps = (props: Partial<EuiButtonGroupProps>) =>
       ({
         ...commonProps,
+        onChange: () => {},
         ...props,
         buttonSize,
         options,
@@ -385,222 +562,434 @@ export const KitchenSink: Story = {
         {renderRow({
           label: (
             <span>
-              Children API - <EuiCode>variant="segmented"</EuiCode> - wrap
+              Children API - <EuiCode>variant="segmented"</EuiCode> -{' '}
+              <EuiCode>wrap=true</EuiCode>
             </span>
           ),
           content: (
-            <EuiButtonGroup
-              {...commonProps}
-              variant="segmented"
-              buttonSize={buttonSizeChildren}
-              gutterSize={gutterSize}
-              legend="Children API - segmented"
-              wrap
-            >
-              <EuiButton>Delete</EuiButton>
-              <EuiButton>Rename</EuiButton>
-              <EuiButton>Disable</EuiButton>
-              <EuiButton>Duplicate</EuiButton>
-              <EuiToolTip content="Save" disableScreenReaderOutput>
-                <EuiButton>Save</EuiButton>
-              </EuiToolTip>
-              <EuiPopover
-                aria-label="Actions popover"
-                closePopover={() => setIsPopoverOpenB(false)}
-                isOpen={isPopoverOpenB}
-                button={
-                  <EuiToolTip
-                    content="Actions"
-                    display="block"
-                    disableScreenReaderOutput
-                  >
-                    <EuiButton
-                      onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <EuiButtonGroup
+                {...commonProps}
+                variant="segmented"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                legend="Children API - segmented"
+                wrap
+              >
+                <EuiButton>Delete</EuiButton>
+                <EuiButton>Rename</EuiButton>
+                <EuiButton>Disable</EuiButton>
+                <EuiButton>Duplicate</EuiButton>
+                <EuiToolTip content="Save" disableScreenReaderOutput>
+                  <EuiButton>Save</EuiButton>
+                </EuiToolTip>
+                <EuiPopover
+                  aria-label="Actions popover"
+                  closePopover={() => setIsPopoverOpenB(false)}
+                  isOpen={isPopoverOpenB}
+                  button={
+                    <EuiToolTip
+                      content="Actions"
+                      display="block"
+                      disableScreenReaderOutput
                     >
-                      Actions
-                    </EuiButton>
-                  </EuiToolTip>
-                }
+                      <EuiButton
+                        onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+                      >
+                        Actions
+                      </EuiButton>
+                    </EuiToolTip>
+                  }
+                >
+                  <p>Popover content</p>
+                  <EuiButton>Popover action</EuiButton>
+                </EuiPopover>
+                <EuiButton>Undo</EuiButton>
+                <EuiButton>Cancel</EuiButton>
+                <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+                </EuiCopy>
+              </EuiButtonGroup>
+
+              <EuiButtonGroup
+                {...commonProps}
+                variant="segmented"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                legend="Children API - segmented"
+                wrap
               >
-                <p>Popover content</p>
-                <EuiButton>Popover action</EuiButton>
-              </EuiPopover>
-              <EuiButton>Undo</EuiButton>
-              <EuiButton>Cancel</EuiButton>
-              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
-                {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
-              </EuiCopy>
-            </EuiButtonGroup>
-          ),
-        })}
+                {iconButtons}
 
-        {renderRow({
-          label: (
-            <span>
-              Children API - <EuiCode>variant="segmented"</EuiCode> (icon only)
-              - wrap
-            </span>
-          ),
-          content: (
-            <EuiButtonGroup
-              {...commonProps}
-              variant="segmented"
-              buttonSize={buttonSizeChildren}
-              gutterSize={gutterSize}
-              legend="Children API - segmented"
-              wrap
-            >
-              {iconButtons}
-
-              <EuiPopover
-                aria-label="Actions popover"
-                closePopover={() => setIsPopoverOpenC(false)}
-                isOpen={isPopoverOpenC}
-                button={
-                  <EuiToolTip
-                    content="Actions"
-                    display="block"
-                    disableScreenReaderOutput
-                  >
-                    <EuiButtonIcon
-                      iconType="menu"
-                      aria-label="Actions"
-                      onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
-                    />
-                  </EuiToolTip>
-                }
-              >
-                <p>Popover content</p>
-                <EuiButton>Popover action</EuiButton>
-              </EuiPopover>
-
-              <EuiToolTip content="Undo" disableScreenReaderOutput>
-                <EuiButtonIcon iconType="undo" aria-label="Undo" />
-              </EuiToolTip>
-
-              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
-                {(copy) => (
-                  <EuiButtonIcon
-                    iconType="copy"
-                    aria-label="Copy"
-                    onClick={copy}
-                  />
-                )}
-              </EuiCopy>
-
-              {iconButtons}
-            </EuiButtonGroup>
-          ),
-        })}
-
-        {renderRow({
-          label: (
-            <span>
-              Children API - <EuiCode>variant="segmented"</EuiCode> - no wrap
-            </span>
-          ),
-          content: (
-            <EuiButtonGroup
-              {...commonProps}
-              variant="segmented"
-              buttonSize={buttonSizeChildren}
-              gutterSize={gutterSize}
-              legend="Children API - segmented"
-              wrap={false}
-            >
-              <EuiButton>Delete</EuiButton>
-              <EuiButton>Rename</EuiButton>
-              <EuiButton>Disable</EuiButton>
-              <EuiButton>Duplicate</EuiButton>
-              <EuiToolTip content="Save" disableScreenReaderOutput>
-                <EuiButton>Save</EuiButton>
-              </EuiToolTip>
-              <EuiPopover
-                aria-label="Actions popover"
-                closePopover={() => setIsPopoverOpenB(false)}
-                isOpen={isPopoverOpenB}
-                button={
-                  <EuiToolTip
-                    content="Actions"
-                    display="block"
-                    disableScreenReaderOutput
-                  >
-                    <EuiButton
-                      onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+                <EuiPopover
+                  aria-label="Actions popover"
+                  closePopover={() => setIsPopoverOpenC(false)}
+                  isOpen={isPopoverOpenC}
+                  button={
+                    <EuiToolTip
+                      content="Actions"
+                      display="block"
+                      disableScreenReaderOutput
                     >
-                      Actions
-                    </EuiButton>
-                  </EuiToolTip>
-                }
-              >
-                <p>Popover content</p>
-                <EuiButton>Popover action</EuiButton>
-              </EuiPopover>
-              <EuiButton>Undo</EuiButton>
-              <EuiButton>Cancel</EuiButton>
-              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
-                {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
-              </EuiCopy>
-            </EuiButtonGroup>
+                      <EuiButtonIcon
+                        iconType="menu"
+                        aria-label="Actions"
+                        onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
+                      />
+                    </EuiToolTip>
+                  }
+                >
+                  <p>Popover content</p>
+                  <EuiButton>Popover action</EuiButton>
+                </EuiPopover>
+
+                <EuiToolTip content="Undo" disableScreenReaderOutput>
+                  <EuiButtonIcon iconType="undo" aria-label="Undo" />
+                </EuiToolTip>
+
+                <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                  {(copy) => (
+                    <EuiButtonIcon
+                      iconType="copy"
+                      aria-label="Copy"
+                      onClick={copy}
+                    />
+                  )}
+                </EuiCopy>
+
+                {iconButtons}
+              </EuiButtonGroup>
+            </EuiFlexGroup>
           ),
         })}
 
         {renderRow({
           label: (
             <span>
-              Children API - <EuiCode>variant="segmented"</EuiCode> (icon only)
-              - no wrap
+              Children API - <EuiCode>variant="segmented"</EuiCode> -{' '}
+              <EuiCode>wrap=false</EuiCode>
             </span>
           ),
           content: (
-            <EuiButtonGroup
-              {...commonProps}
-              variant="segmented"
-              buttonSize={buttonSizeChildren}
-              gutterSize={gutterSize}
-              legend="Children API - segmented"
-              wrap={false}
-            >
-              {iconButtons}
-
-              <EuiPopover
-                aria-label="Actions popover"
-                closePopover={() => setIsPopoverOpenC(false)}
-                isOpen={isPopoverOpenC}
-                button={
-                  <EuiToolTip
-                    content="Actions"
-                    display="block"
-                    disableScreenReaderOutput
-                  >
-                    <EuiButtonIcon
-                      iconType="menu"
-                      aria-label="Actions"
-                      onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
-                    />
-                  </EuiToolTip>
-                }
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <EuiButtonGroup
+                {...commonProps}
+                variant="segmented"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                legend="Children API - segmented"
+                wrap={false}
               >
-                <p>Popover content</p>
-                <EuiButton>Popover action</EuiButton>
-              </EuiPopover>
+                <EuiButton>Delete</EuiButton>
+                <EuiButton>Rename</EuiButton>
+                <EuiButton>Disable</EuiButton>
+                <EuiButton>Duplicate</EuiButton>
+                <EuiToolTip content="Save" disableScreenReaderOutput>
+                  <EuiButton>Save</EuiButton>
+                </EuiToolTip>
+                <EuiPopover
+                  aria-label="Actions popover"
+                  closePopover={() => setIsPopoverOpenB(false)}
+                  isOpen={isPopoverOpenB}
+                  button={
+                    <EuiToolTip
+                      content="Actions"
+                      display="block"
+                      disableScreenReaderOutput
+                    >
+                      <EuiButton
+                        onClick={() => setIsPopoverOpenB((isOpen) => !isOpen)}
+                      >
+                        Actions
+                      </EuiButton>
+                    </EuiToolTip>
+                  }
+                >
+                  <p>Popover content</p>
+                  <EuiButton>Popover action</EuiButton>
+                </EuiPopover>
+                <EuiButton>Undo</EuiButton>
+                <EuiButton>Cancel</EuiButton>
+                <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+                </EuiCopy>
+              </EuiButtonGroup>
 
-              <EuiToolTip content="Undo" disableScreenReaderOutput>
-                <EuiButtonIcon iconType="undo" aria-label="Undo" />
-              </EuiToolTip>
+              <EuiButtonGroup
+                {...commonProps}
+                variant="segmented"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                legend="Children API - segmented"
+                wrap={false}
+              >
+                {iconButtons}
 
-              <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
-                {(copy) => (
+                <EuiPopover
+                  aria-label="Actions popover"
+                  closePopover={() => setIsPopoverOpenC(false)}
+                  isOpen={isPopoverOpenC}
+                  button={
+                    <EuiToolTip
+                      content="Actions"
+                      display="block"
+                      disableScreenReaderOutput
+                    >
+                      <EuiButtonIcon
+                        iconType="menu"
+                        aria-label="Actions"
+                        onClick={() => setIsPopoverOpenC((isOpen) => !isOpen)}
+                      />
+                    </EuiToolTip>
+                  }
+                >
+                  <p>Popover content</p>
+                  <EuiButton>Popover action</EuiButton>
+                </EuiPopover>
+
+                <EuiToolTip content="Undo" disableScreenReaderOutput>
+                  <EuiButtonIcon iconType="undo" aria-label="Undo" />
+                </EuiToolTip>
+
+                <EuiCopy beforeMessage="Copy to clipboard" textToCopy="Copied!">
+                  {(copy) => (
+                    <EuiButtonIcon
+                      iconType="copy"
+                      aria-label="Copy"
+                      onClick={copy}
+                    />
+                  )}
+                </EuiCopy>
+
+                {iconButtons}
+              </EuiButtonGroup>
+            </EuiFlexGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="selection"</EuiCode> -{' '}
+              <EuiCode>type="single"</EuiCode>
+            </span>
+          ),
+          content: (
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                idSelected="single-delete"
+              >
+                <EuiButton id="single-delete">Delete</EuiButton>
+                <EuiButton id="single-rename">Rename</EuiButton>
+                <EuiButton id="single-save">Save</EuiButton>
+              </StatefulButtonGroupSelection>
+
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                idSelected="single-grid"
+              >
+                <EuiToolTip content="Grid view" disableScreenReaderOutput>
                   <EuiButtonIcon
-                    iconType="copy"
-                    aria-label="Copy"
-                    onClick={copy}
+                    id="single-grid"
+                    iconType="grid"
+                    aria-label="Grid view"
                   />
-                )}
-              </EuiCopy>
+                </EuiToolTip>
+                <EuiToolTip content="List view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="single-list"
+                    iconType="list"
+                    aria-label="List view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="Map view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="single-map"
+                    iconType="mapMarker"
+                    aria-label="Map view"
+                  />
+                </EuiToolTip>
+              </StatefulButtonGroupSelection>
+            </EuiFlexGroup>
+          ),
+        })}
 
-              {iconButtons}
-            </EuiButtonGroup>
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="selection"</EuiCode> -{' '}
+              <EuiCode>type="multi"</EuiCode>
+            </span>
+          ),
+          content: (
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'multi-delete': true, 'multi-rename': true }}
+              >
+                <EuiButton id="multi-delete">Delete</EuiButton>
+                <EuiButton id="multi-rename">Rename</EuiButton>
+                <EuiButton id="multi-save">Save</EuiButton>
+              </StatefulButtonGroupSelection>
+
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'multi-grid': true, 'multi-list': true }}
+              >
+                <EuiToolTip content="Grid view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="multi-grid"
+                    iconType="grid"
+                    aria-label="Grid view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="List view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="multi-list"
+                    iconType="list"
+                    aria-label="List view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="Map view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="multi-map"
+                    iconType="mapMarker"
+                    aria-label="Map view"
+                  />
+                </EuiToolTip>
+              </StatefulButtonGroupSelection>
+            </EuiFlexGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="selection"</EuiCode> -{' '}
+              <EuiCode>display="highlighted"</EuiCode>
+            </span>
+          ),
+          content: (
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'highlighted-delete': true }}
+                display="highlighted"
+              >
+                <EuiButton id="highlighted-delete">Delete</EuiButton>
+                <EuiButton id="highlighted-rename">Rename</EuiButton>
+                <EuiButton id="highlighted-save">Save</EuiButton>
+              </StatefulButtonGroupSelection>
+
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'highlighted-grid': true }}
+                display="highlighted"
+              >
+                <EuiToolTip content="Grid view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="highlighted-grid"
+                    iconType="grid"
+                    aria-label="Grid view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="List view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="highlighted-list"
+                    iconType="list"
+                    aria-label="List view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="Map view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="highlighted-map"
+                    iconType="mapMarker"
+                    aria-label="Map view"
+                  />
+                </EuiToolTip>
+              </StatefulButtonGroupSelection>
+            </EuiFlexGroup>
+          ),
+        })}
+
+        {renderRow({
+          label: (
+            <span>
+              Children API - <EuiCode>variant="selection"</EuiCode> -{' '}
+              <EuiCode>display="inverse"</EuiCode>
+            </span>
+          ),
+          content: (
+            <EuiFlexGroup direction="column" gutterSize="s">
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'inverse-delete': true }}
+                display="inverse"
+              >
+                <EuiButton id="inverse-delete">Delete</EuiButton>
+                <EuiButton id="inverse-rename">Rename</EuiButton>
+                <EuiButton id="inverse-save">Save</EuiButton>
+              </StatefulButtonGroupSelection>
+
+              <StatefulButtonGroupSelection
+                {...commonProps}
+                variant="selection"
+                buttonSize={buttonSizeChildren}
+                gutterSize={gutterSize}
+                type="multi"
+                idToSelectedMap={{ 'inverse-grid': true }}
+                display="inverse"
+              >
+                <EuiToolTip content="Grid view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="inverse-grid"
+                    iconType="grid"
+                    aria-label="Grid view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="List view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="inverse-list"
+                    iconType="list"
+                    aria-label="List view"
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="Map view" disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    id="inverse-map"
+                    iconType="mapMarker"
+                    aria-label="Map view"
+                  />
+                </EuiToolTip>
+              </StatefulButtonGroupSelection>
+            </EuiFlexGroup>
           ),
         })}
       </EuiFlexGroup>
@@ -961,4 +1350,48 @@ export const FlexLayoutBehavior: Story = {
       </>
     );
   },
+};
+
+const StatefulButtonGroupSelection = ({
+  children,
+  type,
+  idSelected: _idSelected,
+  idToSelectedMap: _idToSelectedMap,
+  ...props
+}: Omit<EuiButtonGroupChildrenProps, 'idSelected' | 'idToSelectedMap'> & {
+  idSelected?: string;
+  idToSelectedMap?: Record<string, boolean>;
+}) => {
+  const [idSelected, setIdSelected] = useState(_idSelected ?? '');
+  const [idToSelectedMap, setIdToSelectedMap] = useState(
+    _idToSelectedMap ?? {}
+  );
+
+  if (type === 'multi') {
+    return (
+      <EuiButtonGroup
+        {...(props as Extract<EuiButtonGroupChildrenProps, { type: 'multi' }>)}
+        variant="selection"
+        type="multi"
+        idToSelectedMap={idToSelectedMap}
+        onChange={(id) =>
+          setIdToSelectedMap((prev) => ({ ...prev, [id]: !prev[id] }))
+        }
+      >
+        {children}
+      </EuiButtonGroup>
+    );
+  }
+
+  return (
+    <EuiButtonGroup
+      {...props}
+      variant="selection"
+      type="single"
+      idSelected={idSelected}
+      onChange={(id) => setIdSelected(id)}
+    >
+      {children}
+    </EuiButtonGroup>
+  );
 };
