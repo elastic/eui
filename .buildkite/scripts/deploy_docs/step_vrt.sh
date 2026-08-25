@@ -22,6 +22,7 @@ echo "Yarn version: $(yarn -v)"
 ############################################################
 
 STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
+STORYBOOK_URL="${STORYBOOK_URL%/}/"
 
 VRT_DIR="packages/eui/.vrt"
 REF_DIR="${VRT_DIR}/reference"
@@ -99,6 +100,9 @@ yarn
 ############################################################
 
 echo "+++ Running visual regression tests against ${STORYBOOK_URL}"
+
+# GCS upload can finish before `eui.elastic.co` serves the new files.
+retry 8 curl -fsSL -o /dev/null -H 'Cache-Control: no-cache' "${STORYBOOK_URL}index.json"
 
 vrt_output_file=$(mktemp)
 VRT_PASSED=true
