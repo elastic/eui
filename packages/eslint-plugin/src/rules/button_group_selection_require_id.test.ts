@@ -21,7 +21,7 @@ const languageOptions = {
 const ruleTester = new RuleTester();
 
 ruleTester.run(
-  'button-group-selection-requires-id',
+  'button-group-selection-require-id',
   ButtonGroupSelectionRequireId,
   {
     valid: [
