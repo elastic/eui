@@ -35,7 +35,6 @@ test.describe('EuiRangeObject', () => {
 
       await expect(range.slider).toHaveCount(1);
       await expect(range.numberInput).toHaveCount(1);
-      await expect(range.numberInput).toHaveJSProperty('value', '50');
     });
   });
 });

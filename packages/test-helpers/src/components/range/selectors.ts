@@ -12,20 +12,9 @@
  * and `EuiDualRange`. `*_SELECTOR` values are CSS.
  */
 export const EuiRangeSelectors = {
-  /**
-   * The native `<input type="range">` element that carries the actual value.
-   * Always present and the only element the consumer's `data-test-subj`
-   * resolves to unambiguously, unless `showInput` also renders a number input
-   * sharing the same subj (see {@link NUMBER_INPUT_SELECTOR}).
-   */
+  /** The native `<input type="range">` element that carries the actual value. */
   SLIDER_SELECTOR: '.euiRangeSlider',
 
-  /**
-   * The visible number input rendered when the consumer sets `showInput`
-   * (`EuiRange`). EUI spreads the same `data-test-subj` onto this and
-   * {@link SLIDER_SELECTOR}, so a plain `getByTestId` resolves to two
-   * elements. Not applicable to `EuiDualRange`, whose min/max inputs need
-   * their own separate `data-test-subj` via `minInputProps`/`maxInputProps`.
-   */
+  /** The visible number input, rendered on a plain `EuiRange` with `showInput`. See the package README for why it can share `data-test-subj` with {@link SLIDER_SELECTOR}. */
   NUMBER_INPUT_SELECTOR: '.euiRangeInput',
 };

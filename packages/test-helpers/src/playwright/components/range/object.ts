@@ -17,35 +17,22 @@ import { EuiRangeSelectors } from '../../../components/range/selectors';
  * `EuiDualRange`.
  *
  * `testSubj` must match the `data-test-subj` set by the consumer on the
- * `<EuiRange>`/`<EuiDualRange>`. EUI always spreads it onto the native
- * `<input type="range">` slider. For a plain `EuiRange` rendered with
- * `showInput`, EUI also spreads the *same* `data-test-subj` onto the visible
- * number input, so a plain `getByTestId` resolves to two elements and throws
- * in Playwright's strict mode. {@link slider} and {@link numberInput}
- * disambiguate by class so each resolves to exactly one.
- *
- * Does not cover `EuiDualRange`'s min/max number inputs. Those need their own
- * separate `data-test-subj` via `minInputProps`/`maxInputProps`, which is the
- * consumer's own test-subj to target directly, not this component's concern.
+ * `<EuiRange>`/`<EuiDualRange>`. See the package README for why `slider` and
+ * `numberInput` disambiguate by class, and what this does not cover.
  */
 export class EuiRangeObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string) {
     super(scope, testSubj, EuiRangeSelectors.SLIDER_SELECTOR);
   }
 
-  /**
-   * The native range slider input carrying the raw value. Always resolves to
-   * exactly one element, even when {@link numberInput} also matches
-   * `testSubj`.
-   */
+  /** The native range slider input. Always resolves to exactly one element. */
   public get slider(): Locator {
     return this.root.and(this.scope.locator(EuiRangeSelectors.SLIDER_SELECTOR));
   }
 
   /**
-   * The visible number input, present only on a plain `EuiRange` rendered
-   * with `showInput`. Resolves to zero elements otherwise, so assert presence
-   * first if that is in question.
+   * The visible number input, present only with `showInput`. Resolves to
+   * zero elements otherwise.
    */
   public get numberInput(): Locator {
     return this.root.and(this.scope.locator(EuiRangeSelectors.NUMBER_INPUT_SELECTOR));

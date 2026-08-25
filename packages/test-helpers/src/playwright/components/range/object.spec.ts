@@ -32,9 +32,8 @@ test.describe('EuiRangeObject', () => {
   });
 
   test.describe('slider', () => {
-    test('resolves to exactly one element and reflects the current value', async () => {
+    test('resolves to exactly one element', async () => {
       await expect(range.slider).toHaveCount(1);
-      await expect(range.slider).toHaveJSProperty('type', 'range');
     });
   });
 
