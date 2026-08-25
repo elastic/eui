@@ -57,11 +57,18 @@ export class EuiBasicTableObject extends BaseObject {
    * renders the `rowHeader` column's body cell as a `<th scope="row">` for
    * accessibility, not a `<td>`. Throws if no column with that `field` is
    * rendered.
+   *
+   * EUI generates a computed column's header test-subj from its `name` using
+   * this exact same `tableHeaderCell_<name>_<index>` shape (there's no `field`
+   * to key on), so a computed column whose `name` happens to equal another
+   * column's `field` can resolve ambiguously — this method can't distinguish
+   * the two from the DOM alone. Not expected in practice; call it out if you
+   * hit it.
    */
   async cells(field: string): Promise<Locator> {
     const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const cellIndex = await this.root.evaluate(
-      (tableEl, { prefix, pattern }) => {
+      (tableEl, { prefix, pattern, field: originalField }) => {
         const regex = new RegExp(`^${prefix}${pattern}_\\d+$`);
         const headers = Array.from(tableEl.querySelectorAll('thead th, thead td'));
         const header = headers.find((el) =>
@@ -69,12 +76,12 @@ export class EuiBasicTableObject extends BaseObject {
         ) as HTMLTableCellElement | undefined;
         if (!header) {
           throw new Error(
-            `EuiBasicTableObject.cells: no column with field "${pattern}" found in this table's header.`
+            `EuiBasicTableObject.cells: no column with field "${originalField}" found in this table's header.`
           );
         }
         return header.cellIndex;
       },
-      { prefix: EuiBasicTableSelectors.HEADER_CELL_SELECTOR_PREFIX, pattern: escaped }
+      { prefix: EuiBasicTableSelectors.HEADER_CELL_SELECTOR_PREFIX, pattern: escaped, field }
     );
     return this.rows.locator(`:is(td, th):nth-child(${cellIndex + 1})`);
   }

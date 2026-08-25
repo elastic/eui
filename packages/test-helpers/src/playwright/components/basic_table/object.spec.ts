@@ -65,5 +65,12 @@ test.describe('EuiBasicTableObject', () => {
     test('rejects an unknown field', async () => {
       await expect(table.cells('doesNotExist')).rejects.toThrow(/no column with field/);
     });
+
+    test('the rejection message includes the original field, not an escaped regex', async () => {
+      // "a.b" contains a regex-special character the implementation escapes
+      // internally for matching — the error message must surface the field
+      // as the caller passed it, not the escaped pattern used internally.
+      await expect(table.cells('a.b')).rejects.toThrow('"a.b"');
+    });
   });
 });
