@@ -56,9 +56,11 @@ function reportInvalidWrapperChildren<
     }
     context.report({
       node: wrapperChild.openingElement,
-      messageId: isCustomComponent(wrapperChildName) && !VALID_BUTTONS.has(wrapperChildName)
-        ? 'invalidUnresolvableWrapperChild'
-        : 'invalidWrapperChild',
+      messageId:
+        isCustomComponent(wrapperChildName) &&
+        !VALID_BUTTONS.has(wrapperChildName)
+          ? 'invalidUnresolvableWrapperChild'
+          : 'invalidWrapperChild',
       data: { name: wrapperChildName, wrapper: wrapperName, allowed },
     });
   }
@@ -95,9 +97,10 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
           const isSegmented = variant === 'segmented';
           const isSelection = variant === 'selection';
-          const validButtons =
-            isSegmented || isSelection
-              ? SEGMENTED_VALID_BUTTONS
+          const validButtons = isSegmented
+            ? SEGMENTED_VALID_BUTTONS
+            : isSelection
+              ? SELECTION_VALID_BUTTONS
               : VALID_BUTTONS;
           const allowed = Array.from(validButtons).join(', ');
 
@@ -189,9 +192,11 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
                         context.report({
                           node: tooltipChild.openingElement,
-                          messageId: isCustomComponent(tooltipChildName) && !VALID_BUTTONS.has(tooltipChildName)
-                            ? 'invalidUnresolvablePopoverButton'
-                            : 'invalidPopoverButton',
+                          messageId:
+                            isCustomComponent(tooltipChildName) &&
+                            !VALID_BUTTONS.has(tooltipChildName)
+                              ? 'invalidUnresolvablePopoverButton'
+                              : 'invalidPopoverButton',
                           data: { name: tooltipChildName, allowed },
                         });
                       }
@@ -199,9 +204,11 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
                     }
                     context.report({
                       node: triggerElement.openingElement,
-                      messageId: isCustomComponent(triggerElementName) && !VALID_BUTTONS.has(triggerElementName)
-                        ? 'invalidUnresolvablePopoverButton'
-                        : 'invalidPopoverButton',
+                      messageId:
+                        isCustomComponent(triggerElementName) &&
+                        !VALID_BUTTONS.has(triggerElementName)
+                          ? 'invalidUnresolvablePopoverButton'
+                          : 'invalidPopoverButton',
                       data: { name: triggerElementName, allowed },
                     });
                   }
@@ -229,9 +236,10 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
 
             context.report({
               node: child.openingElement,
-              messageId: isCustomComponent(name) && !VALID_BUTTONS.has(name)
-                ? 'invalidUnresolvableChild'
-                : 'invalidChild',
+              messageId:
+                isCustomComponent(name) && !VALID_BUTTONS.has(name)
+                  ? 'invalidUnresolvableChild'
+                  : 'invalidChild',
               data: { name, allowed },
             });
           }
