@@ -12,7 +12,7 @@ await item.reorder(2); // move 2 positions later
 await item.reorder(-1); // move 1 position earlier
 ```
 
-Set `data-test-subj` on the item's own drag handle (the element EUI's `provided.dragHandleProps` are spread onto), not on the `EuiDraggable` item wrapper. The component-type guard checks for the `data-rfd-drag-handle-draggable-id` attribute `@hello-pangea/dnd` spreads onto an *enabled* handle, since the handle markup itself is consumer-defined, not a fixed EUI class. A disabled draggable's handle lacks that attribute, so pointing this object at one throws the same "wrong component" error as pointing it at a non-handle element — a disabled item can't be reordered either way.
+Set `data-test-subj` on the item's own drag handle — the element EUI's `provided.dragHandleProps` are spread onto. With the default `customDragHandle={false}`, that's the `<EuiDraggable>` item itself (as in the usage example above and the `Playground` story), since EUI spreads `dragHandleProps` onto the same element as `draggableProps` in that case. Only with a `customDragHandle` does the handle become a distinct inner element, and `data-test-subj` must move there instead. The component-type guard checks for the `data-rfd-drag-handle-draggable-id` attribute `@hello-pangea/dnd` spreads onto an *enabled* handle, since the handle markup itself is consumer-defined, not a fixed EUI class. A disabled draggable's handle lacks that attribute, so pointing this object at one throws the same "wrong component" error as pointing it at a non-handle element — a disabled item can't be reordered either way.
 
 ## API
 

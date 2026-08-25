@@ -13,9 +13,11 @@ import { EuiDraggableSelectors } from '../../../components/drag_and_drop/selecto
  * Playwright Component Object for a keyboard-reorderable {@link
  * https://eui.elastic.co/docs/components/drag-and-drop/ EuiDraggable} item.
  *
- * `testSubj` must be set on the item's own drag handle, not the `EuiDraggable`
- * wrapper. See the package README for the component-type guard and why there's
- * no settle-wait after a reorder.
+ * `testSubj` must be set on the item's own drag handle — with the default
+ * `customDragHandle={false}` that's the `EuiDraggable` item itself; with a
+ * custom handle it's that inner element instead. See the package README for
+ * details, the component-type guard, and why there's no settle-wait after a
+ * reorder.
  */
 export class EuiDraggableObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string) {
