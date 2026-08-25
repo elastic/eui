@@ -18,7 +18,7 @@ Set `data-test-subj` on the `<EuiFilterButton>` (EUI spreads it onto the button 
 
 | Member | Description |
 |---|---|
-| `locator` | Inherited root `Locator`. Assert the button's active/selected state directly on it, e.g. `toHaveClass(/euiFilterButton-hasActiveFilters/)` or `toHaveClass(/euiFilterButton-isSelected/)` — both are synchronous CSS classes EUI sets, not async state. |
+| `locator` | Inherited root `Locator`. Assert the button's active/selected state directly on it, e.g. `toHaveClass(/euiFilterButton-hasActiveFilters/)` or `toHaveClass(/euiFilterButton-isSelected/)`. Both are synchronous CSS classes EUI sets, not async state. |
 | `notificationBadge` | `Locator` for the filter-count badge. Only present when the consumer passes `numFilters` or `numActiveFilters`. |
 
 ## Deliberately out of scope
