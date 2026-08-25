@@ -58,34 +58,6 @@ export const Playground: Story = {
   args: {
     droppableId: 'droppableArea',
     children: [
-      <EuiDraggable spacing="m" index={0} draggableId="draggable-item-1">
-        {(_, state) => (
-          <EuiPanel hasShadow={state.isDragging}>
-            Draggable item 1 {state.isDragging && '✨'}
-          </EuiPanel>
-        )}
-      </EuiDraggable>,
-      <EuiDraggable spacing="m" index={1} draggableId="draggable-item-2">
-        {(_, state) => (
-          <EuiPanel hasShadow={state.isDragging}>
-            Draggable item 2 {state.isDragging && '✨'}
-          </EuiPanel>
-        )}
-      </EuiDraggable>,
-    ],
-  },
-  render: (args) => <StatefulPlayground {...args} />,
-};
-
-export const WithStableTestSubjects: Story = {
-  parameters: {
-    // Purely a test-helpers validation fixture (stable per-item `data-test-subj`s
-    // that survive a reorder) — not a distinct usage pattern to document.
-    docs: { disable: true },
-  },
-  args: {
-    droppableId: 'droppableArea',
-    children: [
       <EuiDraggable
         spacing="m"
         index={0}

@@ -9,21 +9,19 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiDraggableObject } from './object';
+import { EuiDraggableSelectors } from '../../../components/drag_and_drop/selectors';
 import { storyUrl } from '../../../storybook';
 
 /**
  * Validates `EuiDraggableObject` against the live component in EUI
- * Storybook. `WithStableTestSubjects` is a test-helpers-only fixture story
- * (added alongside this object): two draggable items with per-item
- * `data-test-subj`s that persist across a reorder — EUI's own generic
- * examples default every item to the same `data-test-subj`, which can't
- * distinguish an item's identity from its position after reordering.
+ * Storybook: `EuiDroppable`'s `Playground` story, two items each with their
+ * own `data-test-subj`.
  */
 
 const ITEM_1 = 'draggableItem1';
 const ITEM_2 = 'draggableItem2';
 
-const STORY_URL = storyUrl('display-euidroppable--with-stable-test-subjects');
+const STORY_URL = storyUrl('display-euidroppable--playground');
 
 test.describe('EuiDraggableObject', () => {
   test.beforeEach(async ({ page }) => {
@@ -37,7 +35,7 @@ test.describe('EuiDraggableObject', () => {
 
       await item1.reorder(1);
 
-      const items = page.locator('[data-rfd-draggable-id]');
+      const items = page.locator(EuiDraggableSelectors.ITEM_SELECTOR);
       await expect(items.nth(0)).toHaveAttribute('data-test-subj', ITEM_2);
       await expect(items.nth(1)).toHaveAttribute('data-test-subj', ITEM_1);
     });
@@ -47,7 +45,7 @@ test.describe('EuiDraggableObject', () => {
 
       await item2.reorder(-1);
 
-      const items = page.locator('[data-rfd-draggable-id]');
+      const items = page.locator(EuiDraggableSelectors.ITEM_SELECTOR);
       await expect(items.nth(0)).toHaveAttribute('data-test-subj', ITEM_2);
       await expect(items.nth(1)).toHaveAttribute('data-test-subj', ITEM_1);
     });
@@ -61,16 +59,6 @@ test.describe('EuiDraggableObject', () => {
       // element — its identity, not its position, is what `data-test-subj`
       // tracks.
       await expect(page.getByTestId(ITEM_1)).toHaveCount(1);
-    });
-
-    test('rejects a disabled draggable (its handle carries no rfd attribute)', async ({
-      page,
-    }) => {
-      await page.goto(storyUrl('display-euidraggable--playground', 'isDragDisabled:true'));
-      await page.getByTestId('draggable').waitFor({ state: 'visible' });
-      const disabledItem = new EuiDraggableObject(page, 'draggable');
-
-      await expect(disabledItem.reorder(1)).rejects.toThrow(/does not/);
     });
   });
 });

@@ -18,4 +18,7 @@ export const EuiDraggableSelectors = {
    * not a fixed EUI class — the handle markup itself is consumer-defined.
    */
   HANDLE_SELECTOR: '[data-rfd-drag-handle-draggable-id]',
+
+  /** Attribute `@hello-pangea/dnd` spreads onto every draggable item wrapper, enabled or not. */
+  ITEM_SELECTOR: '[data-rfd-draggable-id]',
 };
