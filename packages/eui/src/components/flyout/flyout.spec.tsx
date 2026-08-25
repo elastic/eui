@@ -79,7 +79,7 @@ describe('EuiFlyout', () => {
   describe('Layout behavior', () => {
     it('keeps body accessible in short viewports', shortViewport, () => {
       cy.mount(
-        <Flyout>
+        <Flyout closeButtonPosition="outside" resizable>
           <EuiFlyoutHeader data-test-subj="flyoutHeader">
             <div
               css={css`
@@ -116,13 +116,24 @@ describe('EuiFlyout', () => {
         expect($body[0].clientHeight).to.be.greaterThan(0);
         expect($body[0].scrollHeight).to.be.greaterThan($body[0].clientHeight);
       });
+      cy.get('[data-test-subj="flyoutSpec"]')
+        .should('have.css', 'overflow-x', 'visible')
+        .and('have.css', 'overflow-y', 'visible')
+        .its('0.scrollTop')
+        .should('equal', 0);
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.visible');
+      cy.get('[data-test-subj="euiResizableButton"]').should('be.visible');
       cy.get('[data-test-subj="flyoutHeader"]').should('be.visible');
       cy.get('[data-test-subj="flyoutFooter"]')
         .scrollIntoView()
         .should('be.visible');
-      cy.get('[data-test-subj="flyoutSpec"]')
+      cy.get('[data-test-subj="euiFlyoutContent"]')
         .its('0.scrollTop')
         .should('be.greaterThan', 0);
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutSpec"]')
+        .its('0.scrollTop')
+        .should('equal', 0);
       cy.get('[data-test-subj="bodyAction"]')
         .scrollIntoView()
         .should('be.visible');

@@ -13,18 +13,19 @@ import {
   logicalCSSWithFallback,
   euiYScrollWithShadows,
 } from '../../global_styling';
-import { euiFormVariables } from '../form/form.styles';
 
 export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { controlHeight } = euiFormVariables(euiThemeContext);
 
   return {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
-      /* Preserve enough space for one standard control at short viewport heights */
-      ${logicalCSS('min-height', controlHeight)}
+      /* Preserve a standard control plus the content padding and scroll fade */
+      ${logicalCSS(
+        'min-height',
+        `calc(${euiTheme.size.xxl} + var(--euiFlyoutBodyPadding, 0px) + var(--euiFlyoutBodyPadding, 0px) + ${euiTheme.size.s})`
+      )}
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,
