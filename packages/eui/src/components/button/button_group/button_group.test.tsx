@@ -410,6 +410,19 @@ describe('EuiButtonGroup', () => {
       });
 
       describe('default', () => {
+        it('does not wrap children in `euiButtonGroup__item`', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="default">
+              <EuiButton>One</EuiButton>
+              <EuiButton>Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(0);
+        });
+
         describe('gutterSize', () => {
           test.each<{
             gutterSize: EuiButtonGroupGutterSize;
@@ -449,6 +462,161 @@ describe('EuiButtonGroup', () => {
             }
           );
         });
+      });
+
+      describe('segmented', () => {
+        it('applies data-variant="segmented"', () => {
+          const { getByRole } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton>Save</EuiButton>
+            </EuiButtonGroup>
+          );
+          expect(getByRole('group')).toHaveAttribute(
+            'data-variant',
+            'segmented'
+          );
+        });
+
+        it('wraps each child in a `euiButtonGroup__item` wrapper', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton data-test-subj="child-1">One</EuiButton>
+              <EuiButton data-test-subj="child-2">Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          const items = container.querySelectorAll('.euiButtonGroup__item');
+
+          expect(items).toHaveLength(2);
+          expect(items[0]).toContainElement(
+            container.querySelector('[data-test-subj="child-1"]')
+          );
+          expect(items[1]).toContainElement(
+            container.querySelector('[data-test-subj="child-2"]')
+          );
+        });
+
+        it('correctly removes fragment wrappers', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <>
+                <EuiButton data-test-subj="child-1">One</EuiButton>
+                <EuiButton data-test-subj="child-2">Two</EuiButton>
+              </>
+              <EuiButton data-test-subj="child-3">Three</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(3);
+        });
+
+        it('drops non-element nodes (null, booleans) when wrapping', () => {
+          const { container } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton>One</EuiButton>
+              {false}
+              {null}
+              <EuiButton>Two</EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(
+            container.querySelectorAll('.euiButtonGroup__item')
+          ).toHaveLength(2);
+        });
+
+        it('overrides children button `color` to `text`', () => {
+          const { getByTestSubject } = render(
+            <EuiButtonGroup legend="test" variant="segmented">
+              <EuiButton color="danger" data-test-subj="child">
+                One
+              </EuiButton>
+            </EuiButtonGroup>
+          );
+
+          expect(getByTestSubject('child').className).not.toContain('danger');
+          expect(getByTestSubject('child').className).toContain('text');
+        });
+      });
+    });
+
+    describe('showDividers', () => {
+      it('does not set `data-dividers` when false (default)', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented">
+            <EuiButton>One</EuiButton>
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).not.toHaveAttribute('data-dividers');
+      });
+
+      it('sets `data-dividers` when true', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented" showDividers>
+            <EuiButton>One</EuiButton>
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-dividers', 'true');
+      });
+    });
+
+    describe('layout', () => {
+      it('sets `data-layout="horizontal"` as default', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented">
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-layout', 'horizontal');
+      });
+
+      it('sets `data-layout="vertical"`', () => {
+        const { getByRole } = render(
+          <EuiButtonGroup legend="test" variant="segmented" layout="vertical">
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+        expect(getByRole('group')).toHaveAttribute('data-layout', 'vertical');
+      });
+
+      it('does not apply `fullWidth` to the buttons container when `layout="vertical"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="segmented"
+            isFullWidth
+            layout="vertical"
+            data-test-subj="group"
+          >
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+
+        expect(
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
+            .className
+        ).not.toContain('fullWidth');
+      });
+
+      it('applies `fullWidth` to the buttons container when `layout="horizontal"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="segmented"
+            isFullWidth
+            layout="horizontal"
+            data-test-subj="group"
+          >
+            <EuiButtonIcon iconType="bolt" aria-label="One" />
+          </EuiButtonGroup>
+        );
+
+        expect(
+          getByTestSubject('group').querySelector('.euiButtonGroup__container')!
+            .className
+        ).toContain('fullWidth');
       });
     });
 
@@ -697,6 +865,460 @@ describe('EuiButtonGroup', () => {
           getByTestSubject('child-3').closest('button')
         ).not.toHaveAttribute('disabled');
       });
+    });
+  });
+
+  describe('variant="selection"', () => {
+    const selectionChildren = (
+      <>
+        <EuiButton id="button-1" data-test-subj="button-1">
+          One
+        </EuiButton>
+        <EuiButton id="button-2" data-test-subj="button-2">
+          Two
+        </EuiButton>
+        <EuiButton id="button-3" data-test-subj="button-3">
+          Three
+        </EuiButton>
+      </>
+    );
+
+    it('applies `data-variant="selection"` to the group element', () => {
+      const { getByRole } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      expect(getByRole('group')).toHaveAttribute('data-variant', 'selection');
+    });
+
+    it('sets `data-display="regular"` by default', () => {
+      const { getByRole } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      expect(getByRole('group')).toHaveAttribute('data-display', 'regular');
+    });
+
+    it('sets `data-display="highlighted"` with `display="highlighted"`', () => {
+      const { getByRole } = render(
+        <EuiButtonGroup
+          legend="test"
+          variant="selection"
+          display="highlighted"
+          onChange={() => {}}
+        >
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      expect(getByRole('group')).toHaveAttribute('data-display', 'highlighted');
+    });
+
+    it('sets `data-display="inverse"` with `display="inverse"`', () => {
+      const { getByRole } = render(
+        <EuiButtonGroup
+          legend="test"
+          variant="selection"
+          display="inverse"
+          onChange={() => {}}
+        >
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      expect(getByRole('group')).toHaveAttribute('data-display', 'inverse');
+    });
+
+    it('wraps each child in a `euiButtonGroup__item` wrapper', () => {
+      const { container } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      const items = container.querySelectorAll('.euiButtonGroup__item');
+      expect(items).toHaveLength(3);
+      expect(items[0]).toContainElement(
+        container.querySelector('[data-test-subj="button-1"]')
+      );
+    });
+
+    it('renders a `euiButtonGroup__container` element', () => {
+      const { container } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+      expect(
+        container.querySelector('.euiButtonGroup__container')
+      ).not.toBeNull();
+    });
+
+    it('correctly removes fragment wrappers', () => {
+      const { container } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          <>
+            <EuiButton id="button-1">One</EuiButton>
+            <EuiButton id="button-2">Two</EuiButton>
+          </>
+          <EuiButton id="button-3">Three</EuiButton>
+        </EuiButtonGroup>
+      );
+      expect(container.querySelectorAll('.euiButtonGroup__item')).toHaveLength(
+        3
+      );
+    });
+
+    it('drops non-element nodes (null, booleans) when wrapping', () => {
+      const { container } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          <EuiButton id="button-1">One</EuiButton>
+          {false}
+          {null}
+          <EuiButton id="button-2">Two</EuiButton>
+        </EuiButtonGroup>
+      );
+      expect(container.querySelectorAll('.euiButtonGroup__item')).toHaveLength(
+        2
+      );
+    });
+
+    describe('type="single" (idSelected)', () => {
+      it('fires onChange with the clicked button id', () => {
+        const onChange = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" variant="selection" onChange={onChange}>
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        fireEvent.click(getByTestSubject('button-2'));
+        expect(onChange).toHaveBeenCalledTimes(1);
+        expect(onChange).toHaveBeenCalledWith('button-2');
+      });
+
+      it('sets all buttons to `aria-pressed="false"` when `idSelected` is not set', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-2')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-3')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+      });
+
+      it('sets the selected button to `aria-pressed="true"`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="selection"
+            idSelected="button-1"
+            onChange={() => {}}
+          >
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        );
+        expect(getByTestSubject('button-2')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+      });
+
+      it('applies consumer state', () => {
+        const Controlled = () => {
+          const [selected, setSelected] = React.useState('button-1');
+          return (
+            <EuiButtonGroup
+              legend="test"
+              variant="selection"
+              idSelected={selected}
+              onChange={(id) => setSelected(id)}
+            >
+              {selectionChildren}
+            </EuiButtonGroup>
+          );
+        };
+        const { getByTestSubject } = render(<Controlled />);
+
+        fireEvent.click(getByTestSubject('button-2'));
+
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-2')).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        );
+      });
+    });
+
+    it('calls both group onChange and the button own onClick when clicked', () => {
+      const onChange = jest.fn();
+      const buttonOnClick = jest.fn();
+      const { getByTestSubject } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={onChange}>
+          <EuiButton
+            id="button-1"
+            data-test-subj="button-1"
+            onClick={buttonOnClick}
+          >
+            One
+          </EuiButton>
+        </EuiButtonGroup>
+      );
+
+      fireEvent.click(getByTestSubject('button-1'));
+      expect(onChange).toHaveBeenCalledWith('button-1');
+      expect(buttonOnClick).toHaveBeenCalledTimes(1);
+    });
+
+    describe('type="multi"', () => {
+      it('fires onChange with the clicked button id', () => {
+        const onChange = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="selection"
+            type="multi"
+            onChange={onChange}
+          >
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        fireEvent.click(getByTestSubject('button-1'));
+        expect(onChange).toHaveBeenCalledWith('button-1');
+
+        fireEvent.click(getByTestSubject('button-2'));
+        expect(onChange).toHaveBeenCalledWith('button-2');
+
+        expect(onChange).toHaveBeenCalledTimes(2);
+      });
+
+      it('marks all buttons as `aria-pressed="false"` when no `idToSelectedMap` is provided', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="selection"
+            type="multi"
+            onChange={() => {}}
+          >
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-2')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-3')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+      });
+
+      it('marks selected buttons via `idToSelectedMap`', () => {
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="selection"
+            type="multi"
+            idToSelectedMap={{ 'button-1': true, 'button-3': true }}
+            onChange={() => {}}
+          >
+            {selectionChildren}
+          </EuiButtonGroup>
+        );
+
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        );
+        expect(getByTestSubject('button-2')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+        expect(getByTestSubject('button-3')).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        );
+      });
+
+      it('applies consumer state', () => {
+        const Controlled = () => {
+          const [map, setMap] = React.useState<Record<string, boolean>>({});
+          return (
+            <EuiButtonGroup
+              legend="test"
+              variant="selection"
+              type="multi"
+              idToSelectedMap={map}
+              onChange={(id) =>
+                setMap((prev) => ({ ...prev, [id]: !prev[id] }))
+              }
+            >
+              {selectionChildren}
+            </EuiButtonGroup>
+          );
+        };
+        const { getByTestSubject } = render(<Controlled />);
+
+        fireEvent.click(getByTestSubject('button-1'));
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        );
+
+        fireEvent.click(getByTestSubject('button-1'));
+        expect(getByTestSubject('button-1')).toHaveAttribute(
+          'aria-pressed',
+          'false'
+        );
+      });
+
+      it('calls both group onChange and the button own onClick when clicked', () => {
+        const onChange = jest.fn();
+        const buttonOnClick = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiButtonGroup
+            legend="test"
+            variant="selection"
+            type="multi"
+            onChange={onChange}
+          >
+            <EuiButton
+              id="button-1"
+              data-test-subj="button-1"
+              onClick={buttonOnClick}
+            >
+              One
+            </EuiButton>
+          </EuiButtonGroup>
+        );
+
+        fireEvent.click(getByTestSubject('button-1'));
+        expect(onChange).toHaveBeenCalledWith('button-1');
+        expect(buttonOnClick).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it('disables all child buttons when `isDisabled=true`', () => {
+      const { getByTestSubject } = render(
+        <EuiButtonGroup
+          legend="test"
+          variant="selection"
+          isDisabled
+          onChange={() => {}}
+        >
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+
+      expect(getByTestSubject('button-1').closest('button')).toBeDisabled();
+      expect(getByTestSubject('button-2').closest('button')).toBeDisabled();
+      expect(getByTestSubject('button-3').closest('button')).toBeDisabled();
+    });
+
+    it('applies `aria-disabled` instead of `disabled` to children when `hasAriaDisabled=true`', () => {
+      const { getByTestSubject } = render(
+        <EuiButtonGroup
+          legend="test"
+          variant="selection"
+          isDisabled
+          hasAriaDisabled
+          onChange={() => {}}
+        >
+          {selectionChildren}
+        </EuiButtonGroup>
+      );
+
+      expect(getByTestSubject('button-1').closest('button')).toHaveAttribute(
+        'aria-disabled',
+        'true'
+      );
+      expect(
+        getByTestSubject('button-1').closest('button')
+      ).not.toHaveAttribute('disabled');
+
+      expect(getByTestSubject('button-2').closest('button')).toHaveAttribute(
+        'aria-disabled',
+        'true'
+      );
+      expect(
+        getByTestSubject('button-2').closest('button')
+      ).not.toHaveAttribute('disabled');
+    });
+
+    it('overrides button `color` to `text`', () => {
+      const { getByTestSubject } = render(
+        <EuiButtonGroup legend="test" variant="selection" onChange={() => {}}>
+          <EuiButton id="button-1" color="danger" data-test-subj="button-1">
+            One
+          </EuiButton>
+        </EuiButtonGroup>
+      );
+
+      expect(getByTestSubject('button-1').className).not.toContain('danger');
+      expect(getByTestSubject('button-1').className).toContain('text');
+    });
+
+    it('handles EuiButtonIcon children', () => {
+      const onChange = jest.fn();
+      const { container } = render(
+        <EuiButtonGroup
+          legend="icon selection"
+          variant="selection"
+          idSelected="icon-a"
+          onChange={onChange}
+        >
+          <EuiButtonIcon
+            id="icon-a"
+            iconType="grid"
+            aria-label="Grid"
+            data-test-subj="icon-a"
+          />
+          <EuiButtonIcon
+            id="icon-b"
+            iconType="list"
+            aria-label="List"
+            data-test-subj="icon-b"
+          />
+        </EuiButtonGroup>
+      );
+
+      // Wrapped in items
+      expect(container.querySelectorAll('.euiButtonGroup__item')).toHaveLength(
+        2
+      );
+
+      // Initially selected
+      expect(
+        container.querySelector('[data-test-subj="icon-a"]')
+      ).toHaveAttribute('aria-pressed', 'true');
+
+      // Click triggers onChange
+      fireEvent.click(container.querySelector('[data-test-subj="icon-b"]')!);
+      expect(onChange).toHaveBeenCalledWith('icon-b');
     });
   });
 });

@@ -8,7 +8,11 @@
 
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { ButtonGroupNoInvalidChildren } from './button_group_no_invalid_children';
+import {
+  ButtonGroupNoInvalidChildren,
+  VALID_BUTTONS,
+  SEGMENTED_VALID_BUTTONS,
+} from './button_group_no_invalid_children';
 
 const languageOptions = {
   parserOptions: {
@@ -17,6 +21,9 @@ const languageOptions = {
     },
   },
 };
+
+const DEFAULT_ALLOWED = Array.from(VALID_BUTTONS).join(', ');
+const SEGMENTED_ALLOWED = Array.from(SEGMENTED_VALID_BUTTONS).join(', ');
 
 const ruleTester = new RuleTester();
 
@@ -476,10 +483,115 @@ ruleTester.run(
         languageOptions,
       },
       {
-        name: 'variant="segmented" is not yet validated — invalid children pass through',
+        name: 'variant="segmented" with EuiButton children is accepted',
         code: dedent`
           <EuiButtonGroup legend="Actions" variant="segmented">
-            <div>Not a button</div>
+            <EuiButton>Save</EuiButton>
+            <EuiButton>Cancel</EuiButton>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiButtonIcon children is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            <EuiButtonIcon iconType="pencil" aria-label="Edit" />
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiToolTip wrapping EuiButton is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiToolTip content="Delete">
+              <EuiButton color="danger">Delete</EuiButton>
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiToolTip wrapping EuiButtonIcon is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiToolTip content="Delete">
+              <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiPopover wrapping EuiButton trigger is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiPopover button={<EuiButton>More</EuiButton>} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiPopover wrapping EuiButtonIcon trigger is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiPopover button={<EuiButtonIcon iconType="menu" aria-label="More" />} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiPopover and EuiToolTip-wrapped trigger is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiPopover
+              button={<EuiToolTip content="More"><EuiButton>More</EuiButton></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiCopy wrapping EuiButton is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiCopy textToCopy="text">
+              {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+            </EuiCopy>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with EuiButton children inside a fragment is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <>
+              <EuiButton>Save</EuiButton>
+              <EuiButton>Cancel</EuiButton>
+            </>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="segmented" with spread props on child — cannot statically be determined',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton {...buttonProps} />
           </EuiButtonGroup>
         `,
         languageOptions,
@@ -623,7 +735,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'EuiFlexGroup child',
@@ -635,7 +752,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiFlexGroup' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiFlexGroup', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'multiple invalid children reported individually',
@@ -648,8 +770,14 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidChild', data: { name: 'span' } },
-          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } },
+          {
+            messageId: 'invalidChild',
+            data: { name: 'span', allowed: DEFAULT_ALLOWED },
+          },
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
 
@@ -667,7 +795,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiCopy' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -684,7 +816,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiCopy' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -704,7 +840,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiCopy' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -721,7 +861,10 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
+          {
+            messageId: 'invalidUnresolvablePopoverButton',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
       {
@@ -734,7 +877,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidPopoverButton', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidPopoverButton',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'EuiToolTip in EuiPopover button prop with invalid child',
@@ -751,7 +899,10 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
+          {
+            messageId: 'invalidUnresolvablePopoverButton',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
       {
@@ -766,7 +917,10 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
+          {
+            messageId: 'invalidUnresolvablePopoverButton',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
       {
@@ -784,7 +938,10 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidUnresolvablePopoverButton', data: { name: 'EuiText' } },
+          {
+            messageId: 'invalidUnresolvablePopoverButton',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
 
@@ -804,7 +961,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiFlexGroup', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiFlexGroup',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -825,7 +986,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -843,7 +1008,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -860,7 +1029,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: '<Fragment> wrapping invalid element',
@@ -872,7 +1046,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: '<React.Fragment> wrapping invalid element',
@@ -884,7 +1063,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'fragment inside EuiToolTip wrapping invalid element',
@@ -901,7 +1085,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -916,7 +1104,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'ternary with one invalid branch',
@@ -926,7 +1119,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'ternary with both invalid branches reported separately',
@@ -937,8 +1135,14 @@ ruleTester.run(
         `,
         languageOptions,
         errors: [
-          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } },
-          { messageId: 'invalidUnresolvableChild', data: { name: 'EuiBadge' } },
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiBadge', allowed: DEFAULT_ALLOWED },
+          },
         ],
       },
 
@@ -950,7 +1154,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: '{unresolvable ?? <EuiText />} invalid right side is flagged',
@@ -960,7 +1169,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: '{resolvedInvalidButton || <EuiButton />} resolved invalid left side is flagged',
@@ -971,7 +1185,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
 
       // Unresolvable custom component
@@ -988,7 +1207,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'SaveButton', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'SaveButton',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -1005,7 +1228,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'SaveButton', wrapper: 'EuiCopy' },
+            data: {
+              name: 'SaveButton',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -1020,7 +1247,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'const variable holding an array with an invalid element is resolved and reported',
@@ -1034,7 +1266,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
 
       // Local arrow-function
@@ -1047,7 +1284,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'local block-body arrow-fn component with invalid return is resolved and reported at the invalid element',
@@ -1058,7 +1300,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'local block-body arrow-fn component with invalid branch is resolved and reported',
@@ -1072,7 +1319,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'imported custom component cannot be resolved — uses invalidUnresolvableChild message',
@@ -1085,7 +1337,7 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableChild',
-            data: { name: 'SaveButton' },
+            data: { name: 'SaveButton', allowed: DEFAULT_ALLOWED },
           },
         ],
       },
@@ -1102,7 +1354,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'array containing a wrapper (EuiToolTip) with an invalid inner element',
@@ -1119,7 +1376,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -1133,7 +1394,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'map() with block-body returning invalid element is reported',
@@ -1145,7 +1411,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'map() with block-body invalid branch is reported',
@@ -1158,7 +1429,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
       {
         name: 'variable holding map() result with invalid element is reported',
@@ -1169,7 +1445,12 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidChild', data: { name: 'div' } }],
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: DEFAULT_ALLOWED },
+          },
+        ],
       },
 
       // Spread on wrapper
@@ -1186,7 +1467,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiToolTip' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -1203,7 +1488,11 @@ ruleTester.run(
         errors: [
           {
             messageId: 'invalidUnresolvableWrapperChild',
-            data: { name: 'EuiText', wrapper: 'EuiCopy' },
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
           },
         ],
       },
@@ -1223,7 +1512,291 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidUnresolvableChild', data: { name: 'EuiText' } }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
+      },
+
+      // variant="segmented"
+      {
+        name: 'variant="segmented" with unsupported button component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with plain HTML child is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <div>Not a button</div>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with unsupported component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiText>Not allowed</EuiText>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with unsupported component inside a fragment is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <>
+              <EuiButton>Save</EuiButton>
+              <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+            </>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with unresolvable custom component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <SaveButton />
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'SaveButton', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with unsupported component inside EuiToolTip is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiToolTip content="Cancel">
+              <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidWrapperChild',
+            data: {
+              name: 'EuiButtonEmpty',
+              wrapper: 'EuiToolTip',
+              allowed: SEGMENTED_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with unresolvable custom component inside EuiToolTip is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiToolTip content="tip">
+              <SaveButton />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidUnresolvableWrapperChild',
+            data: {
+              name: 'SaveButton',
+              wrapper: 'EuiToolTip',
+              allowed: SEGMENTED_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with EuiPopover using an unsupported component as trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiPopover button={<EuiButtonEmpty color="text">More</EuiButtonEmpty>} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidPopoverButton',
+            data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with EuiPopover using invalid HTML element as trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiPopover button={<div>Not a button</div>} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidPopoverButton',
+            data: { name: 'div', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with EuiPopover and EuiToolTip wrapping an unsupported component as trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiPopover
+              button={<EuiToolTip content="More"><EuiButtonEmpty>More</EuiButtonEmpty></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidPopoverButton',
+            data: { name: 'EuiButtonEmpty', allowed: SEGMENTED_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" with EuiCopy wrapping an unsupported component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiCopy textToCopy="text">
+              {(copy) => <EuiButtonEmpty onClick={copy}>Copy</EuiButtonEmpty>}
+            </EuiCopy>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidWrapperChild',
+            data: {
+              name: 'EuiButtonEmpty',
+              wrapper: 'EuiCopy',
+              allowed: SEGMENTED_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon children is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiButtonIcon iconType="trash" aria-label="Delete" />
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon inside a fragment is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <>
+              <EuiButton>Save</EuiButton>
+              <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            </>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiToolTip is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiToolTip content="Delete">
+              <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiPopover button={<EuiButtonIcon iconType="menu" aria-label="More" />} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover with EuiToolTip-wrapped trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButton>Save</EuiButton>
+            <EuiPopover
+              button={<EuiToolTip content="More"><EuiButtonIcon iconType="menu" aria-label="More" /></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+      },
+      {
+        name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiCopy render prop is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="segmented">
+            <EuiButtonIcon iconType="plus" aria-label="Add" />
+            <EuiCopy textToCopy="text">
+              {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+            </EuiCopy>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
       },
     ],
   }

@@ -30,7 +30,7 @@ import './helpers/wait_for_position_to_settle';
 // @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745
 // @see also https://github.com/cypress-io/cypress/issues/20341
 Cypress.on('uncaught:exception', (err) => {
-  if (err.message.includes('> ResizeObserver loop')) {
+  if (err.message.includes('ResizeObserver loop')) {
     return false;
   }
 });
