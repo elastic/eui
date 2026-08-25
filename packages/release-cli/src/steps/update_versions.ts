@@ -7,6 +7,7 @@
  */
 
 import path from 'node:path';
+import fs from 'node:fs/promises';
 import { type ReleaseOptions } from '../release';
 import { type YarnWorkspace, updateWorkspaceVersion } from '../yarn_utils';
 import {
@@ -31,6 +32,71 @@ import {
   isFileAddedToGit,
   stageFiles,
 } from '../git_utils';
+
+const KIBANA_PREP_COMMITS_FILE = 'packages/release-cli/kibana-prep-commits';
+
+const KIBANA_PREP_COMMITS_HEADER = `# List Kibana prep commits to cherry-pick during the nightly Kibana integration run.
+# Add URLs under @next, one per line:
+# https://github.com/elastic/kibana/pull/NNNN/commits/COMMIT_SHA
+#
+# On release, @next moves to @previous and @previous is cleared.
+# Nightly cherry-picks both sections, skipping commits that are missing or already applied.
+`;
+
+const parseKibanaPrepCommits = (
+  content: string
+): { next: string[]; previous: string[] } => {
+  const next: string[] = [];
+  const previous: string[] = [];
+  let section: 'next' | 'previous' | 'legacy' = 'legacy';
+
+  for (const line of content.split('\n')) {
+    const trimmed = line.trim();
+    if (/^#\s*@next\b/i.test(trimmed)) {
+      section = 'next';
+      continue;
+    }
+    if (/^#\s*@previous\b/i.test(trimmed)) {
+      section = 'previous';
+      continue;
+    }
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    if (section === 'previous') previous.push(trimmed);
+    else next.push(trimmed);
+  }
+
+  return { next, previous };
+};
+
+const serializeKibanaPrepCommits = (
+  next: string[],
+  previous: string[]
+): string => {
+  const nextBlock = next.length ? `${next.join('\n')}\n` : '';
+  const previousBlock = previous.length ? `${previous.join('\n')}\n` : '';
+  return `${KIBANA_PREP_COMMITS_HEADER}
+# @next
+${nextBlock}
+# @previous
+${previousBlock}`;
+};
+
+const rotateKibanaPrepCommits = async (
+  rootWorkspaceDir: string
+): Promise<string | null> => {
+  const filePath = path.join(rootWorkspaceDir, KIBANA_PREP_COMMITS_FILE);
+  const content = await fs.readFile(filePath, 'utf-8').catch(() => null);
+
+  if (content === null) return null;
+
+  const { next } = parseKibanaPrepCommits(content);
+  const rotated = serializeKibanaPrepCommits([], next);
+  if (rotated === content) return null;
+
+  await fs.writeFile(filePath, rotated, 'utf-8');
+  return filePath;
+};
 
 /**
  * Update version numbers and yearly changelogs based on workspace
@@ -128,6 +194,14 @@ export const stepUpdateVersions = async (
     const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
     filesToCommit.push(yarnLockPath);
     await stageFiles([yarnLockPath]);
+
+    // @next -> @previous, @previous cleared. Nightly still cherry-picks both
+    // until the following release, covering the Kibana upgrade merge window.
+    const kibanaPrepCommitsPath =
+      await rotateKibanaPrepCommits(rootWorkspaceDir);
+    if (kibanaPrepCommitsPath) {
+      filesToCommit.push(kibanaPrepCommitsPath);
+    }
 
     // Stage updated package.json files
     const uniqueFilesToCommit = [...new Set(filesToCommit)];

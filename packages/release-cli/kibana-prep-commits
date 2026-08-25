@@ -1,10 +1,14 @@
 # List Kibana prep commits to cherry-pick during the nightly Kibana integration run.
-# Add one URL per line in the format:
+# Add URLs under @next, one per line:
 # https://github.com/elastic/kibana/pull/NNNN/commits/COMMIT_SHA
 #
-# Remove entries after the Kibana upgrade PR that includes them has merged.
-# Nightly skips commits that are already applied.
+# On release, @next moves to @previous and @previous is cleared.
+# Nightly cherry-picks both sections, skipping commits that are missing or already applied.
+
+# @next
+https://github.com/elastic/kibana/pull/274656/commits/8ec324da4d10e4a7bfa4a121fb2c391535d17738
+
+# @previous
 https://github.com/elastic/kibana/pull/244898/commits/f3a7f97976213c6f2f5334aafd112455ff94d8f9
 https://github.com/elastic/kibana/pull/235177/commits/63b73732214e2cb2aa82b30bc2762bed8703c428
 https://github.com/elastic/kibana/pull/235177/commits/1d2d213025ef53336a6f366b1b6031e2a96b1817
-https://github.com/elastic/kibana/pull/274656/commits/8ec324da4d10e4a7bfa4a121fb2c391535d17738

@@ -140,7 +140,15 @@ jobs:
             fi
 
             echo "Cherry-picking $sha from PR #$pr_number"
-            git fetch origin "pull/$pr_number/head"
+            if ! git fetch origin "pull/$pr_number/head"; then
+              echo "::warning::Skipping $sha: could not fetch PR #$pr_number"
+              continue
+            fi
+
+            if ! git cat-file -e "${sha}^{commit}" 2>/dev/null; then
+              echo "::warning::Skipping $sha: commit not on PR #$pr_number (force-pushed?)"
+              continue
+            fi
 
             if git cherry-pick "$sha"; then
               short_sha="${sha:0:8}"
