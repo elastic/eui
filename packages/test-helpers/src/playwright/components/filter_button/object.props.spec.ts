@@ -15,9 +15,13 @@ const TEST_SUBJ = 'testFilterButton';
 
 test.describe('EuiFilterButtonObject', () => {
   test.describe('isSelected (e.g. while its popover is open)', () => {
+    // Use Storybook's `!`-typed arg syntax for the booleans, not plain
+    // `true`/`false` strings. A manually-declared argType with typed options
+    // (as opposed to an auto-inferred boolean) can silently reject a plain
+    // string and fall back to its own default, with no error to flag it.
     const SELECTED_URL = storyUrl(
       'forms-euifilterbutton--playground',
-      `data-test-subj:${TEST_SUBJ};hasActiveFilters:false;isSelected:true`
+      `data-test-subj:${TEST_SUBJ};hasActiveFilters:!false;isSelected:!true`
     );
 
     test('carries the isSelected class, not the hasActiveFilters class', async ({ page }) => {
