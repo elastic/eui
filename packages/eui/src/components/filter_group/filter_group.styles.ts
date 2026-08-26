@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, mathWithUnits, euiBreakpoint } from '../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiBreakpoint,
+  euiButtonSizeMap,
+} from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
 import { euiFilterButtonDisplay } from './filter_button.styles';
@@ -17,12 +22,13 @@ import { euiFilterButtonDisplay } from './filter_button.styles';
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const { backgroundColor, controlHeight, controlCompressedHeight } =
-    euiFormVariables(euiThemeContext);
+  const { backgroundColor } = euiFormVariables(euiThemeContext);
+  const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
 
   const borderRadius = euiTheme.border.radius.small;
-
   const borderRadiusCompressed = euiTheme.border.radius.small;
+
+  const containerPadding = euiTheme.size.xs;
 
   return {
     euiFilterGroup: css`
@@ -43,6 +49,14 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.colors.borderBasePlain};
         border-radius: inherit;
         pointer-events: none;
+      }
+
+      .euiFilterButton-isToggle {
+        /* reduced padding to account for outer container padding */
+        padding-inline: ${mathWithUnits(
+          [euiTheme.size.s, containerPadding],
+          (x, y) => x - y / 2
+        )};
       }
 
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
@@ -77,39 +91,40 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${borderRadius};
 
       .euiFilterButton__wrapper {
-        ${logicalCSS('height', controlHeight)}
+        ${logicalCSS('height', buttonSizeMap.m.height)}
       }
 
       .euiFilterButton {
-        ${logicalCSS('height', controlHeight)}
+        ${logicalCSS('height', buttonSizeMap.m.height)}
       }
 
       .euiFilterButton-isToggle {
         ${logicalCSS(
           'height',
-          mathWithUnits([controlHeight, euiTheme.size.xxs], (x, y) => x - 3 * y)
+          buttonSizeMap.m.getInsetHeight(
+            buttonSizeMap.m.height,
+            containerPadding
+          )
         )}
       }
     `,
     compressed: css`
       border-radius: ${borderRadiusCompressed};
 
+      .euiFilterButton__wrapper {
+        ${logicalCSS('height', buttonSizeMap.s.height)}
+      }
+
       .euiFilterButton {
-        ${logicalCSS(
-          'height',
-          mathWithUnits(
-            [controlCompressedHeight, euiTheme.border.width.thin],
-            (x, y) => x - 2 * y
-          )
-        )}
+        ${logicalCSS('height', buttonSizeMap.s.height)}
       }
 
       .euiFilterButton-isToggle {
         ${logicalCSS(
           'height',
-          mathWithUnits(
-            [controlCompressedHeight, euiTheme.size.xxs],
-            (x, y) => x - 3 * y
+          buttonSizeMap.s.getInsetHeight(
+            buttonSizeMap.s.height,
+            containerPadding
           )
         )}
       }
