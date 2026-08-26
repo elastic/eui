@@ -15,9 +15,10 @@ const TEST_SUBJ = 'testFilterButton';
 
 test.describe('EuiFilterButtonObject', () => {
   test.describe('isSelected (e.g. while its popover is open)', () => {
+    // Use Storybook's `!`-typed arg syntax for booleans, not plain strings.
     const SELECTED_URL = storyUrl(
       'forms-euifilterbutton--playground',
-      `data-test-subj:${TEST_SUBJ};hasActiveFilters:false;isSelected:true`
+      `data-test-subj:${TEST_SUBJ};hasActiveFilters:!false;isSelected:!true`
     );
 
     test('carries the isSelected class, not the hasActiveFilters class', async ({ page }) => {
