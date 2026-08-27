@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { Component, ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+
+export interface EuiDelayHideProps {
+  hide?: boolean;
+  minimumDuration?: number;
+  render: () => ReactNode;
+}
 
 function isComponentBecomingVisible(
   prevHide: boolean = false,
@@ -15,91 +21,32 @@ function isComponentBecomingVisible(
   return prevHide === true && nextHide === false;
 }
 
-export interface EuiDelayHideProps {
-  hide: boolean;
-  minimumDuration: number;
-  render: () => ReactNode;
-}
+export const EuiDelayHide = ({
+  hide = false,
+  minimumDuration = 1000,
+  render,
+}: EuiDelayHideProps) => {
+  const [countdownExpired, setCountdownExpired] = useState(hide);
+  const [prevHide, setPrevHide] = useState(hide);
 
-interface EuiDelayHideState {
-  hide: boolean;
-  countdownExpired?: boolean;
-}
-
-export class EuiDelayHide extends Component<
-  EuiDelayHideProps,
-  EuiDelayHideState
-> {
-  static defaultProps = {
-    hide: false,
-    minimumDuration: 1000,
-  };
-
-  static getDerivedStateFromProps(
-    nextProps: EuiDelayHideProps,
-    prevState: EuiDelayHideState
-  ) {
-    const isBecomingVisible = isComponentBecomingVisible(
-      prevState.hide,
-      nextProps.hide
-    );
-    return {
-      hide: nextProps.hide,
-      countdownExpired: isBecomingVisible ? false : prevState.countdownExpired,
-    };
-  }
-
-  state = {
-    hide: this.props.hide,
-    countdownExpired: this.props.hide,
-  };
-
-  private timeoutId?: ReturnType<typeof setTimeout>;
-
-  componentDidMount() {
-    // if the component begins visible start counting
-    if (this.props.hide === false) {
-      this.startCountdown();
+  if (hide !== prevHide) {
+    setPrevHide(hide);
+    if (isComponentBecomingVisible(prevHide, hide)) {
+      setCountdownExpired(false);
     }
   }
 
-  componentDidUpdate(prevProps: EuiDelayHideProps) {
-    const isBecomingVisible = isComponentBecomingVisible(
-      prevProps.hide,
-      this.props.hide
-    );
-    if (isBecomingVisible) {
-      this.startCountdown();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.timeoutId != null) {
-      clearTimeout(this.timeoutId);
-    }
-  }
-
-  startCountdown = () => {
-    // only start the countdown if there is not one in progress
-    if (this.timeoutId == null) {
-      this.timeoutId = setTimeout(
-        this.finishCountdown,
-        // even though `minimumDuration` cannot be undefined, passing a strict number type to setTimeout makes TS interpret
-        // it as a NodeJS.Timer instead of a number. The DOM lib defines the setTimeout call as taking `number | undefined`
-        // so we cast minimumDuration to this type instead to force TS's cooperation
-        this.props.minimumDuration as number | undefined
+  useEffect(() => {
+    if (countdownExpired === false) {
+      const timeoutId = window.setTimeout(
+        () => setCountdownExpired(true),
+        minimumDuration
       );
+      return () => window.clearTimeout(timeoutId);
     }
-  };
+  }, [countdownExpired, minimumDuration]);
 
-  finishCountdown = () => {
-    this.timeoutId = undefined;
-    this.setState({ countdownExpired: true });
-  };
+  return hide === true && countdownExpired ? null : render();
+};
 
-  render() {
-    const shouldHideContent =
-      this.props.hide === true && this.state.countdownExpired;
-    return shouldHideContent ? null : this.props.render();
-  }
-}
+EuiDelayHide.displayName = 'EuiDelayHide';
