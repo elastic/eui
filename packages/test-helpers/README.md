@@ -51,6 +51,7 @@ their own version at runtime.
 | `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
 | `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
 | `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
+| `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
 | `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 
