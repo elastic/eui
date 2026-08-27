@@ -109,7 +109,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       flex-direction: column;
       align-items: stretch;
       min-block-size: 0;
-      ${logicalCSSWithFallback('overflow-y', 'auto')}
+
+      &:has(.euiFlyoutBody) {
+        ${logicalCSSWithFallback('overflow-y', 'auto')}
+      }
     `,
 
     // Flyout sizes (media queries + % sizing)

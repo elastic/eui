@@ -77,6 +77,14 @@ const Flyout = ({
 
 describe('EuiFlyout', () => {
   describe('Layout behavior', () => {
+    it('does not create a scroll container for flyouts without a body', () => {
+      cy.mount(<Flyout>Flyout content</Flyout>);
+
+      cy.get('[data-test-subj="euiFlyoutContent"]')
+        .should('have.css', 'overflow-x', 'visible')
+        .and('have.css', 'overflow-y', 'visible');
+    });
+
     it('keeps body accessible in short viewports', shortViewport, () => {
       cy.mount(
         <Flyout closeButtonPosition="outside" resizable>

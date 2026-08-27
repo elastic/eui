@@ -48,7 +48,7 @@ exports[`EuiFlyout is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -109,7 +109,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -169,7 +169,7 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -229,7 +229,7 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -276,7 +276,7 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
            
         </p>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -337,7 +337,7 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </nav>
@@ -398,7 +398,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -459,7 +459,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -520,7 +520,7 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -581,7 +581,7 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -642,7 +642,7 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -700,7 +700,7 @@ exports[`EuiFlyout props ownFocus can be false 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -761,7 +761,7 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -822,7 +822,7 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -883,7 +883,7 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -944,7 +944,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -978,7 +978,7 @@ exports[`EuiFlyout props push flyouts renders 1`] = `
     />
   </button>
   <div
-    class="euiFlyout__content css-1kuti6u-content"
+    class="euiFlyout__content css-113dg8o-content"
     data-test-subj="euiFlyoutContent"
   />
 </div>
@@ -1030,7 +1030,7 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1090,7 +1090,7 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1151,7 +1151,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1212,7 +1212,7 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1273,7 +1273,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1334,7 +1334,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1395,7 +1395,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
@@ -1463,7 +1463,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
           />
         </button>
         <div
-          class="euiFlyout__content css-1kuti6u-content"
+          class="euiFlyout__content css-113dg8o-content"
           data-test-subj="euiFlyoutContent"
         />
       </div>
