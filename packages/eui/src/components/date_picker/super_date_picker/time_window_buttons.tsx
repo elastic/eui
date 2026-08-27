@@ -84,7 +84,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     isWindowDurationZero,
   } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
 
-  const grouplabel = useEuiI18n(
+  const groupLabel = useEuiI18n(
     'euiTimeWindowButtons.label',
     'Time window controls'
   );
@@ -152,7 +152,7 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
 
   return (
     <EuiButtonGroup
-      legend={grouplabel}
+      legend={groupLabel}
       variant="segmented"
       buttonSize={buttonSize}
       showDividers
