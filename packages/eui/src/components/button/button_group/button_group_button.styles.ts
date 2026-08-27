@@ -10,7 +10,6 @@ import { css, type SerializedStyles } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import {
-  mathWithUnits,
   logicalCSS,
   euiTextShift,
   euiOutline,
@@ -45,11 +44,6 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       radius: buttonSizeMap.m.radiusInset,
     },
   };
-  const compressedButtonHeight = mathWithUnits(
-    [buttonSizes.s.height, euiTheme.border.width.thin],
-    (x, y) => x - y * 6
-  );
-
   const selectedSelectors =
     '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
 
@@ -97,9 +91,6 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       m: `
         ${logicalCSS('width', buttonSizes.m.height)}
-      `,
-      compressed: `
-        ${logicalCSS('width', compressedButtonHeight)}
       `,
     },
     s: css`
