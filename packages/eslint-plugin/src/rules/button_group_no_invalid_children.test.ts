@@ -8,11 +8,12 @@
 
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
+import { ButtonGroupNoInvalidChildren } from './button_group_no_invalid_children';
 import {
-  ButtonGroupNoInvalidChildren,
   VALID_BUTTONS,
   SEGMENTED_VALID_BUTTONS,
-} from './button_group_no_invalid_children';
+  SELECTION_VALID_BUTTONS,
+} from '../utils/button_group_constants';
 
 const languageOptions = {
   parserOptions: {
@@ -24,6 +25,7 @@ const languageOptions = {
 
 const DEFAULT_ALLOWED = Array.from(VALID_BUTTONS).join(', ');
 const SEGMENTED_ALLOWED = Array.from(SEGMENTED_VALID_BUTTONS).join(', ');
+const SELECTION_ALLOWED = Array.from(SELECTION_VALID_BUTTONS).join(', ');
 
 const ruleTester = new RuleTester();
 
@@ -597,10 +599,89 @@ ruleTester.run(
         languageOptions,
       },
       {
-        name: 'variant="selection" is not yet validated — invalid children pass through',
+        name: 'variant="selection" with EuiButton children is accepted',
         code: dedent`
           <EuiButtonGroup legend="Actions" variant="selection">
-            <div>Not a button</div>
+            <EuiButton>Bold</EuiButton>
+            <EuiButton>Italic</EuiButton>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiButtonIcon children is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButtonIcon iconType="bold" aria-label="Bold" />
+            <EuiButtonIcon iconType="italic" aria-label="Italic" />
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiToolTip wrapping EuiButton is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiToolTip content="Italic text">
+              <EuiButton>Italic</EuiButton>
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiToolTip wrapping EuiButtonIcon is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiToolTip content="Bold">
+              <EuiButtonIcon iconType="bold" aria-label="Bold" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiPopover wrapping EuiButton trigger is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiPopover button={<EuiButton>More</EuiButton>} isOpen={false} closePopover={() => {}}>
+              <p>Panel content</p>
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiCopy wrapping EuiButton is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiCopy textToCopy="text">
+              {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+            </EuiCopy>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with EuiButton children inside a fragment is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <>
+              <EuiButton>Bold</EuiButton>
+              <EuiButton>Italic</EuiButton>
+            </>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+      },
+      {
+        name: 'variant="selection" with spread props on child — cannot statically be determined',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton {...buttonProps} />
           </EuiButtonGroup>
         `,
         languageOptions,
@@ -1727,7 +1808,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
       },
       {
         name: 'variant="segmented" mixing EuiButton and EuiButtonIcon inside a fragment is reported',
@@ -1740,7 +1821,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
       },
       {
         name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiToolTip is reported',
@@ -1753,7 +1834,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
       },
       {
         name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover trigger is reported',
@@ -1766,7 +1847,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
       },
       {
         name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiPopover with EuiToolTip-wrapped trigger is reported',
@@ -1783,7 +1864,7 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
       },
       {
         name: 'variant="segmented" mixing EuiButton and EuiButtonIcon via EuiCopy render prop is reported',
@@ -1796,7 +1877,113 @@ ruleTester.run(
           </EuiButtonGroup>
         `,
         languageOptions,
-        errors: [{ messageId: 'invalidSegmentedMixedTypes' }],
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'segmented' } }],
+      },
+
+      // variant="selection"
+      {
+        name: 'variant="selection" with unsupported button component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'EuiButtonEmpty', allowed: SELECTION_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="selection" with plain HTML child is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <div>Not a button</div>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidChild',
+            data: { name: 'div', allowed: SELECTION_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="selection" with unsupported component is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiText>Not allowed</EuiText>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidUnresolvableChild',
+            data: { name: 'EuiText', allowed: SELECTION_ALLOWED },
+          },
+        ],
+      },
+      {
+        name: 'variant="selection" with unsupported component inside EuiToolTip is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiToolTip content="Cancel">
+              <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'invalidWrapperChild',
+            data: {
+              name: 'EuiButtonEmpty',
+              wrapper: 'EuiToolTip',
+              allowed: SELECTION_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'variant="selection" mixing EuiButton and EuiButtonIcon children is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiButtonIcon iconType="italic" aria-label="Italic" />
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'selection' } }],
+      },
+      {
+        name: 'variant="selection" mixing EuiButton and EuiButtonIcon inside a fragment is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <>
+              <EuiButton>Bold</EuiButton>
+              <EuiButtonIcon iconType="italic" aria-label="Italic" />
+            </>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'selection' } }],
+      },
+      {
+        name: 'variant="selection" mixing EuiButton and EuiButtonIcon via EuiToolTip is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions" variant="selection">
+            <EuiButton>Bold</EuiButton>
+            <EuiToolTip content="Italic">
+              <EuiButtonIcon iconType="italic" aria-label="Italic" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        errors: [{ messageId: 'invalidMixedTypes', data: { variant: 'selection' } }],
       },
     ],
   }
