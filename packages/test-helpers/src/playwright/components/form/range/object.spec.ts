@@ -43,3 +43,17 @@ test.describe('EuiRangeObject', () => {
     });
   });
 });
+
+test.describe('EuiRangeObject against EuiDualRange', () => {
+  // EuiDualRange is a separate component from EuiRange, not a variant of it.
+  // Validated against its own story rather than assumed from EuiRange's.
+  const DUAL_RANGE_URL = storyUrl('forms-euidualrange--playground', `data-test-subj:${TEST_SUBJ}`);
+
+  test('slider resolves to exactly one element', async ({ page }) => {
+    await page.goto(DUAL_RANGE_URL);
+    await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
+    const range = new EuiRangeObject(page, TEST_SUBJ);
+
+    await expect(range.slider).toHaveCount(1);
+  });
+});

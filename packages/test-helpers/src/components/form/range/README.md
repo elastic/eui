@@ -21,11 +21,11 @@ On a plain `EuiRange` rendered with `showInput`, EUI spreads the *same* `data-te
 
 | Member | Description |
 |---|---|
-| `slider` | `Locator` for the native `<input type="range">`. Always resolves to exactly one element. |
+| `slider` | `Locator` for the native `<input type="range">`. Resolves to exactly one element once mounted. With `showInput="inputWithPopover"`, the slider lives inside the popover panel and is not mounted until the popover opens (focus/click `numberInput` to open it). |
 | `numberInput` | `Locator` for the visible number input. Only present on a plain `EuiRange` with `showInput` set, resolves to zero elements otherwise. |
 
 ## Deliberately out of scope
 
 - **`EuiDualRange`'s min/max number inputs**: rendered only with `showInput`, and need their own `data-test-subj` via `minInputProps`/`maxInputProps`. That is the consumer's own test-subj to target directly, not ambiguous the way the plain `EuiRange` case is.
-- **`EuiDualRange`'s `inputWithPopover` open/close**: its popover only opens by clicking a number input, not the delimiter between them. That is a real EUI behavioral quirk, but a single documented fact rather than DOM ambiguity, and popover mechanics are already exposed synchronously by `EuiPopover` itself (`aria-expanded`/`aria-controls`). Drive it from your test directly.
+- **`inputWithPopover` open/close** (`EuiRange` and `EuiDualRange` both support this mode): the popover only opens by clicking a number input, not the delimiter between them. That is a real EUI behavioral quirk, but a single documented fact rather than DOM ambiguity, and popover mechanics are already exposed synchronously by `EuiPopover` itself (`aria-expanded`/`aria-controls`). Drive it from your test directly.
 - **Reading the current value**: use `slider.inputValue()` or `numberInput.inputValue()` directly, no wrapper needed.

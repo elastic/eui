@@ -37,4 +37,23 @@ test.describe('EuiRangeObject', () => {
       await expect(range.numberInput).toHaveCount(1);
     });
   });
+
+  test.describe('showInput="inputWithPopover" (EuiRange)', () => {
+    const POPOVER_URL = storyUrl(
+      'forms-euirange--playground',
+      `data-test-subj:${TEST_SUBJ};showInput:inputWithPopover`
+    );
+
+    test('slider is not mounted until the popover opens', async ({ page }) => {
+      await page.goto(POPOVER_URL);
+      const range = new EuiRangeObject(page, TEST_SUBJ);
+      await range.numberInput.waitFor({ state: 'visible' });
+
+      await expect(range.slider).toHaveCount(0);
+
+      await range.numberInput.click();
+
+      await expect(range.slider).toHaveCount(1);
+    });
+  });
 });

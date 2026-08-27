@@ -25,7 +25,11 @@ export class EuiRangeObject extends BaseObject {
     super(scope, testSubj, EuiRangeSelectors.SLIDER_SELECTOR);
   }
 
-  /** The native range slider input. Always resolves to exactly one element. */
+  /**
+   * The native range slider input. Resolves to exactly one element once
+   * mounted. With `showInput="inputWithPopover"`, it lives inside the
+   * popover panel and is not mounted until the popover opens.
+   */
   public get slider(): Locator {
     return this.root.and(this.scope.locator(EuiRangeSelectors.SLIDER_SELECTOR));
   }
