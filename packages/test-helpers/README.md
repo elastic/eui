@@ -53,6 +53,7 @@ their own version at runtime.
 | `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
 | `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
 | `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
+| `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 
 ## Contributing
