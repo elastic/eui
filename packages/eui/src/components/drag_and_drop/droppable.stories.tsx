@@ -58,14 +58,24 @@ export const Playground: Story = {
   args: {
     droppableId: 'droppableArea',
     children: [
-      <EuiDraggable spacing="m" index={0} draggableId="draggable-item-1">
+      <EuiDraggable
+        spacing="m"
+        index={0}
+        draggableId="draggable-item-1"
+        data-test-subj="draggableItem1"
+      >
         {(_, state) => (
           <EuiPanel hasShadow={state.isDragging}>
             Draggable item 1 {state.isDragging && '✨'}
           </EuiPanel>
         )}
       </EuiDraggable>,
-      <EuiDraggable spacing="m" index={1} draggableId="draggable-item-2">
+      <EuiDraggable
+        spacing="m"
+        index={1}
+        draggableId="draggable-item-2"
+        data-test-subj="draggableItem2"
+      >
         {(_, state) => (
           <EuiPanel hasShadow={state.isDragging}>
             Draggable item 2 {state.isDragging && '✨'}
