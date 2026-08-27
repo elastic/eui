@@ -7,31 +7,50 @@ jobs:
   community-pr-message:
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
-      IS_ORG_MEMBER: "" # https://github.com/github/vscode-github-actions/issues/47
     runs-on: ubuntu-latest
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
+      id-token: write # Required for OIDC (Vault ephemeral token)
       contents: read
       issues: write
       pull-requests: write
     steps:
-      - name: "Check for org membership"
+      - name: Fetch ephemeral GitHub token
+        id: fetch_ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-7c76c3b2363a
+      - name: Check for org membership
         # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
-        # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#example-of-writing-an-environment-variable-to-github_env
+        id: org_membership
+        env:
+          TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
         run: |
-          DATA=$(
-            curl -L -i -g -w "%{http_code}" \
+          set -euo pipefail
+          HTTP_CODE=$(curl -sS -o /dev/null -w "%{http_code}" \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.EUI_COMMUNITY_PR }}" \
+            -H "Authorization: Bearer $TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/orgs/elastic/members/"$USER_LOGIN"
-          )
+            "https://api.github.com/orgs/elastic/members/$USER_LOGIN")
 
-          HTTP_CODE=$(echo "$DATA" | awk '/([0-9]{3})$/{print}')
-          echo "IS_ORG_MEMBER=$HTTP_CODE" >> "$GITHUB_ENV"
+          case "$HTTP_CODE" in
+            204)
+              echo "Elastic org member"
+              echo "is_member=true" >> "$GITHUB_OUTPUT"
+              ;;
+            404)
+              echo "Not an Elastic org member"
+              echo "is_member=false" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::Unexpected membership API status: ${HTTP_CODE:-empty}"
+              exit 1
+              ;;
+          esac
       - name: "Add comment to community pull requests"
         uses: actions/github-script@v6
-        if: ${{ env.IS_ORG_MEMBER != '204' }}
+        if: ${{ steps.org_membership.outputs.is_member == 'false' }}
         with:
           script: |
             github.rest.issues.createComment({
@@ -49,7 +68,7 @@ jobs:
             });
       - name: "Comment on PRs without a help wanted issue"
         uses: actions/github-script@v6
-        if: ${{ env.IS_ORG_MEMBER != '204' }}
+        if: ${{ steps.org_membership.outputs.is_member == 'false' }}
         with:
           script: |
             const owner = context.repo.owner;
