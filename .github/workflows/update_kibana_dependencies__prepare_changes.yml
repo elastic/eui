@@ -120,8 +120,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          prep_commits=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
-            --jq '.content' | base64 -d | grep -v '^\s*#' | grep -v '^\s*$' | sort -u || true)
+          content=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
+            --jq '.content' | base64 -d)
+
+          # @previous first, then @next. Unsectioned URLs count as @next.
+          prep_commits=$(awk '
+            BEGIN { s="n" }
+            /^# @previous/ { s="p"; next }
+            /^# @next/ { s="n"; next }
+            /^#/ || NF==0 { next }
+            s=="p" { p = p $0 ORS }
+            s=="n" { n = n $0 ORS }
+            END { printf "%s%s", p, n }
+          ' <<< "$content")
 
           if [[ -z "$prep_commits" ]]; then
             echo "No Kibana prep commits to cherry-pick"
@@ -150,7 +161,8 @@ jobs:
               continue
             fi
 
-            if git cherry-pick "$sha"; then
+            # Incoming commit wins
+            if git cherry-pick -X theirs "$sha"; then
               short_sha="${sha:0:8}"
               notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
             elif git diff --quiet && git diff --cached --quiet; then
@@ -158,6 +170,7 @@ jobs:
               git cherry-pick --skip
             else
               echo "::error::Cherry-pick of $sha from PR #$pr_number failed"
+              echo "conflict_sha=$sha" >> "$GITHUB_OUTPUT"
               git cherry-pick --abort || true
               exit 1
             fi
@@ -170,6 +183,26 @@ jobs:
               echo 'CHERRY_PICK_DELIMITER'
             } >> "$GITHUB_OUTPUT"
           fi
+      - name: Notify Slack of cherry-pick conflicts
+        if: ${{ failure() && inputs.nightly && steps.cherry_pick.outputs.conflict_sha }}
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.KIBANA_NIGHTLY_SLACK_WEBHOOK }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        # language=bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${SLACK_WEBHOOK_URL:-}" ]]; then
+            echo "::warning::KIBANA_NIGHTLY_SLACK_WEBHOOK is not set"
+            exit 0
+          fi
+          compare_url="https://github.com/elastic/eui/compare/$EUI_LAST_RELEASE...$EUI_REF"
+          slack_text=':red_circle: EUI nightly PR could not be updated because of cherry-pick conflicts'
+          slack_text+=$'\n'"<$RUN_URL|GitHub Actions run> · <$compare_url|EUI main diff>"
+          payload="$(jq -n --arg text "$slack_text" '{ text: $text }')"
+          curl -fsSL -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
       - name: Save current EUI i18n tokens
         id: save_old_tokens
         # language=bash
