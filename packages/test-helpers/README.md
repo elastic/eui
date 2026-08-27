@@ -52,7 +52,7 @@ their own version at runtime.
 | `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
 | `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
 | `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
-| `EuiRangeObject` | [src/components/range/README.md](src/components/range/README.md) |
+| `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 
 ## Contributing

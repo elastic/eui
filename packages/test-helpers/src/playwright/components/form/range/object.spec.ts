@@ -9,7 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiRangeObject } from './object';
-import { storyUrl } from '../../../storybook';
+import { storyUrl } from '../../../../storybook';
 
 /**
  * Validates `EuiRangeObject` against the live component in EUI Storybook. The

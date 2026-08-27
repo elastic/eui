@@ -9,7 +9,7 @@
 import { test, expect } from '@playwright/test';
 
 import { EuiRangeObject } from './object';
-import { storyUrl } from '../../../storybook';
+import { storyUrl } from '../../../../storybook';
 
 const TEST_SUBJ = 'testRange';
 

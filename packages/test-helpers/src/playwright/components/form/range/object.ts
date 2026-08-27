@@ -8,8 +8,8 @@
 
 import type { Locator } from '@playwright/test';
 
-import { BaseObject, type ObjectScope } from '../../base_object';
-import { EuiRangeSelectors } from '../../../components/range/selectors';
+import { BaseObject, type ObjectScope } from '../../../base_object';
+import { EuiRangeSelectors } from '../../../../components/form/range/selectors';
 
 /**
  * Playwright Component Object for {@link
