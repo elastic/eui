@@ -139,7 +139,7 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
     const args = [
       '--quiet',
       `--out-dir=${outDir}`,
-      '--extensions=.js,.ts,.tsx',
+      '--extensions=.js,.jsx,.ts,.tsx',
       `--ignore=${ignore}`,
     ];
 

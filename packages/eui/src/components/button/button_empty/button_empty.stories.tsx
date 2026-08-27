@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';

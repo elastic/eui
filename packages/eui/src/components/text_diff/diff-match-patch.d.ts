@@ -6,16 +6,13 @@
  * Side Public License, v 1.
  */
 
-declare module 'text-diff' {
-  interface ConstructorProps {
-    timeout: number;
-  }
-
+declare module 'diff-match-patch' {
   type DiffElement = [-1 | 0 | 1, string];
 
-  class Diff {
-    constructor({ timeout }: ConstructorProps);
-    main: (initialText: string, currentText: string) => DiffElement[];
+  class DiffMatchPatch {
+    Diff_Timeout: number;
+    diff_main: (initialText: string, currentText: string) => DiffElement[];
   }
-  export = Diff;
+
+  export = DiffMatchPatch;
 }

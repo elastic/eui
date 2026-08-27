@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { faker } from '@faker-js/faker';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';

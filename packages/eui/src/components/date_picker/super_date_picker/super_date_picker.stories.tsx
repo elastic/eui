@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { css } from '@emotion/react';
-import type { Meta, ReactRenderer, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, ReactRenderer, StoryObj } from '@storybook/react-vite';
 import { expect, fireEvent, waitFor } from 'storybook/test';
 import type { StoryContext } from 'storybook/internal/csf';
 
