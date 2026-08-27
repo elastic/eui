@@ -149,7 +149,6 @@ export default class YearDropdown extends React.Component {
   renderDropdown = () => (
     <YearDropdownOptions
       key="dropdown"
-      ref="options"
       year={this.props.year}
       onChange={this.onChange}
       onCancel={this.toggleDropdown}

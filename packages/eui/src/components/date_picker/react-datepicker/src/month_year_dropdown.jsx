@@ -166,7 +166,6 @@ export default class MonthYearDropdown extends React.Component {
   renderDropdown = () => (
     <MonthYearDropdownOptions
       key="dropdown"
-      ref="options"
       date={this.props.date}
       dateFormat={this.props.dateFormat}
       onChange={this.onChange}
