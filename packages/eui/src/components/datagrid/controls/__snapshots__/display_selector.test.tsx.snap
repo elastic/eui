@@ -25,75 +25,95 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
     <div
       class="euiFormRow__fieldWrapper"
     >
-      <fieldset
+      <div
+        aria-label="Density"
         class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
+        data-display="regular"
+        data-layout="horizontal"
+        data-size="s"
         data-test-subj="densityButtonGroup"
+        data-variant="selection"
         id="generated-id"
+        role="group"
       >
-        <legend
-          class="emotion-euiScreenReaderOnly"
-        >
-          Density
-        </legend>
         <div
-          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+          class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
         >
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="compact"
-            title="Compact"
-            type="button"
+          <div
+            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
           >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="Compact"
+              <button
+                aria-pressed="false"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="compact"
+                id="compact"
+                title="Compact"
+                type="button"
               >
-                Compact
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="normal"
-            title="Normal"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  <span
+                    class="eui-textTruncate css-1ryezsz-s"
+                    data-text="Compact"
+                  >
+                    Compact
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="Normal"
+              <button
+                aria-pressed="false"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="normal"
+                id="normal"
+                title="Normal"
+                type="button"
               >
-                Normal
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="expanded"
-            title="Expanded"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  <span
+                    class="eui-textTruncate css-1ryezsz-s"
+                    data-text="Normal"
+                  >
+                    Normal
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="Expanded"
+              <button
+                aria-pressed="false"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="expanded"
+                id="expanded"
+                title="Expanded"
+                type="button"
               >
-                Expanded
-              </span>
-            </span>
-          </button>
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  <span
+                    class="eui-textTruncate css-1ryezsz-s"
+                    data-text="Expanded"
+                  >
+                    Expanded
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-      </fieldset>
+      </div>
     </div>
   </div>
   <div>
@@ -121,56 +141,71 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
         class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
         id="generated-id"
       >
-        <fieldset
+        <div
+          aria-label="Lines per row"
           class="euiButtonGroup emotion-euiButtonGroup-fullWidth-RowHeightControl"
+          data-display="regular"
+          data-layout="horizontal"
+          data-size="s"
           data-test-subj="rowHeightButtonGroup"
+          data-variant="selection"
+          role="group"
         >
-          <legend
-            class="emotion-euiScreenReaderOnly"
-          >
-            Lines per row
-          </legend>
           <div
-            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+            class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
           >
-            <button
-              aria-pressed="false"
-              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-              data-test-subj="auto"
-              title="Auto"
-              type="button"
+            <div
+              class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
             >
-              <span
-                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+              <div
+                class="euiButtonGroup__item"
               >
-                <span
-                  class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                  data-text="Auto"
+                <button
+                  aria-pressed="false"
+                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                  data-test-subj="auto"
+                  id="auto"
+                  title="Auto"
+                  type="button"
                 >
-                  Auto
-                </span>
-              </span>
-            </button>
-            <button
-              aria-pressed="true"
-              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-              data-test-subj="static"
-              title="Static"
-              type="button"
-            >
-              <span
-                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  <span
+                    class="emotion-euiButtonDisplayContent"
+                  >
+                    <span
+                      class="eui-textTruncate css-1ryezsz-s"
+                      data-text="Auto"
+                    >
+                      Auto
+                    </span>
+                  </span>
+                </button>
+              </div>
+              <div
+                class="euiButtonGroup__item"
               >
-                <span
-                  class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                  data-text="Static"
+                <button
+                  aria-pressed="true"
+                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                  data-test-subj="static"
+                  id="static"
+                  title="Static"
+                  type="button"
                 >
-                  Static
-                </span>
-              </span>
-            </button>
+                  <span
+                    class="emotion-euiButtonDisplayContent"
+                  >
+                    <span
+                      class="eui-textTruncate css-1ryezsz-s"
+                      data-text="Static"
+                    >
+                      Static
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
-        </fieldset>
+        </div>
         <div
           class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
@@ -272,75 +307,95 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
             <div
               class="euiFormRow__fieldWrapper"
             >
-              <fieldset
+              <div
+                aria-label="Density"
                 class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
+                data-display="regular"
+                data-layout="horizontal"
+                data-size="s"
                 data-test-subj="densityButtonGroup"
+                data-variant="selection"
                 id="generated-id"
+                role="group"
               >
-                <legend
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Density
-                </legend>
                 <div
-                  class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+                  class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
                 >
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="compact"
-                    title="Compact"
-                    type="button"
+                  <div
+                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
                   >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                    <div
+                      class="euiButtonGroup__item"
                     >
-                      <span
-                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                        data-text="Compact"
+                      <button
+                        aria-pressed="false"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        data-test-subj="compact"
+                        id="compact"
+                        title="Compact"
+                        type="button"
                       >
-                        Compact
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="normal"
-                    title="Normal"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                        <span
+                          class="emotion-euiButtonDisplayContent"
+                        >
+                          <span
+                            class="eui-textTruncate css-1ryezsz-s"
+                            data-text="Compact"
+                          >
+                            Compact
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      class="euiButtonGroup__item"
                     >
-                      <span
-                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                        data-text="Normal"
+                      <button
+                        aria-pressed="false"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        data-test-subj="normal"
+                        id="normal"
+                        title="Normal"
+                        type="button"
                       >
-                        Normal
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="expanded"
-                    title="Expanded"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                        <span
+                          class="emotion-euiButtonDisplayContent"
+                        >
+                          <span
+                            class="eui-textTruncate css-1ryezsz-s"
+                            data-text="Normal"
+                          >
+                            Normal
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      class="euiButtonGroup__item"
                     >
-                      <span
-                        class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                        data-text="Expanded"
+                      <button
+                        aria-pressed="false"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        data-test-subj="expanded"
+                        id="expanded"
+                        title="Expanded"
+                        type="button"
                       >
-                        Expanded
-                      </span>
-                    </span>
-                  </button>
+                        <span
+                          class="emotion-euiButtonDisplayContent"
+                        >
+                          <span
+                            class="eui-textTruncate css-1ryezsz-s"
+                            data-text="Expanded"
+                          >
+                            Expanded
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </fieldset>
+              </div>
             </div>
           </div>
           <div
@@ -365,56 +420,71 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                 class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
                 id="generated-id"
               >
-                <fieldset
+                <div
+                  aria-label="Lines per row"
                   class="euiButtonGroup emotion-euiButtonGroup-fullWidth-RowHeightControl"
+                  data-display="regular"
+                  data-layout="horizontal"
+                  data-size="s"
                   data-test-subj="rowHeightButtonGroup"
+                  data-variant="selection"
+                  role="group"
                 >
-                  <legend
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    Lines per row
-                  </legend>
                   <div
-                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+                    class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
                   >
-                    <button
-                      aria-pressed="false"
-                      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                      data-test-subj="auto"
-                      title="Auto"
-                      type="button"
+                    <div
+                      class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
                     >
-                      <span
-                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                      <div
+                        class="euiButtonGroup__item"
                       >
-                        <span
-                          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                          data-text="Auto"
+                        <button
+                          aria-pressed="false"
+                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                          data-test-subj="auto"
+                          id="auto"
+                          title="Auto"
+                          type="button"
                         >
-                          Auto
-                        </span>
-                      </span>
-                    </button>
-                    <button
-                      aria-pressed="true"
-                      class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-                      data-test-subj="static"
-                      title="Static"
-                      type="button"
-                    >
-                      <span
-                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                          <span
+                            class="emotion-euiButtonDisplayContent"
+                          >
+                            <span
+                              class="eui-textTruncate css-1ryezsz-s"
+                              data-text="Auto"
+                            >
+                              Auto
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                      <div
+                        class="euiButtonGroup__item"
                       >
-                        <span
-                          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                          data-text="Static"
+                        <button
+                          aria-pressed="true"
+                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                          data-test-subj="static"
+                          id="static"
+                          title="Static"
+                          type="button"
                         >
-                          Static
-                        </span>
-                      </span>
-                    </button>
+                          <span
+                            class="emotion-euiButtonDisplayContent"
+                          >
+                            <span
+                              class="eui-textTruncate css-1ryezsz-s"
+                              data-text="Static"
+                            >
+                              Static
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </fieldset>
+                </div>
                 <div
                   class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
                 >

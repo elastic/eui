@@ -11,16 +11,16 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
   class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
 >
   <div
-    class="euiFilterButton__wrapper css-1nn8k4u-wrapper-hasToggle"
+    class="euiFilterButton__wrapper css-1elc3kl-wrapper-hasToggle"
   >
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+      class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-s-empty-text-euiFilterButton-toggle"
       data-test-subj="filter-button_generated-id"
       type="button"
     >
       <span
-        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
+        class="emotion-euiButtonDisplayContent-euiFilterButton__content"
       >
         <span
           class="euiFilterButton__text emotion-euiFilterButton__text"
@@ -36,7 +36,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
     class="euiPopover emotion-euiPopover-inline-block"
   >
     <div
-      class="euiFilterButton__wrapper css-ln4f6z-wrapper"
+      class="euiFilterButton__wrapper css-xcxo9u-wrapper"
     >
       <button
         aria-expanded="false"
