@@ -16,7 +16,8 @@ export type IconCategory =
   | 'elasticLogo'
   | 'thirdPartyLogo'
   | 'ml'
-  | 'token';
+  | 'token'
+  | 'internal';
 
 type IconMetadata = {
   category?: IconCategory;
@@ -1766,7 +1767,9 @@ export const typeToPathMap = {
   sun: withMetadata(() => import('./assets/sun'), {
     synonyms: ['sun', 'light', 'day', 'theme', 'bright'],
   }),
-  swatchInput: () => import('./assets/swatch_input'), // Undocumented on purpose. Has an extra stroke for EuiColorPicker
+  swatchInput: withMetadata(() => import('./assets/swatch_input'), {
+    category: 'internal',
+  }), // Internal EuiColorPicker swatch; extra SVG stroke, not a public glyph
   symlink: withMetadata(() => import('./assets/symlink'), {
     synonyms: ['symlink', 'shortcut', 'alias', 'link', 'reference'],
   }),
@@ -2113,6 +2116,7 @@ const getTypeToPathMapMetadata = (
     synonyms: metadata?.synonyms,
   };
 };
+
 // Sorted alphabetically rather than by `typeToPathMap` insertion order, which has
 // drifted over time. These lists are only consumed by the docs site, where icons
 // are expected to be browsable in alphabetical order.
