@@ -140,14 +140,14 @@ export const WithTooltips: Story = {
       },
       {
         id: 'button2',
-        iconType: 'securitySignalResolved',
+        iconType: 'check',
         label: 'Standard tooltip',
         toolTipContent: 'Hello world',
         autoFocus: true, // dev-only usage to showcase tooltip on load
       } as EuiButtonGroupOptionProps,
       {
         id: 'customToolTipProps',
-        iconType: 'securitySignalDetected',
+        iconType: 'warning',
         label: 'Custom tooltip',
         toolTipContent: 'Custom tooltip position',
         toolTipProps: {
