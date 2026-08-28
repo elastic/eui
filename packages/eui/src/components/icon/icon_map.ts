@@ -901,12 +901,12 @@ export const typeToPathMap = {
   }),
   fold: () => import('./assets/fold'), // Deprecated in favor of `minimize`
   folder: () => import('./assets/folder_close'),
-  folderClosed: () => import('./assets/folder_close'),
+  folderClosed: () => import('./assets/folder_close'), // Deprecated in favor of `folderClose`
   folderClose: withMetadata(() => import('./assets/folder_close'), {
     synonyms: ['folder', 'closed', 'collapse', 'directory', 'archive'],
   }),
   folderCheck: () => import('./assets/folder_check'), // Deprecated in favor of `check`
-  folderExclamation: () => import('./assets/folder_exclamation'),
+  folderExclamation: () => import('./assets/folder_exclamation'), // Deprecated; contextual replacement
   folderOpen: withMetadata(() => import('./assets/folder_open'), {
     synonyms: ['folder', 'open', 'expand', 'directory', 'browse'],
   }),
@@ -1757,8 +1757,8 @@ export const typeToPathMap = {
   stop: withMetadata(() => import('./assets/stop'), {
     synonyms: ['stop', 'halt', 'end', 'terminate', 'square'],
   }),
-  stopFill: () => import('./assets/stop_fill'),
-  stopSlash: () => import('./assets/stop_slash'),
+  stopFill: () => import('./assets/stop_fill'), // Deprecated; contextual replacement
+  stopSlash: () => import('./assets/stop_slash'), // Deprecated; contextual replacement
   storage: withMetadata(() => import('./assets/storage'), {
     synonyms: ['storage', 'disk', 'drive', 'save', 'data store'],
   }),
@@ -2154,6 +2154,8 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'editorComment',
   'export',
   'folderCheck',
+  'folderClosed',
+  'folderExclamation',
   'frameNext',
   'folderOpened',
   'analyzeEvent',
@@ -2204,6 +2206,8 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'starMinusFill',
   'starPlusEmpty',
   'starPlusFill',
+  'stopFill',
+  'stopSlash',
   'string',
   'stats',
   'tableOfContents',

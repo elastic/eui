@@ -95,6 +95,7 @@ export const DEPRECATED_ICON_ALIASES = {
   filterInCircle: 'filter',
   fold: 'minimize',
   folderCheck: 'check',
+  folderClosed: 'folderClose',
   folderOpened: 'folderOpen',
   frameNext: 'chevronSingleRight',
   framePrevious: 'chevronSingleLeft',
@@ -231,7 +232,23 @@ export const DEPRECATED_ICONS_WITHOUT_REPLACEMENT: ReadonlySet<string> =
     'securitySignalDetected',
   ]);
 
+export const DEPRECATED_ICONS_WITH_GUIDANCE = {
+  folderExclamation:
+    'Use `linkSlash` for unlink actions or `hourglass` for Kibana Cases status.',
+  stopFill:
+    'Use `EuiColorPickerSwatch` for a color chip or `stop` otherwise.',
+  stopSlash:
+    'Use `EuiColorPickerSwatch` for no/transparent color or `stop` otherwise.',
+} as const;
+
 type DeprecatedIconAlias = keyof typeof DEPRECATED_ICON_ALIASES;
+type DeprecatedIconWithGuidance = keyof typeof DEPRECATED_ICONS_WITH_GUIDANCE;
+
+const isDeprecatedIconWithGuidance = (
+  value: string
+): value is DeprecatedIconWithGuidance =>
+  value in DEPRECATED_ICONS_WITH_GUIDANCE;
+
 type StaticStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;
 
 const getComponentName = (
@@ -362,6 +379,18 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
         }
 
         if (!isDeprecatedIconAlias(iconType)) {
+          if (isDeprecatedIconWithGuidance(iconType)) {
+            context.report({
+              node: staticStringNode,
+              messageId: 'deprecatedIconGuidance',
+              data: {
+                iconType,
+                guidance: DEPRECATED_ICONS_WITH_GUIDANCE[iconType],
+              },
+            });
+            return;
+          }
+
           if (DEPRECATED_ICONS_WITHOUT_REPLACEMENT.has(iconType)) {
             context.report({
               node: staticStringNode,
@@ -403,6 +432,8 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
         'Icon `{{iconType}}` is deprecated and has no direct replacement.',
       deprecatedIconAlias:
         'Icon alias `{{alias}}` is deprecated. Use `{{replacement}}` instead.',
+      deprecatedIconGuidance:
+        'Icon `{{iconType}}` is deprecated. {{guidance}}',
     },
   },
   defaultOptions: [],
