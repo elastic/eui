@@ -17,8 +17,9 @@ source .buildkite/scripts/common/utils.sh
 ############################################################
 
 # `vrt_passed` is set by `step_vrt_report.sh`: "true" on pass, "skipped" when the
-# `skip-vrt` label is present, "false" only when visual differences were found.
-# Anything other than "false" means there is nothing to update.
+# `skip-vrt` label is present, "false" only when visual differences were found,
+# "error" on infrastructure failure (no diffs). Anything other than "false"
+# means there is nothing to update.
 
 vrt_passed="$(buildkite-agent meta-data get vrt_passed --default "true")"
 

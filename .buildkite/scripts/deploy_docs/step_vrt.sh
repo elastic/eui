@@ -173,8 +173,6 @@ if compgen -G "${CURRENT_DIR}/*-received.png" > /dev/null 2>&1; then
   buildkite-agent artifact upload "${CURRENT_DIR}/*-received.png"
 fi
 
-buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "${diff_count}"
-
 # Upload diff images to GCS for public URLs in the GitHub PR comment
 GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
 bucket_directory="$(buildkite-agent meta-data get bucket_directory)"
@@ -275,6 +273,8 @@ for component in "${component_order[@]}"; do
   printf '%s' "${annotation_rows_by_component[$component]}" > "${ANN_ROWS_DIR}/${component}__${VRT_VARIANT}.html"
   printf '%s' "${pr_comment_rows_by_component[$component]}" > "${PR_ROWS_DIR}/${component}__${VRT_VARIANT}.html"
 done
+
+buildkite-agent meta-data set "diff_count_${VRT_VARIANT}" "${diff_count}"
 
 # Fail the step so Buildkite marks it red.
 exit 1

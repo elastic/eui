@@ -26,7 +26,7 @@ for _variant in "${_VARIANTS[@]}"; do
   echo "VRT result ${_variant}: ${_result:-missing}"
   if [[ -z "${_result}" ]]; then
     echo "Variant ${_variant} did not report a result."
-    buildkite-agent meta-data set vrt_passed "false"
+    buildkite-agent meta-data set vrt_passed "error"
     exit 1
   fi
   [[ "${_result}" != "skipped" ]] && all_skipped=false
@@ -74,8 +74,6 @@ fi
 echo "^^^ +++"
 echo "Visual regression tests failed."
 
-buildkite-agent meta-data set vrt_passed "false"
-
 total_count=0
 for _variant in "${_VARIANTS[@]}"; do
   _count="$(buildkite-agent meta-data get "diff_count_${_variant}" --default "0")"
@@ -85,8 +83,12 @@ done
 if [[ "${total_count}" -eq 0 ]]; then
   echo "No diff images found. This looks like an infrastructure failure."
   echo "Check the Playwright output in the parallel VRT steps for connection or timeout errors."
+  buildkite-agent meta-data set vrt_passed "error"
   exit 1
 fi
+
+# "false" is reserved for "visual differences were found"
+buildkite-agent meta-data set vrt_passed "false"
 
 echo "Found ${total_count} visual difference(s) across all variants. Generating report..."
 
