@@ -127,3 +127,53 @@ import { FontDefaultUnitsPreview } from './preview_font_settings';
 </Example>
 
 <EuiSpacer />
+
+## Title
+
+These tokens set the defaults for titles and headings. Prefer [EuiTitle](../../../../components/display/title.mdx) when rendering titles rather than applying the tokens directly.
+
+import { FontTitleWeightPreview } from './preview_font_settings';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.font.title.weight` <Badge color="hollow">token</Badge>
+
+    A font weight key for setting the base weight for titles and headings. Maps to a value from [`euiTheme.font.weight`](./font-weight.mdx).
+
+  </Example.Description>
+  <Example.Preview>
+    <FontTitleWeightPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+import { FontTitleLetterSpacingPreview } from './preview_font_settings';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.font.title.letterSpacing` <Badge color="hollow">token</Badge>
+
+    Letter-spacing applied to titles and headings. Optional; Borealis uses `-0.2px`.
+
+  </Example.Description>
+  <Example.Preview>
+    <FontTitleLetterSpacingPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      letter-spacing: ${euiTheme.font.title.letterSpacing};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
