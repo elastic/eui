@@ -24,15 +24,37 @@ export interface _EuiThemeBorderWidthValues {
 
 export interface _EuiThemeBorderRadiusValues {
   /**
+   * @deprecated - use a semantic token instead (e.g. `inline`, `control` or `panel`)
    * Primary corner radius size
    * - Default value: 4px
    */
   medium: CSSProperties['borderRadius'];
   /**
+   * @deprecated - use a semantic token instead (e.g. `inline`, `control` or `panel`)
    * Small corner radius size
    * - Default value: 4px
    */
   small: CSSProperties['borderRadius'];
+  /**
+   * Inline or text-adjacent content (e.g. skeleton bars, swatches, inline code)
+   * - Default value: 4px
+   */
+  inline: CSSProperties['borderRadius'];
+  /**
+   * Controls and form elements (e.g. buttons, inputs)
+   * - Default value: 8px
+   */
+  control: CSSProperties['borderRadius'];
+  /**
+   * Panels, cards, and popovers
+   * - Default value: 12px
+   */
+  panel: CSSProperties['borderRadius'];
+  /**
+   * App or layout layer (e.g. framed shell, side nav)
+   * - Default value: 16px
+   */
+  frame: CSSProperties['borderRadius'];
 }
 
 export interface _EuiThemeBorderColorValues {

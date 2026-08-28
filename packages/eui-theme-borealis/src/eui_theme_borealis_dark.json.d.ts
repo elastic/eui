@@ -27,6 +27,10 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
     euiBorderColor: string;
     euiBorderRadius: string;
     euiBorderRadiusSmall: string;
+    euiBorderRadiusInline: string;
+    euiBorderRadiusControl: string;
+    euiBorderRadiusPanel: string;
+    euiBorderRadiusFrame: string;
     euiBorderThick: string;
     euiBorderThin: string;
     euiBorderEditable: string;

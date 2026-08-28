@@ -26,6 +26,10 @@
   "euiBorderColor": "#2B394F",
   "euiBorderRadius": "4px",
   "euiBorderRadiusSmall": "4px",
+  "euiBorderRadiusInline": "4px",
+  "euiBorderRadiusControl": "8px",
+  "euiBorderRadiusPanel": "12px",
+  "euiBorderRadiusFrame": "16px",
   "euiBorderThick": "2px solid #2B394F",
   "euiBorderThin": "1px solid #2B394F",
   "euiBorderEditable": "2px dotted #2B394F",
@@ -59,8 +63,8 @@
   "euiFormControlCompressedHeight": "32px",
   "euiFormControlPadding": "12px",
   "euiFormControlCompressedPadding": "8px",
-  "euiFormControlBorderRadius": "4px",
-  "euiFormControlCompressedBorderRadius": "4px",
+  "euiFormControlBorderRadius": "8px",
+  "euiFormControlCompressedBorderRadius": "8px",
   "euiRadioSize": "16px",
   "euiCheckBoxSize": "16px",
   "euiCheckboxBorderRadius": "4px",
@@ -97,7 +101,7 @@
   },
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
-  "euiFormControlLayoutGroupInputCompressedBorderRadius": "2px",
+  "euiFormControlLayoutGroupInputCompressedBorderRadius": "8px",
   "euiHeaderBackgroundColor": "#111C2C",
   "euiHeaderDarkBackgroundColor": "#111C2C",
   "euiHeaderBorderColor": "#2B394F",
@@ -114,7 +118,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "4px"
+    "borderRadiusMedium": "12px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
