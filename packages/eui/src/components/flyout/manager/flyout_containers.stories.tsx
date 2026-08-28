@@ -7,7 +7,7 @@
  */
 
 import { actions } from 'storybook/actions';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
 
 import { EuiBreakpointSize, useEuiTheme } from '../../../services';

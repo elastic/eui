@@ -28,41 +28,30 @@ import PropTypes from "prop-types";
 
 import { EuiIcon } from "../../../icon";
 
-import MonthDropdownOptions from "./month_dropdown_options";
-import * as utils from "./date_utils";
+import YearDropdownOptions from "./year_dropdown_options";
+import { getYear } from "./date_utils";
 
-export default class MonthDropdown extends React.Component {
+export default class YearDropdown extends React.Component {
   static propTypes = {
+    adjustDateOnChange: PropTypes.bool,
     dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
-    locale: PropTypes.string,
-    dateFormat: PropTypes.string.isRequired,
-    month: PropTypes.number.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
     onChange: PropTypes.func.isRequired,
-    useShortMonthInDropdown: PropTypes.bool,
+    scrollableYearDropdown: PropTypes.bool,
+    year: PropTypes.number.isRequired,
+    yearDropdownItemNumber: PropTypes.number,
+    date: PropTypes.object,
+    onSelect: PropTypes.func,
+    setOpen: PropTypes.func,
     accessibleMode: PropTypes.bool,
     onDropdownToggle: PropTypes.func,
     buttonRef: PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-    this.localeData = utils.getLocaleDataForLocale(this.props.locale);
-    this.monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
-      this.props.useShortMonthInDropdown
-        ? M =>
-            utils.getMonthShortInLocale(this.localeData, utils.newDate({ M }))
-        : M =>
-            utils.getMonthInLocale(
-              this.localeData,
-              utils.newDate({ M }),
-              this.props.dateFormat
-            )
-    );
-
-    this.state = {
-      dropdownVisible: false
-    };
-  }
+  state = {
+    dropdownVisible: false
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -71,22 +60,6 @@ export default class MonthDropdown extends React.Component {
       this.state.dropdownVisible === false // dropdown is no longer visible
     ) {
       this.readViewref.focus();
-    }
-
-    if (prevProps.locale !== this.props.locale) {
-      this.localeData = utils.getLocaleDataForLocale(this.props.locale);
-      this.monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
-        this.props.useShortMonthInDropdown
-          ? M =>
-              utils.getMonthShortInLocale(this.localeData, utils.newDate({ M }))
-          : M =>
-              utils.getMonthInLocale(
-                this.localeData,
-                utils.newDate({ M }),
-                this.props.dateFormat
-              )
-      );
-      this.forceUpdate();
     }
   }
 
@@ -119,98 +92,117 @@ export default class MonthDropdown extends React.Component {
     }
   };
 
-  renderSelectOptions = monthNames =>
-    monthNames.map((M, i) => (
-      <option key={i} value={i}>
-        {M}
-      </option>
-    ));
+  renderSelectOptions = () => {
+    const minYear = this.props.minDate ? getYear(this.props.minDate) : 1900;
+    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : 2100;
 
-  renderSelectMode = monthNames => (
+    const options = [];
+    for (let i = minYear; i <= maxYear; i++) {
+      options.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      );
+    }
+    return options;
+  };
+
+  onSelectChange = e => {
+    this.onChange(e.target.value);
+  };
+
+  renderSelectMode = () => (
     <select
-      value={this.props.month}
-      className="react-datepicker__month-select"
-      onChange={e => this.onChange(e.target.value)}
+      value={this.props.year}
+      className="react-datepicker__year-select"
+      onChange={this.onSelectChange}
     >
-      {this.renderSelectOptions(monthNames)}
+      {this.renderSelectOptions()}
     </select>
   );
 
-  renderReadView = (visible, monthNames) => (
+  renderReadView = visible => (
     <div
       key="read"
       ref={this.setReadViewRef}
       style={{ visibility: visible ? "visible" : "hidden" }}
-      className="react-datepicker__month-read-view"
-      onClick={this.toggleDropdown}
+      className="react-datepicker__year-read-view"
+      onClick={event => this.toggleDropdown(event)}
       onKeyDown={this.onReadViewKeyDown}
       tabIndex={this.props.accessibleMode ? "0" : undefined}
-      aria-label={`Button. Open the month selector. ${
-        monthNames[this.props.month]
+      aria-label={`Button. Open the year selector. ${
+        this.props.year
       } is currently selected.`}
     >
-      <span className="react-datepicker__month-read-view--selected-month">
-        {monthNames[this.props.month]}
+      <span className="react-datepicker__year-read-view--selected-year">
+        {this.props.year}
       </span>
       <EuiIcon
         type="chevronSingleDown"
         size="s"
         color="subdued"
-        className="react-datepicker__month-read-view--down-arrow"
+        className="react-datepicker__year-read-view--down-arrow"
       />
     </div>
   );
 
-  renderDropdown = monthNames => (
-    <MonthDropdownOptions
+  renderDropdown = () => (
+    <YearDropdownOptions
       key="dropdown"
-      ref="options"
-      month={this.props.month}
-      monthNames={monthNames}
+      year={this.props.year}
       onChange={this.onChange}
       onCancel={this.toggleDropdown}
+      minDate={this.props.minDate}
+      maxDate={this.props.maxDate}
+      scrollableYearDropdown={this.props.scrollableYearDropdown}
+      yearDropdownItemNumber={this.props.yearDropdownItemNumber}
       accessibleMode={this.props.accessibleMode}
     />
   );
 
-  renderScrollMode = monthNames => {
+  renderScrollMode = () => {
     const { dropdownVisible } = this.state;
-    let result = [this.renderReadView(!dropdownVisible, monthNames)];
+    let result = [this.renderReadView(!dropdownVisible)];
     if (dropdownVisible) {
-      result.unshift(this.renderDropdown(monthNames));
+      result.unshift(this.renderDropdown());
     }
     return result;
   };
 
-  onChange = month => {
+  onChange = year => {
     this.toggleDropdown();
-    if (month !== this.props.month) {
-      this.props.onChange(month);
-    }
+    if (year === this.props.year) return;
+    this.props.onChange(year);
   };
 
   toggleDropdown = () => {
-    const isOpen = !this.state.dropdownVisible
+    const isOpen = !this.state.dropdownVisible;
     this.setState({
       dropdownVisible: isOpen
     });
-    this.props.onDropdownToggle(isOpen, 'month');
-  }
+    this.props.onDropdownToggle(isOpen, 'year');
+  };
+
+  onSelect = (date, event) => {
+    if (this.props.onSelect) {
+      this.props.onSelect(date, event);
+    }
+  };
 
   render() {
     let renderedDropdown;
     switch (this.props.dropdownMode) {
       case "scroll":
-        renderedDropdown = this.renderScrollMode(this.monthNames);
+        renderedDropdown = this.renderScrollMode();
         break;
       case "select":
-        renderedDropdown = this.renderSelectMode(this.monthNames);
+        renderedDropdown = this.renderSelectMode();
         break;
     }
 
     return (
       <div
-        className={`react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--${
+        className={`react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--${
           this.props.dropdownMode
         }`}
       >

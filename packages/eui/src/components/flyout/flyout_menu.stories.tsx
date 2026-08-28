@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 
 import { action } from 'storybook/actions';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';

@@ -57,7 +57,6 @@ export default class MonthDropdownOptions extends React.Component {
             this.props.accessibleMode && this.state.preSelection === i
         })}
         key={month}
-        ref={month}
         onClick={this.onChange.bind(this, i)}
       >
         {this.props.month === i ? (

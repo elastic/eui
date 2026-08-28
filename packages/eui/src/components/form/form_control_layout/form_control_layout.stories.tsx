@@ -8,7 +8,7 @@
 
 import React, { ChangeEvent, useState } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
 import { hideStorybookControls } from '../../../../.storybook/utils';

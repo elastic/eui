@@ -8,7 +8,7 @@
 
 import { action } from 'storybook/actions';
 import type { EuiFlyoutCloseMeta } from '../types';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, {
   useCallback,
   useEffect,

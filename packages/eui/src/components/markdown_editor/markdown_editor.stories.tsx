@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
 import { EuiMarkdownEditor, EuiMarkdownEditorProps } from './markdown_editor';
