@@ -16,7 +16,8 @@ export type IconCategory =
   | 'elasticLogo'
   | 'thirdPartyLogo'
   | 'ml'
-  | 'token';
+  | 'token'
+  | 'internal';
 
 type IconMetadata = {
   category?: IconCategory;
@@ -120,12 +121,12 @@ export const typeToPathMap = {
   alignTopRight: withMetadata(() => import('./assets/align_top_right'), {
     synonyms: ['align', 'top', 'right', 'corner', 'position', 'layout'],
   }),
-  analyzeEvent: () => import('./assets/analyze_event'),
-  annotation: () => import('./assets/annotation'),
+  analyzeEvent: () => import('./assets/analyze_event'), // Deprecated in favor of `cube`
+  annotation: () => import('./assets/annotation'), // Deprecated in favor of `flag`
   chartAnomaly: withMetadata(() => import('./assets/chart_anomaly'), {
     synonyms: ['anomaly', 'chart', 'outlier', 'detection', 'spike', 'unusual'],
   }),
-  anomalySwimLane: () => import('./assets/anomaly_swim_lane'),
+  anomalySwimLane: () => import('./assets/anomaly_swim_lane'), // Deprecated in favor of `chartHeatmap`
   apmApp: withMetadata(() => import('./assets/app_apm'), { category: 'app' }),
   chartWaterfall: withMetadata(() => import('./assets/chart_waterfall'), {
     synonyms: [
@@ -140,7 +141,7 @@ export const typeToPathMap = {
   appSearchApp: withMetadata(() => import('./assets/app_app_search'), {
     category: 'app',
   }),
-  apps: () => import('./assets/apps'),
+  apps: () => import('./assets/apps'), // Deprecated in favor of `grid`
   chevronSingleDown: withMetadata(
     () => import('./assets/chevron_single_down'),
     { synonyms: ['chevron', 'down', 'dropdown', 'expand', 'arrow', 'caret'] }
@@ -171,7 +172,6 @@ export const typeToPathMap = {
     () => import('./assets/chevron_limit_right'),
     { synonyms: ['chevron', 'limit', 'last', 'end', 'final', 'jump', 'skip'] }
   ),
-  article: () => import('./assets/article'),
   asterisk: withMetadata(() => import('./assets/asterisk'), {
     synonyms: [
       'star',
@@ -196,6 +196,7 @@ export const typeToPathMap = {
       'repository',
     ],
   }),
+  article: () => import('./assets/article'), // Deprecated with no replacement
   axisX: withMetadata(() => import('./assets/axis_x'), {
     synonyms: [
       'x axis',
@@ -277,7 +278,6 @@ export const typeToPathMap = {
   briefcase: withMetadata(() => import('./assets/briefcase'), {
     synonyms: ['work', 'business', 'job', 'portfolio', 'office', 'career'],
   }),
-  branchUser: () => import('./assets/branch_user'),
   broom: withMetadata(() => import('./assets/broom'), {
     synonyms: ['clean', 'sweep', 'clear', 'tidy', 'wipe', 'brush off'],
   }),
@@ -551,11 +551,9 @@ export const typeToPathMap = {
   consoleApp: withMetadata(() => import('./assets/app_console'), {
     category: 'app',
   }),
-  container: () => import('./assets/container'),
-  continuityAbove: () => import('./assets/continuity_above'),
-  continuityAboveBelow: () => import('./assets/continuity_above_below'),
-  continuityBelow: () => import('./assets/continuity_below'),
-  continuityWithin: () => import('./assets/continuity_within'),
+  container: () => import('./assets/container'), // Deprecated in favor of `package`
+  continuityAbove: () => import('./assets/continuity_above'), // Deprecated in favor of `upload`
+  continuityWithin: () => import('./assets/continuity_within'), // Deprecated in favor of `maximize`
   contrast: withMetadata(() => import('./assets/contrast'), {
     synonyms: ['contrast', 'accessibility', 'visibility', 'a11y'],
   }),
@@ -709,7 +707,7 @@ export const typeToPathMap = {
   dot: withMetadata(() => import('./assets/dot'), {
     synonyms: ['dot', 'point', 'bullet', 'period', 'circle'],
   }),
-  dotInCircle: () => import('./assets/dot_in_circle'),
+  dotInCircle: () => import('./assets/dot_in_circle'), // Deprecated with no replacement
   chevronDoubleLeft: withMetadata(
     () => import('./assets/chevron_double_left'),
     { synonyms: ['chevron', 'double', 'left', 'rewind', 'back', 'previous'] }
@@ -818,7 +816,7 @@ export const typeToPathMap = {
       'filled',
     ],
   }),
-  esqlVis: () => import('./assets/esql_vis'),
+  esqlVis: () => import('./assets/esql_vis'), // Deprecated in favor of `query`
   logIn: withMetadata(() => import('./assets/log_in'), {
     synonyms: ['entry', 'incoming'],
   }),
@@ -902,27 +900,26 @@ export const typeToPathMap = {
   fleetApp: withMetadata(() => import('./assets/app_agent'), {
     category: 'app',
   }),
-  fold: () => import('./assets/fold'),
+  fold: () => import('./assets/fold'), // Deprecated in favor of `minimize`
   folder: () => import('./assets/folder_close'),
-  folderClosed: () => import('./assets/folder_close'),
+  folderClosed: () => import('./assets/folder_close'), // Deprecated in favor of `folderClose`
   folderClose: withMetadata(() => import('./assets/folder_close'), {
     synonyms: ['folder', 'closed', 'collapse', 'directory', 'archive'],
   }),
   folderCheck: () => import('./assets/folder_check'), // Deprecated in favor of `check`
-  folderExclamation: () => import('./assets/folder_exclamation'),
+  folderExclamation: () => import('./assets/folder_exclamation'), // Deprecated; contextual replacement
   folderOpen: withMetadata(() => import('./assets/folder_open'), {
     synonyms: ['folder', 'open', 'expand', 'directory', 'browse'],
   }),
   folderOpened: () => import('./assets/folder_open'), // Deprecated in favor of `folderOpen`
-  frameNext: () => import('./assets/frame_next'),
-  framePrevious: () => import('./assets/frame_previous'),
+  frameNext: () => import('./assets/frame_next'), // Deprecated in favor of `chevronSingleRight`
+  framePrevious: () => import('./assets/frame_previous'), // Deprecated in favor of `chevronSingleLeft`
   fullScreen: withMetadata(() => import('./assets/full_screen'), {
     synonyms: ['fullscreen'],
   }),
   fullScreenExit: withMetadata(() => import('./assets/full_screen_exit'), {
     synonyms: ['fullscreen', 'exit', 'minimize', 'window', 'restore', 'shrink'],
   }),
-  function: () => import('./assets/function'),
   gear: withMetadata(() => import('./assets/gear'), {
     synonyms: [
       'settings',
@@ -956,7 +953,7 @@ export const typeToPathMap = {
   heartbeatApp: withMetadata(() => import('./assets/app_heartbeat'), {
     category: 'app',
   }),
-  help: () => import('./assets/help'), // NOTE: Might be deprecated later (not recommended in Kibana)
+  help: () => import('./assets/help'), // Deprecated in favor of `question`
   home: withMetadata(() => import('./assets/home'), {
     synonyms: ['home', 'house', 'main', 'start', 'dashboard'],
   }),
@@ -972,7 +969,7 @@ export const typeToPathMap = {
   image: withMetadata(() => import('./assets/image'), {
     synonyms: ['image', 'picture', 'photo', 'media', 'graphic'],
   }),
-  index: () => import('./assets/index'),
+  index: () => import('./assets/index'), // Deprecated in favor of `table`
   indexClose: () => import('./assets/index_close'), // Deprecated in favor of `tableCross`
   tableCross: withMetadata(() => import('./assets/index_close'), {
     synonyms: [
@@ -1059,7 +1056,7 @@ export const typeToPathMap = {
   inspect: withMetadata(() => import('./assets/inspect'), {
     synonyms: ['inspect', 'investigate', 'examine', 'analyze', 'look'],
   }),
-  ip: () => import('./assets/ip'),
+  ip: () => import('./assets/ip'), // Deprecated in favor of `tokenIP`
   key: withMetadata(() => import('./assets/key'), {
     synonyms: ['key', 'password', 'credential', 'access', 'security'],
   }),
@@ -1083,7 +1080,7 @@ export const typeToPathMap = {
     () => import('./assets/kubernetes_namespace'),
     { synonyms: ['kubernetes', 'k8s', 'namespace', 'ns', 'heptagon'] }
   ),
-  kubernetesNode: () => import('./assets/kubernetes_node'),
+  kubernetesNode: () => import('./assets/kubernetes_node'), // Deprecated with no replacement
   kubernetesPod: () => import('./assets/cube'), // Deprecated in favor of `cube`
   cube: withMetadata(() => import('./assets/cube'), {
     synonyms: [
@@ -1333,16 +1330,15 @@ export const typeToPathMap = {
     { category: 'elasticLogo' }
   ),
   logsApp: withMetadata(() => import('./assets/app_logs'), { category: 'app' }),
-  logstashFilter: () => import('./assets/logstash_filter'),
-  logstashInput: () => import('./assets/logstash_input'),
-  logstashOutput: () => import('./assets/logstash_output'),
+  logstashFilter: () => import('./assets/logstash_filter'), // Deprecated in favor of `filter`
+  logstashInput: () => import('./assets/logstash_input'), // Deprecated in favor of `download`
+  logstashOutput: () => import('./assets/logstash_output'), // Deprecated in favor of `upload`
   queue: withMetadata(() => import('./assets/queue'), {
     synonyms: ['queue', 'line', 'buffer', 'waiting', 'jobs'],
   }),
   machineLearningApp: withMetadata(() => import('./assets/app_ml'), {
     category: 'app',
   }),
-  magnet: () => import('./assets/magnet'),
   magnify: withMetadata(() => import('./assets/magnify'), {
     synonyms: [
       'search',
@@ -1482,7 +1478,6 @@ export const typeToPathMap = {
   packetbeatApp: withMetadata(() => import('./assets/app_packetbeat'), {
     category: 'app',
   }),
-  pageSelect: () => import('./assets/page_select'),
   pagesSelect: () => import('./assets/pages_select'), // Deprecated in favor of `documentsCheck`
   documentsCheck: withMetadata(() => import('./assets/pages_select'), {
     synonyms: [
@@ -1507,7 +1502,7 @@ export const typeToPathMap = {
   pause: withMetadata(() => import('./assets/pause'), {
     synonyms: ['pause', 'hold', 'stop temporary', 'wait'],
   }),
-  payment: () => import('./assets/payment'),
+  payment: () => import('./assets/payment'), // Deprecated in favor of `money`
   pencil: withMetadata(() => import('./assets/pencil'), {
     synonyms: ['pencil', 'edit', 'write', 'modify', 'pen'],
   }),
@@ -1664,10 +1659,10 @@ export const typeToPathMap = {
   save: withMetadata(() => import('./assets/save'), {
     synonyms: ['save', 'store', 'disk', 'persist', 'keep'],
   }),
+  scale: () => import('./assets/scale'), // Deprecated with no replacement
   savedObjectsApp: withMetadata(() => import('./assets/app_saved_objects'), {
     category: 'app',
   }),
-  scale: () => import('./assets/scale'),
   searchProfilerApp: withMetadata(
     () => import('./assets/app_search_profiler'),
     { category: 'app' }
@@ -1682,12 +1677,11 @@ export const typeToPathMap = {
   securityApp: withMetadata(() => import('./assets/app_security'), {
     category: 'app',
   }),
-  securitySignalDetected: () => import('./assets/security_signal_detected'),
-  securitySignalResolved: () => import('./assets/security_signal_resolved'),
+  securitySignalDetected: () => import('./assets/security_signal_detected'), // Deprecated with no replacement
   server: withMetadata(() => import('./assets/server'), {
     synonyms: ['server', 'host', 'machine', 'infrastructure', 'backend'],
   }),
-  sessionViewer: () => import('./assets/session_viewer'),
+  sessionViewer: () => import('./assets/session_viewer'), // Deprecated in favor of `commandLine`
   shard: withMetadata(() => import('./assets/shard'), {
     synonyms: ['shard', 'partition', 'segment', 'elastic', 'index'],
   }),
@@ -1704,7 +1698,7 @@ export const typeToPathMap = {
       'timeline',
     ],
   }),
-  singleMetricViewer: () => import('./assets/single_metric_viewer'),
+  singleMetricViewer: () => import('./assets/single_metric_viewer'), // Deprecated in favor of `chartArea`
   snowflake: withMetadata(() => import('./assets/snowflake'), {
     synonyms: ['snowflake', 'unique', 'id', 'data warehouse'],
   }),
@@ -1729,7 +1723,7 @@ export const typeToPathMap = {
   sortable: withMetadata(() => import('./assets/sortable'), {
     synonyms: ['sortable', 'sort', 'order'],
   }),
-  spaces: () => import('./assets/spaces'),
+  spaces: () => import('./assets/spaces'), // Deprecated in favor of `grid`
   spacesApp: withMetadata(() => import('./assets/app_spaces'), {
     category: 'app',
   }),
@@ -1741,7 +1735,7 @@ export const typeToPathMap = {
     synonyms: ['star', 'favorite', 'rating', 'bookmark'],
   }),
   starEmpty: () => import('./assets/star'), // Deprecated in favor of `star`
-  starEmptySpace: () => import('./assets/star_empty_space'),
+  starEmptySpace: () => import('./assets/star_empty_space'), // Deprecated in favor of `star`
   starFill: withMetadata(() => import('./assets/star_fill'), {
     synonyms: [
       'star fill',
@@ -1755,25 +1749,27 @@ export const typeToPathMap = {
     ],
   }),
   starFilled: () => import('./assets/star_fill'), // Deprecated in favor of `starFill`
-  starFillSpace: () => import('./assets/star_fill_space'),
-  starMinusEmpty: () => import('./assets/star_minus_empty'),
-  starMinusFill: () => import('./assets/star_minus_fill'),
-  starPlusEmpty: () => import('./assets/star_plus_empty'),
-  starPlusFill: () => import('./assets/star_plus_fill'),
-  stats: () => import('./assets/stats'),
+  starFillSpace: () => import('./assets/star_fill_space'), // Deprecated in favor of `starFill`
+  starMinusEmpty: () => import('./assets/star_minus_empty'), // Deprecated in favor of `star`
+  starMinusFill: () => import('./assets/star_minus_fill'), // Deprecated in favor of `starFill`
+  starPlusEmpty: () => import('./assets/star_plus_empty'), // Deprecated in favor of `star`
+  starPlusFill: () => import('./assets/star_plus_fill'), // Deprecated in favor of `starFill`
+  stats: () => import('./assets/stats'), // Deprecated in favor of `chartLine`
   stop: withMetadata(() => import('./assets/stop'), {
     synonyms: ['stop', 'halt', 'end', 'terminate', 'square'],
   }),
-  stopFill: () => import('./assets/stop_fill'),
-  stopSlash: () => import('./assets/stop_slash'),
+  stopFill: () => import('./assets/stop_fill'), // Deprecated; contextual replacement
+  stopSlash: () => import('./assets/stop_slash'), // Deprecated; contextual replacement
   storage: withMetadata(() => import('./assets/storage'), {
     synonyms: ['storage', 'disk', 'drive', 'save', 'data store'],
   }),
-  string: () => import('./assets/string'),
+  string: () => import('./assets/string'), // Deprecated in favor of `tokenString`
   sun: withMetadata(() => import('./assets/sun'), {
     synonyms: ['sun', 'light', 'day', 'theme', 'bright'],
   }),
-  swatchInput: () => import('./assets/swatch_input'), // Undocumented on purpose. Has an extra stroke for EuiColorPicker
+  swatchInput: withMetadata(() => import('./assets/swatch_input'), {
+    category: 'internal',
+  }), // Internal EuiColorPicker swatch; extra SVG stroke, not a public glyph
   symlink: withMetadata(() => import('./assets/symlink'), {
     synonyms: ['symlink', 'shortcut', 'alias', 'link', 'reference'],
   }),
@@ -1783,11 +1779,10 @@ export const typeToPathMap = {
   tableDensityLow: withMetadata(() => import('./assets/table_density_low'), {
     synonyms: ['table', 'density', 'spacious', 'loose', 'rows', 'spacing'],
   }),
-  tableOfContents: () => import('./assets/table_of_contents'),
+  tableOfContents: () => import('./assets/table_of_contents'), // Deprecated in favor of `listBullet`
   tag: withMetadata(() => import('./assets/tag'), {
     synonyms: ['tag', 'label', 'category', 'keyword', 'badge'],
   }),
-  tear: () => import('./assets/tear'),
   thermometer: withMetadata(() => import('./assets/thermometer'), {
     synonyms: ['thermometer', 'temperature', 'heat', 'metric', 'gauge'],
   }),
@@ -1854,7 +1849,7 @@ export const typeToPathMap = {
   trash: withMetadata(() => import('./assets/trash'), {
     synonyms: ['trash', 'delete', 'remove', 'bin', 'garbage', 'discard'],
   }),
-  unfold: () => import('./assets/unfold'),
+  unfold: () => import('./assets/unfold'), // Deprecated in favor of `maximize`
   upgradeAssistantApp: withMetadata(
     () => import('./assets/app_upgrade_assistant'),
     { category: 'app' }
@@ -1880,7 +1875,7 @@ export const typeToPathMap = {
   videoPlayer: withMetadata(() => import('./assets/video_player'), {
     synonyms: ['video', 'player', 'play', 'media', 'film', 'watch'],
   }),
-  visGoal: () => import('./assets/vis_goal'),
+  visGoal: () => import('./assets/vis_goal'), // Deprecated in favor of `chartGauge`
   chartMetric: withMetadata(() => import('./assets/chart_metric'), {
     synonyms: ['metric', 'chart', 'kpi', 'measurement', 'stat', 'indicator'],
   }),
@@ -1913,8 +1908,8 @@ export const typeToPathMap = {
     category: 'app',
   }),
   web: () => import('./assets/web'),
-  wordWrap: () => import('./assets/word_wrap'),
-  wordWrapDisabled: () => import('./assets/word_wrap_disabled'),
+  wordWrap: () => import('./assets/word_wrap'), // Deprecated in favor of `lineBreak`
+  wordWrapDisabled: () => import('./assets/word_wrap_disabled'), // Deprecated in favor of `lineBreakSlash`
   workflowsApp: withMetadata(() => import('./assets/app_workflows'), {
     category: 'app',
   }),
@@ -2121,6 +2116,7 @@ const getTypeToPathMapMetadata = (
     synonyms: metadata?.synonyms,
   };
 };
+
 // Sorted alphabetically rather than by `typeToPathMap` insertion order, which has
 // drifted over time. These lists are only consumed by the docs site, where icons
 // are expected to be browsable in alphabetical order.
@@ -2151,24 +2147,46 @@ export const typeToPathMapDocsAppIconTypes = typeToPathMapAppIconTypes;
 // TODO: Remove this compatibility filter with https://github.com/elastic/eui/issues/9832.
 const deprecatedIconsExcludedFromDocs = new Set([
   'alert',
+  'apps',
   'boxesVertical',
   'cloudDrizzle',
   'cloudStormy',
   'cloudSunny',
   'compute',
   'documents',
+  'dotInCircle',
   'editorComment',
   'export',
   'folderCheck',
+  'folderClosed',
+  'folderExclamation',
+  'frameNext',
   'folderOpened',
+  'analyzeEvent',
+  'annotation',
+  'article',
+  'anomalySwimLane',
+  'container',
+  'continuityAbove',
+  'continuityWithin',
+  'esqlVis',
+  'fold',
+  'framePrevious',
+  'help',
+  'index',
   'indexClose',
   'indexEdit',
   'indexOpen',
   'indexRuntime',
   'indexSettings',
+  'ip',
   'kqlFunction',
+  'kubernetesNode',
   'kubernetesPod',
   'list',
+  'logstashFilter',
+  'logstashInput',
+  'logstashOutput',
   'logRateAnalysis',
   'mapMarker',
   'menuDown',
@@ -2176,20 +2194,41 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'mobile',
   'namespace',
   'pagesSelect',
+  'payment',
   'pinFilled',
+  'scale',
   'search',
+  'securitySignalDetected',
+  'sessionViewer',
+  'singleMetricViewer',
+  'spaces',
   'starEmpty',
+  'starEmptySpace',
   'starFilled',
+  'starFillSpace',
+  'starMinusEmpty',
+  'starMinusFill',
+  'starPlusEmpty',
+  'starPlusFill',
+  'stopFill',
+  'stopSlash',
+  'string',
+  'stats',
+  'tableOfContents',
   'temperature',
   'timelineWithArrow',
   'visArea',
+  'unfold',
   'visBarVertical',
   'visGauge',
+  'visGoal',
   'visLine',
   'visPie',
   'visTable',
   'visTimelion',
   'visVisualBuilder',
+  'wordWrap',
+  'wordWrapDisabled',
 ]);
 
 export const typeToPathMapDocsGlyphIconTypes =

@@ -10,6 +10,7 @@ import { RuleTester } from '@typescript-eslint/rule-tester';
 import {
   DEPRECATED_ICON_ALIASES,
   DEPRECATED_ICONS_WITHOUT_REPLACEMENT,
+  DEPRECATED_ICONS_WITH_GUIDANCE,
   NoDeprecatedIconAliases,
 } from './no_deprecated_icon_aliases';
 
@@ -77,6 +78,18 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
         },
       ],
     })),
+    ...Object.entries(DEPRECATED_ICONS_WITH_GUIDANCE).map(
+      ([iconType, guidance]) => ({
+        code: `import { EuiIcon } from "@elastic/eui";\n<EuiIcon type="${iconType}" />`,
+        languageOptions,
+        errors: [
+          {
+            messageId: 'deprecatedIconGuidance' as const,
+            data: { iconType, guidance },
+          },
+        ],
+      })
+    ),
     {
       code: "import { EuiButtonIcon } from '@elastic/eui';\n<EuiButtonIcon iconType={'editorComment'} />",
       output:
