@@ -195,6 +195,7 @@ export const typeToPathMap = {
       'repository',
     ],
   }),
+  article: () => import('./assets/article'), // Deprecated with no replacement
   axisX: withMetadata(() => import('./assets/axis_x'), {
     synonyms: [
       'x axis',
@@ -705,6 +706,7 @@ export const typeToPathMap = {
   dot: withMetadata(() => import('./assets/dot'), {
     synonyms: ['dot', 'point', 'bullet', 'period', 'circle'],
   }),
+  dotInCircle: () => import('./assets/dot_in_circle'), // Deprecated with no replacement
   chevronDoubleLeft: withMetadata(
     () => import('./assets/chevron_double_left'),
     { synonyms: ['chevron', 'double', 'left', 'rewind', 'back', 'previous'] }
@@ -1077,6 +1079,7 @@ export const typeToPathMap = {
     () => import('./assets/kubernetes_namespace'),
     { synonyms: ['kubernetes', 'k8s', 'namespace', 'ns', 'heptagon'] }
   ),
+  kubernetesNode: () => import('./assets/kubernetes_node'), // Deprecated with no replacement
   kubernetesPod: () => import('./assets/cube'), // Deprecated in favor of `cube`
   cube: withMetadata(() => import('./assets/cube'), {
     synonyms: [
@@ -1655,6 +1658,7 @@ export const typeToPathMap = {
   save: withMetadata(() => import('./assets/save'), {
     synonyms: ['save', 'store', 'disk', 'persist', 'keep'],
   }),
+  scale: () => import('./assets/scale'), // Deprecated with no replacement
   savedObjectsApp: withMetadata(() => import('./assets/app_saved_objects'), {
     category: 'app',
   }),
@@ -1672,6 +1676,7 @@ export const typeToPathMap = {
   securityApp: withMetadata(() => import('./assets/app_security'), {
     category: 'app',
   }),
+  securitySignalDetected: () => import('./assets/security_signal_detected'), // Deprecated with no replacement
   server: withMetadata(() => import('./assets/server'), {
     synonyms: ['server', 'host', 'machine', 'infrastructure', 'backend'],
   }),
@@ -2145,6 +2150,7 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'cloudSunny',
   'compute',
   'documents',
+  'dotInCircle',
   'editorComment',
   'export',
   'folderCheck',
@@ -2152,6 +2158,7 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'folderOpened',
   'analyzeEvent',
   'annotation',
+  'article',
   'anomalySwimLane',
   'container',
   'continuityAbove',
@@ -2168,6 +2175,7 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'indexSettings',
   'ip',
   'kqlFunction',
+  'kubernetesNode',
   'kubernetesPod',
   'list',
   'logstashFilter',
@@ -2182,7 +2190,9 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'pagesSelect',
   'payment',
   'pinFilled',
+  'scale',
   'search',
+  'securitySignalDetected',
   'sessionViewer',
   'singleMetricViewer',
   'spaces',

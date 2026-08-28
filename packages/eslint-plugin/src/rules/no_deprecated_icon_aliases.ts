@@ -222,7 +222,14 @@ export const DEPRECATED_ICON_ALIASES = {
 } as const;
 
 export const DEPRECATED_ICONS_WITHOUT_REPLACEMENT: ReadonlySet<string> =
-  new Set(['mobile']);
+  new Set([
+    'article',
+    'dotInCircle',
+    'kubernetesNode',
+    'mobile',
+    'scale',
+    'securitySignalDetected',
+  ]);
 
 type DeprecatedIconAlias = keyof typeof DEPRECATED_ICON_ALIASES;
 type StaticStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;

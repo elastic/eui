@@ -1101,6 +1101,29 @@ exports[`EuiIcon props type archive is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type article is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="article"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.5 10a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4ZM8 6.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM3.5 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM8 8.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM3.5 4a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM3 12.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5ZM7 6H3v5h4V6Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M11.526.312A1.002 1.002 0 0 0 10.8 0H2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4.429c0-.256-.098-.503-.274-.689l-3.2-3.428ZM10.5 5H14v10H2V1h8v3.5a.5.5 0 0 0 .5.5Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type asterisk is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -3270,6 +3293,29 @@ exports[`EuiIcon props type dot is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type dotInCircle is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="dotInCircle"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 .5c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5S.5 12.136.5 8 3.864.5 8 .5Zm0 .882a6.618 6.618 0 1 0 0 13.236A6.618 6.618 0 0 0 8 1.382Z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M9 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type download is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"
@@ -4738,6 +4784,26 @@ exports[`EuiIcon props type kubernetesNamespace is rendered 1`] = `
   />
   <path
     d="M7.66.06a1 1 0 0 1 .787.045l6 3 .104.06a1 1 0 0 1 .435.67l1 6a1 1 0 0 1-.205.79l-4 5A1 1 0 0 1 11 16H5a1 1 0 0 1-.781-.375l-4-5a1 1 0 0 1-.205-.79l1-6 .026-.115a1 1 0 0 1 .513-.615l6-3zM2 4l-1 6 4 5h6l4-5-1-6-6-3z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type kubernetesNode is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="kubernetesNode"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M14 11.42V4.58L8 1.152 2 4.58v6.84l6 3.428 6-3.428zM8 16l7-4V4L8 0 1 4v8l7 4zM8 4.607l3 1.714V9.68l-3 1.714-3-1.714V6.32l3-1.714zm4 1.134v4.518l-4 2.286-4-2.286V5.741l4-2.286 4 2.286z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -9583,6 +9649,24 @@ exports[`EuiIcon props type save is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type scale is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="scale"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12.5 12a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm4-2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm2-1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm0-3a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm0 2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm2-2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm6-6a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Zm-2 2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-app-isLoaded"
@@ -9761,6 +9845,24 @@ exports[`EuiIcon props type send is rendered 1`] = `
   />
   <path
     d="m3.646 8.646-3 3 .708.708 3-3-.708-.708Zm-3 6 3-3 .708.708-3 3-.708-.707Zm6-3-3 3 .708.708 3-3-.708-.707Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type securitySignalDetected is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="securitySignalDetected"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13.657 3.05a.5.5 0 0 0-.707-.707l-.366.366A7 7 0 1 0 8 15a4.994 4.994 0 0 1-.597-1.03 6 6 0 1 1 4.471-10.552l-.71.71a5 5 0 1 0-4.08 8.788 5.027 5.027 0 0 1-.082-1.042A4.002 4.002 0 0 1 8 4a3.98 3.98 0 0 1 2.453.84l-.715.714a3 3 0 0 0-3.86 4.567.5.5 0 1 0 .708-.707 2 2 0 0 1 2.43-3.137l-.757.757a1 1 0 1 0 .707.707l1.155-1.155 2.46-2.46a5.972 5.972 0 0 1 1.39 3.277c.367.158.713.36 1.029.597 0-1.636-.57-3.271-1.71-4.584l.367-.366zM16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-4 .5a.577.577 0 0 1-.57-.495l-.29-2.015a.867.867 0 1 1 1.718 0l-.288 2.015a.577.577 0 0 1-.57.495zm0 2.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
