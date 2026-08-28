@@ -408,6 +408,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBackgroundBaseRisk: string;
     euiColorBackgroundBaseDanger: string;
     euiColorBackgroundBaseAssistance: string;
+    euiColorBackgroundBaseRecessed: string;
     euiColorBackgroundBaseSubdued: string;
     euiColorBackgroundBasePlain: string;
     euiColorBackgroundBaseDisabled: string;
