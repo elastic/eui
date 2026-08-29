@@ -7,18 +7,26 @@
  */
 
 import React from 'react';
-import { act } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiDataGridColumnResizer } from './column_resizer';
 
-describe('EuiDataGridHeaderResizer', () => {
+describe('EuiDataGridColumnResizer', () => {
   const props = {
     columnId: 'someColumn',
     columnWidth: 50,
     setColumnWidth: jest.fn(),
     isLastColumn: false,
   };
+
+  // jsdom derives `pageX` from `clientX`
+  const dragTo = (clientX: number) => fireEvent.mouseMove(window, { clientX });
+  const endDrag = () => fireEvent.mouseUp(window);
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('renders', () => {
     const { container } = render(<EuiDataGridColumnResizer {...props} />);
@@ -32,82 +40,94 @@ describe('EuiDataGridHeaderResizer', () => {
   });
 
   describe('mouse events', () => {
-    const mouseEvent = {
-      preventDefault: () => {},
-    } as React.MouseEvent<HTMLDivElement>;
+    it('adds mouse move & up listeners on mouse down', () => {
+      const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+      const { getByTestSubject } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
 
-    // Using a ref to reach into class methods/state directly -
-    // mocking mouse events in jsdom is too much of a headache
-    let classRef: EuiDataGridColumnResizer;
-    const setRef = (ref: EuiDataGridColumnResizer) => {
-      classRef = ref;
-    };
-
-    describe('on mouse down', () => {
-      it('adds mouse move & up listeners', () => {
-        render(<EuiDataGridColumnResizer {...props} ref={setRef} />);
-        const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
-
-        act(() => classRef.onMouseDown({ ...mouseEvent, pageX: 100 }));
-        expect(classRef.state.initialX).toEqual(100);
-
-        const anyFn = expect.any(Function);
-        expect(addEventListenerSpy).toHaveBeenCalledWith('mouseup', anyFn);
-        expect(addEventListenerSpy).toHaveBeenCalledWith('mousemove', anyFn);
-        expect(addEventListenerSpy).toHaveBeenCalledWith('blur', anyFn);
+      fireEvent.mouseDown(getByTestSubject('dataGridColumnResizer'), {
+        clientX: 100,
       });
+
+      const anyFn = expect.any(Function);
+      expect(addEventListenerSpy).toHaveBeenCalledWith('mouseup', anyFn);
+      expect(addEventListenerSpy).toHaveBeenCalledWith('mousemove', anyFn);
+      expect(addEventListenerSpy).toHaveBeenCalledWith('blur', anyFn);
     });
 
-    describe('on mouse move', () => {
-      it('does not allow an offset that would go under the mininum column width', () => {
-        const { getByTestSubject } = render(
-          <EuiDataGridColumnResizer {...props} ref={setRef} />
-        );
+    it('offsets the resizer by the distance moved', () => {
+      const { getByTestSubject } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
+      const resizer = getByTestSubject('dataGridColumnResizer');
 
-        act(() => classRef.onMouseDown({ ...mouseEvent, pageX: 100 }));
-        act(() => classRef.onMouseMove({ pageX: 0 }));
+      fireEvent.mouseDown(resizer, { clientX: 100 });
+      dragTo(130);
 
-        expect(classRef.state.offset).toEqual(-10);
-        expect(getByTestSubject('dataGridColumnResizer')).toHaveStyle(
-          'margin-inline-end: 10px'
-        );
-      });
-
-      it('sets offset state to the difference of the moved pageX', () => {
-        const { getByTestSubject } = render(
-          <EuiDataGridColumnResizer {...props} ref={setRef} />
-        );
-
-        act(() => classRef.onMouseDown({ ...mouseEvent, pageX: 100 }));
-        act(() => classRef.onMouseMove({ pageX: 200 }));
-
-        expect(classRef.state.offset).toEqual(100);
-        expect(getByTestSubject('dataGridColumnResizer')).toHaveStyle(
-          'margin-inline-end: -100px'
-        );
-      });
+      expect(resizer).toHaveStyle({ marginInlineEnd: '-30px' });
     });
 
-    describe('on mouse up', () => {
-      it('calls setColumnWidth, reset offset, and removes event listeners', () => {
-        render(<EuiDataGridColumnResizer {...props} ref={setRef} />);
-        const removeEventListenerSpy = jest.spyOn(
-          window,
-          'removeEventListener'
-        );
+    it('does not allow an offset that would go under the mininum column width', () => {
+      const { getByTestSubject } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
+      const resizer = getByTestSubject('dataGridColumnResizer');
 
-        act(() => classRef.onMouseDown({ ...mouseEvent, pageX: 100 }));
-        act(() => classRef.onMouseMove({ pageX: 200 }));
-        act(() => classRef.onMouseUp());
+      fireEvent.mouseDown(resizer, { clientX: 100 });
+      dragTo(0);
 
-        expect(props.setColumnWidth).toHaveBeenCalledWith('someColumn', 150);
-        expect(classRef.state.offset).toEqual(0);
+      expect(resizer).toHaveStyle({ marginInlineEnd: '10px' });
+    });
 
-        const anyFn = expect.any(Function);
-        expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', anyFn);
-        expect(removeEventListenerSpy).toHaveBeenCalledWith('mousemove', anyFn);
-        expect(removeEventListenerSpy).toHaveBeenCalledWith('blur', anyFn);
+    it('calls setColumnWidth, resets the offset, and removes listeners on mouse up', () => {
+      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+      const { getByTestSubject } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
+      const resizer = getByTestSubject('dataGridColumnResizer');
+
+      fireEvent.mouseDown(resizer, { clientX: 100 });
+      dragTo(130);
+      endDrag();
+
+      expect(props.setColumnWidth).toHaveBeenCalledTimes(1);
+      expect(props.setColumnWidth).toHaveBeenCalledWith('someColumn', 80);
+      expect(resizer).not.toHaveStyle({ marginInlineEnd: '-30px' });
+
+      const anyFn = expect.any(Function);
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('mouseup', anyFn);
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('mousemove', anyFn);
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('blur', anyFn);
+    });
+
+    it('uses the latest columnWidth instead of the one captured on mouse down', () => {
+      const { getByTestSubject, rerender } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
+      const resizer = getByTestSubject('dataGridColumnResizer');
+
+      fireEvent.mouseDown(resizer, { clientX: 100 });
+      rerender(<EuiDataGridColumnResizer {...props} columnWidth={200} />);
+      dragTo(130);
+      endDrag();
+
+      expect(props.setColumnWidth).toHaveBeenCalledWith('someColumn', 230);
+    });
+
+    it('removes listeners when unmounted mid-drag', () => {
+      const { getByTestSubject, unmount } = render(
+        <EuiDataGridColumnResizer {...props} />
+      );
+
+      fireEvent.mouseDown(getByTestSubject('dataGridColumnResizer'), {
+        clientX: 100,
       });
+      unmount();
+      dragTo(130);
+      endDrag();
+
+      expect(props.setColumnWidth).not.toHaveBeenCalled();
     });
   });
 });
