@@ -59,7 +59,7 @@ jobs:
           gh pr comment "$PR_NUMBER" --body "👋 Since this is a community submitted pull request, a Buildkite build has not been started automatically. Would an Elastic organization member please verify the contents of this pull request and kick off a build manually?"
           gh pr edit "$PR_NUMBER" --add-label "community contribution"
 
-          has_help_wanted=false
+          guidelines='https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/README.md'
           issue_numbers=$(
             printf '%s\n' "$PR_BODY" \
               | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?)[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
@@ -67,14 +67,28 @@ jobs:
               | sort -u \
               || true
           )
+
+          if [[ -z "$issue_numbers" ]]; then
+            gh pr comment "$PR_NUMBER" --body "We don't accept community contributions without a linked issue labelled \"help wanted\". Please file or link one first. See our [contribution guidelines]($guidelines)."
+            exit 0
+          fi
+
+          has_help_wanted=false
+          inspected=0
           for issue_number in $issue_numbers; do
             labels=$(gh issue view "$issue_number" --json labels --jq '.labels[].name' 2>/dev/null) || continue
+            inspected=$((inspected + 1))
             if printf '%s\n' "$labels" | grep -qx 'help wanted'; then
               has_help_wanted=true
               break
             fi
           done
 
+          if [[ "$inspected" -eq 0 ]]; then
+            echo "::warning::Could not read linked issues; skipping help wanted comment."
+            exit 0
+          fi
+
           if [[ "$has_help_wanted" != true ]]; then
-            gh pr comment "$PR_NUMBER" --body 'We don'\''t accept community contributions for issues not labelled "help wanted". Please read our [contribution guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/README.md).'
+            gh pr comment "$PR_NUMBER" --body "We don't accept community contributions for issues not labelled \"help wanted\". Please read our [contribution guidelines]($guidelines)."
           fi
