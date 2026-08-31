@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
+import React, {
+  FocusEvent,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -83,45 +89,41 @@ export type EuiSuperSelectProps<T = string> = CommonProps &
     popoverProps?: Partial<CommonProps & Omit<EuiInputPopoverProps, 'isOpen'>>;
   };
 
-export class EuiSuperSelect<T = string> extends Component<
-  EuiSuperSelectProps<T>
-> {
-  static defaultProps = {
-    fullWidth: false,
-    compressed: false,
-    isInvalid: false,
-    isLoading: false,
+export const EuiSuperSelect = <T = string,>({
+  className,
+  options,
+  valueOfSelected,
+  placeholder,
+  onChange,
+  onFocus,
+  onBlur,
+  isOpen,
+  isInvalid = false,
+  itemClassName,
+  fullWidth = false,
+  popoverProps,
+  compressed = false,
+  isLoading = false,
+  ...rest
+}: EuiSuperSelectProps<T>) => {
+  const itemNodes = useRef<Array<HTMLButtonElement | null>>([]);
+  const isMounted = useRef(false);
+  const controlButtonRef = useRef<HTMLButtonElement>(null);
+  const [describedById] = useState(() =>
+    htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId')
+  );
+  const [isPopoverOpen, setIsPopoverOpen] = useState(isOpen || false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const setItemNode = (node: HTMLButtonElement | null, index: number) => {
+    itemNodes.current[index] = node;
   };
 
-  private itemNodes: Array<HTMLButtonElement | null> = [];
-  private _isMounted: boolean = false;
-  private controlButtonRef = createRef<HTMLButtonElement>();
-
-  describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
-
-  state = {
-    isPopoverOpen: this.props.isOpen || false,
-    currentIndex: 0,
+  const focusItemAt = (index: number) => {
+    itemNodes.current[index]?.focus();
   };
 
-  componentDidMount() {
-    this._isMounted = true;
-    if (this.props.isOpen) {
-      this.openPopover();
-    }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  setItemNode = (node: HTMLButtonElement | null, index: number) => {
-    this.itemNodes[index] = node;
-  };
-
-  openPopover = () => {
-    const { options, valueOfSelected } = this.props;
-
+  const openPopover = () => {
     const indexOfSelected = options.findIndex(
       (option) => option?.value === valueOfSelected
     );
@@ -138,51 +140,47 @@ export class EuiSuperSelect<T = string> extends Component<
       initialIndex = candidateIndex;
     }
 
-    this.setState({
-      isPopoverOpen: options.length > 0,
-      currentIndex: initialIndex,
-    });
+    setIsPopoverOpen(options.length > 0);
+    setCurrentIndex(initialIndex);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        if (!this._isMounted) {
+        if (!isMounted.current) {
           return;
         }
 
-        this.focusItemAt(initialIndex);
+        focusItemAt(initialIndex);
 
-        if (this.props.onFocus) {
-          this.props.onFocus();
+        if (onFocus) {
+          onFocus();
         }
       });
     });
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-      currentIndex: -1,
-    });
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+    setCurrentIndex(-1);
 
     // Refocus back to the toggling control button on popover close
     requestAnimationFrame(() => {
-      this.controlButtonRef.current?.focus();
+      controlButtonRef.current?.focus();
     });
 
-    if (this.props.onBlur) {
-      this.props.onBlur();
+    if (onBlur) {
+      onBlur();
     }
   };
 
-  itemClicked = (value: T) => {
-    this.closePopover();
+  const itemClicked = (value: T) => {
+    closePopover();
 
-    if (this.props.onChange) {
-      this.props.onChange(value);
+    if (onChange) {
+      onChange(value);
     }
   };
 
-  onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     // Mimic the ways native `<select>`s can be opened via keypress
     if (
       event.key === keys.ARROW_UP ||
@@ -191,17 +189,17 @@ export class EuiSuperSelect<T = string> extends Component<
     ) {
       event.preventDefault();
       event.stopPropagation();
-      this.openPopover();
+      openPopover();
     }
   };
 
-  onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case keys.ESCAPE:
         // close the popover and prevent ancestors from handling
         event.preventDefault();
         event.stopPropagation();
-        this.closePopover();
+        closePopover();
         break;
 
       case keys.TAB:
@@ -214,29 +212,22 @@ export class EuiSuperSelect<T = string> extends Component<
       case keys.ARROW_UP:
         event.preventDefault();
         event.stopPropagation();
-        this.shiftFocus(ShiftDirection.BACK);
+        shiftFocus(ShiftDirection.BACK);
         break;
 
       case keys.ARROW_DOWN:
         event.preventDefault();
         event.stopPropagation();
-        this.shiftFocus(ShiftDirection.FORWARD);
+        shiftFocus(ShiftDirection.FORWARD);
         break;
     }
   };
 
-  focusItemAt(index: number) {
-    this.itemNodes[index]?.focus();
-  }
-
-  shiftFocus(direction: ShiftDirection) {
-    const { options } = this.props;
-    const { currentIndex } = this.state;
-
+  const shiftFocus = (direction: ShiftDirection) => {
     if (currentIndex === -1) {
       // somehow the select options has lost focus
-      this.focusItemAt(0);
-      this.setState({ currentIndex: 0 });
+      focusItemAt(0);
+      setCurrentIndex(0);
       return;
     }
 
@@ -246,142 +237,131 @@ export class EuiSuperSelect<T = string> extends Component<
     let nextIndex = currentIndex + step;
     while (nextIndex >= 0 && nextIndex < options.length) {
       if (!options[nextIndex]?.disabled) {
-        this.focusItemAt(nextIndex);
-        this.setState({ currentIndex: nextIndex });
+        focusItemAt(nextIndex);
+        setCurrentIndex(nextIndex);
         return;
       }
       nextIndex += step;
     }
-  }
+  };
 
-  render() {
-    const {
-      className,
-      options,
-      valueOfSelected,
-      placeholder,
-      onChange,
-      isOpen,
-      isInvalid,
-      itemClassName,
-      fullWidth,
-      popoverProps,
-      compressed,
-      ...rest
-    } = this.props;
+  useEffect(() => {
+    isMounted.current = true;
+    if (isOpen) {
+      openPopover();
+    }
 
-    const popoverClasses = classNames(
-      'euiSuperSelect',
-      popoverProps?.className
-    );
+    return () => {
+      isMounted.current = false;
+    };
+    // The class lifecycle this replaces only ran when the component mounted.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const button = (
-      <EuiSuperSelectControl
-        options={options}
-        value={valueOfSelected}
-        placeholder={placeholder}
-        onClick={
-          this.state.isPopoverOpen ? this.closePopover : this.openPopover
-        }
-        onKeyDown={this.onSelectKeyDown}
-        className={className}
-        fullWidth={fullWidth}
-        isInvalid={isInvalid}
-        compressed={compressed}
-        {...rest}
-        buttonRef={this.controlButtonRef}
-        isDropdownOpen={this.state.isPopoverOpen}
-      />
-    );
+  const popoverClasses = classNames('euiSuperSelect', popoverProps?.className);
 
-    const items = options.map((option, index) => {
-      const { value, dropdownDisplay, inputDisplay, disabled, ...optionRest } =
-        option;
-      if (value == null) return;
+  const button = (
+    <EuiSuperSelectControl
+      options={options}
+      value={valueOfSelected}
+      placeholder={placeholder}
+      onClick={isPopoverOpen ? closePopover : openPopover}
+      onKeyDown={onSelectKeyDown}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      className={className}
+      fullWidth={fullWidth}
+      isInvalid={isInvalid}
+      compressed={compressed}
+      isLoading={isLoading}
+      {...rest}
+      buttonRef={controlButtonRef}
+      isDropdownOpen={isPopoverOpen}
+    />
+  );
 
-      return (
-        <EuiSuperSelectItem
-          key={index}
-          /* NOTE: This should rather use "li" to align select-like behavior. But the current
+  const items = options.map((option, index) => {
+    const { value, dropdownDisplay, inputDisplay, disabled, ...optionRest } =
+      option;
+    if (value == null) return;
+
+    return (
+      <EuiSuperSelectItem
+        key={index}
+        /* NOTE: This should rather use "li" to align select-like behavior. But the current
           implementation relies on the interactive and focusable item for the navigation.
           This will require additional refactoring to adjust but we might want to decide first
           if the effort is worth it, considering the unification plans for selection components
           as part of OneSelect (https://github.com/elastic/eui/issues/8808).
           */
-          element="button"
-          id={String(value)}
-          className={itemClassName}
-          checked={valueOfSelected === value ? 'on' : undefined}
-          isSelected={valueOfSelected === value}
-          isFocused={this.state.currentIndex === index}
-          isSingleSelection
-          isDisabled={disabled}
-          textWrap="wrap"
-          onClick={() => this.itemClicked(value)}
-          onKeyDown={this.onItemKeyDown}
-          ref={(node: HTMLButtonElement | null) =>
-            this.setItemNode(node, index)
-          }
-          aria-selected={valueOfSelected === value}
-          {...optionRest}
-        >
-          {dropdownDisplay || inputDisplay}
-        </EuiSuperSelectItem>
-      );
-    });
-
-    const ariaActiveDescendant =
-      options[this.state.currentIndex]?.value != null
-        ? String(options[this.state.currentIndex].value)
-        : undefined;
-
-    return (
-      <RenderWithEuiStylesMemoizer>
-        {(stylesMemoizer) => {
-          const styles = stylesMemoizer(euiSuperSelectStyles);
-
-          return (
-            <EuiInputPopover
-              closePopover={this.closePopover}
-              panelPaddingSize="none"
-              {...popoverProps}
-              className={popoverClasses}
-              isOpen={isOpen || this.state.isPopoverOpen}
-              input={button}
-              fullWidth={fullWidth}
-              disableFocusTrap // This component handles its own focus manually
-            >
-              <EuiScreenReaderOnly>
-                <p id={this.describedById}>
-                  <EuiI18n
-                    token="euiSuperSelect.screenReaderAnnouncement"
-                    default="You are in a form selector and must select a single option.
-              Use the Up and Down arrow keys to navigate or Escape to close."
-                  />
-                </p>
-              </EuiScreenReaderOnly>
-              <EuiI18n
-                token="euiSuperSelect.ariaLabel"
-                default="Select listbox"
-              >
-                {(ariaLabel: string) => (
-                  <div
-                    aria-label={ariaLabel}
-                    aria-describedby={this.describedById}
-                    css={styles.euiSuperSelect__listbox}
-                    className="euiSuperSelect__listbox eui-scrollBar"
-                    role="listbox"
-                    aria-activedescendant={ariaActiveDescendant}
-                    tabIndex={0}
-                  >
-                    {items}
-                  </div>
-                )}
-              </EuiI18n>
-            </EuiInputPopover>
-          );
-        }}
-      </RenderWithEuiStylesMemoizer>
+        element="button"
+        id={String(value)}
+        className={itemClassName}
+        checked={valueOfSelected === value ? 'on' : undefined}
+        isSelected={valueOfSelected === value}
+        isFocused={currentIndex === index}
+        isSingleSelection
+        isDisabled={disabled}
+        textWrap="wrap"
+        onClick={() => itemClicked(value)}
+        onKeyDown={onItemKeyDown}
+        ref={(node: HTMLButtonElement | null) => setItemNode(node, index)}
+        aria-selected={valueOfSelected === value}
+        {...optionRest}
+      >
+        {dropdownDisplay || inputDisplay}
+      </EuiSuperSelectItem>
     );
-  }
-}
+  });
+
+  const ariaActiveDescendant =
+    options[currentIndex]?.value != null
+      ? String(options[currentIndex].value)
+      : undefined;
+
+  return (
+    <RenderWithEuiStylesMemoizer>
+      {(stylesMemoizer) => {
+        const styles = stylesMemoizer(euiSuperSelectStyles);
+
+        return (
+          <EuiInputPopover
+            closePopover={closePopover}
+            panelPaddingSize="none"
+            {...popoverProps}
+            className={popoverClasses}
+            isOpen={isOpen || isPopoverOpen}
+            input={button}
+            fullWidth={fullWidth}
+            disableFocusTrap // This component handles its own focus manually
+          >
+            <EuiScreenReaderOnly>
+              <p id={describedById}>
+                <EuiI18n
+                  token="euiSuperSelect.screenReaderAnnouncement"
+                  default="You are in a form selector and must select a single option.
+              Use the Up and Down arrow keys to navigate or Escape to close."
+                />
+              </p>
+            </EuiScreenReaderOnly>
+            <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
+              {(ariaLabel: string) => (
+                <div
+                  aria-label={ariaLabel}
+                  aria-describedby={describedById}
+                  css={styles.euiSuperSelect__listbox}
+                  className="euiSuperSelect__listbox eui-scrollBar"
+                  role="listbox"
+                  aria-activedescendant={ariaActiveDescendant}
+                  tabIndex={0}
+                >
+                  {items}
+                </div>
+              )}
+            </EuiI18n>
+          </EuiInputPopover>
+        );
+      }}
+    </RenderWithEuiStylesMemoizer>
+  );
+};

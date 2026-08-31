@@ -209,9 +209,10 @@ describe('EuiSuperSelect', () => {
 
     it('allows customizing the value type via TS generic', () => {
       <EuiSuperSelect<number> options={[{ value: 2 }]} valueOfSelected={2} />;
-      // @ts-expect-error should error since it expects a number
       <EuiSuperSelect<number>
+        // @ts-expect-error should error since it expects a number
         options={[{ value: 'should error' }]}
+        // @ts-expect-error should error since it expects a number
         valueOfSelected="2"
       />;
 
@@ -219,9 +220,10 @@ describe('EuiSuperSelect', () => {
         options={[{ value: true }]}
         valueOfSelected={true}
       />;
-      // @ts-expect-error should error since it expects a boolean
       <EuiSuperSelect<number>
+        // @ts-expect-error should error since it expects a number
         options={[{ value: 'should error' }]}
+        // @ts-expect-error should error since it expects a number
         valueOfSelected="true"
       />;
 
