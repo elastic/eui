@@ -70,7 +70,6 @@ describe('EuiIcons', () => {
       'fold',
       'folder',
       'folderCheck',
-      'folderClosed',
       'folderExclamation',
       'folderOpen',
       'frameNext',
