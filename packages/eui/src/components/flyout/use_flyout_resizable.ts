@@ -93,6 +93,17 @@ export const useEuiFlyoutResizable = ({
   // resizes, and scale proportionally for named (percentage) sizes.
   const prevReferenceWidthRef = useRef(_referenceWidth);
 
+  // Set when the pending width change came from a container / viewport resize
+  // rather than from the user. `setCallOnResize(false)` alone cannot suppress
+  // the `onResize` effect below, because that effect can re-run in the *same*
+  // render the resize arrives in (e.g. a parent rerender also hands down a new
+  // inline `onResize`) and would still read the pre-update `callOnResize`.
+  // A ref is written synchronously by the effect below, which is declared
+  // before the `onResize` effect and so always runs first within a commit.
+  // Cleared by the user interaction handlers — the only callers that set
+  // `callOnResize` back to `true`.
+  const isContainerResizeRef = useRef(false);
+
   // Update flyout width when consumers pass in a new `size`, or re-clamp
   // (numeric `size`) / scale proportionally and re-clamp (named `size`) when
   // constraints change (e.g. container resize, sibling width change).
@@ -116,7 +127,9 @@ export const useEuiFlyoutResizable = ({
       prevReferenceWidthRef.current = _referenceWidth;
 
       if (_referenceWidth !== prevRefWidth) {
-        setCallOnResize(false); // A container resize is not a user resize
+        // A container resize is not a user resize
+        isContainerResizeRef.current = true;
+        setCallOnResize(false);
       }
 
       setFlyoutWidth((currentWidth) => {
@@ -171,6 +184,7 @@ export const useEuiFlyoutResizable = ({
   );
 
   const onMouseUp = useCallback(() => {
+    isContainerResizeRef.current = false;
     setCallOnResize(true);
 
     if (!enabled) {
@@ -208,6 +222,7 @@ export const useEuiFlyoutResizable = ({
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      isContainerResizeRef.current = false;
       setCallOnResize(true);
 
       if (!enabled) {
@@ -236,7 +251,9 @@ export const useEuiFlyoutResizable = ({
   // To reduce unnecessary calls, only fire onResize callback:
   // 1. After initial mount / on user width change events only
   // 2. If not currently mouse dragging
+  // 3. Not for container / viewport driven resizes (see `isContainerResizeRef`)
   useEffect(() => {
+    if (isContainerResizeRef.current) return;
     if (callOnResize && enabled) {
       onResize?.(flyoutWidth);
     }

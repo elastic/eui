@@ -472,6 +472,111 @@ describe('useEuiFlyoutResizable', () => {
       expect(onResize).not.toHaveBeenCalled();
     });
 
+    it('does not call `onResize` when the referenceWidth and the `onResize` identity change together', async () => {
+      // A parent rerender can hand down a new inline `onResize` in the same
+      // render that a container resize lands in. The callback effect then
+      // re-runs with the render's pre-update `callOnResize`, so resetting that
+      // state in the constraint effect is not on its own enough to suppress it.
+      const onResize = jest.fn();
+      const { result, rerender } = renderHook(
+        (props) => useEuiFlyoutResizable(props),
+        {
+          initialProps: {
+            ...mockProps,
+            enabled: true,
+            minWidth: 0,
+            maxWidth: undefined,
+            referenceWidth: 1200,
+            size: 800,
+            onResize: (width: number) => onResize(width),
+          },
+        }
+      );
+
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(800);
+      });
+
+      act(() => {
+        result.current.onKeyDown({
+          key: 'ArrowRight',
+          preventDefault: () => {},
+        } as ReactKeyboardEvent);
+      });
+      await waitFor(() => {
+        expect(onResize).toHaveBeenCalledWith(790);
+      });
+      onResize.mockClear();
+
+      // Note the fresh `onResize` identity alongside the new referenceWidth
+      rerender({
+        ...mockProps,
+        enabled: true,
+        minWidth: 0,
+        maxWidth: undefined,
+        referenceWidth: 600,
+        size: 800,
+        onResize: (width: number) => onResize(width),
+      });
+
+      await waitFor(() => {
+        expect(result.current.size).toBe('90%');
+      });
+      expect(onResize).not.toHaveBeenCalled();
+    });
+
+    it('still calls `onResize` for a user resize that follows a container resize', async () => {
+      // Guards against the container-resize suppression sticking around and
+      // swallowing the next genuine user resize
+      const onResize = jest.fn();
+      const { result, rerender } = renderHook(
+        (props) => useEuiFlyoutResizable(props),
+        {
+          initialProps: {
+            ...mockProps,
+            enabled: true,
+            minWidth: 0,
+            maxWidth: undefined,
+            referenceWidth: 1200,
+            size: 400,
+            onResize,
+          },
+        }
+      );
+
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(400);
+      });
+
+      rerender({
+        ...mockProps,
+        enabled: true,
+        minWidth: 0,
+        maxWidth: undefined,
+        referenceWidth: 1000,
+        size: 400,
+        onResize,
+      });
+
+      await waitFor(() => {
+        expect(result.current.size).toBe('40%');
+      });
+      expect(onResize).not.toHaveBeenCalled();
+
+      // Now a real user resize — this one must be reported
+      act(() => {
+        result.current.onKeyDown({
+          key: 'ArrowRight',
+          preventDefault: () => {},
+        } as ReactKeyboardEvent);
+      });
+
+      await waitFor(() => {
+        expect(onResize).toHaveBeenCalledTimes(1);
+      });
+      expect(onResize).toHaveBeenCalledWith(390);
+    });
+
     it('still calls `onResize` once with the final width after a drag ends', async () => {
       const onResize = jest.fn();
       const { result } = renderHook(() =>
