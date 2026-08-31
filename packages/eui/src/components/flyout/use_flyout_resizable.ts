@@ -89,13 +89,13 @@ export const useEuiFlyoutResizable = ({
   // Initialized to `null` so the first render always takes the "reset" path.
   const prevSizeRef = useRef<string | number | null>(null);
 
-  // Track the previous reference width so we can scale proportionally when
-  // the container / viewport resizes (both shrink AND grow).
+  // Track the previous reference width so we can detect container / viewport
+  // resizes, and scale proportionally for named (percentage) sizes.
   const prevReferenceWidthRef = useRef(_referenceWidth);
 
-  // Update flyout width when consumers pass in a new `size`, or scale
-  // proportionally and re-clamp when constraints change (e.g. container
-  // resize, sibling width change).
+  // Update flyout width when consumers pass in a new `size`, or re-clamp
+  // (numeric `size`) / scale proportionally and re-clamp (named `size`) when
+  // constraints change (e.g. container resize, sibling width change).
   useEffect(() => {
     if (!enabled) return; // Don't update width when resizing is disabled
 
@@ -108,15 +108,27 @@ export const useEuiFlyoutResizable = ({
         typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0
       );
     } else {
-      // Only constraints changed (referenceWidth, sibling width, etc.) —
-      // scale the pixel width proportionally to the reference width change
-      // and then clamp. This preserves the flyout's percentage position in
-      // both directions (viewport shrink AND grow).
+      // Only constraints changed (referenceWidth, sibling width, etc.).
+      // How the current pixel width is updated depends on the `size` contract:
+      // named sizes are percentages, so they scale proportionally with the
+      // reference width; numeric sizes are pixels, so they are only re-clamped.
       const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
       prevReferenceWidthRef.current = _referenceWidth;
 
+      if (_referenceWidth !== prevRefWidth) {
+        setCallOnResize(false); // A container resize is not a user resize
+      }
+
       setFlyoutWidth((currentWidth) => {
         if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
+          // A numeric `size` is a pixel contract — the consumer supplied an
+          // exact width and may persist it — so re-clamp rather than rescale.
+          // Named sizes are percentages (see `flyout.styles.ts`) and keep
+          // scaling, preserving their percentage position in both directions
+          // (reference width shrink AND grow).
+          if (typeof _size === 'number') {
+            return getFlyoutMinMaxWidth(currentWidth);
+          }
           const scaleFactor = _referenceWidth / prevRefWidth;
           return getFlyoutMinMaxWidth(currentWidth * scaleFactor);
         }
