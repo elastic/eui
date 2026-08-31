@@ -12,7 +12,6 @@ jobs:
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
       id-token: write # Required for OIDC (Vault ephemeral token)
-      contents: read
       issues: write
       pull-requests: write
     steps:
@@ -76,9 +75,9 @@ jobs:
           has_help_wanted=false
           inspected=0
           for issue_number in $issue_numbers; do
-            labels=$(gh issue view "$issue_number" --json labels --jq '.labels[].name' 2>/dev/null) || continue
+            is_help_wanted=$(gh issue view "$issue_number" --json labels --jq 'any(.labels[]; .name == "help wanted")' 2>/dev/null) || continue
             inspected=$((inspected + 1))
-            if printf '%s\n' "$labels" | grep -qx 'help wanted'; then
+            if [[ "$is_help_wanted" == true ]]; then
               has_help_wanted=true
               break
             fi
