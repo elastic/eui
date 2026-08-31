@@ -21,8 +21,14 @@ GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
 # Embed the correct base URL into the Storybook bundle at build time
 export STORYBOOK_BASE_URL="$(buildkite-agent meta-data get storybook_base_url)"
 
+# PR Storybook is a stable URL. Caching it makes VRT screenshot a previous commit's bundle.
+storybook_cache_control="public, max-age=1800, must-revalidate"
+if [[ -n "${BUILDKITE_PULL_REQUEST:-}" && "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
+  storybook_cache_control="no-store"
+fi
+
 GCLOUD_CP_ARGS=(
-  --cache-control="public, max-age=1800, must-revalidate"
+  --cache-control="${storybook_cache_control}"
   --recursive
   --predefined-acl="publicRead"
   --gzip-local="js,css,html,svg,png,jpg,ico"
