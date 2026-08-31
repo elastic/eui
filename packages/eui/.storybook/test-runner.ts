@@ -75,6 +75,16 @@ const waitForFonts = async (page: Page) => {
 };
 
 /**
+ * `EuiIcon` lazy-loads SVGs. The placeholder has `data-is-loading` until the
+ * import resolves; screenshotting earlier captures an empty grey square.
+ */
+const waitForEuiIcons = async (page: Page) => {
+  await page.waitForFunction(
+    () => !document.querySelector('[data-is-loading]')
+  );
+};
+
+/**
  * Ensure the page layout has stabilized before taking a screenshot.
  */
 const waitForLayout = async (page: Page) => {
@@ -129,6 +139,7 @@ const config: TestRunnerConfig = {
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);
+    await waitForEuiIcons(page);
 
     const image =
       selector === 'page'
