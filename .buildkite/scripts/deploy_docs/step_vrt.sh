@@ -185,7 +185,11 @@ unset GCE_ACCOUNT
 GCS_UPLOAD_ARGS=(
   --cache-control="no-store"
   --predefined-acl="publicRead"
+  --recursive
 )
+
+gcs_before_dir=$(mktemp -d)
+ref_artifact_paths=()
 
 # Associative arrays keyed by component (e.g. "euidatagrid"), each holding
 # accumulated `<tr>` rows for the Buildkite annotation and GitHub PR comment.
@@ -231,13 +235,9 @@ while IFS= read -r diff_file; do
   story_label="${story_label//-/ }"
   diff_percentage="$(get_diff_percentage "${filename}")"
 
-  gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${diff_file}" "${vrt_gcs_base}/${filename}"
-  if [[ -f "${CURRENT_DIR}/${story_name}-received.png" ]]; then
-    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${CURRENT_DIR}/${story_name}-received.png" "${vrt_gcs_base}/${story_name}-received.png"
-  fi
   if [[ -f "${REF_DIR}/${story_name}.png" ]]; then
-    gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${REF_DIR}/${story_name}.png" "${vrt_gcs_base}/${story_name}-before.png"
-    buildkite-agent artifact upload "${REF_DIR}/${story_name}.png"
+    cp "${REF_DIR}/${story_name}.png" "${gcs_before_dir}/${story_name}-before.png"
+    ref_artifact_paths+=("${REF_DIR}/${story_name}.png")
   fi
 
   if [[ -z "${annotation_rows_by_component[$component]+_}" ]]; then
@@ -264,6 +264,21 @@ while IFS= read -r diff_file; do
     <td><img src=\"${vrt_public_base}/${filename}\" width=\"180\"/></td>
   </tr>"
 done < <(find "${DIFF_DIR}" -name "*-diff.png" | sort)
+
+# One recursive `gcloud storage cp` per directory (same pattern as Storybook
+# deploy). Per-file copies time out on mass-diff PRs (1000+ images × ~4s each).
+echo "+++ Uploading VRT images to GCS"
+gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${DIFF_DIR}"/* "${vrt_gcs_base}/"
+if compgen -G "${CURRENT_DIR}/*-received.png" > /dev/null 2>&1; then
+  gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${CURRENT_DIR}"/* "${vrt_gcs_base}/"
+fi
+if compgen -G "${gcs_before_dir}/*-before.png" > /dev/null 2>&1; then
+  gcloud storage cp "${GCS_UPLOAD_ARGS[@]}" "${gcs_before_dir}"/* "${vrt_gcs_base}/"
+fi
+
+if [[ ${#ref_artifact_paths[@]} -gt 0 ]]; then
+  ( IFS=';'; buildkite-agent artifact upload "${ref_artifact_paths[*]}" )
+fi
 
 # Write per-component row fragments for `step_vrt_report.sh` to merge.
 ANN_ROWS_DIR="${VRT_DIR}/annotation-rows"
