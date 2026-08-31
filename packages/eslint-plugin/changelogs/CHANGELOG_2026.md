@@ -1,3 +1,64 @@
+## [`v3.0.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.0.0)
+
+- Updated `button-group-no-invalid-children` rule to support checking button groups with `variant="selection"` ([#9950](https://github.com/elastic/eui/pull/9950))
+- Added new `button-group-selection-require-id` rule to enforce a required `id` prop on each child button of `EuiButtonGroup` with `variant="selection"` ([#9950](https://github.com/elastic/eui/pull/9950))
+- Updated `@elastic/eui/no-deprecated-icon-aliases` with the newly deprecated `cloudDrizzle`, `cloudStormy`, `cloudSunny`, `kqlFunction`, `menuDown`, `menuUp`, `namespace`, `visTimelion`, and `visVisualBuilder` icon aliases ([#9923](https://github.com/elastic/eui/pull/9923))
+- Updated `button-group-no-invalid-children` rule to support segmented variant checks ([#9890](https://github.com/elastic/eui/pull/9890))
+- Updated `no-deprecated-icon-aliases` with icons that have no replacement: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `article`
+    - `dotInCircle`
+    - `kubernetesNode`
+    - `scale`
+    - `securitySignalDetected`
+- Updated `no-deprecated-icon-aliases` with icons that have a contextual replacement (warn only, no autofix): ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `folderExclamation` - `linkSlash` (unlink) or `hourglass` (Kibana Cases status)
+    - `stopFill` / `stopSlash` - `EuiColorPickerSwatch` for color chips or `stop` otherwise
+- Updated `no-deprecated-icon-aliases` with new icon aliases: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `analyzeEvent` → `cube`
+    - `annotation` → `flag`
+    - `anomalySwimLane` → `chartHeatmap`
+    - `apps` → `grid`
+    - `container` → `package`
+    - `continuityAbove` → `upload`
+    - `continuityWithin` → `maximize`
+    - `esqlVis` → `query`
+    - `fold` → `minimize`
+    - `frameNext` → `chevronSingleRight`
+    - `framePrevious` → `chevronSingleLeft`
+    - `help` → `question`
+    - `index` → `table`
+    - `ip` → `tokenIP`
+    - `logstashFilter` → `filter`
+    - `logstashInput` → `download`
+    - `logstashOutput` → `upload`
+    - `payment` → `money`
+    - `sessionViewer` → `commandLine`
+    - `singleMetricViewer` → `chartArea`
+    - `spaces` → `grid`
+    - `starEmptySpace` → `star`
+    - `starFillSpace` → `starFill`
+    - `starMinusEmpty` → `star`
+    - `starMinusFill` → `starFill`
+    - `starPlusEmpty` → `star`
+    - `starPlusFill` → `starFill`
+    - `stats` → `chartLine`
+    - `string` → `tokenString`
+    - `tableOfContents` → `listBullet`
+    - `unfold` → `maximize`
+    - `visGoal` → `chartGauge`
+    - `wordWrap` → `lineBreak`
+    - `wordWrapDisabled` → `lineBreakSlash`
+- Updated `starFilledSpace`, `starMinusFilled` and `starPlusFilled` mappings to `starFill` ([#9884](https://github.com/elastic/eui/pull/9884))
+
+**Deprecations**
+
+- Updated deprecated icon alias mappings: ([#9974](https://github.com/elastic/eui/pull/9974))
+    - `folderClosed` and `folderClose` → `folder`
+
+**Breaking changes**
+
+- Removed the `push` icon alias from `@elastic/eui/no-deprecated-icon-aliases`. `push` is now a supported `EuiIcon` glyph again and is no longer autofixed to `send` ([#9923](https://github.com/elastic/eui/pull/9923))
+
 ## [`v2.16.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.16.0)
 
 - Added new `@elastic/eui/no-nested-copy-tooltip` rule to improve `EuiCopy` usage ([#9852](https://github.com/elastic/eui/pull/9852))
