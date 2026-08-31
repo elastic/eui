@@ -175,7 +175,11 @@ buildkite-agent annotate --style "error" --context "vrt-diff" \
 
 # GitHub enforces a 65536-character limit on PR comment bodies.
 if [[ "${#pr_comment_body}" -gt 60000 ]]; then
-  pr_comment_body="${pr_comment_body:0:60000}"$'\n\n_Table truncated - see the [Buildkite annotation]('"${BUILDKITE_BUILD_URL}"') for the full diff._'
+  truncated="${pr_comment_body:0:60000}"
+  if [[ "${truncated}" == *"</tr>"* ]]; then
+    truncated="${truncated%"${truncated##*</tr>}"}"
+  fi
+  pr_comment_body="${truncated}"$'\n</tbody>\n</table>\n</details>\n\n_Table truncated - see the [Buildkite annotation]('"${BUILDKITE_BUILD_URL}"') for the full diff._'
 fi
 
 if vrt_comment_url="$(gh pr comment "${BUILDKITE_PULL_REQUEST}" \
