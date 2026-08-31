@@ -68,6 +68,7 @@ describe('EuiIcons', () => {
       'filterInclude',
       'flag',
       'fold',
+      'folder',
       'folderCheck',
       'folderClosed',
       'folderExclamation',

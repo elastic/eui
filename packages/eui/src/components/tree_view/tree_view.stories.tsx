@@ -58,7 +58,7 @@ export const Playground: Story = {
       {
         label: 'Item One',
         id: 'item_one',
-        icon: <EuiIcon type="folderClosed" />,
+        icon: <EuiIcon type="folder" />,
         iconWhenExpanded: <EuiIcon type="folderOpen" />,
         isExpanded: true,
         children: [
