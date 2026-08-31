@@ -20,8 +20,9 @@ import {
   VRT_VARIANT_ATTRIBUTE,
   isVariantName,
   isVariantSkipped,
+  type VariantName,
   type VrtSkip,
-} from './vrt';
+} from './vrt.ts';
 
 /**
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
@@ -40,9 +41,10 @@ const configDir = path.dirname(fileURLToPath(import.meta.url));
  * The active variant for this run, determined by the `VRT_VARIANT` env var.
  * Falls back to desktop when run directly (e.g. `yarn test-storybook`).
  */
-const activeVariant = isVariantName(process.env.VRT_VARIANT)
-  ? VARIANTS[process.env.VRT_VARIANT]
-  : VARIANTS.desktop;
+const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
+  ? process.env.VRT_VARIANT
+  : 'desktop';
+const activeVariant = VARIANTS[activeVariantName];
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
@@ -70,6 +72,16 @@ const waitForFonts = async (page: Page) => {
   await page.evaluate(async () => {
     await document.fonts.ready;
   });
+};
+
+/**
+ * `EuiIcon` lazy-loads SVGs. The placeholder has `data-is-loading` until the
+ * import resolves; screenshotting earlier captures an empty grey square.
+ */
+const waitForEuiIcons = async (page: Page) => {
+  await page.waitForFunction(
+    () => !document.querySelector('[data-is-loading]')
+  );
 };
 
 /**
@@ -118,7 +130,7 @@ const config: TestRunnerConfig = {
     const storyContext = await getStoryContext(page, context);
 
     const skip: VrtSkip | undefined = storyContext.parameters?.vrt?.skip;
-    if (isVariantSkipped(skip, activeVariant.name)) return;
+    if (isVariantSkipped(skip, activeVariantName)) return;
 
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
@@ -127,6 +139,7 @@ const config: TestRunnerConfig = {
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);
+    await waitForEuiIcons(page);
 
     const image =
       selector === 'page'

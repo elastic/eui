@@ -10,6 +10,8 @@ node_modules
 /cypress/videos
 /.vrt/current
 /.vrt/diff
+/.vrt/new-baselines
+/.vrt/**/*.html
 
 # Build-related files
 /storybook-static

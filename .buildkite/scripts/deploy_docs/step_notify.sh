@@ -41,7 +41,7 @@ if [[ -n "${BUILDKITE_PULL_REQUEST:-}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "
     vrt_pr_comment="\n* :no_entry_sign: Visual regression tests skipped: ${vrt_skip_reason}"
   else
     annotation_style="error"
-    # `vrt_comment_url` is only set when `step_vrt.sh` actually found visual differences
+    # `vrt_comment_url` is only set when `step_vrt_report.sh` actually found visual differences
     vrt_comment_url="$(buildkite-agent meta-data get vrt_comment_url --default "" 2>/dev/null)"
     if [[ -n "${vrt_comment_url}" ]]; then
       vrt_annotation="- :x: Visual regression tests failed ([view diff table](${vrt_comment_url}))"
