@@ -75,13 +75,13 @@ export const FontTitleWeightPreview = () => {
   const titleWeight = euiTheme.font.title.weight;
 
   return (
-    <p
+    <h2
       css={css`
         font-weight: ${euiTheme.font.weight[titleWeight]};
       `}
     >
       {titleWeight}
-    </p>
+    </h2>
   );
 };
 
@@ -90,14 +90,14 @@ export const FontTitleLetterSpacingPreview = () => {
 
   return (
     <EuiTitle size="m">
-    <h3
-      css={css`
-        font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
-        letter-spacing: ${euiTheme.font.title.letterSpacing};
-      `}
-    >
-      The quick brown fox jumped over the blue moon
-    </h3>
+      <h3
+        css={css`
+          font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+          letter-spacing: ${euiTheme.font.title.letterSpacing};
+        `}
+      >
+        The quick brown fox jumped over the blue moon
+      </h3>
     </EuiTitle>
   );
 };
