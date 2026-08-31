@@ -33,11 +33,12 @@ import { euiDataGridHeaderCellWrapperStyles } from './data_grid_header_cell_wrap
  * but it also DRY's out certain class/data-test-subj/style attributes
  */
 export const EuiDataGridHeaderCellWrapper: FunctionComponent<
-  EuiDataGridHeaderCellWrapperProps
+  EuiDataGridHeaderCellWrapperProps & { isControlColumn?: boolean }
 > = ({
   id,
   index,
   isLastColumn,
+  isControlColumn = false,
   width,
   className,
   children,
@@ -110,6 +111,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       aria-labelledby={renderFocusTrap ? ariaLabelledby : undefined}
       {...rest}
     >
+      {isControlColumn && tabularCopyMarkers.hiddenNoCopyBoundary}
       <HandleInteractiveChildren
         cellEl={isDragging ? null : headerEl}
         renderFocusTrap={isDragging ? false : renderFocusTrap}
@@ -118,7 +120,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       >
         {typeof children === 'function' ? children(renderFocusTrap) : children}
       </HandleInteractiveChildren>
-      {isLastColumn
+      {isControlColumn
+        ? tabularCopyMarkers.hiddenNoCopyBoundary
+        : isLastColumn
         ? tabularCopyMarkers.hiddenNewline
         : tabularCopyMarkers.hiddenTab}
     </div>

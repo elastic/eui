@@ -18,7 +18,8 @@ import {
   EuiDataGridProps,
 } from './index';
 import { EuiLink } from '../link';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 const baseProps: EuiDataGridProps = {
   'aria-label': 'grid for testing',
@@ -722,18 +723,68 @@ describe('EuiDataGrid', () => {
   });
 
   describe('copying tabular content', () => {
-    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
-      cy.realMount(<EuiDataGrid {...baseProps} />);
-
-      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
-        expect(copiedText).to.eq(
-          `First\tSecond
+    const copiedDataColumns = `First\tSecond
 a, 0\tb, 0
 a, 1\tb, 1
 a, 2\tb, 2
 a, footer\tb, footer
-`
-        );
+`;
+
+    const gridWithControlColumns = () => (
+      <EuiDataGrid
+        {...baseProps}
+        leadingControlColumns={[
+          {
+            id: 'select',
+            width: 32,
+            headerCellRender: () => null,
+            rowCellRender: () => null,
+          },
+        ]}
+        trailingControlColumns={[
+          {
+            id: 'actions',
+            width: 40,
+            headerCellRender: () => (
+              <EuiScreenReaderOnly>
+                <span>Row actions</span>
+              </EuiScreenReaderOnly>
+            ),
+            rowCellRender: () => (
+              <EuiButtonIcon
+                iconType="boxesHorizontal"
+                aria-label="Open actions"
+              />
+            ),
+          },
+        ]}
+      />
+    );
+
+    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
+      });
+    });
+
+    it('keeps headers aligned with body rows when control columns are present (#9951)', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.selectAndCopy(
+        '.euiDataGrid__content',
+        '[data-gridcell-column-id="a"][role="columnheader"]'
+      ).then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
+      });
+    });
+
+    it('excludes control columns from a full-grid copy', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
       });
     });
   });

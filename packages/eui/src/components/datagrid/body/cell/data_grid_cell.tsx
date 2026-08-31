@@ -149,7 +149,7 @@ const EuiDataGridCellContent: FunctionComponent<
 EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
 
 export class EuiDataGridCell extends Component<
-  EuiDataGridCellProps,
+  EuiDataGridCellProps & { isLastCopyColumn?: boolean },
   EuiDataGridCellState
 > {
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
@@ -549,6 +549,7 @@ export class EuiDataGridCell extends Component<
       rowHeightsOptions,
       rowManager,
       pagination,
+      isLastCopyColumn = false,
       ...rest
     } = this.props;
     const { rowIndex, visibleRowIndex, colIndex } = rest;
@@ -572,7 +573,6 @@ export class EuiDataGridCell extends Component<
     const isControlColumn = cellClasses.includes(
       'euiDataGridRowCell--controlColumn'
     );
-    const isLastColumn = cellClasses.includes('euiDataGridRowCell--lastColumn');
 
     const ariaRowIndex = pagination
       ? visibleRowIndex + 1 + pagination.pageSize * pagination.pageIndex
@@ -625,6 +625,7 @@ export class EuiDataGridCell extends Component<
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >
+          {isControlColumn && tabularCopyMarkers.hiddenNoCopyBoundary}
           <HandleInteractiveChildren
             cellEl={this.cellRef.current}
             updateCellFocusContext={this.updateCellFocusContext}
@@ -645,8 +646,9 @@ export class EuiDataGridCell extends Component<
               colIndex={colIndex}
             />
           </HandleInteractiveChildren>
-
-          {isLastColumn
+          {isControlColumn
+            ? tabularCopyMarkers.hiddenNoCopyBoundary
+            : isLastCopyColumn
             ? tabularCopyMarkers.hiddenNewline
             : tabularCopyMarkers.hiddenTab}
 
