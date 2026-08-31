@@ -42,7 +42,10 @@ fi
 #          Commit any new baselines (first run)            #
 ############################################################
 
-if buildkite-agent artifact download "${VRT_DIR}/new-baselines/**/*.png" . 2>/dev/null \
+echo "+++ Checking for new VRT baselines"
+mkdir -p "${VRT_DIR}/new-baselines"
+
+if buildkite-agent artifact download "${VRT_DIR}/new-baselines/*.png" . \
   && compgen -G "${VRT_DIR}/new-baselines/"*.png > /dev/null 2>&1; then
   echo "+++ Committing new VRT baseline screenshots (first run)"
   mkdir -p "${REF_DIR}"

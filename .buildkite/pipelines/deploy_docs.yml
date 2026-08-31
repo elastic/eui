@@ -32,7 +32,7 @@ steps:
     artifact_paths:
       - "packages/eui/.vrt/diff/*-diff.png"
       - "packages/eui/.vrt/current/*-received.png"
-      - "packages/eui/.vrt/new-baselines/**/*.png"
+      - "packages/eui/.vrt/new-baselines/*.png"
       - "packages/eui/.vrt/annotation-rows/*"
       - "packages/eui/.vrt/pr-comment-rows/*"
 
