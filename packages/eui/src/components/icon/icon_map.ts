@@ -901,11 +901,11 @@ export const typeToPathMap = {
     category: 'app',
   }),
   fold: () => import('./assets/fold'), // Deprecated in favor of `minimize`
-  folder: () => import('./assets/folder_close'),
-  folderClosed: () => import('./assets/folder_close'), // Deprecated in favor of `folderClose`
-  folderClose: withMetadata(() => import('./assets/folder_close'), {
+  folder: withMetadata(() => import('./assets/folder_close'), {
     synonyms: ['folder', 'closed', 'collapse', 'directory', 'archive'],
   }),
+  folderClosed: () => import('./assets/folder_close'), // Deprecated in favor of `folder`
+  folderClose: () => import('./assets/folder_close'), // Deprecated in favor of `folder`
   folderCheck: () => import('./assets/folder_check'), // Deprecated in favor of `check`
   folderExclamation: () => import('./assets/folder_exclamation'), // Deprecated; contextual replacement
   folderOpen: withMetadata(() => import('./assets/folder_open'), {
@@ -2158,6 +2158,7 @@ const deprecatedIconsExcludedFromDocs = new Set([
   'editorComment',
   'export',
   'folderCheck',
+  'folderClose',
   'folderClosed',
   'folderExclamation',
   'frameNext',
