@@ -92,7 +92,7 @@ export type EuiButtonGroupProps = CommonProps &
   EuiDisabledProps & {
     /**
      * Typical sizing is `s`. Medium `m` size should be reserved for major features.
-     * `compressed` is meant to be used alongside and within compressed forms.
+     * `compressed` renders as `s` and will be removed in the future.
      */
     buttonSize?: 's' | 'm' | 'compressed';
     /**
@@ -109,6 +109,7 @@ export type EuiButtonGroupProps = CommonProps &
      */
     legend: string;
     /**
+     * @deprecated - Will be fixed to 'text' in the future.
      * Any of the named color palette options.
      *
      * Do not use the following colors for standalone buttons directly,
@@ -125,6 +126,7 @@ export type EuiButtonGroupProps = CommonProps &
      */
     type?: 'single' | 'multi';
     /**
+     * @deprecated - Use the Children API via `children` instead.
      * An array of {@link EuiButtonGroupOptionProps}
      */
     options: EuiButtonGroupOptionProps[];
@@ -191,6 +193,8 @@ const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
   type = 'single',
   ...rest
 }) => {
+  const size = buttonSize === 'compressed' ? 's' : buttonSize;
+
   const wrapperCssStyles = [
     euiButtonGroupStyles.euiButtonGroup,
     isFullWidth && euiButtonGroupStyles.fullWidth,
@@ -200,7 +204,7 @@ const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     isFullWidth && styles.fullWidth,
-    styles.size[buttonSize],
+    styles.size[size],
   ];
 
   const classes = classNames(
