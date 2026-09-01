@@ -44,9 +44,6 @@ const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
       range.setStartBefore(start);
     } else {
       range.selectNodeContents(el);
-    
-    } else {
-      range.selectNodeContents(el);
     }
     document.getSelection()!.removeAllRanges();
     document.getSelection()!.addRange(range);
