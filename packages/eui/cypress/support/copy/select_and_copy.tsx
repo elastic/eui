@@ -40,8 +40,11 @@ const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
       if (!start) {
         throw new Error(`Could not find start selector: ${startSelector}`);
       }
+      range.selectNodeContents(el);
       range.setStartBefore(start);
-      range.setEndAfter(el);
+    } else {
+      range.selectNodeContents(el);
+    
     } else {
       range.selectNodeContents(el);
     }
