@@ -89,15 +89,13 @@ export const FontTitleLetterSpacingPreview = () => {
   const { euiTheme } = useEuiTheme();
 
   return (
-    <EuiTitle size="m">
-      <h3
-        css={css`
-          font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
-          letter-spacing: ${euiTheme.font.title.letterSpacing};
-        `}
-      >
-        The quick brown fox jumped over the blue moon
-      </h3>
-    </EuiTitle>
+    <h3
+      css={css`
+        font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+        letter-spacing: ${euiTheme.font.title.letterSpacing};
+      `}
+    >
+      The quick brown fox jumped over the blue moon
+    </h3>
   );
 };
