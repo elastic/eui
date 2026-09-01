@@ -47,7 +47,7 @@ export const Playground: Story = {
   },
 };
 
-const FilterButtonPopover = ({ label = 'Composers' }) => {
+const FilterButtonPopover = ({ label = 'Composers' }: { label?: string }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
