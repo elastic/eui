@@ -241,7 +241,7 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
-          # Retry a few times, npm can lag behind yarn.
+          # Retry a few times; the npm registry can lag behind a snapshot publish.
           for attempt in 1 2 3 4 5; do
             if yarn kbn bootstrap; then
               break
