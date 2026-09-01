@@ -32,18 +32,26 @@ const main = async () => {
 
   console.log('Generating docgen data for @elastic/eui');
 
-  let i = 0;
-  for (const file of files) {
-    const fileRelativePath = path.relative(euiSrcPath, file);
-
-    const componentExtends: Record<string, string[]> = {};
-    const parser = docgen.withCustomConfig(path.join(euiPackagePath, 'tsconfig.json'), {
-      propFilter: (prop, component) => filterProp(prop, component, componentExtends),
+  const componentExtends: Record<string, string[]> = {};
+  const parser = docgen.withCustomConfig(
+    path.join(euiPackagePath, 'tsconfig.json'),
+    {
+      propFilter: (prop, component) =>
+        filterProp(prop, component, componentExtends),
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
       savePropValueAsString: true,
       shouldIncludePropTagMap: false,
-    });
+    }
+  );
+
+  let i = 0;
+  for (const file of files) {
+    const fileRelativePath = path.relative(euiSrcPath, file);
+
+    for (const key of Object.keys(componentExtends)) {
+      delete componentExtends[key];
+    }
 
     const parsed = parser.parseWithProgramProvider(file, programProvider);
     const results: Record<string, ProcessedComponent> = {};
