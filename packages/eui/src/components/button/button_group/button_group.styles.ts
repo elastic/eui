@@ -19,7 +19,6 @@ import {
   highContrastModeStyles,
   preventForcedColors,
 } from '../../../global_styling/functions/high_contrast';
-import { euiFormVariables } from '../../form/form.styles';
 
 const hasButtonOnlySelector = ':not(:has(.euiButtonIcon))';
 const hasButtonIconOnlySelector = ':not(:has(.euiButton, .euiButtonEmpty))';
@@ -50,9 +49,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
   const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
   const containerPadding = euiTheme.size.xs;
-  const splitPadding = mathWithUnits(containerPadding, (x) => x / 2);
-  const insetSize = (height: string) =>
-    mathWithUnits([height, containerPadding], (x, y) => x - y * 2);
+  const splitPadding = mathWithUnits([containerPadding], (x) => x / 2);
   const buttonGroupVariables = {
     gap: {
       regular: euiTheme.size.xs,
@@ -61,16 +58,21 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         (x, y) => x + y
       ),
     },
-    // TODO: use from buttonSizeMap once added via EuiSplitButton:
-    // https://github.com/elastic/eui/pull/9865
     radius: {
       outer: euiTheme.border.radius.medium,
-      inner: '2px', // should eventually be a token, but currently small and medium have the same value
+      inner: buttonSizeMap.s.radiusInset,
     },
     size: {
-      s: insetSize(buttonSizeMap.s.height),
-      m: insetSize(buttonSizeMap.m.height),
+      s: buttonSizeMap.s.getInsetHeight(
+        buttonSizeMap.s.height,
+        containerPadding
+      ),
+      m: buttonSizeMap.m.getInsetHeight(
+        buttonSizeMap.m.height,
+        containerPadding
+      ),
     },
+    backgroundColor: euiTheme.colors.backgroundBasePlain,
   };
 
   const dividerOffset = mathWithUnits(
@@ -78,12 +80,29 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => (x + y) / 2
   );
 
-  const {
-    controlCompressedHeight,
-    controlCompressedBorderRadius,
-    backgroundColor,
-    borderColor,
-  } = euiFormVariables(euiThemeContext);
+  const containerBorderStyles = `
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* keep the border under any related content */
+      z-index: -1;
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.borderBasePlain};
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  `;
+
+  const containerCommonStyles = `
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: ${buttonGroupVariables.gap.regular};
+    max-inline-size: 100%;
+    padding: ${splitPadding};
+    overflow: hidden;
+  `;
 
   const dividerStyles = `
     gap: ${buttonGroupVariables.gap.dividers};
@@ -189,6 +208,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         display: inline-flex;
         align-items: center;
         max-inline-size: 100%;
+        z-index: ${euiTheme.levels.content};
         /* splits padding between outer and inner container to ensure focus outlines are not clipped */
         padding: ${splitPadding};
         border-radius: ${buttonGroupVariables.radius.outer};
@@ -205,15 +225,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         /* Faux container border */
-        &::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border: ${euiTheme.border.width.thin} solid
-            ${euiTheme.colors.borderBasePlain};
-          border-radius: inherit;
-          pointer-events: none;
-        }
+        ${containerBorderStyles}
       }
 
       &:where([data-variant='selection'][data-display='inverse'] &) {
@@ -224,6 +236,21 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '100%')}
       display: flex;
       align-items: center;
+      z-index: ${euiTheme.levels.content};
+
+      /* Legacy Options API */
+
+      &:where(.euiButtonGroup:not([data-variant]) &) {
+        ${containerCommonStyles}
+        padding: ${containerPadding};
+        border-radius: ${buttonGroupVariables.radius.outer};
+        background-color: ${euiTheme.colors.backgroundBasePlain};
+
+        /* Faux container border */
+        ${containerBorderStyles}
+      }
+
+      /* Children API */
 
       &:where([data-variant='default'] &) {
         flex-wrap: wrap;
@@ -231,14 +258,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* Shared layout for segmented inset containers */
       &:where(${segmentedStyledSelector} &) {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
         flex-wrap: wrap;
-        gap: ${buttonGroupVariables.gap.regular};
-        max-inline-size: 100%;
-        padding: ${splitPadding};
-        overflow: hidden;
+        ${containerCommonStyles}
 
         ${segmentedChildrenStyles}
 
@@ -381,22 +402,21 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    // Sizes
+    // Options API sizes
     size: {
       m: css`
-        border-radius: ${euiTheme.border.radius.medium};
+        ${logicalCSS('height', buttonSizeMap.m.height)}
+        --euiButtonGroupButtonInsetSize: ${buttonGroupVariables.size.m};
+        background-color: ${buttonGroupVariables.backgroundColor};
+        border-radius: ${buttonGroupVariables.radius.outer};
         ${_highContrastStyles(euiThemeContext)}
       `,
       s: css`
-        border-radius: ${euiTheme.border.radius.small};
+        ${logicalCSS('height', buttonSizeMap.s.height)}
+        --euiButtonGroupButtonInsetSize: ${buttonGroupVariables.size.s};
+        background-color: ${buttonGroupVariables.backgroundColor};
+        border-radius: ${buttonGroupVariables.radius.outer};
         ${_highContrastStyles(euiThemeContext)}
-      `,
-      compressed: css`
-        ${logicalCSS('height', controlCompressedHeight)}
-        background-color: ${backgroundColor};
-        border: ${euiTheme.border.width.thin} solid ${borderColor};
-        border-radius: ${controlCompressedBorderRadius};
-        ${_highContrastStyles(euiThemeContext, true)}
       `,
     },
     gutterSize: {
@@ -419,20 +439,15 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const _highContrastStyles = (
-  euiThemeContext: UseEuiTheme,
-  compressed?: boolean
-) => {
+const _highContrastStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return highContrastModeStyles(euiThemeContext, {
-    preferred: compressed
-      ? `
-        .euiButtonGroupButton {
-          border: none;
-        }
-      `
-      : '',
+    preferred: `
+      .euiButtonGroupButton {
+        border: none;
+      }
+    `,
     forced: `
       .euiButtonGroupButton-isSelected {
         ${preventForcedColors(euiThemeContext)}
