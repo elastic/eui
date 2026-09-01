@@ -1,8 +1,8 @@
 agents:
   provider: gcp
   image: "family/eui-ubuntu-2204"
-  # 4 AMD Rome / Milan vCPUs, 16GB RAM
-  machineType: 'n2d-standard-4'
+  # 8 AMD Rome / Milan vCPUs, 32GB RAM
+  machineType: 'n2d-standard-8'
   # No spot instances to protect against agent losses during file upload
   preemptible: false
 
