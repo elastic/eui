@@ -157,7 +157,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
       data-dividers="true"
     >
       <div
-        class="euiFilterButton__wrapper css-fb7im9-wrapper-hasDividers"
+        class="euiFilterButton__wrapper css-u6crh2-wrapper-hasDividers"
       >
         <button
           aria-pressed="false"
@@ -182,7 +182,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="euiFilterButton__wrapper css-fb7im9-wrapper-hasDividers"
+          class="euiFilterButton__wrapper css-u6crh2-wrapper-hasDividers"
         >
           <button
             aria-expanded="false"

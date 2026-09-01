@@ -153,8 +153,7 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
         var(--euiFilterButtonSize, ${euiTheme.size.xl}) - ${euiTheme.size.base}
       );
       inline-size: ${euiTheme.border.width.thin};
-      border-inline-start: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBasePlain};
+      border-inline-start: ${border};
       pointer-events: none;
     }
   `;
