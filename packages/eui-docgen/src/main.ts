@@ -32,7 +32,7 @@ const main = async () => {
 
   console.log('Generating docgen data for @elastic/eui');
 
-  const componentExtends: Record<string, string[]> = {};
+  let componentExtends: Record<string, string[]> = {};
   const parser = docgen.withCustomConfig(
     path.join(euiPackagePath, 'tsconfig.json'),
     {
@@ -49,9 +49,7 @@ const main = async () => {
   for (const file of files) {
     const fileRelativePath = path.relative(euiSrcPath, file);
 
-    for (const key of Object.keys(componentExtends)) {
-      delete componentExtends[key];
-    }
+    componentExtends = {};
 
     const parsed = parser.parseWithProgramProvider(file, programProvider);
     const results: Record<string, ProcessedComponent> = {};
