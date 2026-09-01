@@ -132,7 +132,7 @@ export interface _EuiThemeTitle {
   /**
    * Letter-spacing applied to titles and headings
    */
-  letterSpacing?: CSSProperties['letterSpacing'];
+  letterSpacing: CSSProperties['letterSpacing'];
 }
 
 /*
