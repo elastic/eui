@@ -444,7 +444,10 @@ describe('EuiFlyoutMenu', () => {
           />
         );
 
-        fireEvent.mouseOver(screen.getByLabelText('Locked'));
+        // Fire on the tooltip anchor span — the button has aria-disabled which intercepts
+        // pointer events at the element level, so mouseOver must target the wrapper.
+        const button = screen.getByLabelText('Locked');
+        fireEvent.mouseOver(button.closest('.euiToolTipAnchor')!);
 
         expect(getByRole('tooltip')).toHaveTextContent(
           'Insufficient permissions'

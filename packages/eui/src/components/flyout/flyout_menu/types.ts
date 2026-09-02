@@ -114,7 +114,8 @@ export interface EuiFlyoutMenuAction {
   isLoading?: boolean;
   /**
    * Renders the action as an anchor tag with the given URL, allowing users to
-   * right-click and open in a new tab.
+   * right-click and open in a new tab. When `isDisabled` or `isLoading` is
+   * `true`, the element renders as a `<button>` regardless of this prop.
    */
   href?: string;
   /**

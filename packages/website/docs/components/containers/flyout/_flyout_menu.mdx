@@ -50,6 +50,12 @@ export default () => {
 
 Actions rendered via `trailingActions` show a tooltip when `toolTipContent` is provided, and are placed before the close button. Use `leadingActions` to render actions at the start of the menu bar, after any built-in leading controls (pagination, or back/history); a divider is shown automatically between the built-in controls and `leadingActions` when both are present.
 
+Each action in `EuiFlyoutMenuAction` also supports `isDisabled`, `isLoading`, and `href`:
+
+- **`isDisabled`** — disables the button. Pair with `toolTipContent` to explain why the action is unavailable; when both are set the tooltip stays focusable for keyboard users.
+- **`isLoading`** — replaces the icon with a loading spinner and disables the button.
+- **`href`** — renders the action as an anchor, enabling right-click / open-in-new-tab. When `isDisabled` or `isLoading` is `true` the element always renders as a `<button>` regardless of `href`.
+
 :::info Deprecation
 The `customActions` prop is deprecated in favor of `trailingActions`. It is still supported as a compatibility alias, but if both `trailingActions` and `customActions` are supplied, `trailingActions` takes precedence.
 :::
