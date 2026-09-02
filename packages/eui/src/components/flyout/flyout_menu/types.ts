@@ -87,13 +87,15 @@ export interface EuiFlyoutMenuAction {
   /**
    * onClick handler for the action button
    */
-  onClick: () => void;
+  onClick?: () => void;
   /**
    * Aria label for the action button
    */
   'aria-label': string;
   /**
-   * Optional tooltip content shown on hover/focus of the action button
+   * Optional tooltip content shown on hover/focus of the action button.
+   * When `isDisabled` is `true`, the tooltip is always shown to explain why
+   * the action is unavailable.
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
@@ -101,6 +103,24 @@ export interface EuiFlyoutMenuAction {
    * Only used when `toolTipContent` is also provided.
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+  /**
+   * Disables the action button. Pair with `toolTipContent` to explain why
+   * the action is unavailable.
+   */
+  isDisabled?: boolean;
+  /**
+   * Replaces the button icon with a loading spinner and disables the button.
+   */
+  isLoading?: boolean;
+  /**
+   * Renders the action as an anchor tag with the given URL, allowing users to
+   * right-click and open in a new tab.
+   */
+  href?: string;
+  /**
+   * Target for the anchor tag. Only used when `href` is provided.
+   */
+  target?: string;
 }
 
 /**

@@ -409,6 +409,110 @@ describe('EuiFlyoutMenu', () => {
       expect(getByRole('tooltip').className).toContain('euiToolTip-left');
     });
 
+    describe('isDisabled', () => {
+      it('disables the action button when isDisabled is true', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'lock',
+                onClick: jest.fn(),
+                'aria-label': 'Locked',
+                isDisabled: true,
+              },
+            ]}
+          />
+        );
+
+        expect(container.querySelector('[aria-label="Locked"]')).toBeDisabled();
+      });
+
+      it('still shows the tooltip when isDisabled is true', () => {
+        const { getByRole } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'lock',
+                onClick: jest.fn(),
+                'aria-label': 'Locked',
+                toolTipContent: 'Insufficient permissions',
+                isDisabled: true,
+              },
+            ]}
+          />
+        );
+
+        fireEvent.mouseOver(screen.getByLabelText('Locked'));
+
+        expect(getByRole('tooltip')).toHaveTextContent(
+          'Insufficient permissions'
+        );
+      });
+    });
+
+    describe('isLoading', () => {
+      it('disables the action button when isLoading is true', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'gear',
+                onClick: jest.fn(),
+                'aria-label': 'Saving',
+                isLoading: true,
+              },
+            ]}
+          />
+        );
+
+        expect(container.querySelector('[aria-label="Saving"]')).toBeDisabled();
+      });
+    });
+
+    describe('href', () => {
+      it('renders the action as an anchor when href is provided', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'share',
+                'aria-label': 'Share link',
+                href: 'https://elastic.co',
+              },
+            ]}
+          />
+        );
+
+        const anchor = container.querySelector('a[aria-label="Share link"]');
+        expect(anchor).toBeInTheDocument();
+        expect(anchor).toHaveAttribute('href', 'https://elastic.co');
+      });
+
+      it('forwards the target attribute to the anchor', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'share',
+                'aria-label': 'Share link',
+                href: 'https://elastic.co',
+                target: '_blank',
+              },
+            ]}
+          />
+        );
+
+        expect(
+          container.querySelector('a[aria-label="Share link"]')
+        ).toHaveAttribute('target', '_blank');
+      });
+    });
+
     it('falls back to the deprecated customActions alias when trailingActions is not supplied', () => {
       const deprecatedCustomActions = [
         { iconType: 'gear', onClick: jest.fn(), 'aria-label': 'Settings' },

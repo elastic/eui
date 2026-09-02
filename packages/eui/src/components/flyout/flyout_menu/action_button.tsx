@@ -21,6 +21,10 @@ export const MenuActionButton: React.FC<{
     'aria-label': ariaLabel,
     toolTipContent,
     toolTipProps,
+    isDisabled,
+    isLoading,
+    href,
+    target,
   } = action;
 
   const sharedProps = {
@@ -29,6 +33,10 @@ export const MenuActionButton: React.FC<{
     onClick,
     color: 'text' as const,
     size: 'xs' as const,
+    isDisabled,
+    isLoading,
+    href,
+    target,
   };
 
   return toolTipContent ? (
