@@ -982,6 +982,18 @@ export const typeToPathMap = {
       'remove',
     ],
   }),
+  tableSparkles: withMetadata(() => import('./assets/table_sparkles'), {
+    synonyms: [
+      'context',
+      'table',
+      'index',
+      'indices',
+      'AI',
+      'curated content',
+      'elasticsearch',
+      'dataset',
+    ],
+  }),
   indexEdit: () => import('./assets/index_edit'), // Deprecated in favor of `tablePencil`
   tablePencil: withMetadata(() => import('./assets/index_edit'), {
     synonyms: [
