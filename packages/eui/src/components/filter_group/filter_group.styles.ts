@@ -52,11 +52,6 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         gap: ${euiTheme.border.width.thin};
       }
 
-      &:where([data-display='regular']) {
-        --euiFilterButtonToggleBackground: ${euiTheme.colors
-          .backgroundLightText};
-      }
-
       .euiFilterButton-isToggle {
         /* reduced padding to account for outer container padding */
         padding-inline: ${mathWithUnits(
