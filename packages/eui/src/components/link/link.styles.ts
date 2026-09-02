@@ -15,14 +15,19 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
   return `
     font-weight: ${euiTheme.font.weight.medium};
     ${logicalTextAlignCSS('left')}
+    color: ${euiTheme.colors.textParagraph};
+    text-decoration: underline dotted;
+    /* use a fallback as "from-font" isn't fully supported by all last major versions yet */
+    text-decoration-thickness: ${euiTheme.border.width.thin};
+    text-decoration-thickness: from-font;
 
-    &:hover {
-      text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: underline solid;
     }
 
     &:focus {
       ${euiFocusRing(euiThemeContext, 'outset')}
-      text-decoration: underline;
       text-decoration-thickness: ${euiTheme.border.width.thick};
     }
   `;
@@ -41,6 +46,8 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       font-weight: inherit;
+      color: inherit;
+      text-decoration: none;
 
       &:hover {
         cursor: auto;
@@ -49,6 +56,7 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus,
       &:target {
+        color: inherit;
         text-decoration: none;
       }
     `,
@@ -60,16 +68,25 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     danger: css(_colorCSS(euiTheme.colors.textDanger)),
     warning: css(_colorCSS(euiTheme.colors.textWarning)),
     ghost: css(_colorCSS(euiTheme.colors.textGhost)),
-    text: css(_colorCSS(euiTheme.colors.textParagraph)),
+    text: css(
+      _colorCSS(euiTheme.colors.textParagraph, euiTheme.colors.textPrimary)
+    ),
   };
 };
 
-const _colorCSS = (color: string) => {
+const _colorCSS = (color: string, interactionColor?: string) => {
+  const focusColor = interactionColor ?? color;
+
   return `
     color: ${color};
 
+    &:hover,
+    &:focus {
+      color: ${focusColor};
+    }
+
     &:target {
-      color: darken(${color}, 10%);
+      color: color-mix(in oklab, ${color}, #000 10%);
     }
   `;
 };

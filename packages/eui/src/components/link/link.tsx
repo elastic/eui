@@ -40,6 +40,7 @@ export interface LinkButtonProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
+   * @default text
    */
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -54,6 +55,7 @@ export interface LinkAnchorProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
+   * @default text
    */
   color?: EuiLinkColor;
   /**
@@ -82,7 +84,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,
-      color = 'primary',
+      color = 'text',
       className,
       href,
       external,
