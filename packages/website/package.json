@@ -21,7 +21,7 @@
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.1.0",
     "@docusaurus/core": "^3.7.0",
-    "@docusaurus/faster": "3.7.0",
+    "@docusaurus/faster": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
     "@elastic/charts": "^70.0.1",
     "@elastic/datemath": "^5.0.3",
