@@ -240,7 +240,18 @@ jobs:
       - name: Run Kibana bootstrap script and normalize dependencies
         # language=bash
         run: |
-          yarn kbn bootstrap
+          set -euo pipefail
+          # Retry a few times; the npm registry can lag behind a snapshot publish.
+          for attempt in 1 2 3 4 5; do
+            if yarn kbn bootstrap; then
+              break
+            fi
+            if [[ "$attempt" -eq 5 ]]; then
+              exit 1
+            fi
+            echo "bootstrap failed (attempt ${attempt}/5); retrying in 60s"
+            sleep 60
+          done
           node scripts/yarn_deduplicate
           yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens

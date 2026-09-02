@@ -1,3 +1,86 @@
+## [`v120.0.0`](https://github.com/elastic/eui/releases/v120.0.0)
+
+- Updated `EuiButtonGroup` (Children API only): ([#9929](https://github.com/elastic/eui/pull/9929))
+    - Added `variant="selection"` to render the group as selection group
+    - Added `type` prop (values `'single' | 'multi'`) to switch between single or multi selection
+    - Added `display` prop (values: `'regular' | 'highlighted' | 'inverse'`) to render different visual variants
+    - Added `idSelected` prop for single-state selection
+    - Added `idToSelectedMap` prop for multi-state selection
+    - Added `onChange` prop which returns the selected child button `id`
+- Added `cloudBolt`, `cloudRain`, `cloudSun`, `kubernetesNamespace`, `productTimelion`, `productTSVB`, `push`, `transitionRightIn`, and `transitionRightOut` glyphs to `EuiIcon` ([#9923](https://github.com/elastic/eui/pull/9923))
+- Updated the `cube`, `memory`, and `wrench` glyphs in `EuiIcon` with redesigned artwork ([#9923](https://github.com/elastic/eui/pull/9923))
+- Updated search synonyms for the `bolt`, `memory`, `plugs`, and `wrench` glyphs in `EuiIcon` ([#9923](https://github.com/elastic/eui/pull/9923))
+- Updated `EuiResizableContainer` collapse buttons to use the `transition*` glyphs in place of the `menu*` glyphs ([#9923](https://github.com/elastic/eui/pull/9923))
+- Hid undocumented `swatchInput` from glyph docs by categorizing it as `internal` ([#9884](https://github.com/elastic/eui/pull/9884))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` throwing an error in React 19 when opening the month or year dropdown ([#9960](https://github.com/elastic/eui/pull/9960))
+- Fixed the icon documentation listing glyphs and Elastic logos out of alphabetical order ([#9923](https://github.com/elastic/eui/pull/9923))
+
+**Deprecations**
+
+- Updated deprecated icon alias mappings: ([#9974](https://github.com/elastic/eui/pull/9974))
+    - `folderClosed` and `folderClose` → `folder`
+- Deprecated the `cloudDrizzle`, `cloudStormy`, `cloudSunny`, `kqlFunction`, `namespace`, `visTimelion`, and `visVisualBuilder` `EuiIcon` types in favor of `cloudRain`, `cloudBolt`, `cloudSun`, `push`, `kubernetesNamespace`, `productTimelion`, and `productTSVB` respectively. The deprecated types now render the new glyphs, no longer appear in the icon documentation, and will be removed in a future release ([#9923](https://github.com/elastic/eui/pull/9923))
+- Deprecated the `menuDown` and `menuUp` `EuiIcon` types in favor of `transitionBottomOut` and `transitionTopOut` respectively. The deprecated types now render the new glyphs, no longer appear in the icon documentation, and will be removed in a future release ([#9923](https://github.com/elastic/eui/pull/9923))
+- Deprecated `EuiIcon` types with no replacement: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `article`
+    - `dotInCircle`
+    - `kubernetesNode`
+    - `scale`
+    - `securitySignalDetected`
+- Deprecated `EuiIcon` types with a contextual replacement: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `folderExclamation` — `linkSlash` (unlink) or `hourglass` (Cases status)
+    - `stopFill` / `stopSlash` — `EuiColorPickerSwatch` for color chips or `stop` otherwise
+- Deprecated `EuiIcon` types (use the replacements): ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `analyzeEvent` → `cube`
+    - `annotation` → `flag`
+    - `anomalySwimLane` → `chartHeatmap`
+    - `apps` → `grid`
+    - `container` → `package`
+    - `continuityAbove` → `upload`
+    - `continuityWithin` → `maximize`
+    - `esqlVis` → `query`
+    - `fold` → `minimize`
+    - `frameNext` → `chevronSingleRight`
+    - `framePrevious` → `chevronSingleLeft`
+    - `help` → `question`
+    - `index` → `table`
+    - `ip` → `tokenIP`
+    - `logstashFilter` → `filter`
+    - `logstashInput` → `download`
+    - `logstashOutput` → `upload`
+    - `payment` → `money`
+    - `sessionViewer` → `commandLine`
+    - `singleMetricViewer` → `chartArea`
+    - `spaces` → `grid`
+    - `starEmptySpace` → `star`
+    - `starFillSpace` → `starFill`
+    - `starMinusEmpty` → `star`
+    - `starMinusFill` → `starFill`
+    - `starPlusEmpty` → `star`
+    - `starPlusFill` → `starFill`
+    - `stats` → `chartLine`
+    - `string` → `tokenString`
+    - `tableOfContents` → `listBullet`
+    - `unfold` → `maximize`
+    - `visGoal` → `chartGauge`
+    - `wordWrap` → `lineBreak`
+    - `wordWrapDisabled` → `lineBreakSlash`
+
+**Breaking changes**
+
+- Removed unused `EuiIcon` types: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `branchUser`
+    - `continuityAboveBelow`
+    - `continuityBelow`
+    - `function`
+    - `magnet`
+    - `pageSelect`
+    - `securitySignalResolved`
+    - `tear`
+
 ## [`v119.1.0`](https://github.com/elastic/eui/releases/v119.1.0)
 
 - Updated `EuiFlyoutMenu` action icon spacing: `leadingActions` and `trailingActions` icons are now grouped with a consistent gap between each icon ([#9887](https://github.com/elastic/eui/pull/9887))

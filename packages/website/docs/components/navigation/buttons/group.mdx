@@ -583,21 +583,6 @@ export default () => {
           idSelected={toggleIdSelected}
           onChange={(id) => onChange(id)}
         />
-        <EuiSpacer />
-        <EuiTitle size="xxs">
-          <h3>Primary color with multi select</h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonGroup
-          legend="Primary color multi select button group"
-          isFullWidth={fullButton}
-          isDisabled={disableButton}
-          options={toggleButtonsMulti}
-          idToSelectedMap={toggleIdToSelectedMap}
-          onChange={(id) => onChangeMulti(id)}
-          color="primary"
-          type="multi"
-        />
       </EuiPanel>
     </Fragment>
   );
@@ -620,17 +605,17 @@ export default () => {
     {
       id: `${idPrefix3}0`,
       label: 'Align left',
-      iconType: 'editorAlignLeft',
+      iconType: 'textAlignLeft',
     },
     {
       id: `${idPrefix3}1`,
       label: 'Align center',
-      iconType: 'editorAlignCenter',
+      iconType: 'textAlignCenter',
     },
     {
       id: `${idPrefix3}2`,
       label: 'Align right',
-      iconType: 'editorAlignRight',
+      iconType: 'textAlignRight',
       isDisabled: true,
     },
   ];
@@ -640,26 +625,26 @@ export default () => {
       id: `${idPrefix3}3`,
       label: 'Bold',
       name: 'bold',
-      iconType: 'editorBold',
+      iconType: 'textBold',
     },
     {
       id: `${idPrefix3}4`,
       label: 'Italic',
       name: 'italic',
-      iconType: 'editorItalic',
+      iconType: 'textItalic',
       isDisabled: true,
     },
     {
       id: `${idPrefix3}5`,
       label: 'Underline',
       name: 'underline',
-      iconType: 'editorUnderline',
+      iconType: 'textUnderline',
     },
     {
       id: `${idPrefix3}6`,
       label: 'Strikethrough',
       name: 'strikethrough',
-      iconType: 'editorStrike',
+      iconType: 'textStrike',
     },
   ];
 
@@ -833,26 +818,26 @@ export default () => {
       id: `${multiSelectButtonGroupPrefix}__0`,
       label: 'Bold',
       name: 'bold',
-      iconType: 'editorBold',
+      iconType: 'textBold',
     },
     {
       id: `${multiSelectButtonGroupPrefix}__1`,
       label: 'Italic',
       name: 'italic',
-      iconType: 'editorItalic',
+      iconType: 'textItalic',
       isDisabled: true,
     },
     {
       id: `${multiSelectButtonGroupPrefix}__2`,
       label: 'Underline',
       name: 'underline',
-      iconType: 'editorUnderline',
+      iconType: 'textUnderline',
     },
     {
       id: `${multiSelectButtonGroupPrefix}__3`,
       label: 'Strikethrough',
       name: 'strikethrough',
-      iconType: 'editorStrike',
+      iconType: 'textStrike',
     },
   ];
 

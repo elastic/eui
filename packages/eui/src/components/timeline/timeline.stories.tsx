@@ -38,7 +38,7 @@ export const Playground: Story = {
         ),
       },
       {
-        icon: 'folderClosed',
+        icon: 'folder',
         children: 'The project was archived.',
       },
     ],

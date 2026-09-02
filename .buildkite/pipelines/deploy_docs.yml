@@ -1,8 +1,8 @@
 agents:
   provider: gcp
   image: "family/eui-ubuntu-2204"
-  # 4 AMD Rome / Milan vCPUs, 16GB RAM
-  machineType: 'n2d-standard-4'
+  # 8 AMD Rome / Milan vCPUs, 32GB RAM
+  machineType: 'n2d-standard-8'
   # No spot instances to protect against agent losses during file upload
   preemptible: false
 
@@ -25,18 +25,31 @@ steps:
     key: "vrt"
     depends_on: "build-storybook"
     if: build.pull_request.id != null
+    # Keep in sync with `packages/eui/.storybook/vrt-variants.json`
+    parallelism: 2
     timeout_in_minutes: 30
     command: .buildkite/scripts/deploy_docs/step_vrt.sh
     artifact_paths:
       - "packages/eui/.vrt/diff/*-diff.png"
       - "packages/eui/.vrt/current/*-received.png"
-  
+      - "packages/eui/.vrt/new-baselines/*.png"
+      - "packages/eui/.vrt/annotation-rows/*"
+      - "packages/eui/.vrt/pr-comment-rows/*"
+
+  - label: ":camera: Report visual regression"
+    key: "vrt-report"
+    depends_on: "vrt"
+    allow_dependency_failure: true
+    if: build.pull_request.id != null
+    timeout_in_minutes: 10
+    command: .buildkite/scripts/deploy_docs/step_vrt_report.sh
+
   - label: ":loudspeaker: Notify"
     key: "notify"
     depends_on:
       - "build-website"
       - "build-storybook"
-      - "vrt"
+      - "vrt-report"
     allow_dependency_failure: true
     command: .buildkite/scripts/deploy_docs/step_notify.sh
 
@@ -50,7 +63,7 @@ steps:
   - block: "Approve visual changes"
     key: "approve-vrt"
     prompt: "Review the visual diff annotation in this build. If it's expected, click Approve to update the baselines on this branch."
-    depends_on: "vrt"
+    depends_on: "vrt-report"
     allow_dependency_failure: true
     allowed_teams: "eui-team"
     if: build.pull_request.id != null

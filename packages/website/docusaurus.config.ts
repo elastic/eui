@@ -7,6 +7,7 @@
  */
 
 import { themes as prismThemes } from 'prism-react-renderer';
+import { getSwcLoaderOptions } from '@docusaurus/faster';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
@@ -53,6 +54,36 @@ const config: Config = {
 
   customFields: {
     storybookBaseUrl,
+  },
+
+  // SWC ignores `babel.config.js`; keep Rspack but use Emotion's JSX runtime.
+  future: {
+    experimental_faster: {
+      swcJsLoader: false,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+    },
+  },
+
+  webpack: {
+    jsLoader: (isServer) => {
+      const options = getSwcLoaderOptions({ isServer });
+      options.jsc ??= {};
+      options.jsc.transform ??= {};
+      options.jsc.transform.react = {
+        ...options.jsc.transform.react,
+        runtime: 'automatic',
+        importSource: '@emotion/react',
+      };
+
+      return {
+        loader: 'builtin:swc-loader',
+        options,
+      };
+    },
   },
 
   presets: [

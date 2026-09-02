@@ -1,3 +1,10 @@
+## [`v1.5.0`](https://github.com/elastic/eui/releases/v1.5.0)
+
+- Added `EuiRangeObject`, a Playwright Component Object for `EuiRange`/`EuiDualRange` ([#9957](https://github.com/elastic/eui/pull/9957))
+- Added `EuiDraggableObject` with `reorder(steps)` ([#9936](https://github.com/elastic/eui/pull/9936))
+- Added `EuiBasicTableObject` with `rows` and `cells(field)` ([#9933](https://github.com/elastic/eui/pull/9933))
+- Added `EuiFilterButtonObject`, a Playwright Component Object for `EuiFilterButton` ([#9942](https://github.com/elastic/eui/pull/9942))
+
 ## [`v1.4.0`](https://github.com/elastic/eui/releases/v1.4.0)
 
 - Added `EuiSelectableObject` with `options`, `selectOption(label)` and `search(term)` ([#9908](https://github.com/elastic/eui/pull/9908))
