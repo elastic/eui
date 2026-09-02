@@ -6,15 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
+import React, { createRef } from 'react';
+import { act, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
 import { EuiFormRow } from '../form_row';
 
-import { EuiSuperSelect } from './super_select';
+import { EuiSuperSelect, type EuiSuperSelectRef } from './super_select';
 
 const options = [
   { value: '1', inputDisplay: 'Option #1' },
@@ -191,6 +196,24 @@ describe('EuiSuperSelect', () => {
 
       fireEvent.click(getByTestSubject('option1'));
       expect(onChange).toHaveBeenCalledWith('value1');
+    });
+  });
+
+  describe('ref', () => {
+    it('exposes openPopover and closePopover', async () => {
+      const ref = createRef<EuiSuperSelectRef>();
+      const { queryByRole } = render(
+        <EuiSuperSelect ref={ref} options={options} />
+      );
+
+      expect(queryByRole('listbox')).not.toBeInTheDocument();
+
+      act(() => ref.current!.openPopover());
+      await waitForEuiPopoverOpen();
+      expect(queryByRole('listbox')).toBeInTheDocument();
+
+      act(() => ref.current!.closePopover());
+      await waitForEuiPopoverClose();
     });
   });
 

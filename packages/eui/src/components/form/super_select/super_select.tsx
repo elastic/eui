@@ -8,18 +8,21 @@
 
 import React, {
   FocusEvent,
+  FunctionComponent,
+  ReactElement,
   ReactNode,
+  Ref,
+  forwardRef,
+  useCallback,
   useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  htmlIdGenerator,
-  keys,
-  RenderWithEuiStylesMemoizer,
-} from '../../../services';
+import { htmlIdGenerator, keys, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -38,6 +41,16 @@ import { euiSuperSelectStyles } from './super_select.styles';
 enum ShiftDirection {
   BACK = 'back',
   FORWARD = 'forward',
+}
+
+// Runs synchronously on the client before paint, so the mount flag is always
+// set before an interaction can schedule the deferred focus in `openPopover`.
+const useMountEffect =
+  typeof document === 'undefined' ? useEffect : useLayoutEffect;
+
+export interface EuiSuperSelectRef {
+  openPopover: () => void;
+  closePopover: () => void;
 }
 
 export type EuiSuperSelectProps<T = string> = CommonProps &
@@ -89,23 +102,27 @@ export type EuiSuperSelectProps<T = string> = CommonProps &
     popoverProps?: Partial<CommonProps & Omit<EuiInputPopoverProps, 'isOpen'>>;
   };
 
-export const EuiSuperSelect = <T = string,>({
-  className,
-  options,
-  valueOfSelected,
-  placeholder,
-  onChange,
-  onFocus,
-  onBlur,
-  isOpen,
-  isInvalid = false,
-  itemClassName,
-  fullWidth = false,
-  popoverProps,
-  compressed = false,
-  isLoading = false,
-  ...rest
-}: EuiSuperSelectProps<T>) => {
+const EuiSuperSelectInner = <T = string,>(
+  {
+    className,
+    options,
+    valueOfSelected,
+    placeholder,
+    onChange,
+    onFocus,
+    onBlur,
+    isOpen,
+    isInvalid = false,
+    itemClassName,
+    fullWidth = false,
+    popoverProps,
+    compressed = false,
+    isLoading = false,
+    ...rest
+  }: EuiSuperSelectProps<T>,
+  ref: Ref<EuiSuperSelectRef>
+) => {
+  const styles = useEuiMemoizedStyles(euiSuperSelectStyles);
   const itemNodes = useRef<Array<HTMLButtonElement | null>>([]);
   const isMounted = useRef(false);
   const controlButtonRef = useRef<HTMLButtonElement>(null);
@@ -119,11 +136,11 @@ export const EuiSuperSelect = <T = string,>({
     itemNodes.current[index] = node;
   };
 
-  const focusItemAt = (index: number) => {
+  const focusItemAt = useCallback((index: number) => {
     itemNodes.current[index]?.focus();
-  };
+  }, []);
 
-  const openPopover = () => {
+  const openPopover = useCallback(() => {
     const indexOfSelected = options.findIndex(
       (option) => option?.value === valueOfSelected
     );
@@ -156,9 +173,9 @@ export const EuiSuperSelect = <T = string,>({
         }
       });
     });
-  };
+  }, [options, valueOfSelected, onFocus, focusItemAt]);
 
-  const closePopover = () => {
+  const closePopover = useCallback(() => {
     setIsPopoverOpen(false);
     setCurrentIndex(-1);
 
@@ -170,7 +187,12 @@ export const EuiSuperSelect = <T = string,>({
     if (onBlur) {
       onBlur();
     }
-  };
+  }, [onBlur]);
+
+  useImperativeHandle(ref, () => ({ openPopover, closePopover }), [
+    openPopover,
+    closePopover,
+  ]);
 
   const itemClicked = (value: T) => {
     closePopover();
@@ -245,7 +267,7 @@ export const EuiSuperSelect = <T = string,>({
     }
   };
 
-  useEffect(() => {
+  useMountEffect(() => {
     isMounted.current = true;
     if (isOpen) {
       openPopover();
@@ -320,48 +342,48 @@ export const EuiSuperSelect = <T = string,>({
       : undefined;
 
   return (
-    <RenderWithEuiStylesMemoizer>
-      {(stylesMemoizer) => {
-        const styles = stylesMemoizer(euiSuperSelectStyles);
-
-        return (
-          <EuiInputPopover
-            closePopover={closePopover}
-            panelPaddingSize="none"
-            {...popoverProps}
-            className={popoverClasses}
-            isOpen={isOpen || isPopoverOpen}
-            input={button}
-            fullWidth={fullWidth}
-            disableFocusTrap // This component handles its own focus manually
-          >
-            <EuiScreenReaderOnly>
-              <p id={describedById}>
-                <EuiI18n
-                  token="euiSuperSelect.screenReaderAnnouncement"
-                  default="You are in a form selector and must select a single option.
+    <EuiInputPopover
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      {...popoverProps}
+      className={popoverClasses}
+      isOpen={isOpen || isPopoverOpen}
+      input={button}
+      fullWidth={fullWidth}
+      disableFocusTrap // This component handles its own focus manually
+    >
+      <EuiScreenReaderOnly>
+        <p id={describedById}>
+          <EuiI18n
+            token="euiSuperSelect.screenReaderAnnouncement"
+            default="You are in a form selector and must select a single option.
               Use the Up and Down arrow keys to navigate or Escape to close."
-                />
-              </p>
-            </EuiScreenReaderOnly>
-            <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
-              {(ariaLabel: string) => (
-                <div
-                  aria-label={ariaLabel}
-                  aria-describedby={describedById}
-                  css={styles.euiSuperSelect__listbox}
-                  className="euiSuperSelect__listbox eui-scrollBar"
-                  role="listbox"
-                  aria-activedescendant={ariaActiveDescendant}
-                  tabIndex={0}
-                >
-                  {items}
-                </div>
-              )}
-            </EuiI18n>
-          </EuiInputPopover>
-        );
-      }}
-    </RenderWithEuiStylesMemoizer>
+          />
+        </p>
+      </EuiScreenReaderOnly>
+      <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
+        {(ariaLabel: string) => (
+          <div
+            aria-label={ariaLabel}
+            aria-describedby={describedById}
+            css={styles.euiSuperSelect__listbox}
+            className="euiSuperSelect__listbox eui-scrollBar"
+            role="listbox"
+            aria-activedescendant={ariaActiveDescendant}
+            tabIndex={0}
+          >
+            {items}
+          </div>
+        )}
+      </EuiI18n>
+    </EuiInputPopover>
   );
 };
+
+export const EuiSuperSelect = forwardRef(EuiSuperSelectInner) as <T = string>(
+  // `forwardRef` erases the generic, so it has to be reapplied here to keep
+  // `options`/`valueOfSelected` type checking against the same `T`
+  props: EuiSuperSelectProps<T> & { ref?: Ref<EuiSuperSelectRef> }
+) => ReactElement;
+// Recast to allow `displayName`
+(EuiSuperSelect as FunctionComponent).displayName = 'EuiSuperSelect';
