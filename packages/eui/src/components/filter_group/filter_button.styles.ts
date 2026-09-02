@@ -17,6 +17,7 @@ import {
   highContrastModeStyles,
   preventForcedColors,
   euiButtonSizeMap,
+  euiDisabledSelector,
 } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
@@ -74,6 +75,10 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     buttonType: {
       toggle: css`
         ${euiFilterButtonDisplay(euiThemeContext)}
+
+        &:where(:is(${euiDisabledSelector}):not([aria-pressed="true"])) {
+          background-color: transparent;
+        }
 
         ${highContrastModeStyles(euiThemeContext, {
           forced: `
