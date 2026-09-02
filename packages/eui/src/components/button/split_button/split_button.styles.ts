@@ -18,6 +18,7 @@ import {
 
 const primaryDisabledSelector = `.euiSplitButtonActionPrimary:is(${euiDisabledSelector})`;
 const secondaryDisabledSelector = `.euiSplitButtonActionSecondary:is(${euiDisabledSelector})`;
+const hasAllDisabledActionsSelector = `:has(${primaryDisabledSelector}):has(${secondaryDisabledSelector})`;
 
 export const euiSplitButtonStyles = (
   euiThemeContext: UseEuiTheme,
@@ -57,15 +58,15 @@ export const euiSplitButtonStyles = (
         block-size: ${buttonSizeMap.m.height};
       }
 
-      /* The container is styled disabled if only one child is disabled */
-      &:has(${primaryDisabledSelector}, ${secondaryDisabledSelector}) {
+      /* The container is styled disabled if both children are disabled manually */
+      &:where(${hasAllDisabledActionsSelector}) {
         background-color: ${euiTheme.colors.backgroundBaseDisabled};
       }
     `,
     hasBorder: css`
       ${highContrastModeStyles(euiThemeContext, {
         none: `
-          &:where(:not([data-fill])):not(:has(${primaryDisabledSelector}, ${secondaryDisabledSelector})) {
+          &:where(:not([data-fill])):not(${hasAllDisabledActionsSelector}) {
             ${borderStyles(`var(--euiSplitButtonBorderColor)`)}
           }
         `,
@@ -73,12 +74,12 @@ export const euiSplitButtonStyles = (
           &:where(:not([data-fill])) {
             ${borderStyles(`var(--euiSplitButtonBorderColor)`)}
 
-            &:has(${primaryDisabledSelector}, ${secondaryDisabledSelector}) {
+            &:where(${hasAllDisabledActionsSelector}) {
               ${borderStyles(euiTheme.colors.borderBaseDisabled)}
             }
           }
 
-          &:where([data-fill]):has(${primaryDisabledSelector}, ${secondaryDisabledSelector}) {
+          &:where([data-fill]${hasAllDisabledActionsSelector}) {
             ${borderStyles(euiTheme.colors.borderBaseDisabled)}
           }
         `,
@@ -117,9 +118,7 @@ export const euiSplitButtonActionStyles = (
     }
     
     &:where(:has(${primaryDisabledSelector}, ${secondaryDisabledSelector}) &) {
-      &:is(${euiDisabledSelector}) {
-        border: none;
-      }
+      border: none;
     }
    
   `;
@@ -158,8 +157,9 @@ export const euiSplitButtonDividerStyles = (
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)};
 
       &:where(
-          ${primaryDisabledSelector} + &,
-          :has(~ ${secondaryDisabledSelector})
+          :is(${primaryDisabledSelector} + &):has(
+              ~ ${secondaryDisabledSelector}
+            )
         ) {
         border-color: ${euiTheme.colors.borderBaseDisabled};
       }
