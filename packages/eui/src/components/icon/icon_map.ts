@@ -988,7 +988,7 @@ export const typeToPathMap = {
       'table',
       'index',
       'indices',
-      'AI',
+      'ai',
       'curated content',
       'elasticsearch',
       'dataset',
