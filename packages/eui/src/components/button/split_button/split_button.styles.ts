@@ -58,7 +58,7 @@ export const euiSplitButtonStyles = (
         block-size: ${buttonSizeMap.m.height};
       }
 
-      /* The container is styled disabled if both children are disabled manually */
+      /* The container is styled disabled if both children are disabled */
       &:where(${hasAllDisabledActionsSelector}) {
         background-color: ${euiTheme.colors.backgroundBaseDisabled};
       }
@@ -111,16 +111,7 @@ export const euiSplitButtonActionStyles = (
     border-radius: ${buttonRadius};
     /* prevent issues in jsdom where pointer-events: none is inherited from the pseudo element */
     pointer-events: auto;
-
-     /* zero-specificity ancestor :has() check */
-    &:where(:not(:has(${primaryDisabledSelector}, ${secondaryDisabledSelector})) &) {
-      border: none;
-    }
-    
-    &:where(:has(${primaryDisabledSelector}, ${secondaryDisabledSelector}) &) {
-      border: none;
-    }
-   
+    border: none;
   `;
 
   return {
