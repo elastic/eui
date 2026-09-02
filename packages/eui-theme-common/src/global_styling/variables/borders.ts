@@ -24,13 +24,13 @@ export interface _EuiThemeBorderWidthValues {
 
 export interface _EuiThemeBorderRadiusValues {
   /**
-   * @deprecated - use a semantic token instead (e.g. `inline`, `control` or `panel`)
+   * @deprecated - use a semantic token instead (e.g. `inline`, `control`, `panel`, or `frame`)
    * Primary corner radius size
    * - Default value: 4px
    */
   medium: CSSProperties['borderRadius'];
   /**
-   * @deprecated - use a semantic token instead (e.g. `inline`, `control` or `panel`)
+   * @deprecated - use a semantic token instead (e.g. `inline`, `control`, `panel`, or `frame`)
    * Small corner radius size
    * - Default value: 4px
    */
