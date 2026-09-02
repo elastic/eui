@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme, EuiProvider, EuiText, EuiTitle } from '@elastic/eui';
+import { useEuiTheme, EuiProvider, EuiText } from '@elastic/eui';
 
 export const FontFamilyPreview = () => {
   const { euiTheme } = useEuiTheme();
