@@ -63,8 +63,8 @@
   "euiFormControlCompressedHeight": "32px",
   "euiFormControlPadding": "12px",
   "euiFormControlCompressedPadding": "8px",
-  "euiFormControlBorderRadius": "8px",
-  "euiFormControlCompressedBorderRadius": "8px",
+  "euiFormControlBorderRadius": "4px",
+  "euiFormControlCompressedBorderRadius": "4px",
   "euiRadioSize": "16px",
   "euiCheckBoxSize": "16px",
   "euiCheckboxBorderRadius": "4px",
@@ -101,7 +101,7 @@
   },
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
-  "euiFormControlLayoutGroupInputCompressedBorderRadius": "8px",
+  "euiFormControlLayoutGroupInputCompressedBorderRadius": "2px",
   "euiHeaderBackgroundColor": "#FFFFFF",
   "euiHeaderDarkBackgroundColor": "#111C2C",
   "euiHeaderBorderColor": "#E3E8F2",
@@ -118,7 +118,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "12px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
@@ -212,32 +212,38 @@
     "xxxs": {
       "font-size": "12px",
       "line-height": "1.1429rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "xxs": {
       "font-size": "14px",
       "line-height": "1.4286rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "xs": {
       "font-size": "16px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "s": {
       "font-size": "20px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "m": {
       "font-size": "24px",
       "line-height": "2rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "l": {
       "font-size": "30px",
       "line-height": "2.5714rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     }
   },
   "euiZLevel0": 0,
