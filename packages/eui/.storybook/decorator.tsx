@@ -12,7 +12,6 @@ import React, {
   FunctionComponent,
   useEffect,
   useCallback,
-  PropsWithChildren,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import type { Preview } from '@storybook/react';
@@ -79,32 +78,26 @@ export const EuiProviderDecorator: FunctionComponent<
       {...euiThemeProp}
       {...euiProviderProps}
     >
-      <StorybookBackground>
-        <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
-          {portalInsert && children}
-        </div>
-      </StorybookBackground>
+      <GlobalStyles />
+      <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
+        {portalInsert && children}
+      </div>
     </EuiProvider>
   );
 };
 
-const StorybookBackground: FunctionComponent<PropsWithChildren> = ({
-  children,
-}) => {
+const GlobalStyles: FunctionComponent = () => {
   const { euiTheme } = useEuiTheme();
 
   return (
-    <>
-      <Global
-        styles={css`
-          html {
-            /* We align with the content level instead of the app level styling */
-            background-color: ${euiTheme.colors.backgroundBasePlain};
-          }
-        `}
-      />
-      {children}
-    </>
+    <Global
+      styles={css`
+        html {
+          /* We align with the content level instead of the app level styling */
+          background-color: ${euiTheme.colors.backgroundBasePlain};
+        }
+      `}
+    />
   );
 };
 
