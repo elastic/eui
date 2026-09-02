@@ -18,6 +18,7 @@ import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
 import { EuiFlexGroup } from '../flex';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
+import { EuiFlyoutFooter } from './flyout_footer';
 import { EuiFlyoutHeader } from './flyout_header';
 import { EuiGlobalToastList } from '../toast';
 import {
@@ -41,6 +42,8 @@ const childrenDefault = (
     <input data-test-subj="itemD" />
   </>
 );
+
+const shortViewport = { viewportWidth: 640, viewportHeight: 360 };
 
 const Flyout = ({
   children = childrenDefault,
@@ -73,6 +76,81 @@ const Flyout = ({
 };
 
 describe('EuiFlyout', () => {
+  describe('Layout behavior', () => {
+    it('does not create a scroll container for flyouts without a body', () => {
+      cy.mount(<Flyout>Flyout content</Flyout>);
+
+      cy.get('[data-test-subj="euiFlyoutContent"]')
+        .should('have.css', 'overflow-x', 'visible')
+        .and('have.css', 'overflow-y', 'visible');
+    });
+
+    it('keeps body accessible in short viewports', shortViewport, () => {
+      cy.mount(
+        <Flyout closeButtonPosition="outside" resizable>
+          <EuiFlyoutHeader data-test-subj="flyoutHeader">
+            <div
+              css={css`
+                block-size: 160px;
+              `}
+            >
+              Header content
+            </div>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <div
+              css={css`
+                block-size: 400px;
+                display: flex;
+                align-items: flex-end;
+              `}
+            >
+              <button data-test-subj="bodyAction">Body action</button>
+            </div>
+          </EuiFlyoutBody>
+          <EuiFlyoutFooter data-test-subj="flyoutFooter">
+            <div
+              css={css`
+                block-size: 160px;
+              `}
+            >
+              Footer content
+            </div>
+          </EuiFlyoutFooter>
+        </Flyout>
+      );
+
+      cy.get('[data-test-subj="euiFlyoutBodyOverflow"]').should(($body) => {
+        expect($body[0].clientHeight).to.be.greaterThan(0);
+        expect($body[0].scrollHeight).to.be.greaterThan($body[0].clientHeight);
+      });
+      cy.get('[data-test-subj="flyoutSpec"]')
+        .should('have.css', 'overflow-x', 'visible')
+        .and('have.css', 'overflow-y', 'visible')
+        .its('0.scrollTop')
+        .should('equal', 0);
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.visible');
+      cy.get('[data-test-subj="euiResizableButton"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutHeader"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutFooter"]')
+        .scrollIntoView()
+        .should('be.visible');
+      cy.get('[data-test-subj="euiFlyoutContent"]')
+        .its('0.scrollTop')
+        .should('be.greaterThan', 0);
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.visible');
+      cy.get('[data-test-subj="flyoutSpec"]')
+        .its('0.scrollTop')
+        .should('equal', 0);
+      cy.get('[data-test-subj="bodyAction"]')
+        .scrollIntoView()
+        .should('be.visible');
+      cy.get('[data-test-subj="euiFlyoutBodyOverflow"]')
+        .its('0.scrollTop')
+        .should('be.greaterThan', 0);
+    });
+  });
+
   describe('Focus behavior', () => {
     it('focuses the flyout wrapper by default', () => {
       cy.mount(<Flyout />);
