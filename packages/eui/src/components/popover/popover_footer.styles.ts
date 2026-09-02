@@ -37,7 +37,7 @@ export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)}
     `,
     // If the popover's containing panel has padding applied,
-    // ensure the title expands to cover that padding via negative margins
+    // ensure the footer expands to cover that padding via negative margins
     panelPaddingSizes: {
       none: css``,
       xs: css`
