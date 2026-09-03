@@ -263,8 +263,10 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
         ${segmentedChildrenStyles}
 
-        *:where(.euiButton, .euiButtonIcon):is(${euiDisabledSelector}) {
-          background-color: transparent;
+        *:where(.euiButton, .euiButtonIcon) {
+          &:where(:is(${euiDisabledSelector}):not([aria-pressed='true'])) {
+            background-color: transparent;
+          }
         }
 
         &:where([data-dividers='true'] &) {
@@ -316,20 +318,22 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:where([data-variant='selection'][data-display='regular'] &) {
         *:where(.euiButton, .euiButtonIcon):is([aria-pressed='true']) {
-          background-color: ${euiTheme.colors.backgroundLightText};
+          &:not(:is(${euiDisabledSelector})) {
+            background-color: ${euiTheme.colors.backgroundLightText};
 
-          ${highContrastModeStyles(euiThemeContext, {
-            none: `
-              background-color: ${euiTheme.colors.backgroundLightText};
-            `,
-            preferred: `
-              border: ${euiTheme.border.thin};
-            `,
-            forced: `
-              background-color: ${euiTheme.colors.fullShade};
-              border: none;
-            `,
-          })}
+            ${highContrastModeStyles(euiThemeContext, {
+              none: `
+                background-color: ${euiTheme.colors.backgroundLightText};
+              `,
+              preferred: `
+                border: ${euiTheme.border.thin};
+              `,
+              forced: `
+                background-color: ${euiTheme.colors.fullShade};
+                border: none;
+              `,
+            })}
+          }
         }
       }
 
@@ -342,6 +346,10 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
               border: none;
             `,
           })}
+        }
+
+        *:where(.euiButton, .euiButtonIcon):is(${euiDisabledSelector}) {
+          background-color: transparent;
         }
       }
     `,
@@ -454,7 +462,7 @@ const _highContrastStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.emptyShade};
         background-color: ${euiTheme.colors.fullShade};
 
-        &:is(:hover, :focus):not(${euiDisabledSelector}) {
+        &:is(:hover, :focus):not(:is(${euiDisabledSelector})) {
           &::before {
             border-color: ${euiTheme.colors.textInverse};
           }

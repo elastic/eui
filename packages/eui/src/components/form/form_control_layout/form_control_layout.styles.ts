@@ -258,6 +258,11 @@ export const euiFormControlLayoutSideNodeStyles = (
       :where(:not(:has(:disabled))) label {
         color: ${form.labelColor};
       }
+
+      /* padding is handled in the form layout side wrapper */
+      .euiFilterButton__wrapper {
+        padding: 0;
+      }
     `,
     uncompressed: {
       uncompressed: `

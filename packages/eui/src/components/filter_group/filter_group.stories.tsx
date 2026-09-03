@@ -20,6 +20,8 @@ const meta: Meta<EuiFilterGroupProps> = {
     // Component defaults
     compressed: false,
     fullWidth: false,
+    display: 'regular',
+    showDividers: true,
   },
 };
 
@@ -27,21 +29,25 @@ export default meta;
 type Story = StoryObj<EuiFilterGroupProps>;
 
 export const Playground: Story = {
-  render: ({ ...args }) => (
-    <EuiFilterGroup {...args}>
-      <EuiFilterButton isToggle>Toggle Filter</EuiFilterButton>
-      <EuiFilterButton
-        numFilters={5}
-        hasActiveFilters
-        iconType="chevronSingleDown"
-      >
-        Selection Filter
-      </EuiFilterButton>
-    </EuiFilterGroup>
-  ),
+  render: function Render({ ...args }) {
+    const [isToggled, setToggled] = useState(false);
+
+    return (
+      <EuiFilterGroup {...args}>
+        <EuiFilterButton
+          isToggle
+          isSelected={isToggled}
+          onClick={() => setToggled((toggled) => !toggled)}
+        >
+          Toggle Filter
+        </EuiFilterButton>
+        <FilterButtonPopover label="Selection Filter" />
+      </EuiFilterGroup>
+    );
+  },
 };
 
-const FilterButtonPopover = () => {
+const FilterButtonPopover = ({ label = 'Composers' }: { label?: string }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
@@ -57,7 +63,7 @@ const FilterButtonPopover = () => {
           hasActiveFilters={true}
           numActiveFilters={2}
         >
-          Composers
+          {label}
         </EuiFilterButton>
       }
     >
