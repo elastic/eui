@@ -15,4 +15,5 @@ export { EuiSelectableObject } from './playwright/components/selectable/object';
 export { EuiDraggableObject } from './playwright/components/drag_and_drop/object';
 export { EuiFilterButtonObject } from './playwright/components/filter_button/object';
 export { EuiRangeObject } from './playwright/components/form/range/object';
+export { EuiPopoverObject } from './playwright/components/popover/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
