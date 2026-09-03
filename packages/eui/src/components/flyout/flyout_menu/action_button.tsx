@@ -34,8 +34,7 @@ export const MenuActionButton: React.FC<{
     color: 'text' as const,
     size: 'xs' as const,
     isDisabled,
-    // Keeps the button focusable so tooltip-on-disabled works for keyboard/screen-reader users
-    hasAriaDisabled: (isDisabled || isLoading) && !!toolTipContent,
+    // Keeps the button focusable so tooltip-on-disabled works for keyboard users
     isLoading,
     href,
     target,

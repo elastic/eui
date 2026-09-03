@@ -94,8 +94,8 @@ export interface EuiFlyoutMenuAction {
   'aria-label': string;
   /**
    * Optional tooltip content shown on hover/focus of the action button.
-   * When `isDisabled` is `true`, the tooltip is always shown to explain why
-   * the action is unavailable.
+   * When `isDisabled` is `true`, the action uses `aria-disabled` so the tooltip
+   * remains reachable via hover/focus (unless overridden via `toolTipProps`).
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
