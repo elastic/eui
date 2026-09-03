@@ -13,11 +13,12 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-import { css } from '@emotion/react';
+import { Global, css } from '@emotion/react';
 import type { Preview } from '@storybook/react';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeColorMode } from '../src/services';
+import { useEuiTheme } from '../src/services/theme';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
 
 export const AVAILABLE_THEMES = [
@@ -77,10 +78,26 @@ export const EuiProviderDecorator: FunctionComponent<
       {...euiThemeProp}
       {...euiProviderProps}
     >
+      <GlobalStyles />
       <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
         {portalInsert && children}
       </div>
     </EuiProvider>
+  );
+};
+
+const GlobalStyles: FunctionComponent = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <Global
+      styles={css`
+        html {
+          /* We align with the content level instead of the app level styling */
+          background-color: ${euiTheme.colors.backgroundBasePlain};
+        }
+      `}
+    />
   );
 };
 

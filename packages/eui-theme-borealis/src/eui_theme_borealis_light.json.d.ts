@@ -27,6 +27,10 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiBorderColor: string;
     euiBorderRadius: string;
     euiBorderRadiusSmall: string;
+    euiBorderRadiusInline: string;
+    euiBorderRadiusControl: string;
+    euiBorderRadiusPanel: string;
+    euiBorderRadiusFrame: string;
     euiBorderThick: string;
     euiBorderThin: string;
     euiBorderEditable: string;
@@ -210,31 +214,37 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
       xxs: {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
       xs: {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
       s: {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
       m: {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
       l: {
         'font-size': string;
         'line-height': string;
         'font-weight': number;
+        'letter-spacing': string;
       };
     };
     euiZLevel0: number;
@@ -408,6 +418,7 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiColorBackgroundBaseRisk: string;
     euiColorBackgroundBaseDanger: string;
     euiColorBackgroundBaseAssistance: string;
+    euiColorBackgroundBaseRecessed: string;
     euiColorBackgroundBaseSubdued: string;
     euiColorBackgroundBasePlain: string;
     euiColorBackgroundBaseDisabled: string;
