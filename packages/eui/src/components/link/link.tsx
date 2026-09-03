@@ -39,7 +39,10 @@ export type EuiLinkColor = (typeof COLORS)[number];
 export interface LinkButtonProps {
   type?: EuiLinkType;
   /**
-   * Any of our named colors.
+   * Named color.
+   * `primary` and `text` share the default interactive treatment (paragraph color + dotted underline at rest; primary on hover/focus).
+   * Other values are static semantic colors.
+   * @default primary
    */
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -53,7 +56,10 @@ export interface EuiLinkButtonProps
 export interface LinkAnchorProps {
   type?: EuiLinkType;
   /**
-   * Any of our named colors.
+   * Named color.
+   * `primary` and `text` share the default interactive treatment (paragraph color + dotted underline at rest; primary on hover/focus).
+   * Other values are static semantic colors.
+   * @default primary
    */
   color?: EuiLinkColor;
   /**
@@ -97,6 +103,9 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   ) => {
     const styles = useEuiMemoizedStyles(euiLinkStyles);
     const cssStyles = [styles.euiLink];
+    // `primary` and `text` share the interactive default baked into euiLinkCSS
+    const colorStyles =
+      color === 'primary' || color === 'text' ? undefined : styles[color];
 
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
@@ -104,7 +113,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     if (href === undefined || !isHrefValid) {
       const buttonProps = {
         className: classNames('euiLink', className),
-        css: [cssStyles, disabled ? [styles.disabled] : styles[color]],
+        css: [cssStyles, disabled ? styles.disabled : colorStyles],
         type,
         onClick,
         disabled,
@@ -125,7 +134,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
 
     const anchorProps = {
       className: classNames('euiLink', className),
-      css: [cssStyles, styles[color]],
+      css: [cssStyles, colorStyles],
       href,
       target,
       rel: secureRel,

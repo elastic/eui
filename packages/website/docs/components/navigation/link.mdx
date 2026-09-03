@@ -65,7 +65,9 @@ export default () => (
 
 ## Coloring links
 
-Like any other [button component](./buttons/button.mdx), links can be passed a `color`. Note that the `ghost` type should only be used on dark backgrounds (regardless of theming) as it will always create a white link.
+The default (`primary`, also accepted as `text`) uses paragraph-colored text with a dotted underline at rest, and shifts to primary blue on hover/focus — so links sit with body copy until interaction, and filled primary CTAs stay visually distinct.
+
+Other `color` values are static semantic paints. Note that `ghost` should only be used on dark backgrounds (regardless of theming) as it will always create a white link.
 
 ```tsx interactive
 import React from 'react';
@@ -91,6 +93,7 @@ export default () => (
             href="#/navigation/link"
           >
             {value.charAt(0).toUpperCase() + value.slice(1)}
+            {value === 'text' ? ' (alias of primary)' : ''}
           </EuiLink>
         </li>
       ))}

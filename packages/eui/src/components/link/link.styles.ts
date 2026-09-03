@@ -10,19 +10,28 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFocusRing, logicalTextAlignCSS } from '../../global_styling';
 
+/**
+ * Shared link chrome used by EuiLink and bare anchors in EuiText.
+ * Default interaction: paragraph color + dotted underline at rest;
+ * primary color on hover/focus.
+ */
 export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return `
     font-weight: ${euiTheme.font.weight.medium};
     ${logicalTextAlignCSS('left')}
+    color: ${euiTheme.colors.textParagraph};
+    text-decoration: underline dotted;
+    text-decoration-thickness: from-font;
 
-    &:hover {
-      text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: ${euiTheme.colors.textPrimary};
+      text-decoration: underline solid;
     }
 
     &:focus {
       ${euiFocusRing(euiThemeContext, 'outset')}
-      text-decoration: underline;
       text-decoration-thickness: ${euiTheme.border.width.thick};
     }
   `;
@@ -41,6 +50,8 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       font-weight: inherit;
+      color: inherit;
+      text-decoration: none;
 
       &:hover {
         cursor: auto;
@@ -49,24 +60,28 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus,
       &:target {
+        color: inherit;
         text-decoration: none;
       }
     `,
-    // Color styles
-    primary: css(_colorCSS(euiTheme.colors.textPrimary)),
-    subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
-    success: css(_colorCSS(euiTheme.colors.textSuccess)),
-    accent: css(_colorCSS(euiTheme.colors.textAccent)),
-    danger: css(_colorCSS(euiTheme.colors.textDanger)),
-    warning: css(_colorCSS(euiTheme.colors.textWarning)),
-    ghost: css(_colorCSS(euiTheme.colors.textGhost)),
-    text: css(_colorCSS(euiTheme.colors.textParagraph)),
+    // Color styles — `primary`/`text` use the interactive default from euiLinkCSS
+    subdued: css(_staticColorCSS(euiTheme.colors.textSubdued)),
+    success: css(_staticColorCSS(euiTheme.colors.textSuccess)),
+    accent: css(_staticColorCSS(euiTheme.colors.textAccent)),
+    danger: css(_staticColorCSS(euiTheme.colors.textDanger)),
+    warning: css(_staticColorCSS(euiTheme.colors.textWarning)),
+    ghost: css(_staticColorCSS(euiTheme.colors.textGhost)),
   };
 };
 
-const _colorCSS = (color: string) => {
+const _staticColorCSS = (color: string) => {
   return `
     color: ${color};
+
+    &:hover,
+    &:focus {
+      color: ${color};
+    }
 
     &:target {
       color: darken(${color}, 10%);
