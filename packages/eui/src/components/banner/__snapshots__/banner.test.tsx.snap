@@ -26,7 +26,7 @@ exports[`EuiBanner is rendered 1`] = `
         class="euiBanner__content css-1096qea-content"
       >
         <h2
-          class="euiTitle css-ez55zg-title-euiTitle-xs"
+          class="euiTitle css-d6i1y-title-euiTitle-xs"
           data-test-subj="euiBanner-title"
         >
           Title
