@@ -15,7 +15,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
   data-dividers="true"
 >
   <div
-    class="euiFilterButton__wrapper css-u6crh2-wrapper-hasDividers"
+    class="euiFilterButton__wrapper css-lcbovg-wrapper-hasDividers"
   >
     <button
       aria-pressed="false"
@@ -40,7 +40,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
     class="euiPopover emotion-euiPopover-inline-block"
   >
     <div
-      class="euiFilterButton__wrapper css-u6crh2-wrapper-hasDividers"
+      class="euiFilterButton__wrapper css-lcbovg-wrapper-hasDividers"
     >
       <button
         aria-expanded="false"

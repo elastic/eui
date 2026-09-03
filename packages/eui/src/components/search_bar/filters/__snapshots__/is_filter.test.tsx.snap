@@ -2,7 +2,7 @@
 
 exports[`IsFilter render 1`] = `
 <div
-  class="euiFilterButton__wrapper css-gh5fry-wrapper"
+  class="euiFilterButton__wrapper css-psd5px-wrapper"
 >
   <button
     aria-pressed="false"
