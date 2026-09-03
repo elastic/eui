@@ -28,7 +28,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', 0)}
       ${logicalCSS('padding-horizontal', 0)}
 
-      /* Font-weight used by append/prepend nodes - the tab title receives a heavier weight */
+      /* Font-weight used by the tab label and prepend/append nodes */
       font-weight: ${euiTheme.font.weight.semiBold};
       color: ${euiTheme.colors.textSubdued};
 
