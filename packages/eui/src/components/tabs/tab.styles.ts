@@ -26,11 +26,11 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       gap: ${euiTheme.size.s};
       ${logicalCSS('padding-vertical', 0)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      ${logicalCSS('padding-horizontal', 0)}
 
-      /* Font-weight used by append/prepend nodes - the tab title receives a heavier weight */
+      /* Font-weight used by the tab label and prepend/append nodes */
       font-weight: ${euiTheme.font.weight.semiBold};
-      color: ${euiTheme.colors.textHeading};
+      color: ${euiTheme.colors.textSubdued};
 
       &:focus {
         outline-offset: -${euiTheme.focus.width};
@@ -54,7 +54,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
     `,
     selected: css`
-      color: ${euiTheme.colors.textPrimary};
+      color: ${euiTheme.colors.textHeading};
 
       &::after {
         content: '';
@@ -81,7 +81,7 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTab__content: css`
-      font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+      font-weight: ${euiTheme.font.weight.semiBold};
     `,
     // sizes
     s: css`
