@@ -14,4 +14,7 @@
 export const EuiPopoverSelectors = {
   /** `EuiPopover` sets this on a button-like toggle from mount, regardless of open state. */
   TOGGLE_SELECTOR: '[aria-expanded]',
+
+  /** The portal panel, matched by the id the toggle's `aria-controls` points at. Present while open or closing. */
+  panelFor: (id: string) => `[data-popover-panel][id="${id}"]`,
 };
