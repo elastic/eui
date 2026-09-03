@@ -148,6 +148,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     styles.euiFilterButton,
     hasActiveFilters && styles.hasActiveFilters,
     compressed && styles.compressed,
+    !children && styles.isIconOnly,
     ...toggleVariantStyles,
   ];
 
@@ -159,6 +160,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     numFiltersDefined && styles.hasNotification,
     compressed && wrapperStyles.compressed,
     showDividers && wrapperStyles.hasDividers,
+    !children && wrapperStyles.isIconOnly,
     !grow && styles.noGrow,
   ];
 
@@ -175,6 +177,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
+      'euiFilterButton-isIconOnly': !children,
       'euiFilterButton-isToggle': isToggle,
     },
     className
@@ -238,7 +241,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const dataText =
     children && typeof children === 'string' ? children : innerText;
 
-  const textContent = (
+  const textContent = children && (
     <span
       ref={ref}
       data-text={dataText}

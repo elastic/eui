@@ -136,6 +136,10 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         })}
       }
     `,
+    isIconOnly: css`
+      inline-size: var(--euiFilterButtonInsetSize);
+      min-inline-size: var(--euiFilterButtonInsetSize);
+    `,
   };
 };
 
@@ -201,6 +205,9 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       & + :where(:has(.euiFilterButton)) {
         margin-inline-start: 0;
       }
+    `,
+    isIconOnly: css`
+      min-inline-size: auto;
     `,
   };
 };

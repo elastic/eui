@@ -63,9 +63,15 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
       > *:not(.euiFilterButton__wrapper, .euiFilterButton) {
         ${euiFilterButtonDisplay(euiThemeContext)}
+
+        &:has(.euiFilterButton-isIconOnly) {
+          min-inline-size: auto;
+        }
       }
+
       /* Force popover anchors to expand */
-      .euiPopover > .euiFilterButton {
+      .euiPopover
+        > *:is(.euiToolTipAnchor, .euiFilterButton__wrapper, .euiFilterButton) {
         ${logicalCSS('width', '100%')}
       }
 
