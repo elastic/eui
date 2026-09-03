@@ -12,8 +12,7 @@ source .buildkite/scripts/common/utils.sh
 
 bucket_directory="$(buildkite-agent meta-data get bucket_directory --default "")"
 copy_to_root_directory="$(buildkite-agent meta-data get copy_to_root_directory --default "")"
-# Default to "true" for non-PR builds where VRT never runs
-vrt_passed="$(buildkite-agent meta-data get vrt_passed --default true)"
+vrt_passed="$(buildkite-agent meta-data get vrt_passed --default "")"
 vrt_skip_reason="$(buildkite-agent meta-data get vrt_skip_reason --default "see build log")"
 
 website_links="[Documentation website](https://eui.elastic.co/${bucket_directory})"
@@ -39,6 +38,10 @@ if [[ -n "${BUILDKITE_PULL_REQUEST:-}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "
   elif [[ "${vrt_passed}" == "skipped" ]]; then
     vrt_annotation="- :no_entry_sign: Visual regression tests skipped: ${vrt_skip_reason}"
     vrt_pr_comment="\n* :no_entry_sign: Visual regression tests skipped: ${vrt_skip_reason}"
+  elif [[ -z "${vrt_passed}" ]]; then
+    annotation_style="error"
+    vrt_annotation="- :warning: Visual regression tests did not complete ([see build](${BUILDKITE_BUILD_URL}))"
+    vrt_pr_comment="\n* :warning: Visual regression tests did not complete ([see build](${BUILDKITE_BUILD_URL}))"
   else
     annotation_style="error"
     # `vrt_comment_url` is only set when `step_vrt_report.sh` actually found visual differences

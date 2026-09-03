@@ -2,7 +2,7 @@
 
 EUI uses [Playwright Test Runner](https://playwright.dev/) with [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for component visual regression testing. Tests run against a live Storybook instance and compare screenshots of stories against previously approved reference images.
 
-Visual regression tests run automatically on every pull request against the deployed Storybook preview. When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
+Visual regression tests run automatically on every pull request against the Storybook build from that pipeline, served locally on the VRT agent (the same files that are deployed as the preview). When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
 
 > [!IMPORTANT]
 > VRT runs in **CI** which owns the baselines and auto-commits them to your PR. Run it locally only when you really need to verify that many stories render as expected.
