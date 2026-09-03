@@ -68,7 +68,7 @@ describe('EuiDataGridColumnResizer', () => {
       expect(resizer).toHaveStyle({ marginInlineEnd: '-30px' });
     });
 
-    it('does not allow an offset that would go under the mininum column width', () => {
+    it('does not allow an offset that would go under the minimum column width', () => {
       const { getByTestSubject } = render(
         <EuiDataGridColumnResizer {...props} />
       );
