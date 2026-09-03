@@ -1,5 +1,6 @@
 #!/bin/bash
-# Run visual regression tests against the deployed Storybook.
+# Run visual regression tests against the Storybook build from this pipeline,
+# served locally. The preview URL is only used for annotation/PR links.
 #
 # On success:
 # - stages any newly created reference screenshots (first-run baseline generation)
@@ -24,7 +25,9 @@ echo "Yarn version: $(yarn -v)"
 #                      Configuration                       #
 ############################################################
 
+# Deployed preview for the links in the annotation/PR comment only.
 STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
+LOCAL_STORYBOOK_URL="http://127.0.0.1:6006"
 
 DIFF_DIR="${VRT_DIR}/diff"
 CURRENT_DIR="${VRT_DIR}/current"
@@ -107,15 +110,22 @@ yarn workspace @elastic/eui exec playwright install chromium
 #                    Run VRT (check mode)                  #
 ############################################################
 
-echo "+++ Running visual regression tests (${VRT_VARIANT}) against ${STORYBOOK_URL}"
+echo "+++ Serving Storybook from the build-storybook artifact"
 
-# GCS upload can finish before `eui.elastic.co` serves the new files.
-retry 8 curl -fsSL -o /dev/null -H 'Cache-Control: no-cache' "${STORYBOOK_URL}/index.json"
+buildkite-agent artifact download storybook-static.tar.gz .
+tar -xzf storybook-static.tar.gz -C packages/eui
+rm -f storybook-static.tar.gz
+
+yarn workspace @elastic/eui serve-storybook &
+curl --retry 15 --retry-delay 1 --retry-connrefused -fsSL -o /dev/null \
+  "${LOCAL_STORYBOOK_URL}/index.json"
+
+echo "+++ Running visual regression tests (${VRT_VARIANT}) against ${LOCAL_STORYBOOK_URL}"
 
 vrt_output_file=$(mktemp)
 VRT_PASSED=true
 VRT_VARIANT="${VRT_VARIANT}" yarn workspace @elastic/eui test-storybook \
-  --url "${STORYBOOK_URL}" 2>&1 \
+  --url "${LOCAL_STORYBOOK_URL}" 2>&1 \
   | tee "${vrt_output_file}" \
   || VRT_PASSED=false
 

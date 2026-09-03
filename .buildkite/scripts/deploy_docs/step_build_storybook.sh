@@ -56,6 +56,12 @@ echo "+++ Building Storybook and @elastic/eui local dependencies"
 yarn workspace @elastic/eui build:workspaces
 yarn workspace @elastic/eui build-storybook
 
+if [[ -n "${BUILDKITE_PULL_REQUEST:-}" && "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
+  echo "+++ Packaging Storybook for VRT"
+  tar -C packages/eui -czf storybook-static.tar.gz storybook-static
+  buildkite-agent artifact upload storybook-static.tar.gz
+fi
+
 ############################################################
 #                     Deploy Storybook                     #
 ############################################################
