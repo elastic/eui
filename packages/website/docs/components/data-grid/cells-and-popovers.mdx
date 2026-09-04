@@ -8,6 +8,12 @@ Data grid cells are rendered using the `renderCellValue` prop. This prop accepts
 
 Each data grid cell will automatically render an expand action button and an expansion popover ([which can be disabled](./cells-and-popovers.mdx#disabling-cell-expansion-popovers)). For cells with overflowing or truncated content, this expansion popover helps display the full amount of content, or can be customized to show extra details.
 
+## Copying cell values
+
+When a data cell is focused and no text is selected, **Ctrl/Cmd+C** copies the cell's visible text. If you have selected text, that selection is copied instead. Control columns are skipped.
+
+This copies the rendered text, not a raw data value.
+
 ## Cell actions
 
 In addition to making a cell expandable, you can add more custom actions by setting `columns.cellActions`. These actions will render as icon buttons in the cell on hover/focus, and render as full buttons in the cell expansion popover. Note that once any `cellActions` are passed, the cell becomes automatically expandable - this ensures keyboard and screen reader users have access to all cell actions.

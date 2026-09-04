@@ -738,6 +738,69 @@ a, footer\tb, footer
     });
   });
 
+  describe('copying a focused cell', () => {
+    const focusCell = (columnId: string, rowIndex = 0) => {
+      cy.get(
+        `[data-gridcell-column-id="${columnId}"][data-gridcell-row-index="${rowIndex}"]`
+      ).click();
+      cy.focused().should('have.attr', 'data-gridcell-column-id', columnId);
+    };
+
+    it('copies the focused cell value when no text is selected', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      focusCell('a');
+      cy.copyWithoutSelecting().then((copiedText) => {
+        expect(copiedText).to.eq('a, 0');
+      });
+    });
+
+    it('does not override a text selection', () => {
+      cy.realMount(
+        <EuiDataGrid {...baseProps} renderCellValue={() => 'hello world'} />
+      );
+
+      focusCell('a');
+      cy.get(
+        '[data-gridcell-column-id="a"][data-gridcell-row-index="0"] [data-datagrid-cellcontent]'
+      ).then(($el) => {
+        const el = $el[0];
+        const textNode = el.firstChild as Text;
+        const range = el.ownerDocument.createRange();
+        range.setStart(textNode, 0);
+        range.setEnd(textNode, 5);
+        const selection = el.ownerDocument.getSelection()!;
+        selection.removeAllRanges();
+        selection.addRange(range);
+      });
+
+      cy.copyToClipboard().then((copiedText) => {
+        expect(copiedText).to.eq('hello');
+      });
+    });
+
+    it('does not copy control column cells', () => {
+      cy.realMount(
+        <EuiDataGrid
+          {...baseProps}
+          leadingControlColumns={[
+            {
+              id: 'select',
+              width: 40,
+              headerCellRender: () => null,
+              rowCellRender: () => 'CTRL',
+            },
+          ]}
+        />
+      );
+
+      focusCell('select');
+      cy.copyWithoutSelecting().then((copiedText) => {
+        expect(copiedText).to.not.eq('CTRL');
+      });
+    });
+  });
+
   describe('column reordering', () => {
     const props = {
       ...baseProps,

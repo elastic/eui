@@ -57,6 +57,16 @@ declare global {
        */
       selectAndCopy(selectorToCopy: string): Chainable<string>;
 
+      /**
+       * Copy with the current focus and selection
+       */
+      copyToClipboard(): Chainable<string>;
+
+      /**
+       * Copy with the current focus and no text selection
+       */
+      copyWithoutSelecting(): Chainable<string>;
+
       /*
        * Get the value of a CSS variable from the element's computed styles.
        * Params: variableName - the name of the CSS variable (e.g. '--euiColorPrimary')
