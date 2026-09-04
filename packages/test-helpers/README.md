@@ -56,6 +56,7 @@ their own version at runtime.
 | `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
+| `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 
 ## Contributing
