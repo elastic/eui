@@ -8,12 +8,7 @@
 
 import React, { createRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import {
-  render,
-  screen,
-  waitForEuiPopoverClose,
-  waitForEuiPopoverOpen,
-} from '../../../test/rtl';
+import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
@@ -200,7 +195,13 @@ describe('EuiSuperSelect', () => {
   });
 
   describe('ref', () => {
-    it('exposes openPopover and closePopover', async () => {
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('exposes openPopover and closePopover', () => {
+      jest.useFakeTimers();
+
       const ref = createRef<EuiSuperSelectRef>();
       const { queryByRole } = render(
         <EuiSuperSelect ref={ref} options={options} />
@@ -208,12 +209,19 @@ describe('EuiSuperSelect', () => {
 
       expect(queryByRole('listbox')).not.toBeInTheDocument();
 
-      act(() => ref.current!.openPopover());
-      await waitForEuiPopoverOpen();
+      act(() => {
+        ref.current?.openPopover();
+        jest.runOnlyPendingTimers();
+      });
+
       expect(queryByRole('listbox')).toBeInTheDocument();
 
-      act(() => ref.current!.closePopover());
-      await waitForEuiPopoverClose();
+      act(() => {
+        ref.current?.closePopover();
+        jest.runAllTimers();
+      });
+
+      expect(document.querySelector('[data-popover-open]')).toBeFalsy();
     });
   });
 

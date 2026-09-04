@@ -8,7 +8,6 @@
 
 import React, {
   FocusEvent,
-  FunctionComponent,
   ReactElement,
   ReactNode,
   Ref,
@@ -380,10 +379,8 @@ const EuiSuperSelectInner = <T = string,>(
   );
 };
 
-export const EuiSuperSelect = forwardRef(EuiSuperSelectInner) as <T = string>(
-  // `forwardRef` erases the generic, so it has to be reapplied here to keep
-  // `options`/`valueOfSelected` type checking against the same `T`
+export const EuiSuperSelect = forwardRef(EuiSuperSelectInner) as (<T = string>(
   props: EuiSuperSelectProps<T> & { ref?: Ref<EuiSuperSelectRef> }
-) => ReactElement;
-// Recast to allow `displayName`
-(EuiSuperSelect as FunctionComponent).displayName = 'EuiSuperSelect';
+) => ReactElement) & { displayName?: string };
+
+EuiSuperSelect.displayName = 'EuiSuperSelect';
