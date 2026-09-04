@@ -25,9 +25,6 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { backgroundColor } = euiFormVariables(euiThemeContext);
   const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
 
-  const borderRadius = euiTheme.border.radius.small;
-  const borderRadiusCompressed = euiTheme.border.radius.small;
-
   const containerPadding = euiTheme.size.xs;
 
   return {
@@ -36,7 +33,6 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline-flex;
       ${logicalCSS('max-width', '100%')}
       overflow: hidden;
-
       background-color: ${backgroundColor};
 
       /* Adds the border on a pseudo element to prevent height differences between wrapper and buttons.
@@ -51,6 +47,11 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         pointer-events: none;
       }
 
+      &:where([data-dividers='true']) {
+        /* space for dividers */
+        gap: ${euiTheme.border.width.thin};
+      }
+
       .euiFilterButton-isToggle {
         /* reduced padding to account for outer container padding */
         padding-inline: ${mathWithUnits(
@@ -62,9 +63,15 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
       > *:not(.euiFilterButton__wrapper, .euiFilterButton) {
         ${euiFilterButtonDisplay(euiThemeContext)}
+
+        &:has(.euiFilterButton-isIconOnly) {
+          min-inline-size: auto;
+        }
       }
+
       /* Force popover anchors to expand */
-      .euiPopover > .euiFilterButton {
+      .euiPopover
+        > *:is(.euiToolTipAnchor, .euiFilterButton__wrapper, .euiFilterButton) {
         ${logicalCSS('width', '100%')}
       }
 
@@ -88,46 +95,10 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
     `,
     uncompressed: css`
-      border-radius: ${borderRadius};
-
-      .euiFilterButton__wrapper {
-        ${logicalCSS('height', buttonSizeMap.m.height)}
-      }
-
-      .euiFilterButton {
-        ${logicalCSS('height', buttonSizeMap.m.height)}
-      }
-
-      .euiFilterButton-isToggle {
-        ${logicalCSS(
-          'height',
-          buttonSizeMap.m.getInsetHeight(
-            buttonSizeMap.m.height,
-            containerPadding
-          )
-        )}
-      }
+      border-radius: ${buttonSizeMap.m.radius};
     `,
     compressed: css`
-      border-radius: ${borderRadiusCompressed};
-
-      .euiFilterButton__wrapper {
-        ${logicalCSS('height', buttonSizeMap.s.height)}
-      }
-
-      .euiFilterButton {
-        ${logicalCSS('height', buttonSizeMap.s.height)}
-      }
-
-      .euiFilterButton-isToggle {
-        ${logicalCSS(
-          'height',
-          buttonSizeMap.s.getInsetHeight(
-            buttonSizeMap.s.height,
-            containerPadding
-          )
-        )}
-      }
+      border-radius: ${buttonSizeMap.s.radius};
     `,
     /**
      * Not used in EuiFilterGroup directly, but used by EuiSearchBar and consumers
