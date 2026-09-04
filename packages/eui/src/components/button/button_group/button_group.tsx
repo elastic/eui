@@ -468,10 +468,12 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
         fill: false,
       }),
       ...(isSelection && {
-        getSelectionProps: (id: string) => {
+        getSelectionProps: (id: string, _isDisabled?: boolean) => {
           const selected = isSelected(id);
           const isInverse = display === 'inverse';
-          const hasFill = selected && display === 'highlighted';
+          const hasFill =
+            (selected && display === 'highlighted') ||
+            !!(selected && _isDisabled);
 
           return {
             isSelected: selected,

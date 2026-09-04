@@ -74,6 +74,7 @@ const StatefulPopover = ({
   closePopover,
   isOpen: _isOpen,
   hasArrow,
+  'data-test-subj': dataTestSubj,
   ...rest
 }: EuiPopoverProps) => {
   const [isOpen, setOpen] = useState(_isOpen);
@@ -101,7 +102,7 @@ const StatefulPopover = ({
   };
 
   const trigger = (
-    <EuiButton onClick={() => setOpen(!isOpen)}>
+    <EuiButton data-test-subj={dataTestSubj} onClick={() => setOpen(!isOpen)}>
       {button || 'trigger'}
     </EuiButton>
   );

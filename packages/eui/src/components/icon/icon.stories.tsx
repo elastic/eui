@@ -32,6 +32,9 @@ export const Playground: Story = {};
 
 export const AllIcons: Story = {
   tags: ['vrt-only'],
+  parameters: {
+    vrt: { skip: ['mobile'] },
+  },
   render: () => (
     <EuiFlexGroup wrap gutterSize="s">
       {ICON_TYPES.map((iconType) => (

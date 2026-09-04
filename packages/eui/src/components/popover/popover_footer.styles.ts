@@ -31,9 +31,13 @@ export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
             : euiTheme.components.popoverFooterBorderColor
         }`
       )}
+      /* Match the panel radius so footer backgrounds don't square off the corners.
+         Avoid overflow: hidden on the panel — it clips the filter shadow and arrow. */
+      ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)}
+      ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)}
     `,
     // If the popover's containing panel has padding applied,
-    // ensure the title expands to cover that padding via negative margins
+    // ensure the footer expands to cover that padding via negative margins
     panelPaddingSizes: {
       none: css``,
       xs: css`
