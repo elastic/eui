@@ -19,6 +19,7 @@ import {
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
+  logicalCSSWithFallback,
   logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
@@ -100,6 +101,18 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${maxedFlyoutWidth(euiThemeContext)}
+    `,
+
+    content: css`
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: stretch;
+      min-block-size: 0;
+
+      &:has(.euiFlyoutBody) {
+        ${logicalCSSWithFallback('overflow-y', 'auto')}
+      }
     `,
 
     // Flyout sizes (media queries + % sizing)
@@ -316,6 +329,8 @@ const composeFlyoutPadding = (
   };
 
   return `
+    --euiFlyoutBodyPadding: ${paddingModifierMap[paddingSize]};
+
     .euiFlyoutHeader {
       ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
       ${logicalCSS('padding-top', paddingModifierMap[paddingSize])}

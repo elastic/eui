@@ -356,3 +356,90 @@ export const PaginationExample: StoryObj<Args> = {
     />
   ),
 };
+
+const ActionStatesFlyout = () => {
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLoadingClick = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 2000);
+  };
+
+  const titleId = 'action-states-example-title';
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutOpen(true)} disabled={isFlyoutOpen}>
+        Open flyout
+      </EuiButton>
+
+      {isFlyoutOpen && (
+        <EuiFlyout
+          onClose={() => setIsFlyoutOpen(false)}
+          size="m"
+          type="overlay"
+          aria-labelledby={titleId}
+          flyoutMenuProps={{
+            titleId,
+            title: 'Action states',
+            trailingActions: [
+              {
+                iconType: 'share',
+                'aria-label': 'Share (link)',
+                toolTipContent: 'Share direct link',
+                href: 'https://www.elastic.co',
+                target: '_blank',
+              },
+              {
+                iconType: 'gear',
+                onClick: handleLoadingClick,
+                'aria-label': 'Save (loading)',
+                toolTipContent: isLoading ? 'Saving…' : 'Save',
+                isLoading,
+              },
+              {
+                iconType: 'lock',
+                onClick: () => {},
+                'aria-label': 'Locked action',
+                toolTipContent: 'Insufficient permissions',
+                isDisabled: true,
+              },
+            ],
+          }}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiText>
+              <h2 id={titleId}>Action states</h2>
+            </EuiText>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>
+                Trailing actions demonstrating <strong>href</strong> (link with
+                right-click support), <strong>isLoading</strong> (click Save to
+                trigger a 2-second spinner), and <strong>isDisabled</strong>{' '}
+                with a tooltip explaining why the action is unavailable.
+              </p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const ActionStates: StoryObj<Args> = {
+  name: 'Action states (href, isLoading, isDisabled)',
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  argTypes: {
+    leadingActionCount: { table: { disable: true } },
+    trailingActionCount: { table: { disable: true } },
+    historyItemCount: { table: { disable: true } },
+    paginationTotal: { table: { disable: true } },
+    paginationVariant: { table: { disable: true } },
+  },
+  render: () => <ActionStatesFlyout />,
+};

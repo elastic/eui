@@ -97,6 +97,22 @@ export const FullWidthAndGrow: Story = {
   ),
 };
 
+export const MixedButtons: Story = {
+  tags: ['vrt-only'],
+  render: ({ ...args }) => (
+    <EuiFilterGroup>
+      <EuiFilterButton {...args}>Filter one</EuiFilterButton>
+      <EuiFilterButton {...args}>Filter two</EuiFilterButton>
+      <EuiFilterButton {...args}>Filter three</EuiFilterButton>
+      <EuiFilterButton iconType="menu" iconSide="right" />
+    </EuiFilterGroup>
+  ),
+  args: {
+    numFilters: 5,
+    iconType: 'chevronSingleDown',
+  },
+};
+
 export const HighContrast: Story = {
   ...FullWidthAndGrow,
   tags: ['vrt-only'],
