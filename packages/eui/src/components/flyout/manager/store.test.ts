@@ -574,6 +574,80 @@ describe('Flyout Manager Store', () => {
     });
   });
 
+  describe('cross-root state sharing', () => {
+    it('two independent callers of getFlyoutManagerStore share the same store instance and subscribers', () => {
+      const rootA = getFlyoutManagerStore();
+      const rootB = getFlyoutManagerStore();
+
+      expect(rootA).toBe(rootB);
+
+      const rootBListener = jest.fn();
+      rootB.subscribe(rootBListener);
+
+      rootA.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN);
+
+      expect(rootBListener).toHaveBeenCalledTimes(1);
+      expect(rootB.getState().flyouts).toHaveLength(1);
+    });
+
+    it('setPagination called outside a React tree (e.g. from a data grid in a separate root) drives flyout state', () => {
+      const store = getFlyoutManagerStore();
+      const listener = jest.fn();
+
+      store.addFlyout('flyout-1', 'Test Flyout', LEVEL_MAIN);
+      store.subscribe(listener);
+
+      const pagination = {
+        currentIndex: 2,
+        total: 5,
+        onPrevious: jest.fn(),
+        onNext: jest.fn(),
+      };
+
+      getFlyoutManagerStore().setPagination('flyout-1', pagination);
+
+      expect(listener).toHaveBeenCalledTimes(1);
+      const flyout = store
+        .getState()
+        .flyouts.find((f) => f.flyoutId === 'flyout-1');
+      expect(flyout?.pagination).toBe(pagination);
+    });
+
+    it('histories from different historyKey groups coexist without cross-contamination', () => {
+      const store = getFlyoutManagerStore();
+      const groupA = Symbol();
+      const groupB = Symbol();
+
+      // Interleave sessions from two groups: A1 → B1 → A2
+      store.addFlyout('a-1', 'Group A first', LEVEL_MAIN, undefined, groupA);
+      store.addFlyout('b-1', 'Group B first', LEVEL_MAIN, undefined, groupB);
+      store.addFlyout('a-2', 'Group A second', LEVEL_MAIN, undefined, groupA);
+
+      // Current session is a-2 (Group A). historyItems shows only the previous
+      // Group A session (a-1), not the intervening Group B session.
+      expect(store.historyItems).toHaveLength(1);
+      expect(store.historyItems[0].title).toBe('Group A first');
+
+      // Going back within Group A preserves the interleaved Group B session.
+      store.goBack();
+      const sessionIds = store.getState().sessions.map((s) => s.mainFlyoutId);
+      expect(sessionIds).toContain('b-1');
+      expect(sessionIds).toContain('a-1');
+      expect(sessionIds).not.toContain('a-2');
+    });
+
+    it('sessions without a historyKey are each isolated in their own history group', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('permits-1', 'Permits', LEVEL_MAIN);
+      store.addFlyout('permits-2', 'More Permits', LEVEL_MAIN);
+
+      // Neither session passed a historyKey, so each got a unique Symbol.
+      // Current session (permits-2) sees no previous sessions in its group.
+      expect(store.historyItems).toHaveLength(0);
+    });
+  });
+
   describe('goBack close meta', () => {
     it('stamps flyouts removed by goBack with navigation-back (consumed once)', () => {
       const store = getFlyoutManagerStore();
