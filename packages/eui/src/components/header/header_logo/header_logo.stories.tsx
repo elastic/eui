@@ -15,17 +15,17 @@ import { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 const meta: Meta<EuiHeaderLogoProps> = {
   title: 'Layout/EuiHeader/EuiHeaderLogo',
   component: EuiHeaderLogo,
-  args: {
-    // Not default props, set for demo purposes
-    iconType: 'logoElastic',
-    children: 'Elastic',
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<EuiHeaderLogoProps>;
 
 export const Playground: Story = {
+  args: {
+    logoType: 'glyph',
+  },
+
   render: ({ ...args }) => (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem>
@@ -36,6 +36,10 @@ export const Playground: Story = {
 };
 
 export const WithText: Story = {
+  args: {
+    logoType: 'horizontal',
+  },
+
   render: ({ ...args }) => (
     <EuiHeader position="fixed">
       <EuiHeaderSectionItem>
