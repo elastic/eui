@@ -44,16 +44,32 @@ export const useObserver = (
   // Empty deps: run only on mount/unmount — componentName is only used for the
   // error message and changing it must not disconnect/re-connect the observer.
   useEffect(() => {
-    if (childNodeRef.current == null) {
+    if (childNodeRef.current === null) {
       throw new Error(`${componentNameRef.current} did not receive a ref`);
     }
+
+    // Strict Mode runs effect cleanup without always calling the ref callback
+    // again (notably in React 18). Reconnect when the node is still mounted.
+    if (observerRef.current === null) {
+      observerRef.current =
+        beginObserveRef.current(childNodeRef.current) ?? null;
+    }
+
     return () => {
       observerRef.current?.disconnect();
+      observerRef.current = null;
     };
   }, []);
 
   const updateChildNode = useCallback((ref: Element | null) => {
-    if (childNodeRef.current === ref) return; // node hasn't changed
+    if (childNodeRef.current === ref) {
+      // Same node, but the observer may have been disconnected by Strict Mode
+      // effect cleanup without a matching ref(null) call.
+      if (ref != null && observerRef.current === null) {
+        observerRef.current = beginObserveRef.current(ref) ?? null;
+      }
+      return;
+    }
 
     // if there's an existing observer disconnect it
     if (observerRef.current != null) {

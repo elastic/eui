@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { render } from '../../test/rtl';
 import { useObserver, Observer } from './use_observer';
 
@@ -106,4 +106,30 @@ describe('useObserver', () => {
 
     expect(observer.disconnect).toHaveBeenCalledTimes(1);
   });
+
+  (process.env.REACT_VERSION === '18' ? it : it.skip)(
+    'reconnects the observer after StrictMode remounts without a ref change',
+    () => {
+      const observer1 = makeObserver();
+      const observer2 = makeObserver();
+      const beginObserve = jest
+        .fn()
+        .mockReturnValueOnce(observer1)
+        .mockReturnValueOnce(observer2);
+
+      const TestComponent = () => {
+        const updateChildNode = useObserver(beginObserve, 'Test');
+        return <div ref={updateChildNode} />;
+      };
+
+      render(
+        <StrictMode>
+          <TestComponent />
+        </StrictMode>
+      );
+
+      expect(beginObserve).toHaveBeenCalledTimes(2);
+      expect(observer1.disconnect).toHaveBeenCalledTimes(1);
+    }
+  );
 });
