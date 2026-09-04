@@ -24,4 +24,4 @@ Set `data-test-subj` on the `<EuiModal>`/`<EuiConfirmModal>` itself, which the c
 ## Deliberately out of scope
 
 - **`EuiConfirmModal`'s cancel/confirm buttons**: already carry their own stable `data-test-subj`s (`confirmModalCancelButton`, `confirmModalConfirmButton`), no ambiguity to solve.
-- **Open/close animation**: unlike `EuiPopover`, `EuiModal` has no internal open/close state or transition to wait for. It is a plain conditionally-mounted component.
+- **Waiting for open/close**: unlike `EuiPopover`, `EuiModal` has no closing state or transition. It is conditionally mounted by the consumer and unmounts immediately on close. Its entrance slide-in is covered by Playwright's actionability wait when clicking `closeButton`.
