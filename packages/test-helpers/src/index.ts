@@ -17,4 +17,5 @@ export { EuiFilterButtonObject } from './playwright/components/filter_button/obj
 export { EuiRangeObject } from './playwright/components/form/range/object';
 export { EuiPopoverObject } from './playwright/components/popover/object';
 export { EuiFlyoutObject } from './playwright/components/flyout/object';
+export { EuiModalObject } from './playwright/components/modal/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
