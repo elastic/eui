@@ -23,4 +23,4 @@ Set `data-test-subj` on the `<EuiAccordion>` itself, which the component-type gu
 
 ## Deliberately out of scope
 
-- **Waiting for the open/close transition**: `content` fades in via `opacity`, which Playwright's own actionability checks do not account for. No consumer has needed this yet; assert on `trigger`'s `aria-expanded` before acting on `content` if timing matters.
+- **Waiting for the open/close transition**: while closed, `content` is `height: 0` with `opacity: 0`, so Playwright already treats anything inside it as not visible and auto-waits. Only the brief opening transition (height and opacity animating together) is not fully covered by Playwright's actionability checks. No consumer has needed a wait for it yet, so none is exposed.

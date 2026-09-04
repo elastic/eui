@@ -18,6 +18,6 @@ export const EuiAccordionSelectors = {
   /** The trigger button. `aria-expanded` on it reflects open state synchronously. */
   TRIGGER_SELECTOR: '.euiAccordion__button',
 
-  /** The children wrapper. Fades in on open, so a click on content inside is safer once `trigger` reports `aria-expanded="true"`. */
+  /** The children wrapper. `height: 0` and `opacity: 0` while closed, so Playwright treats its contents as not visible. */
   CONTENT_SELECTOR: '.euiAccordion__childWrapper',
 };
