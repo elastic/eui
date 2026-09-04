@@ -342,6 +342,87 @@ describe('useEuiFlyoutResizable', () => {
       expect(toPixels(result.current.size, 600)).toBeCloseTo(540);
     });
 
+    it('restores a numeric `size` when the referenceWidth grows back', async () => {
+      // Clamping must not be destructive: shrinking below the requested width
+      // and growing back again has to return the flyout to `size`
+      const props = {
+        ...mockProps,
+        enabled: true,
+        minWidth: 0,
+        maxWidth: undefined,
+        size: 800,
+      };
+      const { result, rerender } = renderHook(
+        (props) => useEuiFlyoutResizable(props),
+        { initialProps: { ...props, referenceWidth: 1200 } }
+      );
+
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(800);
+      });
+
+      // Shrink: 800 no longer fits within 90% of 600, so it clamps to 540
+      rerender({ ...props, referenceWidth: 600 });
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 600)).toBeCloseTo(540);
+      });
+
+      // Grow back: there is room for 800 again, so it must return to 800
+      rerender({ ...props, referenceWidth: 1200 });
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(800);
+      });
+    });
+
+    it('restores the user-dragged width, not `size`, when the referenceWidth grows back', async () => {
+      const props = {
+        ...mockProps,
+        enabled: true,
+        minWidth: 0,
+        maxWidth: undefined,
+        size: 800,
+      };
+      const { result, rerender } = renderHook(
+        (props) => useEuiFlyoutResizable(props),
+        { initialProps: { ...props, referenceWidth: 1200 } }
+      );
+
+      const mockElement = createMockElement(800);
+      act(() => {
+        result.current.setFlyoutRef(mockElement);
+      });
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(800);
+      });
+
+      // User drags to 700px
+      act(() => {
+        result.current.onMouseDown({ clientX: 800 } as ReactMouseEvent);
+      });
+      act(() => {
+        window.dispatchEvent(new MouseEvent('mousemove', { clientX: 900 }));
+      });
+      act(() => {
+        window.dispatchEvent(new MouseEvent('mouseup'));
+      });
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(700);
+      });
+
+      // Shrink so even 700 does not fit, then grow back
+      rerender({ ...props, referenceWidth: 600 });
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 600)).toBeCloseTo(540);
+      });
+
+      rerender({ ...props, referenceWidth: 1200 });
+
+      // Back to the width the user chose, *not* the coded `size` of 800
+      await waitFor(() => {
+        expect(toPixels(result.current.size, 1200)).toBeCloseTo(700);
+      });
+    });
+
     it('re-clamps a numeric `size` to `maxWidth`', async () => {
       const { result, rerender } = renderHook(
         (props) => useEuiFlyoutResizable(props),

@@ -79,7 +79,9 @@ export const useEuiFlyoutResizable = ({
     if (!enabled) return; // Don't measure when resizing is disabled
     if (!flyoutWidth && flyoutRef) {
       setCallOnResize(false); // Don't call `onResize` for non-user width changes
-      setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
+      const measuredWidth = getFlyoutMinMaxWidth(flyoutRef.offsetWidth);
+      requestedWidthRef.current ??= measuredWidth;
+      setFlyoutWidth(measuredWidth);
     }
   }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled]);
 
@@ -104,6 +106,14 @@ export const useEuiFlyoutResizable = ({
   // `callOnResize` back to `true`.
   const isContainerResizeRef = useRef(false);
 
+  // The pixel width last *asked for* — by the consumer via a numeric `size`, or
+  // by the user via a drag / keyboard resize. This is deliberately kept apart
+  // from `flyoutWidth`, which is that request clamped to the space currently
+  // available. Re-clamping the already-clamped `flyoutWidth` would be lossy:
+  // shrinking the container past the request and growing it back would leave
+  // the flyout stuck at the shrunken width instead of returning to the request.
+  const requestedWidthRef = useRef<number | null>(null);
+
   // Update flyout width when consumers pass in a new `size`, or re-clamp
   // (numeric `size`) / scale proportionally and re-clamp (named `size`) when
   // constraints change (e.g. container resize, sibling width change).
@@ -114,6 +124,7 @@ export const useEuiFlyoutResizable = ({
       // The consumer's `size` prop actually changed — reset so the new size takes effect
       prevSizeRef.current = _size;
       prevReferenceWidthRef.current = _referenceWidth;
+      requestedWidthRef.current = typeof _size === 'number' ? _size : null;
       setCallOnResize(false);
       setFlyoutWidth(
         typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0
@@ -135,12 +146,14 @@ export const useEuiFlyoutResizable = ({
       setFlyoutWidth((currentWidth) => {
         if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
           // A numeric `size` is a pixel contract — the consumer supplied an
-          // exact width and may persist it — so re-clamp rather than rescale.
-          // Named sizes are percentages (see `flyout.styles.ts`) and keep
-          // scaling, preserving their percentage position in both directions
-          // (reference width shrink AND grow).
+          // exact width and may persist it — so re-clamp the requested width
+          // rather than rescaling. Clamping is applied to the request, never to
+          // the previous result, so the flyout returns to the requested width
+          // once there is room for it again. Named sizes are percentages (see
+          // `flyout.styles.ts`) and keep scaling, preserving their percentage
+          // position in both directions (reference width shrink AND grow).
           if (typeof _size === 'number') {
-            return getFlyoutMinMaxWidth(currentWidth);
+            return getFlyoutMinMaxWidth(requestedWidthRef.current ?? _size);
           }
           const scaleFactor = _referenceWidth / prevRefWidth;
           return getFlyoutMinMaxWidth(currentWidth * scaleFactor);
@@ -148,6 +161,7 @@ export const useEuiFlyoutResizable = ({
         // When reference width was 0 (e.g. container not yet measured), now
         // that we have a real width, reset from the size prop instead of scaling.
         if (_referenceWidth > 0) {
+          requestedWidthRef.current = typeof _size === 'number' ? _size : null;
           return typeof _size === 'number' ? getFlyoutMinMaxWidth(_size) : 0;
         }
         return currentWidth;
@@ -178,7 +192,11 @@ export const useEuiFlyoutResizable = ({
       const mouseOffset = getPosition(e, true) - initialMouseX.current;
       const changedFlyoutWidth = initialWidth.current + mouseOffset * direction;
 
-      setFlyoutWidth(getFlyoutMinMaxWidth(changedFlyoutWidth));
+      // The dragged width becomes the new request — the user cannot drag past
+      // the clamp, so what they see is what they asked for
+      const newWidth = getFlyoutMinMaxWidth(changedFlyoutWidth);
+      requestedWidthRef.current = newWidth;
+      setFlyoutWidth(newWidth);
     },
     [getFlyoutMinMaxWidth, direction, enabled]
   );
@@ -231,18 +249,25 @@ export const useEuiFlyoutResizable = ({
 
       const KEYBOARD_OFFSET = 10;
 
+      // Steps from the currently rendered width, and the result becomes the new
+      // request. Assigning the ref from the updater keeps it in step with the
+      // width actually committed; the computation is idempotent, so a
+      // double-invoked updater (StrictMode) resolves to the same value.
+      const resizeBy = (offset: number) =>
+        setFlyoutWidth((flyoutWidth) => {
+          const newWidth = getFlyoutMinMaxWidth(flyoutWidth + offset);
+          requestedWidthRef.current = newWidth;
+          return newWidth;
+        });
+
       switch (e.key) {
         case keys.ARROW_RIGHT:
           e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
-          setFlyoutWidth((flyoutWidth) =>
-            getFlyoutMinMaxWidth(flyoutWidth + KEYBOARD_OFFSET * direction)
-          );
+          resizeBy(KEYBOARD_OFFSET * direction);
           break;
         case keys.ARROW_LEFT:
           e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
-          setFlyoutWidth((flyoutWidth) =>
-            getFlyoutMinMaxWidth(flyoutWidth - KEYBOARD_OFFSET * direction)
-          );
+          resizeBy(-KEYBOARD_OFFSET * direction);
       }
     },
     [getFlyoutMinMaxWidth, direction, enabled]
