@@ -137,5 +137,19 @@ describe('EuiDataGrid tabular copy', () => {
       ['a, 0', 'b, 0'],
       ['a, 1', 'b, 1'],
     ]);
+
+    expect(
+      container.querySelector(
+        '[data-gridcell-column-id="select"][role="columnheader"]'
+      )
+    ).toHaveStyle({ userSelect: 'none' });
+    expect(
+      container.querySelector('.euiDataGridRowCell--controlColumn')
+    ).toHaveStyle({ userSelect: 'none' });
+    expect(
+      container.querySelector(
+        '[data-gridcell-column-id="a"][role="columnheader"]'
+      )
+    ).not.toHaveStyle({ userSelect: 'none' });
   });
 });

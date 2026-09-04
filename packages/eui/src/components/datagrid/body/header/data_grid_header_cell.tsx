@@ -112,7 +112,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               className={classnames(classes, propsFromColumnActions.className)}
               id={id}
               index={index}
-              isLastColumn={
+              isLastColumn={isLastColumn}
+              isLastCopyColumn={
                 columns.length > 0
                   ? columns[columns.length - 1].id === id
                   : isLastColumn

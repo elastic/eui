@@ -787,6 +787,24 @@ a, footer\tb, footer
         expect(copiedText).to.eq(copiedDataColumns);
       });
     });
+
+    it('does not allow text selection to start in control columns', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.get('[data-gridcell-column-id="select"][role="columnheader"]').should(
+        'have.css',
+        'user-select',
+        'none'
+      );
+      cy.get('.euiDataGridRowCell--controlColumn')
+        .first()
+        .should('have.css', 'user-select', 'none');
+      cy.get('[data-gridcell-column-id="a"][role="columnheader"]').should(
+        'not.have.css',
+        'user-select',
+        'none'
+      );
+    });
   });
 
   describe('column reordering', () => {

@@ -149,7 +149,7 @@ const EuiDataGridCellContent: FunctionComponent<
 EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
 
 export class EuiDataGridCell extends Component<
-  EuiDataGridCellProps & { isLastCopyColumn?: boolean },
+  EuiDataGridCellProps,
   EuiDataGridCellState
 > {
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
