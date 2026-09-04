@@ -11,16 +11,3 @@ import { PRIMITIVE_COLORS } from '../../../../eui-theme-borealis/src/variables/c
 export { PRIMITIVE_COLORS };
 
 export type BorealisPrimitiveName = keyof typeof PRIMITIVE_COLORS;
-
-export const BOREALIS_VIS_PALETTE = [
-  'teal60',
-  'teal30',
-  'blue60',
-  'blue30',
-  'pink60',
-  'pink30',
-  'red60',
-  'red30',
-  'yellow60',
-  'yellow30',
-] as const satisfies readonly BorealisPrimitiveName[];
