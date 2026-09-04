@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-const selectAndCopy = (selectorToCopy: string) => {
+const grantClipboardPermissions = () => {
   // Force Chrome devtools to allow reading from the clipboard
   cy.wrap(
     Cypress.automation('remote:debugger:protocol', {
@@ -30,7 +30,18 @@ const selectAndCopy = (selectorToCopy: string) => {
       return false;
     }
   });
+};
 
+const copyToClipboard = () => {
+  grantClipboardPermissions();
+
+  return cy.window().then((window) => {
+    window.document.execCommand('copy');
+    return window.navigator.clipboard.readText();
+  });
+};
+
+const selectAndCopy = (selectorToCopy: string) => {
   cy.get(selectorToCopy).then(($el) => {
     const el = $el[0];
     const document = el.ownerDocument;
@@ -40,10 +51,17 @@ const selectAndCopy = (selectorToCopy: string) => {
     document.getSelection()!.addRange(range);
   });
 
-  return cy.window().then((window) => {
-    document.execCommand('copy');
-    return window.navigator.clipboard.readText();
+  return copyToClipboard();
+};
+
+const copyWithoutSelecting = () => {
+  cy.window().then((window) => {
+    window.getSelection()?.removeAllRanges();
   });
+
+  return copyToClipboard();
 };
 
 Cypress.Commands.add('selectAndCopy', selectAndCopy);
+Cypress.Commands.add('copyToClipboard', copyToClipboard);
+Cypress.Commands.add('copyWithoutSelecting', copyWithoutSelecting);
