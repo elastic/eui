@@ -77,4 +77,21 @@ describe('EuiDataGridHeaderCell', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  it('emits a copy newline from the last data column even when it is not the last visible column', () => {
+    const { container } = render(
+      <EuiDataGridHeaderCell
+        {...requiredProps}
+        isLastColumn={false}
+        columns={[{ id: 'someColumn' }]}
+      />
+    );
+
+    expect(
+      container.querySelector('[data-tabular-copy-marker="newline"]')
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-tabular-copy-marker="tab"]')
+    ).not.toBeInTheDocument();
+  });
 });

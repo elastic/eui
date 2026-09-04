@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-const selectAndCopy = (selectorToCopy: string) => {
+const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
   // Force Chrome devtools to allow reading from the clipboard
   cy.wrap(
     Cypress.automation('remote:debugger:protocol', {
@@ -35,7 +35,16 @@ const selectAndCopy = (selectorToCopy: string) => {
     const el = $el[0];
     const document = el.ownerDocument;
     const range = document.createRange();
-    range.selectNodeContents(el);
+    if (startSelector) {
+      const start = el.querySelector(startSelector);
+      if (!start) {
+        throw new Error(`Could not find start selector: ${startSelector}`);
+      }
+      range.selectNodeContents(el);
+      range.setStartBefore(start);
+    } else {
+      range.selectNodeContents(el);
+    }
     document.getSelection()!.removeAllRanges();
     document.getSelection()!.addRange(range);
   });
