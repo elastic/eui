@@ -15,20 +15,15 @@ import {
 } from '../../../src/components/combo_box';
 import { EuiColorPickerSwatch } from '../../../src/components/color_picker/color_picker_swatch';
 import { EuiFormRow } from '../../../src/components/form/form_row';
+import { EuiSwitch } from '../../../src/components/form/switch';
 import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiText } from '../../../src/components/text';
 import { EuiTitle } from '../../../src/components/title';
+import { useEuiPaletteColorBlind } from '../../../src/services/color/eui_palettes_hooks';
 import { ColorGrid } from './color_grid';
 import { ContrastMatrix } from './contrast_matrix';
-import { BOREALIS_VIS_PALETTE, PRIMITIVE_COLORS } from './borealis_primitives';
-import { coercePalette, parseColorName, type Palette } from './palette';
-
-interface PaletteToolsProps {
-  /** Names of Borealis primitive colors, or raw color values */
-  palette: Palette;
-  /** Side length of a `<ColorGrid>` cell, in pixels */
-  cellSize: number;
-}
+import { PRIMITIVE_COLORS } from './borealis_primitives';
+import { parseColorName, resolvePalette } from './palette';
 
 const Swatch = ({ color }: { color: string }) => (
   <EuiColorPickerSwatch
@@ -74,44 +69,68 @@ const optionByName = new Map(
   )
 );
 
-const PaletteTools = ({
-  palette: initialPalette,
-  cellSize,
-}: PaletteToolsProps) => {
-  const [palette, setPalette] = useState<string[]>(() =>
-    coercePalette(initialPalette).map((entry) =>
-      typeof entry === 'string' ? entry : entry.name
-    )
-  );
+const namesFromPalette = (palette: string[]) =>
+  resolvePalette(palette, PRIMITIVE_COLORS).map((color) => color.name);
+
+const PaletteTools = ({ cellSize }: { cellSize: number }) => {
+  const colorBlind = useEuiPaletteColorBlind();
+  const [isCustom, setIsCustom] = useState(false);
+  const [customPalette, setCustomPalette] = useState<string[]>([]);
+
+  const palette = isCustom ? customPalette : colorBlind;
 
   const selectedOptions = useMemo(
     () =>
-      palette.flatMap((name) => {
+      customPalette.flatMap((name) => {
         const option = optionByName.get(name);
         return option ? [option] : [];
       }),
-    [palette]
+    [customPalette]
   );
 
   return (
     <>
       <EuiFormRow label="Palette" fullWidth>
-        <EuiComboBox
-          aria-label="Palette primitives"
-          placeholder="Add primitive colors"
-          options={primitiveOptions}
-          selectedOptions={selectedOptions}
-          onChange={(options) =>
-            setPalette(options.map((option) => option.value ?? option.label))
-          }
-          isClearable
-          fullWidth
+        <EuiSwitch
+          label="Custom palette"
+          checked={isCustom}
+          onChange={(event) => {
+            const next = event.target.checked;
+            if (next && customPalette.length === 0) {
+              setCustomPalette(namesFromPalette(colorBlind));
+            }
+            setIsCustom(next);
+          }}
         />
       </EuiFormRow>
 
+      {isCustom && (
+        <>
+          <EuiSpacer size="m" />
+          <EuiFormRow
+            label="Primitives"
+            helpText="Select primitive colors. Order is the order they were added."
+            fullWidth
+          >
+            <EuiComboBox
+              aria-label="Palette primitives"
+              placeholder="Add primitive colors"
+              options={primitiveOptions}
+              selectedOptions={selectedOptions}
+              onChange={(options) =>
+                setCustomPalette(
+                  options.map((option) => option.value ?? option.label)
+                )
+              }
+              isClearable
+              fullWidth
+            />
+          </EuiFormRow>
+        </>
+      )}
+
       <EuiSpacer size="xl" />
 
-      <EuiSpacer size="m" />
       <ColorGrid
         palette={palette}
         colors={PRIMITIVE_COLORS}
@@ -136,7 +155,7 @@ const PaletteTools = ({
   );
 };
 
-const meta: Meta<PaletteToolsProps> = {
+const meta: Meta<{ cellSize: number }> = {
   title: 'Internal/Tools/Palette',
   component: PaletteTools,
   parameters: {
@@ -145,16 +164,14 @@ const meta: Meta<PaletteToolsProps> = {
     vrt: { skip: true },
   },
   argTypes: {
-    palette: { control: false },
     cellSize: { control: { type: 'range', min: 12, max: 48, step: 2 } },
   },
   args: {
-    palette: [...BOREALIS_VIS_PALETTE],
     cellSize: 32,
   },
 };
 
 export default meta;
-type Story = StoryObj<PaletteToolsProps>;
+type Story = StoryObj<{ cellSize: number }>;
 
 export const Playground: Story = {};
