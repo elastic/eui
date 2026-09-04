@@ -45,6 +45,12 @@ const euiPaletteColorBlind = {
   euiColorVis9: {
     graphic: SEMANTIC_COLORS.warning30,
   },
+  euiColorVis10: {
+    graphic: SEMANTIC_COLORS.assistance60,
+  },
+  euiColorVis11: {
+    graphic: SEMANTIC_COLORS.assistance30,
+  },
 };
 
 export const colorVisLight: _EuiThemeVisColors = {
@@ -58,6 +64,8 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVis7: euiPaletteColorBlind.euiColorVis7.graphic,
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
+  euiColorVis10: euiPaletteColorBlind.euiColorVis10.graphic,
+  euiColorVis11: euiPaletteColorBlind.euiColorVis11.graphic,
 
   euiColorVisBehindText0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVisBehindText1: euiPaletteColorBlind.euiColorVis1.graphic,
@@ -80,6 +88,8 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisText7: SEMANTIC_COLORS.danger80,
   euiColorVisText8: SEMANTIC_COLORS.warning110,
   euiColorVisText9: SEMANTIC_COLORS.warning90,
+  euiColorVisText10: SEMANTIC_COLORS.assistance90,
+  euiColorVisText11: SEMANTIC_COLORS.assistance60,
 
   euiColorVisNeutral0: SEMANTIC_COLORS.neutral60,
   euiColorVisNeutral1: SEMANTIC_COLORS.neutral30,

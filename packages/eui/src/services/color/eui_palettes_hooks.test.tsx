@@ -53,6 +53,8 @@ describe('useEuiPaletteColorBlind', () => {
       colorVis.euiColorVis7,
       colorVis.euiColorVis8,
       colorVis.euiColorVis9,
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
     ]);
   });
 
@@ -75,6 +77,8 @@ describe('useEuiPaletteColorBlind', () => {
       '#DA3737',
       '#6A4906',
       '#AD7E00',
+      '#52357E',
+      '#925CDA',
     ]);
   });
 });
@@ -96,6 +100,8 @@ describe('useEuiPaletteColorBlindBehindText', () => {
       colorVis.euiColorVisBehindText7,
       colorVis.euiColorVisBehindText8,
       colorVis.euiColorVisBehindText9,
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
     ]);
   });
 });
