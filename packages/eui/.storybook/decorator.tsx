@@ -79,7 +79,12 @@ export const EuiProviderDecorator: FunctionComponent<
       {...euiProviderProps}
     >
       <GlobalStyles />
-      <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
+      <div
+        id="story-wrapper"
+        ref={setPortalSibling}
+        css={writingModeCss}
+        dir={writingMode === 'rtl' ? 'rtl' : 'ltr'}
+      >
         {portalInsert && children}
       </div>
     </EuiProvider>
