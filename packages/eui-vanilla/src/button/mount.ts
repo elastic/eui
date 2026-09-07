@@ -17,36 +17,42 @@ import type { EuiHtmlButtonProps, EuiHtmlMountedButton } from './types';
 const classNames = (...parts: Array<string | false | undefined>) =>
   parts.filter(Boolean).join(' ');
 
+export const buttonClassName = (props: EuiHtmlButtonProps): string => {
+  const display = resolveDisplay(props);
+  const disabled = isButtonDisabled(props);
+  const color = disabled ? 'disabled' : (props.color ?? 'primary');
+  const size = props.size ?? 'm';
+
+  return classNames(
+    'euiButton',
+    `euiButton--${color}`,
+    `euiButton--${size}`,
+    display !== 'base' && `euiButton--${display}`,
+    props.fullWidth && 'euiButton--fullWidth',
+    props.className
+  );
+};
+
 const render = (props: EuiHtmlButtonProps): HTMLElement => {
   const {
     label,
-    color: colorProp = 'primary',
-    size = 'm',
     href,
     target,
     rel,
     type = 'button',
     id,
-    className,
     isSelected,
-    fullWidth,
+    isLoading,
   } = props;
-  const display = resolveDisplay(props);
   const disabled = isButtonDisabled(props);
-  const color = disabled ? 'disabled' : colorProp;
   const tag = href && !disabled ? 'a' : 'button';
   const el = document.createElement(tag);
 
-  el.className = classNames(
-    'euiButton',
-    `euiButton--${color}`,
-    `euiButton--${size}`,
-    display !== 'base' && `euiButton--${display}`,
-    fullWidth && 'euiButton--fullWidth',
-    className
-  );
+  el.className = buttonClassName(props);
 
   if (id) el.id = id;
+
+  if (isLoading) el.setAttribute('aria-busy', 'true');
 
   if (tag === 'a') {
     (el as HTMLAnchorElement).href = href ?? '';
@@ -70,6 +76,13 @@ const render = (props: EuiHtmlButtonProps): HTMLElement => {
 
   const content = document.createElement('span');
   content.className = 'euiButton__content';
+
+  if (isLoading) {
+    const spinner = document.createElement('span');
+    spinner.className = 'euiLoadingSpinner euiLoadingSpinner--m';
+    spinner.setAttribute('aria-hidden', 'true');
+    content.append(spinner);
+  }
 
   const text = document.createElement('span');
   text.className = 'eui-textTruncate';

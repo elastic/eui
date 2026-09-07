@@ -4,7 +4,9 @@ How to add a component to `@elastic/eui-vanilla`.
 
 Copy `src/button/`. Do not invent a new shape.
 
-Use a short kebab-case id (`badge`, `callout`). That id is the folder name, the CSS file name and the bench key.
+This package is **primitives only** (button, badge, callout, simple form controls). Do not port DataGrid, combo box, or other composites.
+
+Use a short kebab-case id (`badge`, `callout`). That id is the folder name, the CSS file name and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
 
 ## Rules
 
@@ -14,56 +16,41 @@ Use a short kebab-case id (`badge`, `callout`). That id is the folder name, the 
 - Class names are EUI's stable names (`.euiBadge`). Never hashes.
 - Color mode is `data-color-mode="LIGHT"` or `"DARK"` on `<html>`.
 - Do not edit `generated/`. Re-run `yarn generate`.
+- Vanilla is monorepo-only unless constants get exported from EUI package.
 
 ## Where things live
 
-| Concern | Path |
-| --- | --- |
-| CSS sheet | `scripts/css/sheets/<id>.ts` |
-| Register CSS | `scripts/generate-css.ts` |
-| Runtime | `src/<id>/` |
-| Public API | `src/index.ts` |
-| CSS export | `package.json` `exports` |
-| Tests | `src/<id>/*.test.ts` and `package.json` `test-unit` |
-| Stories | `src/<id>/*.stories.ts` |
-| Storybook CSS | `.storybook/preview.ts` |
-| Bench | `scripts/bench/components.mjs` |
+| Concern | Path | Auto |
+| --- | --- | --- |
+| CSS sheet | `scripts/css/sheets/<id>.ts` | globbed |
+| Runtime | `src/<id>/` with `mount.ts` | globbed for dist |
+| Public API | `src/index.ts` | manual |
+| CSS export | `package.json` `"./*.css"` | wildcard |
+| Tests | `src/**/*.test.ts` | globbed |
+| Stories | `src/**/*.stories.ts` | globbed |
+| Storybook CSS | `generated/*.css` | globbed |
+| Bench | `scripts/bench/components.mjs` | manual |
 
 `src/mount.ts` is shared. Do not duplicate it.
+
+CSS sheets stay hand-mapped (Emotion object → selector). That mapping is the work. Do not add a CSS compiler.
 
 ## 1. CSS (build time)
 
 This serializes EUI styles. It does not mount DOM.
 
-1. Find the EUI Emotion style fns for the component (usually `packages/eui/src/components/<id>/*.styles.ts`).
-2. Add `scripts/css/sheets/<id>.ts`.
-3. Export a `CssSheet`: `(ctx, root) => string`.
-4. Wrap every selector with `root` so both color modes emit. Example: `` rule(`${root} .euiBadge`, styles.euiBadge) ``.
-5. Use `rule()` from `scripts/emotion_to_css.ts` to compile Emotion bodies to CSS.
-6. Register the sheet in `scripts/generate-css.ts`:
+1. Find the EUI Emotion style fns (usually `packages/eui/src/components/<id>/*.styles.ts`).
+2. Add `scripts/css/sheets/<id>.ts` exporting `<id>Sheet`.
+3. Wrap every selector with `root`. Example: `` rule(`${root} .euiBadge`, styles.euiBadge) ``.
+4. Use `rule()` from `scripts/emotion_to_css.ts`.
+5. Run `yarn workspace @elastic/eui-vanilla generate`.
+6. Check `generated/<id>.css`: LIGHT and DARK, EUI class names, no `.css-xxxxx` hashes.
 
-```ts
-import { badgeSheet } from './css/sheets/badge';
-
-const outputs = {
-  base: { reset: baseReset, sheets: [baseSheet] },
-  button: { sheets: [buttonSheet] },
-  badge: { sheets: [badgeSheet] },
-};
-```
-
-7. Add the CSS export in `package.json`:
-
-```json
-"./badge.css": "./generated/badge.css"
-```
-
-8. Run `yarn workspace @elastic/eui-vanilla generate`.
-9. Check `generated/<id>.css`. It must contain LIGHT and DARK, the EUI class names and no `.css-xxxxx` hashes.
-
-If the EUI style module pulls Emotion into a file you need at runtime, extract constants into a file (see `_button_constants.ts`) and import that file from `src/`.
+If the EUI style module pulls Emotion into a file you need at runtime, extract constants into a leaf (see `_button_constants.ts`) and import that leaf from `src/`.
 
 `base.css` is global (reset, font, focus). Do not put component rules there.
+
+Forced-colors / high-contrast is not generated yet (`highContrastMode: false`).
 
 ## 2. Runtime (DOM)
 
@@ -78,7 +65,7 @@ Add `src/<id>/`:
 | `mount.ts` | `render` + `mount<Id>` using shared `mount()`. |
 | `index.ts` | Public exports for this component. |
 
-`render` must emit the same class names the CSS sheet targets.
+`render` must emit the same class names the CSS sheet targets. Match EUI's DOM (content wrapper, `eui-textTruncate`).
 
 `mount<Id>` signature matches button:
 
@@ -92,22 +79,23 @@ export const mountBadge = (
 
 Skip `attach` if there is no behavior.
 
+Icons are out of scope until there is a vanilla icon set. Loading may use `aria-busy` plus `euiLoadingSpinner` if that CSS is generated.
+
 Put the Elastic copyright header on every source file.
+
+`update()` remounts and restores focus on the root node. Good enough for buttons. Do not build a virtual DOM.
 
 ## 3. Public API
 
-1. Re-export from `src/index.ts`.
+1. Re-export from `src/index.ts`. This stay explicit on purpose.
 2. Consumers import `mount<Id>` from `@elastic/eui-vanilla`.
-3. Consumers load CSS: `generated/base.css` + `generated/<id>.css`.
-
-Do not add a second package entry for the component JS. One root export is enough.
+3. Consumers load CSS: `@elastic/eui-vanilla/base.css` + `@elastic/eui-vanilla/<id>.css`.
 
 ## 4. Tests
 
-1. Add `src/<id>/<id>.test.ts` (or `behavior.test.ts`).
-2. Cover behavior, not Emotion.
+1. Add `src/<id>/*.test.ts`.
+2. Cover behavior and the EUI class-name recipe.
 3. Assert generated CSS has the stable classes and no hashes.
-4. Append the file to `package.json` `test-unit`. That script lists files explicitly today.
 
 ```bash
 yarn workspace @elastic/eui-vanilla test
@@ -115,12 +103,9 @@ yarn workspace @elastic/eui-vanilla test
 
 ## 5. Storybook
 
-Stories are picked up from `src/**/*.stories.ts`. No Storybook config change.
-
 1. Add `src/<id>/<id>.stories.ts`.
 2. Call `mount<Id>` in `render`. Return the host element.
-3. Import `generated/<id>.css` in `.storybook/preview.ts` (it does not glob CSS).
-4. Use `postToHost` only if the story should log host messages in Actions.
+3. Use `postToHost` only if the story should log host messages in Actions.
 
 ```bash
 yarn workspace @elastic/eui-vanilla storybook
@@ -136,25 +121,23 @@ Optional until you want numbers.
 2. Point `vanilla.from` at `src/<id>/mount.ts`.
 3. Point `eui.from` at `packages/eui/src/components/<id>`.
 4. List CSS as `['base.css', '<id>.css']`.
-5. Use a representative example (the same one you would put in an iframe).
 
 ```bash
 yarn workspace @elastic/eui-vanilla bench -- <id>
 ```
 
-JSON goes to stdout. Do not paste JSON into `BENCHMARK.md` unless you are updating that snapshot.
-
 ## 7. Verify
-
-Run from the EUI repo root.
 
 ```bash
 yarn workspace @elastic/eui-vanilla generate
 yarn workspace @elastic/eui-vanilla test
+yarn workspace @elastic/eui-vanilla build
 yarn workspace @elastic/eui-vanilla storybook
 ```
 
-Check light and dark. Check disabled and empty states. Compare against the EUI React story for the same component.
+`dist/<id>.html` is the iframe resource (base CSS + component CSS + that mount). `dist/index.html` is only a listing.
+
+Check light and dark. Check disabled, empty and loading. Compare against the EUI React story.
 
 ## Do not
 
@@ -162,4 +145,5 @@ Check light and dark. Check disabled and empty states. Compare against the EUI R
 - Import React or Emotion from `src/`.
 - Hand-write component CSS in `generated/`.
 - Override EUI internals with `!important` or hashed class selectors.
-- Put host `postMessage` protocol into the component. The host owns that. Use `postToHost` at the app/story level.
+- Put host `postMessage` protocol into the component. Use `postToHost` at the app/story edge.
+- Port composite EUI widgets.

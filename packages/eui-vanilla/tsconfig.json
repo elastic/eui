@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "rootDir": ".",
     "target": "ES2022",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
@@ -13,6 +12,6 @@
     "isolatedModules": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", ".storybook"],
   "exclude": ["node_modules", "dist", "tmp", "src/**/*.test.ts", "src/**/*.stories.ts"]
 }

@@ -32,6 +32,7 @@ export type CssSheet = (ctx: UseEuiTheme, root: string) => string;
 export const contextFor = (colorMode: ColorMode): UseEuiTheme => ({
   euiTheme: getComputed(EuiThemeBorealis, {}, colorMode),
   colorMode,
+  // TODO: forced-colors / high-contrast
   highContrastMode: false,
   modifications: {},
 });

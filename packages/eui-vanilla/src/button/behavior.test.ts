@@ -13,6 +13,7 @@ import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import { isButtonDisabled, resolveDisplay } from './behavior';
+import { buttonClassName } from './mount';
 
 describe('isButtonDisabled', () => {
   it('is false by default', () => {
@@ -36,6 +37,27 @@ describe('resolveDisplay', () => {
   });
 });
 
+describe('buttonClassName', () => {
+  it('matches EuiButtonDisplay class names', () => {
+    assert.equal(
+      buttonClassName({ label: 'Go' }),
+      'euiButton euiButton--primary euiButton--m'
+    );
+    assert.equal(
+      buttonClassName({ label: 'Go', fill: true }),
+      'euiButton euiButton--primary euiButton--m euiButton--fill'
+    );
+    assert.equal(
+      buttonClassName({ label: 'Go', disabled: true, fill: true }),
+      'euiButton euiButton--disabled euiButton--m euiButton--fill'
+    );
+    assert.equal(
+      buttonClassName({ label: 'Go', size: 's', fullWidth: true }),
+      'euiButton euiButton--primary euiButton--s euiButton--fullWidth'
+    );
+  });
+});
+
 describe('generated CSS', () => {
   const generated = join(
     dirname(fileURLToPath(import.meta.url)),
@@ -50,6 +72,7 @@ describe('generated CSS', () => {
     assert.match(buttonCss, /\.euiButton--primary/);
     assert.match(buttonCss, /\.euiButton--fill/);
     assert.match(buttonCss, /\.euiButton__content/);
+    assert.match(buttonCss, /\.euiLoadingSpinner/);
     assert.match(buttonCss, /#0B64DD/i);
   });
 

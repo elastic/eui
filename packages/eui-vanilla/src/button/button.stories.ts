@@ -63,3 +63,7 @@ export const Base: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
 };
+
+export const Loading: Story = {
+  args: { isLoading: true },
+};

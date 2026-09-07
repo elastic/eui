@@ -10,8 +10,8 @@ import type { Preview } from '@storybook/html-vite';
 
 import { mcpDecorator } from './mcp-decorator';
 import './fonts.css';
-import '../generated/base.css';
-import '../generated/button.css';
+
+import.meta.glob('../generated/*.css', { eager: true });
 
 const preview: Preview = {
   globalTypes: {

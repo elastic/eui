@@ -37,6 +37,11 @@ export const mount = <TProps extends object>(
   container.replaceChildren(el);
 
   const remount = (next: TProps) => {
+    const doc = el.ownerDocument;
+    const restoreFocus = Boolean(
+      doc.activeElement && el.contains(doc.activeElement)
+    );
+
     detach();
 
     current = next;
@@ -44,6 +49,8 @@ export const mount = <TProps extends object>(
     detach = spec.attach?.(el, current) ?? (() => {});
 
     container.replaceChildren(el);
+
+    if (restoreFocus) el.focus();
   };
 
   return {

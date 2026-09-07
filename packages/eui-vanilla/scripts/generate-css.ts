@@ -7,27 +7,27 @@
  */
 
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
 import { emit, type CssSheet } from './css/engine';
-import { baseReset, baseSheet } from './css/sheets/base';
-import { buttonSheet } from './css/sheets/button';
 
 const HEADER = `/* Generated from EUI Emotion style fns. Rebuild after EUI style changes. Do not edit. */\n\n`;
 
-/** Add a sheet here when adding a new vanilla component. */
-const outputs: Record<string, { sheets: CssSheet[]; reset?: string }> = {
-  base: { reset: baseReset, sheets: [baseSheet] },
-  button: { sheets: [buttonSheet] },
+export type CssOutput = { sheets: CssSheet[]; reset?: string };
+
+/**
+ * Write generated CSS files for each sheet.
+ *
+ * @param outputs - map of file stem → sheets (`base` may include `reset`)
+ */
+export const writeGenerated = (outputs: Record<string, CssOutput>): void => {
+  const outDir = join(process.cwd(), 'generated');
+  mkdirSync(outDir, { recursive: true });
+
+  for (const [name, { sheets, reset }] of Object.entries(outputs)) {
+    const css = `${HEADER}${reset ? `${reset}\n` : ''}${emit(sheets)}`;
+
+    writeFileSync(join(outDir, `${name}.css`), css);
+    console.log(`wrote generated/${name}.css (${css.length} bytes)`);
+  }
 };
-
-const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'generated');
-mkdirSync(outDir, { recursive: true });
-
-for (const [name, { sheets, reset }] of Object.entries(outputs)) {
-  const css = `${HEADER}${reset ? `${reset}\n` : ''}${emit(sheets)}`;
-
-  writeFileSync(join(outDir, `${name}.css`), css);
-  console.log(`wrote generated/${name}.css (${css.length} bytes)`);
-}

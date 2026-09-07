@@ -14,6 +14,7 @@ import {
   EXTENDED_BUTTON_COLORS,
 } from '../../../../eui/src/global_styling/mixins/_button_constants';
 import { euiButtonDisplaysColors } from '../../../../eui/src/global_styling/mixins/_button';
+import { euiLoadingSpinnerStyles } from '../../../../eui/src/components/loading/loading_spinner.styles';
 
 import { rule } from '../../emotion_to_css';
 import type { CssSheet } from '../engine';
@@ -24,6 +25,7 @@ export const buttonSheet: CssSheet = (ctx, root) => {
   const display = euiButtonDisplayStyles(ctx);
   const colors = euiButtonDisplaysColors(ctx);
   const content = euiButtonDisplayContentStyles(ctx);
+  const spinner = euiLoadingSpinnerStyles(ctx);
   const chunks: string[] = [];
 
   chunks.push(rule(`${root} .euiButton`, display.euiButtonDisplay));
@@ -72,6 +74,9 @@ export const buttonSheet: CssSheet = (ctx, root) => {
       chunks.push(rule(selector, colors[displayName][color]));
     }
   }
+
+  chunks.push(rule(`${root} .euiLoadingSpinner`, spinner.euiLoadingSpinner));
+  chunks.push(rule(`${root} .euiLoadingSpinner--m`, spinner.m));
 
   chunks.push(
     rule(`${root} .euiButton:not(:focus-visible)`, 'outline: none')

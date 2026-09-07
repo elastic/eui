@@ -24,15 +24,29 @@ export const isJsonRpc = (data: unknown): data is JsonRpc =>
   (data as JsonRpc).jsonrpc === '2.0' &&
   typeof (data as JsonRpc).method === 'string';
 
+const hostOrigin = (): string => {
+  try {
+    if (document.referrer) return new URL(document.referrer).origin;
+  } catch {
+    /* ignore invalid referrer */
+  }
+
+  return '*';
+};
+
 /**
  * Send JSON-RPC message to the iframe host (e.g. MCP Apps).
  *
  * @param method - JSON-RPC method name
  * @param params - JSON-RPC parameters
+ * @param targetOrigin - `postMessage` target origin. Defaults to the embedder referrer, else `*`.
  */
 export const postToHost = (
   method: string,
-  params?: Record<string, unknown>
+  params?: Record<string, unknown>,
+  targetOrigin: string = hostOrigin()
 ): void => {
-  window.parent.postMessage({ jsonrpc: '2.0', method, params }, '*');
+  if (window.parent === window) return;
+
+  window.parent.postMessage({ jsonrpc: '2.0', method, params }, targetOrigin);
 };
