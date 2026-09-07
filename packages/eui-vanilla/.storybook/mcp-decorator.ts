@@ -1,0 +1,77 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import type { Decorator } from '@storybook/html-vite';
+import { action } from 'storybook/actions';
+
+import { isJsonRpc } from '../src/mcp';
+
+let patched = false;
+let lastColorMode: string | undefined;
+
+const install = () => {
+  if (patched) return;
+  patched = true;
+
+  const { parent } = window;
+  const original = parent.postMessage.bind(parent);
+
+  parent.postMessage = (
+    message: unknown,
+    targetOriginOrOptions?: unknown,
+    transfer?: Transferable[]
+  ) => {
+    if (isJsonRpc(message)) action('mcp →')(message);
+
+    if (
+      typeof targetOriginOrOptions === 'string' ||
+      targetOriginOrOptions === undefined
+    )
+      return original(message, targetOriginOrOptions as string, transfer);
+
+    return original(message, targetOriginOrOptions as WindowPostMessageOptions);
+  };
+
+  window.addEventListener('message', (event: MessageEvent) => {
+    if (event.source === window) return;
+    if (isJsonRpc(event.data)) action('mcp ←')(event.data);
+  });
+};
+
+/**
+ * Decorator for Storybook stories.
+ *
+ * Preview iframe is the MCP app. Logs JSON-RPC `postMessage` in "Actions" tab.
+ * Color-mode toolbar is sent as `host-context-changed`.
+ *
+ * @param storyFn - Story function
+ * @param context - Story context
+ * @returns Story result
+ */
+export const mcpDecorator: Decorator = (storyFn, context) => {
+  install();
+
+  const colorMode = context.globals.colorMode === 'DARK' ? 'DARK' : 'LIGHT';
+  document.documentElement.dataset.colorMode = colorMode;
+
+  if (lastColorMode !== colorMode) {
+    lastColorMode = colorMode;
+
+    const message = {
+      jsonrpc: '2.0' as const,
+      method: 'ui/notifications/host-context-changed',
+      params: { colorMode },
+    };
+
+    action('mcp ←')(message);
+
+    window.dispatchEvent(new MessageEvent('message', { data: message }));
+  }
+
+  return storyFn();
+};
