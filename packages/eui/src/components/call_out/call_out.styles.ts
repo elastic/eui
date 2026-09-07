@@ -73,6 +73,15 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
         ${preventForcedColors(euiThemeContext)}
       }
 
+      [dir='rtl'] &::before {
+        clip-path: polygon(
+          calc(100% - ${highlightClipSize}) 0,
+          100% 0,
+          100% 100%,
+          calc(100% - ${highlightClipSize}) 100%
+        );
+      }
+
       &:where([data-size='s']) {
         ${logicalShorthandCSS('padding', `${paddingSizes.s} ${paddingSizes.m}`)}
       }
