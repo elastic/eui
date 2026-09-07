@@ -50,7 +50,7 @@ export type PanelColor = _EuiBackgroundColor | 'highlighted';
 export interface _EuiPanelProps extends CommonProps {
   /**
    * Adds a medium shadow to the panel.
-   * Only applies when `color="plain"` and `hasBorder=false`.
+   * Only applies when `color="plain"` and `hasBorder={false}`.
    * @default false
    */
   hasShadow?: boolean;
