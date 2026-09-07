@@ -21,8 +21,8 @@ import {
 } from '../../global_styling';
 import { useEuiTheme } from '../../services';
 import { EuiPanel, EuiPanelProps } from './panel';
-import { EuiSpacer } from '../spacer';
 import { EuiSplitPanel } from './split_panel';
+import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiPanelProps> = {
   title: 'Layout/EuiPanel',
@@ -39,8 +39,8 @@ const meta: Meta<EuiPanelProps> = {
     paddingSize: 'm',
     borderRadius: 'm',
     color: 'plain',
-    hasShadow: true,
-    hasBorder: false,
+    hasShadow: false,
+    hasBorder: true,
     grow: true,
   },
 };
@@ -101,18 +101,26 @@ export const Kitchensink: Story = {
     const { euiTheme } = euiThemeContext;
 
     return (
-      <>
-        <EuiPanel {...args} hasBorder onClick={undefined} />
-        <EuiSpacer size="s" />
-        <EuiPanel {...args} hasBorder onClick={() => {}} />
+      <EuiFlexGroup direction="column" gutterSize="l">
+        <EuiFlexGroup direction="column" gutterSize="s">
+          <EuiPanel {...args} onClick={undefined} />
+          <EuiPanel {...args} onClick={() => {}} />
+        </EuiFlexGroup>
 
-        <EuiSpacer size="m" />
+        <EuiFlexGroup direction="column" gutterSize="s">
+          <EuiPanel {...args} hasBorder={false} hasShadow onClick={undefined} />
+          <EuiPanel {...args} hasBorder={false} hasShadow onClick={() => {}} />
+        </EuiFlexGroup>
 
-        <EuiPanel {...args} hasShadow onClick={undefined} />
-        <EuiSpacer size="s" />
-        <EuiPanel {...args} hasShadow onClick={() => {}} />
-
-        <EuiSpacer size="m" />
+        <EuiFlexGroup direction="column" gutterSize="s">
+          <EuiPanel {...args} color="transparent" onClick={undefined} />
+          <EuiPanel {...args} color="highlighted" onClick={undefined} />
+          <EuiPanel {...args} color="subdued" onClick={undefined} />
+          <EuiPanel {...args} color="primary" onClick={undefined} />
+          <EuiPanel {...args} color="success" onClick={undefined} />
+          <EuiPanel {...args} color="warning" onClick={undefined} />
+          <EuiPanel {...args} color="danger" onClick={undefined} />
+        </EuiFlexGroup>
 
         <EuiPanel {...args} hasShadow onClick={undefined}>
           <div>Content</div>
@@ -139,8 +147,6 @@ export const Kitchensink: Story = {
             Footer
           </EuiPanel>
         </EuiPanel>
-
-        <EuiSpacer size="m" />
 
         <EuiSplitPanel.Outer>
           <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
@@ -149,75 +155,29 @@ export const Kitchensink: Story = {
           </EuiSplitPanel.Inner>
         </EuiSplitPanel.Outer>
 
-        <EuiSpacer size="m" />
-
         <div
           css={css`
             padding: ${euiTheme.size.base};
             background-color: ${euiTheme.colors.backgroundBasePlain};
-            border-radius: ${euiTheme.border.radius.small};
+            border-radius: ${euiTheme.border.radius.panel};
             ${euiShadow(euiThemeContext)};
           `}
         >
           Custom panel
         </div>
-      </>
+      </EuiFlexGroup>
     );
   },
 };
 
 export const KitchensinkDark: Story = {
+  ...Kitchensink,
   tags: ['vrt-only'],
   globals: { colorMode: 'DARK' },
-  parameters: {
-    controls: {
-      include: ['color', 'paddingSize'],
-    },
-  },
-  args: {
-    children: 'Panel content',
-  },
-  render: function Render(args: EuiPanelProps) {
-    return (
-      <>
-        <EuiPanel {...args} hasBorder onClick={undefined} />
-        <EuiSpacer size="s" />
-        <EuiPanel {...args} hasBorder onClick={() => {}} />
+};
 
-        <EuiSpacer size="m" />
-
-        <EuiPanel {...args} hasShadow onClick={undefined} />
-        <EuiSpacer size="s" />
-        <EuiPanel {...args} hasShadow onClick={() => {}} />
-
-        <EuiSpacer size="m" />
-
-        <EuiPanel {...args} hasShadow onClick={undefined}>
-          <div>Content</div>
-          <EuiPanel
-            color="subdued"
-            css={(euiThemeContext) => {
-              const { euiTheme } = euiThemeContext;
-              return css`
-                margin-inline: -${euiTheme.size.base};
-                margin-block-start: ${euiTheme.size.base};
-                margin-block-end: -${euiTheme.size.base};
-                border-start-start-radius: 0;
-                border-start-end-radius: 0;
-
-                ${highContrastModeStyles(euiThemeContext, {
-                  preferred: `
-                    border: none;
-                    ${logicalCSS('border-top', `${euiTheme.border.thin}`)}
-                  `,
-                })}
-              `;
-            }}
-          >
-            Footer
-          </EuiPanel>
-        </EuiPanel>
-      </>
-    );
-  },
+export const KitchensinkHighContrast: Story = {
+  ...Kitchensink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
 };
