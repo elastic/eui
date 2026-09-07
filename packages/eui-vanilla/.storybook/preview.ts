@@ -8,6 +8,8 @@
 
 import type { Preview } from '@storybook/html-vite';
 
+import { mcpDecorator } from './mcp-decorator';
+import '../generated/base.css';
 import '../generated/button.css';
 
 const preview: Preview = {
@@ -26,15 +28,7 @@ const preview: Preview = {
   initialGlobals: {
     colorMode: 'LIGHT',
   },
-  decorators: [
-    (story, context) => {
-      document.documentElement.dataset.colorMode = String(
-        context.globals.colorMode ?? 'LIGHT'
-      );
-
-      return story();
-    },
-  ],
+  decorators: [mcpDecorator],
   parameters: {
     options: {
       showPanel: true,
