@@ -107,7 +107,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiPanelBorderStyles(euiThemeContext)}
     `,
     decor: css`
-      content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
