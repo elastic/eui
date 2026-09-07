@@ -52,7 +52,7 @@ exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 
 exports[`EuiPageBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPageBody emotion-euiPanel-grow-none-plain-hasShadow-euiPageBody"
+  class="euiPanel euiPanel--plain euiPageBody emotion-euiPanel-grow-none-plain-hasBorder-euiPageBody"
 />
 `;
 
