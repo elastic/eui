@@ -20,7 +20,7 @@ const meta: Meta<EuiLinkProps> = {
     disabled: { control: { type: 'boolean' } },
   },
   args: {
-    color: 'primary',
+    color: 'text',
     type: 'button',
   },
 };
