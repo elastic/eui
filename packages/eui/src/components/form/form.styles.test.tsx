@@ -65,7 +65,7 @@ describe('euiFormVariables', () => {
         "labelColor": "#111C2C",
         "maxWidth": "400px",
         "stateUnderlineHeight": "2px",
-        "textColor": "#1D2A3E",
+        "textColor": "#384861",
         "textColorDisabled": "#798EAF",
       }
     `);
@@ -76,7 +76,7 @@ describe('euiFormVariables', () => {
       wrapper: darkModeWrapper,
     });
     // Check custom dark-mode logic
-    expect(result.current.backgroundColor).toEqual('#0B1628');
+    expect(result.current.backgroundColor).toEqual('#111C2C');
     expect(result.current.controlPlaceholderText).toEqual('#6A7FA0');
   });
 });
@@ -198,8 +198,8 @@ describe('euiFormControlStyles', () => {
           z-index: 0;
           background-color: #ECF1F9;
           cursor: default;
-          color: #1D2A3E;
-          -webkit-text-fill-color: #1D2A3E; /* Required for Safari */
+          color: #384861;
+          -webkit-text-fill-color: #384861; /* Required for Safari */
           outline: none;
           box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
 
@@ -213,7 +213,7 @@ describe('euiFormControlStyles', () => {
             
           font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
           font-size: 1.0000rem;
-          color: #1D2A3E;
+          color: #384861;
 
           
         &::-webkit-input-placeholder { 

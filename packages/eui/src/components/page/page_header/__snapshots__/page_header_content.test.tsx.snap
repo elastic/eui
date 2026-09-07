@@ -338,7 +338,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <div
-        class="euiText emotion-euiText-constrainedWidth-m"
+        class="euiText emotion-euiText-constrainedWidth-s"
       >
         <p>
           Description

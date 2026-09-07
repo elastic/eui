@@ -26,6 +26,10 @@
   "euiBorderColor": "#2B394F",
   "euiBorderRadius": "4px",
   "euiBorderRadiusSmall": "4px",
+  "euiBorderRadiusInline": "4px",
+  "euiBorderRadiusControl": "8px",
+  "euiBorderRadiusPanel": "12px",
+  "euiBorderRadiusFrame": "16px",
   "euiBorderThick": "2px solid #2B394F",
   "euiBorderThin": "1px solid #2B394F",
   "euiBorderEditable": "2px dotted #2B394F",
@@ -74,7 +78,7 @@
   "euiSwitchHeightMini": "10px",
   "euiSwitchWidthMini": "22px",
   "euiSwitchThumbSizeMini": "10px",
-  "euiFormBackgroundColor": "#0B1628",
+  "euiFormBackgroundColor": "#111C2C",
   "euiFormBackgroundDisabledColor": "#1D2A3E",
   "euiFormBackgroundReadOnlyColor": "#1D2A3E",
   "euiFormBorderOpaqueColor": "#5054af",
@@ -98,8 +102,8 @@
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
   "euiFormControlLayoutGroupInputCompressedBorderRadius": "2px",
-  "euiHeaderBackgroundColor": "#0B1628",
-  "euiHeaderDarkBackgroundColor": "#0B1628",
+  "euiHeaderBackgroundColor": "#111C2C",
+  "euiHeaderDarkBackgroundColor": "#111C2C",
   "euiHeaderBorderColor": "#2B394F",
   "euiHeaderBreadcrumbColor": "#0D2F5E",
   "euiHeaderHeight": "48px",
@@ -118,8 +122,8 @@
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
-    "plain": "#0B1628",
-    "subdued": "#07101F",
+    "plain": "#111C2C",
+    "subdued": "#0B1628",
     "accent": "#351725",
     "accentSecondary": "#03282B",
     "primary": "#0A2342",
@@ -208,32 +212,38 @@
     "xxxs": {
       "font-size": "12px",
       "line-height": "1.1429rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "xxs": {
       "font-size": "14px",
       "line-height": "1.4286rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "xs": {
       "font-size": "16px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "s": {
       "font-size": "20px",
       "line-height": "1.7143rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "m": {
       "font-size": "24px",
       "line-height": "2rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     },
     "l": {
       "font-size": "30px",
       "line-height": "2.5714rem",
-      "font-weight": 600
+      "font-weight": 600,
+      "letter-spacing": "-0.2px"
     }
   },
   "euiZLevel0": 0,
@@ -360,7 +370,7 @@
   "euiColorSuccess": "#24C292",
   "euiColorWarning": "#FACB3D",
   "euiColorDanger": "#F6726A",
-  "euiColorEmptyShade": "#0B1628",
+  "euiColorEmptyShade": "#111C2C",
   "euiColorLightestShade": "#172336",
   "euiColorLightShade": "#243147",
   "euiColorMediumShade": "#516381",
@@ -369,7 +379,7 @@
   "euiColorFullShade": "#FFFFFF",
   "euiPageBackgroundColor": "#07101F",
   "euiColorHighlight": "#1750BA",
-  "euiTextColor": "#CAD3E2",
+  "euiTextColor": "#B4C1D5",
   "euiTitleColor": "#E3E8F2",
   "euiTextSubduedColor": "#98A8C3",
   "euiColorDisabled": "#1D2A3E",
@@ -391,7 +401,7 @@
   "euiColorTextRisk": "#FF995E",
   "euiColorTextDanger": "#F6726A",
   "euiColorTextAssistance": "#C5A5FA",
-  "euiColorTextParagraph": "#CAD3E2",
+  "euiColorTextParagraph": "#B4C1D5",
   "euiColorTextHeading": "#E3E8F2",
   "euiColorTextSubdued": "#98A8C3",
   "euiColorTextDisabled": "#6A7FA0",
@@ -407,8 +417,9 @@
   "euiColorBackgroundBaseRisk": "#361D18",
   "euiColorBackgroundBaseDanger": "#351721",
   "euiColorBackgroundBaseAssistance": "#2A1E3E",
-  "euiColorBackgroundBaseSubdued": "#07101F",
-  "euiColorBackgroundBasePlain": "#0B1628",
+  "euiColorBackgroundBaseRecessed": "#07101F",
+  "euiColorBackgroundBaseSubdued": "#0B1628",
+  "euiColorBackgroundBasePlain": "#111C2C",
   "euiColorBackgroundBaseDisabled": "#1D2A3E",
   "euiColorBackgroundBaseHighlighted": "#172336",
   "euiColorBackgroundBaseFormsPrepend": "#243147",
