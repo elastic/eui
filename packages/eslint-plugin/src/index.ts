@@ -13,6 +13,7 @@ import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_pro
 import { HrefOnClick } from './rules/href_or_on_click';
 import { RequireHrefForLink } from './rules/require_href_for_link';
 import { NoCssColor } from './rules/no_css_color';
+import { NoNestedCopyTooltip } from './rules/a11y/no_nested_copy_tooltip';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoStaticZIndex } from './rules/no_static_z_index';
 import { NoUnnamedInteractiveElement } from './rules/a11y/no_unnamed_interactive_element';
@@ -27,6 +28,9 @@ import { EuiBadgeAccessibilityRules } from './rules/a11y/badge_accessibility_rul
 import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules';
 import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
+import { NoDeprecatedIconAliases } from './rules/no_deprecated_icon_aliases';
+import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
+import { ButtonGroupSelectionRequireId } from './rules/button_group_selection_require_id';
 
 const config = {
   rules: {
@@ -36,6 +40,8 @@ const config = {
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'href-or-on-click': HrefOnClick,
     'no-css-color': NoCssColor,
+    'no-deprecated-icon-aliases': NoDeprecatedIconAliases,
+    'no-nested-copy-tooltip': NoNestedCopyTooltip,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
@@ -52,17 +58,23 @@ const config = {
     'require-href-for-link': RequireHrefForLink,
     'tooltip-no-interactive-content': TooltipNoInteractiveContent,
     'tooltip-button-icon-wrap': TooltipButtonIconWrap,
+    'button-group-no-invalid-children': ButtonGroupNoInvalidChildren,
+    'button-group-selection-require-id': ButtonGroupSelectionRequireId,
   },
   configs: {
     recommended: {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/accessible-interactive-element': 'warn',
+        '@elastic/eui/button-group-no-invalid-children': 'error',
+        '@elastic/eui/button-group-selection-require-id': 'error',
         '@elastic/eui/callout-announce-on-mount': 'warn',
         '@elastic/eui/callout-prefer-props-for-content': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/no-deprecated-icon-aliases': 'warn',
+        '@elastic/eui/no-nested-copy-tooltip': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-static-z-index': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',

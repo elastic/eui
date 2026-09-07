@@ -21,6 +21,9 @@ export interface EuiTourProps {
   initialState: EuiTourState;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/tour/|EuiTour documentation}
+ */
 export const EuiTour: FunctionComponent<EuiTourProps> = ({
   children,
   steps,

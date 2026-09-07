@@ -7,7 +7,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
 >
   <fieldset
     aria-describedby="generated-id"
-    class="emotion-euiQuickSelectPanel-render"
+    class="emotion-euiQuickSelectPanel-EuiQuickSelect"
   >
     <legend
       class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
@@ -19,7 +19,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       class="emotion-euiQuickSelectPanel__section"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-render"
+        class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-EuiQuickSelect"
       >
         <div
           class="euiFlexItem emotion-euiFlexItem-growZero"

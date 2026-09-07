@@ -25,7 +25,6 @@ describe('EuiIcons', () => {
       'tokenCompletionSuggester',
       'tokenConstant',
       'tokenDate',
-      'tokenDenseVector',
       'tokenElement',
       'tokenEnum',
       'tokenEnumMember',
@@ -69,6 +68,7 @@ describe('EuiIcons', () => {
       'tokenText',
       'tokenTokenCount',
       'tokenVariable',
+      'tokenVectorDense',
     ];
 
     const TokenGrid = () => (

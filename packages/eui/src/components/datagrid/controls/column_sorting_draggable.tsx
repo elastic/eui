@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiButtonGroup, EuiButtonIcon } from '../../button';
+import { EuiButton, EuiButtonGroup, EuiButtonIcon } from '../../button';
 import { EuiDraggable } from '../../drag_and_drop';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiI18n, useEuiI18n } from '../../i18n';
@@ -53,20 +53,23 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
   const textSortDesc =
     schemaDetails != null ? schemaDetails.sortTextDesc : defaultSortDescLabel;
 
-  const toggleOptions = [
-    {
-      id: `${id}Asc`,
-      value: 'asc',
-      label: textSortAsc,
-      'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-asc`,
-    },
-    {
-      id: `${id}Desc`,
-      value: 'desc',
-      label: textSortDesc,
-      'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-desc`,
-    },
-  ];
+  const toggleOptions = useMemo(
+    () => [
+      {
+        id: `${id}Asc`,
+        value: 'asc',
+        label: textSortAsc,
+        'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-asc`,
+      },
+      {
+        id: `${id}Desc`,
+        value: 'desc',
+        label: textSortDesc,
+        'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-desc`,
+      },
+    ],
+    [id, textSortAsc, textSortDesc]
+  );
 
   const dragHandleAriaLabel = useEuiI18n(
     'euiColumnSortingDraggable.dragHandleAriaLabel',
@@ -80,17 +83,18 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
     sorting.onSort(nextColumns);
   }, [id, sorting]);
 
-  const toggleLegendHandler = useCallback<(id: string, value?: any) => void>(
-    (_, direction) => {
+  const toggleLegendHandler = useCallback<(id: string) => void>(
+    (selectedId) => {
+      const selectedOption = toggleOptions.find(
+        (option) => option.id === selectedId
+      );
+      const direction = (selectedOption?.value as 'asc' | 'desc') ?? 'asc';
       const nextColumns = [...sorting.columns];
-      const columnIndex = nextColumns.map(({ id }) => id).indexOf(id);
-      nextColumns.splice(columnIndex, 1, {
-        id,
-        direction,
-      });
+      const columnIndex = nextColumns.map(({ id: colId }) => colId).indexOf(id);
+      nextColumns.splice(columnIndex, 1, { id, direction });
       sorting.onSort(nextColumns);
     },
-    [id, sorting]
+    [id, sorting, toggleOptions]
   );
 
   const styles = useEuiMemoizedStyles(euiDataGridColumnSortingStyles);
@@ -102,6 +106,8 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
       hasInteractiveChildren
       customDragHandle
       usePortal
+      className="euiDataGridColumnSorting__dragHandle"
+      css={styles.euiDataGridColumnSorting__dragHandle}
       {...rest}
     >
       {(provided, state) => (
@@ -184,13 +190,22 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                 <EuiButtonGroup
                   legend={toggleLegend}
                   isFullWidth
-                  options={toggleOptions}
-                  buttonSize="compressed"
+                  variant="selection"
+                  buttonSize="s"
+                  wrap={false}
                   css={styles.euiDataGridColumnSorting__order}
                   className="euiDataGridColumnSorting__order"
                   idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
                   onChange={toggleLegendHandler}
-                />
+                >
+                  {toggleOptions.map(
+                    ({ id, label, 'data-test-subj': dataTestSubj }) => (
+                      <EuiButton key={id} id={id} data-test-subj={dataTestSubj}>
+                        {label}
+                      </EuiButton>
+                    )
+                  )}
+                </EuiButtonGroup>
               )}
             </EuiI18n>
           </EuiFlexItem>

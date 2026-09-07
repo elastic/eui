@@ -122,8 +122,8 @@ jobs:
           fetch-depth: 0
       - name: Configure git
         run: |
-          git config --global user.name 'EUI Machine'
-          git config --global user.email 'tkajtoch@users.noreply.github.com'
+          git config --global user.name 'elasticmachine'
+          git config --global user.email 'elasticmachine@users.noreply.github.com'
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
@@ -239,8 +239,8 @@ jobs:
           fi
       - name: Configure git
         run: |
-          git config --global user.name 'EUI Machine'
-          git config --global user.email 'tkajtoch@users.noreply.github.com'
+          git config --global user.name 'elasticmachine'
+          git config --global user.email 'elasticmachine@users.noreply.github.com'
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc

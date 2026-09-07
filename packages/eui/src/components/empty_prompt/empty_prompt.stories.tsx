@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import illustration from './images/illustration.svg';
 import { EuiButton, EuiButtonEmpty } from '../button';

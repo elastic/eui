@@ -206,7 +206,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       uncompressed: `
         ${logicalCSS('left', euiTheme.size.m)}
       `,
-      compresssed: css`
+      compressed: css`
         ${logicalCSS('left', euiTheme.size.s)}
         ${logicalCSS('width', euiTheme.size.m)}
       `,

@@ -18,6 +18,9 @@ import { EuiDescriptionListTitle } from './description_list_title';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { euiDescriptionListStyles } from './description_list.styles';
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/description-list/|EuiDescriptionList documentation}
+ */
 export const EuiDescriptionList: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
 > = ({

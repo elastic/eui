@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
   disableStorybookControls,
@@ -74,6 +74,7 @@ const StatefulPopover = ({
   closePopover,
   isOpen: _isOpen,
   hasArrow,
+  'data-test-subj': dataTestSubj,
   ...rest
 }: EuiPopoverProps) => {
   const [isOpen, setOpen] = useState(_isOpen);
@@ -101,7 +102,7 @@ const StatefulPopover = ({
   };
 
   const trigger = (
-    <EuiButton onClick={() => setOpen(!isOpen)}>
+    <EuiButton data-test-subj={dataTestSubj} onClick={() => setOpen(!isOpen)}>
       {button || 'trigger'}
     </EuiButton>
   );

@@ -137,7 +137,7 @@ export const CollapsedItemActions = <T extends {}>({
           ? allActionsButtonDisabledAriaLabel
           : allActionsButtonAriaLabel
       }
-      iconType="boxesVertical"
+      iconType="ellipsis"
       color="text"
       isDisabled={actionsDisabled}
       hasAriaDisabled={actionsDisabled}

@@ -55,6 +55,7 @@ DOCKER_OPTIONS=(
   --env BUILDKITE_MESSAGE
   --env CI=true
   --env PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
+  --env NODE_OPTIONS=--dns-result-order=ipv4first
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app

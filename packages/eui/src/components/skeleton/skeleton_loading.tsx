@@ -60,6 +60,9 @@ export type EuiSkeletonLoadingProps = CommonProps &
     loadedContent: any;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/skeleton/|EuiSkeletonLoading documentation}
+ */
 export const EuiSkeletonLoading: FunctionComponent<EuiSkeletonLoadingProps> = ({
   isLoading = true,
   contentAriaLabel,

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,10 @@ const EuiIconLogoMemcached = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_memcached');
+  const generatedId = useGeneratedHtmlId({
+    prefix: 'logo_memcached',
+  });
+  const generateId = (suffix: string) => `${generatedId}_${suffix}`;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

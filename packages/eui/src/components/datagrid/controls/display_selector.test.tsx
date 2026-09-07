@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { act, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
+
 import {
   renderHook,
   render,
@@ -42,14 +43,16 @@ describe('useDataGridDisplaySelector', () => {
       );
       return <>{displaySelector}</>;
     };
-    const openPopover = (element: HTMLElement) => {
+    const openPopover = async (element: HTMLElement) => {
       const trigger = Array.from(
         element.querySelectorAll(
           '[data-test-subj="dataGridDisplaySelectorButton"]'
         )
       ).reverse()[0];
 
-      act(() => userEvent.click(trigger));
+      await act(async () => {
+        await userEvent.click(trigger);
+      });
     };
 
     const closePopover = (element: HTMLElement) => {
@@ -70,13 +73,13 @@ describe('useDataGridDisplaySelector', () => {
       return selection ? selection.getAttribute('data-test-subj') : null;
     };
 
-    it('renders a toolbar button/popover allowing users to customize display settings', () => {
+    it('renders a toolbar button/popover allowing users to customize display settings', async () => {
       const { getByTestSubject, baseElement } = render(<MockComponent />);
       fireEvent.click(getByTestSubject('dataGridDisplaySelectorButton'));
       expect(baseElement).toMatchSnapshot();
     });
 
-    it('does not render if all valid sub-options are disabled', () => {
+    it('does not render if all valid sub-options are disabled', async () => {
       const { container } = render(
         <MockComponent
           showDisplaySelector={{
@@ -88,7 +91,7 @@ describe('useDataGridDisplaySelector', () => {
       expect(container).toBeEmptyDOMElement();
     });
 
-    it('allows consumers to customize render order via a render prop', () => {
+    it('allows consumers to customize render order via a render prop', async () => {
       const customRender: EuiDataGridDisplaySelectorCustomRender = ({
         densityControl,
         rowHeightControl,
@@ -117,24 +120,24 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent />
         );
-        openPopover(container);
+        await openPopover(container);
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('expanded'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('expanded'));
         });
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'expanded'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('normal'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('normal'));
         });
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'normal'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('compact'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('compact'));
         });
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'compact'
@@ -149,10 +152,10 @@ describe('useDataGridDisplaySelector', () => {
           />
         );
 
-        openPopover(container);
+        await openPopover(container);
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('expanded'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('expanded'));
         });
 
         expect(onDensityChange).toHaveBeenCalledWith({
@@ -163,11 +166,11 @@ describe('useDataGridDisplaySelector', () => {
       });
     });
 
-    it('hides the density buttongroup if allowDensity is set to false', () => {
+    it('hides the density buttongroup if allowDensity is set to false', async () => {
       const { container, baseElement } = render(
         <MockComponent showDisplaySelector={{ allowDensity: false }} />
       );
-      openPopover(container);
+      await openPopover(container);
 
       expect(
         baseElement.querySelector('[data-test-subj="densityButtonGroup"]')
@@ -175,49 +178,49 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     describe('convertGridStylesToSelection', () => {
-      it('should set compact state if both fontSize and cellPadding are s', () => {
+      it('should set compact state if both fontSize and cellPadding are s', async () => {
         const { container, baseElement } = render(
           <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'compact'
         );
       });
 
-      it('should set normal state if both fontSize and cellPadding are m', () => {
+      it('should set normal state if both fontSize and cellPadding are m', async () => {
         const { container, baseElement } = render(
           <MockComponent gridStyles={{ fontSize: 'm', cellPadding: 'm' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'normal'
         );
       });
 
-      it('should set compact state if both fontSize and cellPadding are l', () => {
+      it('should set compact state if both fontSize and cellPadding are l', async () => {
         const { container, baseElement } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'expanded'
         );
       });
 
-      it('should not select any buttons if fontSize and cellPadding do not match a set density state', () => {
+      it('should not select any buttons if fontSize and cellPadding do not match a set density state', async () => {
         const { container, baseElement } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 's' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(null);
       });
 
-      it('updates grid density whenever new developer styles are passed in', () => {
+      it('updates grid density whenever new developer styles are passed in', async () => {
         const { container, baseElement, rerender } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'expanded'
         );
@@ -235,20 +238,20 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'expanded'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('compact'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('compact'));
         });
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'compact'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('resetDisplaySelector'));
         });
         expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
           'expanded'
@@ -261,7 +264,7 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent />
         );
-        openPopover(container);
+        await openPopover(container);
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'static'
@@ -274,7 +277,7 @@ describe('useDataGridDisplaySelector', () => {
         const { container, getByTestSubject } = render(
           <MockComponent rowHeightsOptions={{ autoBelowLineCount: true }} />
         );
-        openPopover(container);
+        await openPopover(container);
 
         expect(getByTestSubject('static')).toHaveTextContent('Max');
       });
@@ -286,7 +289,7 @@ describe('useDataGridDisplaySelector', () => {
             rowHeightsOptions={{ lineHeight: '3', onChange: onRowHeightChange }}
           />
         );
-        openPopover(container);
+        await openPopover(container);
 
         // line count
         fireEvent.change(getByTestSubject('lineCountNumber'), {
@@ -310,8 +313,8 @@ describe('useDataGridDisplaySelector', () => {
         });
 
         // auto
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('auto'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('auto'));
         });
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'auto'
@@ -324,11 +327,11 @@ describe('useDataGridDisplaySelector', () => {
         });
       });
 
-      it('hides the row height buttongroup if allowRowHeight is set to false', () => {
+      it('hides the row height buttongroup if allowRowHeight is set to false', async () => {
         const { container, baseElement } = render(
           <MockComponent showDisplaySelector={{ allowRowHeight: false }} />
         );
-        openPopover(container);
+        await openPopover(container);
 
         expect(
           baseElement.querySelector('[data-test-subj="rowHeightButtonGroup"]')
@@ -339,11 +342,11 @@ describe('useDataGridDisplaySelector', () => {
       });
 
       describe('convertRowHeightsOptionsToSelection', () => {
-        test('auto', () => {
+        test('auto', async () => {
           const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
           );
-          openPopover(container);
+          await openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
             'auto'
@@ -352,13 +355,13 @@ describe('useDataGridDisplaySelector', () => {
           expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
-        test('lineCount', () => {
+        test('lineCount', async () => {
           const { container, baseElement, getByTestSubject } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
             />
           );
-          openPopover(container);
+          await openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
             'static'
@@ -367,11 +370,11 @@ describe('useDataGridDisplaySelector', () => {
           expect(getByTestSubject('lineCountNumber')).toHaveValue(3);
         });
 
-        test('undefined', () => {
+        test('undefined', async () => {
           const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={undefined} />
           );
-          openPopover(container);
+          await openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
             'static'
@@ -380,21 +383,21 @@ describe('useDataGridDisplaySelector', () => {
           expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
-        test('height should not select any buttons', () => {
+        test('height should not select any buttons', async () => {
           const { container, baseElement } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 36 }} />
           );
-          openPopover(container);
+          await openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toBe(null);
         });
       });
 
-      it('updates row height whenever new developer settings are passed in', () => {
+      it('updates row height whenever new developer settings are passed in', async () => {
         const { container, baseElement, getByTestSubject, rerender } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
         );
-        openPopover(container);
+        await openPopover(container);
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'auto'
@@ -416,22 +419,22 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: undefined }} />
         );
-        openPopover(container);
+        await openPopover(container);
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'static'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('auto'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('auto'));
         });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'auto'
         );
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('resetDisplaySelector'));
         });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
@@ -445,14 +448,14 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={startingStyles} />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(
           container.querySelector('[data-test-subj="resetDisplaySelector"]')
         ).not.toBeInTheDocument();
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('expanded'));
-          userEvent.click(getByTestSubject('auto'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('expanded'));
+          await userEvent.click(getByTestSubject('auto'));
         });
 
         expect(
@@ -462,7 +465,7 @@ describe('useDataGridDisplaySelector', () => {
         // Should show the reset button again after the popover was reopened
         closePopover(container);
         await waitForEuiPopoverClose();
-        openPopover(container);
+        await openPopover(container);
         await waitForEuiPopoverOpen();
 
         expect(
@@ -470,8 +473,8 @@ describe('useDataGridDisplaySelector', () => {
         ).toBeInTheDocument();
 
         // Should hide the reset button again after it's been clicked
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('resetDisplaySelector'));
         });
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
@@ -482,20 +485,20 @@ describe('useDataGridDisplaySelector', () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={startingStyles} />
         );
-        openPopover(container);
+        await openPopover(container);
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('expanded'));
-          userEvent.click(getByTestSubject('auto'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('expanded'));
+          await userEvent.click(getByTestSubject('auto'));
         });
 
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
         ).toBeInTheDocument();
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('normal'));
-          userEvent.click(getByTestSubject('static'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('normal'));
+          await userEvent.click(getByTestSubject('static'));
         });
 
         expect(
@@ -512,14 +515,14 @@ describe('useDataGridDisplaySelector', () => {
             gridStyles={startingStyles}
           />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
         ).not.toBeInTheDocument();
 
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('expanded'));
-          userEvent.click(getByTestSubject('auto'));
+        await waitFor(async () => {
+          await userEvent.click(getByTestSubject('expanded'));
+          await userEvent.click(getByTestSubject('auto'));
         });
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
@@ -528,7 +531,7 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     describe('additionalDisplaySettings', () => {
-      it('renders custom content if additionalDisplaySettings is defined', () => {
+      it('renders custom content if additionalDisplaySettings is defined', async () => {
         const { container, getByTestSubject } = render(
           <MockComponent
             showDisplaySelector={{
@@ -538,7 +541,7 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-        openPopover(container);
+        await openPopover(container);
         expect(getByTestSubject('test-custom')).toMatchInlineSnapshot(`
                 <div
                   data-test-subj="test-custom"
@@ -551,7 +554,7 @@ describe('useDataGridDisplaySelector', () => {
   });
 
   describe('gridStyles', () => {
-    it('returns an object of grid styles with user overrides', () => {
+    it('returns an object of grid styles with user overrides', async () => {
       const initialStyles = { ...startingStyles, stripes: true };
       const [, gridStyles] = renderHook(() =>
         useDataGridDisplaySelector(true, initialStyles, {})
@@ -570,7 +573,7 @@ describe('useDataGridDisplaySelector', () => {
             `);
     });
 
-    it('updates gridStyles when consumers pass in new settings', () => {
+    it('updates gridStyles when consumers pass in new settings', async () => {
       const { result, rerender } = renderHook(
         ({ gridStyles }) => useDataGridDisplaySelector(true, gridStyles),
         { initialProps: { gridStyles: startingStyles } }
@@ -611,7 +614,7 @@ describe('useDataGridDisplaySelector', () => {
     };
 
     describe('returns an object of rowHeightsOptions with user overrides', () => {
-      it('overrides `rowHeights` and `defaultHeight`', () => {
+      it('overrides `rowHeights` and `defaultHeight`', async () => {
         render(
           <MockComponent
             initialRowHeightsOptions={{
@@ -627,7 +630,7 @@ describe('useDataGridDisplaySelector', () => {
         });
       });
 
-      it('does not override other rowHeightsOptions properties', () => {
+      it('does not override other rowHeightsOptions properties', async () => {
         render(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
         );
@@ -664,7 +667,7 @@ describe('useDataGridDisplaySelector', () => {
       );
     });
 
-    it('handles undefined initialRowHeightsOptions', () => {
+    it('handles undefined initialRowHeightsOptions', async () => {
       render(<MockComponent initialRowHeightsOptions={undefined} />);
       expect(getOutput()).toEqual({});
 

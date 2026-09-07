@@ -5,7 +5,463 @@ keywords: [EuiButtonGroup]
 
 # Button group
 
-An **EuiButtonGroup** is for indicating _selection only_. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
+**EuiButtonGroup** groups related buttons together. There are two APIs available:
+
+- **Children API** — pass **EuiButton**, **EuiButtonEmpty**, or **EuiButtonIcon** directly as `children`. Supports multiple `variant` values for different visual layouts.
+- **Options API** — pass an `options` array when buttons need radio or checkbox semantics (`type="single"` or `"multi"`).
+
+:::accessibility Accessibility recommendation
+The `legend` prop is required on both APIs. In the children API it is rendered as an `aria-label` on the group wrapper (`role="group"`). In the options API it is visibly hidden inside a `<fieldset>`.
+:::
+
+## Children API
+
+This usage arranges buttons in a row and passes certain props (`buttonSize`, `isDisabled`, and `hasAriaDisabled`) to all children to ensure a cohesive output.
+
+Pass any combination of **EuiButton**, **EuiButtonEmpty**, and **EuiButtonIcon** directly as `children`. This also supports a selection of composable wrappers around those button components: **EuiToolTip**, **EuiPopover** and **EuiCopy**.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
+  EuiToolTip,
+} from '@elastic/eui';
+
+export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={isDisabled}
+            onChange={() => setIsDisabled(!isDisabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={isFullWidth}
+            onChange={() => setIsFullWidth(!isFullWidth)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Document actions"
+        buttonSize={buttonSize}
+        isDisabled={isDisabled}
+        isFullWidth={isFullWidth}
+      >
+        <EuiButton fill>Save</EuiButton>
+        <EuiButton color="text" iconType="undo" iconSide="left">
+          Undo
+        </EuiButton>
+        <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+        <EuiToolTip content="Delete" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="trash" aria-label="Delete" color="danger" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+### Gutter size
+
+:::info
+The `gutterSize` prop is only available for the children API when used with `variant="default"`.
+:::
+
+Control the gap between children with the `gutterSize` prop. The default is `"s"`. Use `"none"` to remove the gap entirely.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiSpacer,
+  EuiSelect,
+} from '@elastic/eui';
+
+const gutterSizes = ['none', 'xs', 's', 'm', 'l', 'xl'];
+
+export default () => {
+  const [gutterSize, setGutterSize] = useState('s');
+
+  return (
+    <>
+      <EuiSelect
+        compressed
+        prepend="gutterSize"
+        options={gutterSizes.map((s) => ({ value: s, text: s }))}
+        value={gutterSize}
+        onChange={(e) => setGutterSize(e.target.value)}
+        aria-label="Select gutterSize"
+      />
+      <EuiSpacer size="m" />
+      <EuiButtonGroup legend="Actions" gutterSize={gutterSize}>
+        <EuiButton>Save</EuiButton>
+        <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+        <EuiToolTip content="Delete" disableScreenReaderOutput>
+          <EuiButtonIcon iconType="trash" aria-label="Delete" color="danger" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+### Segmented
+
+Use `variant="segmented"` for a visually unified row where all buttons are treated as a single connected control. The buttons sit flush against each other with no gap, rendering the group as one cohesive element.
+
+Unlike the default variant, segmented groups have two constraints:
+
+- Only **EuiButton** or **EuiButtonIcon** are accepted — **EuiButtonEmpty** is not supported.
+- All children must use the **same button type**: either all **EuiButton** or all **EuiButtonIcon** — not a mix of both.
+
+Add `showDividers` to render a separator line between buttons.
+
+By default the segmented group will wrap depending on available space. Use `wrap={false}` to prevent wrapping.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
+  const [showDividers, setShowDividers] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
+  const [wrap, setWrap] = useState(true);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Show dividers"
+            checked={showDividers}
+            onChange={() => setShowDividers(!showDividers)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={isFullWidth}
+            onChange={() => setIsFullWidth(!isFullWidth)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Wrap"
+            checked={wrap}
+            onChange={() => setWrap(!wrap)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiFlexGroup direction="column" gutterSize="s">
+        <EuiFlexItem grow={isFullWidth}>
+          <EuiButtonGroup
+            legend="Document actions"
+            variant="segmented"
+            buttonSize={buttonSize}
+            showDividers={showDividers}
+            isFullWidth={isFullWidth}
+            wrap={wrap}
+          >
+            <EuiButton>Delete</EuiButton>
+            <EuiButton>Rename</EuiButton>
+            <EuiButton>Disable</EuiButton>
+            <EuiButton>Duplicate</EuiButton>
+            <EuiButton>Save</EuiButton>
+          </EuiButtonGroup>
+        </EuiFlexItem>
+        <EuiFlexItem grow={isFullWidth}>
+          <EuiButtonGroup
+            legend="Icon actions"
+            variant="segmented"
+            buttonSize={buttonSize}
+            showDividers={showDividers}
+            isFullWidth={isFullWidth}
+            wrap={wrap}
+          >
+            <EuiToolTip content="Delete" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="trash" aria-label="Delete" />
+            </EuiToolTip>
+            <EuiToolTip content="Rename" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="pencil" aria-label="Rename" />
+            </EuiToolTip>
+            <EuiToolTip content="Disable" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="pause" aria-label="Disable" />
+            </EuiToolTip>
+            <EuiToolTip content="Duplicate" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="copy" aria-label="Duplicate" />
+            </EuiToolTip>
+            <EuiToolTip content="Save" disableScreenReaderOutput>
+              <EuiButtonIcon iconType="save" aria-label="Save" />
+            </EuiToolTip>
+          </EuiButtonGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+#### Vertical layout
+
+Use `layout="vertical"` to stack buttons in a column instead of a row. This layout should only be used with **EuiButtonIcon** children.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [buttonSize, setButtonSize] = useState('s');
+  const [showDividers, setShowDividers] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center">
+        <EuiSelect
+          compressed
+          prepend="Size"
+          options={[{ value: 's', text: 's' }, { value: 'm', text: 'm' }]}
+          value={buttonSize}
+          onChange={(e) => setButtonSize(e.target.value)}
+          aria-label="Select button size"
+        />
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Show dividers"
+            checked={showDividers}
+            onChange={() => setShowDividers(!showDividers)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Icon actions"
+        variant="segmented"
+        layout="vertical"
+        buttonSize={buttonSize}
+        showDividers={showDividers}
+      >
+        <EuiToolTip content="Delete" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="trash" aria-label="Delete" />
+        </EuiToolTip>
+        <EuiToolTip content="Rename" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="pencil" aria-label="Rename" />
+        </EuiToolTip>
+        <EuiToolTip content="Disable" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="pause" aria-label="Disable" />
+        </EuiToolTip>
+        <EuiToolTip
+          content="Duplicate"
+          disableScreenReaderOutput
+          position="right"
+        >
+          <EuiButtonIcon iconType="copy" aria-label="Duplicate" />
+        </EuiToolTip>
+        <EuiToolTip content="Save" disableScreenReaderOutput position="right">
+          <EuiButtonIcon iconType="save" aria-label="Save" />
+        </EuiToolTip>
+      </EuiButtonGroup>
+    </>
+  );
+};
+```
+
+### Selection
+
+Use `variant="selection"` to give buttons toggle behavior — clicks fire `onChange` with the button's `id` (if provided), and the selected state is reflected via `aria-pressed` on each button.
+
+Every child button **must** have a unique `id` prop so the group can track and communicate selection state.
+
+- **Single selection** (`type="single"`, the default): at most one button is selected at a time. Pass the selected button's `id` as `idSelected`.
+- **Multi selection** (`type="multi"`): any number of buttons can be selected simultaneously. Pass a map of `id → boolean` as `idToSelectedMap`.
+
+Use the `display` prop to alter the visual style of the component. 
+
+- `display="regular"`: Renders a subdued toggle state on light background. (default)
+- `display="highlighted"`: Renders a prominent toggle state on light background. Use when you have more than one segmented control and want to highlight one over the others.
+- `display="inverse"`: Renders a light toggle state on subdued/tinted background.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiButton,
+  EuiButtonIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [type, setType] = useState('single');
+  const [display, setDisplay] = useState('regular');
+  const [actionsIdSelected, setActionsIdSelected] = useState('edit');
+  const [idToSelectedMap, setIdToSelectedMap] = useState({ edit: true });
+  const [viewIdSelected, setViewIdSelected] = useState('grid');
+
+  const commonProps = {
+    legend: 'Document actions',
+    variant: 'selection',
+    display,
+  };
+
+  const buttons = (
+    <>
+      <EuiButton id="save">Save</EuiButton>
+      <EuiButton id="edit">Edit</EuiButton>
+      <EuiButton id="delete">Delete</EuiButton>
+    </>
+  );
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
+        <EuiSelect
+          compressed
+          prepend="type"
+          options={[
+            { value: 'single', text: 'single' },
+            { value: 'multi', text: 'multi' },
+          ]}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          aria-label="Select type"
+        />
+        <EuiSelect
+          compressed
+          prepend="display"
+          options={[
+            { value: 'regular', text: 'regular' },
+            { value: 'highlighted', text: 'highlighted' },
+            { value: 'inverse', text: 'inverse' },
+          ]}
+          value={display}
+          onChange={(e) => setDisplay(e.target.value)}
+          aria-label="Select display"
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      {type === 'multi' ? (
+        <EuiButtonGroup
+          {...commonProps}
+          type="multi"
+          idToSelectedMap={idToSelectedMap}
+          onChange={(id) =>
+            setIdToSelectedMap((prev) => ({ ...prev, [id]: !prev[id] }))
+          }
+        >
+          {buttons}
+        </EuiButtonGroup>
+      ) : (
+        <EuiButtonGroup
+          {...commonProps}
+          idSelected={actionsIdSelected}
+          onChange={(id) => setActionsIdSelected(id)}
+        >
+          {buttons}
+        </EuiButtonGroup>
+      )}
+
+      <EuiSpacer />
+      
+      <EuiFlexGroup gutterSize="s">
+        <EuiButtonGroup
+          legend="View mode"
+          variant="selection"
+          display={display}
+          idSelected={viewIdSelected}
+          onChange={(id) => setViewIdSelected(id)}
+        >
+          <EuiToolTip content="Grid view" disableScreenReaderOutput>
+            <EuiButtonIcon id="grid" iconType="grid" aria-label="Grid view" />
+          </EuiToolTip>
+          <EuiToolTip content="List view" disableScreenReaderOutput>
+            <EuiButtonIcon id="list" iconType="list" aria-label="List view" />
+          </EuiToolTip>
+          <EuiToolTip content="Map view" disableScreenReaderOutput>
+            <EuiButtonIcon id="map" iconType="mapMarker" aria-label="Map view" />
+          </EuiToolTip>
+        </EuiButtonGroup>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Options API
+
+Use the `options` array when buttons need radio or checkbox semantics. Set `type="single"` (default) for a radio-like single selection, or `type="multi"` for multi-selection.
 
 :::accessibility Accessibility recommendation
 In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
@@ -54,21 +510,6 @@ export default () => {
     },
   ];
 
-  const toggleButtonsDisabled = [
-    {
-      id: `${disabledButtonGroupPrefix}__0`,
-      label: 'Option one',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__1`,
-      label: 'Option two is selected by default',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__2`,
-      label: 'Option three',
-    },
-  ];
-
   const toggleButtonsMulti = [
     {
       id: `${multiSelectButtonGroupPrefix}__0`,
@@ -87,19 +528,12 @@ export default () => {
   const [toggleIdSelected, setToggleIdSelected] = useState(
     `${basicButtonGroupPrefix}__1`
   );
-  const [toggleIdDisabled, setToggleIdDisabled] = useState(
-    `${disabledButtonGroupPrefix}__1`
-  );
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
     [`${multiSelectButtonGroupPrefix}__1`]: true,
   });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-  };
-
-  const onChangeDisabled = (optionId) => {
-    setToggleIdDisabled(optionId);
   };
 
   const onChangeMulti = (optionId) => {
@@ -149,21 +583,6 @@ export default () => {
           idSelected={toggleIdSelected}
           onChange={(id) => onChange(id)}
         />
-        <EuiSpacer />
-        <EuiTitle size="xxs">
-          <h3>Primary color with multi select</h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonGroup
-          legend="Primary color multi select button group"
-          isFullWidth={fullButton}
-          isDisabled={disableButton}
-          options={toggleButtonsMulti}
-          idToSelectedMap={toggleIdToSelectedMap}
-          onChange={(id) => onChangeMulti(id)}
-          color="primary"
-          type="multi"
-        />
       </EuiPanel>
     </Fragment>
   );
@@ -186,17 +605,17 @@ export default () => {
     {
       id: `${idPrefix3}0`,
       label: 'Align left',
-      iconType: 'editorAlignLeft',
+      iconType: 'textAlignLeft',
     },
     {
       id: `${idPrefix3}1`,
       label: 'Align center',
-      iconType: 'editorAlignCenter',
+      iconType: 'textAlignCenter',
     },
     {
       id: `${idPrefix3}2`,
       label: 'Align right',
-      iconType: 'editorAlignRight',
+      iconType: 'textAlignRight',
       isDisabled: true,
     },
   ];
@@ -206,26 +625,26 @@ export default () => {
       id: `${idPrefix3}3`,
       label: 'Bold',
       name: 'bold',
-      iconType: 'editorBold',
+      iconType: 'textBold',
     },
     {
       id: `${idPrefix3}4`,
       label: 'Italic',
       name: 'italic',
-      iconType: 'editorItalic',
+      iconType: 'textItalic',
       isDisabled: true,
     },
     {
       id: `${idPrefix3}5`,
       label: 'Underline',
       name: 'underline',
-      iconType: 'editorUnderline',
+      iconType: 'textUnderline',
     },
     {
       id: `${idPrefix3}6`,
       label: 'Strikethrough',
       name: 'strikethrough',
-      iconType: 'editorStrike',
+      iconType: 'textStrike',
     },
   ];
 
@@ -399,26 +818,26 @@ export default () => {
       id: `${multiSelectButtonGroupPrefix}__0`,
       label: 'Bold',
       name: 'bold',
-      iconType: 'editorBold',
+      iconType: 'textBold',
     },
     {
       id: `${multiSelectButtonGroupPrefix}__1`,
       label: 'Italic',
       name: 'italic',
-      iconType: 'editorItalic',
+      iconType: 'textItalic',
       isDisabled: true,
     },
     {
       id: `${multiSelectButtonGroupPrefix}__2`,
       label: 'Underline',
       name: 'underline',
-      iconType: 'editorUnderline',
+      iconType: 'textUnderline',
     },
     {
       id: `${multiSelectButtonGroupPrefix}__3`,
       label: 'Strikethrough',
       name: 'strikethrough',
-      iconType: 'editorStrike',
+      iconType: 'textStrike',
     },
   ];
 
@@ -472,6 +891,7 @@ export default () => {
 
 ## Props
 
-import docgen from '@elastic/eui-docgen/dist/components/button';
+import docgen from '@elastic/eui-docgen/dist/components/button/button_group/button_group.docgen.json';
 
-<PropTable definition={docgen.EuiButtonGroup} />
+<PropTable definition={docgen.EuiButtonGroupChildrenProps} />
+<PropTable definition={docgen.EuiButtonGroupOptionsProps} />

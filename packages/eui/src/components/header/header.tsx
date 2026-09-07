@@ -74,6 +74,9 @@ export type EuiHeaderProps = CommonProps &
     theme?: 'default' | 'dark';
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/header/|EuiHeader documentation}
+ */
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,

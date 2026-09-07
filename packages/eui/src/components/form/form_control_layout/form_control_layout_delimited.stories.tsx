@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, cloneElement } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   hideStorybookControls,
   moveStorybookControlsToCategory,

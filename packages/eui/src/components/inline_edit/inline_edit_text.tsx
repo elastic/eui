@@ -29,6 +29,9 @@ export type EuiInlineEditTextProps = EuiInlineEditCommonProps & {
   size?: EuiInlineEditTextSizes;
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/text/inline-edit/|EuiInlineEditText documentation}
+ */
 export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   className,
   size = 'm',

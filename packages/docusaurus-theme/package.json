@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-docusaurus-theme",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "EUI theme for Docusaurus",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -44,15 +44,13 @@
     "@elastic/eui-theme-borealis": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
-    "@types/react-window": "^1.8.8",
     "clsx": "^2.1.1",
     "dedent": "^1.5.3",
     "lz-string": "^1.5.0",
     "moment": "^2.30.1",
     "prism-react-renderer": "^2.3.1",
     "react-is": "^18.3.1",
-    "react-live": "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch",
-    "react-window": "^1.8.10"
+    "react-live": "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch"
   },
   "peerDependencies": {
     "react": "^18.0.0",

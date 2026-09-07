@@ -8,8 +8,8 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import { faker } from '@faker-js/faker';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 

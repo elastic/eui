@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import React, { createRef } from 'react';
+import { act, fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test';
 import { render, screen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
-import { EuiFilePicker } from './file_picker';
+import { EuiFilePicker, EuiFilePickerRef } from './file_picker';
 
 const createMockFiles = (fileNames: string[]): File[] => {
   return fileNames.map(
@@ -46,6 +46,48 @@ describe('EuiFilePicker', () => {
 
       const filePicker = container.querySelector('.euiFilePicker');
       expect(filePicker!.className).toContain('fullWidth');
+    });
+  });
+
+  describe('ref', () => {
+    it('exposes removeFiles', () => {
+      const ref = createRef<EuiFilePickerRef>();
+      const handleChange = jest.fn();
+      render(
+        <EuiFilePicker
+          ref={ref}
+          initialPromptText="Select a file"
+          onChange={handleChange}
+        />
+      );
+
+      expect(ref.current).not.toBeNull();
+      expect(typeof ref.current!.removeFiles).toBe('function');
+      expect(ref.current!.input).toBeInstanceOf(HTMLInputElement);
+    });
+
+    it('removeFiles clears the prompt and calls onChange with null', () => {
+      const ref = createRef<EuiFilePickerRef>();
+      const handleChange = jest.fn();
+      const files = createMockFiles(['test-file.txt']);
+      render(
+        <EuiFilePicker
+          ref={ref}
+          files={files}
+          initialPromptText="Select a file"
+          onChange={handleChange}
+        />
+      );
+
+      expect(screen.getByText('test-file.txt')).toBeInTheDocument();
+
+      act(() => {
+        ref.current!.removeFiles();
+      });
+
+      expect(screen.queryByText('test-file.txt')).not.toBeInTheDocument();
+      expect(screen.getByText('Select a file')).toBeInTheDocument();
+      expect(handleChange).toHaveBeenCalledWith(null);
     });
   });
 

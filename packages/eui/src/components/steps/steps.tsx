@@ -63,6 +63,9 @@ function renderSteps(
   });
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/steps/|EuiSteps documentation}
+ */
 export const EuiSteps: FunctionComponent<EuiStepsProps> = ({
   className,
   firstStepNumber = 1,

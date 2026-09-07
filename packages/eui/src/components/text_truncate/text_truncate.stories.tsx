@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { css } from '@emotion/react';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 

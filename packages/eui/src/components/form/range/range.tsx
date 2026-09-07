@@ -335,4 +335,7 @@ export class EuiRangeClass extends Component<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/numeric/range-sliders/|EuiRange documentation}
+ */
 export const EuiRange = withEuiTheme<EuiRangeProps>(EuiRangeClass);

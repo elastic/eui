@@ -373,26 +373,38 @@ const euiButtonFocusCSS = (_euiThemeContext: UseEuiTheme) => {
  */
 export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  // TODO: replace with token once available
+  const radiusInset = '2px';
+  const getInsetHeight = (height: string, padding: string) =>
+    mathWithUnits([height, padding], (x, y) => x - y * 2);
+
   return {
     xs: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.l,
+      getInsetHeight,
       padding: mathWithUnits(euiTheme.size.m, (x) => x / 2),
       radius: euiTheme.border.radius.small,
+      radiusInset,
       fontScale: 'xs' as const,
     },
     s: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.xl,
+      getInsetHeight,
       padding: euiTheme.size.s,
       radius: euiTheme.border.radius.small,
+      radiusInset,
       fontScale: 's' as const,
     },
     m: {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
+      getInsetHeight,
       padding: euiTheme.size.m,
       radius: euiTheme.border.radius.small,
+      radiusInset,
       fontScale: 's' as const,
     },
   };

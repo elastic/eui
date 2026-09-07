@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update VRT baselines after a user has approved the visual changes with the
-# Buildkite block step. Runs VRT in `--updateSnapshot` mode against the deployed
-# Storybook, then commits and pushes the updated reference screenshots.
+# Buildkite block step. Copies reported screenshots into the `.vrt/reference` directory,
+# then commits and pushes into the branch.
 #
 # This step is declared statically in `deploy_docs.yml` and runs on every
 # PR build (once the block step is approved). When VRT didn't actually fail,
@@ -16,9 +16,10 @@ source .buildkite/scripts/common/utils.sh
 #       Gate: only run when VRT actually failed            #
 ############################################################
 
-# `vrt_passed` is set by `step_vrt.sh`: "true" on pass, "skipped" when the
-# `skip-vrt` label is present, "false" only when visual differences were found.
-# Anything other than "false" means there is nothing to update.
+# `vrt_passed` is set by `step_vrt_report.sh`: "true" on pass, "skipped" when the
+# `skip-vrt` label is present, "false" only when visual differences were found,
+# "error" on infrastructure failure (no diffs). Anything other than "false"
+# means there is nothing to update.
 
 vrt_passed="$(buildkite-agent meta-data get vrt_passed --default "true")"
 
@@ -31,30 +32,32 @@ fi
 #                      Configuration                       #
 ############################################################
 
-corepack enable
-echo "Node.js version: $(node -v)"
-echo "Yarn version: $(yarn -v)"
-
-STORYBOOK_URL="$(buildkite-agent meta-data get storybook_base_url)"
 REF_DIR="packages/eui/.vrt/reference"
+CURRENT_DIR="packages/eui/.vrt/current"
 
 export GH_TOKEN="${VAULT_GITHUB_TOKEN}"
 
 ############################################################
-#                     Install dependencies                 #
+#         Copy reported screenshots into baselines         #
 ############################################################
 
-echo "+++ Installing dependencies"
-sudo apt-get install -y fonts-noto-color-emoji fonts-ipafont-gothic 2>/dev/null || true
-fc-cache -fv 2>/dev/null || true
-yarn
+echo "+++ Downloading reported VRT screenshots"
+mkdir -p "${CURRENT_DIR}"
 
-############################################################
-#                   Update baselines                       #
-############################################################
+buildkite-agent artifact download "packages/eui/.vrt/current/*-received.png" .
 
-echo "+++ Updating VRT baselines against ${STORYBOOK_URL}"
-yarn workspace @elastic/eui test-visual-regression update -- --url "${STORYBOOK_URL}"
+if ! compgen -G "${CURRENT_DIR}/*-received.png" > /dev/null; then
+  echo "No received screenshots found in artifacts from the VRT step."
+  exit 1
+fi
+
+echo "+++ Updating reported baselines"
+mkdir -p "${REF_DIR}"
+for received in "${CURRENT_DIR}"/*-received.png; do
+  story_name="$(basename "${received}" "-received.png")"
+  cp "${received}" "${REF_DIR}/${story_name}.png"
+  echo "Updated ${story_name}.png"
+done
 
 ############################################################
 #                 Commit updated baselines                 #

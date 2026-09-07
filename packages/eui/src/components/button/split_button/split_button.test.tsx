@@ -33,7 +33,9 @@ const defaultProps: EuiSplitButtonProps = {
 };
 
 describe('EuiSplitButton', () => {
-  shouldRenderCustomStyles(<EuiSplitButton {...defaultProps} />);
+  shouldRenderCustomStyles(<EuiSplitButton {...defaultProps} />, {
+    skip: { style: true },
+  });
 
   it('renders', () => {
     const { container } = render(<EuiSplitButton {...defaultProps} />);

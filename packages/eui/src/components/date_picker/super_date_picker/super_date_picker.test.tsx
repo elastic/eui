@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { fireEvent, act, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { render, waitForEuiPopoverOpen, screen } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
@@ -296,8 +296,8 @@ describe('EuiSuperDatePicker', () => {
 
         expect(startDateButton).toBeInTheDocument();
 
-        act(() => {
-          userEvent.click(input);
+        await act(async () => {
+          await userEvent.click(input);
         });
 
         expect(input).toHaveFocus();
@@ -574,9 +574,14 @@ describe('EuiSuperDatePicker', () => {
       />
     );
 
+    // userEvent must advance jest's fake timers to avoid hanging
+    const user = userEvent.setup({
+      advanceTimers: jest.advanceTimersByTime,
+    });
+
     // needs to be async to support React 17
     await act(async () => {
-      userEvent.hover(getByTestSubject('superDatePickerShowDatesButton'));
+      await user.hover(getByTestSubject('superDatePickerShowDatesButton'));
     });
 
     const tooltip = await findByRole('tooltip');
@@ -609,8 +614,8 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      act(() => {
-        userEvent.click(
+      await act(async () => {
+        await userEvent.click(
           screen.getByTestSubject('superDatePickerToggleQuickMenuButton')
         );
       });
@@ -625,8 +630,8 @@ describe('EuiSuperDatePicker', () => {
       expect(nextBtn).toBeInTheDocument();
 
       // Step forward (should move window forward by the same duration)
-      act(() => {
-        userEvent.click(nextBtn);
+      await act(async () => {
+        await userEvent.click(nextBtn);
       });
 
       const nextStart = lastTimeChange.start;
@@ -653,8 +658,8 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      act(() => {
-        userEvent.click(
+      await act(async () => {
+        await userEvent.click(
           screen.getByTestSubject('superDatePickerToggleQuickMenuButton')
         );
       });
@@ -665,8 +670,8 @@ describe('EuiSuperDatePicker', () => {
 
       expect(prevBtn).toBeInTheDocument();
 
-      act(() => {
-        userEvent.click(prevBtn);
+      await act(async () => {
+        await userEvent.click(prevBtn);
       });
 
       const prevStart = lastTimeChange.start;
@@ -719,8 +724,8 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      act(() => {
-        userEvent.click(getByTestSubject('timeWindowButtonsPrevious'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('timeWindowButtonsPrevious'));
       });
 
       await waitFor(() => {
@@ -758,8 +763,8 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      act(() => {
-        userEvent.click(getByTestSubject('timeWindowButtonsZoomOut'));
+      await act(async () => {
+        await userEvent.click(getByTestSubject('timeWindowButtonsZoomOut'));
       });
 
       await waitFor(() => {

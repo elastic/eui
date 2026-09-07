@@ -129,4 +129,4 @@ Repin Kibana to the official release before merging its PR — snapshots are mov
 
 These tests run in EUI's Buildkite CI on every PR, with flake detection when a component changes. See [Testing → EUI test helpers](../../wiki/contributing-to-eui/testing/eui-test-helpers.md) in the wiki.
 
-Flake detection correlates a component to its helper **by directory name**: a change under `packages/eui/src/components/<name>` re-runs the specs in `src/playwright/components/<name>`. Keep that directory parity when adding a Component Object and no extra wiring is needed.
+Flake detection correlates a component to its helper **by directory path**: a change under `packages/eui/src/components/<name>`, the helper's specs in `src/playwright/components/<name>`, or its selectors in `src/components/<name>` re-runs that helper's specs. `<name>` is the path relative to the components directory and may be nested (e.g. `form/super_select`), matching the EUI source layout. Keep that directory parity when adding a Component Object and no extra wiring is needed.

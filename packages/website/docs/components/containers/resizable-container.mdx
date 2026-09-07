@@ -820,7 +820,7 @@ Note that when bypassing internal **EuiResizableContainer** logic, it is possibl
 
 You can also provide an external collapse button for custom placement and look within your panel with `mode={['custom']}`. When collapsed, however, the default collapsed button will be used for users to expand the panel.
 
-For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, icon types.
+For consistency, we recommend the usage of the `transition*` icon types.
 
 <Demo scope={{ faker }}>
   ```tsx
@@ -937,7 +937,7 @@ For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, ico
                           <EuiButtonIcon
                             color="text"
                             aria-label={togglePanel3Label}
-                            iconType="menuRight"
+                            iconType="transitionRightOut"
                             onClick={() => onChange('3')}
                           />
                         </EuiToolTip>

@@ -371,6 +371,9 @@ export class EuiTreeViewClass extends Component<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/tree-view/|EuiTreeView documentation}
+ */
 export const EuiTreeView = Object.assign(
   withEuiTheme<EuiTreeViewProps>(EuiTreeViewClass),
   { Item: EuiTreeViewItem }

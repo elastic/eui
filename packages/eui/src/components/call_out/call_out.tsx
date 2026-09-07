@@ -115,6 +115,9 @@ export type EuiCallOutProps = CommonProps &
     };
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/callout/|EuiCallOut documentation}
+ */
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
     {

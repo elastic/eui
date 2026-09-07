@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { BUTTON_COLORS } from '../../global_styling/mixins/_button';
 
@@ -95,6 +95,22 @@ export const FullWidthAndGrow: Story = {
       </EuiFilterButton>
     </EuiFilterGroup>
   ),
+};
+
+export const MixedButtons: Story = {
+  tags: ['vrt-only'],
+  render: ({ ...args }) => (
+    <EuiFilterGroup>
+      <EuiFilterButton {...args}>Filter one</EuiFilterButton>
+      <EuiFilterButton {...args}>Filter two</EuiFilterButton>
+      <EuiFilterButton {...args}>Filter three</EuiFilterButton>
+      <EuiFilterButton iconType="menu" iconSide="right" />
+    </EuiFilterGroup>
+  ),
+  args: {
+    numFilters: 5,
+    iconType: 'chevronSingleDown',
+  },
 };
 
 export const HighContrast: Story = {

@@ -313,6 +313,9 @@ function getInitialSorting<T extends object>(
   };
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/tables/in-memory/|EuiInMemoryTable documentation}
+ */
 export class EuiInMemoryTable<T extends object = object> extends Component<
   EuiInMemoryTableProps<T>,
   State<T>

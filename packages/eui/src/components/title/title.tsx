@@ -30,6 +30,9 @@ export type EuiTitleProps = CommonProps & {
   id?: string;
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/title/|EuiTitle documentation}
+ */
 export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   size = 'm',
   children,

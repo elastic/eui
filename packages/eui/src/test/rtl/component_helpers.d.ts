@@ -6,6 +6,8 @@
 export declare const waitForEuiPopoverOpen: () => Promise<void>;
 export declare const waitForEuiPopoverClose: () => Promise<void>;
 
+export declare const focusEuiToolTipTrigger: (element: Element) => () => void;
+
 export declare const showEuiComboBoxOptions: () => Promise<void>;
 
 export declare const waitForEuiContextMenuPanelTransition: () => Promise<void>;

@@ -221,6 +221,9 @@ export interface EuiSelectableState<T> {
   isFocused: boolean;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/selection/selectable/|EuiSelectable documentation}
+ */
 export class EuiSelectable<T = {}> extends Component<
   EuiSelectableProps<T>,
   EuiSelectableState<T>

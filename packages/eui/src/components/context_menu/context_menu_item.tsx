@@ -24,6 +24,7 @@ import {
   cloneElementWithCss,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { type EuiDisabledProps } from '../../services/hooks/useEuiDisabledElement';
 import { type _EuiExtendedButtonColor } from '../../global_styling';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon, type IconType } from '../icon';
@@ -38,7 +39,8 @@ export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export interface EuiContextMenuItemProps
   extends PropsWithChildren,
-    CommonProps {
+    CommonProps,
+    Pick<EuiDisabledProps, 'hasAriaDisabled'> {
   icon?: EuiContextMenuItemIcon;
   hasPanel?: boolean;
   disabled?: boolean;
@@ -50,7 +52,7 @@ export interface EuiContextMenuItemProps
    */
   toolTipContent?: ReactNode;
   /**
-   * Optional configuration to pass to the underlying [EuiToolTip](/#/display/tooltip).
+   * Optional configuration to pass to the underlying [EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/).
    * Accepts any prop that EuiToolTip does, except for `content` and `children`.
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
@@ -109,6 +111,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   rel,
   color = 'text',
   external,
+  hasAriaDisabled,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -212,6 +215,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
       append={arrow}
       textWrap="wrap"
       isDisabled={disabled}
+      hasAriaDisabled={hasAriaDisabled}
       textProps={{
         className: 'euiContextMenuItem__text',
         css: textStyles,

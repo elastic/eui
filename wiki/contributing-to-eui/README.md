@@ -13,8 +13,11 @@ However, because EUI has a large footprint in Elastic products, we must maintain
 
 ## What to contribute
 
-- **Bug fixes** — Especially clear, scoped fixes for reproducible issues.
-- **[Help wanted](https://github.com/elastic/eui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)** — Issues with this label are meant for community pickup: we’ve checked that they fit our roadmap and aren’t blocked on private internal planning.
+External contributors may only open PRs for issues labelled [`help wanted`](https://github.com/elastic/eui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22). We add that label when a task fits our roadmap and it has been prepared with clear instructions.
+
+If you are having a problem with EUI, [file an issue](https://github.com/elastic/eui/issues/new).
+
+If you want to contribute a fix for an issue that affects you, comment on that issue with a proposed solution. We can discuss it there. If we agree, we will add the `help wanted` label.
 
 ## What not to contribute
 
@@ -26,8 +29,7 @@ Unless agreed upon previously:
 
 ## How to contribute
 
-- **Comment before you start** — Note your intent on the issue to avoid duplicate work. We don’t assign issues to community members by policy.
-- **No matching issue yet?** **[Open one](https://github.com/elastic/eui/issues/new)** first so maintainers can scope the change before you invest in a PR.
+We do not assign issues to community members. Comment on the `help wanted` issue before you start so others know you are working on it.
 
 ## Typical change flow
 

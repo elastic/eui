@@ -32,23 +32,28 @@ fi
 changed_files="$(git diff --name-only "${base_sha}" HEAD)"
 
 # A shared file affects every helper, so run the whole suite. Otherwise a helper
-# is affected when this PR touched its component source or its own specs —
-# correlated by directory name: <helper>/<name> maps to
-# packages/eui/src/components/<name>.
+# is affected when this PR touched its component source, its own specs, or its
+# selectors — correlated by the helper's path relative to HELPERS_DIR (`<name>`,
+# which may be nested, e.g. `form/super_select`). That same `<name>` maps to the
+# EUI component source `packages/eui/src/components/<name>` and the selectors
+# `packages/test-helpers/src/components/<name>`. Helpers are enumerated by their
+# `object.ts` so nested helpers resolve to their real (leaf) directory rather
+# than an over-broad first-level parent.
 if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}"; then
   echo "Shared test-helpers file changed — running all helper specs."
   affected="src/playwright/components"
 else
   affected=""
-  for helper_path in "${HELPERS_DIR}"/*/; do
-    [[ -d "${helper_path}" ]] || continue
-    name="$(basename "${helper_path}")"
-    helper_specs="${helper_path%/}"
-    if grep -qE "^(${COMPONENTS_DIR}/${name}|${helper_specs})/" <<< "${changed_files}"; then
+  while IFS= read -r object_file; do
+    helper_specs="$(dirname "${object_file}")"
+    name="${helper_specs#"${HELPERS_DIR}/"}"
+    component_src="${COMPONENTS_DIR}/${name}"
+    helper_selectors="packages/test-helpers/src/components/${name}"
+    if grep -qE "^(${component_src}|${helper_specs}|${helper_selectors})/" <<< "${changed_files}"; then
       # Playwright filters are resolved from the package dir, so strip the prefix.
       affected+="${helper_specs#packages/test-helpers/} "
     fi
-  done
+  done < <(find "${HELPERS_DIR}" -type f -name 'object.ts' | sort)
   affected="$(echo "${affected}" | xargs)"
 fi
 

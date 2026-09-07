@@ -2,7 +2,7 @@
 
 exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable component of a single column that is currently being sorted 1`] = `
 <div
-  class="euiDraggable emotion-euiDraggable"
+  class="euiDraggable euiDataGridColumnSorting__dragHandle emotion-euiDraggable-euiDataGridColumnSorting__dragHandle"
   data-rfd-draggable-context-id="0"
   data-rfd-draggable-id="columnA"
   data-test-subj="draggable"
@@ -71,55 +71,58 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
-      <fieldset
+      <div
+        aria-label="Select sorting method for Column A"
         class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth-euiDataGridColumnSorting__order"
+        data-display="regular"
+        data-layout="horizontal"
+        data-size="s"
+        data-variant="selection"
+        role="group"
       >
-        <legend
-          class="emotion-euiScreenReaderOnly"
-        >
-          Select sorting method for Column A
-        </legend>
         <div
-          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+          class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
         >
-          <button
-            aria-pressed="true"
-            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-            title="Low-High"
-            type="button"
+          <div
+            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
           >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="Low-High"
+              <button
+                aria-pressed="true"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                id="columnAAsc"
+                type="button"
               >
-                Low-High
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-            title="High-Low"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  Low-High
+                </span>
+              </button>
+            </div>
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="High-Low"
+              <button
+                aria-pressed="false"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                id="columnADesc"
+                type="button"
               >
-                High-Low
-              </span>
-            </span>
-          </button>
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  High-Low
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-      </fieldset>
+      </div>
     </div>
     <div
       aria-describedby="rfd-hidden-text-0-hidden-text-0"
@@ -142,7 +145,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
 
 exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable component of a single column that is currently being sorted 1`] = `
 <div
-  class="euiDraggable emotion-euiDraggable"
+  class="euiDraggable euiDataGridColumnSorting__dragHandle emotion-euiDraggable-euiDataGridColumnSorting__dragHandle"
   data-rfd-draggable-context-id=":r0:"
   data-rfd-draggable-id="columnA"
   data-test-subj="draggable"
@@ -211,55 +214,58 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
-      <fieldset
+      <div
+        aria-label="Select sorting method for Column A"
         class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth-euiDataGridColumnSorting__order"
+        data-display="regular"
+        data-layout="horizontal"
+        data-size="s"
+        data-variant="selection"
+        role="group"
       >
-        <legend
-          class="emotion-euiScreenReaderOnly"
-        >
-          Select sorting method for Column A
-        </legend>
         <div
-          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+          class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
         >
-          <button
-            aria-pressed="true"
-            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-            title="Low-High"
-            type="button"
+          <div
+            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
           >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="Low-High"
+              <button
+                aria-pressed="true"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                id="columnAAsc"
+                type="button"
               >
-                Low-High
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-            title="High-Low"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  Low-High
+                </span>
+              </button>
+            </div>
+            <div
+              class="euiButtonGroup__item"
             >
-              <span
-                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
-                data-text="High-Low"
+              <button
+                aria-pressed="false"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                id="columnADesc"
+                type="button"
               >
-                High-Low
-              </span>
-            </span>
-          </button>
+                <span
+                  class="emotion-euiButtonDisplayContent"
+                >
+                  High-Low
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-      </fieldset>
+      </div>
     </div>
     <div
       aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"

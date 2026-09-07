@@ -114,6 +114,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     isDisabled?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/avatar/|EuiAvatar documentation}
+ */
 export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   className,
   color,

@@ -12,6 +12,16 @@ function git_push_to_pr_branch {
   git push pr-origin "HEAD:${branch}" --no-verify
 }
 
+VRT_DIR="packages/eui/.vrt"
+REF_DIR="${VRT_DIR}/reference"
+
+# Get all VRT variants.
+# Usage: `get_vrt_variants` `MY_ARRAY`
+function get_vrt_variants {
+  local -n _arr=$1
+  mapfile -t _arr < <(node -e "Object.keys(require('./packages/eui/.storybook/vrt-variants.json')).forEach(k => console.log(k))")
+}
+
 function retry {
   local retries=$1
   shift

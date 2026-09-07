@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent, useContext, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { EuiDisabledProps } from '../../../services';
+import { EuiDisabledProps, useEuiTheme } from '../../../services';
 import { EuiPopover } from '../../popover';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
 import { EuiButton, Props as EuiButtonProps } from '../button';
@@ -46,7 +46,8 @@ export type EuiSplitButtonActionSecondaryProps = EuiDisabledProps &
 export const EuiSplitButtonActionPrimary: FunctionComponent<
   EuiSplitButtonActionPrimaryProps
 > = ({ className, isIconOnly, tooltipProps, ...rest }) => {
-  const { fill, isDisabled, isLoading, ...sharedRest } = useContext(
+  const euiThemeContext = useEuiTheme();
+  const { fill, isDisabled, isLoading, size, ...sharedRest } = useContext(
     EuiSplitButtonContext
   );
   const _isDisabled = !!isDisabled || isButtonDisabled(rest);
@@ -54,11 +55,15 @@ export const EuiSplitButtonActionPrimary: FunctionComponent<
   const display = (fill ? 'fill' : 'base') as EuiButtonIconProps['display'];
 
   const classes = classNames('euiSplitButtonActionPrimary', className);
-  const styles = euiSplitButtonActionStyles;
+  const styles = useMemo(
+    () => euiSplitButtonActionStyles(euiThemeContext, size),
+    [euiThemeContext, size]
+  );
 
   const actionProps = {
     ...rest,
     ...sharedRest,
+    size,
     isDisabled: _isDisabled,
     isLoading: _isLoading,
     css: [styles.euiSplitButtonActionPrimary],
@@ -91,7 +96,8 @@ export const EuiSplitButtonActionPrimary: FunctionComponent<
 export const EuiSplitButtonActionSecondary: FunctionComponent<
   EuiSplitButtonActionSecondaryProps
 > = ({ className, popoverProps, tooltipProps, ...rest }) => {
-  const { fill, isDisabled, isLoading, ...sharedRest } = useContext(
+  const euiThemeContext = useEuiTheme();
+  const { fill, isDisabled, isLoading, size, ...sharedRest } = useContext(
     EuiSplitButtonContext
   );
 
@@ -100,11 +106,15 @@ export const EuiSplitButtonActionSecondary: FunctionComponent<
   const display = (fill ? 'fill' : 'base') as EuiButtonIconProps['display'];
 
   const classes = classNames('euiSplitButtonActionSecondary', className);
-  const styles = euiSplitButtonActionStyles;
+  const styles = useMemo(
+    () => euiSplitButtonActionStyles(euiThemeContext, size),
+    [euiThemeContext, size]
+  );
 
   const actionProps = {
     ...rest,
     ...sharedRest,
+    size,
     display,
     // enforce chevronSingleDown icon when a popover is rendered
     iconType: popoverProps != null ? 'chevronSingleDown' : rest.iconType,

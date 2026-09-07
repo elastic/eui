@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, createRef, ReactElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -39,83 +47,80 @@ export interface EuiCopyProps extends CommonProps {
   >;
 }
 
-interface EuiCopyState {
-  tooltipText: ReactNode;
-  isCopied: boolean;
-}
+export const EuiCopy: FunctionComponent<EuiCopyProps> = ({
+  textToCopy,
+  beforeMessage,
+  afterMessage = 'Copied',
+  children,
+  tooltipProps,
+}) => {
+  const tooltipRef = useRef<EuiToolTipRef>(null);
 
-export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
-  static defaultProps = {
-    afterMessage: 'Copied',
-  };
-
-  private tooltipRef = createRef<EuiToolTipRef>();
-
-  constructor(props: EuiCopyProps) {
-    super(props);
-
-    this.state = {
-      tooltipText: this.props.beforeMessage,
-      isCopied: false,
+  // Consumers can hold onto the render prop `copy` callback and invoke it after
+  // this component has unmounted (e.g. from a debounced handler). Setting state
+  // then is a no-op that React 17 additionally warns about, so skip it.
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
     };
-  }
+  }, []);
 
-  copy = () => {
-    const isCopied = copyToClipboard(this.props.textToCopy);
-    if (isCopied) {
-      this.setState(
-        {
-          tooltipText: this.props.afterMessage,
-          isCopied: true,
-        },
-        // `EuiToolTip` suppresses showing when content is empty, so `EuiCopy`
-        // imperatively shows the tooltip after the post-copy state update.
-        () => {
-          this.tooltipRef.current?.showToolTip();
-        }
-      );
+  // Counts successful copies instead of storing a boolean, so that every copy
+  // re-runs the effect below - the tooltip may have been hidden in between
+  // copies (e.g. by another tooltip being shown) and needs showing again.
+  const [copyCount, setCopyCount] = useState(0);
+  const isCopied = copyCount > 0;
+  const tooltipText = isCopied ? afterMessage : beforeMessage;
+
+  const copy = useCallback(() => {
+    const copied = copyToClipboard(textToCopy);
+    if (copied && isMountedRef.current) {
+      setCopyCount((count) => count + 1);
     }
-  };
+  }, [textToCopy]);
 
-  resetTooltipText = () => {
-    this.setState({
-      tooltipText: this.props.beforeMessage,
-      isCopied: false,
-    });
-  };
+  const resetTooltipText = useCallback(() => {
+    if (isMountedRef.current) {
+      setCopyCount(0);
+    }
+  }, []);
 
-  render() {
-    const { children, tooltipProps, afterMessage } = this.props;
-    const { tooltipText, isCopied } = this.state;
+  // `EuiToolTip` suppresses showing when content is empty, so `EuiCopy`
+  // imperatively shows the tooltip after the post-copy state update.
+  useEffect(() => {
+    if (copyCount > 0) {
+      tooltipRef.current?.showToolTip();
+    }
+  }, [copyCount]);
 
-    return (
-      <>
-        {/* See `src/components/tool_tip/tool_tip_anchor.tsx` for explanation of below eslint-disable */}
-        {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
-        <EuiToolTip
-          ref={this.tooltipRef}
-          content={tooltipText}
-          onMouseOut={this.resetTooltipText}
-          {...tooltipProps}
-          onBlur={() => {
-            tooltipProps?.onBlur?.();
-            if (isCopied) this.resetTooltipText();
-          }}
-          disableScreenReaderOutput={
-            isCopied || !!tooltipProps?.disableScreenReaderOutput
-          }
-        >
-          {children(this.copy)}
-        </EuiToolTip>
-        {/* Stable `aria-live` region so VoiceOver/Safari announces reliably.
+  return (
+    <>
+      {/* See `src/components/tool_tip/tool_tip_anchor.tsx` for explanation of below eslint-disable */}
+      {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
+      <EuiToolTip
+        ref={tooltipRef}
+        content={tooltipText}
+        onMouseOut={resetTooltipText}
+        {...tooltipProps}
+        onBlur={() => {
+          tooltipProps?.onBlur?.();
+          if (isCopied) resetTooltipText();
+        }}
+        disableScreenReaderOutput={
+          isCopied || !!tooltipProps?.disableScreenReaderOutput
+        }
+      >
+        {children(copy)}
+      </EuiToolTip>
+      {/* Stable `aria-live` region so VoiceOver/Safari announces reliably.
        `EuiScreenReaderLive` alternates `aria-live` between "off" and active which
         Safari ignores when attribute and content change in the same render. */}
-        <EuiScreenReaderOnly>
-          <div aria-live="assertive" aria-atomic="true">
-            {isCopied ? afterMessage : ''}
-          </div>
-        </EuiScreenReaderOnly>
-      </>
-    );
-  }
-}
+      <EuiScreenReaderOnly>
+        <div aria-live="assertive" aria-atomic="true">
+          {isCopied ? afterMessage : ''}
+        </div>
+      </EuiScreenReaderOnly>
+    </>
+  );
+};

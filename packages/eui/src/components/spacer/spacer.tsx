@@ -22,6 +22,9 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
     size?: SpacerSize;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/spacer/|EuiSpacer documentation}
+ */
 export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
   className,
   size = 'm',

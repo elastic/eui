@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { StoryContext } from '@storybook/react';
-import { API } from '@storybook/manager-api';
+import type { StoryContext } from '@storybook/react';
+import type { API } from 'storybook/manager-api';
 
 import { ADDON_PARAMETER_KEY, PANEL_ID, QUERY_PARAMS } from '../constants';
 

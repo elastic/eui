@@ -62,5 +62,5 @@
     "./src/**/*",
     "./.storybook/*.d.ts"
   ],
-  "exclude": ["node_modules", "**/*/*.spec.tsx", "**/*/*.a11y.tsx"]
+  "exclude": ["node_modules", "**/*/*.spec.tsx", "**/*/*.a11y.tsx", "**/*.stories.*"]
 }

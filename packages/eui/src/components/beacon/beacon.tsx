@@ -41,6 +41,9 @@ export type EuiBeaconProps = Omit<
     color?: EuiBeaconColor;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/beacon/|EuiBeacon documentation}
+ */
 export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   className,
   size = 12,

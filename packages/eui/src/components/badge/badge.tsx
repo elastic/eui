@@ -125,6 +125,9 @@ export type EuiBadgeProps = {
     WithSpanProps
   >;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/badge/|EuiBadge documentation}
+ */
 export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
   color = 'default',

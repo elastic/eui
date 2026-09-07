@@ -82,6 +82,7 @@ describe('Cell focus utils', () => {
       // Keyboard behavior
       cy.realPress('Escape');
       cy.get(headerCellPopover).should('not.exist');
+      cy.get(headerCellActionsButton).should('be.focused');
       cy.realPress('Enter');
       cy.get(headerCellPopover).should('exist');
     });

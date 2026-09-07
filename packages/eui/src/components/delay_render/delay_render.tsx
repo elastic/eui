@@ -6,66 +6,36 @@
  * Side Public License, v 1.
  */
 
-import { Component, PropsWithChildren } from 'react';
+import {
+  FunctionComponent,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 
 export interface EuiDelayRenderProps extends PropsWithChildren {
-  delay: number;
+  delay?: number;
 }
 
-interface EuiDelayRenderState {
-  toggle: boolean;
-}
+export const EuiDelayRender: FunctionComponent<EuiDelayRenderProps> = ({
+  delay = 500,
+  children,
+}) => {
+  const [shouldRender, setShouldRender] = useState(false);
+  const [prevProps, setPrevProps] = useState({ children, delay });
 
-export class EuiDelayRender extends Component<
-  EuiDelayRenderProps,
-  EuiDelayRenderState
-> {
-  static defaultProps = {
-    delay: 500,
-  };
-
-  private delayID: number | undefined;
-  private toBeDelayed: boolean = true;
-
-  constructor(props: EuiDelayRenderProps) {
-    super(props);
-    this.state = {
-      toggle: false,
-    };
+  // Hiding must happen during the render phase: waiting for an effect would
+  // briefly commit updated children before hiding them again, flashing the
+  // content and triggering any aria-live announcements it may contain
+  if (children !== prevProps.children || delay !== prevProps.delay) {
+    setPrevProps({ children, delay });
+    setShouldRender(false);
   }
 
-  shouldUpdate() {
-    this.setState(({ toggle }) => ({ toggle: !toggle }));
-  }
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setShouldRender(true), delay);
+    return () => window.clearTimeout(timeoutId);
+  }, [children, delay]);
 
-  startDelaying = () => {
-    window.clearTimeout(this.delayID);
-    this.toBeDelayed = true;
-    this.delayID = window.setTimeout(this.stopDelaying, this.props.delay);
-  };
-  stopDelaying = () => {
-    window.clearTimeout(this.delayID);
-    this.toBeDelayed = false;
-    this.shouldUpdate();
-  };
-
-  componentDidMount() {
-    this.startDelaying();
-  }
-  shouldComponentUpdate() {
-    if (this.toBeDelayed) {
-      this.startDelaying();
-    }
-    return true;
-  }
-  componentWillUnmount() {
-    this.stopDelaying();
-  }
-  componentDidUpdate() {
-    this.toBeDelayed = true;
-  }
-
-  render() {
-    return !this.toBeDelayed ? this.props.children : null;
-  }
-}
+  return shouldRender ? children : null;
+};

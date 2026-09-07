@@ -49,7 +49,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesVertical"
+            data-euiicon-type="ellipsis"
           />
         </button>
       </div>
@@ -101,7 +101,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="boxesVertical"
+            data-euiicon-type="ellipsis"
           />
         </button>
       </div>

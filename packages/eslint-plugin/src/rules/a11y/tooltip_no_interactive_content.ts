@@ -11,6 +11,8 @@ import {
   INTERACTIVE_EUI_COMPONENTS,
   CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS,
 } from '../../utils/constants';
+import { walkJsxChildren } from '../../utils/walk_jsx_children';
+import { getElementName } from '../../utils/get_element_name';
 
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
@@ -31,43 +33,6 @@ const INTERACTIVE_ELEMENTS = new Set([
     (c) => !CONDITIONALLY_INTERACTIVE_SET.has(c)
   ),
 ]);
-
-function findInteractiveElement(
-  node: TSESTree.Node
-): TSESTree.JSXOpeningElement | null {
-  if (node.type === 'JSXElement') {
-    const el = node as TSESTree.JSXElement;
-    const { name } = el.openingElement;
-
-    if (name.type === 'JSXIdentifier' && INTERACTIVE_ELEMENTS.has(name.name)) {
-      return el.openingElement;
-    }
-
-    for (const child of el.children) {
-      const found = findInteractiveElement(child);
-      if (found) return found;
-    }
-  } else if (node.type === 'JSXFragment') {
-    for (const child of (node as TSESTree.JSXFragment).children) {
-      const found = findInteractiveElement(child);
-      if (found) return found;
-    }
-  } else if (node.type === 'JSXExpressionContainer') {
-    const { expression } = node as TSESTree.JSXExpressionContainer;
-    if (expression.type !== 'JSXEmptyExpression') {
-      return findInteractiveElement(expression);
-    }
-  } else if (node.type === 'LogicalExpression') {
-    const { left, right } = node as TSESTree.LogicalExpression;
-    return findInteractiveElement(left) ?? findInteractiveElement(right);
-  } else if (node.type === 'ConditionalExpression') {
-    const { consequent, alternate } = node as TSESTree.ConditionalExpression;
-    return (
-      findInteractiveElement(consequent) ?? findInteractiveElement(alternate)
-    );
-  }
-  return null;
-}
 
 export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -101,19 +66,37 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             continue;
           }
 
-          const interactiveEl = findInteractiveElement(expression);
-          if (interactiveEl) {
-            context.report({
-              node: interactiveEl,
-              messageId: 'noInteractiveContent',
-              data: {
-                propName: (attr.name as TSESTree.JSXIdentifier).name,
-                componentName,
-                elementName: (interactiveEl.name as TSESTree.JSXIdentifier)
-                  .name,
+          let found = false;
+
+          walkJsxChildren(
+            expression,
+            (leaf) => {
+              if (found || leaf.type !== 'JSXElement') return;
+
+              const el = leaf as TSESTree.JSXElement;
+              const name = getElementName(el.openingElement);
+
+              if (!name || !INTERACTIVE_ELEMENTS.has(name)) return;
+
+              context.report({
+                node: el.openingElement,
+                messageId: 'noInteractiveContent',
+                data: {
+                  propName: (attr.name as TSESTree.JSXIdentifier).name,
+                  componentName,
+                  elementName: name,
+                },
+              });
+              found = true;
+            },
+            {
+              shouldSkip: (el) => {
+                const name = getElementName(el.openingElement);
+
+                return !name || !INTERACTIVE_ELEMENTS.has(name);
               },
-            });
-          }
+            }
+          );
         }
       },
     };

@@ -48,6 +48,9 @@ export type EuiKeyPadMenuProps = CommonProps &
     checkable?: _EuiKeyPadMenuCheckableProps | true;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/buttons/key-pad-menu/|EuiKeyPadMenu documentation}
+ */
 export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   children,
   className,

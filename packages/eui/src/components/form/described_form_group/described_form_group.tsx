@@ -71,6 +71,9 @@ export type EuiDescribedFormGroupProps = CommonProps &
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/described-groups/|EuiDescribedFormGroup documentation}
+ */
 export const EuiDescribedFormGroup: FunctionComponent<
   EuiDescribedFormGroupProps
 > = (props) => {

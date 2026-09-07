@@ -203,14 +203,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 339,
+        "line": 342,
         "column": 8,
-        "index": 11435
+        "index": 11546
       },
       "end": {
-        "line": 346,
+        "line": 349,
         "column": 9,
-        "index": 11718
+        "index": 11829
       }
     },
     "filepath": "src/components/toast/global_toast_list.tsx"
@@ -221,17 +221,35 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 339,
+        "line": 342,
         "column": 8,
-        "index": 11435
+        "index": 11546
       },
       "end": {
-        "line": 346,
+        "line": 349,
         "column": 9,
-        "index": 11718
+        "index": 11829
       }
     },
     "filepath": "src/components/toast/global_toast_list.tsx"
+  },
+  {
+    "token": "euiTableHeaderCell.titleTextWithDesc",
+    "defString": "{innerText}; {description}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 146,
+        "column": 10,
+        "index": 4722
+      },
+      "end": {
+        "line": 150,
+        "column": 11,
+        "index": 4896
+      }
+    },
+    "filepath": "src/components/table/table_header_cell.tsx"
   },
   {
     "token": "euiStepStrings.step",
@@ -522,40 +540,58 @@
     "filepath": "src/components/steps/step_strings.tsx"
   },
   {
-    "token": "euiTableHeaderCell.titleTextWithDesc",
-    "defString": "{innerText}; {description}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 146,
-        "column": 10,
-        "index": 4722
-      },
-      "end": {
-        "line": 150,
-        "column": 11,
-        "index": 4896
-      }
-    },
-    "filepath": "src/components/table/table_header_cell.tsx"
-  },
-  {
     "token": "euiStat.loadingText",
     "defString": "Statistic is loading",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 95,
+        "line": 98,
         "column": 32,
-        "index": 2317
+        "index": 2416
       },
       "end": {
-        "line": 98,
+        "line": 101,
         "column": 3,
-        "index": 2386
+        "index": 2485
       }
     },
     "filepath": "src/components/stat/stat.tsx"
+  },
+  {
+    "token": "euiSkeletonLoading.loadedAriaText",
+    "defString": "Loaded {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 76,
+        "column": 25,
+        "index": 2457
+      },
+      "end": {
+        "line": 80,
+        "column": 3,
+        "index": 2571
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
+  },
+  {
+    "token": "euiSkeletonLoading.loadingAriaText",
+    "defString": "Loading {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 82,
+        "column": 27,
+        "index": 2601
+      },
+      "end": {
+        "line": 86,
+        "column": 3,
+        "index": 2717
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
   },
   {
     "token": "euiSideNav.mobileToggleAriaLabel",
@@ -563,17 +599,143 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 201,
+        "line": 204,
         "column": 14,
-        "index": 6081
+        "index": 6190
       },
       "end": {
-        "line": 204,
+        "line": 207,
         "column": 15,
-        "index": 6206
+        "index": 6315
       }
     },
     "filepath": "src/components/side_nav/side_nav.tsx"
+  },
+  {
+    "token": "euiSelectable.loadingOptions",
+    "defString": "Loading options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 637,
+        "column": 16,
+        "index": 20603
+      },
+      "end": {
+        "line": 640,
+        "column": 18,
+        "index": 20729
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noMatchingOptions",
+    "defString": "{searchValue} doesn't match any options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 659,
+        "column": 14,
+        "index": 21217
+      },
+      "end": {
+        "line": 663,
+        "column": 16,
+        "index": 21437
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noAvailableOptions",
+    "defString": "No options available",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 678,
+        "column": 14,
+        "index": 21848
+      },
+      "end": {
+        "line": 681,
+        "column": 16,
+        "index": 21977
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.screenReaderInstructions",
+    "defString": "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 743,
+        "column": 6,
+        "index": 23642
+      },
+      "end": {
+        "line": 752,
+        "column": 7,
+        "index": 23970
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.placeholderName",
+    "defString": "Filter options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 743,
+        "column": 6,
+        "index": 23642
+      },
+      "end": {
+        "line": 752,
+        "column": 7,
+        "index": 23970
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.placeholderName",
+    "defString": "Filter options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 803,
+        "column": 6,
+        "index": 25710
+      },
+      "end": {
+        "line": 803,
+        "column": 78,
+        "index": 25782
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.searchResults",
+    "defString": "({\n  resultsLength\n}: {\n  resultsLength: number;\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 807,
+        "column": 14,
+        "index": 25879
+      },
+      "end": {
+        "line": 815,
+        "column": 15,
+        "index": 26218
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
   },
   {
     "token": "euiSearchBox.placeholder",
@@ -628,168 +790,6 @@
       }
     },
     "filepath": "src/components/search_bar/search_box.tsx"
-  },
-  {
-    "token": "euiSelectable.loadingOptions",
-    "defString": "Loading options",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 634,
-        "column": 16,
-        "index": 20484
-      },
-      "end": {
-        "line": 637,
-        "column": 18,
-        "index": 20610
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.noMatchingOptions",
-    "defString": "{searchValue} doesn't match any options",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 656,
-        "column": 14,
-        "index": 21098
-      },
-      "end": {
-        "line": 660,
-        "column": 16,
-        "index": 21318
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.noAvailableOptions",
-    "defString": "No options available",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 675,
-        "column": 14,
-        "index": 21729
-      },
-      "end": {
-        "line": 678,
-        "column": 16,
-        "index": 21858
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.screenReaderInstructions",
-    "defString": "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 740,
-        "column": 6,
-        "index": 23523
-      },
-      "end": {
-        "line": 749,
-        "column": 7,
-        "index": 23851
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.placeholderName",
-    "defString": "Filter options",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 740,
-        "column": 6,
-        "index": 23523
-      },
-      "end": {
-        "line": 749,
-        "column": 7,
-        "index": 23851
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.placeholderName",
-    "defString": "Filter options",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 800,
-        "column": 6,
-        "index": 25591
-      },
-      "end": {
-        "line": 800,
-        "column": 78,
-        "index": 25663
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSelectable.searchResults",
-    "defString": "({\n  resultsLength\n}: {\n  resultsLength: number;\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;",
-    "highlighting": "code",
-    "loc": {
-      "start": {
-        "line": 804,
-        "column": 14,
-        "index": 25760
-      },
-      "end": {
-        "line": 812,
-        "column": 15,
-        "index": 26099
-      }
-    },
-    "filepath": "src/components/selectable/selectable.tsx"
-  },
-  {
-    "token": "euiSkeletonLoading.loadedAriaText",
-    "defString": "Loaded {contentAriaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 73,
-        "column": 25,
-        "index": 2343
-      },
-      "end": {
-        "line": 77,
-        "column": 3,
-        "index": 2457
-      }
-    },
-    "filepath": "src/components/skeleton/skeleton_loading.tsx"
-  },
-  {
-    "token": "euiSkeletonLoading.loadingAriaText",
-    "defString": "Loading {contentAriaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 79,
-        "column": 27,
-        "index": 2487
-      },
-      "end": {
-        "line": 83,
-        "column": 3,
-        "index": 2603
-      }
-    },
-    "filepath": "src/components/skeleton/skeleton_loading.tsx"
   },
   {
     "token": "euiResizablePanel.toggleButtonAriaLabel",
@@ -851,14 +851,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 157,
         "column": 6,
-        "index": 4411
+        "index": 4518
       },
       "end": {
-        "line": 160,
+        "line": 163,
         "column": 8,
-        "index": 4539
+        "index": 4646
       }
     },
     "filepath": "src/components/progress/progress.tsx"
@@ -869,14 +869,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 762,
+        "line": 766,
         "column": 16,
-        "index": 22865
+        "index": 23040
       },
       "end": {
-        "line": 765,
+        "line": 769,
         "column": 18,
-        "index": 23059
+        "index": 23234
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -995,14 +995,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 158,
+        "line": 161,
         "column": 10,
-        "index": 4477
+        "index": 4591
       },
       "end": {
-        "line": 165,
+        "line": 168,
         "column": 12,
-        "index": 4762
+        "index": 4876
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1013,14 +1013,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 213,
         "column": 12,
-        "index": 5756
+        "index": 5870
       },
       "end": {
-        "line": 215,
+        "line": 218,
         "column": 13,
-        "index": 5980
+        "index": 6094
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1031,14 +1031,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 251,
+        "line": 254,
         "column": 12,
-        "index": 7015
+        "index": 7129
       },
       "end": {
-        "line": 259,
+        "line": 262,
         "column": 13,
-        "index": 7322
+        "index": 7436
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1049,14 +1049,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 295,
+        "line": 298,
         "column": 20,
-        "index": 8225
+        "index": 8339
       },
       "end": {
-        "line": 295,
+        "line": 298,
         "column": 60,
-        "index": 8265
+        "index": 8379
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1067,14 +1067,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 296,
+        "line": 299,
         "column": 20,
-        "index": 8287
+        "index": 8401
       },
       "end": {
-        "line": 296,
+        "line": 299,
         "column": 60,
-        "index": 8327
+        "index": 8441
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1085,14 +1085,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 297,
+        "line": 300,
         "column": 18,
-        "index": 8347
+        "index": 8461
       },
       "end": {
-        "line": 297,
+        "line": 300,
         "column": 54,
-        "index": 8383
+        "index": 8497
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1103,14 +1103,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 298,
+        "line": 301,
         "column": 26,
-        "index": 8411
+        "index": 8525
       },
       "end": {
-        "line": 298,
+        "line": 301,
         "column": 78,
-        "index": 8463
+        "index": 8577
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1121,14 +1121,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 299,
+        "line": 302,
         "column": 23,
-        "index": 8488
+        "index": 8602
       },
       "end": {
-        "line": 299,
+        "line": 302,
         "column": 75,
-        "index": 8540
+        "index": 8654
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -1139,14 +1139,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 133,
+        "line": 136,
         "column": 8,
-        "index": 4057
+        "index": 4150
       },
       "end": {
-        "line": 136,
+        "line": 139,
         "column": 10,
-        "index": 4253
+        "index": 4346
       }
     },
     "filepath": "src/components/modal/modal.tsx"
@@ -1157,53 +1157,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 163,
+        "line": 166,
         "column": 10,
-        "index": 4871
+        "index": 4964
       },
       "end": {
-        "line": 166,
+        "line": 169,
         "column": 11,
-        "index": 4978
+        "index": 5071
       }
     },
     "filepath": "src/components/modal/modal.tsx"
-  },
-  {
-    "token": "euiMark.highlightStart",
-    "defString": "highlight start",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 44,
-        "column": 25,
-        "index": 1289
-      },
-      "end": {
-        "line": 47,
-        "column": 3,
-        "index": 1356
-      }
-    },
-    "filepath": "src/components/mark/mark.tsx"
-  },
-  {
-    "token": "euiMark.highlightEnd",
-    "defString": "highlight end",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 48,
-        "column": 23,
-        "index": 1381
-      },
-      "end": {
-        "line": 48,
-        "column": 74,
-        "index": 1432
-      }
-    },
-    "filepath": "src/components/mark/mark.tsx"
   },
   {
     "token": "euiMarkdownEditorToolbar.editor",
@@ -1476,6 +1440,42 @@
     "filepath": "src/components/markdown_editor/markdown_editor_footer.tsx"
   },
   {
+    "token": "euiMark.highlightStart",
+    "defString": "highlight start",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 25,
+        "index": 1289
+      },
+      "end": {
+        "line": 47,
+        "column": 3,
+        "index": 1356
+      }
+    },
+    "filepath": "src/components/mark/mark.tsx"
+  },
+  {
+    "token": "euiMark.highlightEnd",
+    "defString": "highlight end",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 48,
+        "column": 23,
+        "index": 1381
+      },
+      "end": {
+        "line": 48,
+        "column": 74,
+        "index": 1432
+      }
+    },
+    "filepath": "src/components/mark/mark.tsx"
+  },
+  {
     "token": "euiLoadingStrings.ariaLabel",
     "defString": "Loading",
     "highlighting": "string",
@@ -1643,107 +1643,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 101,
         "column": 8,
-        "index": 2588
+        "index": 2692
       },
       "end": {
-        "line": 101,
+        "line": 104,
         "column": 9,
-        "index": 2709
+        "index": 2813
       }
     },
     "filepath": "src/components/form/form.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.back",
-    "defString": "Back",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 168,
-        "column": 6,
-        "index": 4663
-      },
-      "end": {
-        "line": 168,
-        "column": 59,
-        "index": 4716
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.history",
-    "defString": "History",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 187,
-        "column": 22,
-        "index": 5133
-      },
-      "end": {
-        "line": 187,
-        "column": 68,
-        "index": 5179
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.pagination.previous",
-    "defString": "Previous",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 222,
-        "column": 20,
-        "index": 6191
-      },
-      "end": {
-        "line": 222,
-        "column": 79,
-        "index": 6250
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.pagination.next",
-    "defString": "Next",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 223,
-        "column": 20,
-        "index": 6272
-      },
-      "end": {
-        "line": 223,
-        "column": 71,
-        "index": 6323
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
-  },
-  {
-    "token": "euiFlyoutMenu.pagination.counter",
-    "defString": "{position} of {total}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 224,
-        "column": 23,
-        "index": 6348
-      },
-      "end": {
-        "line": 228,
-        "column": 3,
-        "index": 6474
-      }
-    },
-    "filepath": "src/components/flyout/flyout_menu.tsx"
   },
   {
     "token": "euiFlyout.screenReaderModalDialog",
@@ -1877,14 +1787,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 394,
+        "line": 397,
         "column": 22,
-        "index": 10717
+        "index": 10817
       },
       "end": {
-        "line": 398,
+        "line": 401,
         "column": 5,
-        "index": 10889
+        "index": 10989
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1895,14 +1805,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 399,
+        "line": 402,
         "column": 27,
-        "index": 10918
+        "index": 11018
       },
       "end": {
-        "line": 403,
+        "line": 406,
         "column": 5,
-        "index": 11059
+        "index": 11159
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1913,14 +1823,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 563,
+        "line": 566,
         "column": 18,
-        "index": 17593
+        "index": 17693
       },
       "end": {
-        "line": 566,
+        "line": 569,
         "column": 20,
-        "index": 17746
+        "index": 17846
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1951,12 +1861,12 @@
       "start": {
         "line": 842,
         "column": 8,
-        "index": 24681
+        "index": 24775
       },
       "end": {
         "line": 845,
         "column": 9,
-        "index": 24800
+        "index": 24894
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -2093,14 +2003,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2111,14 +2021,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2129,14 +2039,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2147,14 +2057,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2165,14 +2075,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2183,14 +2093,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2201,14 +2111,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2219,14 +2129,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2237,14 +2147,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 230,
         "column": 6,
-        "index": 6102
+        "index": 6220
       },
       "end": {
-        "line": 250,
+        "line": 253,
         "column": 3,
-        "index": 6785
+        "index": 6903
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -2363,17 +2273,71 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 188,
         "column": 8,
-        "index": 6198
+        "index": 6303
       },
       "end": {
-        "line": 188,
+        "line": 191,
         "column": 9,
-        "index": 6303
+        "index": 6408
       }
     },
     "filepath": "src/components/call_out/call_out.tsx"
+  },
+  {
+    "token": "euiBreadcrumbs.nav.ariaLabel",
+    "defString": "Breadcrumbs",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 45,
+        "column": 20,
+        "index": 1390
+      },
+      "end": {
+        "line": 45,
+        "column": 77,
+        "index": 1447
+      }
+    },
+    "filepath": "src/components/breadcrumbs/breadcrumbs.tsx"
+  },
+  {
+    "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
+    "defString": "See collapsed breadcrumbs",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 56,
+        "column": 20,
+        "index": 1691
+      },
+      "end": {
+        "line": 59,
+        "column": 3,
+        "index": 1784
+      }
+    },
+    "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
+  },
+  {
+    "token": "euiBreadcrumb.popoverAriaLabel",
+    "defString": "Clicking this button will toggle a popover dialog.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 183,
+        "column": 29,
+        "index": 5213
+      },
+      "end": {
+        "line": 189,
+        "column": 5,
+        "index": 5546
+      }
+    },
+    "filepath": "src/components/breadcrumbs/_breadcrumb_content.tsx"
   },
   {
     "token": "euiBottomBar.screenReaderHeading",
@@ -2430,58 +2394,22 @@
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
   },
   {
-    "token": "euiBreadcrumbs.nav.ariaLabel",
-    "defString": "Breadcrumbs",
+    "token": "euiBanner.dismissAriaLabel",
+    "defString": "Dismiss \"{title}\" announcement",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 42,
-        "column": 20,
-        "index": 1274
-      },
-      "end": {
-        "line": 42,
-        "column": 77,
-        "index": 1331
-      }
-    },
-    "filepath": "src/components/breadcrumbs/breadcrumbs.tsx"
-  },
-  {
-    "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
-    "defString": "See collapsed breadcrumbs",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 56,
-        "column": 20,
-        "index": 1691
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 1784
-      }
-    },
-    "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
-  },
-  {
-    "token": "euiBreadcrumb.popoverAriaLabel",
-    "defString": "Clicking this button will toggle a popover dialog.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 183,
+        "line": 116,
         "column": 29,
-        "index": 5213
+        "index": 3507
       },
       "end": {
-        "line": 189,
+        "line": 120,
         "column": 5,
-        "index": 5546
+        "index": 3616
       }
     },
-    "filepath": "src/components/breadcrumbs/_breadcrumb_content.tsx"
+    "filepath": "src/components/banner/banner.tsx"
   },
   {
     "token": "euiCollapsedItemActions.allActionsTooltip",
@@ -2543,14 +2471,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 333,
+        "line": 336,
         "column": 6,
-        "index": 8623
+        "index": 8728
       },
       "end": {
-        "line": 333,
+        "line": 336,
         "column": 79,
-        "index": 8696
+        "index": 8801
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2561,14 +2489,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 683,
+        "line": 686,
         "column": 10,
-        "index": 17693
+        "index": 17798
       },
       "end": {
-        "line": 687,
+        "line": 690,
         "column": 12,
-        "index": 17913
+        "index": 18018
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2579,14 +2507,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 696,
+        "line": 699,
         "column": 10,
-        "index": 18077
+        "index": 18182
       },
       "end": {
-        "line": 700,
+        "line": 703,
         "column": 12,
-        "index": 18260
+        "index": 18365
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2597,14 +2525,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 712,
+        "line": 715,
         "column": 16,
-        "index": 18549
+        "index": 18654
       },
       "end": {
-        "line": 715,
+        "line": 718,
         "column": 18,
-        "index": 18673
+        "index": 18778
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2615,14 +2543,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 720,
+        "line": 723,
         "column": 18,
-        "index": 18788
+        "index": 18893
       },
       "end": {
-        "line": 723,
+        "line": 726,
         "column": 20,
-        "index": 18916
+        "index": 19021
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2633,14 +2561,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 772,
+        "line": 775,
         "column": 6,
-        "index": 20121
+        "index": 20226
       },
       "end": {
-        "line": 775,
+        "line": 778,
         "column": 7,
-        "index": 20272
+        "index": 20377
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2651,14 +2579,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 772,
+        "line": 775,
         "column": 6,
-        "index": 20121
+        "index": 20226
       },
       "end": {
-        "line": 775,
+        "line": 778,
         "column": 7,
-        "index": 20272
+        "index": 20377
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2669,14 +2597,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1220,
+        "line": 1223,
         "column": 8,
-        "index": 33514
+        "index": 33619
       },
       "end": {
-        "line": 1224,
+        "line": 1227,
         "column": 9,
-        "index": 33669
+        "index": 33774
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -2687,35 +2615,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1482,
+        "line": 1485,
         "column": 8,
-        "index": 41138
+        "index": 41243
       },
       "end": {
-        "line": 1486,
+        "line": 1489,
         "column": 9,
-        "index": 41297
+        "index": 41402
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
-  },
-  {
-    "token": "euiBanner.dismissAriaLabel",
-    "defString": "Dismiss \"{title}\" announcement",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 113,
-        "column": 29,
-        "index": 3404
-      },
-      "end": {
-        "line": 117,
-        "column": 5,
-        "index": 3513
-      }
-    },
-    "filepath": "src/components/banner/banner.tsx"
   },
   {
     "token": "euiTablePagination.allRows",
@@ -2808,6 +2718,240 @@
     "filepath": "src/components/table/mobile/table_sort_mobile.tsx"
   },
   {
+    "token": "euiSelectableTemplateSitewide.searchPlaceholder",
+    "defString": "Search for anything...",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 168,
+        "column": 30,
+        "index": 5322
+      },
+      "end": {
+        "line": 171,
+        "column": 3,
+        "index": 5425
+      }
+    },
+    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
+  },
+  {
+    "token": "euiSelectableTemplateSitewide.loadingResults",
+    "defString": "Loading results",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 254,
+        "column": 8,
+        "index": 7479
+      },
+      "end": {
+        "line": 257,
+        "column": 10,
+        "index": 7597
+      }
+    },
+    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
+  },
+  {
+    "token": "euiSelectableTemplateSitewide.noResults",
+    "defString": "No results available",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 265,
+        "column": 8,
+        "index": 7740
+      },
+      "end": {
+        "line": 268,
+        "column": 10,
+        "index": 7858
+      }
+    },
+    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
+  },
+  {
+    "token": "euiSelectableTemplateSitewide.onFocusBadgeGoTo",
+    "defString": "Go to",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 322,
+        "column": 12,
+        "index": 9489
+      },
+      "end": {
+        "line": 325,
+        "column": 14,
+        "index": 9611
+      }
+    },
+    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.checkedOption",
+    "defString": "Checked option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 144,
+        "column": 10,
+        "index": 4570
+      },
+      "end": {
+        "line": 147,
+        "column": 12,
+        "index": 4685
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.checkOptionInstructions",
+    "defString": "To check this option, press Enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 150,
+        "column": 10,
+        "index": 4731
+      },
+      "end": {
+        "line": 153,
+        "column": 12,
+        "index": 4875
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.uncheckOptionInstructions",
+    "defString": "To uncheck this option, press Enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 158,
+        "column": 10,
+        "index": 4949
+      },
+      "end": {
+        "line": 161,
+        "column": 12,
+        "index": 5097
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.excludedOption",
+    "defString": "Excluded option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 166,
+        "column": 10,
+        "index": 5163
+      },
+      "end": {
+        "line": 169,
+        "column": 12,
+        "index": 5280
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.excludeOptionInstructions",
+    "defString": "To exclude this option, press Enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 172,
+        "column": 10,
+        "index": 5326
+      },
+      "end": {
+        "line": 175,
+        "column": 12,
+        "index": 5474
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.mixedOption",
+    "defString": "Mixed (indeterminate) option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 180,
+        "column": 10,
+        "index": 5537
+      },
+      "end": {
+        "line": 183,
+        "column": 12,
+        "index": 5664
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.mixedOptionInstructions",
+    "defString": "To check this option for all, press Enter once.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 186,
+        "column": 10,
+        "index": 5710
+      },
+      "end": {
+        "line": 189,
+        "column": 12,
+        "index": 5867
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.mixedOptionUncheckInstructions",
+    "defString": "To uncheck this option for all, press Enter twice.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 192,
+        "column": 10,
+        "index": 5920
+      },
+      "end": {
+        "line": 195,
+        "column": 12,
+        "index": 6087
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.mixedOptionExcludeInstructions",
+    "defString": "To exclude this option for all, press Enter twice.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 198,
+        "column": 10,
+        "index": 6140
+      },
+      "end": {
+        "line": 201,
+        "column": 12,
+        "index": 6307
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
     "token": "euiFieldValueSelectionFilter.buttonLabelHint",
     "defString": "Selection",
     "highlighting": "string",
@@ -2824,240 +2968,6 @@
       }
     },
     "filepath": "src/components/search_bar/filters/field_value_selection_filter.tsx"
-  },
-  {
-    "token": "euiSelectableTemplateSitewide.searchPlaceholder",
-    "defString": "Search for anything...",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 165,
-        "column": 30,
-        "index": 5188
-      },
-      "end": {
-        "line": 168,
-        "column": 3,
-        "index": 5291
-      }
-    },
-    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
-  },
-  {
-    "token": "euiSelectableTemplateSitewide.loadingResults",
-    "defString": "Loading results",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 251,
-        "column": 8,
-        "index": 7345
-      },
-      "end": {
-        "line": 254,
-        "column": 10,
-        "index": 7463
-      }
-    },
-    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
-  },
-  {
-    "token": "euiSelectableTemplateSitewide.noResults",
-    "defString": "No results available",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 262,
-        "column": 8,
-        "index": 7606
-      },
-      "end": {
-        "line": 265,
-        "column": 10,
-        "index": 7724
-      }
-    },
-    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
-  },
-  {
-    "token": "euiSelectableTemplateSitewide.onFocusBadgeGoTo",
-    "defString": "Go to",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 319,
-        "column": 12,
-        "index": 9355
-      },
-      "end": {
-        "line": 322,
-        "column": 14,
-        "index": 9477
-      }
-    },
-    "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.checkedOption",
-    "defString": "Checked option.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 144,
-        "column": 10,
-        "index": 4533
-      },
-      "end": {
-        "line": 147,
-        "column": 12,
-        "index": 4648
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.checkOptionInstructions",
-    "defString": "To check this option, press Enter.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 150,
-        "column": 10,
-        "index": 4694
-      },
-      "end": {
-        "line": 153,
-        "column": 12,
-        "index": 4838
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.uncheckOptionInstructions",
-    "defString": "To uncheck this option, press Enter.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 158,
-        "column": 10,
-        "index": 4912
-      },
-      "end": {
-        "line": 161,
-        "column": 12,
-        "index": 5060
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.excludedOption",
-    "defString": "Excluded option.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 166,
-        "column": 10,
-        "index": 5126
-      },
-      "end": {
-        "line": 169,
-        "column": 12,
-        "index": 5243
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.excludeOptionInstructions",
-    "defString": "To exclude this option, press Enter.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 172,
-        "column": 10,
-        "index": 5289
-      },
-      "end": {
-        "line": 175,
-        "column": 12,
-        "index": 5437
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.mixedOption",
-    "defString": "Mixed (indeterminate) option.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 180,
-        "column": 10,
-        "index": 5500
-      },
-      "end": {
-        "line": 183,
-        "column": 12,
-        "index": 5627
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.mixedOptionInstructions",
-    "defString": "To check this option for all, press Enter once.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 186,
-        "column": 10,
-        "index": 5673
-      },
-      "end": {
-        "line": 189,
-        "column": 12,
-        "index": 5830
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.mixedOptionUncheckInstructions",
-    "defString": "To uncheck this option for all, press Enter twice.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 192,
-        "column": 10,
-        "index": 5883
-      },
-      "end": {
-        "line": 195,
-        "column": 12,
-        "index": 6050
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
-  },
-  {
-    "token": "euiSelectableListItem.mixedOptionExcludeInstructions",
-    "defString": "To exclude this option for all, press Enter twice.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 198,
-        "column": 10,
-        "index": 6103
-      },
-      "end": {
-        "line": 201,
-        "column": 12,
-        "index": 6270
-      }
-    },
-    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
     "token": "euiPinnableListGroup.pinExtraActionLabel",
@@ -3139,12 +3049,12 @@
       "start": {
         "line": 356,
         "column": 18,
-        "index": 10177
+        "index": 10184
       },
       "end": {
         "line": 360,
         "column": 20,
-        "index": 10441
+        "index": 10448
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -3157,12 +3067,12 @@
       "start": {
         "line": 363,
         "column": 14,
-        "index": 10514
+        "index": 10521
       },
       "end": {
         "line": 366,
         "column": 15,
-        "index": 10628
+        "index": 10635
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -3240,37 +3150,37 @@
     "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
   },
   {
-    "token": "euiFilePicker.promptText",
-    "defString": "Select or drag and drop a file",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 87,
-        "column": 6,
-        "index": 2900
-      },
-      "end": {
-        "line": 90,
-        "column": 8,
-        "index": 3007
-      }
-    },
-    "filepath": "src/components/form/file_picker/file_picker.tsx"
-  },
-  {
     "token": "euiFilePicker.filesSelected",
     "defString": "{fileCount} files selected",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 108,
-        "column": 8,
-        "index": 3364
+        "line": 97,
+        "column": 6,
+        "index": 3015
       },
       "end": {
-        "line": 112,
+        "line": 101,
+        "column": 8,
+        "index": 3166
+      }
+    },
+    "filepath": "src/components/form/file_picker/file_picker.tsx"
+  },
+  {
+    "token": "euiFilePicker.promptText",
+    "defString": "Select or drag and drop a file",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 117,
+        "column": 8,
+        "index": 3542
+      },
+      "end": {
+        "line": 120,
         "column": 10,
-        "index": 3523
+        "index": 3655
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -3281,14 +3191,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 189,
-        "column": 6,
-        "index": 5225
+        "line": 134,
+        "column": 36,
+        "index": 3963
       },
       "end": {
-        "line": 192,
-        "column": 7,
-        "index": 5335
+        "line": 137,
+        "column": 5,
+        "index": 4057
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -3299,14 +3209,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 307,
-        "column": 18,
-        "index": 9342
+        "line": 296,
+        "column": 12,
+        "index": 8843
       },
       "end": {
-        "line": 310,
-        "column": 20,
-        "index": 9465
+        "line": 296,
+        "column": 77,
+        "index": 8908
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -3335,14 +3245,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 110,
         "column": 49,
-        "index": 3019
+        "index": 3134
       },
       "end": {
-        "line": 113,
+        "line": 116,
         "column": 3,
-        "index": 3240
+        "index": 3355
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
@@ -3353,17 +3263,179 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 110,
         "column": 49,
-        "index": 3019
+        "index": 3134
       },
       "end": {
-        "line": 113,
+        "line": 116,
         "column": 3,
-        "index": 3240
+        "index": 3355
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.back",
+    "defString": "Back",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 78,
+        "column": 26,
+        "index": 3117
+      },
+      "end": {
+        "line": 78,
+        "column": 66,
+        "index": 3157
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.back.tooltip",
+    "defString": "Back to {previousPage}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 82,
+        "column": 27,
+        "index": 3352
+      },
+      "end": {
+        "line": 86,
+        "column": 3,
+        "index": 3471
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.history",
+    "defString": "History",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 87,
+        "column": 23,
+        "index": 3496
+      },
+      "end": {
+        "line": 87,
+        "column": 69,
+        "index": 3542
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.history.tooltip",
+    "defString": "Recently visited",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 88,
+        "column": 31,
+        "index": 3575
+      },
+      "end": {
+        "line": 91,
+        "column": 3,
+        "index": 3650
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.first",
+    "defString": "First",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 93,
+        "column": 11,
+        "index": 3692
+      },
+      "end": {
+        "line": 93,
+        "column": 64,
+        "index": 3745
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.previous",
+    "defString": "Previous",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 94,
+        "column": 14,
+        "index": 3761
+      },
+      "end": {
+        "line": 94,
+        "column": 73,
+        "index": 3820
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.next",
+    "defString": "Next",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 95,
+        "column": 10,
+        "index": 3832
+      },
+      "end": {
+        "line": 95,
+        "column": 61,
+        "index": 3883
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.last",
+    "defString": "Last",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 96,
+        "column": 10,
+        "index": 3895
+      },
+      "end": {
+        "line": 96,
+        "column": 61,
+        "index": 3946
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
+  },
+  {
+    "token": "euiFlyoutMenu.pagination.counter",
+    "defString": "{position} of {total}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 97,
+        "column": 13,
+        "index": 3961
+      },
+      "end": {
+        "line": 104,
+        "column": 5,
+        "index": 4161
+      }
+    },
+    "filepath": "src/components/flyout/flyout_menu/flyout_menu.tsx"
   },
   {
     "token": "euiFlyoutManaged.defaultTitle",
@@ -3382,114 +3454,6 @@
       }
     },
     "filepath": "src/components/flyout/manager/flyout_managed.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.fullDescriptionOff",
-    "defString": "Refresh is off, interval set to {optionValue} {optionText}.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 207,
-        "column": 6,
-        "index": 5780
-      },
-      "end": {
-        "line": 214,
-        "column": 8,
-        "index": 6010
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.fullDescriptionOn",
-    "defString": "Refresh is on, interval set to {optionValue} {optionText}.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 216,
-        "column": 6,
-        "index": 6027
-      },
-      "end": {
-        "line": 223,
-        "column": 8,
-        "index": 6255
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.toggleLabel",
-    "defString": "Refresh every",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 4,
-        "index": 6459
-      },
-      "end": {
-        "line": 249,
-        "column": 5,
-        "index": 6822
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.toggleAriaLabel",
-    "defString": "Toggle refresh",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 4,
-        "index": 6459
-      },
-      "end": {
-        "line": 249,
-        "column": 5,
-        "index": 6822
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.valueAriaLabel",
-    "defString": "Refresh interval value",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 4,
-        "index": 6459
-      },
-      "end": {
-        "line": 249,
-        "column": 5,
-        "index": 6822
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.unitsAriaLabel",
-    "defString": "Refresh interval units",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 4,
-        "index": 6459
-      },
-      "end": {
-        "line": 249,
-        "column": 5,
-        "index": 6822
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
   },
   {
     "token": "euiTimeWindowButtons.previousDescription",
@@ -3670,6 +3634,96 @@
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/time_window_buttons.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.updatingButtonLabel",
+    "defString": "Updating",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 204,
+        "column": 8,
+        "index": 5158
+      },
+      "end": {
+        "line": 207,
+        "column": 10,
+        "index": 5265
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.updateButtonLabel",
+    "defString": "Update",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 213,
+        "column": 8,
+        "index": 5328
+      },
+      "end": {
+        "line": 216,
+        "column": 10,
+        "index": 5431
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.refreshButtonLabel",
+    "defString": "Refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 221,
+        "column": 6,
+        "index": 5467
+      },
+      "end": {
+        "line": 224,
+        "column": 8,
+        "index": 5566
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.cannotUpdateTooltip",
+    "defString": "Cannot update",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 231,
+        "column": 8,
+        "index": 5681
+      },
+      "end": {
+        "line": 234,
+        "column": 10,
+        "index": 5793
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.clickToApplyTooltip",
+    "defString": "Click to apply",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 240,
+        "column": 8,
+        "index": 5892
+      },
+      "end": {
+        "line": 243,
+        "column": 10,
+        "index": 6005
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
   },
   {
     "token": "euiTimeOptions.last",
@@ -4356,150 +4410,6 @@
     "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
   },
   {
-    "token": "euiSuperUpdateButton.updatingButtonLabel",
-    "defString": "Updating",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 204,
-        "column": 8,
-        "index": 5158
-      },
-      "end": {
-        "line": 207,
-        "column": 10,
-        "index": 5265
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
-    "token": "euiSuperUpdateButton.updateButtonLabel",
-    "defString": "Update",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 213,
-        "column": 8,
-        "index": 5328
-      },
-      "end": {
-        "line": 216,
-        "column": 10,
-        "index": 5431
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
-    "token": "euiSuperUpdateButton.refreshButtonLabel",
-    "defString": "Refresh",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 221,
-        "column": 6,
-        "index": 5467
-      },
-      "end": {
-        "line": 224,
-        "column": 8,
-        "index": 5566
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
-    "token": "euiSuperUpdateButton.cannotUpdateTooltip",
-    "defString": "Cannot update",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 231,
-        "column": 8,
-        "index": 5681
-      },
-      "end": {
-        "line": 234,
-        "column": 10,
-        "index": 5793
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
-    "token": "euiSuperUpdateButton.clickToApplyTooltip",
-    "defString": "Click to apply",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 240,
-        "column": 8,
-        "index": 5892
-      },
-      "end": {
-        "line": 243,
-        "column": 10,
-        "index": 6005
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
-    "token": "euiAutoRefresh.autoRefreshLabel",
-    "defString": "Auto refresh",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 51,
-        "column": 26,
-        "index": 1720
-      },
-      "end": {
-        "line": 54,
-        "column": 3,
-        "index": 1793
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
-  },
-  {
-    "token": "euiAutoRefresh.buttonLabelOff",
-    "defString": "Auto refresh is off",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 126,
-        "column": 29,
-        "index": 3683
-      },
-      "end": {
-        "line": 129,
-        "column": 3,
-        "index": 3761
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
-  },
-  {
-    "token": "euiAutoRefresh.buttonLabelOn",
-    "defString": "Auto refresh is on and set to {prettyInterval}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 130,
-        "column": 28,
-        "index": 3791
-      },
-      "end": {
-        "line": 138,
-        "column": 3,
-        "index": 4025
-      }
-    },
-    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
-  },
-  {
     "token": "euiPrettyInterval.seconds",
     "defString": "({\n  interval\n}) => `${interval} second${interval > 1 ? 's' : ''}`;",
     "highlighting": "code",
@@ -5094,6 +5004,168 @@
     "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
   },
   {
+    "token": "euiAutoRefresh.autoRefreshLabel",
+    "defString": "Auto refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 54,
+        "column": 26,
+        "index": 1846
+      },
+      "end": {
+        "line": 57,
+        "column": 3,
+        "index": 1919
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiAutoRefresh.buttonLabelOff",
+    "defString": "Auto refresh is off",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 129,
+        "column": 29,
+        "index": 3809
+      },
+      "end": {
+        "line": 132,
+        "column": 3,
+        "index": 3887
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiAutoRefresh.buttonLabelOn",
+    "defString": "Auto refresh is on and set to {prettyInterval}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 133,
+        "column": 28,
+        "index": 3917
+      },
+      "end": {
+        "line": 141,
+        "column": 3,
+        "index": 4151
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.fullDescriptionOff",
+    "defString": "Refresh is off, interval set to {optionValue} {optionText}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 207,
+        "column": 6,
+        "index": 5780
+      },
+      "end": {
+        "line": 214,
+        "column": 8,
+        "index": 6010
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.fullDescriptionOn",
+    "defString": "Refresh is on, interval set to {optionValue} {optionText}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 216,
+        "column": 6,
+        "index": 6027
+      },
+      "end": {
+        "line": 223,
+        "column": 8,
+        "index": 6255
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.toggleLabel",
+    "defString": "Refresh every",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 4,
+        "index": 6459
+      },
+      "end": {
+        "line": 249,
+        "column": 5,
+        "index": 6822
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.toggleAriaLabel",
+    "defString": "Toggle refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 4,
+        "index": 6459
+      },
+      "end": {
+        "line": 249,
+        "column": 5,
+        "index": 6822
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.valueAriaLabel",
+    "defString": "Refresh interval value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 4,
+        "index": 6459
+      },
+      "end": {
+        "line": 249,
+        "column": 5,
+        "index": 6822
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.unitsAriaLabel",
+    "defString": "Refresh interval units",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 236,
+        "column": 4,
+        "index": 6459
+      },
+      "end": {
+        "line": 249,
+        "column": 5,
+        "index": 6822
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
     "token": "euiDataGridSchema.booleanSortTextAsc",
     "defString": "False-True",
     "highlighting": "string",
@@ -5272,42 +5344,6 @@
       }
     },
     "filepath": "src/components/datagrid/utils/data_grid_schema.tsx"
-  },
-  {
-    "token": "euiDataGridPagination.detailedPaginationLabel",
-    "defString": "Pagination for preceding grid: {label}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 51,
-        "column": 34,
-        "index": 1785
-      },
-      "end": {
-        "line": 55,
-        "column": 3,
-        "index": 1930
-      }
-    },
-    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
-  },
-  {
-    "token": "euiDataGridPagination.paginationLabel",
-    "defString": "Pagination for preceding grid",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 56,
-        "column": 26,
-        "index": 1958
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 2054
-      }
-    },
-    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
   },
   {
     "token": "euiKeyboardShortcuts.title",
@@ -5796,6 +5832,42 @@
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
   },
   {
+    "token": "euiDataGridPagination.detailedPaginationLabel",
+    "defString": "Pagination for preceding grid: {label}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 51,
+        "column": 34,
+        "index": 1785
+      },
+      "end": {
+        "line": 55,
+        "column": 3,
+        "index": 1930
+      }
+    },
+    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
+  },
+  {
+    "token": "euiDataGridPagination.paginationLabel",
+    "defString": "Pagination for preceding grid",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 56,
+        "column": 26,
+        "index": 1958
+      },
+      "end": {
+        "line": 59,
+        "column": 3,
+        "index": 2054
+      }
+    },
+    "filepath": "src/components/datagrid/pagination/data_grid_pagination.tsx"
+  },
+  {
     "token": "euiDisplaySelector.densityLabel",
     "defString": "Density",
     "highlighting": "string",
@@ -6138,6 +6210,96 @@
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
+    "token": "euiColumnSorting.button",
+    "defString": "Sort fields",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 66,
+        "column": 30,
+        "index": 2120
+      },
+      "end": {
+        "line": 69,
+        "column": 5,
+        "index": 2190
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.sortFieldAriaLabel",
+    "defString": "Sort by: ",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 70,
+        "column": 31,
+        "index": 2223
+      },
+      "end": {
+        "line": 73,
+        "column": 5,
+        "index": 2303
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.emptySorting",
+    "defString": "Currently no fields are sorted",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 220,
+        "column": 14,
+        "index": 6937
+      },
+      "end": {
+        "line": 223,
+        "column": 16,
+        "index": 7073
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.pickFields",
+    "defString": "Pick fields to sort by",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 253,
+        "column": 24,
+        "index": 8304
+      },
+      "end": {
+        "line": 256,
+        "column": 26,
+        "index": 8460
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.clearAll",
+    "defString": "Clear sorting",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 328,
+        "column": 20,
+        "index": 11814
+      },
+      "end": {
+        "line": 331,
+        "column": 22,
+        "index": 11947
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
     "token": "euiColumnSelector.dragHandleAriaLabel",
     "defString": "drag handle",
     "highlighting": "string",
@@ -6244,114 +6406,6 @@
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
-  },
-  {
-    "token": "euiColumnSorting.button",
-    "defString": "Sort fields",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 66,
-        "column": 30,
-        "index": 2120
-      },
-      "end": {
-        "line": 69,
-        "column": 5,
-        "index": 2190
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.sortFieldAriaLabel",
-    "defString": "Sort by: ",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 70,
-        "column": 31,
-        "index": 2223
-      },
-      "end": {
-        "line": 73,
-        "column": 5,
-        "index": 2303
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.emptySorting",
-    "defString": "Currently no fields are sorted",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 220,
-        "column": 14,
-        "index": 6937
-      },
-      "end": {
-        "line": 223,
-        "column": 16,
-        "index": 7073
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.pickFields",
-    "defString": "Pick fields to sort by",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 253,
-        "column": 24,
-        "index": 8304
-      },
-      "end": {
-        "line": 256,
-        "column": 26,
-        "index": 8460
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.clearAll",
-    "defString": "Clear sorting",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 328,
-        "column": 20,
-        "index": 11814
-      },
-      "end": {
-        "line": 331,
-        "column": 22,
-        "index": 11947
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiComboBoxPill.removeSelection",
-    "defString": "Remove {children} from selection in this group",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 67,
-        "column": 6,
-        "index": 2037
-      },
-      "end": {
-        "line": 71,
-        "column": 7,
-        "index": 2196
-      }
-    },
-    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiComboBoxOptionsList.loadingOptions",
@@ -6478,6 +6532,24 @@
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
+  },
+  {
+    "token": "euiComboBoxPill.removeSelection",
+    "defString": "Remove {children} from selection in this group",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 67,
+        "column": 6,
+        "index": 2037
+      },
+      "end": {
+        "line": 71,
+        "column": 7,
+        "index": 2196
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
   },
   {
     "token": "euiCardSelect.selected",
@@ -7056,6 +7128,114 @@
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
   },
   {
+    "token": "euiDataGridCell.focusTrapExitPrompt",
+    "defString": "Exited cell content.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 193,
+        "column": 10,
+        "index": 6845
+      },
+      "end": {
+        "line": 197,
+        "column": 12,
+        "index": 7016
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+  },
+  {
+    "token": "euiDataGridCell.focusTrapEnterPrompt",
+    "defString": "Press the Enter key to interact with this cell's contents.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 200,
+        "column": 10,
+        "index": 7067
+      },
+      "end": {
+        "line": 204,
+        "column": 12,
+        "index": 7277
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+  },
+  {
+    "token": "euiDataGridCell.focusTrapEnteredExitPrompt",
+    "defString": "Press the Escape key to exit the cell.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 209,
+        "column": 10,
+        "index": 7383
+      },
+      "end": {
+        "line": 213,
+        "column": 12,
+        "index": 7579
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+  },
+  {
+    "token": "euiDataGridCellActions.expandButtonTitle",
+    "defString": "Click or hit enter to interact with cell content",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 50,
+        "column": 6,
+        "index": 1716
+      },
+      "end": {
+        "line": 54,
+        "column": 7,
+        "index": 1879
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/data_grid_cell_actions.tsx"
+  },
+  {
+    "token": "euiDataGridCell.position",
+    "defString": "{columnName}, column {columnIndex}, row {rowIndex}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 748,
+        "column": 23,
+        "index": 23788
+      },
+      "end": {
+        "line": 752,
+        "column": 3,
+        "index": 23935
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
+  },
+  {
+    "token": "euiDataGridCell.expansionEnterPrompt",
+    "defString": "Press the Enter key to expand this cell.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 753,
+        "column": 25,
+        "index": 23962
+      },
+      "end": {
+        "line": 756,
+        "column": 3,
+        "index": 24068
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
+  },
+  {
     "token": "euiDataGridHeaderCell.sortedByAscendingSingle",
     "defString": "Sorted ascending",
     "highlighting": "string",
@@ -7205,14 +7385,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 284,
+        "line": 286,
         "column": 6,
-        "index": 8131
+        "index": 8277
       },
       "end": {
-        "line": 287,
+        "line": 289,
         "column": 8,
-        "index": 8324
+        "index": 8470
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -7223,14 +7403,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 395,
+        "line": 397,
         "column": 6,
-        "index": 10912
+        "index": 11058
       },
       "end": {
-        "line": 395,
+        "line": 397,
         "column": 75,
-        "index": 10981
+        "index": 11127
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -7241,14 +7421,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 460,
+        "line": 462,
         "column": 13,
-        "index": 12685
+        "index": 12831
       },
       "end": {
-        "line": 460,
+        "line": 462,
         "column": 78,
-        "index": 12750
+        "index": 12896
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -7259,14 +7439,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 482,
+        "line": 484,
         "column": 8,
-        "index": 13338
+        "index": 13484
       },
       "end": {
-        "line": 482,
+        "line": 484,
         "column": 75,
-        "index": 13405
+        "index": 13551
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -7277,50 +7457,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 566,
+        "line": 568,
         "column": 8,
-        "index": 15564
+        "index": 15710
       },
       "end": {
-        "line": 570,
-        "column": 10,
-        "index": 15708
-      }
-    },
-    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
-  },
-  {
-    "token": "euiColumnActions.sort",
-    "defString": "Sort {schemaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
         "line": 572,
-        "column": 8,
-        "index": 15729
-      },
-      "end": {
-        "line": 576,
         "column": 10,
-        "index": 15869
-      }
-    },
-    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
-  },
-  {
-    "token": "euiColumnActions.unsort",
-    "defString": "Unsort {schemaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 602,
-        "column": 8,
-        "index": 16517
-      },
-      "end": {
-        "line": 606,
-        "column": 10,
-        "index": 16661
+        "index": 15854
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -7331,124 +7475,52 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 608,
+        "line": 574,
         "column": 8,
-        "index": 16682
+        "index": 15875
       },
       "end": {
-        "line": 612,
+        "line": 578,
         "column": 10,
-        "index": 16822
+        "index": 16015
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
   },
   {
-    "token": "euiDataGridCell.focusTrapExitPrompt",
-    "defString": "Exited cell content.",
+    "token": "euiColumnActions.unsort",
+    "defString": "Unsort {schemaLabel}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 193,
+        "line": 604,
+        "column": 8,
+        "index": 16663
+      },
+      "end": {
+        "line": 608,
         "column": 10,
-        "index": 6845
-      },
-      "end": {
-        "line": 197,
-        "column": 12,
-        "index": 7016
+        "index": 16807
       }
     },
-    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
   },
   {
-    "token": "euiDataGridCell.focusTrapEnterPrompt",
-    "defString": "Press the Enter key to interact with this cell's contents.",
+    "token": "euiColumnActions.sort",
+    "defString": "Sort {schemaLabel}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 200,
+        "line": 610,
+        "column": 8,
+        "index": 16828
+      },
+      "end": {
+        "line": 614,
         "column": 10,
-        "index": 7067
-      },
-      "end": {
-        "line": 204,
-        "column": 12,
-        "index": 7277
+        "index": 16968
       }
     },
-    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
-  },
-  {
-    "token": "euiDataGridCell.focusTrapEnteredExitPrompt",
-    "defString": "Press the Escape key to exit the cell.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 209,
-        "column": 10,
-        "index": 7383
-      },
-      "end": {
-        "line": 213,
-        "column": 12,
-        "index": 7579
-      }
-    },
-    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
-  },
-  {
-    "token": "euiDataGridCellActions.expandButtonTitle",
-    "defString": "Click or hit enter to interact with cell content",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 50,
-        "column": 6,
-        "index": 1716
-      },
-      "end": {
-        "line": 54,
-        "column": 7,
-        "index": 1879
-      }
-    },
-    "filepath": "src/components/datagrid/body/cell/data_grid_cell_actions.tsx"
-  },
-  {
-    "token": "euiDataGridCell.position",
-    "defString": "{columnName}, column {columnIndex}, row {rowIndex}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 748,
-        "column": 23,
-        "index": 23788
-      },
-      "end": {
-        "line": 752,
-        "column": 3,
-        "index": 23935
-      }
-    },
-    "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
-  },
-  {
-    "token": "euiDataGridCell.expansionEnterPrompt",
-    "defString": "Press the Enter key to expand this cell.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 753,
-        "column": 25,
-        "index": 23962
-      },
-      "end": {
-        "line": 756,
-        "column": 3,
-        "index": 24068
-      }
-    },
-    "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
   }
 ]

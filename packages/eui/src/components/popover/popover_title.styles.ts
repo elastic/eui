@@ -24,6 +24,10 @@ export const euiPopoverTitleStyles = (euiThemeContext: UseEuiTheme) => {
     euiPopoverTitle: css`
       ${euiTitle(euiThemeContext, 'xxs')}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      /* Match the panel radius so title backgrounds don't square off the corners.
+         Avoid overflow: hidden on the panel — it clips the filter shadow and arrow. */
+      ${logicalCSS('border-top-left-radius', euiTheme.border.radius.medium)}
+      ${logicalCSS('border-top-right-radius', euiTheme.border.radius.medium)}
     `,
     // If the popover's containing panel has padding applied,
     // ensure the title expands to cover that padding via negative margins

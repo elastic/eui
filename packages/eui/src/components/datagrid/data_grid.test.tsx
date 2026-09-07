@@ -202,9 +202,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter.find(
-    'button[className*="euiButtonGroupButton-isSelected"]'
-  );
+  const activeSort = columnSorter
+    .find('button')
+    .filterWhere((btn) => btn.prop('aria-pressed') === true);
 
   const sortDirection = (
     activeSort.props() as {

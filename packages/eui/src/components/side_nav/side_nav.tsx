@@ -73,6 +73,9 @@ export type EuiSideNavProps<T = {}> = T &
     truncate?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/side-nav/|EuiSideNav documentation}
+ */
 export const EuiSideNav = <T = {},>({
   className,
   items = [],

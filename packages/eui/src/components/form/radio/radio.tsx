@@ -47,6 +47,9 @@ export type EuiRadioProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'id'> &
   ExclusiveUnion<ExclusiveUnion<RadioProps, idWithLabel>, withId>;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/selection/radio-and-radio-group/|EuiRadio documentation}
+ */
 export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   className,
   id,

@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { act, fireEvent } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
@@ -179,13 +180,15 @@ describe('EuiSelectableTemplateSitewide', () => {
         );
         // fireEvent doesn't seem to work: https://github.com/testing-library/user-event/issues/179#issuecomment-1125146667
         getByTestSubject('mobilePopoverButton').focus();
-        await waitFor(() => userEvent.keyboard('{enter}'));
-        waitForEuiPopoverOpen();
+        await act(async () => {
+          await userEvent.keyboard('{enter}');
+        });
+        await waitForEuiPopoverOpen();
 
         expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
       });
 
-      test('toggles the selectable popover even when a wrapper exists around the button', () => {
+      test('toggles the selectable popover even when a wrapper exists around the button', async () => {
         const { getByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
@@ -193,7 +196,7 @@ describe('EuiSelectableTemplateSitewide', () => {
           />
         );
         fireEvent.click(getByTestSubject('mobilePopoverButton'));
-        waitForEuiPopoverOpen();
+        await waitForEuiPopoverOpen();
 
         expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
       });

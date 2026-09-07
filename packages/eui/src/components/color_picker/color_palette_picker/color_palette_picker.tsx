@@ -119,6 +119,9 @@ export type EuiColorPalettePickerProps<T extends string> = CommonProps &
     palettes: EuiColorPalettePickerPaletteProps[];
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/other/palette-picker/|EuiColorPalettePicker documentation}
+ */
 export const EuiColorPalettePicker: FunctionComponent<
   EuiColorPalettePickerProps<string>
 > = ({

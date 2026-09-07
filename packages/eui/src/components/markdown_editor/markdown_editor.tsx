@@ -198,6 +198,9 @@ function padWithNewlinesIfNeeded(textarea: HTMLTextAreaElement, text: string) {
   return text;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/editors-and-syntax/markdown/editor/|EuiMarkdownEditor documentation}
+ */
 export const EuiMarkdownEditor = forwardRef<
   EuiMarkdownEditorRef,
   EuiMarkdownEditorProps

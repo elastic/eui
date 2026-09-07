@@ -8,7 +8,7 @@
 import React from 'react';
 import moment from 'moment';
 import { act, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { render, renderHook, renderHookAct } from '../../../test/rtl';
 

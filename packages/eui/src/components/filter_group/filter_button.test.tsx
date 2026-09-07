@@ -14,7 +14,7 @@ import { shouldRenderCustomStyles } from '../..//test/internal';
 import { EuiFilterButton } from './filter_button';
 
 describe('EuiFilterButton', () => {
-  shouldRenderCustomStyles(<EuiFilterButton />, {
+  shouldRenderCustomStyles(<EuiFilterButton>Filter</EuiFilterButton>, {
     childProps: ['textProps', 'contentProps'],
   });
 
@@ -140,7 +140,9 @@ describe('EuiFilterButton', () => {
 
     it('allows customizing the inner filter button text via textProps', () => {
       const { getByTestSubject } = render(
-        <EuiFilterButton textProps={{ 'data-test-subj': 'test' }} />
+        <EuiFilterButton textProps={{ 'data-test-subj': 'test' }}>
+          Filter
+        </EuiFilterButton>
       );
 
       expect(getByTestSubject('test')).toBeInTheDocument();

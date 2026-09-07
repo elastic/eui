@@ -302,5 +302,8 @@ export class EuiFieldSearchClass extends Component<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/search-and-filter/search/|EuiFieldSearch documentation}
+ */
 export const EuiFieldSearch =
   withEuiStylesMemoizer<EuiFieldSearchProps>(EuiFieldSearchClass);

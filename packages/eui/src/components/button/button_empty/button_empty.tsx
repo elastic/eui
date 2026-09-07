@@ -34,7 +34,7 @@ import {
   EuiButtonDisplayContentProps,
   EuiButtonDisplayContentType,
 } from '../button_display/_button_display_content';
-import { isButtonDisabled } from '../button_display/_button_display';
+import { useEuiButtonCommonProps } from '../use_button_common_props';
 import { euiButtonEmptyStyles } from './button_empty.styles';
 
 export const SIZES = ['xs', 's', 'm'] as const;
@@ -104,12 +104,12 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   iconType,
   iconSide = 'left',
   iconSize = 'm',
-  color = 'primary',
-  size = 'm',
+  color: _color = 'primary',
+  size: _size = 'm',
   flush,
   isDisabled: _isDisabled,
   disabled,
-  hasAriaDisabled = false,
+  hasAriaDisabled: _hasAriaDisabled,
   isLoading,
   href,
   target,
@@ -121,14 +121,22 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
-  const isDisabled = isButtonDisabled({
-    isDisabled: _isDisabled || disabled,
+  const { size, color, isDisabled, hasAriaDisabled } = useEuiButtonCommonProps<
+    EuiButtonEmptySizes,
+    _EuiExtendedButtonColor
+  >({
+    size: _size,
+    color: _color,
+    isDisabled: _isDisabled,
+    hasAriaDisabled: _hasAriaDisabled,
     href,
+    disabled,
     isLoading,
   });
+
   const { ref: disabledRef, ...disabledButtonProps } =
     useEuiDisabledElement<HTMLButtonElement>({
-      isDisabled: isDisabled,
+      isDisabled,
       hasAriaDisabled,
       onKeyDown: rest.onKeyDown,
     });

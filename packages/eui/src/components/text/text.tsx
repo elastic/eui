@@ -29,6 +29,9 @@ export type EuiTextProps = SharedTextProps &
     grow?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/text/|EuiText documentation}
+ */
 export const EuiText: FunctionComponent<EuiTextProps> = ({
   component = 'div',
   size = 'm',

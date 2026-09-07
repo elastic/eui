@@ -11,7 +11,6 @@ import { css } from '@emotion/react';
 import { logicalCSS, euiBreakpoint } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-import { euiTitle } from '../../title/title.styles';
 import { euiHeaderVariables } from '../header.styles';
 
 export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
@@ -32,14 +31,6 @@ export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiBreakpoint(euiThemeContext, ['xs'])} {
         ${logicalCSS('padding-left', euiTheme.size.xs)}
-      }
-    `,
-    euiHeaderLogo__text: css`
-      ${euiTitle(euiThemeContext, 'xxs')}
-      ${logicalCSS('padding-left', euiTheme.size.base)}
-
-      ${euiBreakpoint(euiThemeContext, ['xs'])} {
-        ${logicalCSS('padding-left', euiTheme.size.s)}
       }
     `,
   };

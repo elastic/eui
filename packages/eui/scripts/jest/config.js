@@ -58,15 +58,15 @@ const config = {
   ],
   coverageDirectory: '<rootDir>/reports/jest-coverage',
   coverageReporters: ['json', 'html'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(js|tsx?)$': ['babel-jest', {
+    '^.+\\.(jsx?|tsx?)$': ['babel-jest', {
       configFile: path.resolve(__dirname, '../../.babelrc.js'),
     }],
   },
-  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',

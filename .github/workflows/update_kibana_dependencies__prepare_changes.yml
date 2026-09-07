@@ -112,6 +112,115 @@ jobs:
           git checkout -b "$branch_name"
           echo "BRANCH_NAME=$branch_name" >> "$GITHUB_OUTPUT"
           echo "::debug::Created branch '$branch_name'"
+      - name: Cherry-pick Kibana prep commits
+        id: cherry_pick
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          content=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
+            --jq '.content' | base64 -d)
+
+          # @previous first, then @next. Unsectioned URLs count as @next.
+          prep_commits=$(awk '
+            BEGIN { s="n" }
+            /^# @previous/ { s="p"; next }
+            /^# @next/ { s="n"; next }
+            /^#/ || NF==0 { next }
+            s=="p" { p = p $0 ORS }
+            s=="n" { n = n $0 ORS }
+            END { printf "%s%s", p, n }
+          ' <<< "$content")
+
+          if [[ -z "$prep_commits" ]]; then
+            echo "No Kibana prep commits to cherry-pick"
+            exit 0
+          fi
+
+          notes=""
+
+          while IFS= read -r url; do
+            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url")
+            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url")
+
+            if [[ -z "$pr_number" || -z "$sha" ]]; then
+              echo "::warning::Could not parse URL: $url"
+              continue
+            fi
+
+            echo "Cherry-picking $sha from PR #$pr_number"
+            if ! git fetch origin "pull/$pr_number/head"; then
+              echo "::warning::Skipping $sha: could not fetch PR #$pr_number"
+              continue
+            fi
+
+            if ! git cat-file -e "${sha}^{commit}" 2>/dev/null; then
+              echo "::warning::Skipping $sha: commit not on PR #$pr_number (force-pushed?)"
+              continue
+            fi
+
+            # Incoming commit wins
+            if git cherry-pick -X theirs "$sha"; then
+              short_sha="${sha:0:8}"
+              notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
+            elif git diff --quiet && git diff --cached --quiet; then
+              echo "Skipping $sha: already applied on this branch"
+              git cherry-pick --skip
+            else
+              echo "::error::Cherry-pick of $sha from PR #$pr_number failed"
+              echo "conflict_sha=$sha" >> "$GITHUB_OUTPUT"
+              git cherry-pick --abort || true
+              exit 1
+            fi
+          done <<< "$prep_commits"
+
+          if [[ -n "$notes" ]]; then
+            {
+              echo 'cherry_pick_notes<<CHERRY_PICK_DELIMITER'
+              printf '%s' "$notes"
+              echo 'CHERRY_PICK_DELIMITER'
+            } >> "$GITHUB_OUTPUT"
+          fi
+      - name: Notify Slack of cherry-pick conflicts
+        if: ${{ failure() && inputs.nightly && steps.cherry_pick.outputs.conflict_sha }}
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.KIBANA_NIGHTLY_SLACK_WEBHOOK }}
+          EUI_REF: ${{ inputs.eui_ref }}
+          EUI_LAST_RELEASE: ${{ inputs.eui_last_release }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        # language=bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${SLACK_WEBHOOK_URL:-}" ]]; then
+            echo "::warning::KIBANA_NIGHTLY_SLACK_WEBHOOK is not set"
+            exit 0
+          fi
+          compare_url="https://github.com/elastic/eui/compare/$EUI_LAST_RELEASE...$EUI_REF"
+          slack_text=':red_circle: EUI nightly PR could not be updated because of cherry-pick conflicts'
+          slack_text+=$'\n'"<$RUN_URL|GitHub Actions run> · <$compare_url|EUI main diff>"
+          payload="$(jq -n --arg text "$slack_text" '{ text: $text }')"
+          curl -fsSL -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
+      - name: Save current EUI i18n tokens
+        id: save_old_tokens
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          # Kibana pins an exact @elastic/eui version in dependencies (no ^/~).
+          current_version=$(node -pe "require('./package.json').dependencies['@elastic/eui'] || ''")
+          if [[ ! "$current_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "::error::Expected a pinned @elastic/eui version in dependencies, got: ${current_version:-<missing>}"
+            exit 1
+          fi
+
+          old_tokens_path="$RUNNER_TEMP/eui_old_i18ntokens.json"
+          package_file=$(npm pack "@elastic/eui@$current_version" --pack-destination "$RUNNER_TEMP" --silent)
+          tar -xOf "$RUNNER_TEMP/$package_file" package/i18ntokens.json > "$old_tokens_path"
+
+          echo "OLD_TOKENS_PATH=$old_tokens_path" >> "$GITHUB_OUTPUT"
       - name: Update dependency versions
         env:
           DEPENDENCIES: ${{ inputs.dependencies }}
@@ -131,9 +240,61 @@ jobs:
       - name: Run Kibana bootstrap script and normalize dependencies
         # language=bash
         run: |
-          yarn kbn bootstrap
+          set -euo pipefail
+          # Retry a few times; the npm registry can lag behind a snapshot publish.
+          for attempt in 1 2 3 4 5; do
+            if yarn kbn bootstrap; then
+              break
+            fi
+            if [[ "$attempt" -eq 5 ]]; then
+              exit 1
+            fi
+            echo "bootstrap failed (attempt ${attempt}/5); retrying in 60s"
+            sleep 60
+          done
           node scripts/yarn_deduplicate
           yarn kbn bootstrap --force-install
+      - name: Sync EUI i18n tokens
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OLD_TOKENS: ${{ steps.save_old_tokens.outputs.OLD_TOKENS_PATH }}
+          MAPPING_DIR: src/core/packages/i18n/browser-internal
+          # Load trusted workflow code, never code from the tested snapshot.
+          EUI_WORKFLOW_REF: ${{ github.workflow_sha }}
+        # language=bash
+        run: |
+          set -euo pipefail
+
+          mapping_file="$MAPPING_DIR/src/i18n_eui_mapping.tsx"
+          NEW_TOKENS=$(node -e "console.log(require.resolve('@elastic/eui/i18ntokens.json'))" 2>/dev/null || true)
+          if [[ -z "$NEW_TOKENS" || ! -f "$mapping_file" ]]; then
+            echo "::error::Cannot locate the installed EUI tokens or Kibana mapping"
+            exit 1
+          fi
+
+          # Handles strings, interpolation, plurals, and token additions, changes,
+          # or removals. Preserves Kibana comments and translator descriptions.
+          # Unknown function forms fail instead of creating an incomplete mapping.
+          sync_script="$RUNNER_TEMP/sync_kibana_i18n.mjs"
+          gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_WORKFLOW_REF}" \
+            --header "Accept: application/vnd.github.raw" \
+            > "$sync_script"
+          node "$sync_script" \
+            --old-tokens "$OLD_TOKENS" \
+            --new-tokens "$NEW_TOKENS" \
+            --mapping-file "$mapping_file"
+
+          if ! git diff --quiet "$mapping_file"; then
+            node scripts/eslint --fix "$mapping_file"
+            node scripts/jest --config "$MAPPING_DIR/jest.config.js" --updateSnapshot
+          fi
+
+          # Catch missing snapshot tokens before committing.
+          node scripts/type_check --project "$MAPPING_DIR/tsconfig.json"
+
+          git add "$mapping_file"
+          git add "$MAPPING_DIR/src/__snapshots__"
+          git diff --cached --quiet || git commit -m "chore: sync EUI i18n tokens"
       - name: Commit changed files
         # language=bash
         run: |
@@ -156,6 +317,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ inputs.pr_title }}
           PR_BODY: ${{ inputs.pr_body }}
+          CHERRY_PICK_NOTES: ${{ steps.cherry_pick.outputs.cherry_pick_notes }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
           SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
           NIGHTLY: ${{ inputs.nightly }}
@@ -165,6 +327,11 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
+
+          if [[ -n "${CHERRY_PICK_NOTES:-}" ]]; then
+            PR_BODY="${PR_BODY}"$'\n\n'"### Cherry-picked commits"$'\n\n'"${CHERRY_PICK_NOTES}"
+          fi
+
           # --repo is required because we're in the context of elastic/kibana right now
           args=(
             --repo elastic/eui

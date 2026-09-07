@@ -21,6 +21,11 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
+      /* Preserve a standard control plus the content padding and scroll fade */
+      ${logicalCSS(
+        'min-height',
+        `calc(${euiTheme.size.xxl} + var(--euiFlyoutBodyPadding, 0px) + var(--euiFlyoutBodyPadding, 0px) + ${euiTheme.size.s})`
+      )}
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,

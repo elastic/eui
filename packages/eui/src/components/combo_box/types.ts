@@ -30,7 +30,7 @@ export interface EuiComboBoxOptionOption<
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   * Optional props to pass to the underlying **[EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/)**
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }

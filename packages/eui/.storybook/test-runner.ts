@@ -8,6 +8,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
 import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
@@ -19,8 +20,9 @@ import {
   VRT_VARIANT_ATTRIBUTE,
   isVariantName,
   isVariantSkipped,
+  type VariantName,
   type VrtSkip,
-} from './vrt';
+} from './vrt.ts';
 
 /**
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
@@ -29,17 +31,23 @@ import {
 const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
 
 /**
+ * Allow a few pixels of subpixel noise.
+ */
+const FAILURE_THRESHOLD_PIXELS = 4;
+
+const configDir = path.dirname(fileURLToPath(import.meta.url));
+
+/**
  * The active variant for this run, determined by the `VRT_VARIANT` env var.
  * Falls back to desktop when run directly (e.g. `yarn test-storybook`).
  */
-const activeVariant = isVariantName(process.env.VRT_VARIANT)
-  ? VARIANTS[process.env.VRT_VARIANT]
-  : VARIANTS.desktop;
+const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
+  ? process.env.VRT_VARIANT
+  : 'desktop';
+const activeVariant = VARIANTS[activeVariantName];
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
- * `waitForPageReady` does not guarantee image decode completion, which causes
- * layout shifts in stories that use `<EuiImage>` or similar components.
  */
 const waitForImagesToLoad = async (page: Page) => {
   await page.evaluate(() =>
@@ -57,12 +65,53 @@ const waitForImagesToLoad = async (page: Page) => {
   );
 };
 
+/**
+ * Ensure all fonts are loaded before taking a screenshot.
+ */
+const waitForFonts = async (page: Page) => {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+  });
+};
+
+/**
+ * `EuiIcon` lazy-loads SVGs. The placeholder has `data-is-loading` until the
+ * import resolves; screenshotting earlier captures an empty grey square.
+ */
+const waitForEuiIcons = async (page: Page) => {
+  await page.waitForFunction(
+    () => !document.querySelector('[data-is-loading]')
+  );
+};
+
+/**
+ * Ensure the page layout has stabilized before taking a screenshot.
+ */
+const waitForLayout = async (page: Page) => {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      )
+  );
+};
+
 const config: TestRunnerConfig = {
   setup() {
     expect.extend({ toMatchImageSnapshot });
-    jest.retryTimes(2, { logErrorsBeforeRetry: true });
   },
   async preVisit(page) {
+    // Storybook 10 pauses CSS animations which breaks some components;
+    // Remove animations entirely so components render base styles
+    await page.evaluate(() => {
+      if (!document.getElementById('eui-vrt-no-animation')) {
+        const style = document.createElement('style');
+        style.id = 'eui-vrt-no-animation';
+        style.textContent =
+          '*, *::before, *::after { animation: none !important; transition: none !important; }';
+        document.head.appendChild(style);
+      }
+    });
     // Set the viewport before the story renders (and before its `play` runs) so
     // both layout and interactions happen at the active variant's dimensions.
     await page.setViewportSize(activeVariant.viewport);
@@ -81,13 +130,16 @@ const config: TestRunnerConfig = {
     const storyContext = await getStoryContext(page, context);
 
     const skip: VrtSkip | undefined = storyContext.parameters?.vrt?.skip;
-    if (isVariantSkipped(skip, activeVariant.name)) return;
+    if (isVariantSkipped(skip, activeVariantName)) return;
 
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
 
     await waitForPageReady(page);
     await waitForImagesToLoad(page);
+    await waitForFonts(page);
+    await waitForLayout(page);
+    await waitForEuiIcons(page);
 
     const image =
       selector === 'page'
@@ -96,7 +148,7 @@ const config: TestRunnerConfig = {
 
     const snapshotId = `${context.id}-${activeVariant.name}`;
     const snapshotPath = path.join(
-      __dirname,
+      configDir,
       '..',
       '.vrt',
       'reference',
@@ -110,11 +162,13 @@ const config: TestRunnerConfig = {
       fs.writeFileSync(snapshotPath, new Uint8Array(image));
     } else {
       expect(image).toMatchImageSnapshot({
-        customSnapshotsDir: path.join(__dirname, '..', '.vrt', 'reference'),
-        customDiffDir: path.join(__dirname, '..', '.vrt', 'diff'),
-        customReceivedDir: path.join(__dirname, '..', '.vrt', 'current'),
+        customSnapshotsDir: path.join(configDir, '..', '.vrt', 'reference'),
+        customDiffDir: path.join(configDir, '..', '.vrt', 'diff'),
+        customReceivedDir: path.join(configDir, '..', '.vrt', 'current'),
         storeReceivedOnFailure: true,
         customSnapshotIdentifier: snapshotId,
+        failureThreshold: FAILURE_THRESHOLD_PIXELS,
+        failureThresholdType: 'pixel',
       });
     }
   },

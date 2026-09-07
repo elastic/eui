@@ -11,7 +11,7 @@
  */
 
 import type { Args, ArgTypes, Meta, Preview, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 type StorybookConfig<T> = Meta<T> | StoryObj<T> | Preview;
 

@@ -47,6 +47,18 @@ their own version at runtime.
 | Component | Documentation |
 |---|---|
 | `EuiComboBoxObject` | [src/components/combo_box/README.md](src/components/combo_box/README.md) |
+| `EuiDataGridObject` | [src/components/datagrid/README.md](src/components/datagrid/README.md) |
+| `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
+| `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
+| `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
+| `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
+| `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
+| `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
+| `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
+| `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
+| `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
+| `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
+| `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 
 ## Contributing
 

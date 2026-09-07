@@ -2,7 +2,7 @@
 
 EUI uses [Playwright Test Runner](https://playwright.dev/) with [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for component visual regression testing. Tests run against a live Storybook instance and compare screenshots of stories against previously approved reference images.
 
-Visual regression tests run automatically on every pull request against the deployed Storybook preview. When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
+Visual regression tests run automatically on every pull request against the Storybook build from that pipeline, served locally on the VRT agent (the same files that are deployed as the preview). When differences are found, a diff table is posted as a PR comment and a Buildkite block step appears for human approval before baselines are updated.
 
 > [!IMPORTANT]
 > VRT runs in **CI** which owns the baselines and auto-commits them to your PR. Run it locally only when you really need to verify that many stories render as expected.
@@ -57,7 +57,7 @@ Each story is snapshotted under multiple **variants** to catch e.g. responsive-l
       navigation-euibutton--playground-desktop.png
       navigation-euibutton--playground-mobile.png
 
-The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in the `VARIANTS` map in [`.storybook/vrt.ts`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt.ts); [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) selects the active one per run using the `VRT_VARIANT` environment variable.
+The test-runner is invoked once per variant (similar to [Playwright projects](https://playwright.dev/docs/test-projects)), so each variant runs in its own process and browser context with the viewport applied before the story renders. Variants are defined in [`.storybook/vrt-variants.json`](https://github.com/elastic/eui/tree/main/packages/eui/.storybook/vrt-variants.json). CI runs one variant per parallel job. Locally, [`scripts/test-visual-regression.js`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/test-visual-regression.js) reads that file and sets `VRT_VARIANT` for each run.
 
 Current variants:
 
@@ -184,10 +184,10 @@ play: playDecorator(async (context) => { ... }, false)
 
 ## Authoring stable stories
 
-VRT compares screenshots pixel-for-pixel, so anything non-deterministic (network requests, animations, randomness, timing or capturing the wrong element) produces false diffs or flaky failures. The test-runner already neutralizes several sources globally:
+VRT compares screenshots pixel-for-pixel (4-pixel allowance for subpixel diff), so anything non-deterministic (network requests, animations, randomness, timing or capturing the wrong element) produces false diffs or flaky failures. The test-runner already neutralizes several sources globally:
 
 - CSS animations are paused before the screenshot (`animations: 'disabled'`) and `prefers-reduced-motion: reduce` is emulated.
-- The runner waits for the page to be ready and for all `<img>` elements to finish loading before capturing.
+- The runner waits for the page to be ready: for all `<img>` elements to finish loading before capturing, for all fonts to be ready and for layout to be stabilized.
 - Failed screenshots are retried automatically.
 
 Some common failures and how to fix them:
@@ -312,13 +312,14 @@ flowchart TD
     PR[Pull request] --> WS[Build and deploy website]
     PR --> SB[Build and deploy Storybook]
     SB --> VRT[Test visual regression]
+    VRT --> R[Report visual regression]
 
-    VRT -->|skip-vrt label| N[Notify]
-    VRT -->|Pass, new stories| C1[Commit baselines\nto PR branch]
-    VRT -->|Pass, no changes| N
-    VRT -->|Fail, infrastructure error| N
+    R -->|skip-vrt label| N[Notify]
+    R -->|Pass, new stories| C1[Commit baselines\nto PR branch]
+    R -->|Pass, no changes| N
+    R -->|Fail, infrastructure error| N
 
-    VRT -->|Fail, visual diffs found| D[Post diff table\nto PR comment]
+    R -->|Fail, visual diffs found| D[Post diff table\nto PR comment]
     D --> B[Approve visual changes]
     B --> U[Update VRT baselines]
     U --> N

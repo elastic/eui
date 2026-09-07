@@ -8,7 +8,8 @@
 
 import React, { createRef, StrictMode, useRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
+
 import {
   render,
   focusEuiToolTipTrigger,
@@ -95,7 +96,7 @@ describe('EuiToolTip', () => {
       }
     });
 
-    it('shows on keyboard focus and hides on blur', () => {
+    it('shows on keyboard focus and hides on blur', async () => {
       const { getByTestSubject, queryByRole } = render(
         <StrictMode>
           <EuiToolTip content="Tooltip content">
@@ -109,8 +110,8 @@ describe('EuiToolTip', () => {
       const trigger = getByTestSubject('trigger');
       const cleanup = simulateFocusVisible(trigger);
 
-      act(() => {
-        userEvent.tab();
+      await act(async () => {
+        await userEvent.tab();
       });
       expect(queryByRole('tooltip')).toBeInTheDocument();
 

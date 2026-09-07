@@ -58,6 +58,9 @@ export type EuiIllustrationProps = Omit<
     fullWidth?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/illustrations/|EuiIllustration documentation}
+ */
 export const EuiIllustration: FunctionComponent<EuiIllustrationProps> = ({
   type,
   alt,

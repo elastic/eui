@@ -95,6 +95,9 @@ export type EuiPanelProps = ExclusiveUnion<
   _EuiPanelDivlike
 >;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/panel/|EuiPanel documentation}
+ */
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,
   className,

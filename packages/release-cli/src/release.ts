@@ -17,7 +17,7 @@ import { stepBuildPackages } from './steps/build_packages';
 import { stepUpdateVersions } from './steps/update_versions';
 import { stepCheckWorkspaces } from './steps/check_workspaces';
 import { stepPublish } from './steps/publish';
-import { stepRunPreScripts, stepRunPostScripts } from './steps/run_pre_post_scripts';
+import { stepRunPreScripts, stepRunPostScripts, stepRunGlobalPostScripts } from './steps/run_pre_post_scripts';
 
 export const ReleaseType = ['official', 'snapshot'] as const;
 export type ReleaseType = (typeof ReleaseType)[number];
@@ -129,4 +129,6 @@ export const release = async (options: ReleaseOptions) => {
   await stepPublish(options, publishableWorkspaces);
 
   await stepRunPostScripts(options, changedWorkspaces);
+
+  await stepRunGlobalPostScripts(options, allWorkspaces);
 };
