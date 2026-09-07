@@ -15,8 +15,7 @@
       "types": "./src/index.ts",
       "import": "./src/index.ts"
     },
-    "./base.css": "./generated/base.css",
-    "./button.css": "./generated/button.css"
+    "./*.css": "./generated/*.css"
   },
   "files": [
     "generated",
@@ -33,13 +32,11 @@
     "storybook": "node scripts/build.mjs --css-only && storybook dev -p 4173 --ci",
     "lint": "tsc --noEmit -p tsconfig.json",
     "test": "yarn lint && yarn test-unit",
-    "test-unit": "yarn generate && node --import tsx --test src/button/behavior.test.ts"
-  },
-  "dependencies": {
-    "@elastic/eui-theme-borealis": "workspace:*",
-    "@elastic/eui-theme-common": "workspace:*"
+    "test-unit": "yarn generate && node scripts/test.mjs"
   },
   "devDependencies": {
+    "@elastic/eui-theme-borealis": "workspace:*",
+    "@elastic/eui-theme-common": "workspace:*",
     "@emotion/react": "^11.11.0",
     "@storybook/html-vite": "^10.6.0",
     "@types/node": "^20.17.0",
