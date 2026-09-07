@@ -11,22 +11,22 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { emit, type CssSheet } from './css/engine';
-import { baseSheet } from './css/sheets/base';
+import { baseReset, baseSheet } from './css/sheets/base';
 import { buttonSheet } from './css/sheets/button';
 
 const HEADER = `/* Generated from EUI Emotion style fns. Rebuild after EUI style changes. Do not edit. */\n\n`;
 
 /** Add a sheet here when adding a new vanilla component. */
-const outputs: Record<string, CssSheet[]> = {
-  base: [baseSheet],
-  button: [buttonSheet],
+const outputs: Record<string, { sheets: CssSheet[]; reset?: string }> = {
+  base: { reset: baseReset, sheets: [baseSheet] },
+  button: { sheets: [buttonSheet] },
 };
 
 const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'generated');
 mkdirSync(outDir, { recursive: true });
 
-for (const [name, sheets] of Object.entries(outputs)) {
-  const css = `${HEADER}${emit(sheets)}`;
+for (const [name, { sheets, reset }] of Object.entries(outputs)) {
+  const css = `${HEADER}${reset ? `${reset}\n` : ''}${emit(sheets)}`;
 
   writeFileSync(join(outDir, `${name}.css`), css);
   console.log(`wrote generated/${name}.css (${css.length} bytes)`);

@@ -70,7 +70,11 @@ const render = (props: EuiHtmlButtonProps): HTMLElement => {
 
   const content = document.createElement('span');
   content.className = 'euiButton__content';
-  content.textContent = label;
+
+  const text = document.createElement('span');
+  text.className = 'eui-textTruncate';
+  text.textContent = label;
+  content.append(text);
   el.append(content);
 
   return el;

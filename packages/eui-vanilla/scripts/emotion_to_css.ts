@@ -36,6 +36,7 @@ const emotionBody = (value: EmotionStyle): string => {
  */
 export const rule = (selector: string, value: EmotionStyle): string => {
   const body = emotionBody(value)
+    .replace(/^\s*\/\/.*$/gm, '')
     .replace(/label:[^;{]+;/g, '')
     .replace(/[\w-]+\s*:\s*undefined;?/g, '')
     .trim();

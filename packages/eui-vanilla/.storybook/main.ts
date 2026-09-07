@@ -6,13 +6,29 @@
  * Side Public License, v 1.
  */
 
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { searchForWorkspaceRoot } from 'vite';
+
 import type { StorybookConfig } from '@storybook/html-vite';
+
+const vanillaRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.ts'],
   framework: {
     name: '@storybook/html-vite',
     options: {},
+  },
+  async viteFinal(viteConfig) {
+    viteConfig.server ??= {};
+    viteConfig.server.fs ??= {};
+    viteConfig.server.fs.allow = [
+      ...(viteConfig.server.fs.allow ?? []),
+      searchForWorkspaceRoot(vanillaRoot),
+      vanillaRoot,
+    ];
+    return viteConfig;
   },
 };
 

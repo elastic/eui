@@ -36,24 +36,31 @@ describe('resolveDisplay', () => {
   });
 });
 
-describe('generated button.css', () => {
-  const css = readFileSync(
-    join(dirname(fileURLToPath(import.meta.url)), '../../generated/button.css'),
-    'utf8'
+describe('generated CSS', () => {
+  const generated = join(
+    dirname(fileURLToPath(import.meta.url)),
+    '../../generated'
   );
+  const buttonCss = readFileSync(join(generated, 'button.css'), 'utf8');
+  const baseCss = readFileSync(join(generated, 'base.css'), 'utf8');
 
   it('serializes EUI button styles into stable class names', () => {
-    assert.match(css, /data-color-mode.LIGHT/);
-    assert.match(css, /data-color-mode.DARK/);
-    assert.match(css, /\.euiButton--primary/);
-    assert.match(css, /\.euiButton--fill/);
-    assert.match(css, /\.euiButton__content/);
-    assert.match(css, /#0B64DD/i);
+    assert.match(buttonCss, /data-color-mode.LIGHT/);
+    assert.match(buttonCss, /data-color-mode.DARK/);
+    assert.match(buttonCss, /\.euiButton--primary/);
+    assert.match(buttonCss, /\.euiButton--fill/);
+    assert.match(buttonCss, /\.euiButton__content/);
+    assert.match(buttonCss, /#0B64DD/i);
   });
 
   it('does not ship Emotion hashes, React, or unresolved tokens', () => {
-    assert.doesNotMatch(css, /\.css-[a-z0-9]+/);
-    assert.doesNotMatch(css, /react/i);
-    assert.doesNotMatch(css, /undefined/);
+    assert.doesNotMatch(buttonCss, /\.css-[a-z0-9]+/);
+    assert.doesNotMatch(buttonCss, /react/i);
+    assert.doesNotMatch(buttonCss, /undefined/);
+  });
+
+  it('includes EUI reset so native buttons lose the UA border and inherit Inter', () => {
+    assert.match(baseCss, /button\{[^}]*border:none/);
+    assert.match(baseCss, /Inter/);
   });
 });

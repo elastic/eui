@@ -14,7 +14,6 @@ import {
   EXTENDED_BUTTON_COLORS,
 } from '../../../../eui/src/global_styling/mixins/_button_constants';
 import { euiButtonDisplaysColors } from '../../../../eui/src/global_styling/mixins/_button';
-import { euiFocusRing } from '../../../../eui/src/global_styling/mixins/_states';
 
 import { rule } from '../../emotion_to_css';
 import type { CssSheet } from '../engine';
@@ -28,7 +27,15 @@ export const buttonSheet: CssSheet = (ctx, root) => {
   const chunks: string[] = [];
 
   chunks.push(rule(`${root} .euiButton`, display.euiButtonDisplay));
-  chunks.push(rule(`${root} .euiButton`, euiFocusRing(ctx)));
+  chunks.push(
+    rule(
+      `${root} .euiButton`,
+      `
+        -webkit-appearance: none;
+        outline: none;
+      `
+    )
+  );
   chunks.push(
     rule(
       `${root} .euiButton:is(:disabled, [aria-disabled='true'])`,
@@ -45,8 +52,13 @@ export const buttonSheet: CssSheet = (ctx, root) => {
       rule(`${root} .euiButton--${size}`, [
         display[size],
         display.defaultMinWidth[size],
-        content.content[size],
       ])
+    );
+    chunks.push(
+      rule(
+        `${root} .euiButton--${size} .eui-textTruncate`,
+        content.content[size]
+      )
     );
   }
 
@@ -60,6 +72,20 @@ export const buttonSheet: CssSheet = (ctx, root) => {
       chunks.push(rule(selector, colors[displayName][color]));
     }
   }
+
+  chunks.push(
+    rule(`${root} .euiButton:not(:focus-visible)`, 'outline: none')
+  );
+
+  chunks.push(
+    rule(
+      `${root} .euiButton--fill`,
+      `
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      `
+    )
+  );
 
   return chunks.filter(Boolean).join('\n');
 };
