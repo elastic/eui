@@ -29,6 +29,7 @@
     "build": "node scripts/build.mjs",
     "build:clean": "rimraf dist tmp",
     "generate": "node scripts/build.mjs --css-only",
+    "bench": "node scripts/bench/index.mjs",
     "storybook": "node scripts/build.mjs --css-only && storybook dev -p 4173 --ci",
     "lint": "tsc --noEmit -p tsconfig.json",
     "test": "yarn lint && yarn test-unit",
