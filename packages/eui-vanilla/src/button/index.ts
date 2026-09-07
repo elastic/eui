@@ -8,7 +8,6 @@
 
 export { mountButton } from './mount';
 export { applyButtonBehavior, isButtonDisabled, resolveDisplay } from './behavior';
-export { mount, type EuiHtmlMounted, type EuiHtmlMountSpec } from '../mount';
 export {
   BUTTON_COLORS,
   BUTTON_SIZES,
