@@ -89,7 +89,7 @@ export function useEuiButtonCommonProps<
   });
 
   const selectionProps =
-    id != null ? groupContext.getSelectionProps?.(id) : undefined;
+    id != null ? groupContext.getSelectionProps?.(id, isDisabled) : undefined;
 
   const onClick = selectionProps
     ? (event: React.MouseEvent<HTMLElement>) => {

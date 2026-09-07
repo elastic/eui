@@ -382,7 +382,7 @@ const FullHeaderPatternExample = () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+    <EuiHeaderLogo logoType="horizontal" />,
   ];
 
   return (

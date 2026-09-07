@@ -34,16 +34,24 @@ describe('EuiHeaderLogo', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders text', () => {
-    const { container } = render(<EuiHeaderLogo>Elastic</EuiHeaderLogo>);
+  it('ignores runtime iconType props and always renders the Elastic glyph icon', () => {
+    const { container } = render(
+      <EuiHeaderLogo {...({ iconType: 'logoKibana' } as unknown as {})} />
+    );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.querySelector('.euiHeaderLogo__icon')).toHaveAttribute(
+      'data-euiicon-type',
+      'logoElastic'
+    );
+    expect(container.querySelector('.euiHeaderLogo')).not.toHaveAttribute(
+      'iconType'
+    );
   });
 
   it('renders optional props', () => {
     const { container } = render(
       <EuiHeaderLogo
-        iconType="error"
+        logoType="horizontal"
         iconTitle="Moby Dick"
         style={{ color: 'red' }}
       />
