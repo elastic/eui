@@ -15,6 +15,7 @@
       "types": "./src/index.ts",
       "import": "./src/index.ts"
     },
+    "./base.css": "./generated/base.css",
     "./button.css": "./generated/button.css"
   },
   "files": [
@@ -28,7 +29,7 @@
     "build": "node scripts/build.mjs",
     "build:clean": "rimraf dist tmp",
     "generate": "node scripts/build.mjs --css-only",
-    "harness": "node scripts/harness.mjs",
+    "storybook": "node scripts/build.mjs --css-only && storybook dev -p 4173 --ci",
     "lint": "tsc --noEmit -p tsconfig.json",
     "test": "yarn lint && yarn test-unit",
     "test-unit": "yarn generate && node --import tsx --test src/button/behavior.test.ts"
@@ -39,13 +40,16 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.11.0",
+    "@storybook/html-vite": "^10.6.0",
     "@types/node": "^20.17.0",
     "esbuild": "^0.25.0",
     "react": "^18.2.0",
     "rimraf": "^6.0.1",
+    "storybook": "^10.6.0",
     "stylis": "^4.3.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^7.3.6"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

@@ -42,15 +42,17 @@ mountButton(document.getElementById('root')!, {
 });
 ```
 
-CSS: `generated/button.css` (set `data-color-mode="LIGHT"` or `"DARK"` on `<html>`).
+CSS: `generated/base.css` + `generated/button.css` (set `data-color-mode="LIGHT"` or `"DARK"` on `<html>`).
 
-MCP resource: `dist/button.html` - single file, CSS + JS inlined.
+`postToHost(method, params)` sends JSON-RPC to the iframe host. For local development, Storybook logs it in **Actions** panel.
+
+MCP resource: `dist/index.html` — CSS + `mount` inlined; host owns the view.
 
 ## Scripts
 
 ```bash
-yarn workspace @elastic/eui-vanilla build     # serialize EUI styles, minify, dist/button.html
-yarn workspace @elastic/eui-vanilla harness   # http://localhost:4173
+yarn workspace @elastic/eui-vanilla build       # serialize EUI styles, minify, dist/index.html
+yarn workspace @elastic/eui-vanilla storybook   # http://localhost:4173
 yarn workspace @elastic/eui-vanilla test
 ```
 
