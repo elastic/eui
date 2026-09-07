@@ -78,6 +78,31 @@ describe('EuiToolTip', () => {
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
+  it('hides the tooltip on mouse-out of an aria-disabled child', () => {
+    cy.realMount(
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+            Show tooltip
+          </EuiButton>
+        </EuiToolTip>
+        <EuiButton data-test-subj="after">After</EuiButton>
+      </>
+    );
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+    cy.get('[data-test-subj="toggleToolTip"]').should(
+      'have.css',
+      'pointer-events',
+      'none'
+    );
+
+    cy.get('[data-test-subj="toggleToolTip"]').realHover();
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="after"]').realHover();
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+  });
+
   it('shows the tooltip on keyboard focus and hides it on blur', () => {
     cy.realMount(
       <>
