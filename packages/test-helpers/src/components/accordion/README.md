@@ -18,8 +18,10 @@ Set `data-test-subj` on the `<EuiAccordion>` itself, which the component-type gu
 
 | Member | Description |
 |---|---|
-| `trigger` | `Locator` for the trigger button. `aria-expanded` on it reflects open state synchronously, so a retrying assertion on it is all that's needed, no wait or poll. |
+| `trigger` | `Locator` for the trigger button, scoped to this instance. `aria-expanded` on it reflects open state synchronously, so a retrying assertion on it is all that's needed, no wait or poll. |
 | `content` | `Locator` for the children wrapper, scoped to this instance. |
+
+Both are read as direct children of the root, not a plain descendant search, so a nested `EuiAccordion` inside `content` never matches these instead of this instance's own trigger/content.
 
 ## Deliberately out of scope
 
