@@ -22,13 +22,13 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiModal: css`
-      ${euiShadowXLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
+      ${euiShadowXLarge(euiThemeContext, { border: 'none' })}
       display: flex;
       flex-direction: column;
       max-block-size: 75vh; /* We overflow the modal body based off this */
       position: relative;
-      background-color: ${euiTheme.colors.emptyShade};
-      border-radius: ${euiTheme.border.radius.medium};
+      background-color: ${euiTheme.colors.backgroundBasePlain};
+      border-radius: ${euiTheme.border.radius.panel};
       border: ${euiTheme.border.width.thin} solid
         ${euiTheme.colors.borderBaseFloating};
       z-index: ${euiTheme.levels.modal};

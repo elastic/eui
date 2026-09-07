@@ -60,7 +60,7 @@ export const euiBannerStyles = ({ euiTheme }: UseEuiTheme) => ({
     container-type: inline-size;
     position: relative;
     border: ${euiTheme.border.thin};
-    border-radius: ${euiTheme.border.radius.medium};
+    border-radius: ${euiTheme.border.radius.panel};
 
     &[data-size='s'] {
       container-name: ${CONTAINER_NAME} ${CONTAINER_NAME}--s;
