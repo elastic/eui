@@ -10,7 +10,7 @@
  * Returns the Storybook iframe URL for a given story ID and optional args.
  *
  * @param id - The Storybook story ID (e.g. `'forms-euicombobox--playground'`)
- * @param args - Optional semicolon-separated Storybook args string (e.g. `'data-test-subj:myCombo;singleSelection:true'`)
+ * @param args - Optional semicolon-separated Storybook args string (e.g. `'data-test-subj:myCombo;singleSelection:!true'`)
  */
 export const storyUrl = (id: string, args?: string): string =>
   `/iframe.html?id=${id}&viewMode=story${args ? `&args=${args}` : ''}`;
