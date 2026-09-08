@@ -163,7 +163,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                         >
                           <button
                             aria-pressed="true"
-                            class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                            class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                             id="columnAAsc"
                             type="button"
@@ -180,7 +180,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                         >
                           <button
                             aria-pressed="false"
-                            class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                            class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                             id="columnADesc"
                             type="button"
