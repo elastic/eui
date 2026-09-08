@@ -31,7 +31,7 @@
     "storybook": "node scripts/build.mjs && storybook dev -p 4173 --ci",
     "lint": "tsc --noEmit -p tsconfig.json",
     "test": "yarn lint && yarn test-unit",
-    "test-unit": "yarn generate && node --import tsx --test src/**/*.test.ts"
+    "test-unit": "yarn generate && node --import tsx --test scripts/**/*.test.ts src/**/*.test.ts"
   },
   "devDependencies": {
     "@elastic/eui": "workspace:*",

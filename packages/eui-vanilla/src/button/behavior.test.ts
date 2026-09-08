@@ -83,6 +83,21 @@ describe('generated CSS', () => {
     assert.doesNotMatch(buttonCss, /undefined/);
   });
 
+  it('includes every referenced animation', () => {
+    const animations = [
+      ...buttonCss.matchAll(/animation:([\w-]+)/g),
+    ].map((match) => match[1]);
+    const keyframes = new Set(
+      [...buttonCss.matchAll(/@keyframes ([\w-]+)/g)].map((match) => match[1])
+    );
+
+    assert.ok(animations.length > 0);
+    assert.deepEqual(
+      animations.filter((animation) => !keyframes.has(animation)),
+      []
+    );
+  });
+
   it('includes EUI reset so native buttons lose the UA border and inherit Inter', () => {
     assert.match(baseCss, /button\{[^}]*border:none/);
     assert.match(baseCss, /Inter/);

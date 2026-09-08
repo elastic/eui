@@ -8,10 +8,15 @@
 
 import { compile, serialize, stringify } from 'stylis';
 
+type SerializedStyle = {
+  styles?: string;
+  next?: SerializedStyle;
+};
+
 type EmotionStyle =
   | string
-  | { styles?: string }
-  | Array<string | { styles?: string } | undefined>
+  | SerializedStyle
+  | Array<string | SerializedStyle | undefined>
   | undefined;
 
 /**
@@ -27,6 +32,28 @@ const emotionBody = (value: EmotionStyle): string => {
   return value.styles ?? '';
 };
 
+const emotionGlobals = (value: EmotionStyle): string => {
+  if (!value || typeof value === 'string') return '';
+  if (Array.isArray(value)) return value.map(emotionGlobals).join('');
+
+  let next = value.next;
+  let globals = '';
+
+  while (next) {
+    globals += next.styles ?? '';
+    next = next.next;
+  }
+
+  return globals;
+};
+
+const clean = (value: string): string =>
+  value
+    .replace(/^\s*\/\/.*$/gm, '')
+    .replace(/label:[^;{]+;/g, '')
+    .replace(/[\w-]+\s*:\s*undefined;?/g, '')
+    .trim();
+
 /**
  * Convert Emotion style to CSS rule using Stylis.
  *
@@ -35,12 +62,13 @@ const emotionBody = (value: EmotionStyle): string => {
  * @returns CSS
  */
 export const rule = (selector: string, value: EmotionStyle): string => {
-  const body = emotionBody(value)
-    .replace(/^\s*\/\/.*$/gm, '')
-    .replace(/label:[^;{]+;/g, '')
-    .replace(/[\w-]+\s*:\s*undefined;?/g, '')
-    .trim();
+  const body = clean(emotionBody(value));
   if (!body) return '';
 
-  return serialize(compile(`${selector}{${body}}`), stringify);
+  const scoped = serialize(compile(`${selector}{${body}}`), stringify);
+  const globals = clean(emotionGlobals(value));
+
+  return globals
+    ? `${scoped}${serialize(compile(globals), stringify)}`
+    : scoped;
 };

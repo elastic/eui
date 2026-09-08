@@ -31,15 +31,6 @@ export const buttonSheet: CssSheet = (ctx, root) => {
   chunks.push(rule(`${root} .euiButton`, display.euiButtonDisplay));
   chunks.push(
     rule(
-      `${root} .euiButton`,
-      `
-        -webkit-appearance: none;
-        outline: none;
-      `
-    )
-  );
-  chunks.push(
-    rule(
       `${root} .euiButton:is(:disabled, [aria-disabled='true'])`,
       display.isDisabled
     )
@@ -77,20 +68,6 @@ export const buttonSheet: CssSheet = (ctx, root) => {
 
   chunks.push(rule(`${root} .euiLoadingSpinner`, spinner.euiLoadingSpinner));
   chunks.push(rule(`${root} .euiLoadingSpinner--m`, spinner.m));
-
-  chunks.push(
-    rule(`${root} .euiButton:not(:focus-visible)`, 'outline: none')
-  );
-
-  chunks.push(
-    rule(
-      `${root} .euiButton--fill`,
-      `
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      `
-    )
-  );
 
   return chunks.filter(Boolean).join('\n');
 };
