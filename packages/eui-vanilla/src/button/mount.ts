@@ -11,7 +11,7 @@ import {
   isButtonDisabled,
   resolveDisplay,
 } from './behavior';
-import { getSecureRelForTarget } from '../../../eui/src/services/security';
+import { getSecureRelForTarget } from '@elastic/eui/src/services/security';
 import { mount } from '../mount';
 import type { EuiHtmlButtonProps, EuiHtmlMountedButton } from './types';
 

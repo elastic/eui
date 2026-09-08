@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { euiFocusRing } from '../../../../eui/src/global_styling/mixins/_states';
-import { euiTextTruncate } from '../../../../eui/src/global_styling/mixins/_typography';
-import { logicalCSS } from '../../../../eui/src/global_styling/functions';
-import { resetStyles } from '../../../../eui/src/global_styling/reset/reset';
+import { logicalCSS } from '@elastic/eui/src/global_styling/functions';
+import { euiFocusRing } from '@elastic/eui/src/global_styling/mixins/_states';
+import { euiTextTruncate } from '@elastic/eui/src/global_styling/mixins/_typography';
+import { resetStyles } from '@elastic/eui/src/global_styling/reset/reset';
 
 import { rule } from '../../emotion_to_css';
 import type { CssSheet } from '../engine';

@@ -7273,6 +7273,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-vanilla@workspace:packages/eui-vanilla"
   dependencies:
+    "@elastic/eui": "workspace:*"
     "@elastic/eui-theme-borealis": "workspace:*"
     "@elastic/eui-theme-common": "workspace:*"
     "@emotion/react": "npm:^11.11.0"
@@ -7339,7 +7340,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@elastic/eui@workspace:^, @elastic/eui@workspace:packages/eui":
+"@elastic/eui@workspace:*, @elastic/eui@workspace:^, @elastic/eui@workspace:packages/eui":
   version: 0.0.0-use.local
   resolution: "@elastic/eui@workspace:packages/eui"
   dependencies:

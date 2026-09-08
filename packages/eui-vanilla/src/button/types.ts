@@ -10,12 +10,12 @@ export {
   BUTTON_COLORS,
   BUTTON_DISPLAYS,
   BUTTON_DISPLAY_SIZES as BUTTON_SIZES,
-} from '../../../eui/src/global_styling/mixins/_button_constants';
+} from '@elastic/eui/src/global_styling/mixins/_button_constants';
 import type {
   _EuiButtonColor,
   _EuiButtonDisplay,
   _EuiButtonDisplaySize,
-} from '../../../eui/src/global_styling/mixins/_button_constants';
+} from '@elastic/eui/src/global_styling/mixins/_button_constants';
 import type { EuiHtmlMounted } from '../mount';
 
 export type EuiHtmlButtonColor = _EuiButtonColor;

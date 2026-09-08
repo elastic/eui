@@ -7,7 +7,7 @@
  */
 
 import type { EuiHtmlButtonProps } from './types';
-import { validateHref } from '../../../eui/src/services/security';
+import { validateHref } from '@elastic/eui/src/services/security';
 
 const INTERACTIVE_KEYS = new Set(['Enter', ' ']);
 

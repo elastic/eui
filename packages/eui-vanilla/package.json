@@ -34,6 +34,7 @@
     "test-unit": "yarn generate && node --import tsx --test src/**/*.test.ts"
   },
   "devDependencies": {
+    "@elastic/eui": "workspace:*",
     "@elastic/eui-theme-borealis": "workspace:*",
     "@elastic/eui-theme-common": "workspace:*",
     "@emotion/react": "^11.11.0",

@@ -6,15 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { euiButtonDisplayContentStyles } from '../../../../eui/src/components/button/button_display/_button_display_content.styles';
-import { euiButtonDisplayStyles } from '../../../../eui/src/components/button/button_display/_button_display.styles';
+import { euiButtonDisplayContentStyles } from '@elastic/eui/src/components/button/button_display/_button_display_content.styles';
+import { euiButtonDisplayStyles } from '@elastic/eui/src/components/button/button_display/_button_display.styles';
+import { euiLoadingSpinnerStyles } from '@elastic/eui/src/components/loading/loading_spinner.styles';
+import { euiButtonDisplaysColors } from '@elastic/eui/src/global_styling/mixins/_button';
 import {
   BUTTON_DISPLAYS,
   BUTTON_DISPLAY_SIZES,
   EXTENDED_BUTTON_COLORS,
-} from '../../../../eui/src/global_styling/mixins/_button_constants';
-import { euiButtonDisplaysColors } from '../../../../eui/src/global_styling/mixins/_button';
-import { euiLoadingSpinnerStyles } from '../../../../eui/src/components/loading/loading_spinner.styles';
+} from '@elastic/eui/src/global_styling/mixins/_button_constants';
 
 import { rule } from '../../emotion_to_css';
 import type { CssSheet } from '../engine';

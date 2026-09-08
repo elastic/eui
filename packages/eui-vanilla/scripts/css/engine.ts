@@ -9,7 +9,7 @@
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 import { getComputed } from '@elastic/eui-theme-common';
 
-import type { UseEuiTheme } from '../../../eui/src/services/theme/hooks';
+import type { UseEuiTheme } from '@elastic/eui/src/services/theme/hooks';
 
 export const THEMES = [
   { name: 'light', colorMode: 'LIGHT' },
