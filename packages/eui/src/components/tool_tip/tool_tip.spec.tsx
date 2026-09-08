@@ -12,7 +12,7 @@
 
 import React, { ComponentProps, useState } from 'react';
 
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiFlyout } from '../flyout';
 import { EuiModal } from '../modal';
 import { EuiPopover } from '../popover';
@@ -82,9 +82,13 @@ describe('EuiToolTip', () => {
     cy.realMount(
       <>
         <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
-          <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
-            Show tooltip
-          </EuiButton>
+          <EuiButtonIcon
+            data-test-subj="toggleToolTip"
+            iconType="lock"
+            aria-label="Locked"
+            hasAriaDisabled
+            isDisabled
+          />
         </EuiToolTip>
         <EuiButton data-test-subj="after">After</EuiButton>
       </>

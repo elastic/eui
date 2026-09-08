@@ -9,7 +9,11 @@
 import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, euiShadow } from '@elastic/eui-theme-common';
 
-import { logicalCSS, euiFontSize } from '../../global_styling';
+import {
+  euiDisabledSelector,
+  logicalCSS,
+  euiFontSize,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
@@ -92,8 +96,7 @@ export const euiToolTipAnchorStyles = () => ({
        on disabled / aria-disabled elements means any mouse events remain handled by
        parent elements
        https://jakearchibald.com/2017/events-and-disabled-form-fields/ */
-    *[disabled],
-    *[aria-disabled='true'] {
+    *:is(${euiDisabledSelector}) {
       pointer-events: none;
     }
   `,
