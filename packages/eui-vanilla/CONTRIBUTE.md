@@ -13,7 +13,7 @@ Use a short kebab-case id (`badge`, `callout`). Use it for the source folder, CS
 - Runtime may import EUI **constants** files only (no `.styles.ts`, no Emotion).
 - CSS and semantic HTML are the primary API. JavaScript helpers are optional.
 - Reuse public EUI class names such as `.euiBadge`. Document and test any vanilla-only variant classes. Never expose Emotion hashes.
-- Color mode is `data-color-mode="LIGHT"` or `"DARK"` on `<html>`.
+- Theme is `data-theme="light"` or `"dark"` on `<html>`, matching MCP Apps' `applyDocumentTheme`.
 - Do not edit `generated/`. Re-run `yarn generate`.
 - Keep primitives independently composable.
 - Keep application state and host protocols outside this package.
@@ -46,7 +46,7 @@ This serializes EUI styles. It does not mount DOM.
 3. Wrap every selector with `root`. Example: `` rule(`${root} .euiBadge`, styles.euiBadge) ``.
 4. Use `rule()` from `scripts/emotion_to_css.ts`.
 5. Run `yarn workspace @elastic/eui-vanilla generate`.
-6. Check `generated/<id>.css`: LIGHT and DARK, EUI class names, no `.css-xxxxx` hashes.
+6. Check `generated/<id>.css`: light and dark themes, EUI class names, no `.css-xxxxx` hashes.
 
 If the EUI style module pulls Emotion into a file you need at runtime, extract constants into a leaf (see `_button_constants.ts`) and import that leaf from `src/`.
 

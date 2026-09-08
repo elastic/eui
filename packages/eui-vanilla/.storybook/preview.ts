@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="vite/client" />
+
 import type { Preview } from '@storybook/html-vite';
 
 import { mcpDecorator } from './mcp-decorator';
@@ -15,19 +17,19 @@ import.meta.glob('../generated/*.css', { eager: true });
 
 const preview: Preview = {
   globalTypes: {
-    colorMode: {
-      description: 'Color mode',
+    theme: {
+      description: 'Theme',
       toolbar: {
-        title: 'Color mode',
+        title: 'Theme',
         items: [
-          { value: 'LIGHT', title: 'Light' },
-          { value: 'DARK', title: 'Dark' },
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
         ],
       },
     },
   },
   initialGlobals: {
-    colorMode: 'LIGHT',
+    theme: 'light',
   },
   decorators: [mcpDecorator],
   parameters: {

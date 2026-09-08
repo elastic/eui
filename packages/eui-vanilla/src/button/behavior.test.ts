@@ -67,8 +67,8 @@ describe('generated CSS', () => {
   const baseCss = readFileSync(join(generated, 'base.css'), 'utf8');
 
   it('serializes EUI button styles into stable class names', () => {
-    assert.match(buttonCss, /data-color-mode.LIGHT/);
-    assert.match(buttonCss, /data-color-mode.DARK/);
+    assert.match(buttonCss, /data-theme.light/);
+    assert.match(buttonCss, /data-theme.dark/);
     assert.match(buttonCss, /\.euiButton--primary/);
     assert.match(buttonCss, /\.euiButton--fill/);
     assert.match(buttonCss, /\.euiButton__content/);

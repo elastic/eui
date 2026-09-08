@@ -12,7 +12,7 @@ import { action } from 'storybook/actions';
 import { isJsonRpc } from '../src/mcp';
 
 let patched = false;
-let lastColorMode: string | undefined;
+let lastTheme: string | undefined;
 
 const install = () => {
   if (patched) return;
@@ -47,7 +47,7 @@ const install = () => {
  * Decorator for Storybook stories.
  *
  * Preview iframe is the MCP app. Logs JSON-RPC `postMessage` in "Actions" tab.
- * Color-mode toolbar is sent as `host-context-changed`.
+ * Theme toolbar is sent as `host-context-changed`.
  *
  * @param storyFn - Story function
  * @param context - Story context
@@ -56,16 +56,17 @@ const install = () => {
 export const mcpDecorator: Decorator = (storyFn, context) => {
   install();
 
-  const colorMode = context.globals.colorMode === 'DARK' ? 'DARK' : 'LIGHT';
-  document.documentElement.dataset.colorMode = colorMode;
+  const theme = context.globals.theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
 
-  if (lastColorMode !== colorMode) {
-    lastColorMode = colorMode;
+  if (lastTheme !== theme) {
+    lastTheme = theme;
 
     const message = {
       jsonrpc: '2.0' as const,
       method: 'ui/notifications/host-context-changed',
-      params: { colorMode },
+      params: { theme },
     };
 
     action('mcp ←')(message);

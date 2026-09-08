@@ -11,8 +11,11 @@ import { getComputed } from '@elastic/eui-theme-common';
 
 import type { UseEuiTheme } from '../../../eui/src/services/theme/hooks';
 
-export const COLOR_MODES = ['LIGHT', 'DARK'] as const;
-export type ColorMode = (typeof COLOR_MODES)[number];
+export const THEMES = [
+  { name: 'light', colorMode: 'LIGHT' },
+  { name: 'dark', colorMode: 'DARK' },
+] as const;
+export type ColorMode = (typeof THEMES)[number]['colorMode'];
 
 /**
  * CSS sheet function.
@@ -46,15 +49,15 @@ export const contextFor = (colorMode: ColorMode): UseEuiTheme => ({
 });
 
 /**
- * Run sheets for each color mode. Selector wrapping is `[data-color-mode]`.
+ * Run sheets for each document theme. Selector wrapping is `[data-theme]`.
  *
  * @param sheets - CSS sheets
  * @returns CSS
  */
 export const emit = (sheets: CssSheet[]): string =>
-  COLOR_MODES.map((colorMode) => {
+  THEMES.map(({ name, colorMode }) => {
     const ctx = contextFor(colorMode);
-    const root = `[data-color-mode='${colorMode}']`;
+    const root = `[data-theme='${name}']`;
 
     return sheets
       .map((sheet) => sheet(ctx, root))

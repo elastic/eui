@@ -19,7 +19,7 @@ export const baseReset = resetStyles;
 /**
  * Theme-dependent global styles from `EuiGlobalStyles`.
  *
- * `data-color-mode` lives on `<html>`, `root` is that element.
+ * `data-theme` lives on `<html>`, `root` is that element.
  */
 export const baseSheet: CssSheet = (ctx, root) => {
   const { euiTheme } = ctx;
@@ -38,6 +38,7 @@ export const baseSheet: CssSheet = (ctx, root) => {
         font-size: ${fontSize};
         line-height: ${lineHeight};
         font-weight: ${font.weight[font.body.weight]};
+        color-scheme: ${ctx.colorMode.toLowerCase()};
         text-size-adjust: 100%;
         font-kerning: normal;
         ${logicalCSS('height', '100%')}

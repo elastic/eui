@@ -34,7 +34,7 @@ The CSS generator is the only layer that reads EUI style functions. DOM helpers 
 The smallest option is semantic HTML with EUI Vanilla CSS:
 
 ```html
-<html data-color-mode="LIGHT">
+<html data-theme="light">
   <head>
     <link rel="stylesheet" href="@elastic/eui-vanilla/base.css" />
     <link rel="stylesheet" href="@elastic/eui-vanilla/button.css" />
@@ -52,7 +52,7 @@ The smallest option is semantic HTML with EUI Vanilla CSS:
 </html>
 ```
 
-Set `data-color-mode` to `LIGHT` or `DARK` on `<html>`.
+Set `data-theme` to `light` or `dark` on `<html>` and set the matching CSS `color-scheme`.
 
 ## Dynamic views
 
@@ -77,6 +77,23 @@ Helpers own only the element mounted in their container. Your view owns page lay
 ## MCP Apps
 
 This package is a UI layer, not an MCP App or transport library. Use [`@modelcontextprotocol/ext-apps`](https://github.com/modelcontextprotocol/ext-apps) to connect the view, receive tool results and communicate with the host.
+
+Apply the host theme when the app connects and whenever it changes:
+
+```ts
+import { App, applyDocumentTheme } from '@modelcontextprotocol/ext-apps';
+
+const app = new App({ name: 'deploy-view', version: '1.0.0' });
+
+app.onhostcontextchanged = ({ theme }) => {
+  if (theme) applyDocumentTheme(theme);
+};
+
+await app.connect();
+
+const theme = app.getHostContext()?.theme;
+if (theme) applyDocumentTheme(theme);
+```
 
 Register the complete bundled view as the `ui://` resource:
 
