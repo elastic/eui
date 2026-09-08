@@ -1,22 +1,23 @@
 # Contribute
 
-How to add a component to `@elastic/eui-vanilla`.
+How to add a primitive to `@elastic/eui-vanilla`.
 
-Copy `src/button/`. Do not invent a new shape.
+This package is **primitives only** (button, badge, callout, simple form controls). Do not port `EuiDataGrid`, `EuiComboBox` or other composites.
 
-This package is **primitives only** (button, badge, callout, simple form controls). Do not port DataGrid, combo box, or other composites.
-
-Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>/`), the CSS sheet and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
+Use a short kebab-case id (`badge`, `callout`). Use it for the source folder, CSS sheet filename, generated stylesheet and benchmark key. Convert it to camelCase only for the sheet export: `button-group.ts` exports `buttonGroupSheet`.
 
 ## Rules
 
 - Runtime has no React and no Emotion.
 - CSS is generated from EUI Emotion style functions at build time.
 - Runtime may import EUI **constants** files only (no `.styles.ts`, no Emotion).
-- Class names are EUI's stable names (`.euiBadge`). Never hashes.
+- CSS and semantic HTML are the primary API. JavaScript helpers are optional.
+- Reuse public EUI class names such as `.euiBadge`. Document and test any vanilla-only variant classes. Never expose Emotion hashes.
 - Color mode is `data-color-mode="LIGHT"` or `"DARK"` on `<html>`.
 - Do not edit `generated/`. Re-run `yarn generate`.
-- Vanilla is monorepo-only unless constants get exported from EUI package.
+- Keep primitives independently composable.
+- Keep application state and host protocols outside this package.
+- Do not build a virtual DOM.
 
 ## Where things live
 
@@ -32,7 +33,7 @@ Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>
 | Storybook CSS | `generated/*.css` | globbed |
 | Bench example | `src/<id>/bench.mjs` | `props` + `jsx` |
 
-`src/mount.ts` is shared. Do not duplicate it.
+`src/mount.ts` is the current optional helper foundation. Do not duplicate it.
 
 CSS sheets stay hand-mapped (Emotion object → selector). That mapping is the work. Do not add a CSS compiler.
 
@@ -53,9 +54,9 @@ If the EUI style module pulls Emotion into a file you need at runtime, extract c
 
 Forced-colors / high-contrast is not generated yet (`highContrastMode: false`).
 
-## 2. Runtime (DOM)
+## 2. Semantic markup and optional runtime
 
-This builds HTML and wires events. It does not import style fns.
+First define the smallest valid semantic HTML that the stylesheet supports. Prefer native HTML behavior. Add runtime code only for dynamic creation, updates or behavior HTML and CSS cannot provide.
 
 Add `src/<id>/`:
 
@@ -66,7 +67,7 @@ Add `src/<id>/`:
 | `mount.ts` | `render` + `mount<Id>` using shared `mount()`. |
 | `index.ts` | Public exports for this component. |
 
-`render` must emit the same class names the CSS sheet targets. Match EUI's DOM (content wrapper, `eui-textTruncate`).
+Helpers must emit the documented markup and class names. Match meaningful EUI structure, such as content and truncation wrappers, without copying React-only implementation details.
 
 `mount<Id>` signature matches button:
 
@@ -84,13 +85,14 @@ Icons are out of scope until there is a vanilla icon set. Loading may use `aria-
 
 Put the Elastic copyright header on every source file.
 
-`update()` remounts and restores focus on the root node. Good enough for buttons. Do not build a virtual DOM.
+Helpers must preserve native semantics, focus and accessible state. Keep updates direct and component-specific when a generic abstraction would add weight or complexity.
 
 ## 3. Public API
 
-1. Re-export from `src/index.ts`. This stay explicit on purpose.
-2. Consumers import `mount<Id>` from `@elastic/eui-vanilla`.
-3. Consumers load CSS: `@elastic/eui-vanilla/base.css` + `@elastic/eui-vanilla/<id>.css`.
+1. Re-export optional helpers and types from `src/index.ts`. Keep this explicit.
+2. Document the semantic markup contract.
+3. Consumers load `base.css` plus the component stylesheet.
+4. Consumers import helpers only when their view needs dynamic DOM.
 
 ## 4. Tests
 

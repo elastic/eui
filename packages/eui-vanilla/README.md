@@ -1,93 +1,133 @@
 # @elastic/eui-vanilla
 
-Vanilla EUI primitives (HTML/CSS/JS, no React) for iframe hosts such as [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps). Button, badge, simple controls - not DataGrid.
+Lightweight EUI styles and DOM helpers without React or Emotion at runtime.
 
-Component CSS is **generated** from EUI's existing Emotion style functions at build time. See [CONTRIBUTE.md](./CONTRIBUTE.md) to add a component.
+This package is for small, isolated documents such as [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps). It supports simple UI primitives. Complex components such as `EuiDataGrid` and `EuiComboBox` remain part of `@elastic/eui`.
 
-## Why
+## How it works
 
-MCP Apps load a `ui://` HTML resource into a sandboxed iframe (`text/html;profile=mcp-app`). Full `@elastic/eui` works there but it pulls React, Emotion and `EuiProvider`. This package is the lightweight UI kit for that iframe: generated CSS plus `mount`. It is not an MCP App by itself.
+EUI's existing theme and Emotion style functions generate static CSS at build time. React and Emotion are build-time tools only. The browser receives CSS and, when needed, small dependency-free JavaScript helpers.
 
-This package owns interactive HTML fragments. The **view** (your document) owns host talk: MCP Apps `App` SDK (`ui/initialize`, tool input/result). Do not treat one component as the `ui://` resource.
-
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart LR
-  EUI --> generate --> minify --> CSS
-  mount --> HTML
-  CSS --> HTML --> iframe
+  subgraph buildTime [Build time]
+    euiStyles[EUI theme and Emotion styles] --> generator[CSS generator]
+    generator --> staticCss[Static component CSS]
+    euiConstants[EUI constants] --> helpers[Vanilla DOM helpers]
+  end
+
+  subgraph appView [App view]
+    staticCss --> semanticHtml[Semantic HTML]
+    helpers -. optional .-> semanticHtml
+    appSdk[MCP Apps SDK] --> semanticHtml
+  end
+
+  semanticHtml --> iframe[Sandboxed iframe]
 ```
 
-Emotion and React stop at **generate**. Runtime is CSS + `mount`. You put both into **your** HTML, then register that file as the MCP App resource.
 
-## EUI vs Vanilla
 
-| | `@elastic/eui` | `@elastic/eui-vanilla` |
-| --- | --- | --- |
-| Runtime | React, Emotion, `EuiProvider` | CSS + JS mount |
-| Styles | Emotion at runtime | Generated CSS |
-| Host | React apps | iframes (e.g. MCP Apps) |
+The CSS generator is the only layer that reads EUI style functions. DOM helpers may share dependency-free EUI constants but never import React, Emotion or component style modules. The app remains responsible for layout, state and host communication.
 
-## Usage
+The smallest option is semantic HTML with EUI Vanilla CSS:
 
-Compose primitives in **your** MCP App view. The host fetches that HTML via `ui://` and renders the iframe. Wire the view with [`@modelcontextprotocol/ext-apps`](https://github.com/modelcontextprotocol/ext-apps) (`App.connect()`), not with this package.
+```html
+<html data-color-mode="LIGHT">
+  <head>
+    <link rel="stylesheet" href="@elastic/eui-vanilla/base.css" />
+    <link rel="stylesheet" href="@elastic/eui-vanilla/button.css" />
+  </head>
+  <body>
+    <button
+      class="euiButton euiButton--primary euiButton--m euiButton--fill"
+      type="button"
+    >
+      <span class="euiButton__content">
+        <span class="eui-textTruncate">Deploy</span>
+      </span>
+    </button>
+  </body>
+</html>
+```
+
+Set `data-color-mode` to `LIGHT` or `DARK` on `<html>`.
+
+## Dynamic views
+
+Use a helper when JavaScript needs to create or update a primitive:
 
 ```ts
-import { App } from '@modelcontextprotocol/ext-apps';
 import { mountButton } from '@elastic/eui-vanilla';
 
-const app = new App({ name: 'deploy-view', version: '1.0.0' });
-const root = document.getElementById('root')!;
+const button = mountButton(document.getElementById('button')!, {
+  label: 'Deploy',
+  color: 'primary',
+  fill: true,
+  onClick: deploy,
+});
 
-app.ontoolresult = () => {
-  mountButton(root, {
-    label: 'Deploy',
-    color: 'primary',
-    fill: true,
-    onClick: () => {
-      void app.sendMessage({
-        role: 'user',
-        content: [{ type: 'text', text: 'Deploy clicked' }],
-      });
-    },
-  });
-};
-
-await app.connect();
+button.update({ isLoading: true });
+button.destroy();
 ```
 
-In the document:
+Helpers own only the element mounted in their container. Your view owns page layout, state and application lifecycle.
 
-1. Load CSS: `@elastic/eui-vanilla/base.css` + `@elastic/eui-vanilla/button.css` (and any other ids you mount).
-2. Set `data-color-mode="LIGHT"` or `"DARK"` on `<html>`. Map host theme here if the SDK exposes it.
-3. Mount into a container you own. Call several `mount*` fns for a real widget (form, callout + button, …).
+## MCP Apps
 
-On the server, register **that view HTML** (your bundle), not a per-component file:
+This package is a UI layer, not an MCP App or transport library. Use [`@modelcontextprotocol/ext-apps`](https://github.com/modelcontextprotocol/ext-apps) to connect the view, receive tool results and communicate with the host.
+
+Register the complete bundled view as the `ui://` resource:
 
 ```ts
-registerAppTool(server, 'deploy', { _meta: { ui: { resourceUri } }, /* … */ }, handler);
-registerAppResource(server, resourceUri, resourceUri, { mimeType: RESOURCE_MIME_TYPE }, async () => ({
-  contents: [{ uri: resourceUri, mimeType: RESOURCE_MIME_TYPE, text: viewHtml }],
-}));
+registerAppTool(
+  server,
+  'deploy',
+  { _meta: { ui: { resourceUri } } },
+  handler
+);
+
+registerAppResource(
+  server,
+  resourceUri,
+  resourceUri,
+  { mimeType: RESOURCE_MIME_TYPE },
+  async () => ({
+    contents: [
+      { uri: resourceUri, mimeType: RESOURCE_MIME_TYPE, text: viewHtml },
+    ],
+  })
+);
 ```
 
-`postToHost(method, params)` is a tiny raw `postMessage` helper (no-op when not embedded). Prefer the MCP Apps SDK in a real view. Storybook logs it in **Actions**.
+## Reuse and limitations
 
-## Scripts
+**EUI Vanilla** reuses:
+
+- Theme tokens, including colors, spacing, typography and radii.
+- Static style declarations generated from EUI style functions.
+- Dependency-free constants and functions where practical.
+
+It cannot directly reuse:
+
+- React markup, lifecycle, state or context.
+- Component behavior and accessibility hooks.
+- Runtime Emotion style composition.
+
+Token changes and edits to existing EUI style declarations usually require only regenerating the CSS. New style keys, selectors, markup, behavior and accessibility changes must also be reflected in the vanilla adapter and its tests.
+
+This model works well for presentational primitives such as buttons, badges, callouts and native form controls. React-heavy composites such as `EuiComboBox` and `EuiDataGrid` are intentionally out of scope: most of their value is behavior and state rather than reusable styling.
+
+## Development
 
 ```bash
-yarn workspace @elastic/eui-vanilla generate    # CSS
-yarn workspace @elastic/eui-vanilla storybook   # http://localhost:4173
+yarn workspace @elastic/eui-vanilla generate
 yarn workspace @elastic/eui-vanilla test
+yarn workspace @elastic/eui-vanilla storybook
+yarn workspace @elastic/eui-vanilla bench
 ```
 
-## Reused vs hand-written
+Generated CSS lives in `generated/`. Do not edit it directly.
 
-| From EUI | From scratch |
-| --- | --- |
-| Emotion style fns → CSS | `mount` DOM |
-| Theme tokens | Behavior that isn't CSS |
-| Shared consts (color, size, display) | Stable class names (no hashes) |
-
-Re-run `yarn generate` after EUI style changes. Don't edit generated CSS.
+See [CONTRIBUTE.md](./CONTRIBUTE.md) for the component workflow and [BENCHMARK.md](./BENCHMARK.md) for current size measurements.
