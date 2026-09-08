@@ -45,7 +45,7 @@ test.describe('EuiComboBoxObject — singleSelection=true', () => {
   let comboBox: EuiComboBoxObject;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(playgroundUrl('singleSelection:true'));
+    await page.goto(playgroundUrl('singleSelection:!true'));
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
     comboBox = new EuiComboBoxObject(page, TEST_SUBJ);
     await comboBox.clear();
@@ -69,6 +69,15 @@ test.describe('EuiComboBoxObject — singleSelection=true', () => {
     await comboBox.clear();
 
     expect(await comboBox.getSelectedOptions()).toEqual([]);
+  });
+
+  // Also catches the story silently falling back to multi-select, whose pills do have one.
+  test('the pill has no close button', async () => {
+    await comboBox.setSelectedOptions(['Item 2']);
+
+    await expect(
+      comboBox.locator.locator(EuiComboBoxSelectors.PILL_SELECTOR).locator('button')
+    ).toHaveCount(0);
   });
 });
 
