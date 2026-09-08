@@ -25,6 +25,7 @@ describe('isButtonDisabled', () => {
     assert.equal(isButtonDisabled({ isDisabled: true }), true);
     assert.equal(isButtonDisabled({ disabled: true }), true);
     assert.equal(isButtonDisabled({ href: 'javascript:alert(1)' }), true);
+    assert.equal(isButtonDisabled({ href: 'java\nscript:alert(1)' }), true);
     assert.equal(isButtonDisabled({ href: '/deploy' }), false);
   });
 });

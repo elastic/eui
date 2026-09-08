@@ -11,6 +11,7 @@ import {
   isButtonDisabled,
   resolveDisplay,
 } from './behavior';
+import { getSecureRelForTarget } from '../../../eui/src/services/security';
 import { mount } from '../mount';
 import type { EuiHtmlButtonProps, EuiHtmlMountedButton } from './types';
 
@@ -59,13 +60,11 @@ const render = (props: EuiHtmlButtonProps): HTMLElement => {
 
     if (target) (el as HTMLAnchorElement).target = target;
 
-    const relParts = new Set(
-      (rel ? rel.split(/\s+/) : []).concat(
-        target === '_blank' ? ['noopener', 'noreferrer'] : []
-      )
-    );
-
-    if (relParts.size) (el as HTMLAnchorElement).rel = [...relParts].join(' ');
+    (el as HTMLAnchorElement).rel = getSecureRelForTarget({
+      href,
+      target,
+      rel,
+    });
   } else {
     (el as HTMLButtonElement).type = type;
   }

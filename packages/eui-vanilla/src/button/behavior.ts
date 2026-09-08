@@ -7,6 +7,7 @@
  */
 
 import type { EuiHtmlButtonProps } from './types';
+import { validateHref } from '../../../eui/src/services/security';
 
 const INTERACTIVE_KEYS = new Set(['Enter', ' ']);
 
@@ -19,8 +20,7 @@ export const isButtonDisabled = ({
   EuiHtmlButtonProps,
   'href' | 'isDisabled' | 'disabled' | 'isLoading'
 >): boolean => {
-  const isHrefValid =
-    !href || !href.trim().toLowerCase().startsWith('javascript:');
+  const isHrefValid = !href || validateHref(href);
 
   return Boolean(isLoading || isDisabled || disabled || !isHrefValid);
 };
