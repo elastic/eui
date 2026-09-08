@@ -1,3 +1,14 @@
+## [`v1.6.0`](https://github.com/elastic/eui/releases/v1.6.0)
+
+- Added `EuiPopoverObject`, a Playwright Component Object for `EuiPopover` ([#9993](https://github.com/elastic/eui/pull/9993))
+- Added `EuiFlyoutObject`, a Playwright Component Object for `EuiFlyout` ([#9994](https://github.com/elastic/eui/pull/9994))
+- Added `EuiModalObject`, a Playwright Component Object for `EuiModal`/`EuiConfirmModal` ([#10002](https://github.com/elastic/eui/pull/10002))
+- Added `EuiAccordionObject`, a Playwright Component Object for `EuiAccordion` ([#10003](https://github.com/elastic/eui/pull/10003))
+
+**Bug fixes**
+
+- Fixed `EuiComboBoxObject.clear()` and `setSelectedOptions()` timing out on `singleSelection` combo boxes, whose pills have no close button ([#9998](https://github.com/elastic/eui/pull/9998))
+
 ## [`v1.5.0`](https://github.com/elastic/eui/releases/v1.5.0)
 
 - Added `EuiRangeObject`, a Playwright Component Object for `EuiRange`/`EuiDualRange` ([#9957](https://github.com/elastic/eui/pull/9957))

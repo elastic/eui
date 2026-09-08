@@ -53,9 +53,13 @@ declare global {
       /**
        * Select an element's content and copy it to the browser clipboard
        * @param selectorToCopy e.g. '.euiDataGrid__content'
+       * @param startSelector optional selector within the copied node to start the range
        * @returns a chainable .then((string) => { doSomethingWith(string); })
        */
-      selectAndCopy(selectorToCopy: string): Chainable<string>;
+      selectAndCopy(
+        selectorToCopy: string,
+        startSelector?: string
+      ): Chainable<string>;
 
       /*
        * Get the value of a CSS variable from the element's computed styles.
