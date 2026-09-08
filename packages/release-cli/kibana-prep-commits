@@ -6,6 +6,7 @@
 # Nightly cherry-picks both sections, skipping commits that are missing or already applied.
 
 # @next
+https://github.com/elastic/kibana/pull/288940/commits/1fdf41c2776f0419124623ed1f6fa1e435c264b7
 
 # @previous
 https://github.com/elastic/kibana/pull/287310/commits/2abc1ab916e13cee4972b0bed08344c80456002a
@@ -14,4 +15,3 @@ https://github.com/elastic/kibana/pull/288418/commits/8d4de5546332856a17cdb42154
 https://github.com/elastic/kibana/pull/235177/commits/fe98fc4dea683a966f7c723432c28221e2ac8b3c
 https://github.com/elastic/kibana/pull/287310/commits/9cd54800d190fba79a50c2d52be514d1cf217c9a
 https://github.com/elastic/kibana/pull/287310/commits/11a47ae5c05b71b02635c3cb7e924c49d006620d
-https://github.com/elastic/kibana/pull/288940/commits/1fdf41c2776f0419124623ed1f6fa1e435c264b7
