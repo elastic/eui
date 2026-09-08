@@ -19,7 +19,6 @@
   },
   "files": [
     "generated",
-    "dist",
     "src",
     "README.md",
     "licenses"
@@ -27,12 +26,12 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:clean": "rimraf dist tmp",
-    "generate": "node scripts/build.mjs --css-only",
+    "generate": "node scripts/build.mjs",
     "bench": "node scripts/bench/index.mjs",
-    "storybook": "node scripts/build.mjs --css-only && storybook dev -p 4173 --ci",
+    "storybook": "node scripts/build.mjs && storybook dev -p 4173 --ci",
     "lint": "tsc --noEmit -p tsconfig.json",
     "test": "yarn lint && yarn test-unit",
-    "test-unit": "yarn generate && node scripts/test.mjs"
+    "test-unit": "yarn generate && node --import tsx --test src/**/*.test.ts"
   },
   "devDependencies": {
     "@elastic/eui-theme-borealis": "workspace:*",

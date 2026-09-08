@@ -6,7 +6,7 @@ Copy `src/button/`. Do not invent a new shape.
 
 This package is **primitives only** (button, badge, callout, simple form controls). Do not port DataGrid, combo box, or other composites.
 
-Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>/`), the CSS sheet, the dist file and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
+Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>/`), the CSS sheet and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
 
 ## Rules
 
@@ -129,11 +129,10 @@ yarn workspace @elastic/eui-vanilla bench -- <id>
 ```bash
 yarn workspace @elastic/eui-vanilla generate
 yarn workspace @elastic/eui-vanilla test
-yarn workspace @elastic/eui-vanilla build
 yarn workspace @elastic/eui-vanilla storybook
 ```
 
-`dist/<id>.html` is the iframe resource (base CSS + component CSS + that mount). `dist/index.html` is only a listing.
+Storybook is for local iteration. Consumers compose `mount` + CSS in their own MCP App HTML.
 
 Check light and dark. Check disabled, empty and loading. Compare against the EUI React story.
 
