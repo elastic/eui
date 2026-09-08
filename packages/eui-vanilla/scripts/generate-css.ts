@@ -9,18 +9,17 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { emit, type CssSheet } from './css/engine';
+import { emit, type CssOutput } from './css/engine';
+import { cssOutputs } from './css/sheets';
 
 const HEADER = `/* Generated from EUI Emotion style fns. Rebuild after EUI style changes. Do not edit. */\n\n`;
-
-export type CssOutput = { sheets: CssSheet[]; reset?: string };
 
 /**
  * Write generated CSS files for each sheet.
  *
  * @param outputs - map of file stem → sheets (`base` may include `reset`)
  */
-export const writeGenerated = (outputs: Record<string, CssOutput>): void => {
+const writeGenerated = (outputs: Record<string, CssOutput>): void => {
   const outDir = join(process.cwd(), 'generated');
   mkdirSync(outDir, { recursive: true });
 
@@ -31,3 +30,5 @@ export const writeGenerated = (outputs: Record<string, CssOutput>): void => {
     console.log(`wrote generated/${name}.css (${css.length} bytes)`);
   }
 };
+
+writeGenerated(cssOutputs);

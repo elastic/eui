@@ -16,15 +16,6 @@ export const pascal = (id) =>
   id.replace(/(^|-)(\w)/g, (_, __, char) => char.toUpperCase());
 
 /**
- * `button` → `button`. `button-group` → `buttonGroup`.
- */
-export const camel = (id) => {
-  const name = pascal(id);
-
-  return name[0].toLowerCase() + name.slice(1);
-};
-
-/**
  * Component ids: directories under `src/` that contain `mount.ts`.
  * `base` is CSS-only and is not a component id.
  */
@@ -38,12 +29,12 @@ export const listComponentIds = (pkgRoot) =>
     .map((entry) => entry.name)
     .sort();
 
-export const sheetFile = (pkgRoot, id) =>
-  join(pkgRoot, 'scripts/css/sheets', `${id}.ts`);
-
 const listComponentSheetIds = (pkgRoot) =>
   readdirSync(join(pkgRoot, 'scripts/css/sheets'))
-    .filter((name) => name.endsWith('.ts') && name !== 'base.ts')
+    .filter(
+      (name) =>
+        name.endsWith('.ts') && name !== 'base.ts' && name !== 'index.ts'
+    )
     .map((name) => name.slice(0, -3))
     .sort();
 

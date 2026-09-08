@@ -23,6 +23,7 @@ Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>
 | Concern | Path | Auto |
 | --- | --- | --- |
 | CSS sheet | `scripts/css/sheets/<id>.ts` | required for each id |
+| CSS outputs | `scripts/css/sheets/index.ts` | manual |
 | Runtime | `src/<id>/mount.ts` | source of ids |
 | Public API | `src/index.ts` | manual |
 | CSS export | `package.json` `"./*.css"` | wildcard |
@@ -40,7 +41,7 @@ CSS sheets stay hand-mapped (Emotion object → selector). That mapping is the w
 This serializes EUI styles. It does not mount DOM.
 
 1. Find the EUI Emotion style fns (usually `packages/eui/src/components/<id>/*.styles.ts`).
-2. Add `scripts/css/sheets/<id>.ts` exporting `<id>Sheet`.
+2. Add `scripts/css/sheets/<id>.ts` exporting `<id>Sheet`. Register it in `scripts/css/sheets/index.ts`.
 3. Wrap every selector with `root`. Example: `` rule(`${root} .euiBadge`, styles.euiBadge) ``.
 4. Use `rule()` from `scripts/emotion_to_css.ts`.
 5. Run `yarn workspace @elastic/eui-vanilla generate`.

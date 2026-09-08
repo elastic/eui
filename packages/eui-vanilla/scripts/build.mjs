@@ -17,7 +17,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
-import { camel, assertComponentIds } from './ids.mjs';
+import { assertComponentIds } from './ids.mjs';
 
 const pkgRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const packagesRoot = join(pkgRoot, '..');
@@ -42,36 +42,12 @@ const emptyAsset = {
   },
 };
 
-const sheetImports = sheetIds
-  .map((id) =>
-    id === 'base'
-      ? `import { baseReset, baseSheet } from './scripts/css/sheets/base.ts';`
-      : `import { ${camel(id)}Sheet } from './scripts/css/sheets/${id}.ts';`
-  )
-  .join('\n');
-
-const sheetOutputs = `{\n${sheetIds
-  .map((id) =>
-    id === 'base'
-      ? '  base: { reset: baseReset, sheets: [baseSheet] }'
-      : `  ${JSON.stringify(id)}: { sheets: [${camel(id)}Sheet] }`
-  )
-  .join(',\n')}\n}`;
-
 mkdirSync(join(pkgRoot, 'tmp'), { recursive: true });
 const generateOut = join(pkgRoot, 'tmp/generate.mjs');
 
 await esbuild.build({
   absWorkingDir: pkgRoot,
-  stdin: {
-    contents: `${sheetImports}
-import { writeGenerated } from './scripts/generate-css.ts';
-writeGenerated(${sheetOutputs});
-`,
-    resolveDir: pkgRoot,
-    sourcefile: 'css-entry.ts',
-    loader: 'ts',
-  },
+  entryPoints: [join(pkgRoot, 'scripts/generate-css.ts')],
   bundle: true,
   platform: 'node',
   format: 'esm',

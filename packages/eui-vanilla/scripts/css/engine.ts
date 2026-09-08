@@ -24,6 +24,14 @@ export type ColorMode = (typeof COLOR_MODES)[number];
 export type CssSheet = (ctx: UseEuiTheme, root: string) => string;
 
 /**
+ * One generated CSS file.
+ *
+ * @param sheets - CSS sheets
+ * @param reset - optional CSS prepended as-is (`base` reset)
+ */
+export type CssOutput = { sheets: CssSheet[]; reset?: string };
+
+/**
  * Create theme context for a color mode.
  *
  * @param colorMode - color mode
