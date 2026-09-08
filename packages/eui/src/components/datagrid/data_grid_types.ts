@@ -461,11 +461,6 @@ export interface EuiDataGridColumnResizerProps {
   isLastColumn: boolean;
 }
 
-export interface EuiDataGridColumnResizerState {
-  initialX: number;
-  offset: number;
-}
-
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
   direction: string;
