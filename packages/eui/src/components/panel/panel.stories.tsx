@@ -122,7 +122,7 @@ export const Kitchensink: Story = {
           <EuiPanel {...args} color="danger" onClick={undefined} />
         </EuiFlexGroup>
 
-        <EuiPanel {...args} hasShadow onClick={undefined}>
+        <EuiPanel {...args} onClick={undefined}>
           <div>Content</div>
           <EuiPanel
             color="subdued"
