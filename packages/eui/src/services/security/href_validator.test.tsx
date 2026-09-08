@@ -42,5 +42,8 @@ describe('validateHref', () => {
     expect(validateHref('javascript:')).toBeFalsy();
     // eslint-disable-next-line no-script-url
     expect(validateHref('javascript:alert()')).toBeFalsy();
+    expect(validateHref('java\nscript:alert()')).toBeFalsy();
+    expect(validateHref('java\tscript:alert()')).toBeFalsy();
+    expect(validateHref('\u0000javascript:alert()')).toBeFalsy();
   });
 });

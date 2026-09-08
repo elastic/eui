@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-import URL from 'url-parse';
+const getProtocol = (href: string): string | undefined => {
+  const normalized = href
+    .replace(/[\u0009\u000a\u000d]/g, '')
+    .replace(/^[\u0000-\u0020]+/, '');
 
-export function validateHref(href: string) {
-  // check href and treat it as invalid if it uses the javascript: protocol
-  const parts = new URL(href);
-  // eslint-disable-next-line no-script-url
-  return parts.protocol !== 'javascript:';
-}
+  return /^([a-z][a-z\d+.-]*):/i.exec(normalized)?.[1].toLowerCase();
+};
+
+export const validateHref = (href: string): boolean =>
+  getProtocol(href) !== 'javascript';

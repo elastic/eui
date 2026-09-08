@@ -7503,7 +7503,6 @@ __metadata:
     typescript: "npm:^5.8.3"
     unified: "npm:^9.2.2"
     unist-util-visit: "npm:^2.0.3"
-    url-parse: "npm:^1.5.10"
     use-sync-external-store: "npm:^1.6.0"
     uuid: "npm:^14.0.0"
     vfile: "npm:^4.2.1"
@@ -41960,7 +41959,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.5.10, url-parse@npm:^1.5.3":
+"url-parse@npm:^1.5.3":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:

@@ -7,3 +7,4 @@
  */
 
 export { getSecureRelForTarget } from './get_secure_rel_for_target';
+export { validateHref } from './href_validator';
