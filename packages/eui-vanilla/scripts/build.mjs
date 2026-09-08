@@ -11,6 +11,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  rmSync,
   writeFileSync,
 } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -25,6 +26,7 @@ const generatedDir = join(pkgRoot, 'generated');
 
 const componentIds = assertComponentIds(pkgRoot);
 const sheetIds = ['base', ...componentIds];
+const expectedCssFiles = sheetIds.map((id) => `${id}.css`).sort();
 
 const emptyAsset = {
   name: 'empty-asset',
@@ -41,6 +43,7 @@ const emptyAsset = {
 };
 
 mkdirSync(join(pkgRoot, 'tmp'), { recursive: true });
+
 const generateOut = join(pkgRoot, 'tmp/generate.mjs');
 
 await esbuild.build({
@@ -64,6 +67,8 @@ await esbuild.build({
   plugins: [emptyAsset],
 });
 
+rmSync(generatedDir, { recursive: true, force: true });
+
 const generated = spawnSync(process.execPath, [generateOut], {
   cwd: pkgRoot,
   stdio: 'inherit',
@@ -71,24 +76,28 @@ const generated = spawnSync(process.execPath, [generateOut], {
 
 if (generated.status !== 0) process.exit(generated.status ?? 1);
 
-const minifiedCss = {};
-for (const file of readdirSync(generatedDir)
+const generatedCssFiles = readdirSync(generatedDir)
   .filter((name) => name.endsWith('.css'))
-  .sort()) {
+  .sort();
+
+if (
+  generatedCssFiles.length !== expectedCssFiles.length ||
+  generatedCssFiles.some((file, index) => file !== expectedCssFiles[index])
+) {
+  throw new Error(
+    `Generated CSS files do not match the registry.\nExpected: ${expectedCssFiles.join(
+      ', '
+    )}\nReceived: ${generatedCssFiles.join(', ')}`
+  );
+}
+
+for (const file of generatedCssFiles) {
   const path = join(generatedDir, file);
   const { code } = await esbuild.transform(readFileSync(path, 'utf8'), {
     loader: 'css',
     minify: true,
   });
+
   writeFileSync(path, code);
-  minifiedCss[file] = code;
   console.log(`minified generated/${file} (${code.length} bytes)`);
-}
-
-for (const id of sheetIds) {
-  const file = `${id}.css`;
-
-  if (!minifiedCss[file]) {
-    throw new Error(`Missing generated/${file} after generate`);
-  }
 }
