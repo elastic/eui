@@ -9,7 +9,7 @@
 import type { Decorator } from '@storybook/html-vite';
 import { action } from 'storybook/actions';
 
-import { isJsonRpc } from '../src/mcp';
+import { isStoryNotification } from './mcp';
 
 let patched = false;
 let lastTheme: string | undefined;
@@ -26,7 +26,7 @@ const install = () => {
     targetOriginOrOptions?: unknown,
     transfer?: Transferable[]
   ) => {
-    if (isJsonRpc(message)) action('mcp →')(message);
+    if (isStoryNotification(message)) action('mcp →')(message);
 
     if (
       typeof targetOriginOrOptions === 'string' ||
@@ -39,7 +39,7 @@ const install = () => {
 
   window.addEventListener('message', (event: MessageEvent) => {
     if (event.source === window) return;
-    if (isJsonRpc(event.data)) action('mcp ←')(event.data);
+    if (isStoryNotification(event.data)) action('mcp ←')(event.data);
   });
 };
 

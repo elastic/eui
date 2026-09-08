@@ -108,7 +108,7 @@ yarn workspace @elastic/eui-vanilla test
 
 1. Add `src/<id>/<id>.stories.ts`.
 2. Call `mount<Id>` in `render`. Return the host element.
-3. Use `postToHost` only if the story should log host messages in Actions.
+3. Use `.storybook/mcp.ts` only when a story should log host messages in Actions.
 
 ```bash
 yarn workspace @elastic/eui-vanilla storybook
@@ -144,5 +144,5 @@ Check light and dark. Check disabled, empty and loading. Compare against the EUI
 - Import React or Emotion from `src/`.
 - Hand-write component CSS in `generated/`.
 - Override EUI internals with `!important` or hashed class selectors.
-- Put host `postMessage` protocol into the component. Use `postToHost` at the app/story edge.
+- Put host protocol code into a component or the package runtime. Use the MCP Apps SDK in real views and Storybook-local helpers in stories.
 - Port composite EUI widgets.

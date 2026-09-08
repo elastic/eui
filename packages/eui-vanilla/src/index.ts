@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { postToHost, isJsonRpc, type JsonRpc } from './mcp';
 export { mount, type EuiHtmlMounted, type EuiHtmlMountSpec } from './mount';
 export {
   mountButton,

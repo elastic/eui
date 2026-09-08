@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/html-vite';
 import { fn } from 'storybook/test';
 
 import { mountButton } from './mount';
-import { postToHost } from '../mcp';
+import { postStoryNotification } from '../../.storybook/mcp';
 import {
   BUTTON_COLORS,
   BUTTON_DISPLAYS,
@@ -39,7 +39,7 @@ const meta = {
       ...args,
       onClick: (event) => {
         args.onClick?.(event);
-        postToHost('ui/message', { text: args.label });
+        postStoryNotification('ui/message', { text: args.label });
       },
     });
 
