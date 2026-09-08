@@ -1,3 +1,33 @@
+## [`v121.0.0`](https://github.com/elastic/eui/releases/v121.0.0)
+
+- Added `isDisabled`, `isLoading`, `href`, and `target` props to `EuiFlyoutMenuAction`. ([#9992](https://github.com/elastic/eui/pull/9992))
+- Updated `onClick` on `EuiFlyoutMenuAction` to be optional, so actions can navigate via `href` alone. ([#9992](https://github.com/elastic/eui/pull/9992))
+- Added `tableSparkles` icon ([#9987](https://github.com/elastic/eui/pull/9987))
+- Updated styles of `EuiFilterButton` ([#9961](https://github.com/elastic/eui/pull/9961))
+- Updated `EuiFilterGroup` ([#9961](https://github.com/elastic/eui/pull/9961))
+    - Updated styles
+    - Added `display` prop (values: `'regular' | 'highlighted'`) to render different visual toggle variants
+    - Added `showDividers` prop to optionally render dividers between group children
+- Updated `EuiSplitButton` disabled styles ([#9986](https://github.com/elastic/eui/pull/9986))
+- Updated styles on `EuiButtonGroup` with legacy Options API ([#9953](https://github.com/elastic/eui/pull/9953))
+- Updated usages of `EuiButtonGroup` in `EuiDataGrid`'s display selector and column sorting to use the Children API ([#9953](https://github.com/elastic/eui/pull/9953))
+- Updated `EuiSuperDatePicker`'s time window buttons to use `EuiButtonGroup` with Children API ([#9953](https://github.com/elastic/eui/pull/9953))
+
+**Bug fixes**
+
+- Fixed `EuiPopoverTitle` and `EuiPopoverFooter` backgrounds not following the popover panel's corner radius ([#9985](https://github.com/elastic/eui/pull/9985))
+- Fixed `EuiFlyoutBody` content becoming inaccessible at short viewport heights ([#9944](https://github.com/elastic/eui/pull/9944))
+
+**Deprecations**
+
+- Deprecated `options` on `EuiButtonGroup` - Use the new Children API via `children` prop instead. ([#9953](https://github.com/elastic/eui/pull/9953))
+- Deprecated `color` on `EuiButtonGroup` - `color` will be fixed to `text` in the future. ([#9953](https://github.com/elastic/eui/pull/9953))
+- Deprecated `buttonSize="compressed"` on `EuiButtonGroup` - Renders as `buttonSize="s"` instead. ([#9953](https://github.com/elastic/eui/pull/9953))
+
+**Breaking changes**
+
+- Added a new `logoType` prop to `EuiHeaderLogo` to render either the `glyph` or `horizontal` Elastic logo. The `iconType` prop has been removed, and `children` text content is no longer rendered. ([#9875](https://github.com/elastic/eui/pull/9875))
+
 ## [`v120.0.0`](https://github.com/elastic/eui/releases/v120.0.0)
 
 - Updated `EuiButtonGroup` (Children API only): ([#9929](https://github.com/elastic/eui/pull/9929))
