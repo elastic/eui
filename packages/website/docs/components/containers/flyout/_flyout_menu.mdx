@@ -50,6 +50,8 @@ export default () => {
 
 Actions rendered via `trailingActions` show a tooltip when `toolTipContent` is provided, and are placed before the close button. Use `leadingActions` to render actions at the start of the menu bar, after any built-in leading controls (pagination, or back/history); a divider is shown automatically between the built-in controls and `leadingActions` when both are present.
 
+Each action also supports `isDisabled`, `isLoading`, `href`, and `target` — see [EuiFlyoutMenuAction](#EuiFlyoutMenuAction). Pair `isDisabled` with `toolTipContent` to explain why an action is unavailable; the button stays focusable so keyboard users can reach the tooltip.
+
 :::info Deprecation
 The `customActions` prop is deprecated in favor of `trailingActions`. It is still supported as a compatibility alias, but if both `trailingActions` and `customActions` are supplied, `trailingActions` takes precedence.
 :::

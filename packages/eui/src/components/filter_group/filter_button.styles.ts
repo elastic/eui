@@ -16,6 +16,8 @@ import {
   euiTextTruncate,
   highContrastModeStyles,
   preventForcedColors,
+  euiButtonSizeMap,
+  euiDisabledSelector,
 } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
@@ -31,14 +33,28 @@ export const euiFilterButtonDisplay = (euiThemeContext: UseEuiTheme) => {
 export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
   const selectedSelector = '.euiFilterButton-isSelected';
   const withNextSelector = '& + .euiFilterButton__wrapper';
 
+  const containerPadding = euiTheme.size.xs;
+
   return {
     euiFilterButton: css`
-      position: relative;
+      --euiFilterButtonInsetSize: ${buttonSizeMap.m.getInsetHeight(
+        buttonSizeMap.m.height,
+        containerPadding
+      )};
+      --euiFilterButtonRadius: ${buttonSizeMap.m.radiusInset};
 
+      position: relative;
+      block-size: var(--euiFilterButtonInsetSize);
       ${logicalCSS('width', '100%')}
+      border: none;
+      border-radius: var(
+        --euiFilterButtonRadius,
+        ${euiTheme.border.radius.small}
+      );
 
       &:not(${selectedSelector}) {
         &:hover,
@@ -49,23 +65,19 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
           }
         }
       }
+
+      /* use increased specificity over base button */
+      &&:focus-visible {
+        outline-style: auto;
+        outline-offset: 0;
+      }
     `,
     buttonType: {
-      default: css`
-        border-radius: 0;
-
-        &:focus-visible {
-          z-index: 1;
-          outline-offset: -${euiTheme.border.width.thick};
-          border-radius: ${euiTheme.border.radius.small};
-          transition: none;
-        }
-      `,
       toggle: css`
         ${euiFilterButtonDisplay(euiThemeContext)}
 
-        &:focus-visible {
-          outline-offset: ${mathWithUnits(euiTheme.focus.width, (x) => x / 2)};
+        &:where(:is(${euiDisabledSelector}):not([aria-pressed="true"])) {
+          background-color: transparent;
         }
 
         ${highContrastModeStyles(euiThemeContext, {
@@ -79,9 +91,21 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         })}
       `,
     },
+    compressed: css`
+      --euiFilterButtonInsetSize: ${buttonSizeMap.s.getInsetHeight(
+        buttonSizeMap.s.height,
+        containerPadding
+      )};
+      --euiFilterButtonRadius: ${buttonSizeMap.s.radiusInset};
+    `,
     withNext: css`
       ${withNextSelector} {
-        ${logicalCSS('margin-left', `-${euiTheme.size.xs}`)}
+        margin-inline-start: -${containerPadding};
+
+        /* account for group faux border spacing */
+        &:where(.euiFilterGroup[data-dividers='true'] &) {
+          margin-inline-start: -${mathWithUnits([containerPadding, euiTheme.border.width.thin], (x, y) => x + y)};
+        }
 
         /* Remove just the left faux border */
         &::before {
@@ -101,14 +125,31 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     hasActiveFilters: css`
       font-weight: ${euiTheme.font.weight.medium};
     `,
+    isSelected: css`
+      &${selectedSelector} {
+        background-color: ${euiTheme.colors.backgroundLightText};
+
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `
+            border: ${euiTheme.border.thin};
+          `,
+        })}
+      }
+    `,
+    isIconOnly: css`
+      inline-size: var(--euiFilterButtonInsetSize);
+      min-inline-size: var(--euiFilterButtonInsetSize);
+    `,
   };
 };
 
 export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
   const { borderColor } = euiFormVariables(euiThemeContext);
   const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
+  const containerPadding = euiTheme.size.xs;
 
   // Pseudo elements create borders without affecting width. We also prefer them
   // over box-shadow for Windows high contrast theme compatibility
@@ -116,9 +157,12 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     &::before {
       content: '';
       position: absolute;
-      inset: 0;
-      ${logicalCSS('border-left', border)}
-
+      inset-inline-start: -${euiTheme.border.width.thin};
+      block-size: calc(
+        var(--euiFilterButtonSize, ${euiTheme.size.xl}) - ${euiTheme.size.base}
+      );
+      inline-size: ${euiTheme.border.width.thin};
+      border-inline-start: ${border};
       pointer-events: none;
     }
   `;
@@ -127,7 +171,9 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     &::after {
       content: '';
       position: absolute;
-      inset: 0;
+      inset-block-start: -${euiTheme.border.width.thin};
+      inset-inline-start: 0;
+      inline-size: calc(100% + ${euiTheme.border.width.thin});
       ${logicalCSS('border-bottom', border)}
       pointer-events: none;
     }
@@ -135,18 +181,33 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     wrapper: css`
+      --euiFilterButtonSize: ${buttonSizeMap.m.height};
+
       ${euiFilterButtonDisplay(euiThemeContext)}
       position: relative;
       display: flex;
       align-items: center;
+      block-size: var(--euiFilterButtonSize, ${euiTheme.size.xl});
 
+      padding: ${containerPadding};
+
+      & + :where(:has(.euiFilterButton)) {
+        margin-inline-start: -${containerPadding};
+      }
+    `,
+    compressed: css`
+      --euiFilterButtonSize: ${buttonSizeMap.s.height};
+    `,
+    hasDividers: css`
       ${leftBorder}
       ${bottomBorder}
 
-      ${logicalCSS('padding-vertical', euiTheme.size.xs)}
+      & + :where(:has(.euiFilterButton)) {
+        margin-inline-start: 0;
+      }
     `,
-    hasToggle: css`
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+    isIconOnly: css`
+      min-inline-size: auto;
     `,
   };
 };

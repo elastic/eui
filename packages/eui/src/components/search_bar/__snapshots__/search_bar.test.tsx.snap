@@ -153,14 +153,16 @@ exports[`SearchBar render - provided query, filters 1`] = `
   >
     <div
       class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
+      data-display="regular"
+      data-dividers="true"
     >
       <div
-        class="euiFilterButton__wrapper css-1elc3kl-wrapper-hasToggle"
+        class="euiFilterButton__wrapper css-lcbovg-wrapper-hasDividers"
       >
         <button
           aria-pressed="false"
-          class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-s-empty-text-euiFilterButton-toggle"
-          data-test-subj="filter-button_generated-id"
+          class="euiButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-toggle"
+          id="filter-button_generated-id"
           type="button"
         >
           <span
@@ -180,12 +182,12 @@ exports[`SearchBar render - provided query, filters 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="euiFilterButton__wrapper css-xcxo9u-wrapper"
+          class="euiFilterButton__wrapper css-lcbovg-wrapper-hasDividers"
         >
           <button
             aria-expanded="false"
             aria-label="Tag Selection"
-            class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default"
+            class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
             type="button"
           >
             <span
