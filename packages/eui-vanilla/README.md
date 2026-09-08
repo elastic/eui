@@ -1,5 +1,10 @@
 # @elastic/eui-vanilla
 
+> [!WARNING]
+> **Architectural spike**
+>
+> This package demonstrates one way to reuse EUI's Emotion styles without shipping React or Emotion but it is **not a recommended production architecture**.
+
 Lightweight EUI styles and DOM helpers without React or Emotion at runtime.
 
 This package is for small, isolated documents such as [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps). It supports simple UI primitives. Complex components such as `EuiDataGrid` and `EuiComboBox` remain part of `@elastic/eui`.
@@ -118,23 +123,28 @@ registerAppResource(
 );
 ```
 
-## Reuse and limitations
+## Spike assessment
 
-**EUI Vanilla** reuses:
+### Advantages
 
-- Theme tokens, including colors, spacing, typography and radii.
-- Static style declarations generated from EUI style functions.
-- Dependency-free constants and functions where practical.
+- The browser receives only static CSS and small dependency-free helpers.
+- Generated styles closely match EUI component recipes.
+- Existing EUI theme values, style declarations and constants can be reused.
+- EUI style changes can often be adopted by regenerating CSS.
 
-It cannot directly reuse:
+### Downsides
 
-- React markup, lifecycle, state or context.
-- Component behavior and accessibility hooks.
-- Runtime Emotion style composition.
+- It imports private EUI internals that are not stable public APIs.
+- Its build depends on EUI's React, Emotion and theme implementation.
+- It requires custom Emotion serialization and CSS-generation infrastructure.
+- Markup, behavior and accessibility still need manually maintained vanilla adapters.
+- Internal EUI refactors can break the build even when the resulting design is unchanged.
 
-Token changes and edits to existing EUI style declarations usually require only regenerating the CSS. New style keys, selectors, markup, behavior and accessibility changes must also be reflected in the vanilla adapter and its tests.
+### Conclusion
 
-This model works well for presentational primitives such as buttons, badges, callouts and native form controls. React-heavy composites such as `EuiComboBox` and `EuiDataGrid` are intentionally out of scope: most of their value is behavior and state rather than reusable styling.
+For the intended simple components — buttons, badges, callouts and native form controls — a completely detached vanilla HTML library is the better architecture. It should own small handwritten CSS recipes and dependency-free behavior while consuming the [`@elastic/design-tokens` source proposed in #9595](https://github.com/elastic/eui/pull/9595). EUI should remain the visual and accessibility reference, with parity protected by tests and visual regression coverage.
+
+React-heavy composites such as `EuiComboBox` and `EuiDataGrid` remain out of scope because most of their value is behavior and state rather than reusable styling.
 
 ## Development
 
