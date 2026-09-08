@@ -113,7 +113,6 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       padding: ${paddingSize};
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       color: ${euiTheme.colors.textParagraph};
-      border-radius: ${euiTheme.border.radius.medium};
 
       &.react-datepicker--non-interactive {
         pointer-events: none;
@@ -244,7 +243,7 @@ const _monthYearDropdowns = (
       ${logicalCSS('width', '100%')}
       padding: ${euiTheme.size.xs};
       background-color: ${euiTheme.colors.emptyShade};
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
       ${euiShadowSmall(euiThemeContext, { borderAllInHighContrastMode: true })}
     }
 
@@ -265,7 +264,7 @@ const _monthYearDropdowns = (
       ${logicalCSS('margin-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
       cursor: pointer;
 
       &:hover {
@@ -320,7 +319,7 @@ const _dayCalendarStyles = (
 
     .react-datepicker__day {
       color: ${colors.day.inMonth};
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
 
       ${euiCanAnimate} {
         transition: transform ${animationSpeed} ease-in-out,
@@ -455,8 +454,8 @@ const _timeSelectStyles = (
     .react-datepicker__time-container {
       display: flex;
       ${logicalCSS('width', 'auto')}
-      background-color: ${euiTheme.colors.body};
-      border-radius: ${euiTheme.border.radius.medium};
+      background-color: ${euiTheme.colors.backgroundBaseSubdued};
+      border-radius: ${euiTheme.border.radius.control};
 
       &--focus {
         .react-datepicker__time-list-item--preselected {
@@ -497,7 +496,7 @@ const _timeSelectStyles = (
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
 
       &:not(:disabled):hover {
         text-decoration: underline;
