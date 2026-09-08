@@ -79,6 +79,6 @@ yarn workspace @elastic/eui-vanilla generate
 yarn workspace @elastic/eui-vanilla bench
 ```
 
-Defaults to `button`. Pass another fixture after `--` (`yarn workspace @elastic/eui-vanilla bench -- badge`). Add fixtures in `scripts/bench/components.mjs`.
+Defaults to `button`. Pass another id after `--` (`yarn workspace @elastic/eui-vanilla bench -- badge`). Add `src/<id>/bench.mjs`.
 
 Writes JSON to stdout. `--out path.json` also writes a file.

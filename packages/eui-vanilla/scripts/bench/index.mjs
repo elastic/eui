@@ -2,13 +2,14 @@ import * as esbuild from 'esbuild';
 import { gzipSync, brotliCompressSync } from 'node:zlib';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { performance } from 'node:perf_hooks';
 
-import { components } from './components.mjs';
+import { listComponentIds, pascal } from '../ids.mjs';
 
 const vanillaRoot = join(dirname(fileURLToPath(import.meta.url)), '../..');
 const euiRoot = join(vanillaRoot, '../eui');
+const componentIds = listComponentIds(vanillaRoot);
 
 const args = process.argv.slice(2).filter((a) => a !== '--');
 const outIdx = args.indexOf('--out');
@@ -16,15 +17,28 @@ const outFile = outIdx >= 0 ? args[outIdx + 1] : undefined;
 const id =
   args.find((a, i) => !a.startsWith('-') && i !== outIdx + 1) ?? 'button';
 
-const spec = components[id];
-
-if (!spec) {
-  const known = Object.keys(components).join(', ') || '(none)';
+if (!componentIds.includes(id)) {
+  const known = componentIds.join(', ') || '(none)';
 
   throw new Error(
-    `Unknown component "${id}". Known: ${known}. Add a fixture in scripts/bench/components.mjs.`
+    `Unknown component "${id}". Known: ${known}. Add src/${id}/mount.ts.`
   );
 }
+
+const benchFile = join(vanillaRoot, 'src', id, 'bench.mjs');
+
+if (!existsSync(benchFile)) {
+  throw new Error(
+    `Missing src/${id}/bench.mjs. Export { props, jsx } for a representative example.`
+  );
+}
+
+const { props, jsx } = await import(pathToFileURL(benchFile).href);
+const mountName = `mount${pascal(id)}`;
+const euiName = `Eui${pascal(id)}`;
+const vanillaFrom = `src/${id}/mount.ts`;
+const euiFrom = `src/components/${id}`;
+const cssFiles = ['base.css', `${id}.css`];
 
 const emptyAsset = {
   name: 'empty-asset',
@@ -159,23 +173,23 @@ const euiAlias = {
   plugins: [emptyAsset],
 };
 
-const vanillaEntry = `import { ${spec.vanilla.mount} } from ${JSON.stringify(`./${spec.vanilla.from}`)};
-${spec.vanilla.mount}(document.getElementById('root'), ${JSON.stringify(spec.vanilla.props)});
+const vanillaEntry = `import { ${mountName} } from ${JSON.stringify(`./${vanillaFrom}`)};
+${mountName}(document.getElementById('root'), ${JSON.stringify(props)});
 `;
 
 const euiDeepEntry = `import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ${spec.eui.name} } from ${JSON.stringify(`./${spec.eui.from}`)};
+import { ${euiName} } from ${JSON.stringify(`./${euiFrom}`)};
 import { EuiProvider } from './src/components/provider';
 
 createRoot(document.getElementById('root')).render(
   <EuiProvider>
-    ${spec.eui.jsx}
+    ${jsx}
   </EuiProvider>
 );
 `;
 
-const label = spec.vanilla.props.label ?? id;
+const label = props.label ?? id;
 const reactEntry = `import React from 'react';
 import { createRoot } from 'react-dom/client';
 createRoot(document.getElementById('root')).render(<button>${label}</button>);
@@ -203,7 +217,7 @@ const [vanillaBuild, euiDeepBuild, reactBuild] = await Promise.all([
     }),
   ]);
 
-const cssBuf = loadCss(spec.css);
+const cssBuf = loadCss(cssFiles);
 
 const emptySizes = { raw: 0, gzip: 0, brotli: 0 };
 

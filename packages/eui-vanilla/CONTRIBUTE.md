@@ -6,7 +6,7 @@ Copy `src/button/`. Do not invent a new shape.
 
 This package is **primitives only** (button, badge, callout, simple form controls). Do not port DataGrid, combo box, or other composites.
 
-Use a short kebab-case id (`badge`, `callout`). That id is the folder name, the CSS file name and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
+Use a short kebab-case id (`badge`, `callout`). That id is the folder (`src/<id>/`), the CSS sheet, the dist file and the bench key. `scripts/css/sheets/<id>.ts` must export `<id>Sheet` (camelCase: `buttonGroup.ts` → `buttonGroupSheet`).
 
 ## Rules
 
@@ -22,14 +22,14 @@ Use a short kebab-case id (`badge`, `callout`). That id is the folder name, the 
 
 | Concern | Path | Auto |
 | --- | --- | --- |
-| CSS sheet | `scripts/css/sheets/<id>.ts` | globbed |
-| Runtime | `src/<id>/` with `mount.ts` | globbed for dist |
+| CSS sheet | `scripts/css/sheets/<id>.ts` | required for each id |
+| Runtime | `src/<id>/mount.ts` | source of ids |
 | Public API | `src/index.ts` | manual |
 | CSS export | `package.json` `"./*.css"` | wildcard |
 | Tests | `src/**/*.test.ts` | globbed |
 | Stories | `src/**/*.stories.ts` | globbed |
 | Storybook CSS | `generated/*.css` | globbed |
-| Bench | `scripts/bench/components.mjs` | manual |
+| Bench example | `src/<id>/bench.mjs` | `props` + `jsx` |
 
 `src/mount.ts` is shared. Do not duplicate it.
 
@@ -117,10 +117,7 @@ Port **4173**. Set color mode in the toolbar.
 
 Optional until you want numbers.
 
-1. Add a fixture in `scripts/bench/components.mjs`. Key = id.
-2. Point `vanilla.from` at `src/<id>/mount.ts`.
-3. Point `eui.from` at `packages/eui/src/components/<id>`.
-4. List CSS as `['base.css', '<id>.css']`.
+Add `src/<id>/bench.mjs` with `props` (vanilla) and `jsx` (EUI React). Mount name, EUI import and CSS files come from the id.
 
 ```bash
 yarn workspace @elastic/eui-vanilla bench -- <id>

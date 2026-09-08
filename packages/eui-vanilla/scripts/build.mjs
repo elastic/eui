@@ -8,7 +8,6 @@
 
 import * as esbuild from 'esbuild';
 import {
-  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
@@ -18,28 +17,16 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
+import { camel, assertComponentIds } from './ids.mjs';
+
 const pkgRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const packagesRoot = join(pkgRoot, '..');
 const cssOnly = process.argv.includes('--css-only');
 const generatedDir = join(pkgRoot, 'generated');
 const distDir = join(pkgRoot, 'dist');
-const sheetsDir = join(pkgRoot, 'scripts/css/sheets');
 
-const camel = (id) => id.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-
-const sheetIds = readdirSync(sheetsDir)
-  .filter((name) => name.endsWith('.ts'))
-  .map((name) => name.slice(0, -3))
-  .sort();
-
-const componentIds = readdirSync(join(pkgRoot, 'src'), { withFileTypes: true })
-  .filter(
-    (entry) =>
-      entry.isDirectory() &&
-      existsSync(join(pkgRoot, 'src', entry.name, 'mount.ts'))
-  )
-  .map((entry) => entry.name)
-  .sort();
+const componentIds = assertComponentIds(pkgRoot);
+const sheetIds = ['base', ...componentIds];
 
 const emptyAsset = {
   name: 'empty-asset',
@@ -122,6 +109,14 @@ for (const file of readdirSync(generatedDir)
   writeFileSync(path, code);
   minifiedCss[file] = code;
   console.log(`minified generated/${file} (${code.length} bytes)`);
+}
+
+for (const id of sheetIds) {
+  const file = `${id}.css`;
+
+  if (!minifiedCss[file]) {
+    throw new Error(`Missing generated/${file} after generate`);
+  }
 }
 
 if (cssOnly) process.exit(0);
