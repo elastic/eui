@@ -147,7 +147,6 @@ const bundle = async ({
 const euiAlias = {
   jsx: 'automatic',
   alias: {
-    '@elastic/eui': join(euiRoot, 'src/index.ts'),
     '@elastic/eui-theme-common': join(
       vanillaRoot,
       '../eui-theme-common/src/index.ts'
@@ -176,25 +175,13 @@ createRoot(document.getElementById('root')).render(
 );
 `;
 
-const euiBarrelEntry = `import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { EuiProvider, ${spec.eui.name} } from '@elastic/eui';
-
-createRoot(document.getElementById('root')).render(
-  <EuiProvider>
-    ${spec.eui.jsx}
-  </EuiProvider>
-);
-`;
-
 const label = spec.vanilla.props.label ?? id;
 const reactEntry = `import React from 'react';
 import { createRoot } from 'react-dom/client';
 createRoot(document.getElementById('root')).render(<button>${label}</button>);
 `;
 
-const [vanillaBuild, euiDeepBuild, euiBarrelBuild, reactBuild] =
-  await Promise.all([
+const [vanillaBuild, euiDeepBuild, reactBuild] = await Promise.all([
     bundle({
       absWorkingDir: vanillaRoot,
       contents: vanillaEntry,
@@ -205,13 +192,6 @@ const [vanillaBuild, euiDeepBuild, euiBarrelBuild, reactBuild] =
       absWorkingDir: euiRoot,
       contents: euiDeepEntry,
       sourcefile: `${id}-eui.tsx`,
-      loader: 'tsx',
-      extra: euiAlias,
-    }),
-    bundle({
-      absWorkingDir: euiRoot,
-      contents: euiBarrelEntry,
-      sourcefile: `${id}-eui-barrel.tsx`,
       loader: 'tsx',
       extra: euiAlias,
     }),
@@ -248,10 +228,6 @@ const result = {
   eui: {
     ...pack(euiDeepBuild),
     breakdown: breakdown(euiDeepBuild.metafile),
-  },
-  euiBarrel: {
-    ...pack(euiBarrelBuild),
-    breakdown: breakdown(euiBarrelBuild.metafile),
   },
   reactOnly: pack(reactBuild),
 };
