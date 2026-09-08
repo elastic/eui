@@ -58,7 +58,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textGhost};
       background-color: ${toolTipBackgroundColor};
       border: ${euiTheme.border.width.thin} solid ${borderColor};
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
 
       &::before {
         content: '';
