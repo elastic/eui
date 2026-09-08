@@ -13,10 +13,11 @@ import { EuiContextMenuSelectors } from '../../../components/context_menu/select
 
 /**
  * Playwright Component Object for {@link
- * https://eui.elastic.co/docs/components/navigation/context-menu/ EuiContextMenu}.
+ * https://eui.elastic.co/docs/components/navigation/context-menu/ EuiContextMenu},
+ * or a standalone `EuiContextMenuPanel`.
  *
- * `testSubj` must be set on the `<EuiContextMenu>` itself. See the package
- * README for what this does not cover.
+ * `testSubj` must be set on the `<EuiContextMenu>` or `<EuiContextMenuPanel>`
+ * itself. See the package README for what this does not cover.
  */
 export class EuiContextMenuObject extends BaseObject {
   constructor(scope: ObjectScope, testSubj: string) {
@@ -24,14 +25,16 @@ export class EuiContextMenuObject extends BaseObject {
   }
 
   /**
-   * The items in the current panel, as a `Locator`. During a panel
-   * transition two panels briefly exist at once, so this always resolves
-   * to the last one in the DOM, which is the current one.
+   * The items in the current panel, as a `Locator`. Resolves to the root
+   * itself when that is a standalone panel, otherwise to the last panel in
+   * the DOM, which is the current one when two exist during a transition.
    */
   public get items(): Locator {
+    const panel = this.scope.locator(EuiContextMenuSelectors.PANEL_SELECTOR);
     return this.root
       .locator(EuiContextMenuSelectors.PANEL_SELECTOR)
       .last()
+      .or(this.root.and(panel))
       .locator(EuiContextMenuSelectors.ITEM_SELECTOR);
   }
 }

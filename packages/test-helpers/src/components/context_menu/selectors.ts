@@ -12,8 +12,12 @@
  * `*_SELECTOR` values are CSS.
  */
 export const EuiContextMenuSelectors = {
-  /** Root element carrying the consumer's `data-test-subj`. */
-  ROOT_SELECTOR: '.euiContextMenu',
+  /**
+   * Root element carrying the consumer's `data-test-subj`: either a multi
+   * panel `EuiContextMenu`, or a single `EuiContextMenuPanel` used on its
+   * own, which is the more common Kibana pattern.
+   */
+  ROOT_SELECTOR: '.euiContextMenu, .euiContextMenuPanel',
 
   /**
    * Each panel. Two can exist at once during a panel transition (the
