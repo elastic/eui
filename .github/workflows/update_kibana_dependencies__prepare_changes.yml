@@ -87,7 +87,7 @@ jobs:
         run: |
           set -euo pipefail
           corepack enable
-          pnpm_ver="$(node -pe "require('./package.json').engines.pnpm.replace(/^\D*/, '')")"
+          pnpm_ver="$(node -pe 'require("./package.json").engines.pnpm.replace(/^[^0-9]*/, "")')"
           corepack prepare "pnpm@${pnpm_ver}" --activate
       - name: Fetch ephemeral GitHub token
         id: fetch_ephemeral_token
