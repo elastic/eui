@@ -2,7 +2,7 @@
 
 exports[`EuiTable renders 1`] = `
 <div
-  class="emotion-euiContainerCSS"
+  class="euiTable__wrapper emotion-euiContainerCSS"
 >
   <table
     aria-label="aria-label"
