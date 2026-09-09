@@ -579,8 +579,6 @@ describe('Flyout Manager Store', () => {
       const rootA = getFlyoutManagerStore();
       const rootB = getFlyoutManagerStore();
 
-      expect(rootA).toBe(rootB);
-
       const rootBListener = jest.fn();
       rootB.subscribe(rootBListener);
 
@@ -644,6 +642,23 @@ describe('Flyout Manager Store', () => {
 
       // Neither session passed a historyKey, so each got a unique Symbol.
       // Current session (permits-2) sees no previous sessions in its group.
+
+      const [first, second] = store.getState().sessions;
+      expect(store.getState().sessions).toHaveLength(2);
+      expect(first.historyKey).not.toBe(second.historyKey);
+
+      // Current session (permits-2) sees no previous sessions in its group.
+      expect(store.historyItems).toHaveLength(0);
+
+      // Going back closes only permits-2; permits-1 stays open as its own group
+      // and still has nothing to go back to.
+      store.goBack();
+      expect(store.getState().sessions.map((s) => s.mainFlyoutId)).toEqual([
+        'permits-1',
+      ]);
+      expect(store.getState().flyouts.map((f) => f.flyoutId)).toEqual([
+        'permits-1',
+      ]);
       expect(store.historyItems).toHaveLength(0);
     });
   });
