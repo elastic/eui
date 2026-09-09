@@ -29,7 +29,7 @@ export const euiBasicTablePaginationBarStyles = (theme: UseEuiTheme) => {
       border-block-start-width: 0;
       ${logicalShorthandCSS(
         'border-radius',
-        `0 0 ${euiTheme.border.radius.medium} ${euiTheme.border.radius.medium}`
+        `0 0 ${euiTheme.border.radius.panel} ${euiTheme.border.radius.panel}`
       )}
     `,
   };

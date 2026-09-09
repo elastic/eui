@@ -90,10 +90,10 @@ export const euiBasicTableWrapperPanelledStyles =
       /* Offset for the wrapper border to be rendered without being obstructed
        * by the child EuiTable's border */
       padding-block-start: ${euiTheme.border.width.thin};
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
 
       .euiTable {
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.panel};
       }
 
       /* Reset top border radius when there are panels above. */
@@ -117,6 +117,26 @@ export const euiBasicTableWrapperPanelledStyles =
         .euiTable {
           border-end-start-radius: 0;
           border-end-end-radius: 0;
+        }
+      }
+
+      .euiTable__wrapper,
+      .euiTableStickyHeader__container {
+        border-start-start-radius: ${euiTheme.border.radius.panel};
+        border-start-end-radius: ${euiTheme.border.radius.panel};
+      }
+
+      .euiTableHeaderCell {
+        &[data-sticky='start'] {
+          border-start-start-radius: ${euiTheme.border.radius.panel};
+        }
+
+        &[data-sticky='end'] {
+          border-start-end-radius: ${euiTheme.border.radius.panel};
+        }
+
+        .euiTableCellContent {
+          border-radius: inherit;
         }
       }
     `;

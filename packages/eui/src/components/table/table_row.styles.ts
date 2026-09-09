@@ -99,7 +99,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${cellContentPadding};
         ${logicalCSS('margin-bottom', cellContentPadding)}
 
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.panel};
 
         /* :has(+) is not supported in all environments (mainly not in older jsdom versions)
         TODO: Remove the wrapper once consumers have updated their jsdom to >= 24 */
