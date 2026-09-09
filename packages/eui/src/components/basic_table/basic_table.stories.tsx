@@ -24,6 +24,7 @@ import type {
 import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
 import { EuiIcon } from '../icon';
 import { Pagination } from './pagination_bar';
+import { useEuiBasicTablePanelProps } from './use_panel_props';
 
 // Set static seed so that the generated faker data is consistent between page loads
 faker.seed(8_02_2010);
@@ -622,5 +623,28 @@ export const Panelled: Story = {
   args: {
     ...Playground.args,
     panelled: true,
+  },
+};
+
+export const PanelledScrollableWithToolbar: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...Scrollable.args,
+    panelled: true,
+  },
+  render: function Render(args: EuiBasicTableProps<User>) {
+    const panelProps = useEuiBasicTablePanelProps();
+    return (
+      <>
+        <div {...panelProps} style={{ padding: '12px 8px' }}>
+          Toolbar
+        </div>
+        <EuiBasicTable
+          tableCaption="Panelled scrollable table"
+          {...args}
+          panelled
+        />
+      </>
+    );
   },
 };
