@@ -129,6 +129,7 @@ const CellContents = ({
         color="subdued"
         position="top"
         iconProps={{ role: 'button', ...tooltipProps.iconProps }}
+        display="flex"
         {...tooltipProps.tooltipProps}
       />
     )

@@ -101,8 +101,18 @@ export const euiBasicTableWrapperPanelledStyles =
         border-start-start-radius: 0;
         border-start-end-radius: 0;
 
-        .euiTable {
+        .euiTable,
+        .euiTable__wrapper,
+        .euiTableStickyHeader__container {
           border-start-start-radius: 0;
+          border-start-end-radius: 0;
+        }
+
+        .euiTableHeaderCell[data-sticky='start'] {
+          border-start-start-radius: 0;
+        }
+
+        .euiTableHeaderCell[data-sticky='end'] {
           border-start-end-radius: 0;
         }
       }
