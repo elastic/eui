@@ -32,7 +32,7 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
           border: ${euiTheme.border.thin};
         `,
       })}
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
       font-weight: ${euiTheme.font.weight.bold};
       color: ${codeSyntaxVariables.inlineCodeColor};
 
