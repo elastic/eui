@@ -28,7 +28,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       max-block-size: 75vh; /* We overflow the modal body based off this */
       position: relative;
       background-color: ${euiTheme.colors.backgroundBasePlain};
-      border-radius: ${euiTheme.border.radius.panel};
+      border-radius: ${euiTheme.border.radius.frame};
       border: ${euiTheme.border.width.thin} solid
         ${euiTheme.colors.borderBaseFloating};
       z-index: ${euiTheme.levels.modal};
