@@ -1,0 +1,55 @@
+{
+  "name": "@elastic/eui-vanilla",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Vanilla EUI primitives (HTML/CSS/JS, no React) for iframe hosts such as MCP Apps",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/eui-vanilla"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./*.css": "./generated/*.css"
+  },
+  "files": [
+    "generated",
+    "src",
+    "README.md",
+    "licenses"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:clean": "rimraf dist tmp",
+    "generate": "node scripts/build.mjs",
+    "bench": "node scripts/bench/index.mjs",
+    "storybook": "node scripts/build.mjs && storybook dev -p 4173 --ci",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "test": "yarn lint && yarn test-unit",
+    "test-unit": "yarn generate && node --import tsx --test scripts/**/*.test.ts src/**/*.test.ts"
+  },
+  "devDependencies": {
+    "@elastic/eui": "workspace:*",
+    "@elastic/eui-theme-borealis": "workspace:*",
+    "@elastic/eui-theme-common": "workspace:*",
+    "@emotion/react": "^11.11.0",
+    "@storybook/html-vite": "^10.6.0",
+    "@types/node": "^20.17.0",
+    "esbuild": "^0.25.0",
+    "react": "^18.2.0",
+    "rimraf": "^6.0.1",
+    "storybook": "^10.6.0",
+    "stylis": "^4.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.3",
+    "vite": "^7.3.6"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}

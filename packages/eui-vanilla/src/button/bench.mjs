@@ -6,5 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { getSecureRelForTarget } from './get_secure_rel_for_target';
-export { validateHref } from './href_validator';
+export const props = { label: 'Button', display: 'fill' };
+
+export const jsx = '<EuiButton fill>Button</EuiButton>';
