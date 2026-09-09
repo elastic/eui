@@ -103,7 +103,7 @@ exports[`euiProgressStyles indeterminate div CSS colors warning 1`] = `
 `;
 
 exports[`euiProgressStyles indeterminate div CSS positions absolute 1`] = `
-"position:absolute;
+"position:absolute;z-index:1;
   inset-block-start: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
@@ -278,7 +278,7 @@ exports[`euiProgressStyles native progress CSS colors warning 1`] = `
 `;
 
 exports[`euiProgressStyles native progress CSS positions absolute 1`] = `
-"position:absolute;
+"position:absolute;z-index:1;
   inset-block-start: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
