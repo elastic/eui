@@ -57,6 +57,7 @@ their own version at runtime.
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
 | `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
+| `EuiContextMenuObject` | [src/components/context_menu/README.md](src/components/context_menu/README.md) |
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
