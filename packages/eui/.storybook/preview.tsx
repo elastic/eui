@@ -63,6 +63,7 @@ const preview: Preview = {
           'Tabular Content',
           'Editors & Syntax',
           'Utilities',
+          'Internal',
           '*',
         ],
       },

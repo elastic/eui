@@ -303,6 +303,8 @@ export type _EuiThemeVisColors = {
   euiColorVis7: string;
   euiColorVis8: string;
   euiColorVis9: string;
+  euiColorVis10: string;
+  euiColorVis11: string;
 
   /** @deprecated - temp token; used only during theme migration */
   euiColorVisBehindText0: string;
@@ -335,6 +337,8 @@ export type _EuiThemeVisColors = {
   euiColorVisText7: string;
   euiColorVisText8: string;
   euiColorVisText9: string;
+  euiColorVisText10: string;
+  euiColorVisText11: string;
 
   euiColorVisNeutral0: string;
   euiColorVisNeutral1: string;
