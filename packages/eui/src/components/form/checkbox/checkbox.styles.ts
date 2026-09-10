@@ -29,7 +29,7 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
         /* context for absolute positioned input */
         position: relative;
         ${controlStyles.input.focusVisible}
-        border-radius: ${euiTheme.border.radius.small};
+        border-radius: ${euiTheme.border.radius.inline};
       `,
       hasLabel: controlStyles.input.hasLabel, // Skip css`` className generation
       // Readonly checkboxes are used by EuiMarkdownEditor
