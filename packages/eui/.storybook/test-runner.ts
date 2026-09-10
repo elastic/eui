@@ -11,7 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
-import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
+import { getStoryContext } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import {
@@ -73,14 +73,23 @@ const waitForEuiIcons = async (page: Page) => {
 };
 
 /**
- * Ensure the page layout has stabilized before taking a screenshot.
+ * Wait two animation frames so layout can settle. `waitForFunction` that
+ * returns a Promise is not aborted by Playwright's timeout if rAF never
+ * fires, so resolve from the page instead and cap with `setTimeout`.
  */
 const waitForLayout = async (page: Page) => {
-  await page.waitForFunction(
+  await page.evaluate(
     () =>
-      new Promise((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)))
-      )
+      Promise.race([
+        new Promise((resolve) => {
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => resolve(true))
+          );
+        }),
+        new Promise((resolve) => {
+          setTimeout(() => resolve(true), 1000);
+        }),
+      ])
   );
 };
 
@@ -123,7 +132,10 @@ const config: TestRunnerConfig = {
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
 
-    await waitForPageReady(page);
+    // Do not call Storybook's `waitForPageReady`: it ends with
+    // `page.evaluate(() => document.fonts.ready)`, which has no Playwright
+    // timeout if that promise never settles and hangs the worker until the
+    // job is killed. Load/idle are already done by the time `postVisit` runs.
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);
