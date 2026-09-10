@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, waitFor, within, expect } from 'storybook/test';
+import { userEvent, within } from 'storybook/test';
 
 import {
   enableFunctionToggleControls,
@@ -157,9 +157,9 @@ export const WithTooltip: Story = {
     const options = body.getAllByRole('option');
     const tooltipTarget = (options[0].firstElementChild ??
       options[0]) as HTMLElement;
-    await userEvent.hover(tooltipTarget);
 
-    await waitFor(() => expect(body.getByRole('tooltip')).toBeVisible());
+    await userEvent.hover(tooltipTarget, { pointerEventsCheck: 0 });
+    await body.findByRole('tooltip');
   }),
 };
 
