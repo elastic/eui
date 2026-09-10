@@ -82,6 +82,13 @@ jobs:
         with:
           node-version-file: .nvmrc
           package-manager-cache: false # Don't cache anything as it's a different repository
+      - name: Enable pnpm via corepack
+        # language=bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm_ver="$(node -pe 'require("./package.json").engines.pnpm.replace(/^[^0-9]*/, "")')"
+          corepack prepare "pnpm@${pnpm_ver}" --activate
       - name: Fetch ephemeral GitHub token
         id: fetch_ephemeral_token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
@@ -252,7 +259,7 @@ jobs:
             echo "bootstrap failed (attempt ${attempt}/5); retrying in 60s"
             sleep 60
           done
-          node scripts/yarn_deduplicate
+          node scripts/deduplicate_dependencies
           yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
@@ -298,7 +305,7 @@ jobs:
       - name: Commit changed files
         # language=bash
         run: |
-          git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git add package.json pnpm-lock.yaml src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
         env:

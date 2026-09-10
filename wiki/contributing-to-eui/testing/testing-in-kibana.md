@@ -33,7 +33,7 @@ Keep staged commits atomic to simplify cherry-picking for the upgrader:
 
 ## Testing local EUI in local Kibana
 
-`yarn link` doesn't work between EUI and Kibana — Kibana is on Yarn v1 while EUI is on Yarn v4, and the two are not interoperable. Instead, you have two options depending on your goal:
+`yarn link` doesn't work between EUI and Kibana - EUI is on Yarn v4 and Kibana isn't, and their package manager (and its version) is not interoperable with ours. Instead, you have two options depending on your goal:
 
 - For **local development** against a Kibana instance running on your machine, use the [`yarn watch --kibana`](../developing/developing-in-kibana.md) watcher.
 - For **CI validation** — opening a Kibana draft PR so Kibana's CI runs against your EUI changes — use `yarn build-pack` (described below) to produce a `.tgz` that you commit to the Kibana PR.
@@ -78,7 +78,7 @@ yarn kbn bootstrap --no-validate && yarn start
 ```
 
 * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-  * Change the name of the `.tgz` after subsequent `yarn build-pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
+  * Change the name of the `.tgz` after subsequent `yarn build-pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for the package manager to recognize new changes to the package.
 * Running Kibana with `yarn start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
 
 ### Deploying local EUI in Kibana
@@ -101,8 +101,8 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 
 ```
 
-- Run `yarn kbn bootstrap`
-- Commit the changed files (`package.json`. `yarn.lock` and EUI `.tgz` package) and push your branch
+- Run `yarn kbn bootstrap` (requires pnpm on PATH — see [Developing EUI locally in Kibana](../developing/developing-in-kibana.md))
+- Commit the changed files (`package.json`, `pnpm-lock.yaml` and EUI `.tgz` package) and push your branch
 - Create a Kibana (draft) pull request
   - Kibana CI will run tests on this instance with your custom EUI package
   - To ensure CI works correctly, you'll need to add `@elastic/eui-theme-common` to `packages/kbn-dependency-ownership/src/rule.ts` ([example](https://github.com/elastic/kibana/pull/227054/files)) and `src/dev/license_checker/config.ts` ([example](https://github.com/elastic/kibana/pull/227054/files#diff-373e937e773b0370ab1d28f3cf90251dcbd3cf95546f8c54b6bb6b1f999999dcR96))

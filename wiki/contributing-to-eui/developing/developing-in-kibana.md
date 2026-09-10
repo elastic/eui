@@ -19,6 +19,8 @@ This guide explains how to develop EUI library locally while seeing changes refl
   git clone https://github.com/<your-username>/kibana.git
   cd kibana
   nvm use
+  corepack enable
+  corepack prepare pnpm@$(node -pe "require('./package.json').engines.pnpm.replace(/^\D*/, '')") --activate
   yarn kbn bootstrap
   ```
 - (Optional) EUI and Kibana should be sibling directories for simplest DX:
