@@ -87,7 +87,7 @@ function reportInvalidWrapperChildren<
 
 export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
   {
-    create(context, [{ additionalWrappers }]) {
+    create(context, [{ additionalWrappers = [] }]) {
       const allowedWrappers =
         additionalWrappers.length > 0
           ? new Set(Array.from(VALID_WRAPPERS).concat(additionalWrappers))
