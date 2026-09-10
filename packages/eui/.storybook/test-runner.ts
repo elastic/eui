@@ -50,18 +50,8 @@ const activeVariant = VARIANTS[activeVariantName];
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
  */
 const waitForImagesToLoad = async (page: Page) => {
-  await page.evaluate(() =>
-    Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map(
-          (img) =>
-            new Promise((resolve) => {
-              img.addEventListener('load', resolve);
-              img.addEventListener('error', resolve);
-            })
-        )
-    )
+  await page.waitForFunction(() =>
+    Array.from(document.images).every((img) => img.complete)
   );
 };
 
@@ -69,9 +59,7 @@ const waitForImagesToLoad = async (page: Page) => {
  * Ensure all fonts are loaded before taking a screenshot.
  */
 const waitForFonts = async (page: Page) => {
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-  });
+  await page.waitForFunction(() => document.fonts.status === 'loaded');
 };
 
 /**
@@ -88,10 +76,10 @@ const waitForEuiIcons = async (page: Page) => {
  * Ensure the page layout has stabilized before taking a screenshot.
  */
 const waitForLayout = async (page: Page) => {
-  await page.evaluate(
+  await page.waitForFunction(
     () =>
-      new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)))
       )
   );
 };
