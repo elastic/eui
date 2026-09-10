@@ -413,6 +413,44 @@ export const EmptyTable: Story = {
   },
 };
 
+const columnsWithFooter: Array<EuiBasicTableColumn<User>> = [
+  {
+    ...columns[0],
+    footer: ({ items }: { items: User[] }) => (
+      <strong>{items.length} users</strong>
+    ),
+  },
+  {
+    ...columns[1],
+    footer: 'Last names',
+  },
+  {
+    ...columns[2],
+    footer: <em>Multiple locations</em>,
+  },
+  {
+    ...columns[3],
+    footer: ({ items }: { items: User[] }) => {
+      const onlineCount = items.filter((u) => u.online).length;
+      return (
+        <EuiHealth color={onlineCount > 0 ? 'success' : 'subdued'}>
+          {onlineCount} / {items.length} online
+        </EuiHealth>
+      );
+    },
+  },
+];
+
+export const WithFooter: Story = {
+  args: {
+    tableCaption: 'EuiBasicTable with footer',
+    items: users.slice(0, 5),
+    itemId: 'id',
+    rowHeader: 'firstName',
+    columns: columnsWithFooter,
+  },
+};
+
 export const DarkMode: Story = {
   tags: ['vrt-only'],
   globals: { colorMode: 'dark' },
