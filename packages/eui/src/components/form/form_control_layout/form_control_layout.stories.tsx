@@ -953,7 +953,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                         css={({ euiTheme }) => css`
                           position: relative;
                           border-radius: ${mathWithUnits(
-                            euiTheme.border.radius.small,
+                            euiTheme.border.radius.inline,
                             (x) => x / 2
                           )};
                           overflow: hidden;

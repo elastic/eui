@@ -9,12 +9,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
 
-import { EuiButtonEmpty } from './button_empty';
+import { EXTENDED_BUTTON_COLORS } from '../../global_styling';
 import { EuiButton, Props as EuiButtonProps } from './button';
 
 const meta: Meta<EuiButtonProps> = {
@@ -53,15 +55,61 @@ export const Playground: Story = {
 };
 disableStorybookControls(Playground, ['buttonRef']);
 
-export const HighContrast: Story = {
+/* VRT only */
+
+export const KitchenSink: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <EuiFlexGroup direction="row" gutterSize="s" wrap responsive={false}>
+      {renderButtons(<EuiButton>Button</EuiButton>)}
+      {renderButtons(<EuiButton fill>Button</EuiButton>)}
+      {renderButtons(<EuiButton iconType="faceHappy">Button</EuiButton>)}
+      {renderButtons(
+        <EuiButton iconType="faceHappy" iconSide="right">
+          Button
+        </EuiButton>
+      )}
+      {renderButtons(<EuiButton isLoading>Button</EuiButton>)}
+      {renderButtons(<EuiButton isDisabled>Button</EuiButton>)}
+    </EuiFlexGroup>
+  ),
+};
+
+export const KitchenSinkDark: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+};
+
+export const KitchenSinkHighContrast: Story = {
+  ...KitchenSink,
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
-  render: () => (
-    <div css={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-      <EuiButton>Button</EuiButton>
-      <EuiButton fill>Filled</EuiButton>
-      <EuiButton disabled>Disabled</EuiButton>
-      <EuiButtonEmpty>Empty</EuiButtonEmpty>
-    </div>
-  ),
+};
+
+export const KitchenSinkHighContrastDark: Story = {
+  ...KitchenSinkDark,
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark', highContrastMode: true },
+};
+
+const renderButtons = (button: React.JSX.Element) => {
+  return (
+    <>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup direction="column" gutterSize="s">
+          {EXTENDED_BUTTON_COLORS.map((color) =>
+            React.cloneElement(button, { key: color, size: 'm', color })
+          )}
+        </EuiFlexGroup>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup direction="column" gutterSize="s">
+          {EXTENDED_BUTTON_COLORS.map((color) =>
+            React.cloneElement(button, { key: color, size: 's', color })
+          )}
+        </EuiFlexGroup>
+      </EuiFlexItem>
+    </>
+  );
 };
