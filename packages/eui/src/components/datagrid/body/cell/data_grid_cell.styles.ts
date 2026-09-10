@@ -161,6 +161,10 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       &:where(.euiDataGridRowCell--capitalize) {
         text-transform: capitalize;
       }
+
+      &:where(.euiDataGridRowCell--controlColumn) {
+        user-select: none;
+      }
     `,
 
     content: {

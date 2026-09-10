@@ -234,6 +234,22 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
               >
                 Close cell details and actions
               </dd>
+              <dt
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
+              >
+                <kbd>
+                  Ctrl
+                </kbd>
+                 
+                <kbd>
+                  C
+                </kbd>
+              </dt>
+              <dd
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+              >
+                Copy the focused cell value
+              </dd>
             </dl>
           </div>
         </div>
@@ -482,6 +498,22 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Close cell details and actions
+              </dd>
+              <dt
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
+              >
+                <kbd>
+                  Ctrl
+                </kbd>
+                 
+                <kbd>
+                  C
+                </kbd>
+              </dt>
+              <dd
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+              >
+                Copy the focused cell value
               </dd>
             </dl>
           </div>
