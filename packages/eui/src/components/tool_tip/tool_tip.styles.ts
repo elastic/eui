@@ -91,7 +91,8 @@ export const euiToolTipAnchorStyles = () => ({
        wouldn't trigger the onMouseOut and hide the tooltip. Disabling pointer events
        on disabled elements means any mouse events remain handled by parent elements
        https://jakearchibald.com/2017/events-and-disabled-form-fields/ */
-    *[disabled] {
+    *[disabled],
+    *[aria-disabled='true'] {
       pointer-events: none;
     }
   `,

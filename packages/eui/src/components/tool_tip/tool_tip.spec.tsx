@@ -57,24 +57,28 @@ describe('EuiToolTip', () => {
   });
 
   it('shows the tooltip on hover and hides it on mouseout for a custom disabled trigger button', () => {
-    cy.mount(
-      <EuiToolTip
-        content="Tooltip text here"
-        data-test-subj="tooltip"
-        anchorProps={{ 'data-test-subj': 'tooltipAnchor' }}
-      >
-        <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
-          Show tooltip
-        </EuiButton>
-      </EuiToolTip>
+    cy.realMount(
+      <>
+        <EuiToolTip
+          content="Tooltip text here"
+          data-test-subj="tooltip"
+          anchorProps={{ 'data-test-subj': 'tooltipAnchor' }}
+        >
+          <EuiButton data-test-subj="toggleToolTip" hasAriaDisabled isDisabled>
+            Show tooltip
+          </EuiButton>
+        </EuiToolTip>
+        <EuiButton>After</EuiButton>
+      </>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
 
-    // using the anchor wrapper as the mouse events are added there and the disabled button does't support them
-    cy.get('[data-test-subj="tooltipAnchor"]').trigger('mouseover');
+    // realHover moves the pointer onto the child element itself, which exercises
+    // the pointer-events fix for aria-disabled anchors
+    cy.get('[data-test-subj="toggleToolTip"]').realHover();
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
-    cy.get('[data-test-subj="tooltipAnchor"]').trigger('mouseout');
+    cy.get('body').realHover({ position: 'bottomLeft' });
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
