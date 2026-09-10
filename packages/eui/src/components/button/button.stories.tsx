@@ -99,14 +99,14 @@ const renderButtons = (button: React.JSX.Element) => {
       <EuiFlexItem grow={false}>
         <EuiFlexGroup direction="column" gutterSize="s">
           {EXTENDED_BUTTON_COLORS.map((color) =>
-            React.cloneElement(button, { size: 'm', color })
+            React.cloneElement(button, { key: color, size: 'm', color })
           )}
         </EuiFlexGroup>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiFlexGroup direction="column" gutterSize="s">
           {EXTENDED_BUTTON_COLORS.map((color) =>
-            React.cloneElement(button, { size: 's', color })
+            React.cloneElement(button, { key: color, size: 's', color })
           )}
         </EuiFlexGroup>
       </EuiFlexItem>
