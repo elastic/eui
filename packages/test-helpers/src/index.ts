@@ -22,3 +22,4 @@ export { EuiContextMenuObject } from './playwright/components/context_menu/objec
 export { EuiModalObject } from './playwright/components/modal/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
+export { EuiToolTipObject } from './playwright/components/tool_tip/object';
