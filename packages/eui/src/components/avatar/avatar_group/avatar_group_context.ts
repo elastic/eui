@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-export type { EuiAvatarProps } from './avatar';
-export { EuiAvatar, checkValidColor } from './avatar';
-export type { EuiAvatarGroupProps } from './avatar_group';
-export { EuiAvatarGroup } from './avatar_group';
+import { createContext } from 'react';
+
+import type { EuiAvatarSize, EuiAvatarType } from '../avatar';
+
+/**
+ * Cascades `size` and `type` from `EuiAvatarGroup` to descendant `EuiAvatar`s.
+ * Explicit avatar props still win over context.
+ */
+export const EuiAvatarGroupContext = createContext<{
+  size?: EuiAvatarSize;
+  type?: EuiAvatarType;
+}>({});

@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAvatarGroup is rendered 1`] = `
+<div
+  aria-label="People"
+  class="euiAvatarGroup euiAvatarGroup-expandOnHover testClass1 testClass2 emotion-euiAvatarGroup-cssStyles-overlapped-expandOnHover-euiTestCss"
+  data-test-subj="test subject string"
+  role="group"
+>
+  <div
+    class="euiAvatarGroup__body emotion-euiAvatarGroup__body"
+  >
+    <div
+      class="euiAvatarGroup__item emotion-euiAvatarGroup__item"
+      style="--euiAvatarGroup-index: 0;"
+    >
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <div
+          aria-label="Raphael"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
+          role="img"
+          style="background-color: rgb(255, 201, 194); color: rgb(0, 0, 0);"
+        >
+          <span
+            aria-hidden="true"
+          >
+            R
+          </span>
+        </div>
+      </span>
+    </div>
+    <div
+      class="euiAvatarGroup__item emotion-euiAvatarGroup__item"
+      style="--euiAvatarGroup-index: 1;"
+    >
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <div
+          aria-label="Donatello"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
+          role="img"
+          style="background-color: rgb(252, 216, 131); color: rgb(0, 0, 0);"
+        >
+          <span
+            aria-hidden="true"
+          >
+            D
+          </span>
+        </div>
+      </span>
+    </div>
+    <div
+      class="euiAvatarGroup__item emotion-euiAvatarGroup__item"
+      style="--euiAvatarGroup-index: 2;"
+    >
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <div
+          aria-label="Leonardo"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
+          role="img"
+          style="background-color: rgb(234, 174, 1); color: rgb(0, 0, 0);"
+        >
+          <span
+            aria-hidden="true"
+          >
+            L
+          </span>
+        </div>
+      </span>
+    </div>
+    <div
+      class="euiAvatarGroup__item emotion-euiAvatarGroup__item"
+      style="--euiAvatarGroup-index: 3;"
+    >
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-user"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <div
+          aria-label="Michelangelo"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
+          role="img"
+          style="background-color: rgb(97, 162, 255); color: rgb(0, 0, 0);"
+        >
+          <span
+            aria-hidden="true"
+          >
+            M
+          </span>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+`;

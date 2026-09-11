@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
+import React, {
+  HTMLAttributes,
+  FunctionComponent,
+  useContext,
+  useMemo,
+} from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 import {
@@ -25,6 +30,7 @@ import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 
 import { euiAvatarStyles } from './avatar.styles';
+import { EuiAvatarGroupContext } from './avatar_group/avatar_group_context';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiAvatarSize = (typeof SIZES)[number];
@@ -96,8 +102,15 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
      * The type of avatar mainly controlling the shape.
      * `user` = circle
      * `space` = rounded square
+     *
+     * Inherits from {@link EuiAvatarGroup} when unset.
      */
     type?: EuiAvatarType;
+    /**
+     * @default m
+     *
+     * Inherits from {@link EuiAvatarGroup} when unset.
+     */
     size?: EuiAvatarSize;
 
     /**
@@ -127,12 +140,18 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   iconSize,
   iconColor,
   name,
-  size = 'm',
-  type = 'user',
+  size: sizeProp,
+  type: typeProp,
   isDisabled = false,
   style,
   ...props
 }) => {
+  const { size: groupSize, type: groupType } = useContext(
+    EuiAvatarGroupContext
+  );
+  const size = sizeProp ?? groupSize ?? 'm';
+  const type = typeProp ?? groupType ?? 'user';
+
   checkValidInitials(initials);
   const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
   const { highContrastMode, euiTheme } = useEuiTheme();

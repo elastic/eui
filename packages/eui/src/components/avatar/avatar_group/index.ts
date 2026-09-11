@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export type { EuiAvatarProps } from './avatar';
-export { EuiAvatar, checkValidColor } from './avatar';
 export type { EuiAvatarGroupProps } from './avatar_group';
 export { EuiAvatarGroup } from './avatar_group';

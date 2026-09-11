@@ -1,5 +1,25 @@
 [
   {
+    "version": "120.0.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.label",
+        "changeType": "added",
+        "value": "Time window controls"
+      }
+    ]
+  },
+  {
+    "version": "120.0.0",
+    "changes": [
+      {
+        "token": "euiAvatarGroupSurplus.overflowLabel",
+        "changeType": "added",
+        "value": "{count} more"
+      }
+    ]
+  },
+  {
     "version": "119.1.0",
     "changes": [
       {
