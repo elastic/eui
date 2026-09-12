@@ -44,6 +44,36 @@ describe('EuiDataGridHeaderCell', () => {
     expect(container.querySelector('.euiPopover')).not.toBeInTheDocument();
   });
 
+  it('applies stable header layout classes for headerColumnActionsVisibility', () => {
+    const { getByTestSubject } = render(
+      <EuiDataGridHeaderCell
+        {...requiredProps}
+        gridStyles={{
+          header: 'shade',
+          headerColumnActionsVisibility: 'always',
+        }}
+      />
+    );
+    expect(getByTestSubject('dataGridHeaderCell-someColumn')).toHaveClass(
+      'euiDataGridHeaderCell--columnActionsAlwaysVisible'
+    );
+  });
+
+  it('applies overlay class for headerColumnActionsDisplay', () => {
+    const { getByTestSubject } = render(
+      <EuiDataGridHeaderCell
+        {...requiredProps}
+        gridStyles={{
+          header: 'shade',
+          headerColumnActionsDisplay: 'overlay',
+        }}
+      />
+    );
+    expect(getByTestSubject('dataGridHeaderCell-someColumn')).toHaveClass(
+      'euiDataGridHeaderCell--columnActionsOverlay'
+    );
+  });
+
   describe('resizing', () => {
     it('renders a resizer', () => {
       const { getByTestSubject } = render(
