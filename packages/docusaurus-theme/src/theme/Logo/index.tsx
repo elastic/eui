@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useContext, type CSSProperties, type JSX } from 'react';
+import { useContext, useState, type CSSProperties, type JSX, type MouseEvent } from 'react';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -14,7 +14,11 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useThemeConfig, type NavbarLogo } from '@docusaurus/theme-common';
 import type { Props } from '@theme-original/Logo';
 import {
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiIcon,
   EuiImage,
+  EuiPopover,
   euiCanAnimate,
   euiTextTruncate,
   useEuiMemoizedStyles,
@@ -25,6 +29,8 @@ import { AppThemeContext } from '../../components/theme_context';
 
 const EUI_LOGO = 'eui_logo.svg';
 const LOGO_DISTANCE = '5px';
+const ELASTIC_HOME_URL = 'https://www.elastic.co';
+const ELASTIC_BRAND_URL = 'https://brand.elastic.co';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   wrapper: css`
@@ -49,6 +55,11 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     .navbar__logo {
       overflow: visible;
       height: auto;
+
+      .euiPopover {
+        display: block;
+        line-height: 0;
+      }
     }
 
     .navbar__title {
@@ -119,8 +130,24 @@ function EuiNavbarLogo({
 }) {
   const styles = useEuiMemoizedStyles(getStyles);
   const isDecorative = alt === '';
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  return (
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const openLink = (url: string) => (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+    closePopover();
+  };
+
+  const handleContextMenu = (event: MouseEvent<SVGSVGElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsPopoverOpen(true);
+  };
+
+  const logo = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
@@ -132,6 +159,7 @@ function EuiNavbarLogo({
       aria-hidden={isDecorative ? true : undefined}
       role={isDecorative ? undefined : 'img'}
       aria-label={isDecorative ? undefined : alt}
+      onContextMenu={handleContextMenu}
     >
       <path
         fill="#FF957D"
@@ -162,6 +190,44 @@ function EuiNavbarLogo({
         d="M1 18c7.18 0 13 5.82 13 13H1V18z"
       />
     </svg>
+  );
+
+  return (
+    <EuiPopover
+      button={logo}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      anchorPosition="downLeft"
+      display="block"
+      hasArrow={false}
+      aria-label="Elastic links"
+    >
+      <EuiContextMenuPanel
+        items={[
+          <EuiContextMenuItem
+            key="elastic"
+            icon="logoElastic"
+            href={ELASTIC_HOME_URL}
+            target="_blank"
+            external={false}
+            onClick={openLink(ELASTIC_HOME_URL)}
+          >
+            Elastic
+          </EuiContextMenuItem>,
+          <EuiContextMenuItem
+            key="brand"
+            icon={<EuiIcon type="logoElastic" color="text" size="m" />}
+            href={ELASTIC_BRAND_URL}
+            target="_blank"
+            external={false}
+            onClick={openLink(ELASTIC_BRAND_URL)}
+          >
+            Brand Guide
+          </EuiContextMenuItem>,
+        ]}
+      />
+    </EuiPopover>
   );
 }
 
