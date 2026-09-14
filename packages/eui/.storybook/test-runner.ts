@@ -34,93 +34,6 @@ const SCREENSHOT_OPTIONS = {
 } as const;
 
 /**
- * Playwright does not abort `page.evaluate` of a Promise that never settles
- * (`document.fonts.ready`, Storybook `__test` waiting on play/render). Cap
- * those from Node and terminate the page JS so the worker is not wedged.
- */
-const EVALUATE_HANG_MS = 20_000;
-
-type PageWithHangGuard = Page & { __euiHangGuard?: true };
-
-const raceHang = <T>(promise: Promise<T>, label: string): Promise<T> =>
-  new Promise<T>((resolve, reject) => {
-    const timer = setTimeout(() => {
-      reject(new Error(`${label} hung after ${EVALUATE_HANG_MS}ms`));
-    }, EVALUATE_HANG_MS);
-    promise.then(
-      (value) => {
-        clearTimeout(timer);
-        resolve(value);
-      },
-      (err) => {
-        clearTimeout(timer);
-        reject(err);
-      }
-    );
-  });
-
-/**
- * Closing the page aborts the in-flight CDP call. Do not `page.reload()` here:
- * Playwright serializes page commands, so reload waits behind the hung evaluate
- * and the Node timeout never surfaces.
- */
-const resetHungPage = async () => {
-  const reset = (
-    globalThis as { jestPlaywright?: { resetPage?: () => Promise<void> } }
-  ).jestPlaywright?.resetPage;
-  if (!reset) return;
-  await Promise.race([
-    reset(),
-    new Promise((resolve) => setTimeout(resolve, 5_000)),
-  ]).catch(() => undefined);
-};
-
-const throwIfHung = async (err: unknown) => {
-  if (String(err).includes('hung after')) {
-    await resetHungPage();
-  }
-  throw err;
-};
-
-const guardPageAgainstEvaluateHang = (page: Page) => {
-  const guarded = page as PageWithHangGuard;
-  if (guarded.__euiHangGuard) return;
-  guarded.__euiHangGuard = true;
-
-  const evaluate = page.evaluate.bind(page);
-  page.evaluate = (async (...args: Parameters<Page['evaluate']>) => {
-    try {
-      return await raceHang(evaluate(...args), 'page.evaluate');
-    } catch (err) {
-      await throwIfHung(err);
-    }
-  }) as Page['evaluate'];
-
-  const waitForFunction = page.waitForFunction.bind(page);
-  page.waitForFunction = (async (
-    ...args: Parameters<Page['waitForFunction']>
-  ) => {
-    try {
-      return await raceHang(
-        waitForFunction(...args),
-        'page.waitForFunction'
-      );
-    } catch (err) {
-      await throwIfHung(err);
-    }
-  }) as Page['waitForFunction'];
-
-  const screenshot = page.screenshot.bind(page);
-  page.screenshot = (async (...args: Parameters<Page['screenshot']>) => {
-    try {
-      return await raceHang(screenshot(...args), 'page.screenshot');
-    } catch (err) {
-      await throwIfHung(err);
-    }
-  }) as Page['screenshot'];
-};
-
-/**
  * Allow a few pixels of subpixel noise.
  */
 const FAILURE_THRESHOLD_PIXELS = 4;
@@ -136,7 +49,7 @@ const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
   : 'desktop';
 const activeVariant = VARIANTS[activeVariantName];
 
-const WAIT_OPTIONS = { timeout: EVALUATE_HANG_MS, polling: 100 } as const;
+const WAIT_OPTIONS = { timeout: 20_000, polling: 100 } as const;
 
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
@@ -197,8 +110,6 @@ const config: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async preVisit(page) {
-    guardPageAgainstEvaluateHang(page);
-
     // Storybook 10 pauses CSS animations which breaks some components;
     // Remove animations entirely so components render base styles
     await page.evaluate(() => {
