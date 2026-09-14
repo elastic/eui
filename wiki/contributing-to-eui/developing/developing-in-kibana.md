@@ -93,8 +93,8 @@ yarn watch -d /path/to/kibana
 These commands will:
 
 1. Watch for changes in the selected package(s).
-2. Compile the changed package(s). For `@elastic/eui`, Kibana only needs `optimize/es` — the first run compiles that tree; later saves compile only the dirty file(s) with Babel and copy them.
-3. Sync those artifacts into the Kibana directory, by default: `../kibana/node_modules`.
+2. Compile the changed package(s). With `--kibana`, `@elastic/eui` compiles `optimize/es` only (Kibana's alias) and copies that tree.
+3. Sync the build artifacts into the Kibana directory, by default: `../kibana/node_modules`.
 
 ## How it works
 
@@ -103,8 +103,8 @@ The integration relies on a chain of file watchers and build triggers to propaga
 ### Data flow
 
 1. The script watches `src` directories using `chokidar`.
-2. `@elastic/eui` compiles `optimize/es` (Kibana's `@elastic/eui$` alias). Theme packages still run their full `yarn build`.
-3. On later `@elastic/eui` saves, only the dirty file is compiled and copied (one `package.json` touch). A full `optimize/es` rebuild runs on the first watch and if 50+ files change at once.
+2. Changed packages are rebuilt. With `--kibana`, `@elastic/eui` runs `build:optimize-es` instead of a full `yarn build`.
+3. `@elastic/eui` copies `optimize/` into Kibana's `node_modules` (one `package.json` touch). Theme packages still copy their full `files` list.
 4. Webpack detects the change and rebuilds `@kbn/ui-shared-deps-npm.dll.js`.
 5. The `@kbn/cli-dev-mode` detects the new DLL and restarts the **Optimizer**.
 6. When the optimizer has rebuilt all plugins, the browser window can be refreshed.
@@ -140,9 +140,9 @@ Check the terminal output of the EUI watcher. If the `node_modules` propagation 
 
 - **Slow feedback loop?**
 
-A one-file `@elastic/eui` save is dominated by Kibana's DLL rebuild + optimizer restart (~10–15s), not EUI compile. Theme packages and `yarn watch` without `--kibana` still run a full package build.
+With `--kibana`, `@elastic/eui` skips `lib/`, `es/`, types, and the rest of the package build. The remaining time is mostly Babel for `optimize/es` plus Kibana's DLL + optimizer.
 
-For those full builds, you can omit generating type declaration files:
+`yarn watch` without `--kibana`, and theme packages, still run a full build. For those, you can omit generating type declaration files:
 
 ```bash
 yarn watch --no-declarations

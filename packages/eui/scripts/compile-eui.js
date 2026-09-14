@@ -229,16 +229,44 @@ async function compileLib() {
     },
   ];
 
+  const optimizeEsOnly = process.argv.includes('--optimize-es-only');
+  const configs = optimizeEsOnly
+    ? babelConfigs.filter((config) => config.outDir === 'optimize/es')
+    : babelConfigs;
+
   if (process.argv.includes('--no-parallel')) {
-    for (const config of babelConfigs) {
+    for (const config of configs) {
       await runBabel(config);
     }
   } else {
-    const results = await Promise.allSettled(babelConfigs.map(runBabel));
+    const results = await Promise.allSettled(configs.map(runBabel));
     const failed = results.filter((r) => r.status === 'rejected');
     if (failed.length) {
       throw new Error(`${failed.length} Babel builds failed`);
     }
+  }
+
+  if (optimizeEsOnly) {
+    const optimizeEsDir = path.join(packageRootDir, 'optimize', 'es');
+    const jsonCount = await copyFilesToDestinationDirs(
+      glob.globIterate('**/*.json', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    const svgCount = await copyFilesToDestinationDirs(
+      glob.globIterate('components/**/*.svg', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    console.log(
+      `Copied ${jsonCount} JSON and ${svgCount} SVG files to optimize/es`
+    );
+    console.log(chalk.green('✔ Finished compiling optimize/es'));
+    return;
   }
 
   await renameTestEnvFiles();
@@ -363,62 +391,22 @@ async function cleanup() {
   console.log('Cleaned up old build directories');
 }
 
-async function compileOptimizeEsOnly() {
-  const optimizeEsDir = path.join(packageRootDir, 'optimize', 'es');
-  await fs.rm(optimizeEsDir, { recursive: true, force: true });
-  await fs.mkdir(optimizeEsDir, { recursive: true });
-
-  const defaultIgnore = [
-    ...IGNORE_BUILD,
-    ...IGNORE_TESTS,
-    ...IGNORE_TESTENV,
-    ...IGNORE_PACKAGES,
-  ].join(',');
-
-  console.log('Compiling src/ to optimize/es (Kibana watch)');
-
-  await runBabel({
-    outDir: 'optimize/es',
-    ignore: defaultIgnore,
-    configFile: './.babelrc-optimize.js',
-    env: {
-      BABEL_MODULES: false,
-      NO_COREJS_POLYFILL: true,
-    },
-  });
-
-  const jsonCount = await copyFilesToDestinationDirs(
-    glob.globIterate('**/*.json', {
-      cwd: srcDir,
-      realpath: true,
-    }),
-    [optimizeEsDir]
-  );
-  const svgCount = await copyFilesToDestinationDirs(
-    glob.globIterate('components/**/*.svg', {
-      cwd: srcDir,
-      realpath: true,
-    }),
-    [optimizeEsDir]
-  );
-
-  console.log(
-    `Copied ${jsonCount} JSON and ${svgCount} SVG files to optimize/es`
-  );
-  console.log(chalk.green('✔ Finished compiling optimize/es'));
-}
-
 async function compile() {
+  if (process.argv.includes('--optimize-es-only')) {
+    await fs.rm(path.join(packageRootDir, 'optimize', 'es'), {
+      recursive: true,
+      force: true,
+    });
+    await compileLib();
+    return;
+  }
+
   await cleanup();
   await compileLib();
   await compileBundle();
 }
 
-const compilePromise = process.argv.includes('--optimize-es-only')
-  ? compileOptimizeEsOnly()
-  : compile();
-
-compilePromise.catch((error) => {
+compile().catch((error) => {
   console.error(error);
   process.exit(1);
 });
