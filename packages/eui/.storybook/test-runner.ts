@@ -11,7 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
-import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
+import { getStoryContext } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import {
@@ -28,7 +28,10 @@ import {
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
  * preventing stability timeouts on infinite looping animations (spinners etc.).
  */
-const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
+const SCREENSHOT_OPTIONS = {
+  animations: 'disabled',
+  timeout: 20_000,
+} as const;
 
 /**
  * Allow a few pixels of subpixel noise.
@@ -46,22 +49,16 @@ const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
   : 'desktop';
 const activeVariant = VARIANTS[activeVariantName];
 
+const WAIT_OPTIONS = { timeout: 20_000, polling: 100 } as const;
+
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
  */
 const waitForImagesToLoad = async (page: Page) => {
-  await page.evaluate(() =>
-    Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map(
-          (img) =>
-            new Promise((resolve) => {
-              img.addEventListener('load', resolve);
-              img.addEventListener('error', resolve);
-            })
-        )
-    )
+  await page.waitForFunction(
+    () => Array.from(document.images).every((img) => img.complete),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
@@ -69,9 +66,11 @@ const waitForImagesToLoad = async (page: Page) => {
  * Ensure all fonts are loaded before taking a screenshot.
  */
 const waitForFonts = async (page: Page) => {
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-  });
+  await page.waitForFunction(
+    () => document.fonts.status === 'loaded',
+    undefined,
+    WAIT_OPTIONS
+  );
 };
 
 /**
@@ -80,19 +79,29 @@ const waitForFonts = async (page: Page) => {
  */
 const waitForEuiIcons = async (page: Page) => {
   await page.waitForFunction(
-    () => !document.querySelector('[data-is-loading]')
+    () => !document.querySelector('[data-is-loading]'),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
 /**
- * Ensure the page layout has stabilized before taking a screenshot.
+ * Wait two animation frames so layout can settle. Cap with `setTimeout` so a
+ * stuck rAF cannot hang `page.evaluate`.
  */
 const waitForLayout = async (page: Page) => {
   await page.evaluate(
     () =>
-      new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-      )
+      Promise.race([
+        new Promise((resolve) => {
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => resolve(true))
+          );
+        }),
+        new Promise((resolve) => {
+          setTimeout(() => resolve(true), 1000);
+        }),
+      ])
   );
 };
 
@@ -101,6 +110,13 @@ const config: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async preVisit(page) {
+    if (!(page as { __euiProxied?: boolean }).__euiProxied) {
+      // eslint-disable-next-line no-console
+      console.error(
+        '[eui-vrt] preVisit page is not the hang-guard proxy; Playwright calls may still hang'
+      );
+    }
+
     // Storybook 10 pauses CSS animations which breaks some components;
     // Remove animations entirely so components render base styles
     await page.evaluate(() => {
@@ -135,7 +151,10 @@ const config: TestRunnerConfig = {
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
 
-    await waitForPageReady(page);
+    // Do not call Storybook's `waitForPageReady`: it ends with
+    // `page.evaluate(() => document.fonts.ready)`, which has no Playwright
+    // timeout if that promise never settles and hangs the worker until the
+    // job is killed. Load/idle are already done by the time `postVisit` runs.
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);

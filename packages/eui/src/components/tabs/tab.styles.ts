@@ -27,6 +27,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
       ${logicalCSS('padding-vertical', 0)}
       ${logicalCSS('padding-horizontal', 0)}
+      border-radius: ${euiTheme.border.radius.control};
 
       /* Font-weight used by the tab label and prepend/append nodes */
       font-weight: ${euiTheme.font.weight.semiBold};

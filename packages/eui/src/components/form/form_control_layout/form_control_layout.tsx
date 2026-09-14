@@ -135,6 +135,7 @@ export const EuiFormControlLayout: FunctionComponent<
       ? [
           styles.group.group,
           compressed ? styles.group.compressed : styles.group.uncompressed,
+          (isDisabled || readOnly) && styles.group.disabled,
         ]
       : []),
   ];

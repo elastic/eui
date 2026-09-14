@@ -1062,6 +1062,7 @@ In places like [flyouts](../containers/flyout/index.mdx), you can use `overflowH
 
 ```tsx interactive
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import {
   EuiFlyout,
   EuiFlyoutHeader,
@@ -1087,7 +1088,7 @@ export default () => {
             <h2 id="flyoutTitle">A flyout with just code</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <div style={{ blockSize: '100%' }}>
+        <EuiPanel css={css` blockSize: 100%; `} color="transparent" hasBorder={false}>
           <EuiCodeBlock
             language="json"
             overflowHeight={'100%'}
@@ -1909,7 +1910,7 @@ export default () => {
   "isRestored": false
 }`}
           </EuiCodeBlock>
-        </div>
+          </EuiPanel>
       </EuiFlyout>
     );
   }

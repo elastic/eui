@@ -24,7 +24,7 @@ export const euiFormControlLayoutDelimitedStyles = (
   const { euiTheme } = euiThemeContext;
 
   const delimitedStyles = `
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
     `.trim();
 
   return {
