@@ -9,10 +9,13 @@
 import CustomEnvironment from '@storybook/test-runner/playwright/custom-environment.js';
 
 /**
- * Playwright does not abort `page.evaluate` / locator screenshot of a Promise
- * that never settles (Storybook `__test` play/render, `document.fonts.ready`,
- * unstable locator). Instance patches are skipped by Playwright's API layer;
- * wrap the prototypes once per worker instead.
+ * Playwright does not abort `page.evaluate` / locator screenshot when the
+ * returned Promise never settles (Storybook `__test` play, `fonts.ready`,
+ * unstable locator). Jest's testTimeout also does not kill that CDP wait,
+ * so the worker leftover is a 30min job timeout.
+ *
+ * Wrap `global.page` in a Proxy (Playwright skips instance/prototype patches)
+ * and fail the story from Node after HANG_MS.
  */
 const HANG_MS = 20_000;
 
@@ -33,55 +36,88 @@ const raceHang = (promise, label) =>
     );
   });
 
-const resetHungPage = async () => {
-  const reset = globalThis.jestPlaywright?.resetPage;
-  if (!reset) return;
-  await Promise.race([
-    reset(),
-    new Promise((resolve) => setTimeout(resolve, 5_000)),
+const closePageSoon = (page) => {
+  if (!page || typeof page.close !== 'function') return;
+  Promise.race([
+    page.close({ runBeforeUnload: false }),
+    new Promise((resolve) => setTimeout(resolve, 1_000)),
   ]).catch(() => undefined);
 };
 
-const wrapProtoMethod = (proto, method, label) => {
-  const original = proto[method];
-  if (typeof original !== 'function' || original.__euiHangWrapped) return;
-
-  const wrapped = async function (...args) {
-    try {
-      return await raceHang(original.apply(this, args), label);
-    } catch (err) {
-      if (String(err).includes('hung after')) {
-        await resetHungPage();
-      }
-      throw err;
+const withHangTimeout = async (start, label, page) => {
+  try {
+    return await raceHang(Promise.resolve().then(start), label);
+  } catch (err) {
+    if (String(err).includes('hung after')) {
+      // eslint-disable-next-line no-console
+      console.error(`[eui-vrt] ${err.message}`);
+      closePageSoon(page);
     }
-  };
-  wrapped.__euiHangWrapped = true;
-  proto[method] = wrapped;
+    throw err;
+  }
 };
 
-const installHangGuard = (page) => {
-  if (!page || page.__euiHangGuardInstalled) return;
-  page.__euiHangGuardInstalled = true;
+const wrapLocator = (locator) => {
+  if (!locator || locator.__euiProxied) return locator;
+  return new Proxy(locator, {
+    get(target, prop, receiver) {
+      if (prop === '__euiProxied') return true;
+      if (prop === 'screenshot') {
+        return (...args) =>
+          withHangTimeout(
+            () => target.screenshot(...args),
+            'locator.screenshot',
+            target.page?.() ?? globalThis.page
+          );
+      }
+      if (prop === 'first' || prop === 'last') {
+        return (...args) => wrapLocator(target[prop](...args));
+      }
+      if (prop === 'nth') {
+        return (...args) => wrapLocator(target.nth(...args));
+      }
+      const value = Reflect.get(target, prop, receiver);
+      return typeof value === 'function' ? value.bind(target) : value;
+    },
+  });
+};
 
-  const pageProto = Object.getPrototypeOf(page);
-  if (!pageProto.__euiHangGuardInstalled) {
-    pageProto.__euiHangGuardInstalled = true;
-    wrapProtoMethod(pageProto, 'evaluate', 'page.evaluate');
-    wrapProtoMethod(pageProto, 'waitForFunction', 'page.waitForFunction');
-    wrapProtoMethod(pageProto, 'screenshot', 'page.screenshot');
-  }
-
-  const locator = page.locator('body');
-  const locatorProto = Object.getPrototypeOf(locator);
-  if (!locatorProto.__euiHangGuardInstalled) {
-    locatorProto.__euiHangGuardInstalled = true;
-    wrapProtoMethod(locatorProto, 'screenshot', 'locator.screenshot');
-  }
-
-  // Visible in CI logs so we can tell the guard actually loaded.
-  // eslint-disable-next-line no-console
-  console.log('[eui-vrt] hang guard installed on Page/Locator prototypes');
+const wrapPage = (page) => {
+  if (!page || page.__euiProxied) return page;
+  return new Proxy(page, {
+    get(target, prop, receiver) {
+      if (prop === '__euiProxied') return true;
+      if (prop === 'evaluate') {
+        return (...args) =>
+          withHangTimeout(
+            () => target.evaluate(...args),
+            'page.evaluate',
+            target
+          );
+      }
+      if (prop === 'waitForFunction') {
+        return (...args) =>
+          withHangTimeout(
+            () => target.waitForFunction(...args),
+            'page.waitForFunction',
+            target
+          );
+      }
+      if (prop === 'screenshot') {
+        return (...args) =>
+          withHangTimeout(
+            () => target.screenshot(...args),
+            'page.screenshot',
+            target
+          );
+      }
+      if (prop === 'locator') {
+        return (...args) => wrapLocator(target.locator(...args));
+      }
+      const value = Reflect.get(target, prop, receiver);
+      return typeof value === 'function' ? value.bind(target) : value;
+    },
+  });
 };
 
 /**
@@ -95,7 +131,21 @@ class VrtEnvironment extends CustomEnvironment {
     await super.setup();
     this.global[Symbol.for('RETRY_TIMES')] = 2;
     this.global[Symbol.for('LOG_ERRORS_BEFORE_RETRY')] = true;
-    installHangGuard(this.global.page);
+
+    this.global.page = wrapPage(this.global.page);
+
+    const jestPlaywright = this.global.jestPlaywright;
+    if (jestPlaywright?.resetPage && !jestPlaywright.__euiHangWrapped) {
+      const resetPage = jestPlaywright.resetPage.bind(jestPlaywright);
+      jestPlaywright.resetPage = async () => {
+        await resetPage();
+        this.global.page = wrapPage(this.global.page);
+      };
+      jestPlaywright.__euiHangWrapped = true;
+    }
+
+    // eslint-disable-next-line no-console
+    console.log('[eui-vrt] hang guard proxy installed on global.page');
   }
 }
 
