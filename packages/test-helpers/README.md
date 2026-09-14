@@ -61,6 +61,7 @@ their own version at runtime.
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
+| `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
 
 ## Contributing
 
