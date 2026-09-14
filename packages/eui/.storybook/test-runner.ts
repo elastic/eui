@@ -59,15 +59,27 @@ const raceHang = <T>(promise: Promise<T>, label: string): Promise<T> =>
     );
   });
 
-const abortHungEvaluate = async (page: Page) => {
-  try {
-    const session = await page.context().newCDPSession(page);
-    await session.send('Runtime.terminateExecution').catch(() => undefined);
-    await session.detach().catch(() => undefined);
-  } catch {
-    // Page already closed or context gone.
+/**
+ * Closing the page aborts the in-flight CDP call. Do not `page.reload()` here:
+ * Playwright serializes page commands, so reload waits behind the hung evaluate
+ * and the Node timeout never surfaces.
+ */
+const resetHungPage = async () => {
+  const reset = (
+    globalThis as { jestPlaywright?: { resetPage?: () => Promise<void> } }
+  ).jestPlaywright?.resetPage;
+  if (!reset) return;
+  await Promise.race([
+    reset(),
+    new Promise((resolve) => setTimeout(resolve, 5_000)),
+  ]).catch(() => undefined);
+};
+
+const throwIfHung = async (err: unknown) => {
+  if (String(err).includes('hung after')) {
+    await resetHungPage();
   }
-  await page.reload({ waitUntil: 'domcontentloaded' }).catch(() => undefined);
+  throw err;
 };
 
 const guardPageAgainstEvaluateHang = (page: Page) => {
@@ -80,10 +92,7 @@ const guardPageAgainstEvaluateHang = (page: Page) => {
     try {
       return await raceHang(evaluate(...args), 'page.evaluate');
     } catch (err) {
-      if (String(err).includes('hung after')) {
-        await abortHungEvaluate(page);
-      }
-      throw err;
+      await throwIfHung(err);
     }
   }) as Page['evaluate'];
 
@@ -97,12 +106,18 @@ const guardPageAgainstEvaluateHang = (page: Page) => {
         'page.waitForFunction'
       );
     } catch (err) {
-      if (String(err).includes('hung after')) {
-        await abortHungEvaluate(page);
-      }
-      throw err;
+      await throwIfHung(err);
     }
   }) as Page['waitForFunction'];
+
+  const screenshot = page.screenshot.bind(page);
+  page.screenshot = (async (...args: Parameters<Page['screenshot']>) => {
+    try {
+      return await raceHang(screenshot(...args), 'page.screenshot');
+    } catch (err) {
+      await throwIfHung(err);
+    }
+  }) as Page['screenshot'];
 };
 
 /**
