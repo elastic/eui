@@ -1,3 +1,20 @@
+## [`v122.0.0`](https://github.com/elastic/eui/releases/v122.0.0)
+
+- Added Ctrl/Cmd+C support on `EuiDataGrid` to copy the focused cell value when no text is selected ([#9995](https://github.com/elastic/eui/pull/9995))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` copy/paste shifting body rows one column right of the headers when control columns were present ([#9954](https://github.com/elastic/eui/pull/9954))
+
+**Breaking changes**
+
+- Changed the `ref` of `EuiSuperSelect` from the class instance to an `EuiSuperSelectRef` object, which exposes `openPopover()` and `closePopover()` ([#9972](https://github.com/elastic/eui/pull/9972))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiSelectable` by removing redundant "Checked option." screen-reader text (checked state is already conveyed via `aria-checked`/`aria-selected`) ([#9850](https://github.com/elastic/eui/pull/9850))
+- Improved the accessibility of `EuiSelectable` and `EuiComboBox` by moving the `title` attribute to the inner text element, preventing duplicate screen-reader announcements of option names ([#9850](https://github.com/elastic/eui/pull/9850))
+
 ## [`v121.0.0`](https://github.com/elastic/eui/releases/v121.0.0)
 
 - Added `isDisabled`, `isLoading`, `href`, and `target` props to `EuiFlyoutMenuAction`. ([#9992](https://github.com/elastic/eui/pull/9992))

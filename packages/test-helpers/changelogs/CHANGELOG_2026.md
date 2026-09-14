@@ -1,3 +1,14 @@
+## [`v1.7.0`](https://github.com/elastic/eui/releases/v1.7.0)
+
+- Added `EuiTreeViewObject`, a Playwright Component Object for `EuiTreeView` ([#10025](https://github.com/elastic/eui/pull/10025))
+- Added `EuiToolTipObject`, a Playwright Component Object for `EuiToolTip` ([#10026](https://github.com/elastic/eui/pull/10026))
+- Added `EuiContextMenuObject`, a Playwright Component Object for `EuiContextMenu` ([#10013](https://github.com/elastic/eui/pull/10013))
+- Added `EuiColorPickerObject`, a Playwright Component Object for `EuiColorPicker` ([#10020](https://github.com/elastic/eui/pull/10020))
+
+**Bug fixes**
+
+- Fixed Component Objects not finding components whose `data-test-subj` holds several space-separated tokens, such as `EuiColorPicker`. The root now matches one token, following Kibana's `data-test-subj` convention ([#10015](https://github.com/elastic/eui/pull/10015))
+
 ## [`v1.6.0`](https://github.com/elastic/eui/releases/v1.6.0)
 
 - Added `EuiPopoverObject`, a Playwright Component Object for `EuiPopover` ([#9993](https://github.com/elastic/eui/pull/9993))
