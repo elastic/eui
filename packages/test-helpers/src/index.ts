@@ -23,3 +23,4 @@ export { EuiModalObject } from './playwright/components/modal/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
+export { EuiToolTipObject } from './playwright/components/tool_tip/object';
