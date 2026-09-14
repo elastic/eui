@@ -66,12 +66,6 @@ export const euiAvatarGroupStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     expandOnHover: css`
-      /* Raise the stack above siblings while the absolute body is expanded */
-      &:hover,
-      &:focus-within {
-        z-index: ${euiTheme.levels.content};
-      }
-
       .euiAvatarGroup__body {
         position: absolute;
         ${logicalCSS('left', 0)}
@@ -84,8 +78,11 @@ export const euiAvatarGroupStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
+      /* Raise the stack above siblings while the absolute body is expanded */
       &:hover,
       &:focus-within {
+        z-index: ${euiTheme.levels.content};
+
         --euiAvatarGroup-overlap: 0px;
 
         .euiAvatarGroup__item:not(:first-child) {
