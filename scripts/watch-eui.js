@@ -26,6 +26,7 @@ const KIBANA_ROOT = args['kibana-dir']
   ? path.resolve(process.cwd(), args['kibana-dir'])
   : // fallback to a sibling directory
     path.resolve(EUI_ROOT, '../kibana');
+const USE_KIBANA_SYNC = Boolean(args.kibana || args['kibana-dir']);
 const DEBOUNCE_TIME = 300;
 const RESTART_DELAY = 500;
 const SHUTDOWN_TIMEOUT = 1000;
@@ -65,26 +66,32 @@ const activePackages = selection.map((name) => {
     console.error(chalk.red(`Unknown package: ${name}`));
     process.exit(1);
   }
+
+  const kibanaEui = USE_KIBANA_SYNC && name === '@elastic/eui';
+
   return {
     name,
     path: pkgPath,
     src: path.join(pkgPath, 'src'),
     cmd: 'yarn',
-    args: [
-      'workspace',
-      name,
-      'build',
-      ...(name === '@elastic/eui' && process.argv.includes('--no-declarations')
-        ? ['--no-declarations']
-        : []),
-    ],
+    args: kibanaEui
+      ? ['workspace', name, 'run', 'build:optimize-es']
+      : [
+          'workspace',
+          name,
+          'build',
+          ...(name === '@elastic/eui' &&
+          process.argv.includes('--no-declarations')
+            ? ['--no-declarations']
+            : []),
+        ],
     status: { activeProcess: null, abortPending: false, resolvePromise: null },
     timer: null,
   };
 });
 
 async function syncToKibana(pkg) {
-  if (!args.kibana && !args['kibana-dir']) return;
+  if (!USE_KIBANA_SYNC) return;
   try {
     // `files` array from `package.json` that defines build artifacts
     const pkgJson = JSON.parse(
@@ -94,14 +101,17 @@ async function syncToKibana(pkg) {
 
     await fs.access(path.join(KIBANA_ROOT, 'node_modules'));
 
-    const syncItems = [
-      ...new Set([
-        'package.json',
-        ...(pkgJson.files || []).filter(
-          (f) => !f.includes('*') && !f.startsWith('!')
-        ),
-      ]),
-    ];
+    const syncItems =
+      pkg.name === '@elastic/eui'
+        ? ['optimize']
+        : [
+            ...new Set([
+              'package.json',
+              ...(pkgJson.files || []).filter(
+                (f) => !f.includes('*') && !f.startsWith('!')
+              ),
+            ]),
+          ];
 
     for (const item of syncItems) {
       if (!item) continue;
