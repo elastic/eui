@@ -256,7 +256,7 @@ jobs:
             sleep 60
           done
           node scripts/deduplicate_dependencies
-          pnpm install --no-frozen-lockfile
+          pnpm install --no-frozen-lockfile --lockfile-only
           yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
