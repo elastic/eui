@@ -363,10 +363,62 @@ async function cleanup() {
   console.log('Cleaned up old build directories');
 }
 
+async function compileOptimizeEsOnly() {
+  const optimizeEsDir = path.join(packageRootDir, 'optimize', 'es');
+  await fs.rm(optimizeEsDir, { recursive: true, force: true });
+  await fs.mkdir(optimizeEsDir, { recursive: true });
+
+  const defaultIgnore = [
+    ...IGNORE_BUILD,
+    ...IGNORE_TESTS,
+    ...IGNORE_TESTENV,
+    ...IGNORE_PACKAGES,
+  ].join(',');
+
+  console.log('Compiling src/ to optimize/es (Kibana watch)');
+
+  await runBabel({
+    outDir: 'optimize/es',
+    ignore: defaultIgnore,
+    configFile: './.babelrc-optimize.js',
+    env: {
+      BABEL_MODULES: false,
+      NO_COREJS_POLYFILL: true,
+    },
+  });
+
+  const jsonCount = await copyFilesToDestinationDirs(
+    glob.globIterate('**/*.json', {
+      cwd: srcDir,
+      realpath: true,
+    }),
+    [optimizeEsDir]
+  );
+  const svgCount = await copyFilesToDestinationDirs(
+    glob.globIterate('components/**/*.svg', {
+      cwd: srcDir,
+      realpath: true,
+    }),
+    [optimizeEsDir]
+  );
+
+  console.log(
+    `Copied ${jsonCount} JSON and ${svgCount} SVG files to optimize/es`
+  );
+  console.log(chalk.green('✔ Finished compiling optimize/es'));
+}
+
 async function compile() {
   await cleanup();
   await compileLib();
   await compileBundle();
 }
 
-compile();
+const compilePromise = process.argv.includes('--optimize-es-only')
+  ? compileOptimizeEsOnly()
+  : compile();
+
+compilePromise.catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
