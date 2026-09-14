@@ -51,6 +51,7 @@ jobs:
       - name: Comment on community pull requests
         if: ${{ steps.org_membership.outputs.is_member == 'false' }}
         env:
+          GH_REPO: ${{ github.repository }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
           set -euo pipefail
