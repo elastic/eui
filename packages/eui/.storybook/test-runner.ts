@@ -110,6 +110,13 @@ const config: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async preVisit(page) {
+    if (!(page as { __euiProxied?: boolean }).__euiProxied) {
+      // eslint-disable-next-line no-console
+      console.error(
+        '[eui-vrt] preVisit page is not the hang-guard proxy; Playwright calls may still hang'
+      );
+    }
+
     // Storybook 10 pauses CSS animations which breaks some components;
     // Remove animations entirely so components render base styles
     await page.evaluate(() => {

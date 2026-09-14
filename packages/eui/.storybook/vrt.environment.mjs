@@ -132,17 +132,18 @@ class VrtEnvironment extends CustomEnvironment {
     this.global[Symbol.for('RETRY_TIMES')] = 2;
     this.global[Symbol.for('LOG_ERRORS_BEFORE_RETRY')] = true;
 
-    this.global.page = wrapPage(this.global.page);
-
-    const jestPlaywright = this.global.jestPlaywright;
-    if (jestPlaywright?.resetPage && !jestPlaywright.__euiHangWrapped) {
-      const resetPage = jestPlaywright.resetPage.bind(jestPlaywright);
-      jestPlaywright.resetPage = async () => {
-        await resetPage();
-        this.global.page = wrapPage(this.global.page);
-      };
-      jestPlaywright.__euiHangWrapped = true;
-    }
+    // Always re-wrap on read/write. `resetPage` assigns a raw Page onto
+    // `global.page`; a one-shot replacement is overwritten. Jest tests look
+    // up `page` from this global at call time.
+    let pageRef = wrapPage(this.global.page);
+    Object.defineProperty(this.global, 'page', {
+      configurable: true,
+      enumerable: true,
+      get: () => pageRef,
+      set: (next) => {
+        pageRef = wrapPage(next);
+      },
+    });
 
     // eslint-disable-next-line no-console
     console.log('[eui-vrt] hang guard proxy installed on global.page');
