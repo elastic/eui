@@ -243,20 +243,21 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
-          # Unset CI so pnpm does not use --frozen-lockfile after we bump package.json.
-          # Retry a few times; the npm registry can lag behind a snapshot publish.
+          # pnpm freezes the lockfile on GHA. We just bumped package.json,
+          # so the lockfile must change.
           for attempt in 1 2 3 4 5; do
-            if CI= yarn kbn bootstrap; then
+            if pnpm install --no-frozen-lockfile; then
               break
             fi
             if [[ "$attempt" -eq 5 ]]; then
               exit 1
             fi
-            echo "bootstrap failed (attempt ${attempt}/5); retrying in 60s"
+            echo "install failed (attempt ${attempt}/5); retrying in 60s"
             sleep 60
           done
           node scripts/deduplicate_dependencies
-          CI= yarn kbn bootstrap --force-install
+          pnpm install --no-frozen-lockfile
+          yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
