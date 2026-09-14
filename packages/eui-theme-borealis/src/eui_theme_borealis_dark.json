@@ -99,9 +99,9 @@
     "xLarge": "32px",
     "xxLarge": "40px"
   },
-  "euiFormControlLayoutGroupInputHeight": "40px",
-  "euiFormControlLayoutGroupInputCompressedHeight": "32px",
-  "euiFormControlLayoutGroupInputCompressedBorderRadius": "6px",
+  "euiFormControlLayoutGroupInputHeight": "38px",
+  "euiFormControlLayoutGroupInputCompressedHeight": "30px",
+  "euiFormControlLayoutGroupInputCompressedBorderRadius": "8px",
   "euiHeaderBackgroundColor": "#111C2C",
   "euiHeaderDarkBackgroundColor": "#111C2C",
   "euiHeaderBorderColor": "#2B394F",
