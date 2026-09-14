@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { EuiSpacer } from '../../spacer';
 import { EuiAvatar } from '../avatar';
 import { EuiAvatarGroup, EuiAvatarGroupProps } from './avatar_group';
 
@@ -40,6 +41,13 @@ export const Playground: Story = {
   args: {
     children: overflowingAvatars,
   },
+  render: (args) => (
+    <>
+      <EuiAvatarGroup {...args} />
+      <EuiSpacer />
+      <EuiAvatarGroup {...args} size="s" legend={`${args.legend} (s)`} />
+    </>
+  ),
 };
 
 export const TwoAvatars: Story = {
