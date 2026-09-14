@@ -154,7 +154,10 @@ export const EuiAvatarGroup = forwardRef(
           aria-label={legend}
           style={style}
         >
-          <div className="euiAvatarGroup__body" css={styles.euiAvatarGroup__body}>
+          <div
+            className="euiAvatarGroup__body"
+            css={styles.euiAvatarGroup__body}
+          >
             {visibleAvatars.map((avatar, index) => (
               <div
                 key={avatar.key ?? index}

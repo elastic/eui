@@ -69,7 +69,7 @@ export const euiAvatarGroupStyles = (euiThemeContext: UseEuiTheme) => {
       /* Raise the stack above siblings while the absolute body is expanded */
       &:hover,
       &:focus-within {
-        z-index: 1;
+        z-index: ${euiTheme.levels.content};
       }
 
       .euiAvatarGroup__body {
@@ -80,8 +80,7 @@ export const euiAvatarGroupStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiCanAnimate} {
         .euiAvatarGroup__item {
-          transition: margin-inline-start ${euiTheme.animation.fast}
-            ease-in-out;
+          transition: margin-inline-start ${euiTheme.animation.fast} ease-in-out;
         }
       }
 
