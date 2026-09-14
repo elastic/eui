@@ -42,10 +42,6 @@ const customWithin = (canvasElement: HTMLElement) => {
         expect(canvasElement.querySelector('[data-popover-open]')).toBeVisible()
       );
 
-      const { defaultView, fonts } = canvasElement.ownerDocument;
-      await fonts.ready;
-      defaultView?.dispatchEvent(new defaultView.Event('resize'));
-
       if (anchorSelector) {
         await waitFor(() =>
           expect(canvasElement.querySelector(anchorSelector)).toBeTruthy()

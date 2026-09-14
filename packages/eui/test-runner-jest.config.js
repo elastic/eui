@@ -5,6 +5,7 @@ const defaultConfig = getJestConfig();
 
 module.exports = {
   ...defaultConfig,
+  testTimeout: 60_000,
   // Extends the test-runner's environment to restore VRT snapshot retries
   testEnvironment: path.resolve(__dirname, '.storybook/vrt.environment.mjs'),
   modulePathIgnorePatterns: [

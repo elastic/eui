@@ -11,7 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
-import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
+import { getStoryContext } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import {
@@ -28,7 +28,97 @@ import {
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
  * preventing stability timeouts on infinite looping animations (spinners etc.).
  */
-const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
+const SCREENSHOT_OPTIONS = {
+  animations: 'disabled',
+  timeout: 20_000,
+} as const;
+
+/**
+ * Playwright does not abort `page.evaluate` of a Promise that never settles
+ * (`document.fonts.ready`, Storybook `__test` waiting on play/render). Cap
+ * those from Node and terminate the page JS so the worker is not wedged.
+ */
+const EVALUATE_HANG_MS = 20_000;
+
+type PageWithHangGuard = Page & { __euiHangGuard?: true };
+
+const raceHang = <T>(promise: Promise<T>, label: string): Promise<T> =>
+  new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error(`${label} hung after ${EVALUATE_HANG_MS}ms`));
+    }, EVALUATE_HANG_MS);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      }
+    );
+  });
+
+/**
+ * Closing the page aborts the in-flight CDP call. Do not `page.reload()` here:
+ * Playwright serializes page commands, so reload waits behind the hung evaluate
+ * and the Node timeout never surfaces.
+ */
+const resetHungPage = async () => {
+  const reset = (
+    globalThis as { jestPlaywright?: { resetPage?: () => Promise<void> } }
+  ).jestPlaywright?.resetPage;
+  if (!reset) return;
+  await Promise.race([
+    reset(),
+    new Promise((resolve) => setTimeout(resolve, 5_000)),
+  ]).catch(() => undefined);
+};
+
+const throwIfHung = async (err: unknown) => {
+  if (String(err).includes('hung after')) {
+    await resetHungPage();
+  }
+  throw err;
+};
+
+const guardPageAgainstEvaluateHang = (page: Page) => {
+  const guarded = page as PageWithHangGuard;
+  if (guarded.__euiHangGuard) return;
+  guarded.__euiHangGuard = true;
+
+  const evaluate = page.evaluate.bind(page);
+  page.evaluate = (async (...args: Parameters<Page['evaluate']>) => {
+    try {
+      return await raceHang(evaluate(...args), 'page.evaluate');
+    } catch (err) {
+      await throwIfHung(err);
+    }
+  }) as Page['evaluate'];
+
+  const waitForFunction = page.waitForFunction.bind(page);
+  page.waitForFunction = (async (
+    ...args: Parameters<Page['waitForFunction']>
+  ) => {
+    try {
+      return await raceHang(
+        waitForFunction(...args),
+        'page.waitForFunction'
+      );
+    } catch (err) {
+      await throwIfHung(err);
+    }
+  }) as Page['waitForFunction'];
+
+  const screenshot = page.screenshot.bind(page);
+  page.screenshot = (async (...args: Parameters<Page['screenshot']>) => {
+    try {
+      return await raceHang(screenshot(...args), 'page.screenshot');
+    } catch (err) {
+      await throwIfHung(err);
+    }
+  }) as Page['screenshot'];
+};
 
 /**
  * Allow a few pixels of subpixel noise.
@@ -46,22 +136,16 @@ const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
   : 'desktop';
 const activeVariant = VARIANTS[activeVariantName];
 
+const WAIT_OPTIONS = { timeout: EVALUATE_HANG_MS, polling: 100 } as const;
+
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
  */
 const waitForImagesToLoad = async (page: Page) => {
-  await page.evaluate(() =>
-    Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map(
-          (img) =>
-            new Promise((resolve) => {
-              img.addEventListener('load', resolve);
-              img.addEventListener('error', resolve);
-            })
-        )
-    )
+  await page.waitForFunction(
+    () => Array.from(document.images).every((img) => img.complete),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
@@ -69,9 +153,11 @@ const waitForImagesToLoad = async (page: Page) => {
  * Ensure all fonts are loaded before taking a screenshot.
  */
 const waitForFonts = async (page: Page) => {
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-  });
+  await page.waitForFunction(
+    () => document.fonts.status === 'loaded',
+    undefined,
+    WAIT_OPTIONS
+  );
 };
 
 /**
@@ -80,19 +166,29 @@ const waitForFonts = async (page: Page) => {
  */
 const waitForEuiIcons = async (page: Page) => {
   await page.waitForFunction(
-    () => !document.querySelector('[data-is-loading]')
+    () => !document.querySelector('[data-is-loading]'),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
 /**
- * Ensure the page layout has stabilized before taking a screenshot.
+ * Wait two animation frames so layout can settle. Cap with `setTimeout` so a
+ * stuck rAF cannot hang `page.evaluate`.
  */
 const waitForLayout = async (page: Page) => {
   await page.evaluate(
     () =>
-      new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-      )
+      Promise.race([
+        new Promise((resolve) => {
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => resolve(true))
+          );
+        }),
+        new Promise((resolve) => {
+          setTimeout(() => resolve(true), 1000);
+        }),
+      ])
   );
 };
 
@@ -101,6 +197,8 @@ const config: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async preVisit(page) {
+    guardPageAgainstEvaluateHang(page);
+
     // Storybook 10 pauses CSS animations which breaks some components;
     // Remove animations entirely so components render base styles
     await page.evaluate(() => {
@@ -135,7 +233,10 @@ const config: TestRunnerConfig = {
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
 
-    await waitForPageReady(page);
+    // Do not call Storybook's `waitForPageReady`: it ends with
+    // `page.evaluate(() => document.fonts.ready)`, which has no Playwright
+    // timeout if that promise never settles and hangs the worker until the
+    // job is killed. Load/idle are already done by the time `postVisit` runs.
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);
