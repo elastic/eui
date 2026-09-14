@@ -13,7 +13,7 @@ import {
   logicalTextAlignCSS,
 } from '../../../global_styling';
 import { euiButtonSizeMap } from '../../../global_styling/mixins';
-import { EuiButtonDisplaySizes } from './_button_display';
+import type { _EuiButtonDisplaySize } from '../../../global_styling/mixins/_button_constants';
 
 // Provides a solid reset and base for handling sizing layout
 // Does not include any visual styles
@@ -34,7 +34,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
 
   const sizes = euiButtonSizeMap(euiThemeContext);
 
-  const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
+  const _buttonSize = (sizeKey: _EuiButtonDisplaySize) => {
     const size = sizes[sizeKey];
 
     return css`

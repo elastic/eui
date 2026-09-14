@@ -6,5 +6,15 @@
  * Side Public License, v 1.
  */
 
-export { getSecureRelForTarget } from './get_secure_rel_for_target';
-export { validateHref } from './href_validator';
+export { mountButton } from './mount';
+export { applyButtonBehavior, isButtonDisabled, resolveDisplay } from './behavior';
+export {
+  BUTTON_COLORS,
+  BUTTON_SIZES,
+  BUTTON_DISPLAYS,
+  type EuiHtmlButtonProps,
+  type EuiHtmlButtonColor,
+  type EuiHtmlButtonSize,
+  type EuiHtmlButtonDisplay,
+  type EuiHtmlMountedButton,
+} from './types';
