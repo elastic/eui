@@ -158,7 +158,7 @@ jobs:
             fi
 
             echo "Cherry-picking $sha from PR #$pr_number"
-            if ! git fetch origin "pull/$pr_number/head"; then
+            if ! git fetch --depth=2 origin "$sha"; then
               echo "::warning::Skipping $sha: could not fetch PR #$pr_number"
               continue
             fi
@@ -248,9 +248,10 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
+          # Unset CI so pnpm does not use --frozen-lockfile after we bump package.json.
           # Retry a few times; the npm registry can lag behind a snapshot publish.
           for attempt in 1 2 3 4 5; do
-            if yarn kbn bootstrap; then
+            if CI= yarn kbn bootstrap; then
               break
             fi
             if [[ "$attempt" -eq 5 ]]; then
@@ -260,7 +261,7 @@ jobs:
             sleep 60
           done
           node scripts/deduplicate_dependencies
-          yarn kbn bootstrap --force-install
+          CI= yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
