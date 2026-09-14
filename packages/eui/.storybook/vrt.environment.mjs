@@ -6,139 +6,60 @@
  * Side Public License, v 1.
  */
 
-import { createRequire } from 'node:module';
-import {
-  setTimeout as rawSetTimeout,
-  clearTimeout as rawClearTimeout,
-} from 'node:timers';
+import { Worker } from 'node:worker_threads';
 import CustomEnvironment from '@storybook/test-runner/playwright/custom-environment.js';
 
 /**
- * Playwright does not abort `page.evaluate` when the returned Promise never
- * settles (Storybook `__test` play/render). Jest's testTimeout also does not
- * kill that CDP wait, so the leftover is a 30min job timeout.
+ * Playwright does not abort `page.evaluate` of a Promise that never settles
+ * (Storybook `__test` play/render). Jest testTimeout also does not kill that
+ * CDP wait, so a leftover file becomes a 30min job timeout.
  *
- * Guard in three places (Playwright skips some of these depending on how the
- * Page is referenced):
- * 1. playwright-core Frame/Page/Locator prototypes
- * 2. Proxy on `global.page` (resetPage assigns a raw Page)
- * 3. circus `test_fn_start` watchdog — close page/context if anything else wedges
+ * A Proxy on `global.page` did not log hung-after in CI (Storybook's evaluate
+ * is not always that object). Jest/node timers on the worker thread can also
+ * fail to fire while Playwright is wedged.
  *
- * Use `node:timers` so Jest fake timers cannot disable the cap.
+ * Arm a dedicated `worker_threads` timer (own event loop) around setup() and
+ * each test_fn. On fire, close page/context/browser so the CDP wait rejects.
  */
 const HANG_MS = 20_000;
-const require = createRequire(import.meta.url);
 
-const raceHang = (promise, label) =>
-  new Promise((resolve, reject) => {
-    const timer = rawSetTimeout(() => {
-      reject(new Error(`${label} hung after ${HANG_MS}ms`));
-    }, HANG_MS);
-    promise.then(
-      (value) => {
-        rawClearTimeout(timer);
-        resolve(value);
-      },
-      (err) => {
-        rawClearTimeout(timer);
-        reject(err);
-      }
-    );
-  });
+const HANG_WORKER_SRC = `
+const { parentPort } = require('node:worker_threads');
+let timer;
+parentPort.on('message', (msg) => {
+  if (timer) {
+    clearTimeout(timer);
+    timer = undefined;
+  }
+  if (msg && msg.type === 'arm') {
+    timer = setTimeout(() => {
+      parentPort.postMessage({ type: 'hung', label: msg.label });
+    }, msg.ms);
+  }
+});
+`;
 
 const closeSoon = (closeFn) => {
   if (typeof closeFn !== 'function') return Promise.resolve();
   return Promise.race([
     Promise.resolve().then(() => closeFn({ runBeforeUnload: false })),
-    new Promise((resolve) => rawSetTimeout(resolve, 1_000)),
+    new Promise((resolve) => setTimeout(resolve, 1_000)),
   ]).catch(() => undefined);
 };
 
-const abortPlaywright = (page) => {
-  const context = page?.context?.();
-  const browser = context?.browser?.() ?? globalThis.browser;
-  closeSoon(page?.close?.bind(page)).then(() =>
-    closeSoon(context?.close?.bind(context)).then(() =>
-      closeSoon(browser?.close?.bind(browser))
-    )
-  );
+const abortPlaywright = (page, browser) => {
+  const context = page?.context?.() ?? globalThis.context;
+  const browserRef = browser ?? context?.browser?.() ?? globalThis.browser;
+  closeSoon(page?.close?.bind(page))
+    .then(() => closeSoon(context?.close?.bind(context)))
+    .then(() => closeSoon(browserRef?.close?.bind(browserRef)));
 };
-
-const withHangTimeout = async (start, label, page) => {
-  try {
-    return await raceHang(Promise.resolve().then(start), label);
-  } catch (err) {
-    if (String(err).includes('hung after')) {
-      // eslint-disable-next-line no-console
-      console.error(`[eui-vrt] ${err.message}`);
-      abortPlaywright(page);
-    }
-    throw err;
-  }
-};
-
-const patchProto = (ctor, methods, labelPrefix) => {
-  if (!ctor?.prototype) return;
-  for (const method of methods) {
-    const orig = ctor.prototype[method];
-    if (typeof orig !== 'function' || orig.__euiPatched) continue;
-    const patched = function (...args) {
-      const page =
-        typeof this.close === 'function' && typeof this.evaluate === 'function'
-          ? this
-          : this.page?.() ?? this._page ?? globalThis.page;
-      return withHangTimeout(
-        () => orig.apply(this, args),
-        `${labelPrefix}.${method}`,
-        page
-      );
-    };
-    patched.__euiPatched = true;
-    ctor.prototype[method] = patched;
-  }
-};
-
-try {
-  const { Frame } = require('playwright-core/lib/client/frame.js');
-  const { Page } = require('playwright-core/lib/client/page.js');
-  const { Locator } = require('playwright-core/lib/client/locator.js');
-  patchProto(
-    Page,
-    [
-      'evaluate',
-      'waitForFunction',
-      'waitForLoadState',
-      'goto',
-      'screenshot',
-      'reload',
-      'addScriptTag',
-    ],
-    'page'
-  );
-  patchProto(
-    Frame,
-    ['evaluate', 'waitForFunction', 'waitForSelector', 'goto', 'waitForLoadState'],
-    'frame'
-  );
-  patchProto(Locator, ['screenshot', 'click', 'hover', 'waitFor'], 'locator');
-} catch (err) {
-  // eslint-disable-next-line no-console
-  console.error('[eui-vrt] failed to patch Playwright prototypes', err);
-}
 
 const wrapLocator = (locator) => {
   if (!locator || locator.__euiProxied) return locator;
   return new Proxy(locator, {
     get(target, prop, receiver) {
       if (prop === '__euiProxied') return true;
-      if (prop === 'screenshot' || prop === 'click' || prop === 'hover' || prop === 'waitFor') {
-        return (...args) =>
-          withHangTimeout(
-            () => target[prop](...args),
-            `locator.${String(prop)}`,
-            target.page?.() ?? globalThis.page
-          );
-      }
       if (prop === 'first' || prop === 'last') {
         return (...args) => wrapLocator(target[prop](...args));
       }
@@ -151,29 +72,17 @@ const wrapLocator = (locator) => {
   });
 };
 
-const PAGE_HANG_METHODS = [
-  'evaluate',
-  'waitForFunction',
-  'waitForLoadState',
-  'goto',
-  'screenshot',
-  'reload',
-  'addScriptTag',
-];
-
 const wrapPage = (page) => {
   if (!page || page.__euiProxied) return page;
+  try {
+    page.setDefaultTimeout?.(HANG_MS);
+    page.setDefaultNavigationTimeout?.(HANG_MS);
+  } catch {
+    // ignore
+  }
   return new Proxy(page, {
     get(target, prop, receiver) {
       if (prop === '__euiProxied') return true;
-      if (PAGE_HANG_METHODS.includes(prop)) {
-        return (...args) =>
-          withHangTimeout(
-            () => target[prop](...args),
-            `page.${String(prop)}`,
-            target
-          );
-      }
       if (prop === 'locator' || prop === 'getByRole' || prop === 'getByText' || prop === 'getByTestId' || prop === 'getByLabel') {
         return (...args) => wrapLocator(target[prop](...args));
       }
@@ -183,33 +92,54 @@ const wrapPage = (page) => {
   });
 };
 
-/**
- * Restores the VRT snapshot retries that `jest.retryTimes(2)` configured
- * before @storybook/test-runner v0.20 - the `jest` object is no longer
- * reachable from `test-runner.ts`, so set the jest-circus retry globals
- * (registered symbols read by the test framework) on the test realm directly.
- */
 class VrtEnvironment extends CustomEnvironment {
-  async setup() {
-    await super.setup();
-    this.global[Symbol.for('RETRY_TIMES')] = 2;
-    this.global[Symbol.for('LOG_ERRORS_BEFORE_RETRY')] = true;
-
-    // Always re-wrap on read/write. `resetPage` assigns a raw Page onto
-    // `global.page`; a one-shot replacement is overwritten. Jest tests look
-    // up `page` from this global at call time.
-    let pageRef = wrapPage(this.global.page);
-    Object.defineProperty(this.global, 'page', {
-      configurable: true,
-      enumerable: true,
-      get: () => pageRef,
-      set: (next) => {
-        pageRef = wrapPage(next);
-      },
+  _startHangClock() {
+    if (this._hangWorker) return;
+    this._hangWorker = new Worker(HANG_WORKER_SRC, { eval: true });
+    this._hangWorker.on('message', (msg) => {
+      if (!msg || msg.type !== 'hung') return;
+      // eslint-disable-next-line no-console
+      console.error(`[eui-vrt] ${msg.label} hung after ${HANG_MS}ms`);
+      abortPlaywright(this.global?.page, this.global?.browser);
     });
+    this._hangWorker.on('error', (err) => {
+      // eslint-disable-next-line no-console
+      console.error('[eui-vrt] hang clock worker error', err);
+    });
+  }
 
-    // eslint-disable-next-line no-console
-    console.log('[eui-vrt] hang guard proxy installed on global.page');
+  _armHangClock(label) {
+    this._startHangClock();
+    this._hangWorker.postMessage({ type: 'arm', ms: HANG_MS, label });
+  }
+
+  _disarmHangClock() {
+    this._hangWorker?.postMessage({ type: 'disarm' });
+  }
+
+  async setup() {
+    this._startHangClock();
+    this._armHangClock('environment.setup');
+    try {
+      await super.setup();
+      this.global[Symbol.for('RETRY_TIMES')] = 2;
+      this.global[Symbol.for('LOG_ERRORS_BEFORE_RETRY')] = true;
+
+      let pageRef = wrapPage(this.global.page);
+      Object.defineProperty(this.global, 'page', {
+        configurable: true,
+        enumerable: true,
+        get: () => pageRef,
+        set: (next) => {
+          pageRef = wrapPage(next);
+        },
+      });
+
+      // eslint-disable-next-line no-console
+      console.log('[eui-vrt] hang guard installed');
+    } finally {
+      this._disarmHangClock();
+    }
   }
 
   async handleTestEvent(event) {
@@ -217,24 +147,36 @@ class VrtEnvironment extends CustomEnvironment {
       await super.handleTestEvent(event);
     }
 
-    if (event.name === 'test_fn_start') {
-      const name = `${event.test?.parent?.name ?? ''} ${event.test?.name ?? ''}`.trim();
-      this._euiHangTimer = rawSetTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.error(`[eui-vrt] test_fn hung after ${HANG_MS}ms: ${name}`);
-        abortPlaywright(this.global.page);
-      }, HANG_MS);
+    if (!this._loggedHandleTestEvent) {
+      this._loggedHandleTestEvent = true;
+      // eslint-disable-next-line no-console
+      console.log('[eui-vrt] handleTestEvent hooked');
+    }
+
+    if (event.name === 'test_fn_start' || event.name === 'hook_start') {
+      const kind = event.name === 'hook_start' ? event.hook?.type ?? 'hook' : 'test_fn';
+      const name = `${event.test?.parent?.name ?? event.hook?.parent?.name ?? ''} ${event.test?.name ?? ''}`.trim();
+      this._armHangClock(`${kind} ${name}`.trim());
     }
 
     if (
       event.name === 'test_fn_success' ||
       event.name === 'test_fn_failure' ||
-      event.name === 'test_done'
+      event.name === 'test_done' ||
+      event.name === 'hook_success' ||
+      event.name === 'hook_failure'
     ) {
-      if (this._euiHangTimer) {
-        rawClearTimeout(this._euiHangTimer);
-        this._euiHangTimer = undefined;
-      }
+      this._disarmHangClock();
+    }
+  }
+
+  async teardown() {
+    this._disarmHangClock();
+    try {
+      await super.teardown();
+    } finally {
+      await this._hangWorker?.terminate();
+      this._hangWorker = undefined;
     }
   }
 }
