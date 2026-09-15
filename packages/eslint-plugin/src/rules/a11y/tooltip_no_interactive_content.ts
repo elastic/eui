@@ -14,6 +14,20 @@ import { isInteractiveElement } from '../../utils/is_interactive_element';
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
 
+function shouldSkipTooltipContentElement(element: TSESTree.JSXElement): boolean {
+  const elementName = getElementName(element.openingElement);
+
+  if (!elementName) return true;
+
+  // Custom components stay traversable here; local ones are resolved by
+  // `walkJsxChildren` before this guard runs, and unresolved ones remain opaque.
+  if (/^[A-Z]/.test(elementName) && !elementName.startsWith('Eui')) {
+    return true;
+  }
+
+  return !isInteractiveElement(element);
+}
+
 export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
@@ -67,7 +81,8 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
               found = true;
             },
             {
-              shouldSkip: (el) => !isInteractiveElement(el),
+              sourceCode: context.sourceCode,
+              shouldSkip: shouldSkipTooltipContentElement,
             }
           );
         }

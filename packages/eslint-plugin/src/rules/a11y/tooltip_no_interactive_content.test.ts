@@ -342,5 +342,21 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
         },
       ],
     },
+    {
+      name: 'interactive element inside a local wrapper component in content',
+      code: dedent`
+        const Content = () => <span><EuiLink href="#">Link</EuiLink></span>;
+        <EuiToolTip content={<Content />}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
   ],
 });
