@@ -574,6 +574,7 @@ What counts as nested content:
   - `EuiContextMenuItem`: `onClick`, `href`, or `toolTipContent`
   - `EuiListGroupItem`: `onClick` or `href` (`extraAction` is checked separately as a sibling `EuiButtonIcon`)
   - Native `<a>` and `EuiHeaderLogo`: `href` (including `href=""`)
+- Note the exact prop casing: `EuiBetaBadge` uses `tooltipContent`, while `EuiContextMenuItem` uses `toolTipContent`.
 - Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
 
 #### Examples
