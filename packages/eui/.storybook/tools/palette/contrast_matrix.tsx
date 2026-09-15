@@ -17,10 +17,16 @@ import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
 import { EuiFormRow } from '../../../src/components/form/form_row';
 import { EuiRange } from '../../../src/components/form/range';
 import { EuiSpacer } from '../../../src/components/spacer';
+import { EuiStat } from '../../../src/components/stat';
 import { EuiText } from '../../../src/components/text';
 import { getApcaContrast } from './apca';
 import { PRIMITIVE_COLORS } from './borealis_primitives';
-import { ColorMap, Palette, resolvePalette } from './palette';
+import {
+  ColorMap,
+  Palette,
+  groupPaletteByHue,
+  resolvePalette,
+} from './palette';
 
 export const SEMANTIC_ELEMENT_WIDTH_STOPS = [
   { px: 2, lc: 60 },
@@ -53,6 +59,59 @@ const ContrastBadge: FunctionComponent<{
   <EuiBadge color={passes ? 'success' : 'danger'}>{value.toFixed(1)}</EuiBadge>
 );
 
+interface PassRate {
+  percent: number;
+  passing: number;
+  total: number;
+}
+
+const passRate = (
+  values: Array<number | null>,
+  threshold: number
+): PassRate | null => {
+  const checks = values.filter((value): value is number => value != null);
+  if (checks.length === 0) return null;
+  const passing = checks.filter(
+    (value) => Math.abs(value) >= threshold
+  ).length;
+  return {
+    percent: (passing / checks.length) * 100,
+    passing,
+    total: checks.length,
+  };
+};
+
+const PassRateStat: FunctionComponent<{
+  label: string;
+  value: PassRate | null;
+  threshold: number;
+}> = ({ label, value, threshold }) => {
+  const detail =
+    value == null
+      ? `${label}: no contrast checks`
+      : `${label}: ${value.passing} of ${value.total} pairs at or above Lc ${threshold}`;
+
+  return (
+    <div title={detail}>
+      <EuiStat
+        reverse
+        titleSize="s"
+        title={value == null ? '—' : `${Math.round(value.percent)}%`}
+        description={label}
+        titleColor={
+          value == null
+            ? 'subdued'
+            : value.percent === 100
+            ? 'success'
+            : 'default'
+        }
+        titleElement="p"
+        aria-label={detail}
+      />
+    </div>
+  );
+};
+
 export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
   palette,
   colors = PRIMITIVE_COLORS,
@@ -66,7 +125,7 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
 
   const themeBackgroundColor = euiTheme.colors.backgroundBasePlain;
 
-  const { columns, rows, contrasts, average } = useMemo(() => {
+  const { columns, rows, contrasts, average, passRates } = useMemo(() => {
     const columns = resolvePalette(palette, colors);
     const themeBackground = {
       name: 'background',
@@ -89,8 +148,34 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
         ? abs.reduce((sum, value) => sum + value, 0) / abs.length
         : null;
 
-    return { columns, rows, contrasts, average };
-  }, [palette, colors, themeBackgroundColor]);
+    const backgroundRow = contrasts[contrasts.length - 1] ?? [];
+    const intraRows = contrasts.slice(0, -1);
+
+    const darkerNames = new Set(
+      groupPaletteByHue(palette, colors).flatMap((group) =>
+        group.colors.length > 0 ? [group.colors[0].name] : []
+      )
+    );
+    const darkerColumns = columns.flatMap((column, index) =>
+      darkerNames.has(column.name) ? [index] : []
+    );
+    const darkerAndBackgroundRows = rows.flatMap((row, index) =>
+      row.name === 'background' || darkerNames.has(row.name) ? [index] : []
+    );
+
+    const passRates = {
+      vsBackground: passRate(backgroundRow, threshold),
+      intraColors: passRate(intraRows.flat(), threshold),
+      darkerHuesAndBackground: passRate(
+        darkerAndBackgroundRows.flatMap((row) =>
+          darkerColumns.map((column) => contrasts[row][column])
+        ),
+        threshold
+      ),
+    };
+
+    return { columns, rows, contrasts, average, passRates };
+  }, [palette, colors, themeBackgroundColor, threshold]);
 
   const cell = 48;
   const line = euiTheme.colors.borderBaseSubdued;
@@ -100,6 +185,7 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
 
   const styles = {
     slider: css`
+      min-inline-size: 240px;
       max-inline-size: 320px;
     `,
     grid: css`
@@ -171,26 +257,49 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
 
   return (
     <>
-      <div css={styles.slider}>
-        <EuiFormRow label="Semantic element width">
-          <EuiRange
-            min={0}
-            max={SEMANTIC_ELEMENT_WIDTH_STOPS.length - 1}
-            step={1}
-            value={widthStopIndex}
-            onChange={(event) =>
-              setWidthStopIndex(Number(event.currentTarget.value))
-            }
-            showTicks
-            ticks={SEMANTIC_ELEMENT_WIDTH_STOPS.map((stop, index) => ({
-              value: index,
-              label: `${stop.px}px`,
-              accessibleLabel: `${stop.px} pixels, Lc ${stop.lc}`,
-            }))}
-            aria-label="Semantic element width"
+      <EuiFlexGroup alignItems="flexStart" gutterSize="xl" wrap>
+        <EuiFlexItem grow={false} css={styles.slider}>
+          <EuiFormRow label="Semantic element width">
+            <EuiRange
+              min={0}
+              max={SEMANTIC_ELEMENT_WIDTH_STOPS.length - 1}
+              step={1}
+              value={widthStopIndex}
+              onChange={(event) =>
+                setWidthStopIndex(Number(event.currentTarget.value))
+              }
+              showTicks
+              ticks={SEMANTIC_ELEMENT_WIDTH_STOPS.map((stop, index) => ({
+                value: index,
+                label: `${stop.px}px`,
+                accessibleLabel: `${stop.px} pixels, Lc ${stop.lc}`,
+              }))}
+              aria-label="Semantic element width"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <PassRateStat
+            label="vs. background"
+            value={passRates.vsBackground}
+            threshold={threshold}
           />
-        </EuiFormRow>
-      </div>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <PassRateStat
+            label="intra colors"
+            value={passRates.intraColors}
+            threshold={threshold}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <PassRateStat
+            label="darker hues + background"
+            value={passRates.darkerHuesAndBackground}
+            threshold={threshold}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
       <EuiSpacer size="xl" />
 
       <div
