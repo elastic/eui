@@ -44,14 +44,20 @@ export function hasAnyProp(
   presenceOnlyProps = new Set<string>()
 ): boolean {
   return propNames.some((prop) => {
-    if (presenceOnlyProps.has(prop)) {
-      return openingElement.attributes.some(
+      const attr = openingElement.attributes.find(
         (attr): attr is TSESTree.JSXAttribute =>
           attr.type === 'JSXAttribute' &&
           attr.name.type === 'JSXIdentifier' &&
           attr.name.name === prop
       );
-    }
+      if (!attr) return false;
+      return (
+        hasMeaningfulAttr(openingElement, prop) ||
+        (attr.value?.type === 'Literal' && attr.value.value === '') ||
+        (attr.value?.type === 'JSXExpressionContainer' &&
+          attr.value.expression.type === 'Literal' &&
+          attr.value.expression.value === '')
+      );
 
     return hasMeaningfulAttr(openingElement, prop);
   });
