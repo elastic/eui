@@ -112,7 +112,10 @@ function getTarget(
     // verify statically — see the PR discussion.
     return hasInteractivityProp(openingElement) &&
       !isStaticallyTrue(openingElement, 'isDisabled')
-      ? { messageId: 'clickableCardContent', contentProps: CARD_CONTENT_PROPS }
+      ? {
+          messageId: 'clickableCardContent',
+          contentProps: getComponentContentProps(componentName),
+        }
       : null;
   }
 
@@ -129,7 +132,7 @@ function getTarget(
   if (LEAF_COMPONENTS.has(componentName) && isInteractiveElement(node)) {
     return {
       messageId: 'nestedInteractive',
-      contentProps: LEAF_CONTENT_PROPS[componentName] ?? [],
+      contentProps: getComponentContentProps(componentName),
     };
   }
 
@@ -163,14 +166,20 @@ function getContentRoots(
   return roots;
 }
 
+function getComponentContentProps(componentName: string | null): string[] {
+  if (componentName === CARD) {
+    return CARD_CONTENT_PROPS;
+  }
+
+  return LEAF_CONTENT_PROPS[componentName ?? ''] ?? [];
+}
+
 function getDescendantRoots(node: TSESTree.JSXElement): TSESTree.Node[] {
   const componentName = getElementName(node.openingElement);
 
-  return getContentRoots(
-    node,
-    componentName,
-    componentName === CARD ? CARD_CONTENT_PROPS : LEAF_CONTENT_PROPS[componentName ?? ''] ?? []
-  );
+  // `getContentRoots` also adds supported `children={...}` content based on
+  // the component name, so descendants are traversed the same way as targets.
+  return getContentRoots(node, componentName, getComponentContentProps(componentName));
 }
 
 function shouldSkipNestedScanElement(element: TSESTree.JSXElement): boolean {
