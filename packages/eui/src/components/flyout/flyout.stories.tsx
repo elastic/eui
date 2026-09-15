@@ -118,7 +118,17 @@ export const Playground: Story = {
             <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutBody
+          banner={
+            <EuiCallOut
+              title="Flyout banner title."
+              size="s"
+              text="Flyout banner text"
+            />
+          }
+        >
+          Flyout body
+        </EuiFlyoutBody>
         <EuiFlyoutFooter>
           <EuiButton fill>Flyout footer</EuiButton>
         </EuiFlyoutFooter>

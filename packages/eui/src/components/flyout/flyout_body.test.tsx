@@ -19,6 +19,19 @@ describe('EuiFlyoutBody', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('banner is rendered', () => {
+    const { container } = render(
+      <EuiFlyoutBody banner={<div data-test-subj="flyoutBanner">Banner</div>} />
+    );
+
+    expect(
+      container.querySelector('.euiFlyoutBody__banner')
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-test-subj="flyoutBanner"]')
+    ).toBeInTheDocument();
+  });
+
   test('scrollableTabIndex', () => {
     const { container } = render(<EuiFlyoutBody scrollableTabIndex={-1} />);
 

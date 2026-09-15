@@ -26,6 +26,10 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
         'min-height',
         `calc(${euiTheme.size.xxl} + var(--euiFlyoutBodyPadding, 0px) + var(--euiFlyoutBodyPadding, 0px) + ${euiTheme.size.s})`
       )}
+
+      &:has(.euiFlyoutBody__banner) .euiFlyoutBody__overflowContent {
+        ${logicalCSS('padding-top', 0)}
+      }
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,
@@ -37,19 +41,14 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      overflow: hidden;
-
-      .euiCallOut {
-        ${logicalCSS('margin-top', `${euiTheme.size.s}`)}
-        ${logicalCSS('margin-left', `${euiTheme.size.l}`)}
-        ${logicalCSS('margin-right', `${euiTheme.size.l}`)}
-      }
+      padding: var(--euiFlyoutBodyPadding, 0px);
 
       .euiFlyout:not(:has(.euiFlyoutHeader)) & {
-        /* Adds more spacing on the right to account for the close button */
-        .euiCallOut {
-          ${logicalCSS('margin-right', `${euiTheme.size.xxl}`)}
-        }
+        /* Extra end padding so the banner clears the absolutely positioned close button */
+        ${logicalCSS(
+          'padding-right',
+          `max(var(--euiFlyoutBodyPadding, 0px), ${euiTheme.size.xxl})`
+        )}
       }
     `,
   };
