@@ -85,10 +85,12 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             expression,
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
+              const syntheticElementName = getSyntheticInteractiveElementName(leaf);
               const elementName =
-                getSyntheticInteractiveElementName(leaf) ??
-                getElementName(leaf.openingElement);
-              if (!elementName) return;
+                syntheticElementName ?? getElementName(leaf.openingElement);
+              if (!elementName || (!syntheticElementName && !isInteractiveElement(leaf))) {
+                return;
+              }
 
               context.report({
                 node: leaf.openingElement,
