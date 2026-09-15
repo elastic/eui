@@ -173,6 +173,20 @@ function getDescendantRoots(node: TSESTree.JSXElement): TSESTree.Node[] {
   );
 }
 
+function shouldSkipNestedScanElement(element: TSESTree.JSXElement): boolean {
+  const elementName = getElementName(element.openingElement);
+
+  if (!elementName) return true;
+
+  // Custom components stay traversable here; local ones are resolved by
+  // `walkJsxChildren` before this guard runs, and unresolved ones remain opaque.
+  if (/^[A-Z]/.test(elementName) && !elementName.startsWith('Eui')) {
+    return true;
+  }
+
+  return !isInteractiveElement(element);
+}
+
 export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
@@ -207,7 +221,7 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
             },
             {
               sourceCode: context.sourceCode,
-              shouldSkip: (element) => !isInteractiveElement(element),
+              shouldSkip: shouldSkipNestedScanElement,
               getChildren: getDescendantRoots,
             }
           );

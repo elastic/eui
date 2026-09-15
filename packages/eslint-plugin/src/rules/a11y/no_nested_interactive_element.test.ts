@@ -478,6 +478,21 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'content prop inside a local wrapper component is still traversed',
+      code: dedent`
+        const Docs = () => (
+          <EuiListGroupItem label={<EuiLink href="/docs">Docs</EuiLink>} />
+        );
+        const el = (
+          <EuiButton onClick={onClick}>
+            <Docs />
+          </EuiButton>
+        );
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
       name: 'footer button inside a clickable card',
       code: dedent`
         <EuiCard
