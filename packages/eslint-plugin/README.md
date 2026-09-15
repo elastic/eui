@@ -555,9 +555,10 @@ Disallow interactive elements nested inside other interactive elements.
 
 Nesting a control inside another control produces invalid HTML (`<button>` inside `<button>`, `<a>` inside `<a>`) and leaves the inner control unreachable or ambiguous for keyboard and screen-reader users.
 
-The rule checks two groups of outer components:
+The rule checks three groups of outer elements:
 
-- **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderLogo`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Some of these only render a control when given the right props — `EuiListGroupItem` is an `<li>` without `onClick`/`href`, `EuiContextMenuItem` a `<div>` without `onClick`/`href`/`toolTipContent`, `EuiHeaderLogo` a non-focusable `<a>` without `href` — and are checked accordingly. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
+- **Native leaf controls** — `button` and `a` with `href`.
+- **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Some of these only render a control when given the right props — `EuiListGroupItem` is an `<li>` without `onClick`/`href`, `EuiContextMenuItem` a `<div>` without `onClick`/`href`/`toolTipContent` — and are checked accordingly. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
 - **Clickable `EuiCard`** — a card with `onClick` or `href` forwards clicks anywhere in the card to its title link, so a control in `title`, `description`, `footer`, `image`, or the card's children fires both its own action and the card's. Statically disabled cards (`isDisabled`) attach no handler and are skipped, as are `selectable` cards: pairing the select button with a footer action is a pattern EUI itself ships.
 
 Beyond children, the rule also checks props whose value renders inside the focusable element: `label` and `icon` on `EuiListGroupItem`, `label` on `EuiKeyPadMenuItem`, `title` on `EuiStepHorizontal`, `prepend`/`append` on `EuiTab`, `icon` on `EuiFacetButton` and `EuiContextMenuItem`, and `notification` on `EuiHeaderSectionItemButton`. Props that render a **sibling** control (`EuiListGroupItem`'s `extraAction`) or render into a portal (`EuiContextMenuItem`'s `toolTipContent`) are not reported.
@@ -566,7 +567,7 @@ What counts as nested content:
 
 - Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control behind them is still found.
 - Controls referenced through a local variable or a local arrow-function component are resolved and checked.
-- Conditionally-interactive elements only count as interactive content when the relevant prop is present: `onClick`/`href` for `EuiBadge` and `EuiBetaBadge`, `onClick`/`href`/`selectable` for `EuiCard`, and `href` for a native `<a>`.
+- Conditionally-interactive elements only count as interactive content when the relevant prop is present: `onClick`/`href`/`iconOnClick` for `EuiBadge`, `onClick`/`href`/`tooltipContent` for `EuiBetaBadge`, `onClick`/`href`/`selectable` for `EuiCard`, `onClick`/`href`/`toolTipContent` for `EuiContextMenuItem`, `onClick`/`href`/`extraAction` for `EuiListGroupItem`, and `href` for native `<a>` and `EuiHeaderLogo` (including `href=""`).
 - Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
 
 #### Examples
