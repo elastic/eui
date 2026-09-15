@@ -88,6 +88,45 @@ describe('EuiDescriptionListDescription', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      describe('combined with text styles', () => {
+        (['row', 'column'] as const).forEach((type) => {
+          test(`${type} + normal text style uses the compressed font size`, () => {
+            const { container } = render(
+              <EuiDescriptionListContext.Provider
+                value={{
+                  ...contextDefaults,
+                  type,
+                  compressed: true,
+                  textStyle: 'normal',
+                }}
+              >
+                <EuiDescriptionListDescription />
+              </EuiDescriptionListContext.Provider>
+            );
+
+            expect(container.firstChild).toHaveStyleRule('font-size', '0.8571rem');
+            expect(container.firstChild).toMatchSnapshot();
+          });
+
+          test(`${type} + reverse text style uses the compressed font size`, () => {
+            const { container } = render(
+              <EuiDescriptionListContext.Provider
+                value={{
+                  ...contextDefaults,
+                  type,
+                  compressed: true,
+                  textStyle: 'reverse',
+                }}
+              >
+                <EuiDescriptionListDescription />
+              </EuiDescriptionListContext.Provider>
+            );
+
+            expect(container.firstChild).toMatchSnapshot();
+          });
+        });
+      });
     });
   });
 });
