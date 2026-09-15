@@ -52,6 +52,8 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             expression,
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
+              const elementName = getElementName(leaf.openingElement);
+              if (!elementName) return;
 
               context.report({
                 node: leaf.openingElement,
@@ -59,7 +61,7 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
                 data: {
                   propName: (attr.name as TSESTree.JSXIdentifier).name,
                   componentName,
-                  elementName: getElementName(leaf.openingElement),
+                  elementName,
                 },
               });
               found = true;
