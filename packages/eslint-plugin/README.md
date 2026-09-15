@@ -572,7 +572,7 @@ What counts as nested content:
   - `EuiBetaBadge`: `onClick`, `href`, or `tooltipContent`
   - `EuiCard`: `onClick`, `href`, or `selectable`
   - `EuiContextMenuItem`: `onClick`, `href`, or `toolTipContent`
-  - `EuiListGroupItem`: `onClick`, `href`, or `extraAction`
+  - `EuiListGroupItem`: `onClick` or `href` (`extraAction` is checked separately as a sibling `EuiButtonIcon`)
   - Native `<a>` and `EuiHeaderLogo`: `href` (including `href=""`)
 - Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
 

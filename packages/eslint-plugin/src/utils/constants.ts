@@ -143,7 +143,7 @@ export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<string, string[]> 
     EuiCard: ['onClick', 'href', 'selectable'],
     EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
     EuiHeaderLogo: ['href'],
-    EuiListGroupItem: ['extraAction', 'onClick', 'href'],
+    EuiListGroupItem: ['onClick', 'href'],
   };
 
 /**

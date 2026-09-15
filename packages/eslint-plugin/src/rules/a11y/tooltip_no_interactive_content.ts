@@ -9,15 +9,34 @@
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { walkJsxChildren } from '../../utils/walk_jsx_children';
 import { getElementName } from '../../utils/get_element_name';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 import { isInteractiveElement } from '../../utils/is_interactive_element';
 
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
+const LIST_GROUP_ITEM = 'EuiListGroupItem';
+const LIST_GROUP_ITEM_EXTRA_ACTION = 'EuiButtonIcon';
+
+function getSyntheticInteractiveElementName(
+  element: TSESTree.JSXElement
+): string | null {
+  const componentName = getElementName(element.openingElement);
+
+  if (
+    componentName === LIST_GROUP_ITEM &&
+    hasMeaningfulAttr(element.openingElement, 'extraAction')
+  ) {
+    return LIST_GROUP_ITEM_EXTRA_ACTION;
+  }
+
+  return null;
+}
 
 function shouldSkipTooltipContentElement(element: TSESTree.JSXElement): boolean {
   const elementName = getElementName(element.openingElement);
 
   if (!elementName) return true;
+  if (getSyntheticInteractiveElementName(element)) return false;
 
   // Custom components stay traversable here; local ones are resolved by
   // `walkJsxChildren` before this guard runs, and unresolved ones remain opaque.
@@ -66,7 +85,9 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             expression,
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
-              const elementName = getElementName(leaf.openingElement);
+              const elementName =
+                getSyntheticInteractiveElementName(leaf) ??
+                getElementName(leaf.openingElement);
               if (!elementName) return;
 
               context.report({

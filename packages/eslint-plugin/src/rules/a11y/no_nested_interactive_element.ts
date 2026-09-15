@@ -9,6 +9,7 @@
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { LEAF_INTERACTIVE_EUI_COMPONENTS } from '../../utils/constants';
 import { getElementName } from '../../utils/get_element_name';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 import {
   hasInteractivityProp,
   isInteractiveElement,
@@ -25,6 +26,8 @@ interface Target {
 }
 
 const CARD = 'EuiCard';
+const LIST_GROUP_ITEM = 'EuiListGroupItem';
+const LIST_GROUP_ITEM_EXTRA_ACTION = 'EuiButtonIcon';
 
 /**
  * Leaf-control props whose value renders *inside* the focusable element, in
@@ -174,6 +177,21 @@ function getComponentContentProps(componentName: string | null): string[] {
   return LEAF_CONTENT_PROPS[componentName ?? ''] ?? [];
 }
 
+function getSyntheticInteractiveElementName(
+  element: TSESTree.JSXElement
+): string | null {
+  const componentName = getElementName(element.openingElement);
+
+  if (
+    componentName === LIST_GROUP_ITEM &&
+    hasMeaningfulAttr(element.openingElement, 'extraAction')
+  ) {
+    return LIST_GROUP_ITEM_EXTRA_ACTION;
+  }
+
+  return null;
+}
+
 function getDescendantRoots(node: TSESTree.JSXElement): TSESTree.Node[] {
   const componentName = getElementName(node.openingElement);
 
@@ -186,6 +204,7 @@ function shouldSkipNestedScanElement(element: TSESTree.JSXElement): boolean {
   const elementName = getElementName(element.openingElement);
 
   if (!elementName) return true;
+  if (getSyntheticInteractiveElementName(element)) return false;
 
   // Custom components stay traversable here; local ones are resolved by
   // `walkJsxChildren` before this guard runs, and unresolved ones remain opaque.
@@ -220,6 +239,10 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
             root,
             (leaf) => {
               if (leaf.type !== 'JSXElement' || reported.has(leaf)) return;
+              const elementName =
+                getSyntheticInteractiveElementName(leaf) ??
+                getElementName(leaf.openingElement);
+              if (!elementName) return;
               reported.add(leaf);
 
               context.report({
@@ -227,7 +250,7 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
                 messageId: target.messageId,
                 data: {
                   componentName,
-                  elementName: getElementName(leaf.openingElement),
+                  elementName,
                 },
               });
             },

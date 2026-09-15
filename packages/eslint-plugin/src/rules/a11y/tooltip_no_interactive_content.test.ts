@@ -135,6 +135,27 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       languageOptions,
     },
     {
+      name: '`EuiListGroupItem` extra action in content',
+      code: dedent`
+        <EuiToolTip
+          content={
+            <EuiListGroupItem
+              label="Item"
+              extraAction={{
+                iconType: 'trash',
+                onClick: onDelete,
+                'aria-label': 'Delete',
+              }}
+            />
+          }
+        >
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
       name: '`EuiLink` in content',
       code: dedent`
         <EuiToolTip content={<EuiLink href="/docs">Learn more</EuiLink>}>
