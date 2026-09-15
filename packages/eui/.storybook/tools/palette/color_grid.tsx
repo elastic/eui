@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
 import { css } from '@emotion/react';
 
 import { useEuiTheme } from '../../../src/services';
@@ -18,12 +18,14 @@ export interface ColorGridProps {
   palette: Palette;
   colors?: ColorMap;
   cellSize?: number;
+  onToggleColor?: (name: string) => void;
 }
 
 export const ColorGrid: FunctionComponent<ColorGridProps> = ({
   palette,
   colors = PRIMITIVE_COLORS,
   cellSize = 32,
+  onToggleColor,
 }) => {
   const { euiTheme } = useEuiTheme();
   const fontSize = useEuiFontSize('xs');
@@ -109,6 +111,21 @@ export const ColorGrid: FunctionComponent<ColorGridProps> = ({
       font-weight: ${euiTheme.font.weight.medium};
       ${fontSize}
     `,
+    interactive: css`
+      appearance: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+
+      &:hover:not([aria-pressed='true']) {
+        background-color: var(--euiColorGridCell);
+      }
+
+      &:focus-visible {
+        z-index: 1;
+      }
+    `,
     labels: css`
       display: inline-grid;
       grid-template-columns: ${columnTemplate};
@@ -126,23 +143,51 @@ export const ColorGrid: FunctionComponent<ColorGridProps> = ({
   return (
     <div>
       <div css={styles.stack}>
-        <div css={styles.grid}>
+        <div
+          css={styles.grid}
+          role={onToggleColor ? 'group' : undefined}
+          aria-label={onToggleColor ? 'Palette colors' : undefined}
+        >
           {hues.map((hue) =>
             shades.map((shade) => {
               const name = `${hue}${shade}`;
+              const value = colors[name];
               const swatch = filled.get(name);
+              const isInteractive = Boolean(
+                onToggleColor && value && value !== 'transparent'
+              );
+
+              const title = swatch
+                ? `${swatch.index} · ${name} — ${swatch.value}`
+                : name;
+              const style = {
+                '--euiColorGridCell': value,
+                ...(swatch && { backgroundColor: swatch.value }),
+              } as CSSProperties;
+
+              if (isInteractive) {
+                return (
+                  <button
+                    key={name}
+                    type="button"
+                    aria-pressed={Boolean(swatch)}
+                    aria-label={
+                      swatch
+                        ? `Remove ${name} from palette`
+                        : `Add ${name} to palette`
+                    }
+                    title={`${title} · Click to ${swatch ? 'remove' : 'add'}`}
+                    css={[styles.cell, styles.interactive]}
+                    style={style}
+                    onClick={() => onToggleColor?.(name)}
+                  >
+                    {swatch?.index}
+                  </button>
+                );
+              }
 
               return (
-                <div
-                  key={name}
-                  css={styles.cell}
-                  style={swatch && { backgroundColor: swatch.value }}
-                  title={
-                    swatch
-                      ? `${swatch.index} · ${name} — ${swatch.value}`
-                      : name
-                  }
-                >
+                <div key={name} css={styles.cell} style={style} title={title}>
                   {swatch?.index}
                 </div>
               );
