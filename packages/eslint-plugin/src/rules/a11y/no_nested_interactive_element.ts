@@ -27,37 +27,81 @@ interface Target {
 const CARD = 'EuiCard';
 
 /**
- * Leaf-control props that render *inside* the focusable element, in addition
- * to children. Props that render a **sibling** control (e.g. `EuiListGroupItem`
- * `extraAction`) are intentionally absent.
+ * Leaf-control props whose value renders *inside* the focusable element, in
+ * addition to children. Props that render a **sibling** control (e.g.
+ * `EuiListGroupItem` `extraAction`) are intentionally absent, as are props
+ * rendered into a portal (e.g. `EuiContextMenuItem` `toolTipContent`).
  */
 const LEAF_CONTENT_PROPS: Record<string, string[]> = {
+  EuiContextMenuItem: ['icon'],
+  EuiFacetButton: ['icon'],
+  EuiHeaderSectionItemButton: ['notification'],
   EuiKeyPadMenuItem: ['label'],
-  EuiListGroupItem: ['label'],
+  EuiListGroupItem: ['icon', 'label'],
   EuiStepHorizontal: ['title'],
+  EuiTab: ['append', 'prepend'],
 };
+
+/**
+ * `EuiCard` props rendered inside the card wrapper, which is what carries the
+ * forwarding click handler. `betaBadgeProps` can also produce a control, but it
+ * is configured through an object rather than JSX and is not analysed here.
+ */
+const CARD_CONTENT_PROPS = ['description', 'footer', 'image', 'title'];
 
 const LEAF_COMPONENTS = new Set(LEAF_INTERACTIVE_EUI_COMPONENTS);
 
+/**
+ * Whether a boolean prop is set to a statically-known `true` (`<El prop />` or
+ * `<El prop={true} />`). Dynamic values are treated as *not* set, so that a
+ * card gated on e.g. `isDisabled={isLoading}` is still checked.
+ */
+function isStaticallyTrue(
+  openingElement: TSESTree.JSXOpeningElement,
+  propName: string
+): boolean {
+  const attr = openingElement.attributes.find(
+    (a): a is TSESTree.JSXAttribute =>
+      a.type === 'JSXAttribute' &&
+      a.name.type === 'JSXIdentifier' &&
+      a.name.name === propName
+  );
+
+  if (!attr) return false;
+  if (attr.value == null) return true;
+
+  return (
+    attr.value.type === 'JSXExpressionContainer' &&
+    attr.value.expression.type === 'Literal' &&
+    attr.value.expression.value === true
+  );
+}
+
 function getTarget(
   componentName: string,
-  openingElement: TSESTree.JSXOpeningElement
+  node: TSESTree.JSXElement
 ): Target | null {
+  const { openingElement } = node;
+
   if (componentName === CARD) {
     // A card with `onClick`/`href` attaches a wrapper click handler that
     // forwards to the title link, so a control anywhere in its content fires
-    // both its own action and the card's. `selectable` cards are deliberately
-    // not a target: pairing the select button with a footer action is a
-    // supported EUI pattern.
-    return hasInteractivityProp(openingElement)
-      ? {
-          messageId: 'clickableCardContent',
-          contentProps: ['title', 'description', 'footer'],
-        }
+    // both its own action and the card's. A disabled card attaches no handler.
+    //
+    // `selectable` cards are deliberately not a target: pairing the select
+    // button with a footer action is a pattern EUI itself ships. It is only
+    // safe when the footer control stops propagation, which this rule cannot
+    // verify statically — see the PR discussion.
+    return hasInteractivityProp(openingElement) &&
+      !isStaticallyTrue(openingElement, 'isDisabled')
+      ? { messageId: 'clickableCardContent', contentProps: CARD_CONTENT_PROPS }
       : null;
   }
 
-  if (LEAF_COMPONENTS.has(componentName)) {
+  // Several leaf components only render a control when given the right props
+  // (`EuiListGroupItem` is an `<li>` without an action, `EuiContextMenuItem` a
+  // `<div>`), so the name alone is not enough to make it a target.
+  if (LEAF_COMPONENTS.has(componentName) && isInteractiveElement(node)) {
     return {
       messageId: 'nestedInteractive',
       contentProps: LEAF_CONTENT_PROPS[componentName] ?? [],
@@ -97,7 +141,7 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
 
         if (!componentName) return;
 
-        const target = getTarget(componentName, node.openingElement);
+        const target = getTarget(componentName, node);
 
         if (!target) return;
 

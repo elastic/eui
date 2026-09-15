@@ -107,6 +107,53 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'actionless list group item renders an <li>, not a control',
+      code: dedent`
+        <EuiListGroupItem label={<EuiButton>Go</EuiButton>} />
+      `,
+      languageOptions,
+    },
+    {
+      name: 'actionless context menu item renders a <div>, not a control',
+      code: dedent`
+        <EuiContextMenuItem>
+          <EuiSwitch label="Compare" checked={checked} onChange={onChange} />
+        </EuiContextMenuItem>
+      `,
+      languageOptions,
+    },
+    {
+      name: 'header logo without `href` is not focusable',
+      code: dedent`
+        <EuiHeaderLogo>
+          <EuiLink href="/docs">Docs</EuiLink>
+        </EuiHeaderLogo>
+      `,
+      languageOptions,
+    },
+    {
+      name: 'anchor without `href` is not a control',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <a>label</a>
+        </EuiButton>
+      `,
+      languageOptions,
+    },
+    {
+      name: 'statically disabled card attaches no click handler',
+      code: dedent`
+        <EuiCard
+          isDisabled
+          title="Title"
+          description="Description"
+          onClick={onClick}
+          footer={<EuiButton>Go</EuiButton>}
+        />
+      `,
+      languageOptions,
+    },
+    {
       name: 'string content prop',
       code: dedent`
         <EuiListGroupItem label="Item" onClick={onClick} />
@@ -210,6 +257,92 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
         </EuiButton>
       `,
       errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'control in `EuiTab` `prepend`',
+      code: dedent`
+        <EuiTab onClick={onClick} prepend={<EuiButtonIcon iconType="pin" aria-label="Pin" />}>
+          Metrics
+        </EuiTab>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'control in `EuiFacetButton` `icon`',
+      code: dedent`
+        <EuiFacetButton quantity={5} icon={<EuiButtonIcon iconType="cross" aria-label="Clear" />}>
+          Facet
+        </EuiFacetButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'control in `EuiHeaderSectionItemButton` `notification`',
+      code: dedent`
+        <EuiHeaderSectionItemButton
+          aria-label="Alerts"
+          notification={<EuiLink href="/alerts">3</EuiLink>}
+        />
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'context menu item is a control when given `toolTipContent`',
+      code: dedent`
+        <EuiContextMenuItem toolTipContent="Disabled while loading">
+          <EuiSwitch label="Compare" checked={checked} onChange={onChange} />
+        </EuiContextMenuItem>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'list group item with an action is a control',
+      code: dedent`
+        <EuiListGroupItem onClick={onClick} label={<EuiButton>Go</EuiButton>} />
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'selectable card counts as interactive content',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiCard title="Title" description="Description" selectable={{ onClick: onSelect }} />
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'control in a clickable card `image`',
+      code: dedent`
+        <EuiCard
+          title="Title"
+          description="Description"
+          href="/app"
+          image={<EuiLink href="/docs">Preview</EuiLink>}
+        />
+      `,
+      errors: [{ messageId: 'clickableCardContent' }],
+      languageOptions,
+    },
+    {
+      name: 'dynamically disabled card is still checked',
+      code: dedent`
+        <EuiCard
+          isDisabled={isLoading}
+          title="Title"
+          description="Description"
+          onClick={onClick}
+          footer={<EuiButton>Go</EuiButton>}
+        />
+      `,
+      errors: [{ messageId: 'clickableCardContent' }],
       languageOptions,
     },
     {

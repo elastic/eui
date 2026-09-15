@@ -122,16 +122,38 @@ export const INTERACTIVE_EUI_COMPONENTS = [
 ];
 
 /**
- * EUI components that are only interactive when `onClick` or `href` is provided.
- * Without those props they render as a plain non-focusable element (span/div),
- * so rules that need to distinguish unconditionally-interactive components should
- * exclude these.
+ * EUI components that render a focusable element only when given one of the
+ * listed props. Without them they render plain, non-focusable markup — a
+ * `<span>`, `<div>`, or `<li>` — so rules that need an unconditionally
+ * interactive element must check the props rather than the name alone.
+ *
+ * - `EuiBadge` / `EuiBetaBadge` render a `<span>` unless clickable.
+ * - `EuiCard` renders a plain panel; `selectable` also makes it clickable by
+ *   rendering an `EuiCardSelect` button.
+ * - `EuiContextMenuItem` renders a `<div>` unless it has an action, and is a
+ *   `<button>` when given `toolTipContent`.
+ * - `EuiHeaderLogo` renders an `<a>` without an `href` attribute, which is not
+ *   focusable.
+ * - `EuiListGroupItem` renders an `<li>` unless it has an action.
  */
-export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS = [
-  'EuiBadge',
-  'EuiBetaBadge',
-  'EuiCard',
-];
+export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<string, string[]> =
+  {
+    EuiBadge: ['onClick', 'href'],
+    EuiBetaBadge: ['onClick', 'href'],
+    EuiCard: ['onClick', 'href', 'selectable'],
+    EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
+    EuiHeaderLogo: ['href'],
+    EuiListGroupItem: ['onClick', 'href'],
+  };
+
+/**
+ * Native HTML elements that are focusable only when given one of the listed
+ * attributes. An `<a>` without `href` is not a link and is not focusable.
+ */
+export const CONDITIONALLY_INTERACTIVE_HTML_ELEMENTS: Record<string, string[]> =
+  {
+    a: ['href'],
+  };
 
 export const HTML_TEXT_ELEMENTS = new Set([
   'p',
