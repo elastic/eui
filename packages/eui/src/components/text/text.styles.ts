@@ -344,7 +344,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         border: ${euiTheme.border.width.thin} solid
           ${euiTheme.colors.textParagraph};
         border-radius: ${mathWithUnits(
-          euiTheme.border.radius.small,
+          euiTheme.border.radius.inline,
           (x) => x / 2
         )};
         ${highContrastModeStyles(euiThemeContext, {
