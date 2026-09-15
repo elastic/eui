@@ -70,3 +70,104 @@ export const resolvePalette = (
     ];
   });
 };
+
+export interface PaletteHueGroup {
+  hue: string;
+  colors: ResolvedPaletteColor[];
+}
+
+const hueOf = (name: string) => parseColorName(name)?.hue ?? name;
+
+const shadeOf = (name: string) => parseColorName(name)?.shade ?? 0;
+
+const compareDarkToLight = (
+  a: ResolvedPaletteColor,
+  b: ResolvedPaletteColor
+) => shadeOf(b.name) - shadeOf(a.name);
+
+export const groupPaletteByHue = (
+  palette: Palette,
+  colors: ColorMap
+): PaletteHueGroup[] => {
+  const groups: PaletteHueGroup[] = [];
+  const indexByHue = new Map<string, number>();
+  const seen = new Set<string>();
+
+  resolvePalette(palette, colors).forEach((color) => {
+    if (seen.has(color.name)) return;
+    seen.add(color.name);
+
+    const hue = hueOf(color.name);
+    const existingIndex = indexByHue.get(hue);
+    if (existingIndex == null) {
+      indexByHue.set(hue, groups.length);
+      groups.push({ hue, colors: [color] });
+      return;
+    }
+
+    groups[existingIndex].colors.push(color);
+  });
+
+  groups.forEach((group) => {
+    group.colors.sort(compareDarkToLight);
+  });
+
+  return groups;
+};
+
+export const flattenHueGroups = (groups: PaletteHueGroup[]): string[] =>
+  groups.flatMap((group) => group.colors.map((color) => color.name));
+
+export const normalizePaletteOrder = (
+  palette: Palette,
+  colors: ColorMap
+): string[] => flattenHueGroups(groupPaletteByHue(palette, colors));
+
+export const togglePaletteColor = (
+  palette: Palette,
+  name: string,
+  colors: ColorMap
+): string[] => {
+  const groups = groupPaletteByHue(palette, colors);
+
+  const isSelected = groups.some((group) =>
+    group.colors.some((color) => color.name === name)
+  );
+
+  if (isSelected) {
+    return flattenHueGroups(
+      groups
+        .map((group) => ({
+          ...group,
+          colors: group.colors.filter((color) => color.name !== name),
+        }))
+        .filter((group) => group.colors.length > 0)
+    );
+  }
+
+  const nextColor = { name, value: colors[name] ?? name };
+  const hue = hueOf(name);
+  const existing = groups.find((group) => group.hue === hue);
+
+  if (existing) {
+    existing.colors.push(nextColor);
+    existing.colors.sort(compareDarkToLight);
+  } else {
+    groups.push({ hue, colors: [nextColor] });
+  }
+
+  return flattenHueGroups(groups);
+};
+
+export const reorderPaletteHues = (
+  palette: Palette,
+  colors: ColorMap,
+  startIndex: number,
+  endIndex: number
+): string[] => {
+  const groups = [...groupPaletteByHue(palette, colors)];
+  const [removed] = groups.splice(startIndex, 1);
+  if (!removed) return flattenHueGroups(groups);
+  groups.splice(endIndex, 0, removed);
+  return flattenHueGroups(groups);
+};
