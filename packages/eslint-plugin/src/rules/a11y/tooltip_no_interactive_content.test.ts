@@ -95,6 +95,16 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
   ],
   invalid: [
     {
+      name: 'conditionally-interactive component with `onClick` in content',
+      code: dedent`
+        <EuiToolTip content={<EuiBadge onClick={onClick}>v2.0</EuiBadge>}>
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
       name: '`EuiLink` in content',
       code: dedent`
         <EuiToolTip content={<EuiLink href="/docs">Learn more</EuiLink>}>

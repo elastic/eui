@@ -549,6 +549,56 @@ The rule only fires when `variant="selection"` is set as a static string. Dynami
 </EuiButtonGroup>
 ```
 
+### `@elastic/eui/no-nested-interactive-element`
+
+Disallow interactive elements nested inside other interactive elements.
+
+Nesting a control inside another control produces invalid HTML (`<button>` inside `<button>`, `<a>` inside `<a>`) and leaves the inner control unreachable or ambiguous for keyboard and screen-reader users.
+
+The rule checks two groups of outer components:
+
+- **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderLogo`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
+- **Clickable `EuiCard`** — a card with `onClick` or `href` forwards clicks anywhere in the card to its title link, so a control in `title`, `description`, `footer`, or the card's children fires both its own action and the card's. `selectable` cards are not checked: pairing the select button with a footer action is a supported pattern.
+
+Content is also checked in props that render inside the focusable element (`label` on `EuiKeyPadMenuItem` and `EuiListGroupItem`, `title` on `EuiStepHorizontal`). Props that render a sibling control, such as `EuiListGroupItem`'s `extraAction`, are not reported.
+
+Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control nested behind them is still found, as are controls referenced through a local variable or a local arrow-function component. `EuiBadge`, `EuiBetaBadge`, and `EuiCard` are only treated as interactive content when they have `onClick` or `href`. Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
+
+#### Examples
+
+```tsx
+// ✗ Bad - link inside a button
+<EuiButton onClick={onClick}>
+  Read the <EuiLink href="/docs">docs</EuiLink>
+</EuiButton>
+
+// ✓ Render the controls as siblings
+<EuiFlexGroup>
+  <EuiButton onClick={onClick}>Save</EuiButton>
+  <EuiLink href="/docs">Read the docs</EuiLink>
+</EuiFlexGroup>
+```
+
+```tsx
+// ✗ Bad - the footer button also triggers the card's `onClick`
+<EuiCard
+  title="Dashboard"
+  description="View metrics"
+  onClick={onClick}
+  footer={<EuiButton>Open</EuiButton>}
+/>
+
+// ✓ One action per card - either a clickable card…
+<EuiCard title="Dashboard" description="View metrics" onClick={onClick} />
+
+// ✓ …or a footer action
+<EuiCard
+  title="Dashboard"
+  description="View metrics"
+  footer={<EuiButton>Open</EuiButton>}
+/>
+```
+
 ## Testing
 
 ### Running unit tests

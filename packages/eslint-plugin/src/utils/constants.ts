@@ -155,6 +155,15 @@ export const EUI_TEXT_COMPONENTS = new Set([
 
 export const HTML_ACTION_ELEMENTS = new Set(['button', 'a']);
 
+/** Native HTML elements that are focusable and respond to user input. */
+export const INTERACTIVE_HTML_ELEMENTS = [
+  'a',
+  'button',
+  'input',
+  'select',
+  'textarea',
+];
+
 /**
  * Transparent layout wrappers inside `EuiCallOut` children that the rule should
  * traverse rather than treat as opaque custom components.
@@ -173,3 +182,32 @@ export const CALLOUT_LAYOUT_CONTAINERS = new Set([
  * Rules treat these the same as `HTML_TEXT_ELEMENTS` / `EUI_TEXT_COMPONENTS`.
  */
 export const I18N_TEXT_COMPONENTS = new Set(['FormattedMessage']);
+
+/**
+ * EUI components that render their content **inside** a single focusable
+ * `<button>` or `<a>`.
+ *
+ * Nesting another interactive element in their content produces invalid HTML
+ * (e.g. `<button>` inside `<button>`) and leaves the inner control unreachable
+ * or ambiguous for keyboard and screen-reader users.
+ *
+ * This is deliberately narrower than `INTERACTIVE_EUI_COMPONENTS`, which also
+ * contains composite components (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`,
+ * …) whose entire purpose is to host controls.
+ */
+export const LEAF_INTERACTIVE_EUI_COMPONENTS = [
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiButtonIcon',
+  'EuiContextMenuItem',
+  'EuiFacetButton',
+  'EuiFilterButton',
+  'EuiHeaderLink',
+  'EuiHeaderLogo',
+  'EuiHeaderSectionItemButton',
+  'EuiKeyPadMenuItem',
+  'EuiLink',
+  'EuiListGroupItem',
+  'EuiStepHorizontal',
+  'EuiTab',
+];

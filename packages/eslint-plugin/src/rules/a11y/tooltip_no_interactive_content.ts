@@ -7,32 +7,12 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import {
-  INTERACTIVE_EUI_COMPONENTS,
-  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS,
-} from '../../utils/constants';
 import { walkJsxChildren } from '../../utils/walk_jsx_children';
 import { getElementName } from '../../utils/get_element_name';
+import { isInteractiveElement } from '../../utils/is_interactive_element';
 
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
-const INTERACTIVE_HTML_ELEMENTS = [
-  'a',
-  'button',
-  'input',
-  'select',
-  'textarea',
-];
-const CONDITIONALLY_INTERACTIVE_SET = new Set(
-  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS
-);
-
-const INTERACTIVE_ELEMENTS = new Set([
-  ...INTERACTIVE_HTML_ELEMENTS,
-  ...INTERACTIVE_EUI_COMPONENTS.filter(
-    (c) => !CONDITIONALLY_INTERACTIVE_SET.has(c)
-  ),
-]);
 
 export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -73,28 +53,19 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
 
-              const el = leaf as TSESTree.JSXElement;
-              const name = getElementName(el.openingElement);
-
-              if (!name || !INTERACTIVE_ELEMENTS.has(name)) return;
-
               context.report({
-                node: el.openingElement,
+                node: leaf.openingElement,
                 messageId: 'noInteractiveContent',
                 data: {
                   propName: (attr.name as TSESTree.JSXIdentifier).name,
                   componentName,
-                  elementName: name,
+                  elementName: getElementName(leaf.openingElement),
                 },
               });
               found = true;
             },
             {
-              shouldSkip: (el) => {
-                const name = getElementName(el.openingElement);
-
-                return !name || !INTERACTIVE_ELEMENTS.has(name);
-              },
+              shouldSkip: (el) => !isInteractiveElement(el),
             }
           );
         }
