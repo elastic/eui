@@ -7,10 +7,7 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import {
-  INTERACTIVE_HTML_ELEMENTS,
-  LEAF_INTERACTIVE_EUI_COMPONENTS,
-} from '../../utils/constants';
+import { LEAF_INTERACTIVE_EUI_COMPONENTS } from '../../utils/constants';
 import { getElementName } from '../../utils/get_element_name';
 import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
 import {
@@ -56,7 +53,7 @@ const LEAF_CONTENT_PROPS: Record<string, string[]> = {
 const CARD_CONTENT_PROPS = ['description', 'footer', 'image', 'title'];
 
 const LEAF_COMPONENTS = new Set(LEAF_INTERACTIVE_EUI_COMPONENTS);
-const LEAF_HTML_ELEMENTS = new Set(INTERACTIVE_HTML_ELEMENTS);
+const LEAF_HTML_ELEMENTS = new Set(['a', 'button']);
 const COMPONENTS_WITH_CHILDREN_PROP = new Set([
   'a',
   CARD,

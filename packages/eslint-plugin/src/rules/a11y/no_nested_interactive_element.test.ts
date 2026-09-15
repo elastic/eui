@@ -200,16 +200,6 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
-      name: 'native select is treated as an outer control',
-      code: dedent`
-        <select>
-          <button onClick={onClick}>Open</button>
-        </select>
-      `,
-      errors: [{ messageId: 'nestedInteractive' }],
-      languageOptions,
-    },
-    {
       name: 'interactive element behind a layout wrapper',
       code: dedent`
         <EuiFacetButton quantity={5}>

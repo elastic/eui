@@ -557,7 +557,7 @@ Nesting a control inside another control produces invalid HTML (`<button>` insid
 
 The rule checks three groups of outer elements:
 
-- **Native leaf controls** — `button`, `input`, `select`, `textarea`, and `a` with `href`.
+- **Native leaf controls** — `button` and `a` with `href`.
 - **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Some of these only render a control when given the right props — `EuiListGroupItem` is an `<li>` without `onClick`/`href`, `EuiContextMenuItem` a `<div>` without `onClick`/`href`/`toolTipContent` — and are checked accordingly. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
 - **Clickable `EuiCard`** — a card with `onClick` or `href` forwards clicks anywhere in the card to its title link, so a control in `title`, `description`, `footer`, `image`, or the card's children fires both its own action and the card's. Statically disabled cards (`isDisabled`) attach no handler and are skipped, as are `selectable` cards: pairing the select button with a footer action is a pattern EUI itself ships.
 
