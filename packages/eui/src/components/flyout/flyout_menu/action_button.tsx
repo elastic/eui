@@ -24,7 +24,9 @@ export const MenuActionButton: React.FC<{
       // Anything set here also belongs in `EuiFlyoutMenuOwnedActionProps`.
       color="text"
       size="xs"
-    />
+      display="empty"
+      iconSize="m"
+      isSelected={undefined}
   );
 
   return toolTipContent ? (
