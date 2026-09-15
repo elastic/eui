@@ -32,7 +32,6 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       vertical-align: middle;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-      border-radius: ${euiTheme.border.radius.control};
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `
           border: ${euiTheme.border.thin};
@@ -56,10 +55,12 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     s: css`
       ${logicalCSS('height', euiTheme.size.base)}
       ${logicalCSS('min-width', euiTheme.size.base)}
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     m: css`
       ${logicalCSS('height', sizeM)}
       ${logicalCSS('min-width', sizeM)}
+      border-radius: ${euiTheme.border.radius.control};
     `,
     // Colors
     accent: css(badgeColors.accentText),
