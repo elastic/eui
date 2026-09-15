@@ -90,7 +90,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move one cell up
               </dd>
@@ -102,7 +102,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move one cell down
               </dd>
@@ -114,7 +114,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move one cell right
               </dd>
@@ -126,7 +126,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move one cell left
               </dd>
@@ -138,7 +138,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move to the first cell of the current row
               </dd>
@@ -150,7 +150,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move to the last cell of the current row
               </dd>
@@ -166,7 +166,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move to the first cell of the current page
               </dd>
@@ -182,7 +182,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Move to the last cell of the current page
               </dd>
@@ -194,7 +194,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Go to the last row of the previous page
               </dd>
@@ -206,7 +206,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Go to the first row of the next page
               </dd>
@@ -218,7 +218,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Open cell details and actions
               </dd>
@@ -230,7 +230,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Close cell details and actions
               </dd>
@@ -246,7 +246,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed-left"
               >
                 Copy the focused cell value
               </dd>
