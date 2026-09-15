@@ -7368,6 +7368,7 @@ __metadata:
     "@testing-library/react-17": "npm:@testing-library/react@^12.1.5"
     "@testing-library/react-hooks": "npm:^7.0.2"
     "@testing-library/user-event": "npm:^14.6.1"
+    "@types/apca-w3": "npm:^0.1.3"
     "@types/chroma-js": "npm:^2.4.0"
     "@types/classnames": "npm:^2.3.1"
     "@types/enzyme": "npm:^3.10.5"
@@ -7389,6 +7390,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^5.59.7"
     "@vitejs/plugin-react": "npm:^5.2.0"
     "@wojtekmaj/enzyme-adapter-react-17": "npm:^0.6.6"
+    apca-w3: "npm:^0.1.9"
     assert: "npm:^2.0.0"
     autoprefixer: "npm:^9.8.6"
     axe-core: "npm:^4.9.0"
@@ -11511,6 +11513,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/apca-w3@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@types/apca-w3@npm:0.1.3"
+  checksum: 10c0/98cd08a2101c5b179676ebc6a8467b59b67fe232ed91311a06b8a3488171aa6d4febcb49664b00b668403bc582ef71e685af0bd70f529726cca07201499951d7
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.1
   resolution: "@types/aria-query@npm:5.0.1"
@@ -15165,6 +15174,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apca-w3@npm:^0.1.9":
+  version: 0.1.9
+  resolution: "apca-w3@npm:0.1.9"
+  dependencies:
+    colorparsley: "npm:^0.1.8"
+  checksum: 10c0/cc5525412226875469c9720d56e42f6ae9f007d4db135a12802141cf268316ca523bfdf52725affc95e300c58e194b425571d48ea87aef0aca54a41a571bdec8
+  languageName: node
+  linkType: hard
+
 "append-transform@npm:^2.0.0":
   version: 2.0.0
   resolution: "append-transform@npm:2.0.0"
@@ -17920,6 +17938,13 @@ __metadata:
   version: 2.0.19
   resolution: "colorette@npm:2.0.19"
   checksum: 10c0/2bcc9134095750fece6e88167011499b964b78bf0ea953469130ddb1dba3c8fe6c03debb0ae181e710e2be10900d117460f980483a7df4ba4a1bac3b182ecb64
+  languageName: node
+  linkType: hard
+
+"colorparsley@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "colorparsley@npm:0.1.8"
+  checksum: 10c0/8135f61042f2775994b1d88fbb3383a49f968986420466e28e68548fc134b549776a058c4882b71ae39cb54bba5f0f74104820571081e88e05f11d388626aff8
   languageName: node
   linkType: hard
 
