@@ -8,37 +8,24 @@
 
 import React from 'react';
 
-import { EuiButtonIcon } from '../../button';
+import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 import type { EuiFlyoutMenuAction } from './types';
 
 export const MenuActionButton: React.FC<{
   action: EuiFlyoutMenuAction;
 }> = ({ action }) => {
-  const {
-    iconType,
-    onClick,
-    'aria-label': ariaLabel,
-    toolTipContent,
-    toolTipProps,
-    isDisabled,
-    isLoading,
-    href,
-    target,
-  } = action;
+  const { toolTipContent, toolTipProps, ...buttonProps } = action;
 
-  const sharedProps = {
-    'aria-label': ariaLabel,
-    iconType,
-    onClick,
-    color: 'text' as const,
-    size: 'xs' as const,
-    isDisabled,
-    // Keeps the button focusable so tooltip-on-disabled works for keyboard users
-    isLoading,
-    href,
-    target,
-  };
+  const button = (
+    <EuiButtonIcon
+      {...(buttonProps as EuiButtonIconProps)}
+      // The menu bar sets these props itself so every action looks the same.
+      // Anything set here also belongs in `EuiFlyoutMenuOwnedActionProps`.
+      color="text"
+      size="xs"
+    />
+  );
 
   return toolTipContent ? (
     <EuiToolTip
@@ -46,9 +33,9 @@ export const MenuActionButton: React.FC<{
       disableScreenReaderOutput
       {...toolTipProps}
     >
-      <EuiButtonIcon {...sharedProps} />
+      {button}
     </EuiToolTip>
   ) : (
-    <EuiButtonIcon {...sharedProps} />
+    button
   );
 };
