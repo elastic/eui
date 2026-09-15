@@ -6,7 +6,7 @@ exports[`IsFilter render 1`] = `
 >
   <button
     aria-pressed="false"
-    class="euiButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-toggle"
+    class="euiButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-base-text-euiFilterButton-toggle"
     id="filter-button_generated-id"
     type="button"
   >

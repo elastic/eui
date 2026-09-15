@@ -80,8 +80,7 @@ const _colorCSS = (color: string, interactionColor?: string) => {
   return `
     color: ${color};
 
-    &:hover,
-    &:focus {
+    &:where(:hover, :focus) {
       color: ${focusColor};
     }
 

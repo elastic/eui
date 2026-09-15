@@ -47,7 +47,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
             >
               <button
                 aria-pressed="false"
-                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                 data-test-subj="compact"
                 id="compact"
                 title="Compact"
@@ -70,7 +70,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
             >
               <button
                 aria-pressed="false"
-                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                 data-test-subj="normal"
                 id="normal"
                 title="Normal"
@@ -93,7 +93,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
             >
               <button
                 aria-pressed="false"
-                class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                 data-test-subj="expanded"
                 id="expanded"
                 title="Expanded"
@@ -162,7 +162,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
               >
                 <button
                   aria-pressed="false"
-                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                   data-test-subj="auto"
                   id="auto"
                   title="Auto"
@@ -185,7 +185,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
               >
                 <button
                   aria-pressed="true"
-                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                  class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                   data-test-subj="static"
                   id="static"
                   title="Static"
@@ -329,7 +329,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                     >
                       <button
                         aria-pressed="false"
-                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                         data-test-subj="compact"
                         id="compact"
                         title="Compact"
@@ -352,7 +352,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                     >
                       <button
                         aria-pressed="false"
-                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                         data-test-subj="normal"
                         id="normal"
                         title="Normal"
@@ -375,7 +375,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                     >
                       <button
                         aria-pressed="false"
-                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                        class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                         data-test-subj="expanded"
                         id="expanded"
                         title="Expanded"
@@ -441,7 +441,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                       >
                         <button
                           aria-pressed="false"
-                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                           data-test-subj="auto"
                           id="auto"
                           title="Auto"
@@ -464,7 +464,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                       >
                         <button
                           aria-pressed="true"
-                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-defaultMinWidth-base-text"
+                          class="euiButton emotion-euiButtonDisplay-s-fullWidth-base-text"
                           data-test-subj="static"
                           id="static"
                           title="Static"

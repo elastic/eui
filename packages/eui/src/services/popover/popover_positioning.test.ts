@@ -721,6 +721,58 @@ describe('popover_positioning', () => {
       });
     });
 
+    describe('borderRadius', () => {
+      it('positions arrow based on borderRadius and shifts the panel by the same delta', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () =>
+          makeBB(2, 150, 18, 100) as unknown as DOMRect;
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () =>
+          makeBB(0, 40, 80, 0) as unknown as DOMRect;
+
+        expect(
+          findPopoverPosition({
+            position: 'right',
+            anchor,
+            popover,
+            buffer: 0,
+            arrowConfig: { arrowWidth: 10, arrowBuffer: 5, borderRadius: 8 },
+          })
+        ).toEqual({
+          fit: 1,
+          position: 'right',
+          top: -4,
+          left: 150,
+          arrow: { top: 8, right: '100%' },
+        });
+      });
+
+      it('adjusts the left axis for top/bottom positioned panels', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () =>
+          makeBB(200, 18, 216, 2) as unknown as DOMRect;
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () =>
+          makeBB(0, 80, 40, 0) as unknown as DOMRect;
+
+        expect(
+          findPopoverPosition({
+            position: 'top',
+            anchor,
+            popover,
+            buffer: 0,
+            arrowConfig: { arrowWidth: 10, arrowBuffer: 5, borderRadius: 8 },
+          })
+        ).toEqual({
+          fit: 1,
+          position: 'top',
+          top: 160,
+          left: -4,
+          arrow: { top: '100%', left: 8 },
+        });
+      });
+    });
+
     it('returns anchorBoundingBox if param is specified', () => {
       const anchor = document.createElement('div');
       anchor.getBoundingClientRect = () =>
