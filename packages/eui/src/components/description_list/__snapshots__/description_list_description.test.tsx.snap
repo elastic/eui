@@ -6,9 +6,33 @@ exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variat
 />
 `;
 
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed combined with text styles column + normal text style uses the compressed font size 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed combined with text styles column + reverse text style uses the compressed font size 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-column-compressed"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed combined with text styles row + normal text style uses the compressed font size 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-compressed"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed combined with text styles row + reverse text style uses the compressed font size 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-compressed"
+/>
+`;
+
 exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed is rendered 1`] = `
 <dd
-  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-normal"
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-compressed"
 />
 `;
 
