@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, MouseEventHandler } from 'react';
 
-import { EuiButtonProps } from '../../button';
-import { CommonProps, PropsForAnchor } from '../../common';
+import { EuiButtonIconProps, EuiButtonProps } from '../../button';
+import { CommonProps, DataAttributeProps, PropsForAnchor } from '../../common';
 import { EuiToolTipProps } from '../../tool_tip';
 import type { IconType } from '../../icon';
 
@@ -70,59 +70,65 @@ export interface EuiFlyoutMenuPagination {
  * Custom action item for the flyout menu component
  * @deprecated Use `EuiFlyoutMenuAction` with the `trailingActions` prop instead.
  */
-export interface EuiFlyoutMenuCustomAction {
+export interface EuiFlyoutMenuCustomAction extends DataAttributeProps {
   iconType: string;
   onClick: () => void;
   'aria-label': string;
 }
 
 /**
- * An action item for the `leadingActions` or `trailingActions` slots of the flyout menu.
+ * The menu bar sets these props itself so every action looks the same.
  */
-export interface EuiFlyoutMenuAction {
-  /**
-   * Icon type for the action button
-   */
-  iconType: IconType;
-  /**
-   * onClick handler for the action button
-   */
-  onClick?: () => void;
-  /**
-   * Aria label for the action button
-   */
-  'aria-label': string;
-  /**
-   * Optional tooltip content shown on hover/focus of the action button.
-   * When `isDisabled` is `true`, the action uses `aria-disabled` so the tooltip
-   * remains reachable via hover/focus (unless overridden via `toolTipProps`).
-   */
-  toolTipContent?: EuiToolTipProps['content'];
-  /**
-   * Optional props to pass to the underlying {@link EuiToolTip}.
-   * Only used when `toolTipContent` is also provided.
-   */
-  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
-  /**
-   * Disables the action button. Pair with `toolTipContent` to explain why
-   * the action is unavailable.
-   */
-  isDisabled?: boolean;
-  /**
-   * Replaces the button icon with a loading spinner and disables the button.
-   */
-  isLoading?: boolean;
-  /**
-   * Renders the action as an anchor tag with the given URL, allowing users to
-   * right-click and open in a new tab. When `isDisabled` or `isLoading` is
-   * `true`, the element renders as a `<button>` regardless of this prop.
-   */
-  href?: string;
-  /**
-   * Target for the anchor tag. Only used when `href` is provided.
-   */
-  target?: string;
-}
+type EuiFlyoutMenuOwnedActionProps =
+  | 'color'
+  | 'size'
+  | 'display'
+  | 'iconSize'
+  | 'isSelected';
+
+/**
+ * An action item for the `leadingActions` or `trailingActions` slots of the flyout menu.
+ *
+ * Accepts any {@link EuiButtonIcon} prop except those the menu bar sets itself.
+ */
+export type EuiFlyoutMenuAction = Omit<
+  EuiButtonIconProps & HTMLAttributes<HTMLElement>,
+  EuiFlyoutMenuOwnedActionProps | 'aria-label' | 'children' | 'onClick'
+> &
+  DataAttributeProps & {
+    /**
+     * Aria label for the action button
+     */
+    'aria-label': string;
+    /**
+     * onClick handler for the action button
+     */
+    onClick?: MouseEventHandler<HTMLElement>;
+    /**
+     * Tooltip text shown on hover or focus.
+     * When the action is disabled, also set `hasAriaDisabled`. This keeps
+     * the button focusable so the tooltip remains reachable.
+     */
+    toolTipContent?: EuiToolTipProps['content'];
+    /**
+     * Optional props to pass to the underlying {@link EuiToolTip}.
+     * Only used when `toolTipContent` is also provided.
+     */
+    toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+    /**
+     * Renders an anchor tag for the given URL.
+     * If `isDisabled` or `isLoading` is `true`, this renders a `<button>` instead.
+     */
+    href?: string;
+    /**
+     * Target for the anchor tag. Only used when `href` is provided.
+     */
+    target?: string;
+    /**
+     * Relationship of the linked URL. Only used when `href` is provided.
+     */
+    rel?: string;
+  };
 
 /**
  * Props for EuiFlyoutMenu
