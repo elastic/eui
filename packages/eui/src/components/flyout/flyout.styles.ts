@@ -312,7 +312,7 @@ const composeFlyoutPadding = (
   const euiTheme = euiThemeContext.euiTheme;
 
   const paddingModifierMap = {
-    none: '0px',
+    none: 0,
     s: euiTheme.size.s,
     m: euiTheme.size.base,
     l: euiTheme.size.l,
@@ -320,7 +320,7 @@ const composeFlyoutPadding = (
 
   // Footer padding
   const footerPaddingSizes = {
-    none: '0px',
+    none: 0,
     s: euiTheme.size.s,
     m: `${mathWithUnits(euiTheme.size.base, (x) => x * 0.75)} ${
       euiTheme.size.base
