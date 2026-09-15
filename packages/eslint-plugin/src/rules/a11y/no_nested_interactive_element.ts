@@ -113,6 +113,10 @@ function getTarget(
     // button with a footer action is a pattern EUI itself ships. It is only
     // safe when the footer control stops propagation, which this rule cannot
     // verify statically — see the PR discussion.
+    if (hasMeaningfulAttr(openingElement, 'selectable')) {
+      return null;
+    }
+
     return hasInteractivityProp(openingElement) &&
       !isStaticallyTrue(openingElement, 'isDisabled')
       ? {
