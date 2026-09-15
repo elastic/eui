@@ -118,6 +118,30 @@ export const Playground: Story = {
             <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
+        <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
+export const WithBanner: Story = {
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
         <EuiFlyoutBody
           banner={
             <EuiCallOut
