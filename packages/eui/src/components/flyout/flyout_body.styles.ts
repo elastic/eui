@@ -26,10 +26,6 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
         'min-height',
         `calc(${euiTheme.size.xxl} + var(--euiFlyoutBodyPadding, 0px) + var(--euiFlyoutBodyPadding, 0px) + ${euiTheme.size.s})`
       )}
-
-      &:has(.euiFlyoutBody__banner) .euiFlyoutBody__overflowContent {
-        ${logicalCSS('padding-top', 0)}
-      }
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,
@@ -41,7 +37,9 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      padding: var(--euiFlyoutBodyPadding, 0);
+      /* Omit bottom padding so body content keeps owning the gap below the banner */
+      ${logicalCSS('padding-top', 'var(--euiFlyoutBodyPadding, 0)')}
+      ${logicalCSS('padding-horizontal', 'var(--euiFlyoutBodyPadding, 0)')}
 
       .euiFlyout:not(:has(.euiFlyoutHeader)) & {
         /* Extra end padding so the banner clears the absolutely positioned close button */
