@@ -105,6 +105,36 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       languageOptions,
     },
     {
+      name: '`EuiBadge` icon button in content',
+      code: dedent`
+        <EuiToolTip
+          content={
+            <EuiBadge
+              iconType="cross"
+              iconOnClick={onRemove}
+              iconOnClickAriaLabel="Remove"
+            >
+              v2.0
+            </EuiBadge>
+          }
+        >
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
+      name: '`EuiBetaBadge` tooltip trigger in content',
+      code: dedent`
+        <EuiToolTip content={<EuiBetaBadge label="Beta" tooltipContent="Info" />}>
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
       name: '`EuiLink` in content',
       code: dedent`
         <EuiToolTip content={<EuiLink href="/docs">Learn more</EuiLink>}>
@@ -153,6 +183,21 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       name: 'native `<a>` in content',
       code: dedent`
         <EuiToolTip content={<span><a href="/docs">link</a></span>}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'a', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
+      name: 'native `<a href=\"\">` in content',
+      code: dedent`
+        <EuiToolTip content={<a href="">link</a>}>
           <EuiButton>Hover</EuiButton>
         </EuiToolTip>
       `,

@@ -12,6 +12,7 @@ import {
   CONDITIONALLY_INTERACTIVE_HTML_ELEMENTS,
   INTERACTIVE_EUI_COMPONENTS,
   INTERACTIVE_HTML_ELEMENTS,
+  PRESENCE_INTERACTIVE_PROPS,
 } from './constants';
 import { getElementName } from './get_element_name';
 import { hasMeaningfulAttr } from './has_meaningful_attr';
@@ -39,9 +40,21 @@ const INTERACTIVITY_PROPS = ['onClick', 'href'];
  */
 export function hasAnyProp(
   openingElement: TSESTree.JSXOpeningElement,
-  propNames: string[]
+  propNames: string[],
+  presenceOnlyProps = new Set<string>()
 ): boolean {
-  return propNames.some((prop) => hasMeaningfulAttr(openingElement, prop));
+  return propNames.some((prop) => {
+    if (presenceOnlyProps.has(prop)) {
+      return openingElement.attributes.some(
+        (attr): attr is TSESTree.JSXAttribute =>
+          attr.type === 'JSXAttribute' &&
+          attr.name.type === 'JSXIdentifier' &&
+          attr.name.name === prop
+      );
+    }
+
+    return hasMeaningfulAttr(openingElement, prop);
+  });
 }
 
 /**
@@ -71,7 +84,11 @@ export function isInteractiveElement(element: TSESTree.JSXElement): boolean {
   const conditionalProps = CONDITIONALLY_INTERACTIVE[name];
 
   if (conditionalProps) {
-    return hasAnyProp(element.openingElement, conditionalProps);
+    return hasAnyProp(
+      element.openingElement,
+      conditionalProps,
+      new Set(PRESENCE_INTERACTIVE_PROPS[name] ?? [])
+    );
   }
 
   return ALWAYS_INTERACTIVE.has(name);

@@ -138,12 +138,12 @@ export const INTERACTIVE_EUI_COMPONENTS = [
  */
 export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<string, string[]> =
   {
-    EuiBadge: ['onClick', 'href'],
-    EuiBetaBadge: ['onClick', 'href'],
+    EuiBadge: ['iconOnClick', 'onClick', 'href'],
+    EuiBetaBadge: ['tooltipContent', 'onClick', 'href'],
     EuiCard: ['onClick', 'href', 'selectable'],
     EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
     EuiHeaderLogo: ['href'],
-    EuiListGroupItem: ['onClick', 'href'],
+    EuiListGroupItem: ['extraAction', 'onClick', 'href'],
   };
 
 /**
@@ -154,6 +154,18 @@ export const CONDITIONALLY_INTERACTIVE_HTML_ELEMENTS: Record<string, string[]> =
   {
     a: ['href'],
   };
+
+/**
+ * Conditional interactive props whose presence alone is enough to make the
+ * rendered element focusable, even when the statically-known value is `""`.
+ *
+ * Native anchors and `EuiHeaderLogo` both forward `href=""` to the DOM, which
+ * still creates a focusable same-document link.
+ */
+export const PRESENCE_INTERACTIVE_PROPS: Record<string, string[]> = {
+  a: ['href'],
+  EuiHeaderLogo: ['href'],
+};
 
 export const HTML_TEXT_ELEMENTS = new Set([
   'p',
@@ -225,7 +237,6 @@ export const LEAF_INTERACTIVE_EUI_COMPONENTS = [
   'EuiFacetButton',
   'EuiFilterButton',
   'EuiHeaderLink',
-  'EuiHeaderLogo',
   'EuiHeaderSectionItemButton',
   'EuiKeyPadMenuItem',
   'EuiLink',

@@ -190,6 +190,16 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'native link with empty href is still a control',
+      code: dedent`
+        <a href="">
+          <button onClick={onClick}>Open</button>
+        </a>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
       name: 'interactive element behind a layout wrapper',
       code: dedent`
         <EuiFacetButton quantity={5}>
@@ -270,6 +280,14 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'children prop on a button is scanned',
+      code: dedent`
+        <EuiButton onClick={onClick} children={<EuiLink href="/docs">Docs</EuiLink>} />
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
       name: 'control in `EuiFacetButton` `icon`',
       code: dedent`
         <EuiFacetButton quantity={5} icon={<EuiButtonIcon iconType="cross" aria-label="Clear" />}>
@@ -291,11 +309,38 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'actionless list group item label is still traversed',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiListGroupItem label={<EuiLink href="/docs">Docs</EuiLink>} />
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
       name: 'context menu item is a control when given `toolTipContent`',
       code: dedent`
         <EuiContextMenuItem toolTipContent="Disabled while loading">
           <EuiSwitch label="Compare" checked={checked} onChange={onChange} />
         </EuiContextMenuItem>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'list group item extra action counts as nested interactivity',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiListGroupItem
+            label="Item"
+            extraAction={{
+              iconType: 'trash',
+              onClick: onDelete,
+              'aria-label': 'Delete',
+            }}
+          />
+        </EuiButton>
       `,
       errors: [{ messageId: 'nestedInteractive' }],
       languageOptions,
@@ -319,6 +364,42 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'badge icon button is interactive when nested',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiBadge
+            iconType="cross"
+            iconOnClick={onRemove}
+            iconOnClickAriaLabel="Remove"
+          >
+            3
+          </EuiBadge>
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'beta badge tooltip trigger is interactive when nested',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiBetaBadge label="Beta" tooltipContent="Info" />
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
+      name: 'header logo with empty href is interactive when nested',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiHeaderLogo href="" />
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
+      languageOptions,
+    },
+    {
       name: 'control in a clickable card `image`',
       code: dedent`
         <EuiCard
@@ -329,6 +410,20 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
         />
       `,
       errors: [{ messageId: 'clickableCardContent' }],
+      languageOptions,
+    },
+    {
+      name: 'content props of a non-clickable card are still traversed',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiCard
+            title="Title"
+            description="Description"
+            footer={<EuiLink href="/docs">Docs</EuiLink>}
+          />
+        </EuiButton>
+      `,
+      errors: [{ messageId: 'nestedInteractive' }],
       languageOptions,
     },
     {

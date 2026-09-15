@@ -50,6 +50,24 @@ const LEAF_CONTENT_PROPS: Record<string, string[]> = {
 const CARD_CONTENT_PROPS = ['description', 'footer', 'image', 'title'];
 
 const LEAF_COMPONENTS = new Set(LEAF_INTERACTIVE_EUI_COMPONENTS);
+const LEAF_HTML_ELEMENTS = new Set(['a', 'button']);
+const COMPONENTS_WITH_CHILDREN_PROP = new Set([
+  'a',
+  CARD,
+  'button',
+  'EuiBadge',
+  'EuiBetaBadge',
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiContextMenuItem',
+  'EuiFacetButton',
+  'EuiFilterButton',
+  'EuiHeaderLink',
+  'EuiHeaderSectionItemButton',
+  'EuiKeyPadMenuItem',
+  'EuiLink',
+  'EuiTab',
+]);
 
 /**
  * Whether a boolean prop is set to a statically-known `true` (`<El prop />` or
@@ -98,6 +116,13 @@ function getTarget(
       : null;
   }
 
+  if (LEAF_HTML_ELEMENTS.has(componentName) && isInteractiveElement(node)) {
+    return {
+      messageId: 'nestedInteractive',
+      contentProps: [],
+    };
+  }
+
   // Several leaf components only render a control when given the right props
   // (`EuiListGroupItem` is an `<li>` without an action, `EuiContextMenuItem` a
   // `<div>`), so the name alone is not enough to make it a target.
@@ -114,6 +139,7 @@ function getTarget(
 /** The element's children plus the expression value of each content prop. */
 function getContentRoots(
   node: TSESTree.JSXElement,
+  componentName: string | null,
   contentProps: string[]
 ): TSESTree.Node[] {
   const roots: TSESTree.Node[] = [...node.children];
@@ -122,7 +148,11 @@ function getContentRoots(
     if (attr.type !== 'JSXAttribute' || attr.name.type !== 'JSXIdentifier') {
       continue;
     }
-    if (!contentProps.includes(attr.name.name)) continue;
+    const isChildrenProp =
+      attr.name.name === 'children' &&
+      componentName != null &&
+      COMPONENTS_WITH_CHILDREN_PROP.has(componentName);
+    if (!isChildrenProp && !contentProps.includes(attr.name.name)) continue;
     // Only `prop={<JSX />}` can hold an element; a string literal cannot.
     if (attr.value?.type !== 'JSXExpressionContainer') continue;
     if (attr.value.expression.type === 'JSXEmptyExpression') continue;
@@ -131,6 +161,16 @@ function getContentRoots(
   }
 
   return roots;
+}
+
+function getDescendantRoots(node: TSESTree.JSXElement): TSESTree.Node[] {
+  const componentName = getElementName(node.openingElement);
+
+  return getContentRoots(
+    node,
+    componentName,
+    componentName === CARD ? CARD_CONTENT_PROPS : LEAF_CONTENT_PROPS[componentName ?? ''] ?? []
+  );
 }
 
 export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
@@ -150,7 +190,7 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
         // so this scan flags only the outermost control of a subtree. Anything
         // deeper is reported against its own nearest target, when that target
         // is itself scanned.
-        for (const root of getContentRoots(node, target.contentProps)) {
+        for (const root of getContentRoots(node, componentName, target.contentProps)) {
           walkJsxChildren(
             root,
             (leaf) => {
@@ -168,6 +208,7 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
             {
               sourceCode: context.sourceCode,
               shouldSkip: (element) => !isInteractiveElement(element),
+              getChildren: getDescendantRoots,
             }
           );
         }
