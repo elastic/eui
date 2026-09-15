@@ -27,7 +27,7 @@ const ALWAYS_INTERACTIVE = new Set([
   ),
 ]);
 
-/** Props that turn a `CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS` entry into a control. */
+/** Props that make an element respond to user input. */
 const INTERACTIVITY_PROPS = ['onClick', 'href'];
 
 /**

@@ -560,9 +560,14 @@ The rule checks two groups of outer components:
 - **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderLogo`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
 - **Clickable `EuiCard`** — a card with `onClick` or `href` forwards clicks anywhere in the card to its title link, so a control in `title`, `description`, `footer`, or the card's children fires both its own action and the card's. `selectable` cards are not checked: pairing the select button with a footer action is a supported pattern.
 
-Content is also checked in props that render inside the focusable element (`label` on `EuiKeyPadMenuItem` and `EuiListGroupItem`, `title` on `EuiStepHorizontal`). Props that render a sibling control, such as `EuiListGroupItem`'s `extraAction`, are not reported.
+Beyond children, the rule also checks props that render inside the focusable element: `label` on `EuiKeyPadMenuItem` and `EuiListGroupItem`, `title` on `EuiStepHorizontal`. Props that render a **sibling** control, such as `EuiListGroupItem`'s `extraAction`, are not reported.
 
-Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control nested behind them is still found, as are controls referenced through a local variable or a local arrow-function component. `EuiBadge`, `EuiBetaBadge`, and `EuiCard` are only treated as interactive content when they have `onClick` or `href`. Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
+What counts as nested content:
+
+- Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control behind them is still found.
+- Controls referenced through a local variable or a local arrow-function component are resolved and checked.
+- `EuiBadge`, `EuiBetaBadge`, and `EuiCard` only count as interactive content when they have `onClick` or `href`.
+- Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
 
 #### Examples
 

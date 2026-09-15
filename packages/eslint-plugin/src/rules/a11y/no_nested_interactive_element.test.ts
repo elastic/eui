@@ -213,6 +213,21 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
       languageOptions,
     },
     {
+      name: 'each nesting level is reported against its own parent',
+      code: dedent`
+        <EuiButton onClick={onClick}>
+          <EuiLink href="/docs">
+            <button onClick={onDismiss}>Dismiss</button>
+          </EuiLink>
+        </EuiButton>
+      `,
+      errors: [
+        { messageId: 'nestedInteractive', data: { componentName: 'EuiButton', elementName: 'EuiLink' } },
+        { messageId: 'nestedInteractive', data: { componentName: 'EuiLink', elementName: 'button' } },
+      ],
+      languageOptions,
+    },
+    {
       name: 'control resolved through a local variable',
       code: dedent`
         const action = <EuiLink href="/docs">Docs</EuiLink>;

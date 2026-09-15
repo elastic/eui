@@ -37,33 +37,30 @@ const LEAF_CONTENT_PROPS: Record<string, string[]> = {
   EuiStepHorizontal: ['title'],
 };
 
-/**
- * `EuiCard` content that sits inside the card's click area. A card with
- * `onClick`/`href` attaches a wrapper click handler that forwards to the title
- * link, so any control rendered here fires both its own action and the card's.
- *
- * `selectable` cards are deliberately not a target: pairing the select button
- * with a footer action is a supported EUI pattern.
- */
-const CARD_CONTENT_PROPS = ['title', 'description', 'footer'];
-
 const LEAF_COMPONENTS = new Set(LEAF_INTERACTIVE_EUI_COMPONENTS);
 
-function getTarget(node: TSESTree.JSXElement): Target | null {
-  const name = getElementName(node.openingElement);
-
-  if (!name) return null;
-
-  if (name === CARD) {
-    return hasInteractivityProp(node.openingElement)
-      ? { messageId: 'clickableCardContent', contentProps: CARD_CONTENT_PROPS }
+function getTarget(
+  componentName: string,
+  openingElement: TSESTree.JSXOpeningElement
+): Target | null {
+  if (componentName === CARD) {
+    // A card with `onClick`/`href` attaches a wrapper click handler that
+    // forwards to the title link, so a control anywhere in its content fires
+    // both its own action and the card's. `selectable` cards are deliberately
+    // not a target: pairing the select button with a footer action is a
+    // supported EUI pattern.
+    return hasInteractivityProp(openingElement)
+      ? {
+          messageId: 'clickableCardContent',
+          contentProps: ['title', 'description', 'footer'],
+        }
       : null;
   }
 
-  if (LEAF_COMPONENTS.has(name)) {
+  if (LEAF_COMPONENTS.has(componentName)) {
     return {
       messageId: 'nestedInteractive',
-      contentProps: LEAF_CONTENT_PROPS[name] ?? [],
+      contentProps: LEAF_CONTENT_PROPS[componentName] ?? [],
     };
   }
 
@@ -75,32 +72,41 @@ function getContentRoots(
   node: TSESTree.JSXElement,
   contentProps: string[]
 ): TSESTree.Node[] {
-  const propValues = node.openingElement.attributes.flatMap((attr) =>
-    attr.type === 'JSXAttribute' &&
-    attr.name.type === 'JSXIdentifier' &&
-    contentProps.includes(attr.name.name) &&
-    attr.value?.type === 'JSXExpressionContainer' &&
-    attr.value.expression.type !== 'JSXEmptyExpression'
-      ? [attr.value.expression]
-      : []
-  );
+  const roots: TSESTree.Node[] = [...node.children];
 
-  return [...node.children, ...propValues];
+  for (const attr of node.openingElement.attributes) {
+    if (attr.type !== 'JSXAttribute' || attr.name.type !== 'JSXIdentifier') {
+      continue;
+    }
+    if (!contentProps.includes(attr.name.name)) continue;
+    // Only `prop={<JSX />}` can hold an element; a string literal cannot.
+    if (attr.value?.type !== 'JSXExpressionContainer') continue;
+    if (attr.value.expression.type === 'JSXEmptyExpression') continue;
+
+    roots.push(attr.value.expression);
+  }
+
+  return roots;
 }
 
 export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       JSXElement(node) {
-        const target = getTarget(node);
+        const componentName = getElementName(node.openingElement);
+
+        if (!componentName) return;
+
+        const target = getTarget(componentName, node.openingElement);
 
         if (!target) return;
 
-        const componentName = getElementName(node.openingElement)!;
-
+        // Non-interactive elements (layout wrappers, `EuiToolTip`, text, …) are
+        // walked through; interactive ones are reported and not descended into,
+        // so this scan flags only the outermost control of a subtree. Anything
+        // deeper is reported against its own nearest target, when that target
+        // is itself scanned.
         for (const root of getContentRoots(node, target.contentProps)) {
-          // Non-interactive elements (layout wrappers, `EuiToolTip`, text, …)
-          // are walked through; interactive ones are reported and not descended.
           walkJsxChildren(
             root,
             (leaf) => {
