@@ -105,7 +105,10 @@ describe('EuiDescriptionListDescription', () => {
               </EuiDescriptionListContext.Provider>
             );
 
-            expect(container.firstChild).toHaveStyleRule('font-size', '0.8571rem');
+            expect(container.firstChild).toHaveStyleRule(
+              'font-size',
+              '0.8571rem'
+            );
             expect(container.firstChild).toMatchSnapshot();
           });
 
