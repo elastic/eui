@@ -213,11 +213,14 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
         // so this scan flags only the outermost control of a subtree. Anything
         // deeper is reported against its own nearest target, when that target
         // is itself scanned.
+        const reported = new Set<TSESTree.JSXElement>();
+
         for (const root of getContentRoots(node, componentName, target.contentProps)) {
           walkJsxChildren(
             root,
             (leaf) => {
-              if (leaf.type !== 'JSXElement') return;
+              if (leaf.type !== 'JSXElement' || reported.has(leaf)) return;
+              reported.add(leaf);
 
               context.report({
                 node: leaf.openingElement,
