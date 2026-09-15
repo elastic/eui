@@ -207,6 +207,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
         arrowConfig: {
           arrowWidth: 12,
           arrowBuffer: 4,
+          borderRadius: 8,
         },
       });
 

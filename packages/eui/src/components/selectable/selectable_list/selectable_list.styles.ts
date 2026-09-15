@@ -36,7 +36,7 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
     bordered: css`
       overflow: hidden;
       border: ${euiTheme.border.thin};
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
     `,
     paddingSize: {
       s: css`

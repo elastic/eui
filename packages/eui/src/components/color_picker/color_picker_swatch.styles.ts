@@ -9,11 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
-import {
-  logicalSizeCSS,
-  mathWithUnits,
-  euiOutline,
-} from '../../global_styling';
+import { logicalSizeCSS, euiOutline } from '../../global_styling';
 import {
   highContrastModeStyles,
   preventForcedColors,
@@ -27,10 +23,7 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline-block;
       ${logicalSizeCSS(euiTheme.size.l)}
 
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.medium,
-        (x) => x / 2
-      )};
+      border-radius: ${euiTheme.border.radius.inline};
       ${highContrastModeStyles(euiThemeContext, {
         none: `
           border: ${euiTheme.border.width.thin} solid
