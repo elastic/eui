@@ -567,7 +567,13 @@ What counts as nested content:
 
 - Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control behind them is still found.
 - Controls referenced through a local variable or a local arrow-function component are resolved and checked.
-- Conditionally-interactive elements only count as interactive content when the relevant prop is present: `onClick`/`href`/`iconOnClick` for `EuiBadge`, `onClick`/`href`/`tooltipContent` for `EuiBetaBadge`, `onClick`/`href`/`selectable` for `EuiCard`, `onClick`/`href`/`toolTipContent` for `EuiContextMenuItem`, `onClick`/`href`/`extraAction` for `EuiListGroupItem`, and `href` for native `<a>` and `EuiHeaderLogo` (including `href=""`).
+- Conditionally-interactive elements only count as interactive content when the relevant prop is present:
+  - `EuiBadge`: `onClick`, `href`, or `iconOnClick`
+  - `EuiBetaBadge`: `onClick`, `href`, or `tooltipContent`
+  - `EuiCard`: `onClick`, `href`, or `selectable`
+  - `EuiContextMenuItem`: `onClick`, `href`, or `toolTipContent`
+  - `EuiListGroupItem`: `onClick`, `href`, or `extraAction`
+  - Native `<a>` and `EuiHeaderLogo`: `href` (including `href=""`)
 - Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
 
 #### Examples
