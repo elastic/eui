@@ -54,6 +54,10 @@ const EuiDataGridFooterRow = memo(
         'dataGridFooterRow',
         _dataTestSubj
       );
+      const lastCopyColumnIndex =
+        columns.length > 0
+          ? leadingControlColumns.length + columns.length - 1
+          : -1;
       const getCellClasses = useCallback(
         (columnIndex: number, classes?: string) => {
           return classNames(
@@ -99,6 +103,7 @@ const EuiDataGridFooterRow = memo(
                 width={width}
                 renderCellValue={footerCellRender ?? renderEmpty}
                 isExpandable={false}
+                isLastCopyColumn={i === lastCopyColumnIndex}
                 className={getCellClasses(
                   i,
                   classNames(
@@ -125,6 +130,7 @@ const EuiDataGridFooterRow = memo(
                 renderCellValue={renderCellValue}
                 renderCellPopover={renderCellPopover}
                 isExpandable={true}
+                isLastCopyColumn={columnPosition === lastCopyColumnIndex}
                 className={getCellClasses(columnPosition)}
               />
             );
@@ -144,6 +150,7 @@ const EuiDataGridFooterRow = memo(
                   width={width}
                   renderCellValue={footerCellRender ?? renderEmpty}
                   isExpandable={false}
+                  isLastCopyColumn={colIndex === lastCopyColumnIndex}
                   className={getCellClasses(
                     colIndex,
                     classNames(

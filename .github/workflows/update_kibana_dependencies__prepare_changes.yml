@@ -82,6 +82,13 @@ jobs:
         with:
           node-version-file: .nvmrc
           package-manager-cache: false # Don't cache anything as it's a different repository
+      - name: Enable pnpm via corepack
+        # language=bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm_ver="$(node -pe 'require("./package.json").engines.pnpm.replace(/^[^0-9]*/, "")')"
+          corepack prepare "pnpm@${pnpm_ver}" --activate
       - name: Fetch ephemeral GitHub token
         id: fetch_ephemeral_token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
@@ -151,13 +158,8 @@ jobs:
             fi
 
             echo "Cherry-picking $sha from PR #$pr_number"
-            if ! git fetch origin "pull/$pr_number/head"; then
-              echo "::warning::Skipping $sha: could not fetch PR #$pr_number"
-              continue
-            fi
-
-            if ! git cat-file -e "${sha}^{commit}" 2>/dev/null; then
-              echo "::warning::Skipping $sha: commit not on PR #$pr_number (force-pushed?)"
+            if ! git fetch --depth=2 origin "$sha"; then
+              echo "::warning::Skipping $sha: could not fetch commit"
               continue
             fi
 
@@ -241,18 +243,21 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
-          # Retry a few times; the npm registry can lag behind a snapshot publish.
-          for attempt in 1 2 3 4 5; do
-            if yarn kbn bootstrap; then
+          # pnpm freezes the lockfile on GHA. We just bumped package.json,
+          # so the lockfile must change.
+          # Retry and wait until snapshot versions are on npm.
+          for attempt in $(seq 1 20); do
+            if pnpm install --no-frozen-lockfile; then
               break
             fi
-            if [[ "$attempt" -eq 5 ]]; then
+            if [[ "$attempt" -eq 20 ]]; then
               exit 1
             fi
-            echo "bootstrap failed (attempt ${attempt}/5); retrying in 60s"
-            sleep 60
+            echo "install failed (attempt ${attempt}/20); retrying in 30s"
+            sleep 30
           done
-          node scripts/yarn_deduplicate
+          node scripts/deduplicate_dependencies
+          pnpm install --no-frozen-lockfile --lockfile-only
           yarn kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
@@ -298,7 +303,7 @@ jobs:
       - name: Commit changed files
         # language=bash
         run: |
-          git add package.json yarn.lock src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git add package.json pnpm-lock.yaml
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
         env:
