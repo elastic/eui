@@ -109,6 +109,7 @@ describe('EuiDescriptionListDescription', () => {
               'font-size',
               '0.8571rem'
             );
+            expect(container.firstChild).not.toHaveStyleRule('font-weight');
             expect(container.firstChild).toMatchSnapshot();
           });
 
@@ -126,6 +127,11 @@ describe('EuiDescriptionListDescription', () => {
               </EuiDescriptionListContext.Provider>
             );
 
+            expect(container.firstChild).toHaveStyleRule(
+              'font-size',
+              '1.0000rem'
+            );
+            expect(container.firstChild).toHaveStyleRule('font-weight', '600');
             expect(container.firstChild).toMatchSnapshot();
           });
         });
