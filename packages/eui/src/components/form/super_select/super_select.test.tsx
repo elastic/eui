@@ -77,6 +77,57 @@ describe('EuiSuperSelect', () => {
     expect(control).toHaveAttribute('aria-describedby', 'test-help-0');
   });
 
+  it('combines an `aria-label` with the selected value instead of overriding it', () => {
+    const { getByTestSubject, getByText } = render(
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected="2"
+        aria-label="Label"
+        data-test-subj="controlButton"
+      />
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).not.toHaveAttribute('aria-label');
+    expect(control).toHaveAccessibleName('Option #2 , Label');
+    expect(getByText('Label')).toBeInTheDocument();
+  });
+
+  it('combines an `aria-labelledby` with the selected value instead of overriding it', () => {
+    const { getByTestSubject } = render(
+      <>
+        <span id="external-label">Label</span>
+        <EuiSuperSelect
+          options={options}
+          valueOfSelected="2"
+          aria-labelledby="external-label"
+          data-test-subj="controlButton"
+        />
+      </>
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).toHaveAttribute(
+      'aria-labelledby',
+      `${control.id} external-label`
+    );
+    expect(control).toHaveAccessibleName('Option #2 , Label');
+  });
+
+  it('does not set `aria-labelledby` when no external label is passed', () => {
+    const { getByTestSubject } = render(
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected="2"
+        data-test-subj="controlButton"
+      />
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).not.toHaveAttribute('aria-labelledby');
+    expect(control).toHaveAccessibleName('Option #2');
+  });
+
   describe('props', () => {
     test('fullWidth', () => {
       const { container } = render(

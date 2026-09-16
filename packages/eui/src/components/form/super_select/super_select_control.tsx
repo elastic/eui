@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiScreenReaderOnly } from '../../accessibility';
 
@@ -95,6 +95,8 @@ export const EuiSuperSelectControl: <T = string>(
     prepend,
     append,
     disabled,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledByProp,
     ...rest
   } = props;
 
@@ -146,9 +148,26 @@ export const EuiSuperSelectControl: <T = string>(
     }
   }, [id]);
 
-  const buttonId = hasFormLabel ? `${id}-button` : undefined;
-  const ariaLabelledBy = hasFormLabel
-    ? `${buttonId} ${formLabelId}`
+  // `aria-label`s are rendered as a separate screen reader only element instead
+  // of being set on the <button>, so that the label can be combined with (rather
+  // than override) the currently selected value, which is the button's content
+  const ariaLabelId = useGeneratedHtmlId({ suffix: 'label' });
+  const generatedButtonId = useGeneratedHtmlId({ suffix: 'button' });
+
+  // Consumer-passed labels take precedence over the label rendered by EuiFormRow
+  const externalLabelId =
+    ariaLabelledByProp ||
+    (ariaLabel ? ariaLabelId : hasFormLabel ? formLabelId : undefined);
+
+  const buttonId = externalLabelId
+    ? hasFormLabel
+      ? `${id}-button`
+      : generatedButtonId
+    : undefined;
+  // Self-reference the button so that its content (the selected value) remains
+  // part of the accessible name alongside the external label
+  const ariaLabelledBy = externalLabelId
+    ? `${buttonId} ${externalLabelId}`
     : undefined;
 
   return (
@@ -160,6 +179,12 @@ export const EuiSuperSelectControl: <T = string>(
         value={String(inputValue ?? '')}
         readOnly={readOnly}
       />
+
+      {ariaLabel && !ariaLabelledByProp && (
+        <EuiScreenReaderOnly>
+          <span id={ariaLabelId}>{ariaLabel}</span>
+        </EuiScreenReaderOnly>
+      )}
 
       <EuiFormControlLayout
         isDropdown
@@ -193,7 +218,7 @@ export const EuiSuperSelectControl: <T = string>(
           ) : (
             selectedValue
           )}
-          {hasFormLabel && (
+          {!!externalLabelId && (
             // Add a slight pause between reading out the multiple aria-labelledby elements,
             // mimicking how screen readers handle native <select> elements
             <EuiScreenReaderOnly>

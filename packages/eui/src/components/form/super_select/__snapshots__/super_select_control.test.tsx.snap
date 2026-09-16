@@ -6,6 +6,12 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
     type="hidden"
     value=""
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -15,11 +21,18 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
-      />
+      >
+        <span
+          class="emotion-euiScreenReaderOnly"
+        >
+          , 
+        </span>
+      </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
