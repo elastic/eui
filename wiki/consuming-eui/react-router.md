@@ -12,9 +12,9 @@ under the hood. The `onClick` is used to push a new `history` location, and the 
 open the link in a new tab. Any mechanism for integrating EUI with `react-router` needs to bridge
 this `to` prop with EUI components' `href` and `onClick` props.
 
-- [`react-router` 3.x](#react-router-3x)
-- [`react-router` 4.x](#react-router-4x)
-- [`react-router` 5.x](#react-router-5x)
+- [`react-router` 5.x](#react-router-5x) - Kibana uses 5.3.4
+- [`react-router` 6.x / 7.x](#react-router-6x--7x) - Cloud UI uses 6.x (`react-router-dom`)
+- [`react-router` 3.x](#react-router-3x) and [4.x](#react-router-4x) - historical
 
 ## Techniques
 
@@ -248,6 +248,8 @@ export const getRouterLinkProps = to => {
 
 ## react-router 5.x
 
+Kibana currently depends on `react-router` 5.3.4. Use this section there.
+
 ### react-router 5.0
 
 The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
@@ -358,6 +360,48 @@ ReactDOM.render(
 )
 ```
 
+## react-router 6.x / 7.x
+
+Cloud UI uses `react-router-dom` 6.x. AutoOps uses 7.x. The same `useNavigate` / `useHref` pattern works for both.
+
+```jsx
+// File name: "EuiCustomLink.js".
+import React from 'react';
+import { EuiLink } from '@elastic/eui';
+import { useHref, useNavigate } from 'react-router-dom';
+
+const isModifiedEvent = (event) =>
+  !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+
+const isLeftClickEvent = (event) => event.button === 0;
+
+const isTargetBlank = (event) => {
+  const target = event.target.getAttribute('target');
+  return target && target !== '_self';
+};
+
+export default function EuiCustomLink({ to, ...rest }) {
+  const navigate = useNavigate();
+  const href = useHref(to);
+
+  function onClick(event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    if (isModifiedEvent(event) || !isLeftClickEvent(event) || isTargetBlank(event)) {
+      return;
+    }
+
+    event.preventDefault();
+    navigate(to);
+  }
+
+  return <EuiLink {...rest} href={href} onClick={onClick} />;
+}
+```
+
+Wrap the app in a router from `react-router-dom` (`BrowserRouter`, `MemoryRouter`, etc.). `EuiCustomLink` must render inside that router.
 
 ## Techniques we don't recommend
 
