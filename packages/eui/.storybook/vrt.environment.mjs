@@ -14,28 +14,38 @@ import CustomEnvironment from '@storybook/test-runner/playwright/custom-environm
  * (Storybook `__test` play/render). Jest testTimeout also does not kill that
  * CDP wait, so a leftover file becomes a 30min job timeout.
  *
- * A Proxy on `global.page` did not log hung-after in CI (Storybook's evaluate
- * is not always that object). Jest/node timers on the worker thread can also
- * fail to fire while Playwright is wedged.
- *
- * Arm a dedicated `worker_threads` timer (own event loop) around setup() and
- * each test_fn. On fire, close page/context/browser so the CDP wait rejects.
+ * Circus does not await async `handleTestEvent`, so the test can hang in
+ * evaluate before a post-`await super` arm runs. Arm synchronously first.
+ * The timer lives on a worker_threads event loop; on fire it SIGKILLs the
+ * Chromium pid (parent `on('message')` may never run if Node is wedged).
  */
 const HANG_MS = 20_000;
 
 const HANG_WORKER_SRC = `
 const { parentPort } = require('node:worker_threads');
 let timer;
+let killTimer;
 parentPort.on('message', (msg) => {
   if (timer) {
     clearTimeout(timer);
     timer = undefined;
   }
-  if (msg && msg.type === 'arm') {
-    timer = setTimeout(() => {
-      parentPort.postMessage({ type: 'hung', label: msg.label });
-    }, msg.ms);
+  if (killTimer) {
+    clearTimeout(killTimer);
+    killTimer = undefined;
   }
+  if (!msg || msg.type !== 'arm') return;
+  timer = setTimeout(() => {
+    parentPort.postMessage({ type: 'hung', label: msg.label });
+    if (msg.browserPid) {
+      try { process.kill(msg.browserPid, 'SIGKILL'); } catch {}
+    }
+    killTimer = setTimeout(() => {
+      if (msg.jestPid) {
+        try { process.kill(msg.jestPid, 'SIGKILL'); } catch {}
+      }
+    }, 3000);
+  }, msg.ms);
 });
 `;
 
@@ -53,6 +63,14 @@ const abortPlaywright = (page, browser) => {
   closeSoon(page?.close?.bind(page))
     .then(() => closeSoon(context?.close?.bind(context)))
     .then(() => closeSoon(browserRef?.close?.bind(browserRef)));
+};
+
+const browserPidOf = (browser) => {
+  try {
+    return browser?.process?.()?.pid;
+  } catch {
+    return undefined;
+  }
 };
 
 const wrapLocator = (locator) => {
@@ -83,7 +101,13 @@ const wrapPage = (page) => {
   return new Proxy(page, {
     get(target, prop, receiver) {
       if (prop === '__euiProxied') return true;
-      if (prop === 'locator' || prop === 'getByRole' || prop === 'getByText' || prop === 'getByTestId' || prop === 'getByLabel') {
+      if (
+        prop === 'locator' ||
+        prop === 'getByRole' ||
+        prop === 'getByText' ||
+        prop === 'getByTestId' ||
+        prop === 'getByLabel'
+      ) {
         return (...args) => wrapLocator(target[prop](...args));
       }
       const value = Reflect.get(target, prop, receiver);
@@ -110,7 +134,13 @@ class VrtEnvironment extends CustomEnvironment {
 
   _armHangClock(label) {
     this._startHangClock();
-    this._hangWorker.postMessage({ type: 'arm', ms: HANG_MS, label });
+    this._hangWorker.postMessage({
+      type: 'arm',
+      ms: HANG_MS,
+      label,
+      browserPid: browserPidOf(this.global?.browser),
+      jestPid: process.pid,
+    });
   }
 
   _disarmHangClock() {
@@ -143,6 +173,13 @@ class VrtEnvironment extends CustomEnvironment {
   }
 
   async handleTestEvent(event) {
+    // Arm before any await. Circus does not wait for this handler, so a hung
+    // `page.evaluate` can otherwise start first and starve the arm.
+    if (event.name === 'test_start' || event.name === 'test_fn_start') {
+      const name = `${event.test?.parent?.name ?? ''} ${event.test?.name ?? ''}`.trim();
+      this._armHangClock(`${event.name} ${name}`.trim());
+    }
+
     if (typeof super.handleTestEvent === 'function') {
       await super.handleTestEvent(event);
     }
@@ -153,18 +190,10 @@ class VrtEnvironment extends CustomEnvironment {
       console.log('[eui-vrt] handleTestEvent hooked');
     }
 
-    if (event.name === 'test_fn_start' || event.name === 'hook_start') {
-      const kind = event.name === 'hook_start' ? event.hook?.type ?? 'hook' : 'test_fn';
-      const name = `${event.test?.parent?.name ?? event.hook?.parent?.name ?? ''} ${event.test?.name ?? ''}`.trim();
-      this._armHangClock(`${kind} ${name}`.trim());
-    }
-
     if (
       event.name === 'test_fn_success' ||
       event.name === 'test_fn_failure' ||
-      event.name === 'test_done' ||
-      event.name === 'hook_success' ||
-      event.name === 'hook_failure'
+      event.name === 'test_done'
     ) {
       this._disarmHangClock();
     }
