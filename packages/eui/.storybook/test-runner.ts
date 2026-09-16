@@ -11,7 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Page } from 'playwright';
 import type { TestRunnerConfig } from '@storybook/test-runner';
-import { getStoryContext, waitForPageReady } from '@storybook/test-runner';
+import { getStoryContext } from '@storybook/test-runner';
 import { toMatchImageSnapshot } from 'jest-image-snapshot';
 
 import {
@@ -46,22 +46,16 @@ const activeVariantName: VariantName = isVariantName(process.env.VRT_VARIANT)
   : 'desktop';
 const activeVariant = VARIANTS[activeVariantName];
 
+const WAIT_OPTIONS = { timeout: 20_000, polling: 100 } as const;
+
 /**
  * Ensures all `<img>` elements are fully loaded before taking a screenshot.
  */
 const waitForImagesToLoad = async (page: Page) => {
-  await page.evaluate(() =>
-    Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map(
-          (img) =>
-            new Promise((resolve) => {
-              img.addEventListener('load', resolve);
-              img.addEventListener('error', resolve);
-            })
-        )
-    )
+  await page.waitForFunction(
+    () => Array.from(document.images).every((img) => img.complete),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
@@ -69,9 +63,11 @@ const waitForImagesToLoad = async (page: Page) => {
  * Ensure all fonts are loaded before taking a screenshot.
  */
 const waitForFonts = async (page: Page) => {
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-  });
+  await page.waitForFunction(
+    () => document.fonts.status === 'loaded',
+    undefined,
+    WAIT_OPTIONS
+  );
 };
 
 /**
@@ -80,7 +76,9 @@ const waitForFonts = async (page: Page) => {
  */
 const waitForEuiIcons = async (page: Page) => {
   await page.waitForFunction(
-    () => !document.querySelector('[data-is-loading]')
+    () => !document.querySelector('[data-is-loading]'),
+    undefined,
+    WAIT_OPTIONS
   );
 };
 
@@ -88,11 +86,15 @@ const waitForEuiIcons = async (page: Page) => {
  * Ensure the page layout has stabilized before taking a screenshot.
  */
 const waitForLayout = async (page: Page) => {
-  await page.evaluate(
-    () =>
-      new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-      )
+  await page.evaluate(() =>
+    Promise.race([
+      new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)));
+      }),
+      new Promise((resolve) => {
+        setTimeout(() => resolve(true), 1000);
+      }),
+    ])
   );
 };
 
@@ -135,7 +137,10 @@ const config: TestRunnerConfig = {
     const selector =
       storyContext.parameters?.vrt?.selector ?? VRT_SELECTORS.default;
 
-    await waitForPageReady(page);
+    // Do not call Storybook's `waitForPageReady`: it ends with
+    // `page.evaluate(() => document.fonts.ready)` which has no Playwright
+    // timeout if that promise never settles and hangs the worker until the
+    // job is killed. Load/idle are already done by the time `postVisit` runs.
     await waitForImagesToLoad(page);
     await waitForFonts(page);
     await waitForLayout(page);
