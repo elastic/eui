@@ -41,7 +41,7 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-top', 'var(--euiFlyoutBodyPadding, 0)')}
       ${logicalCSS('padding-horizontal', 'var(--euiFlyoutBodyPadding, 0)')}
 
-      .euiFlyout:not(:has(.euiFlyoutHeader)) & {
+      .euiFlyout:not(:has(.euiFlyoutHeader, .euiFlyoutMenu)) & {
         /* Extra end padding so the banner clears the absolutely positioned close button */
         ${logicalCSS('padding-right', euiTheme.size.xxl)}
       }
