@@ -376,15 +376,17 @@ const isModifiedEvent = (event) =>
 const isLeftClickEvent = (event) => event.button === 0;
 
 const isTargetBlank = (event) => {
-  const target = event.target.getAttribute('target');
+  const target = event.currentTarget.getAttribute('target');
   return target && target !== '_self';
 };
 
-export default function EuiCustomLink({ to, ...rest }) {
+export default function EuiCustomLink({ to, onClick: consumerOnClick, ...rest }) {
   const navigate = useNavigate();
   const href = useHref(to);
 
   function onClick(event) {
+    consumerOnClick?.(event);
+
     if (event.defaultPrevented) {
       return;
     }
