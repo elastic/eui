@@ -23,7 +23,12 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { findPopoverPosition, useGeneratedHtmlId, keys } from '../../services';
+import {
+  findPopoverPosition,
+  useEuiTheme,
+  useGeneratedHtmlId,
+  keys,
+} from '../../services';
 import { getRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
 import { type EuiPopoverPosition } from '../../services/popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -174,6 +179,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     },
     ref
   ) => {
+    const { euiTheme } = useEuiTheme();
     const componentDefaultsContext = useContext(EuiComponentDefaultsContext);
 
     const [visible, setVisible] = useState(false);
@@ -207,7 +213,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
         arrowConfig: {
           arrowWidth: 12,
           arrowBuffer: 4,
-          borderRadius: 8,
+          borderRadius: euiTheme.border.radius.control
+            ? parseFloat(String(euiTheme.border.radius.control))
+            : undefined,
         },
       });
 
@@ -232,7 +240,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       setCalculatedPosition(position);
       setToolTipStyles(newToolTipStyles);
       setArrowStyles(arrow);
-    }, [positionProp, offset]);
+    }, [euiTheme, positionProp, offset]);
 
     const setAnchorRef = useCallback((el: HTMLSpanElement | null) => {
       anchorRef.current = el;
