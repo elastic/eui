@@ -258,7 +258,7 @@ jobs:
           done
           node scripts/deduplicate_dependencies
           pnpm install --no-frozen-lockfile --lockfile-only
-          yarn kbn bootstrap --force-install
+          pnpm kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

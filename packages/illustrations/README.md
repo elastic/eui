@@ -109,7 +109,7 @@ yarn release:publish
 
 ## Testing local changes in Kibana
 
-`yarn link` does **not** work between EUI and Kibana because Kibana isn't on Yarn v4 like this repo. It doesn't benefit from [linking](https://yarnpkg.com/protocol/link) or [portaling](https://yarnpkg.com/protocol/portal).
+`yarn link` does **not** work between EUI and Kibana because Kibana is on pnpm, not Yarn v4. When using [linking](https://yarnpkg.com/protocol/link) it will hoist dependencies (and cause multi-version errors).
 
 Instead, build a tarball and point Kibana at it with the `file:` protocol (same flow as `@elastic/eui`, see the EUI wiki: [_Testing EUI features in Kibana_](../../wiki/contributing-to-eui/testing/testing-in-kibana.md)).
 
@@ -129,7 +129,7 @@ Then in Kibana's root `package.json`:
 
 ```bash
 # 3) in Kibana: bootstrap (`‑‑no-validate` is required for a .tgz) and start
-yarn kbn bootstrap --no-validate && yarn start
+pnpm kbn bootstrap --no-validate && pnpm start
 ```
 
 After each change, re-run `yarn build-pack` and **rename** the `.tgz` (e.g. `…-1.0.0-1.tgz`, `…-1.0.0-2.tgz`) so the package manager picks up the new contents, then update the `file:` path and re-bootstrap.
