@@ -16,17 +16,13 @@ yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/rea
 
 ## Requirements and dependencies
 
-EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
-
 EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
 
 ## What's available
 
 EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://eui.elastic.co) for comprehensive info on what's available.
 
-EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency. We also provide a starter projects for:
-- [GatsbyJS](https://github.com/elastic/gatsby-eui-starter)
-- [NextJS](https://github.com/elastic/next-eui-starter)
+EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency.
 
 ### Components
 
