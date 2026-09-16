@@ -6,6 +6,9 @@ const defaultConfig = getJestConfig();
 module.exports = {
   ...defaultConfig,
   testTimeout: 60_000,
+  // Playwright + the hang-clock worker can leave open handles; without this
+  // Jest logs "did not exit" and the CI job waits until the 30min timeout.
+  forceExit: true,
   // Extends the test-runner's environment to restore VRT snapshot retries
   testEnvironment: path.resolve(__dirname, '.storybook/vrt.environment.mjs'),
   modulePathIgnorePatterns: [

@@ -120,6 +120,7 @@ class VrtEnvironment extends CustomEnvironment {
   _startHangClock() {
     if (this._hangWorker) return;
     this._hangWorker = new Worker(HANG_WORKER_SRC, { eval: true });
+    this._hangWorker.unref();
     this._hangWorker.on('message', (msg) => {
       if (!msg || msg.type !== 'hung') return;
       // eslint-disable-next-line no-console
