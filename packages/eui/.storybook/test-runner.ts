@@ -143,6 +143,11 @@ const config: TestRunnerConfig = {
     // job is killed. Load/idle are already done by the time `postVisit` runs.
     await waitForImagesToLoad(page);
     await waitForFonts(page);
+
+    await page.evaluate(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
+
     await waitForLayout(page);
     await waitForEuiIcons(page);
 
