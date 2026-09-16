@@ -258,6 +258,57 @@ export const ManualReturnFocus: Story = {
   },
 };
 
+export const WithBannerNoHeader: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <EuiFlyoutBody
+        banner={
+          <EuiCallOut
+            title="Flyout banner title."
+            size="s"
+            text="Flyout banner text"
+          />
+        }
+      >
+        Flyout body
+      </EuiFlyoutBody>
+    ),
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
+export const WithBannerNoMenu: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <EuiFlyoutBody
+        banner={
+          <EuiCallOut
+            title="Flyout banner title."
+            size="s"
+            text="Flyout banner text"
+          />
+        }
+      >
+        Flyout body
+      </EuiFlyoutBody>
+    ),
+    flyoutMenuProps: {},
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
 export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
