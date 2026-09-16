@@ -12,11 +12,11 @@ import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../src/services';
 import { useEuiFontSize } from '../../../src/global_styling';
 import { PRIMITIVE_COLORS } from './borealis_primitives';
-import { ColorMap, Palette, parseColorName, resolvePalette } from './palette';
+import { Palette, parseColorName, resolvePalette } from './palette';
 
 export interface ColorGridProps {
   palette: Palette;
-  colors?: ColorMap;
+  colors?: typeof PRIMITIVE_COLORS;
   cellSize?: number;
   onToggleColor?: (name: string) => void;
 }
@@ -151,7 +151,7 @@ export const ColorGrid: FunctionComponent<ColorGridProps> = ({
           {hues.map((hue) =>
             shades.map((shade) => {
               const name = `${hue}${shade}`;
-              const value = colors[name];
+              const value = colors[name as keyof typeof colors];
               const swatch = filled.get(name);
               const isInteractive = Boolean(
                 onToggleColor && value && value !== 'transparent'

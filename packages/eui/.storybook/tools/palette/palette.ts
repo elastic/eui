@@ -80,10 +80,8 @@ const hueOf = (name: string) => parseColorName(name)?.hue ?? name;
 
 const shadeOf = (name: string) => parseColorName(name)?.shade ?? 0;
 
-const compareDarkToLight = (
-  a: ResolvedPaletteColor,
-  b: ResolvedPaletteColor
-) => shadeOf(b.name) - shadeOf(a.name);
+const compareDarkToLight = (a: ResolvedPaletteColor, b: ResolvedPaletteColor) =>
+  shadeOf(b.name) - shadeOf(a.name);
 
 export const groupPaletteByHue = (
   palette: Palette,
