@@ -22,7 +22,7 @@ EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are 
 
 ## What's available
 
-EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://elastic.github.io/eui) for comprehensive info on what's available.
+EUI publishes React UI components, JavaScript helpers called services, and utilities for writing Jest tests. Please refer to the [Elastic UI Framework website](https://eui.elastic.co) for comprehensive info on what's available.
 
 EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency. We also provide a starter projects for:
 - [GatsbyJS](https://github.com/elastic/gatsby-eui-starter)
@@ -75,7 +75,7 @@ export default MyApp;
 
 #### Consuming theme tokens
 
-Using EUI's theme layer with Emotion is [documented in our docs](https://elastic.github.io/eui/#/theming/theme-provider) and should cover the majority of your theming needs.
+Using EUI's theme layer with Emotion is [documented in our docs](https://eui.elastic.co/docs/getting-started/theming/theme-provider) and should cover the majority of your theming needs.
 
 ```jsx
 import { useEuiTheme } from '@elastic/eui';
