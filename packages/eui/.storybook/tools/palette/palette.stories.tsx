@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
 import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiText } from '../../../src/components/text';
 import { EuiTitle } from '../../../src/components/title';
+import { useEuiTheme } from '../../../src/services';
 import { useEuiPaletteColorBlind } from '../../../src/services/color/eui_palettes_hooks';
 import { ColorGrid } from './color_grid';
 import { ContrastMatrix } from './contrast_matrix';
@@ -21,10 +22,15 @@ import { PRIMITIVE_COLORS } from './borealis_primitives';
 import { normalizePaletteOrder, togglePaletteColor } from './palette';
 
 const PaletteTools = ({ cellSize }: { cellSize: number }) => {
+  const { colorMode, highContrastMode } = useEuiTheme();
   const colorBlind = useEuiPaletteColorBlind();
   const [palette, setPalette] = useState(() =>
     normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS)
   );
+
+  useEffect(() => {
+    setPalette(normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS));
+  }, [colorBlind, colorMode, highContrastMode]);
 
   return (
     <>
