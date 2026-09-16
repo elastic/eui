@@ -302,7 +302,7 @@ jobs:
       - name: Commit changed files
         # language=bash
         run: |
-          git add package.json pnpm-lock.yaml src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git add package.json pnpm-lock.yaml
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
         env:
