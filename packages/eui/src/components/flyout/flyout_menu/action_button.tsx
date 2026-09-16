@@ -8,7 +8,11 @@
 
 import React from 'react';
 
-import { EuiButtonIcon, EuiButtonIconProps } from '../../button';
+import {
+  EuiButtonIcon,
+  EuiButtonIconPropsForAnchor,
+  EuiButtonIconPropsForButton,
+} from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 import type { EuiFlyoutMenuAction } from './types';
 
@@ -19,7 +23,9 @@ export const MenuActionButton: React.FC<{
 
   const button = (
     <EuiButtonIcon
-      {...(buttonProps as EuiButtonIconProps)}
+      {...(buttonProps as
+        | EuiButtonIconPropsForAnchor
+        | EuiButtonIconPropsForButton)}
       // The menu bar sets these props itself so every action looks the same.
       // Anything set here also belongs in `EuiFlyoutMenuOwnedActionProps`.
       color="text"

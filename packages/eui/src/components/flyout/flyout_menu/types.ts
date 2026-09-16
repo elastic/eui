@@ -8,7 +8,11 @@
 
 import { HTMLAttributes, MouseEventHandler } from 'react';
 
-import { EuiButtonIconProps, EuiButtonProps } from '../../button';
+import {
+  EuiButtonIconPropsForAnchor,
+  EuiButtonIconPropsForButton,
+  EuiButtonProps,
+} from '../../button';
 import { CommonProps, DataAttributeProps, PropsForAnchor } from '../../common';
 import { EuiToolTipProps } from '../../tool_tip';
 import type { IconType } from '../../icon';
@@ -86,49 +90,44 @@ type EuiFlyoutMenuOwnedActionProps =
   | 'iconSize'
   | 'isSelected';
 
+type EuiFlyoutMenuActionProps = DataAttributeProps & {
+  /**
+   * Aria label for the action button
+   */
+  'aria-label': string;
+  /**
+   * onClick handler for the action button
+   */
+  onClick?: MouseEventHandler<HTMLElement>;
+  /**
+   * Tooltip text shown on hover or focus.
+   * When the action is disabled, also set `hasAriaDisabled`. This keeps
+   * the button focusable so the tooltip remains reachable.
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying {@link EuiToolTip}.
+   * Only used when `toolTipContent` is also provided.
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+};
+
 /**
  * An action item for the `leadingActions` or `trailingActions` slots of the flyout menu.
  *
  * Accepts any {@link EuiButtonIcon} prop except those the menu bar sets itself.
  */
-export type EuiFlyoutMenuAction = Omit<
-  EuiButtonIconProps & HTMLAttributes<HTMLElement>,
-  EuiFlyoutMenuOwnedActionProps | 'aria-label' | 'children' | 'onClick'
-> &
-  DataAttributeProps & {
-    /**
-     * Aria label for the action button
-     */
-    'aria-label': string;
-    /**
-     * onClick handler for the action button
-     */
-    onClick?: MouseEventHandler<HTMLElement>;
-    /**
-     * Tooltip text shown on hover or focus.
-     * When the action is disabled, also set `hasAriaDisabled`. This keeps
-     * the button focusable so the tooltip remains reachable.
-     */
-    toolTipContent?: EuiToolTipProps['content'];
-    /**
-     * Optional props to pass to the underlying {@link EuiToolTip}.
-     * Only used when `toolTipContent` is also provided.
-     */
-    toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
-    /**
-     * Renders an anchor tag for the given URL.
-     * If `isDisabled` or `isLoading` is `true`, this renders a `<button>` instead.
-     */
-    href?: string;
-    /**
-     * Target for the anchor tag. Only used when `href` is provided.
-     */
-    target?: string;
-    /**
-     * Relationship of the linked URL. Only used when `href` is provided.
-     */
-    rel?: string;
-  };
+export type EuiFlyoutMenuAction =
+  | (Omit<
+      EuiButtonIconPropsForAnchor,
+      EuiFlyoutMenuOwnedActionProps | 'aria-label' | 'children' | 'onClick'
+    > &
+      EuiFlyoutMenuActionProps)
+  | (Omit<
+      EuiButtonIconPropsForButton,
+      EuiFlyoutMenuOwnedActionProps | 'aria-label' | 'children' | 'onClick'
+    > &
+      EuiFlyoutMenuActionProps);
 
 /**
  * Props for EuiFlyoutMenu
