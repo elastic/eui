@@ -27,6 +27,7 @@ export const MenuActionButton: React.FC<{
       display="empty"
       iconSize="m"
       isSelected={undefined}
+    />
   );
 
   return toolTipContent ? (
