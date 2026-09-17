@@ -280,6 +280,7 @@ jobs:
           # Handles strings, interpolation, plurals, and token additions, changes,
           # or removals. Preserves Kibana comments and translator descriptions.
           # Unknown function forms fail instead of creating an incomplete mapping.
+          translations_dir=x-pack/platform/plugins/private/translations/translations
           sync_script="$RUNNER_TEMP/sync_kibana_i18n.mjs"
           gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_WORKFLOW_REF}" \
             --header "Accept: application/vnd.github.raw" \
@@ -292,6 +293,7 @@ jobs:
           if ! git diff --quiet "$mapping_file"; then
             node scripts/eslint --fix "$mapping_file"
             node scripts/jest --config "$MAPPING_DIR/jest.config.js" --updateSnapshot
+            node scripts/i18n_check --fix
           fi
 
           # Catch missing snapshot tokens before committing.
@@ -299,6 +301,7 @@ jobs:
 
           git add "$mapping_file"
           git add "$MAPPING_DIR/src/__snapshots__"
+          git add "$translations_dir"
           git diff --cached --quiet || git commit -m "chore: sync EUI i18n tokens"
       - name: Commit changed files
         # language=bash
