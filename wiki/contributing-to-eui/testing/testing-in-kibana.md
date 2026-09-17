@@ -10,7 +10,7 @@ Most PRs should be tested in Kibana before merging into EUI main. Test a built v
 
 ## Staging Integrations
 
-Use this **Staging Workflow** to assist the EUI maintainers integrating your PR into Kibana during an upgrade. Useful when:
+Use this **Staging Workflow** to assist the EUI maintainers in integrating your PR into Kibana during an upgrade. Useful when:
 - PR involves breaking changes
 - You want to apply a new feature in Kibana to ensure adoption
 - Existing styles may need to be tweaked
