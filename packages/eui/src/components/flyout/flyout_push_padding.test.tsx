@@ -151,3 +151,40 @@ describe('EuiFlyout managed push padding (owner-token)', () => {
     expect(bodyOffset()).toBe('');
   });
 });
+
+describe('EuiFlyout standalone (non-managed) push padding (owner-token)', () => {
+  const renderStandalone = () =>
+    render(
+      <EuiFlyout
+        onClose={() => {}}
+        type="push"
+        pushMinBreakpoint="xs"
+        aria-label="Standalone flyout"
+      />
+    );
+
+  afterEach(() => {
+    document.body.style.paddingInlineStart = '';
+    document.body.style.paddingInlineEnd = '';
+  });
+
+  it('does not strand the body offset when two standalone push flyouts sharing document.body close (#9788)', () => {
+    // The exact issue repro: two `type="push"` flyouts without a manager both
+    // write to document.body.
+    const a = renderStandalone();
+    expect(bodyOffset()).toBe(PUSH_OFFSET);
+
+    const b = renderStandalone();
+    expect(bodyOffset()).toBe(PUSH_OFFSET);
+
+    // Closing the first (obscured) flyout must not clear the offset the second
+    // still needs.
+    a.unmount();
+    expect(bodyOffset()).toBe(PUSH_OFFSET);
+
+    // Closing the last flyout returns the body to its base value. Previously the
+    // per-flyout stale-snapshot restore left the offset stranded here.
+    b.unmount();
+    expect(bodyOffset()).toBe('');
+  });
+});
