@@ -20,6 +20,7 @@ const SSPL_LICENSE_URL =
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 const isDevelopment = process.env.NODE_ENV === 'development';
+const noIndex = process.env.PR_PREVIEW === 'true';
 
 let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
 
@@ -40,6 +41,9 @@ const config: Config = {
 
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl,
+
+  // Keep PR preview deployments out of search indexes
+  noIndex,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
