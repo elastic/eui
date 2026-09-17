@@ -11,10 +11,21 @@ import type { Locator, Page } from '@playwright/test';
 export type ObjectScope = Page | Locator | BaseObject;
 
 /**
+ * Matches one space-separated token in `data-test-subj`, not the whole
+ * attribute value. `getByTestId` does an exact match and misses components
+ * like `EuiColorPicker` that add their own token to the consumer's subj.
+ */
+const testSubjSelector = (testSubj: string): string =>
+  `[data-test-subj~="${testSubj.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"]`;
+
+/**
  * Base class for Playwright Component Objects — semantic wrappers around a
  * single root `Locator` resolved from a `data-test-subj` inside the given
  * scope. Subclasses compose: pass another Component Object as `scope` to
  * nest one inside the other's DOM subtree.
+ *
+ * `testSubj` matches one space-separated token of `data-test-subj`, following
+ * Kibana's convention (see `@kbn/test-subj-selector`).
  *
  * Requires `testIdAttribute: 'data-test-subj'` in the Playwright config.
  */
@@ -45,7 +56,7 @@ export abstract class BaseObject {
 
   constructor(scope: ObjectScope, testSubj: string, componentSelector?: string) {
     this.scope = scope instanceof BaseObject ? scope.locator : scope;
-    this.root = this.scope.getByTestId(testSubj);
+    this.root = this.scope.locator(testSubjSelector(testSubj));
     this.testSubj = testSubj;
     this.componentSelector = componentSelector;
 

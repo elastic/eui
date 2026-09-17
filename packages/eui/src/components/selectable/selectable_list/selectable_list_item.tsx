@@ -94,6 +94,7 @@ export const EuiSelectableListItem: FunctionComponent<
   searchable,
   toolTipContent,
   toolTipProps,
+  title,
   ...rest
 }) => {
   const classes = classNames(
@@ -140,12 +141,6 @@ export const EuiSelectableListItem: FunctionComponent<
 
     const screenReaderStrings = {
       checked: {
-        state: (
-          <EuiI18n
-            token="euiSelectableListItem.checkedOption"
-            default="Checked option."
-          />
-        ),
         instructions: (
           <EuiI18n
             token="euiSelectableListItem.checkOptionInstructions"
@@ -205,7 +200,8 @@ export const EuiSelectableListItem: FunctionComponent<
 
     switch (checked) {
       case 'on':
-        state = screenReaderStrings.checked.state;
+        // the checked state is already announced natively via `aria-checked`/
+        // `aria-selected`; additional state text would duplicate the announcement
         instructions = allowExclusions
           ? screenReaderStrings.excluded.instructions
           : searchable
@@ -281,6 +277,10 @@ export const EuiSelectableListItem: FunctionComponent<
     },
     textProps: {
       className: 'euiSelectableListItem__text',
+      // `title` must not be set on the option element itself - it would become
+      // the option's accessible description, causing screen readers to
+      // announce the option name twice
+      title,
     },
     tooltipProps: hasToolTip
       ? {

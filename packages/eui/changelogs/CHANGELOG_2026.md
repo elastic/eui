@@ -1,3 +1,50 @@
+## [`v122.0.0`](https://github.com/elastic/eui/releases/v122.0.0)
+
+- Added Ctrl/Cmd+C support on `EuiDataGrid` to copy the focused cell value when no text is selected ([#9995](https://github.com/elastic/eui/pull/9995))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` copy/paste shifting body rows one column right of the headers when control columns were present ([#9954](https://github.com/elastic/eui/pull/9954))
+
+**Breaking changes**
+
+- Changed the `ref` of `EuiSuperSelect` from the class instance to an `EuiSuperSelectRef` object, which exposes `openPopover()` and `closePopover()` ([#9972](https://github.com/elastic/eui/pull/9972))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiSelectable` by removing redundant "Checked option." screen-reader text (checked state is already conveyed via `aria-checked`/`aria-selected`) ([#9850](https://github.com/elastic/eui/pull/9850))
+- Improved the accessibility of `EuiSelectable` and `EuiComboBox` by moving the `title` attribute to the inner text element, preventing duplicate screen-reader announcements of option names ([#9850](https://github.com/elastic/eui/pull/9850))
+
+## [`v121.0.0`](https://github.com/elastic/eui/releases/v121.0.0)
+
+- Added `isDisabled`, `isLoading`, `href`, and `target` props to `EuiFlyoutMenuAction`. ([#9992](https://github.com/elastic/eui/pull/9992))
+- Updated `onClick` on `EuiFlyoutMenuAction` to be optional, so actions can navigate via `href` alone. ([#9992](https://github.com/elastic/eui/pull/9992))
+- Added `tableSparkles` icon ([#9987](https://github.com/elastic/eui/pull/9987))
+- Updated styles of `EuiFilterButton` ([#9961](https://github.com/elastic/eui/pull/9961))
+- Updated `EuiFilterGroup` ([#9961](https://github.com/elastic/eui/pull/9961))
+    - Updated styles
+    - Added `display` prop (values: `'regular' | 'highlighted'`) to render different visual toggle variants
+    - Added `showDividers` prop to optionally render dividers between group children
+- Updated `EuiSplitButton` disabled styles ([#9986](https://github.com/elastic/eui/pull/9986))
+- Updated styles on `EuiButtonGroup` with legacy Options API ([#9953](https://github.com/elastic/eui/pull/9953))
+- Updated usages of `EuiButtonGroup` in `EuiDataGrid`'s display selector and column sorting to use the Children API ([#9953](https://github.com/elastic/eui/pull/9953))
+- Updated `EuiSuperDatePicker`'s time window buttons to use `EuiButtonGroup` with Children API ([#9953](https://github.com/elastic/eui/pull/9953))
+
+**Bug fixes**
+
+- Fixed `EuiPopoverTitle` and `EuiPopoverFooter` backgrounds not following the popover panel's corner radius ([#9985](https://github.com/elastic/eui/pull/9985))
+- Fixed `EuiFlyoutBody` content becoming inaccessible at short viewport heights ([#9944](https://github.com/elastic/eui/pull/9944))
+
+**Deprecations**
+
+- Deprecated `options` on `EuiButtonGroup` - Use the new Children API via `children` prop instead. ([#9953](https://github.com/elastic/eui/pull/9953))
+- Deprecated `color` on `EuiButtonGroup` - `color` will be fixed to `text` in the future. ([#9953](https://github.com/elastic/eui/pull/9953))
+- Deprecated `buttonSize="compressed"` on `EuiButtonGroup` - Renders as `buttonSize="s"` instead. ([#9953](https://github.com/elastic/eui/pull/9953))
+
+**Breaking changes**
+
+- Added a new `logoType` prop to `EuiHeaderLogo` to render either the `glyph` or `horizontal` Elastic logo. The `iconType` prop has been removed, and `children` text content is no longer rendered. ([#9875](https://github.com/elastic/eui/pull/9875))
+
 ## [`v120.0.0`](https://github.com/elastic/eui/releases/v120.0.0)
 
 - Updated `EuiButtonGroup` (Children API only): ([#9929](https://github.com/elastic/eui/pull/9929))

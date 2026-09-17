@@ -570,7 +570,7 @@ To test the local changes to the plugin, you must:
 3. Build the package: `yarn build`
 4. Run `yalc publish` in the plugin's directory to publish it locally.
 5. In your project's directory, run `yalc add @elastic/eslint-plugin-eui` to link the locally published package.
-6. Install dependencies: `yarn` (if you're a Kibana contributor, run `yarn kbn bootstrap --no-validate`).
+6. Install dependencies using your package manager.
 7. After making further changes to the plugin, repeat the steps from 3.
 
 ## Publishing

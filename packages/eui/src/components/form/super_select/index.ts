@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export type { EuiSuperSelectProps } from './super_select';
+export type { EuiSuperSelectProps, EuiSuperSelectRef } from './super_select';
 export { EuiSuperSelect } from './super_select';
 export type { EuiSuperSelectOption } from './super_select_item';
 

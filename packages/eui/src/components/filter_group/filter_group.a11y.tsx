@@ -259,7 +259,7 @@ describe('EuiFilterGroup multiselect example', () => {
           .find('span.euiSelectableListItem__text')
           .should(
             'have.text',
-            'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
+            'Dmitri Shostakovich. To exclude this option, press Enter.'
           );
       });
       cy.realPress('ArrowDown');
