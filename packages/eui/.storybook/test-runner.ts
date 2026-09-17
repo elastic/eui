@@ -28,7 +28,10 @@ import {
  * `{ animations: 'disabled' }` pauses CSS animations before taking a screenshot,
  * preventing stability timeouts on infinite looping animations (spinners etc.).
  */
-const SCREENSHOT_OPTIONS = { animations: 'disabled' } as const;
+const SCREENSHOT_OPTIONS = {
+  animations: 'disabled',
+  timeout: 2_000,
+} as const;
 
 /**
  * Allow a few pixels of subpixel noise.
