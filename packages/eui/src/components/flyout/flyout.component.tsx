@@ -318,7 +318,8 @@ const euiSideCssVarKey = (side: 'left' | 'right') =>
 const euiGetPushPaddingState = (target: HTMLElement) => {
   let state = euiPushPaddingRegistry.get(target);
   if (!state) {
-    // Capture the base (pre-flyout) inline padding once, before any flyout writes to it.
+    // Seed the base (pre-flyout) inline padding on first use; it is refreshed on each fresh claim
+    // (see `own`) so a later release restores the app's current value.
     state = {
       left: { owner: null, base: target.style.paddingInlineStart },
       right: { owner: null, base: target.style.paddingInlineEnd },
@@ -671,6 +672,12 @@ export const EuiFlyoutComponent = forwardRef(
         offsetWidth: number
       ) => {
         const state = euiGetPushPaddingState(paddingTarget);
+        // Refresh the base from the target's current (app) inline padding whenever this side is
+        // unowned, so a later release restores the app's current value rather than one captured on
+        // first use. While a side is owned the base is left untouched.
+        if (state[sideKey].owner === null) {
+          state[sideKey].base = paddingTarget.style[euiSideStyleKey(sideKey)];
+        }
         state[sideKey].owner = flyoutId ?? null;
         paddingTarget.style[euiSideStyleKey(sideKey)] = inlineValue;
         if (shouldSetGlobalPushVars) {
@@ -722,21 +729,12 @@ export const EuiFlyoutComponent = forwardRef(
       // manager's `pushPadding` are written by exactly one authority — the active flyout. A
       // backgrounded flyout leaves the active flyout's value untouched; a torn-down flyout releases
       // only the side(s) it still owns.
-      const liveSession = () => {
-        const sessions = flyoutManagerRef.current?.state?.sessions;
-        return sessions && sessions.length
-          ? sessions[sessions.length - 1]
-          : null;
-      };
-      // True when THIS flyout is the current session's MAIN flyout. A coexisting overlay *child* is
-      // not the main, so a push main keeps its offset while an overlay child is open.
-      const isActiveMain = () => liveSession()?.mainFlyoutId === flyoutId;
-
       if (isPushed && isActiveManagedFlyout) {
         own(managerSide, `${paddingWidth}px`, paddingWidth);
-      } else if (!isPushed && isActiveMain()) {
+      } else if (!isPushed && isMainFlyout) {
         // Active overlay MAIN (a new session opened over a now-backgrounded push flyout): clear both
-        // sides back to base so the page is not left pushed.
+        // sides back to base so the page is not left pushed. `isMainFlyout` is the current render's
+        // value (a coexisting overlay *child* is not the main, so a push main keeps its offset).
         const state = euiGetPushPaddingState(paddingTarget);
         own('left', state.left.base, 0);
         own('right', state.right.base, 0);

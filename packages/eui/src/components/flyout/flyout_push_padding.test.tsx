@@ -187,4 +187,55 @@ describe('EuiFlyout standalone (non-managed) push padding (owner-token)', () => 
     b.unmount();
     expect(bodyOffset()).toBe('');
   });
+
+  it('scopes ownership to a shared container element, not document.body', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    const renderInContainer = (label: string) =>
+      render(
+        <EuiFlyout
+          onClose={() => {}}
+          type="push"
+          pushMinBreakpoint="xs"
+          container={container}
+          aria-label={label}
+        />
+      );
+
+    const a = renderInContainer('Container flyout A');
+    // The offset is applied to the container, and document.body is untouched.
+    expect(container.style.paddingInlineEnd).toBe(PUSH_OFFSET);
+    expect(bodyOffset()).toBe('');
+
+    const b = renderInContainer('Container flyout B');
+    expect(container.style.paddingInlineEnd).toBe(PUSH_OFFSET);
+
+    // Same close-order guarantee as document.body, but scoped to the container.
+    a.unmount();
+    expect(container.style.paddingInlineEnd).toBe(PUSH_OFFSET);
+
+    b.unmount();
+    expect(container.style.paddingInlineEnd).toBe('');
+
+    container.remove();
+  });
+
+  it('applies and clears the inline-start offset for a left-side push flyout', () => {
+    const { unmount } = render(
+      <EuiFlyout
+        onClose={() => {}}
+        type="push"
+        side="left"
+        pushMinBreakpoint="xs"
+        aria-label="Left-side push flyout"
+      />
+    );
+    // Left-side flyouts push via `padding-inline-start`; the inline-end side is untouched.
+    expect(document.body.style.paddingInlineStart).toBe(PUSH_OFFSET);
+    expect(bodyOffset()).toBe('');
+
+    unmount();
+    expect(document.body.style.paddingInlineStart).toBe('');
+  });
 });
