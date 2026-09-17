@@ -20,7 +20,7 @@ on:
       pr_labels:
         description: Comma-separated list of labels to add to the PR
         type: string
-        default: 'EUI,backport:skip,release_note:skip'
+        default: 'EUI,backport:skip,release_note:skip,ci:all-ui-test-suites,ci:prevent-selective-testing'
       source_pr_number:
         description: Source PR number that triggered this workflow
         type: number
