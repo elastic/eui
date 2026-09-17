@@ -122,16 +122,50 @@ export const INTERACTIVE_EUI_COMPONENTS = [
 ];
 
 /**
- * EUI components that are only interactive when `onClick` or `href` is provided.
- * Without those props they render as a plain non-focusable element (span/div),
- * so rules that need to distinguish unconditionally-interactive components should
- * exclude these.
+ * EUI components that render a focusable element only when given one of the
+ * listed props. Without them they render plain, non-focusable markup — a
+ * `<span>`, `<div>`, or `<li>` — so rules that need an unconditionally
+ * interactive element must check the props rather than the name alone.
+ *
+ * - `EuiBadge` / `EuiBetaBadge` render a `<span>` unless clickable.
+ * - `EuiCard` renders a plain panel; `selectable` also makes it clickable by
+ *   rendering an `EuiCardSelect` button.
+ * - `EuiContextMenuItem` renders a `<div>` unless it has an action, and is a
+ *   `<button>` when given `toolTipContent`.
+ * - `EuiHeaderLogo` renders an `<a>` without an `href` attribute, which is not
+ *   focusable.
+ * - `EuiListGroupItem` renders an `<li>` unless it has an action.
  */
-export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS = [
-  'EuiBadge',
-  'EuiBetaBadge',
-  'EuiCard',
-];
+export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<string, string[]> =
+  {
+    EuiBadge: ['iconOnClick', 'onClick', 'href'],
+    EuiBetaBadge: ['tooltipContent', 'onClick', 'href'],
+    EuiCard: ['onClick', 'href', 'selectable'],
+    EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
+    EuiHeaderLogo: ['href'],
+    EuiListGroupItem: ['onClick', 'href'],
+  };
+
+/**
+ * Native HTML elements that are focusable only when given one of the listed
+ * attributes. An `<a>` without `href` is not a link and is not focusable.
+ */
+export const CONDITIONALLY_INTERACTIVE_HTML_ELEMENTS: Record<string, string[]> =
+  {
+    a: ['href'],
+  };
+
+/**
+ * Conditional interactive props whose presence alone is enough to make the
+ * rendered element focusable, even when the statically-known value is `""`.
+ *
+ * Native anchors and `EuiHeaderLogo` both forward `href=""` to the DOM, which
+ * still creates a focusable same-document link.
+ */
+export const PRESENCE_INTERACTIVE_PROPS: Record<string, string[]> = {
+  a: ['href'],
+  EuiHeaderLogo: ['href'],
+};
 
 export const HTML_TEXT_ELEMENTS = new Set([
   'p',
@@ -155,6 +189,15 @@ export const EUI_TEXT_COMPONENTS = new Set([
 
 export const HTML_ACTION_ELEMENTS = new Set(['button', 'a']);
 
+/** Native HTML elements that are focusable and respond to user input. */
+export const INTERACTIVE_HTML_ELEMENTS = [
+  'a',
+  'button',
+  'input',
+  'select',
+  'textarea',
+];
+
 /**
  * Transparent layout wrappers inside `EuiCallOut` children that the rule should
  * traverse rather than treat as opaque custom components.
@@ -173,3 +216,31 @@ export const CALLOUT_LAYOUT_CONTAINERS = new Set([
  * Rules treat these the same as `HTML_TEXT_ELEMENTS` / `EUI_TEXT_COMPONENTS`.
  */
 export const I18N_TEXT_COMPONENTS = new Set(['FormattedMessage']);
+
+/**
+ * EUI components that render their content **inside** a single focusable
+ * `<button>` or `<a>`.
+ *
+ * Nesting another interactive element in their content produces invalid HTML
+ * (e.g. `<button>` inside `<button>`) and leaves the inner control unreachable
+ * or ambiguous for keyboard and screen-reader users.
+ *
+ * This is deliberately narrower than `INTERACTIVE_EUI_COMPONENTS`, which also
+ * contains composite components (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`,
+ * …) whose entire purpose is to host controls.
+ */
+export const LEAF_INTERACTIVE_EUI_COMPONENTS = [
+  'EuiButton',
+  'EuiButtonEmpty',
+  'EuiButtonIcon',
+  'EuiContextMenuItem',
+  'EuiFacetButton',
+  'EuiFilterButton',
+  'EuiHeaderLink',
+  'EuiHeaderSectionItemButton',
+  'EuiKeyPadMenuItem',
+  'EuiLink',
+  'EuiListGroupItem',
+  'EuiStepHorizontal',
+  'EuiTab',
+];
