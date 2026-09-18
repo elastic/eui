@@ -248,8 +248,6 @@ export const getRouterLinkProps = to => {
 
 ## react-router 5.x
 
-Kibana currently depends on `react-router` 5.3.4. Use this section there.
-
 ### react-router 5.0
 
 The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
