@@ -5,17 +5,17 @@ exports[`EuiAutoRefresh is rendered 1`] = `
   class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-block-EuiInputPopover-euiTestCss"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
+    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group-disabled"
   >
     <div
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-1t6a8ry-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"
@@ -51,17 +51,17 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
   class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
+    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group-disabled"
   >
     <div
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-1t6a8ry-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"
@@ -96,17 +96,17 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
   class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
+    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group-disabled"
   >
     <div
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-vmqubl-wrapper"
+        class="css-162bf1-wrapper"
       >
         <button
           aria-expanded="false"
-          class="euiFormPrepend euiFormControlLayout__prepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+          class="euiFormPrepend euiFormControlLayout__prepend css-1t6a8ry-side-uncompressed-empty-primary-isInteractive"
         >
           <span
             data-euiicon-type="refreshTime"

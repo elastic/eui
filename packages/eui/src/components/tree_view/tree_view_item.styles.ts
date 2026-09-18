@@ -56,12 +56,12 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
       default: css`
         ${logicalCSS('height', defaultSize)}
         gap: ${euiTheme.size.s};
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.control};
       `,
       compressed: css`
         ${logicalCSS('height', compressedSize)}
         gap: ${euiTheme.size.xs};
-        border-radius: ${euiTheme.border.radius.small};
+        border-radius: ${euiTheme.border.radius.control};
       `,
     },
 

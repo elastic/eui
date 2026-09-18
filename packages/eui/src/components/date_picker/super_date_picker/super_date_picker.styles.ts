@@ -150,6 +150,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           .euiPopover {
             /* mimic input border-radius */
             border-radius: ${forms.controlBorderRadius};
+
+            .euiToolTipAnchor {
+              border-radius: inherit;
+            }
           }
 
           .euiDatePopoverButton {
