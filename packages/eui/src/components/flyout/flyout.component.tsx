@@ -286,6 +286,49 @@ const resolveContainer = (
   return raw instanceof HTMLElement ? raw : null;
 };
 
+/**
+ * Per-target push-flyout offset ownership, shared across every flyout React root (they all render
+ * from this one module). Keyed by the element the offset is applied to — a `container` or
+ * `document.body` — so flyouts targeting different elements never contend. For each inline side we
+ * record the owning flyout id and the target's base (pre-flyout) inline padding, which is restored
+ * when the owner releases. Because ownership is a stable token rather than a per-flyout snapshot, it
+ * is immune to the cross-root effect/cleanup ordering races that otherwise strand or clobber the
+ * offset when flyouts share a target. See https://github.com/elastic/eui/issues/9788.
+ */
+interface EuiPushPaddingSideState {
+  owner: string | null;
+  base: string;
+}
+
+const euiPushPaddingRegistry = new WeakMap<
+  HTMLElement,
+  Record<'left' | 'right', EuiPushPaddingSideState>
+>();
+
+const euiSideStyleKey = (
+  side: 'left' | 'right'
+): 'paddingInlineStart' | 'paddingInlineEnd' =>
+  side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+
+const euiSideCssVarKey = (side: 'left' | 'right') =>
+  side === 'left'
+    ? '--euiPushFlyoutOffsetInlineStart'
+    : '--euiPushFlyoutOffsetInlineEnd';
+
+const euiGetPushPaddingState = (target: HTMLElement) => {
+  let state = euiPushPaddingRegistry.get(target);
+  if (!state) {
+    // Seed the base (pre-flyout) inline padding on first use; it is refreshed on each fresh claim
+    // (see `own`) so a later release restores the app's current value.
+    state = {
+      left: { owner: null, base: target.style.paddingInlineStart },
+      right: { owner: null, base: target.style.paddingInlineEnd },
+    };
+    euiPushPaddingRegistry.set(target, state);
+  }
+  return state;
+};
+
 const defaultElement = 'div';
 
 type Props<T extends ElementType> = CommonProps & {
@@ -617,23 +660,52 @@ export const EuiFlyoutComponent = forwardRef(
      * Uses useLayoutEffect so padding is applied before child render.
      */
     useLayoutEffect(() => {
-      if (!isPushed) {
-        return;
-      }
-
       const paddingTarget = container ?? document.body;
-
-      const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
-
-      const paddingSide =
-        side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
-      const cssVarName = `--euiPushFlyoutOffset${
-        side === 'left' ? 'InlineStart' : 'InlineEnd'
-      }`;
       const managerSide = side === 'left' ? 'left' : 'right';
 
-      // Capture pre-existing inline padding so it can be restored on cleanup
-      const previousPadding = paddingTarget.style[paddingSide];
+      // Take ownership of a side of the target and write its offset. `inlineValue` is the inline
+      // padding to set (a width, or the captured base to clear it); `offsetWidth` drives the CSS
+      // custom property and the manager's push padding (0 = no push).
+      const own = (
+        sideKey: 'left' | 'right',
+        inlineValue: string,
+        offsetWidth: number
+      ) => {
+        const state = euiGetPushPaddingState(paddingTarget);
+        // Refresh the base from the target's current (app) inline padding whenever this side is
+        // unowned, so a later release restores the app's current value rather than one captured on
+        // first use. While a side is owned the base is left untouched.
+        if (state[sideKey].owner === null) {
+          state[sideKey].base = paddingTarget.style[euiSideStyleKey(sideKey)];
+        }
+        state[sideKey].owner = flyoutId ?? null;
+        paddingTarget.style[euiSideStyleKey(sideKey)] = inlineValue;
+        if (shouldSetGlobalPushVars) {
+          setGlobalCSSVariables({
+            [euiSideCssVarKey(sideKey)]: offsetWidth
+              ? `${offsetWidth}px`
+              : null,
+          });
+        }
+        if (isInManagedContext) {
+          flyoutManagerRef.current?.setPushPadding(sideKey, offsetWidth);
+        }
+      };
+
+      // Release a side only if THIS flyout still owns it (a newly active flyout takes over first),
+      // restoring the target's captured base inline padding.
+      const release = (sideKey: 'left' | 'right') => {
+        const state = euiPushPaddingRegistry.get(paddingTarget);
+        if (!state || state[sideKey].owner !== flyoutId) return;
+        state[sideKey].owner = null;
+        paddingTarget.style[euiSideStyleKey(sideKey)] = state[sideKey].base;
+        if (shouldSetGlobalPushVars) {
+          setGlobalCSSVariables({ [euiSideCssVarKey(sideKey)]: null });
+        }
+        if (isInManagedContext) {
+          flyoutManagerRef.current?.setPushPadding(sideKey, 0);
+        }
+      };
 
       const paddingWidth =
         layoutMode === LAYOUT_MODE_STACKED &&
@@ -642,39 +714,36 @@ export const EuiFlyoutComponent = forwardRef(
           ? _siblingFlyoutWidth
           : width;
 
-      if (shouldApplyPadding) {
-        paddingTarget.style[paddingSide] = `${paddingWidth}px`;
-
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: `${paddingWidth}px`,
-          });
+      // Standalone (non-managed) flyout: a single root, so it owns its own side while pushed. Even
+      // here two push flyouts can share `document.body`; owner tracking prevents the first to close
+      // from stranding the offset the second still needs (see #9788).
+      if (!isInManagedContext) {
+        if (!isPushed) {
+          return;
         }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
-        }
-      } else {
-        paddingTarget.style[paddingSide] = previousPadding;
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: null,
-          });
-        }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, 0);
-        }
+        own(managerSide, `${paddingWidth}px`, paddingWidth);
+        return () => release(managerSide);
       }
 
+      // Managed (multi-root) flyout: the shared offset (on the container / `document.body`) and the
+      // manager's `pushPadding` are written by exactly one authority — the active flyout. A
+      // backgrounded flyout leaves the active flyout's value untouched; a torn-down flyout releases
+      // only the side(s) it still owns.
+      if (isPushed && isActiveManagedFlyout) {
+        own(managerSide, `${paddingWidth}px`, paddingWidth);
+      } else if (!isPushed && isMainFlyout) {
+        // Active overlay MAIN (a new session opened over a now-backgrounded push flyout): clear both
+        // sides back to base so the page is not left pushed. `isMainFlyout` is the current render's
+        // value (a coexisting overlay *child* is not the main, so a push main keeps its offset).
+        const state = euiGetPushPaddingState(paddingTarget);
+        own('left', state.left.base, 0);
+        own('right', state.right.base, 0);
+      }
+      // else: backgrounded flyout or overlay child — do not touch the shared offset.
+
       return () => {
-        paddingTarget.style[paddingSide] = previousPadding;
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: null,
-          });
-        }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, 0);
-        }
+        release('left');
+        release('right');
       };
     }, [
       isPushed,
@@ -688,6 +757,7 @@ export const EuiFlyoutComponent = forwardRef(
       _siblingFlyoutWidth,
       shouldSetGlobalPushVars,
       container,
+      flyoutId,
     ]);
 
     /**
