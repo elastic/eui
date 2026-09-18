@@ -56,6 +56,10 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
       `,
+      // reverse's compressed size, without the inline type's pill padding
+      compressedReverse: css`
+        ${euiFontSize(euiThemeContext, 'xs')}
+      `,
     },
 
     // Inline types
