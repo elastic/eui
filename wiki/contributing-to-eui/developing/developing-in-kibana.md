@@ -21,7 +21,7 @@ This guide explains how to develop EUI library locally while seeing changes refl
   nvm use
   corepack enable
   corepack prepare pnpm@$(node -pe "require('./package.json').engines.pnpm.replace(/^\D*/, '')") --activate
-  yarn kbn bootstrap
+  pnpm kbn bootstrap
   ```
 - (Optional) EUI and Kibana should be sibling directories for simplest DX:
   ```text
@@ -37,7 +37,7 @@ This guide explains how to develop EUI library locally while seeing changes refl
 In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and start Elasticsearch:
 
 ```bash
-yarn es snapshot --license trial
+pnpm es snapshot --license trial
 ```
 
 Then, run the `@kbn/ui-shared-deps-npm` watcher:
@@ -49,7 +49,7 @@ npx moon run @kbn/ui-shared-deps-npm:watch-webpack
 Finally, run the Kibana server:
 
 ```bash
-yarn start --no-cache
+pnpm start --no-cache
 ```
 
 ### In EUI
