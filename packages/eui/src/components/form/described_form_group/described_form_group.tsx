@@ -6,10 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  isValidElement,
+} from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { CommonProps, PropsOf } from '../../common';
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
@@ -89,8 +94,19 @@ export const EuiDescribedFormGroup: FunctionComponent<
     description,
     descriptionFlexItemProps,
     fieldFlexItemProps,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
     ...rest
   } = props;
+
+  const generatedTitleId = useGeneratedHtmlId({
+    prefix: 'euiDescribedFormGroupTitle',
+  });
+  // Reuse an `id` already set on the title element, so that consumers
+  // referencing it from their own `aria-labelledby` keep working
+  const titleId =
+    (isValidElement<{ id?: string }>(title) && title.props.id) ||
+    generatedTitleId;
 
   const styles = useEuiMemoizedStyles(euiDescribedFormGroupStyles);
   const cssStyles = [
@@ -150,6 +166,9 @@ export const EuiDescribedFormGroup: FunctionComponent<
   return (
     <EuiFlexGroup
       role="group"
+      aria-label={ariaLabel}
+      // The title names the group, unless the consumer provides their own label
+      aria-labelledby={ariaLabelledby ?? (ariaLabel ? undefined : titleId)}
       {...rest}
       css={cssStyles}
       className={classes}
@@ -165,7 +184,11 @@ export const EuiDescribedFormGroup: FunctionComponent<
           descriptionFlexItemProps?.className
         )}
       >
-        <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
+        <EuiTitle
+          id={titleId}
+          size={titleSize}
+          className="euiDescribedFormGroup__title"
+        >
           {title}
         </EuiTitle>
 
