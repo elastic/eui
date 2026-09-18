@@ -6,16 +6,27 @@
  * Side Public License, v 1.
  */
 
-import isEqual from 'lodash/isEqual';
-
 import { _EuiThemeVisColors } from '../global_styling';
-import { uniqueId } from 'lodash';
 
 export const VIS_COLOR_STORE_EVENTS = {
   UPDATE: 'UPDATE',
 } as const;
 export type VisColorStoreEvents = keyof typeof VIS_COLOR_STORE_EVENTS;
 type EventId = string;
+let nextEventId = 0;
+
+const areVisColorsEqual = (
+  first: _EuiThemeVisColors,
+  second: _EuiThemeVisColors
+) => {
+  const firstKeys = Object.keys(first) as Array<keyof _EuiThemeVisColors>;
+  const secondKeys = Object.keys(second);
+
+  return (
+    firstKeys.length === secondKeys.length &&
+    firstKeys.every((key) => first[key] === second[key])
+  );
+};
 
 export type _EuiVisColorStore = {
   visColors: _EuiThemeVisColors;
@@ -40,7 +51,7 @@ class EuiVisColorStoreImpl implements _EuiVisColorStore {
   }
 
   setVisColors = (colors: _EuiThemeVisColors) => {
-    if (!isEqual(this._visColors, colors)) {
+    if (!areVisColorsEqual(this._visColors, colors)) {
       this._visColors = colors;
 
       this.publishUpdate(VIS_COLOR_STORE_EVENTS.UPDATE, this._visColors);
@@ -52,7 +63,7 @@ class EuiVisColorStoreImpl implements _EuiVisColorStore {
       this.events[eventName] = new Map();
     }
 
-    const id = uniqueId(`${eventName}_`);
+    const id = `${eventName}_${++nextEventId}`;
 
     this.events[eventName].set(id, callback);
     return id;
