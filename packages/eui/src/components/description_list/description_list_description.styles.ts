@@ -28,15 +28,19 @@ export const euiDescriptionListDescriptionStyles = (
     fontStyles: {
       normal: css`
         ${euiFontSize(euiThemeContext, 's')}
+        color: ${euiThemeContext.euiTheme.colors.textSubdued};
       `,
       reverse: css`
-        ${euiTitle(euiThemeContext, 'xs')}
+        ${euiTitle(euiThemeContext, 'xxs')}
+        font-weight: ${euiThemeContext.euiTheme.font.weight.medium};
       `,
       compressed: css`
-        ${euiTitle(euiThemeContext, 'xxs')}
+        ${euiTitle(euiThemeContext, 'xxxs')}
+        font-weight: ${euiThemeContext.euiTheme.font.weight.medium};
       `,
       compressedNormal: css`
         ${euiFontSize(euiThemeContext, 'xs')}
+        color: ${euiThemeContext.euiTheme.colors.textSubdued};
       `,
     },
 

@@ -48,17 +48,21 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
       normal: css`
-        ${euiTitle(euiThemeContext, 'xs')}
+        ${euiTitle(euiThemeContext, 'xxs')}
+        font-weight: ${euiThemeContext.euiTheme.font.weight.medium};
       `,
       reverse: css`
         ${euiFontSize(euiThemeContext, 's')}
+        color: ${euiThemeContext.euiTheme.colors.textSubdued};
       `,
       compressed: css`
-        ${euiTitle(euiThemeContext, 'xxs')}
+        ${euiTitle(euiThemeContext, 'xxxs')}
+        font-weight: ${euiThemeContext.euiTheme.font.weight.medium};
       `,
       // reverse's compressed size, without the inline type's pill padding
       compressedReverse: css`
         ${euiFontSize(euiThemeContext, 'xs')}
+        color: ${euiThemeContext.euiTheme.colors.textSubdued};
       `,
     },
 
