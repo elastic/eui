@@ -168,7 +168,7 @@ export const EuiDescribedFormGroup: FunctionComponent<
       role="group"
       aria-label={ariaLabel}
       // The title names the group, unless the consumer provides their own label
-      aria-labelledby={ariaLabelledby ?? (ariaLabel ? undefined : titleId)}
+      aria-labelledby={ariaLabelledby ?? (ariaLabel == null ? titleId : undefined)}
       {...rest}
       css={cssStyles}
       className={classes}
