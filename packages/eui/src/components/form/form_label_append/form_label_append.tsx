@@ -19,11 +19,6 @@ export type EuiFormLabelAppendProps = CommonProps &
     children?: ReactNode;
   };
 
-/**
- * Renders plain string content as subdued text matching the label's font;
- * any other content (e.g. a custom element like a link) is passed through as-is.
- * @see {@link https://eui.elastic.co/docs/components/forms/layouts/row/|EuiFormRow documentation}
- */
 export const EuiFormLabelAppend: FunctionComponent<EuiFormLabelAppendProps> = ({
   children,
   className,
