@@ -1,3 +1,90 @@
+## [`v122.1.0`](https://github.com/elastic/eui/releases/v122.1.0)
+
+- Updated `EuiLink`: ([#9989](https://github.com/elastic/eui/pull/9989))
+  - Updated default `color` prop value to `text`
+  - Added a dotted underline for distinction
+- Updated `EuiTitle` to use `euiTheme.font.title.letterSpacing` ([#9989](https://github.com/elastic/eui/pull/9989))
+- Updated `EuiText`'s `size` default value to `s` ([#9989](https://github.com/elastic/eui/pull/9989))
+- Updated `EuiTab`: ([#9989](https://github.com/elastic/eui/pull/9989))
+  - Updated text color and font weight
+  - Removed inline padding
+- Added `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))
+- Added semantic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.inline`
+  - `euiTheme.border.radius.control`
+  - `euiTheme.border.radius.panel`
+  - `euiTheme.border.radius.frame`
+- Added `euiTheme.font.title.letterSpacing` token ([#9968](https://github.com/elastic/eui/pull/9968))
+- Updated color token values for: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.colors.backgroundBaseSubdued`
+  - `euiTheme.colors.backgroundBasePlain`
+  - `euiTheme.colors.body`
+  - `euiTheme.colors.textParagraph`
+  - `euiTheme.colors.text` (do not use, legacy value)
+  - `euiTheme.colors.emptyShade` (do not use, legacy value)
+- Updated the icon `tableSparkles` glyph ([#10042](https://github.com/elastic/eui/pull/10042))
+- Updated `EuiFlyoutBody` `banner` spacing to follow the flyout `paddingSize` instead of hardcoded margins ([#10037](https://github.com/elastic/eui/pull/10037))
+- Updated `EuiButton`'s `minWidth` default value to `false` ([#10016](https://github.com/elastic/eui/pull/10016))
+- Updated button components to use `border.radius.control`:  ([#10016](https://github.com/elastic/eui/pull/10016))
+  - `EuiButton`
+  - `EuiButtonEmpty`
+  - `EuiButtonIcon`
+  - `EuiSplitButton`
+  - `EuiButtonGroup`
+  - `EuiFilterGroup`/`EuiFilterButton`
+- Updated form components to use `border.radius.control` via shared form variables and `EuiFormControlLayout` ([#10016](https://github.com/elastic/eui/pull/10016))
+- Updated `EuiFormControlLayout` to set a container background color when `disabled` or `readOnly` ([#10016](https://github.com/elastic/eui/pull/10016))
+- Updated list and control-adjacent component border-radius: ([#10016](https://github.com/elastic/eui/pull/10016))
+  - `EuiContextMenu` - `border.radius.panel`
+  - `EuiListGroup` - `border.radius.panel`
+  - `EuiSelectable` when `bordered` - `border.radius.panel`
+  - `EuiListItemLayout` - `border.radius.control` (used in selection list items of `EuiSelectable`, `EuiListGroup`, `EuiComboBox` and `EuiContextMenu`)
+  - `EuiDescriptionListTitle` - `border.radius.inline`
+  - `EuiKeyPadMenuItem` - `border.radius.control`
+  - `EuiTreeViewItem` - `border.radius.control`
+  - `EuiAvatar` when `display="space"` - `border.radius.control`
+  - `EuiNotificationBadge` - `border.radius.control`
+  - `EuiBreadcrumb` - `border.radius.control`
+  - `EuiCodeBlock` - `border.radius.control`
+  - `EuiFacetButton` - `border.radius.control`
+  - `EuiHeaderLogo` - `border.radius.control`
+  - `EuiTab` - `border.radius.control`
+  - `EuiToolTip` - `border.radius.control`
+  - `EuiRangeTooltip` - `border.radius.control`
+- Updated `EuiKeyPadMenuItem` and selection components using `EuiListItemLayout` to have a border in high contrast mode ([#10016](https://github.com/elastic/eui/pull/10016))
+- Updated `findPopoverPosition` to support a `borderRadius` to account for rounded borders when positioning the arrow ([#10016](https://github.com/elastic/eui/pull/10016))
+- Updated `EuiPanel`'s default value of `hasBorder` to `true` and `hasShadow` to `false` ([#10009](https://github.com/elastic/eui/pull/10009))
+- Updated `EuiResizablePanel`'s default value of `hasBorder` to `false` ([#10009](https://github.com/elastic/eui/pull/10009))
+- Updated panel related components to use `border.radius.panel`: ([#10009](https://github.com/elastic/eui/pull/10009))
+  - `EuiBanner`
+  - `EuiCard`
+  - `EuiCallOut`
+  - `EuiPopover`
+  - `EuiResizablePanel`
+  - `EuiEmptyPrompt`
+  - `EuiCommentEvent`
+  - `EuiMarkdownEditor`
+  - `EuiToast`
+  - `EuiTour`
+- Updated `EuiModal` to use `border.radius.frame` ([#10009](https://github.com/elastic/eui/pull/10009))
+- Updated `EuiCallOut`'s and `EuiToast`'s decor highlight to match the increased border radius ([#10009](https://github.com/elastic/eui/pull/10009))
+- Updated `EuiBasicTable` and `EuiInMemoryTable` to use `border.radius.panel` when `panelled={true}` ([#10017](https://github.com/elastic/eui/pull/10017))
+- Updated `EuiTable` to use `border.radius.panel` for mobile panels ([#10017](https://github.com/elastic/eui/pull/10017))
+- Updated `EuiTable` and `EuiDataGrid` cell actions to `color="text"` ([#10017](https://github.com/elastic/eui/pull/10017))
+
+**Bug fixes**
+
+- Fixed `EuiDescriptionListTitle` and `EuiDescriptionListDescription`  compressed font size. ([#10036](https://github.com/elastic/eui/pull/10036))
+- Fixed `EuiToolTip` not dismissing on mouse-out when wrapping `aria-disabled` elements (e.g. buttons with `hasAriaDisabled`) ([#10008](https://github.com/elastic/eui/pull/10008))
+- Fixed a visual bug on `EuiBasicTable` with `scrollInline={true}` and `stickyHeader={true}` where header cells weren't properly aligned if they contain a tooltip ([#10017](https://github.com/elastic/eui/pull/10017))
+
+**Deprecations**
+
+- Deprecate `euiTheme.colors.link` token ([#9989](https://github.com/elastic/eui/pull/9989))
+- Deprecated generic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.small`
+  - `euiTheme.border.radius.medium`
+
 ## [`v122.0.0`](https://github.com/elastic/eui/releases/v122.0.0)
 
 - Added Ctrl/Cmd+C support on `EuiDataGrid` to copy the focused cell value when no text is selected ([#9995](https://github.com/elastic/eui/pull/9995))
