@@ -278,9 +278,8 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     });
 
     const [suppressingPopover, setSuppressingPopover] = useState(isOpen);
-    const [popoverPanelStyles, setPopoverPanelStyles] = useState<CSSProperties>(
-      DEFAULT_POPOVER_STYLES
-    );
+    const [popoverPanelPosition, setPopoverPanelPosition] =
+      useState<CSSProperties>(DEFAULT_POPOVER_STYLES);
     const [arrowStyles, setArrowStyles] = useState<CSSProperties>();
     const [arrowPosition, setArrowPosition] =
       useState<EuiPopoverArrowPositions | null>(null);
@@ -367,6 +366,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
         if (buttonElement == null || panelElement == null) return;
 
         const offset = offsetProp != null ? offsetProp : hasArrow ? 0 : 4;
+        const arrowWidth = hasArrow ? 16 : 0;
         let position = getPopoverPositionFromAnchorPosition(anchorPosition);
         let forcePosition;
 
@@ -387,9 +387,9 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
           align: getPopoverAlignFromAnchorPosition(anchorPosition),
           anchor: buttonElement,
           popover: panelElement,
-          offset: attachToAnchor ? offset : hasArrow ? 16 + offset : 8 + offset,
+          offset: attachToAnchor ? offset : arrowWidth / 2 + offset,
           arrowConfig: hasArrow
-            ? { arrowWidth: 16, arrowBuffer: 10, borderRadius: 12 }
+            ? { arrowWidth, arrowBuffer: 10, borderRadius: 12 }
             : { arrowWidth: 0, arrowBuffer: 0 },
           returnBoundingBox: attachToAnchor,
           allowCrossAxis: repositionToCrossAxis,
@@ -403,7 +403,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
         const nextArrowPosition: EuiPopoverPosition = foundPosition;
 
         onPositionChange?.(nextArrowPosition);
-        setPopoverPanelStyles({ ...panelStyle, top, left, zIndex });
+        setPopoverPanelPosition({ top, left, zIndex });
         setArrowStyles(!attachToAnchor && hasArrow ? arrow : undefined);
         setArrowPosition(nextArrowPosition);
         setOpenPosition(foundPosition);
@@ -418,7 +418,6 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
         offsetProp,
         onPositionChange,
         openPosition,
-        panelStyle,
         repositionToCrossAxis,
         zIndexProp,
       ]
@@ -470,7 +469,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
         panelElementRef.current = node;
 
         if (node == null) {
-          setPopoverPanelStyles(DEFAULT_POPOVER_STYLES);
+          setPopoverPanelPosition(DEFAULT_POPOVER_STYLES);
           setArrowStyles(undefined);
           setArrowPosition(null);
           setOpenPosition(null);
@@ -554,36 +553,72 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
 
     const previousPositioningProps = useRef({
       anchorPosition,
+      attachToAnchor,
       buffer,
+      container,
+      display,
+      hasArrow,
       offset: offsetProp,
+      panelClassName,
       panelPaddingSize,
+      panelProps,
+      panelStyle,
+      repositionToCrossAxis,
+      zIndex: zIndexProp,
     });
 
     useLayoutEffect(() => {
       const previous = previousPositioningProps.current;
       previousPositioningProps.current = {
         anchorPosition,
+        attachToAnchor,
         buffer,
+        container,
+        display,
+        hasArrow,
         offset: offsetProp,
+        panelClassName,
         panelPaddingSize,
+        panelProps,
+        panelStyle,
+        repositionToCrossAxis,
+        zIndex: zIndexProp,
       };
 
       if (
         isOpen &&
         (previous.anchorPosition !== anchorPosition ||
+          previous.attachToAnchor !== attachToAnchor ||
           previous.buffer !== buffer ||
+          previous.container !== container ||
+          previous.display !== display ||
+          previous.hasArrow !== hasArrow ||
           previous.offset !== offsetProp ||
-          previous.panelPaddingSize !== panelPaddingSize)
+          previous.panelClassName !== panelClassName ||
+          previous.panelPaddingSize !== panelPaddingSize ||
+          previous.panelProps !== panelProps ||
+          previous.panelStyle !== panelStyle ||
+          previous.repositionToCrossAxis !== repositionToCrossAxis ||
+          previous.zIndex !== zIndexProp)
       ) {
         positionPopoverFluidRef.current?.();
       }
     }, [
       anchorPosition,
+      attachToAnchor,
       buffer,
+      container,
+      display,
+      hasArrow,
       isOpen,
       offsetProp,
+      panelClassName,
       panelPaddingSize,
+      panelProps,
+      panelStyle,
       positionPopoverFluidRef,
+      repositionToCrossAxis,
+      zIndexProp,
     ]);
 
     useEffect(() => {
@@ -692,7 +727,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
                 aria-labelledby={ariaLabelledBy}
                 aria-modal={panelAriaModal}
                 aria-describedby={ariaDescribedby}
-                style={popoverPanelStyles}
+                style={{ ...panelStyle, ...popoverPanelPosition }}
               >
                 {showArrow && arrowPosition && (
                   <EuiPopoverArrow position={arrowPosition} style={arrowStyles}>

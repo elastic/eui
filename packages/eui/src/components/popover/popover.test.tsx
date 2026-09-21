@@ -135,6 +135,39 @@ describe('EuiPopover', () => {
     expect(nextPanelRef).toHaveBeenLastCalledWith(expect.any(HTMLElement));
   });
 
+  it.each([
+    ['anchorPosition', { anchorPosition: 'downRight' as const }],
+    ['attachToAnchor', { attachToAnchor: true }],
+    ['buffer', { buffer: 8 }],
+    ['container', { container: document.createElement('div') }],
+    ['display', { display: 'block' as const }],
+    ['hasArrow', { hasArrow: true }],
+    ['offset', { offset: 8 }],
+    ['panelClassName', { panelClassName: 'widePanel' }],
+    ['panelPaddingSize', { panelPaddingSize: 's' as const }],
+    ['panelProps', { panelProps: { className: 'widePanel' } }],
+    ['panelStyle', { panelStyle: { width: 200 } }],
+    ['repositionToCrossAxis', { repositionToCrossAxis: false }],
+    ['zIndex', { zIndex: 10 }],
+  ])('repositions when %s changes', (_, changedProps) => {
+    const onPositionChange = jest.fn();
+    const props = {
+      ...requiredProps,
+      button: <button />,
+      closePopover: () => {},
+      isOpen: true,
+      onPositionChange,
+    };
+    const { rerender } = render(<EuiPopover {...props} />);
+    const initialCallCount = onPositionChange.mock.calls.length;
+
+    rerender(<EuiPopover {...props} {...changedProps} />);
+
+    expect(onPositionChange.mock.calls.length).toBeGreaterThan(
+      initialCallCount
+    );
+  });
+
   it('repositions on resize in StrictMode', () => {
     const onPositionChange = jest.fn();
     render(
@@ -450,7 +483,7 @@ describe('EuiPopover', () => {
         );
 
         expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
-          top: '26px',
+          top: '18px',
         });
       });
 
@@ -468,7 +501,7 @@ describe('EuiPopover', () => {
         );
 
         expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
-          top: '18px',
+          top: '10px',
         });
       });
 
