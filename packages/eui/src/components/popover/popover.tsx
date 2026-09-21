@@ -213,7 +213,6 @@ const DEFAULT_POPOVER_STYLES = {
 };
 
 const returnFocusConfig = { preventScroll: true };
-const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
 export type Props = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
 
@@ -267,7 +266,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     const buttonRef = useRef<HTMLDivElement | null>(null);
     const panelElementRef = useRef<HTMLElement | null>(null);
     const strandedFocusTimeout = useRef<number>();
-    const closingTransitionTimeout = useRef<number>();
+    const previousIsOpen = useRef(isOpen);
 
     const panelId = useGeneratedHtmlId({
       prefix: 'euiPopover',
@@ -278,9 +277,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       suffix: 'descriptionId',
     });
 
-    const [previousIsOpen, setPreviousIsOpen] = useState(isOpen);
     const [suppressingPopover, setSuppressingPopover] = useState(isOpen);
-    const [isClosing, setIsClosing] = useState(false);
     const [popoverPanelStyles, setPopoverPanelStyles] = useState<CSSProperties>(
       DEFAULT_POPOVER_STYLES
     );
@@ -290,11 +287,6 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     const [openPosition, setOpenPosition] = useState<EuiPopoverPosition | null>(
       null
     );
-
-    if (previousIsOpen !== isOpen) {
-      setPreviousIsOpen(isOpen);
-      setIsClosing(previousIsOpen && !isOpen);
-    }
 
     const getFocusableToggleButton = useCallback(() => {
       if (buttonRef.current) {
@@ -316,15 +308,23 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       }
     }, [closePopoverProp, isOpen]);
 
+    const clearStrandedFocusTimeout = useCallback(() => {
+      if (strandedFocusTimeout.current !== undefined) {
+        clearTimeout(strandedFocusTimeout.current);
+        strandedFocusTimeout.current = undefined;
+      }
+    }, []);
+
     const handleStrandedFocus = useCallback(() => {
       strandedFocusTimeout.current = window.setTimeout(() => {
+        strandedFocusTimeout.current = undefined;
         if (
           document.activeElement === document.body ||
           panelElementRef.current?.contains(document.activeElement)
         ) {
           getFocusableToggleButton()?.focus(returnFocusConfig);
         }
-      }, closingTransitionTime);
+      });
     }, [getFocusableToggleButton]);
 
     const onEscapeKey = useCallback(
@@ -534,12 +534,23 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
 
     useLayoutEffect(() => {
       if (isOpen && !suppressingPopover) {
-        clearTimeout(strandedFocusTimeout.current);
-        clearTimeout(closingTransitionTimeout.current);
+        clearStrandedFocusTimeout();
         positionPopoverFixedRef.current?.();
         focusTrapPubSub.publish();
       }
-    }, [isOpen, positionPopoverFixedRef, suppressingPopover]);
+    }, [
+      clearStrandedFocusTimeout,
+      isOpen,
+      positionPopoverFixedRef,
+      suppressingPopover,
+    ]);
+
+    useLayoutEffect(() => {
+      if (previousIsOpen.current && !isOpen) {
+        focusTrapPubSub.publish();
+      }
+      previousIsOpen.current = isOpen;
+    }, [isOpen]);
 
     const previousPositioningProps = useRef({
       anchorPosition,
@@ -576,17 +587,6 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     ]);
 
     useEffect(() => {
-      if (!isClosing) return;
-
-      closingTransitionTimeout.current = window.setTimeout(() => {
-        setIsClosing(false);
-        focusTrapPubSub.publish();
-      }, closingTransitionTime);
-
-      return () => clearTimeout(closingTransitionTimeout.current);
-    }, [isClosing]);
-
-    useEffect(() => {
       if (!isOpen) return;
 
       window.addEventListener('resize', resizeCallback);
@@ -597,11 +597,10 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       repositionOnScrollManager.subscribe();
       return () => {
         repositionOnScrollManager.cleanup();
-        clearTimeout(strandedFocusTimeout.current);
-        clearTimeout(closingTransitionTimeout.current);
+        clearStrandedFocusTimeout();
         focusTrapPubSub.publish();
       };
-    }, [repositionOnScrollManager]);
+    }, [clearStrandedFocusTimeout, repositionOnScrollManager]);
 
     useEffect(() => {
       repositionOnScrollManager.update();
@@ -622,7 +621,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
-    if (!suppressingPopover && (isOpen || isClosing)) {
+    if (!suppressingPopover && isOpen) {
       let tabIndex = tabIndexProp;
       let initialFocus = initialFocusProp;
       let ariaDescribedby;
@@ -671,7 +670,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
             returnFocus={isOpen ? returnFocusConfig : false}
             initialFocus={initialFocus}
             onEscapeKey={onEscapeKey}
-            disabled={!ownFocus || !isOpen || isClosing}
+            disabled={!ownFocus || !isOpen}
             {...focusTrapProps}
           >
             <EuiButtonResetProvider>

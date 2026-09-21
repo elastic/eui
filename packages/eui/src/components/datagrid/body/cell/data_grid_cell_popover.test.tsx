@@ -112,7 +112,7 @@ describe('useCellPopover', () => {
           data-test-subj="euiDataGridExpansionPopover"
           id="euiPopover_generated-id_panelId"
           role="dialog"
-          style="top: 4px; left: 0px; will-change: transform, opacity; max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; z-index: 2000;"
+          style="max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; top: 4px; left: 0px; z-index: 2000;"
           tabindex="0"
         >
           <p
@@ -137,7 +137,7 @@ describe('useCellPopover', () => {
       beforeAll(() => {
         rafSpy = jest
           .spyOn(window, 'requestAnimationFrame')
-          .mockImplementation((cb: Function) => cb());
+          .mockImplementation(() => 0);
       });
       beforeEach(() => jest.clearAllMocks());
       afterAll(() => rafSpy.mockRestore());
@@ -152,7 +152,7 @@ describe('useCellPopover', () => {
 
         populateCellPopover(result.current.cellPopoverContext);
 
-        const { baseElement, container, getByTestSubject } = render(
+        const { baseElement, container, getByTestSubject, rerender } = render(
           <div>{result.current.cellPopover}</div>
         );
 
@@ -162,11 +162,17 @@ describe('useCellPopover', () => {
         // would not be part of the original render content
         document.body.prepend(mockCell);
 
-        return { result, container, baseElement, getByTestSubject };
+        return {
+          result,
+          container,
+          baseElement,
+          getByTestSubject,
+          rerender,
+        };
       };
 
       it('closes the popover and refocuses the cell when the Escape key is pressed', () => {
-        const { result, getByTestSubject } = renderCellPopover();
+        const { result, getByTestSubject, rerender } = renderCellPopover();
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
         const popover = getByTestSubject('euiDataGridExpansionPopover');
@@ -182,11 +188,13 @@ describe('useCellPopover', () => {
         expect(keyboardEvent.stopPropagation).toHaveBeenCalled();
 
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
+        rerender(<div>{result.current.cellPopover}</div>);
+        rafSpy.mock.calls[rafSpy.mock.calls.length - 1][0](0);
         expect(document.activeElement).toEqual(mockCell);
       });
 
       it('closes the popover when the F2 key is pressed', () => {
-        const { result, getByTestSubject } = renderCellPopover();
+        const { result, getByTestSubject, rerender } = renderCellPopover();
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
         const popover = getByTestSubject('euiDataGridExpansionPopover');
@@ -200,6 +208,8 @@ describe('useCellPopover', () => {
         expect(keyboardEvent.stopPropagation).toHaveBeenCalled();
 
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
+        rerender(<div>{result.current.cellPopover}</div>);
+        rafSpy.mock.calls[rafSpy.mock.calls.length - 1][0](0);
         expect(document.activeElement).toEqual(mockCell);
       });
 

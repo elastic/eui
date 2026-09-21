@@ -10,7 +10,11 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { render } from '../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../test/rtl';
 import { euiPaletteColorBlind, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
@@ -195,23 +199,20 @@ describe('EuiColorPicker', () => {
 
   test('popover color selector is hidden when the ESC key pressed', async () => {
     const onBlurHandler = jest.fn();
-    const { getByTestSubject } = render(
+    const { getByTestSubject, queryByTestSubject } = render(
       <EuiColorPicker onChange={onChange} onBlur={onBlurHandler} />
     );
 
     fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
-    fireEvent.keyDown(getByTestSubject('euiColorPickerAnchor'), {
-      key: keys.ENTER,
-    });
+    await waitForEuiPopoverOpen();
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
 
     fireEvent.keyDown(getByTestSubject('euiColorPickerPopover'), {
       key: keys.ESCAPE,
     });
-    await (async () => {
-      expect(getByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
-      expect(onBlurHandler).toHaveBeenCalled(); // The blur handler is called just before the portal would be removed.
-    });
+    await waitForEuiPopoverClose();
+    expect(queryByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
+    expect(onBlurHandler).toHaveBeenCalled();
   });
 
   test('popover color selector is hidden and input regains focus when the ENTER key pressed', async () => {
