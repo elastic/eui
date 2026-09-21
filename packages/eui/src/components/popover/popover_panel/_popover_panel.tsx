@@ -31,8 +31,11 @@ type EuiPopoverPanelInternalProps = {
 };
 
 /**
- * *INTERNAL ONLY*
- * Purely for re-use of styling
+ * This component is purely for re-use of styling. It is not intended to be used directly in your application.
+ * If your use case requires a popover, use the `EuiPopover` component instead.
+ * If you need to style a panel that is not a popover, use the `EuiPanel` component directly.
+ *
+ * @internal
  */
 export const EuiPopoverPanel: FunctionComponent<
   EuiPopoverPanelProps & EuiPopoverPanelInternalProps
