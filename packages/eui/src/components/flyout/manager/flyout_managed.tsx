@@ -229,11 +229,11 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         return;
       }
       const { sessions } = getFlyoutManagerStore().getState();
-      const currentSession = sessions[sessions.length - 1];
+      const ownSession = sessions.find(
+        (session) => session.mainFlyoutId === flyoutId
+      );
       const isBackgroundedMain =
-        currentSession != null &&
-        currentSession.mainFlyoutId !== flyoutId &&
-        sessions.some((session) => session.mainFlyoutId === flyoutId);
+        ownSession != null && ownSession !== sessions[sessions.length - 1];
       isBackgroundedMain ? closeFlyout(flyoutId) : closeAllFlyouts();
     }, [level, flyoutId, closeFlyout, closeAllFlyouts]);
 
