@@ -7,7 +7,6 @@
  */
 
 import React, {
-  Component,
   KeyboardEvent,
   CSSProperties,
   HTMLAttributes,
@@ -15,39 +14,43 @@ import React, {
   Ref,
   RefCallback,
   PropsWithChildren,
-  ContextType,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { focusable, type FocusableElement } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-
 import {
   keys,
   getWaitDuration,
   performOnFrame,
-  htmlIdGenerator,
   focusTrapPubSub,
+  useCombinedRefs,
+  useGeneratedHtmlId,
+  useLatest,
 } from '../../services';
-import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
-
 import { EuiScreenReaderOnly } from '../accessibility';
-
 import { EuiPortal } from '../portal';
-
 import { EuiMutationObserver } from '../observer/mutation_observer';
-
 import {
   findPopoverPosition,
   getElementZIndex,
+  getPopoverAlignFromAnchorPosition,
+  getPopoverPositionFromAnchorPosition,
+  popoverAnchorPosition,
+  type PopoverAnchorPosition,
   EuiPopoverPosition,
 } from '../../services/popover';
-import {
-  createRepositionOnScroll,
-  type CreateRepositionOnScrollReturnType,
-} from '../../services/popover/reposition_on_scroll';
-
+import { createRepositionOnScroll } from '../../services/popover/reposition_on_scroll';
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
@@ -58,23 +61,8 @@ import { EuiButtonResetProvider } from '../button/button_context';
 import { EuiPaddingSize } from '../../global_styling';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
-export const popoverAnchorPosition = [
-  'upCenter',
-  'upLeft',
-  'upRight',
-  'downCenter',
-  'downLeft',
-  'downRight',
-  'leftCenter',
-  'leftUp',
-  'leftDown',
-  'rightCenter',
-  'rightUp',
-  'rightDown',
-] as const;
-
-export type PopoverAnchorPosition = (typeof popoverAnchorPosition)[number];
-type AnchorPosition = 'up' | 'right' | 'down' | 'left';
+export { popoverAnchorPosition };
+export type { PopoverAnchorPosition };
 
 export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
@@ -219,48 +207,6 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   onPositionChange?: (position: EuiPopoverPosition) => void;
 }
 
-const anchorPositionToPopoverPositionMap: {
-  [position in AnchorPosition]: EuiPopoverPosition;
-} = {
-  up: 'top',
-  right: 'right',
-  down: 'bottom',
-  left: 'left',
-};
-
-export function getPopoverPositionFromAnchorPosition(
-  anchorPosition: PopoverAnchorPosition
-) {
-  // maps the anchor position to the matching popover position
-  // e.g. "upLeft" -> "top", "downRight" -> "bottom"
-
-  // extract the first positional word from anchorPosition:
-  // starts at the beginning (" ^ ") of anchorPosition and
-  // captures all of the characters (" (.*?) ") until the
-  // first capital letter (" [A-Z] ") is encountered
-  const [, primaryPosition] = anchorPosition.match(/^(.*?)[A-Z]/)!;
-  return anchorPositionToPopoverPositionMap[primaryPosition as AnchorPosition];
-}
-
-export function getPopoverAlignFromAnchorPosition(
-  anchorPosition: PopoverAnchorPosition
-) {
-  // maps the gravity to the matching popover position
-  // e.g. "upLeft" -> "left", "rightDown" -> "bottom"
-
-  // extract the second positional word from anchorPosition:
-  // starts a capture group at the first capital letter
-  // and includes everything after it
-  const [, align] = anchorPosition.match(/([A-Z].*)/)!;
-
-  // this performs two tasks:
-  // 1. normalizes the align position by lowercasing it
-  // 2. `center` doesn't exist in the lookup map which converts it to `undefined` meaning no align
-  return anchorPositionToPopoverPositionMap[
-    align.toLowerCase() as AnchorPosition
-  ];
-}
-
 const DEFAULT_POPOVER_STYLES = {
   top: 50,
   left: 50,
@@ -271,379 +217,39 @@ const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-i
 
 export type Props = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
 
-interface State {
-  prevIsOpen?: boolean;
-  suppressingPopover?: boolean;
-  isClosing: boolean;
-  popoverStyles: CSSProperties;
-  arrowStyles?: CSSProperties;
-  arrowPosition: EuiPopoverArrowPositions | null;
-  openPosition: any; // What should this be?
-}
-
-type PropsWithDefaults = Props & {
-  anchorPosition: PopoverAnchorPosition;
-  hasArrow: boolean;
-  isOpen: boolean;
-  ownFocus: boolean;
-  panelPaddingSize: EuiPaddingSize;
+export type EuiPopoverRef = {
+  positionPopoverFluid: () => void;
 };
 
 /**
  * @see {@link https://eui.elastic.co/docs/components/containers/popover/|EuiPopover documentation}
  */
-export class EuiPopover extends Component<Props, State> {
-  static contextType = EuiComponentDefaultsContext;
-  declare context: ContextType<typeof EuiComponentDefaultsContext>;
-  private repositionOnScroll: CreateRepositionOnScrollReturnType;
-
-  static defaultProps: Partial<PropsWithDefaults> = {
-    isOpen: false,
-    ownFocus: true,
-    repositionToCrossAxis: true,
-    anchorPosition: 'downLeft',
-    panelPaddingSize: 'm',
-    hasArrow: false,
-    display: 'inline-block',
-  };
-
-  static getDerivedStateFromProps(
-    nextProps: Props,
-    prevState: State
-  ): Partial<State> | null {
-    if (prevState.prevIsOpen === nextProps.isOpen) return null;
-
-    return {
-      prevIsOpen: nextProps.isOpen,
-      isClosing: prevState.prevIsOpen === true && !nextProps.isOpen,
-    };
-  }
-
-  private strandedFocusTimeout: number | undefined;
-  private closingTransitionTimeout: number | undefined;
-  private button: HTMLElement | null = null;
-  private panel: HTMLElement | null = null;
-  private idGenerator = htmlIdGenerator('euiPopover');
-  private panelId: string = this.idGenerator('panelId');
-  private descriptionId: string = this.idGenerator('descriptionId');
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      prevIsOpen: props.isOpen,
-      suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
-      isClosing: false,
-      popoverStyles: DEFAULT_POPOVER_STYLES,
-      arrowStyles: {},
-      arrowPosition: null,
-      openPosition: null, // once a stable position has been found, keep the contents on that side
-    };
-
-    this.repositionOnScroll = createRepositionOnScroll(() => ({
-      repositionOnScroll: this.props.repositionOnScroll,
-      componentDefaults: this.context.EuiPopover,
-      repositionFn: this.positionPopoverFixed,
-    }));
-  }
-
-  closePopover = () => {
-    if (this.props.isOpen) {
-      this.props.closePopover();
-    }
-  };
-
-  onEscapeKey = (event: Event) => {
-    if (this.props.isOpen) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.closePopover();
-      this.handleStrandedFocus();
-    }
-  };
-
-  getFocusableToggleButton = () => {
-    if (this.button) {
-      try {
-        const focusableItems = focusable(this.button);
-        if (focusableItems.length) {
-          return focusableItems[0];
-        }
-      } catch {
-        // tabbable's focusable() can throw in environments that don't
-        // fully support CSS selector parsing (e.g. jsdom with :has())
-      }
-    }
-  };
-
-  handleStrandedFocus = () => {
-    this.strandedFocusTimeout = window.setTimeout(() => {
-      // If `returnFocus` failed and focus was stranded,
-      // attempt to manually restore focus to the toggle button.
-      // The stranded focus is either in most cases on body but
-      // it will be on the panel instead on mount when isOpen=true
-      if (
-        document.activeElement === document.body ||
-        this.panel?.contains(document.activeElement) // if focus is on OR within this.panel
-      ) {
-        const toggleButton = this.getFocusableToggleButton();
-
-        if (toggleButton) {
-          toggleButton.focus(returnFocusConfig);
-        }
-      }
-    }, closingTransitionTime);
-  };
-
-  onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === keys.ESCAPE) {
-      this.onEscapeKey(event as unknown as Event);
-    }
-  };
-
-  onClickOutside = (event: Event) => {
-    // only close the popover if the event source isn't the anchor button
-    // otherwise, it is up to the anchor to toggle the popover's open status
-    if (this.button && this.button.contains(event.target as Node) === false) {
-      this.closePopover();
-    }
-  };
-
-  onOpenPopover = () => {
-    clearTimeout(this.strandedFocusTimeout);
-    clearTimeout(this.closingTransitionTimeout);
-
-    this.positionPopoverFixed();
-    focusTrapPubSub.publish();
-  };
-
-  /**
-   * Updates ARIA attributes on the popover trigger button
-   * Only applies ARIA when the trigger is button-like (semantic <button> or role="button").
-   * Avoids adding incorrect ARIA on inputs or other non-button elements.
-   */
-  private updateTriggerButtonAriaAttributes = (
-    toggleButton: FocusableElement | undefined,
-    isOpen: boolean
-  ) => {
-    if (!toggleButton) return;
-
-    const tag = toggleButton.tagName?.toLowerCase();
-    const role = toggleButton.getAttribute('role')?.toLowerCase();
-    const isButtonLike = tag === 'button' || role === 'button';
-    if (!isButtonLike) return;
-
-    toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-
-    if (isOpen) {
-      toggleButton.setAttribute('aria-controls', this.panelId);
-    } else {
-      toggleButton.removeAttribute('aria-controls');
-    }
-  };
-
-  componentDidMount() {
-    if (this.state.suppressingPopover) {
-      // component was created with isOpen=true; now that it's mounted
-      // stop suppressing and start opening
-      this.setState({ suppressingPopover: false }, () => {
-        this.onOpenPopover();
-      });
-    }
-
-    this.updateTriggerButtonAriaAttributes(
-      this.getFocusableToggleButton(),
-      this.props.isOpen ?? false
-    );
-
-    this.repositionOnScroll.subscribe();
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    // The popover is being opened.
-    if (!prevProps.isOpen && this.props.isOpen) {
-      this.onOpenPopover();
-    }
-
-    // Update ARIA attributes on the toggle when open state changes
-    if (prevProps.isOpen !== this.props.isOpen) {
-      this.updateTriggerButtonAriaAttributes(
-        this.getFocusableToggleButton(),
-        this.props.isOpen ?? false
-      );
-    }
-
-    // ensure recalculation of panel position on prop updates
-    if (
-      this.props.isOpen &&
-      (prevProps.anchorPosition !== this.props.anchorPosition ||
-        prevProps.buffer !== this.props.buffer ||
-        prevProps.offset !== this.props.offset ||
-        prevProps.panelPaddingSize !== this.props.panelPaddingSize)
-    ) {
-      this.positionPopoverFluid();
-    }
-
-    // update scroll listener
-    this.repositionOnScroll.update();
-
-    // The popover is being closed.
-    if (prevProps.isOpen && !this.props.isOpen) {
-      // If the user has just closed the popover, queue up the removal of the content after the
-      // transition is complete.
-      this.closingTransitionTimeout = window.setTimeout(() => {
-        this.setState({
-          isClosing: false,
-        });
-        focusTrapPubSub.publish();
-      }, closingTransitionTime);
-    }
-  }
-
-  componentWillUnmount() {
-    this.repositionOnScroll.cleanup();
-    clearTimeout(this.strandedFocusTimeout);
-    clearTimeout(this.closingTransitionTimeout);
-    focusTrapPubSub.publish();
-  }
-
-  onMutation = (records: MutationRecord[]) => {
-    const waitDuration = getWaitDuration(records);
-    this.positionPopoverFixed();
-
-    performOnFrame(waitDuration, this.positionPopoverFixed);
-  };
-
-  positionPopover = (allowEnforcePosition: boolean) => {
-    if (this.button == null || this.panel == null) return;
-
-    const { anchorPosition, offset: _offset } = this.props as PropsWithDefaults;
-    const offset = _offset != null ? _offset : this.props.hasArrow ? 0 : 4;
-
-    let position = getPopoverPositionFromAnchorPosition(anchorPosition);
-    let forcePosition = undefined;
-    if (
-      allowEnforcePosition &&
-      this.props.isOpen &&
-      this.state.openPosition != null
-    ) {
-      position = this.state.openPosition;
-      forcePosition = true;
-    }
-
-    const {
-      top,
-      left,
-      position: foundPosition,
-      arrow,
-    } = findPopoverPosition({
-      container: this.props.container,
-      position,
-      forcePosition,
-      align: getPopoverAlignFromAnchorPosition(anchorPosition),
-      anchor: this.button,
-      popover: this.panel,
-      offset: this.props.attachToAnchor
-        ? offset
-        : this.props.hasArrow
-        ? 16 + offset
-        : 8 + offset,
-      arrowConfig: this.props.hasArrow
-        ? { arrowWidth: 16, arrowBuffer: 10, borderRadius: 12 }
-        : { arrowWidth: 0, arrowBuffer: 0 },
-      returnBoundingBox: this.props.attachToAnchor,
-      allowCrossAxis: this.props.repositionToCrossAxis,
-      buffer: this.props.buffer,
-    });
-
-    // the popover's z-index must inherit from the button
-    // this keeps a button's popover under a flyout that would cover the button
-    // but a popover triggered inside a flyout will appear over that flyout
-    const { zIndex: zIndexProp } = this.props;
-    const zIndex =
-      zIndexProp == null
-        ? getElementZIndex(this.button, this.panel) + 2000
-        : zIndexProp;
-
-    const popoverStyles = {
-      ...this.props.panelStyle,
-      top,
-      left,
-      zIndex,
-    };
-
-    const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
-    const arrowStyles = willRenderArrow ? arrow : undefined;
-    const arrowPosition: EuiPopoverPosition = foundPosition;
-
-    this.props.onPositionChange && this.props.onPositionChange(arrowPosition);
-
-    this.setState({
-      popoverStyles,
-      arrowStyles,
-      arrowPosition,
-      openPosition: foundPosition,
-    });
-  };
-
-  positionPopoverFixed = () => {
-    this.positionPopover(true);
-  };
-
-  positionPopoverFluid = () => {
-    this.positionPopover(false);
-  };
-
-  panelRef = (node: HTMLElement | null) => {
-    this.panel = node;
-    this.props.panelRef && this.props.panelRef(node);
-
-    if (node == null) {
-      // panel has unmounted, restore the state defaults
-      this.setState({
-        popoverStyles: DEFAULT_POPOVER_STYLES,
-        arrowStyles: {},
-        arrowPosition: null,
-        openPosition: null,
-      });
-      window.removeEventListener('resize', this.positionPopoverFluid);
-    } else {
-      // panel is coming into existence
-      this.positionPopoverFluid();
-      window.addEventListener('resize', this.positionPopoverFluid);
-    }
-  };
-
-  popoverRef = (node: HTMLDivElement | null) => {
-    this.button = node;
-    setMultipleRefs([this.props.popoverRef], node);
-  };
-
-  render() {
-    const {
-      anchorPosition,
+export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
+  (
+    {
+      anchorPosition = 'downLeft',
       button,
       insert,
-      isOpen,
-      ownFocus,
+      isOpen = false,
+      ownFocus = true,
       children,
       className,
-      closePopover,
+      closePopover: closePopoverProp,
       panelClassName,
-      panelPaddingSize,
+      panelPaddingSize = 'm',
       panelProps,
-      panelRef,
+      panelRef: panelRefProp,
       panelStyle,
       popoverScreenReaderText,
-      popoverRef,
-      hasArrow,
+      popoverRef: popoverRefProp,
+      hasArrow = false,
       arrowChildren,
       repositionOnScroll,
-      repositionToCrossAxis,
-      zIndex,
+      repositionToCrossAxis = true,
+      zIndex: zIndexProp,
       attachToAnchor,
-      display,
-      offset,
+      display = 'inline-block',
+      offset: offsetProp,
       onPositionChange,
       buffer,
       'aria-label': ariaLabel,
@@ -652,26 +258,371 @@ export class EuiPopover extends Component<Props, State> {
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
-      tabIndex: _tabIndexProp,
+      tabIndex: tabIndexPropFromProps,
       ...rest
-    } = this.props;
-    const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
+    },
+    ref
+  ) => {
+    const componentDefaults = useContext(EuiComponentDefaultsContext);
+    const buttonRef = useRef<HTMLDivElement | null>(null);
+    const panelElementRef = useRef<HTMLElement | null>(null);
+    const strandedFocusTimeout = useRef<number>();
+    const closingTransitionTimeout = useRef<number>();
 
+    const panelId = useGeneratedHtmlId({
+      prefix: 'euiPopover',
+      suffix: 'panelId',
+    });
+    const descriptionId = useGeneratedHtmlId({
+      prefix: 'euiPopover',
+      suffix: 'descriptionId',
+    });
+
+    const [previousIsOpen, setPreviousIsOpen] = useState(isOpen);
+    const [suppressingPopover, setSuppressingPopover] = useState(isOpen);
+    const [isClosing, setIsClosing] = useState(false);
+    const [popoverPanelStyles, setPopoverPanelStyles] = useState<CSSProperties>(
+      DEFAULT_POPOVER_STYLES
+    );
+    const [arrowStyles, setArrowStyles] = useState<CSSProperties>();
+    const [arrowPosition, setArrowPosition] =
+      useState<EuiPopoverArrowPositions | null>(null);
+    const [openPosition, setOpenPosition] = useState<EuiPopoverPosition | null>(
+      null
+    );
+
+    if (previousIsOpen !== isOpen) {
+      setPreviousIsOpen(isOpen);
+      setIsClosing(previousIsOpen && !isOpen);
+    }
+
+    const getFocusableToggleButton = useCallback(() => {
+      if (buttonRef.current) {
+        try {
+          const focusableItems = focusable(buttonRef.current);
+          if (focusableItems.length) {
+            return focusableItems[0];
+          }
+        } catch {
+          // tabbable's focusable() can throw in environments that don't
+          // fully support CSS selector parsing (e.g. jsdom with :has())
+        }
+      }
+    }, []);
+
+    const closePopover = useCallback(() => {
+      if (isOpen) {
+        closePopoverProp();
+      }
+    }, [closePopoverProp, isOpen]);
+
+    const handleStrandedFocus = useCallback(() => {
+      strandedFocusTimeout.current = window.setTimeout(() => {
+        if (
+          document.activeElement === document.body ||
+          panelElementRef.current?.contains(document.activeElement)
+        ) {
+          getFocusableToggleButton()?.focus(returnFocusConfig);
+        }
+      }, closingTransitionTime);
+    }, [getFocusableToggleButton]);
+
+    const onEscapeKey = useCallback(
+      (event: Event) => {
+        if (isOpen) {
+          event.preventDefault();
+          event.stopPropagation();
+          closePopover();
+          handleStrandedFocus();
+        }
+      },
+      [closePopover, handleStrandedFocus, isOpen]
+    );
+
+    const onKeyDown = useCallback(
+      (event: KeyboardEvent) => {
+        if (event.key === keys.ESCAPE) {
+          onEscapeKey(event as unknown as Event);
+        }
+      },
+      [onEscapeKey]
+    );
+
+    const onClickOutside = useCallback(
+      (event: Event) => {
+        if (
+          buttonRef.current &&
+          !buttonRef.current.contains(event.target as Node)
+        ) {
+          closePopover();
+        }
+      },
+      [closePopover]
+    );
+
+    const positionPopover = useCallback(
+      (allowEnforcePosition: boolean) => {
+        const buttonElement = buttonRef.current;
+        const panelElement = panelElementRef.current;
+        if (buttonElement == null || panelElement == null) return;
+
+        const offset = offsetProp != null ? offsetProp : hasArrow ? 0 : 4;
+        let position = getPopoverPositionFromAnchorPosition(anchorPosition);
+        let forcePosition;
+
+        if (allowEnforcePosition && isOpen && openPosition != null) {
+          position = openPosition;
+          forcePosition = true;
+        }
+
+        const {
+          top,
+          left,
+          position: foundPosition,
+          arrow,
+        } = findPopoverPosition({
+          container,
+          position,
+          forcePosition,
+          align: getPopoverAlignFromAnchorPosition(anchorPosition),
+          anchor: buttonElement,
+          popover: panelElement,
+          offset: attachToAnchor ? offset : hasArrow ? 16 + offset : 8 + offset,
+          arrowConfig: hasArrow
+            ? { arrowWidth: 16, arrowBuffer: 10, borderRadius: 12 }
+            : { arrowWidth: 0, arrowBuffer: 0 },
+          returnBoundingBox: attachToAnchor,
+          allowCrossAxis: repositionToCrossAxis,
+          buffer,
+        });
+
+        const zIndex =
+          zIndexProp == null
+            ? getElementZIndex(buttonElement, panelElement) + 2000
+            : zIndexProp;
+        const nextArrowPosition: EuiPopoverPosition = foundPosition;
+
+        onPositionChange?.(nextArrowPosition);
+        setPopoverPanelStyles({ ...panelStyle, top, left, zIndex });
+        setArrowStyles(!attachToAnchor && hasArrow ? arrow : undefined);
+        setArrowPosition(nextArrowPosition);
+        setOpenPosition(foundPosition);
+      },
+      [
+        anchorPosition,
+        attachToAnchor,
+        buffer,
+        container,
+        hasArrow,
+        isOpen,
+        offsetProp,
+        onPositionChange,
+        openPosition,
+        panelStyle,
+        repositionToCrossAxis,
+        zIndexProp,
+      ]
+    );
+
+    const positionPopoverFixed = useCallback(
+      () => positionPopover(true),
+      [positionPopover]
+    );
+    const positionPopoverFluid = useCallback(
+      () => positionPopover(false),
+      [positionPopover]
+    );
+
+    useImperativeHandle(ref, () => ({ positionPopoverFluid }), [
+      positionPopoverFluid,
+    ]);
+
+    const positionPopoverFixedRef = useLatest(positionPopoverFixed);
+    const positionPopoverFluidRef = useLatest(positionPopoverFluid);
+    const repositionOnScrollPropRef = useLatest(repositionOnScroll);
+    const componentDefaultsRef = useLatest(componentDefaults.EuiPopover);
+
+    const repositionOnScrollCallback = useCallback(
+      () => positionPopoverFixedRef.current?.(),
+      [positionPopoverFixedRef]
+    );
+    const repositionOnScrollManager = useMemo(
+      () =>
+        createRepositionOnScroll(() => ({
+          repositionOnScroll: repositionOnScrollPropRef.current ?? undefined,
+          componentDefaults: componentDefaultsRef.current ?? undefined,
+          repositionFn: repositionOnScrollCallback,
+        })),
+      [
+        componentDefaultsRef,
+        repositionOnScrollCallback,
+        repositionOnScrollPropRef,
+      ]
+    );
+
+    const resizeCallback = useCallback(
+      () => positionPopoverFluidRef.current?.(),
+      [positionPopoverFluidRef]
+    );
+
+    const setPanelElement = useCallback(
+      (node: HTMLElement | null) => {
+        panelElementRef.current = node;
+
+        if (node == null) {
+          setPopoverPanelStyles(DEFAULT_POPOVER_STYLES);
+          setArrowStyles(undefined);
+          setArrowPosition(null);
+          setOpenPosition(null);
+        } else {
+          positionPopoverFluidRef.current?.();
+        }
+      },
+      [positionPopoverFluidRef]
+    );
+
+    const panelRefs = useMemo(
+      () => [setPanelElement, panelRefProp],
+      [panelRefProp, setPanelElement]
+    );
+    const setPanelRef = useCombinedRefs<HTMLDivElement | null>(panelRefs);
+    const popoverRefs = useMemo(
+      () => [buttonRef, popoverRefProp],
+      [popoverRefProp]
+    );
+    const setPopoverRef = useCombinedRefs<HTMLDivElement | null>(popoverRefs);
+
+    const updateTriggerButtonAriaAttributes = useCallback(
+      (toggleButton: FocusableElement | undefined) => {
+        if (!toggleButton) return;
+
+        const tag = toggleButton.tagName?.toLowerCase();
+        const role = toggleButton.getAttribute('role')?.toLowerCase();
+        const isButtonLike = tag === 'button' || role === 'button';
+        if (!isButtonLike) return;
+
+        toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+        if (isOpen) {
+          toggleButton.setAttribute('aria-controls', panelId);
+        } else {
+          toggleButton.removeAttribute('aria-controls');
+        }
+      },
+      [isOpen, panelId]
+    );
+
+    const onMutation = useCallback(
+      (records: MutationRecord[]) => {
+        const waitDuration = getWaitDuration(records);
+        const repositionPopover = positionPopoverFixedRef.current;
+        if (!repositionPopover) return;
+
+        repositionPopover();
+        performOnFrame(waitDuration, repositionPopover);
+      },
+      [positionPopoverFixedRef]
+    );
+
+    useLayoutEffect(() => {
+      setSuppressingPopover(false);
+    }, []);
+
+    useLayoutEffect(() => {
+      updateTriggerButtonAriaAttributes(getFocusableToggleButton());
+    }, [getFocusableToggleButton, updateTriggerButtonAriaAttributes]);
+
+    useLayoutEffect(() => {
+      if (isOpen && !suppressingPopover) {
+        clearTimeout(strandedFocusTimeout.current);
+        clearTimeout(closingTransitionTimeout.current);
+        positionPopoverFixedRef.current?.();
+        focusTrapPubSub.publish();
+      }
+    }, [isOpen, positionPopoverFixedRef, suppressingPopover]);
+
+    const previousPositioningProps = useRef({
+      anchorPosition,
+      buffer,
+      offset: offsetProp,
+      panelPaddingSize,
+    });
+
+    useLayoutEffect(() => {
+      const previous = previousPositioningProps.current;
+      previousPositioningProps.current = {
+        anchorPosition,
+        buffer,
+        offset: offsetProp,
+        panelPaddingSize,
+      };
+
+      if (
+        isOpen &&
+        (previous.anchorPosition !== anchorPosition ||
+          previous.buffer !== buffer ||
+          previous.offset !== offsetProp ||
+          previous.panelPaddingSize !== panelPaddingSize)
+      ) {
+        positionPopoverFluidRef.current?.();
+      }
+    }, [
+      anchorPosition,
+      buffer,
+      isOpen,
+      offsetProp,
+      panelPaddingSize,
+      positionPopoverFluidRef,
+    ]);
+
+    useEffect(() => {
+      if (!isClosing) return;
+
+      closingTransitionTimeout.current = window.setTimeout(() => {
+        setIsClosing(false);
+        focusTrapPubSub.publish();
+      }, closingTransitionTime);
+
+      return () => clearTimeout(closingTransitionTimeout.current);
+    }, [isClosing]);
+
+    useEffect(() => {
+      if (!isOpen) return;
+
+      window.addEventListener('resize', resizeCallback);
+      return () => window.removeEventListener('resize', resizeCallback);
+    }, [isOpen, resizeCallback]);
+
+    useEffect(() => {
+      repositionOnScrollManager.subscribe();
+      return () => {
+        repositionOnScrollManager.cleanup();
+        clearTimeout(strandedFocusTimeout.current);
+        clearTimeout(closingTransitionTimeout.current);
+        focusTrapPubSub.publish();
+      };
+    }, [repositionOnScrollManager]);
+
+    useEffect(() => {
+      repositionOnScrollManager.update();
+    }, [
+      componentDefaults.EuiPopover,
+      repositionOnScroll,
+      repositionOnScrollManager,
+    ]);
+
+    const tabIndexProp = panelProps?.tabIndex ?? tabIndexPropFromProps;
     const styles = euiPopoverStyles();
     const popoverStyles = [styles.euiPopover, { display, label: display }];
     const classes = classNames(
       'euiPopover',
-      {
-        'euiPopover-isOpen': isOpen,
-      },
+      { 'euiPopover-isOpen': isOpen },
       className
     );
-
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
-
-    if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
+    if (!suppressingPopover && (isOpen || isClosing)) {
       let tabIndex = tabIndexProp;
       let initialFocus = initialFocusProp;
       let ariaDescribedby;
@@ -688,7 +639,7 @@ export class EuiPopover extends Component<Props, State> {
         tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
         if (!initialFocus) {
-          initialFocus = () => this.panel!;
+          initialFocus = () => panelElementRef.current!;
         }
       } else {
         ariaLive = ariaLiveProp ?? 'assertive';
@@ -696,11 +647,10 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus || popoverScreenReaderText) {
-        ariaDescribedby = this.descriptionId;
-
+        ariaDescribedby = descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p id={this.descriptionId}>
+            <p id={descriptionId}>
               {ownFocus && (
                 <EuiI18n
                   token="euiPopover.screenReaderAnnouncement"
@@ -713,26 +663,24 @@ export class EuiPopover extends Component<Props, State> {
         );
       }
 
-      const returnFocus = isOpen ? returnFocusConfig : false;
-
       panel = (
         <EuiPortal {...(insert && { insert })}>
           <EuiFocusTrap
             clickOutsideDisables={true}
-            onClickOutside={this.onClickOutside}
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
+            onClickOutside={onClickOutside}
+            returnFocus={isOpen ? returnFocusConfig : false}
             initialFocus={initialFocus}
-            onEscapeKey={this.onEscapeKey}
-            disabled={!ownFocus || !isOpen || this.state.isClosing}
+            onEscapeKey={onEscapeKey}
+            disabled={!ownFocus || !isOpen || isClosing}
             {...focusTrapProps}
           >
             <EuiButtonResetProvider>
               <EuiPopoverPanel
-                id={this.panelId}
+                id={panelId}
                 {...(panelProps as EuiPopoverPanelProps)}
-                panelRef={this.panelRef}
+                panelRef={setPanelRef}
                 isOpen={isOpen}
-                position={this.state.arrowPosition}
+                position={arrowPosition}
                 isAttached={attachToAnchor}
                 className={classNames(panelClassName, panelProps?.className)}
                 hasShadow={false}
@@ -745,25 +693,22 @@ export class EuiPopover extends Component<Props, State> {
                 aria-labelledby={ariaLabelledBy}
                 aria-modal={panelAriaModal}
                 aria-describedby={ariaDescribedby}
-                style={this.state.popoverStyles}
+                style={popoverPanelStyles}
               >
-                {showArrow && this.state.arrowPosition && (
-                  <EuiPopoverArrow
-                    position={this.state.arrowPosition}
-                    style={this.state.arrowStyles}
-                  >
+                {showArrow && arrowPosition && (
+                  <EuiPopoverArrow position={arrowPosition} style={arrowStyles}>
                     {arrowChildren}
                   </EuiPopoverArrow>
                 )}
                 {focusTrapScreenReaderText}
                 <EuiMutationObserver
                   observerOptions={{
-                    attributes: true, // element attribute changes
-                    childList: true, // added/removed elements
-                    characterData: true, // text changes
-                    subtree: true, // watch all child elements
+                    attributes: true,
+                    childList: true,
+                    characterData: true,
+                    subtree: true,
                   }}
-                  onMutation={this.onMutation}
+                  onMutation={onMutation}
                 >
                   {(mutationRef) => <div ref={mutationRef}>{children}</div>}
                 </EuiMutationObserver>
@@ -774,35 +719,27 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    // react-focus-on and related do not register outside click detection
-    // when disabled, so we still need to conditionally check for that ourselves
-    if (ownFocus) {
-      return (
-        <div
-          css={popoverStyles}
-          className={classes}
-          ref={this.popoverRef}
-          {...rest}
-        >
-          {button instanceof HTMLElement ? null : button}
-          {panel}
-        </div>
-      );
-    } else {
-      return (
-        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
-          <div
-            css={popoverStyles}
-            className={classes}
-            ref={this.popoverRef}
-            onKeyDown={this.onKeyDown}
-            {...rest}
-          >
-            {button instanceof HTMLElement ? null : button}
-            {panel}
-          </div>
-        </EuiOutsideClickDetector>
-      );
-    }
+    const content = (
+      <div
+        css={popoverStyles}
+        className={classes}
+        ref={setPopoverRef}
+        {...(!ownFocus && { onKeyDown })}
+        {...rest}
+      >
+        {button instanceof HTMLElement ? null : button}
+        {panel}
+      </div>
+    );
+
+    return ownFocus ? (
+      content
+    ) : (
+      <EuiOutsideClickDetector onOutsideClick={closePopover}>
+        {content}
+      </EuiOutsideClickDetector>
+    );
   }
-}
+);
+
+EuiPopover.displayName = 'EuiPopover';
