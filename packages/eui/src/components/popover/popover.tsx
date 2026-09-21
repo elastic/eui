@@ -25,7 +25,6 @@ import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 
 import {
   keys,
-  getTransitionTimings,
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
@@ -273,17 +272,13 @@ const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-i
 export type Props = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
 
 interface State {
-  prevProps: {
-    isOpen?: boolean;
-  };
+  prevIsOpen?: boolean;
   suppressingPopover?: boolean;
   isClosing: boolean;
-  isOpening: boolean;
   popoverStyles: CSSProperties;
   arrowStyles?: CSSProperties;
   arrowPosition: EuiPopoverArrowPositions | null;
   openPosition: any; // What should this be?
-  isOpenStable: boolean;
 }
 
 type PropsWithDefaults = Props & {
@@ -316,31 +311,16 @@ export class EuiPopover extends Component<Props, State> {
     nextProps: Props,
     prevState: State
   ): Partial<State> | null {
-    if (prevState.prevProps.isOpen && !nextProps.isOpen) {
-      return {
-        prevProps: {
-          isOpen: nextProps.isOpen,
-        },
-        isClosing: true,
-        isOpening: false,
-      };
-    }
+    if (prevState.prevIsOpen === nextProps.isOpen) return null;
 
-    if (prevState.prevProps.isOpen !== nextProps.isOpen) {
-      return {
-        prevProps: {
-          isOpen: nextProps.isOpen,
-        },
-      };
-    }
-
-    return null;
+    return {
+      prevIsOpen: nextProps.isOpen,
+      isClosing: prevState.prevIsOpen === true && !nextProps.isOpen,
+    };
   }
 
-  private repositionTimeout: number | undefined;
   private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
-  private closingTransitionAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private idGenerator = htmlIdGenerator('euiPopover');
@@ -351,17 +331,13 @@ export class EuiPopover extends Component<Props, State> {
     super(props);
 
     this.state = {
-      prevProps: {
-        isOpen: props.isOpen,
-      },
+      prevIsOpen: props.isOpen,
       suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
-      isOpening: false,
       popoverStyles: DEFAULT_POPOVER_STYLES,
       arrowStyles: {},
       arrowPosition: null,
       openPosition: null, // once a stable position has been found, keep the contents on that side
-      isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
     };
 
     this.repositionOnScroll = createRepositionOnScroll(() => ({
@@ -436,43 +412,9 @@ export class EuiPopover extends Component<Props, State> {
   onOpenPopover = () => {
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
-    if (this.closingTransitionAnimationFrame) {
-      cancelAnimationFrame(this.closingTransitionAnimationFrame);
-    }
-    // We need to set this state a beat after the render takes place, so that the CSS
-    // transition can take effect.
-    this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
-      this.setState({
-        isOpening: true,
-        isClosing: false,
-      });
-    });
 
-    // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
-    const { durationMatch, delayMatch } = Array.prototype.slice
-      .call(this.panel ? [this.panel, ...Array.from(this.panel.children)] : [])
-      .reduce(
-        ({ durationMatch, delayMatch }, element) => {
-          const transitionTimings = getTransitionTimings(element);
-
-          return {
-            durationMatch: Math.max(
-              durationMatch,
-              transitionTimings.durationMatch
-            ),
-            delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
-          };
-        },
-        { durationMatch: 0, delayMatch: 0 }
-      );
-
-    clearTimeout(this.repositionTimeout);
-    this.repositionTimeout = window.setTimeout(() => {
-      this.setState({ isOpenStable: true }, () => {
-        this.positionPopoverFixed();
-        focusTrapPubSub.publish();
-      });
-    }, durationMatch + delayMatch);
+    this.positionPopoverFixed();
+    focusTrapPubSub.publish();
   };
 
   /**
@@ -504,7 +446,7 @@ export class EuiPopover extends Component<Props, State> {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
       // stop suppressing and start opening
-      this.setState({ suppressingPopover: false, isOpening: true }, () => {
+      this.setState({ suppressingPopover: false }, () => {
         this.onOpenPopover();
       });
     }
@@ -560,10 +502,8 @@ export class EuiPopover extends Component<Props, State> {
 
   componentWillUnmount() {
     this.repositionOnScroll.cleanup();
-    clearTimeout(this.repositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
-    cancelAnimationFrame(this.closingTransitionAnimationFrame!);
     focusTrapPubSub.publish();
   }
 
@@ -584,7 +524,7 @@ export class EuiPopover extends Component<Props, State> {
     let forcePosition = undefined;
     if (
       allowEnforcePosition &&
-      this.state.isOpenStable &&
+      this.props.isOpen &&
       this.state.openPosition != null
     ) {
       position = this.state.openPosition;
@@ -665,7 +605,6 @@ export class EuiPopover extends Component<Props, State> {
         arrowStyles: {},
         arrowPosition: null,
         openPosition: null,
-        isOpenStable: false,
       });
       window.removeEventListener('resize', this.positionPopoverFluid);
     } else {
@@ -723,7 +662,7 @@ export class EuiPopover extends Component<Props, State> {
     const classes = classNames(
       'euiPopover',
       {
-        'euiPopover-isOpen': this.state.isOpening,
+        'euiPopover-isOpen': isOpen,
       },
       className
     );
@@ -774,7 +713,7 @@ export class EuiPopover extends Component<Props, State> {
         );
       }
 
-      const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
+      const returnFocus = isOpen ? returnFocusConfig : false;
 
       panel = (
         <EuiPortal {...(insert && { insert })}>
@@ -784,9 +723,7 @@ export class EuiPopover extends Component<Props, State> {
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onEscapeKey={this.onEscapeKey}
-            disabled={
-              !ownFocus || !this.state.isOpenStable || this.state.isClosing
-            }
+            disabled={!ownFocus || !isOpen || this.state.isClosing}
             {...focusTrapProps}
           >
             <EuiButtonResetProvider>
@@ -794,7 +731,7 @@ export class EuiPopover extends Component<Props, State> {
                 id={this.panelId}
                 {...(panelProps as EuiPopoverPanelProps)}
                 panelRef={this.panelRef}
-                isOpen={this.state.isOpening}
+                isOpen={isOpen}
                 position={this.state.arrowPosition}
                 isAttached={attachToAnchor}
                 className={classNames(panelClassName, panelProps?.className)}
@@ -808,13 +745,7 @@ export class EuiPopover extends Component<Props, State> {
                 aria-labelledby={ariaLabelledBy}
                 aria-modal={panelAriaModal}
                 aria-describedby={ariaDescribedby}
-                style={{
-                  ...this.state.popoverStyles,
-                  // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
-                  willChange: !this.state.isOpenStable
-                    ? 'transform, opacity'
-                    : undefined,
-                }}
+                style={this.state.popoverStyles}
               >
                 {showArrow && this.state.arrowPosition && (
                   <EuiPopoverArrow

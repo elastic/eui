@@ -240,6 +240,23 @@ describe('EuiPopover', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      test('opens synchronously', () => {
+        const props = {
+          ...requiredProps,
+          id: 'synchronous',
+          button: <button />,
+          closePopover: () => {},
+        };
+        const { container, rerender } = render(<EuiPopover {...props} />);
+
+        rerender(<EuiPopover {...props} isOpen />);
+
+        expect(container.querySelector('[data-popover-panel]')).toHaveAttribute(
+          'data-popover-open',
+          'true'
+        );
+      });
     });
 
     describe('ownFocus', () => {
@@ -485,39 +502,19 @@ describe('EuiPopover', () => {
   });
 
   describe('listener cleanup', () => {
-    let rafSpy: jest.SpyInstance;
-    let cafSpy: jest.SpyInstance;
-    const activeAnimationFrames = new Map<number, number>();
-    let nextAnimationFrameId = 0;
+    let clearTimeoutSpy: jest.SpyInstance;
 
     beforeAll(() => {
       jest.useFakeTimers();
-      jest.spyOn(window, 'clearTimeout');
-      rafSpy = jest
-        .spyOn(window, 'requestAnimationFrame')
-        .mockImplementation((fn) => {
-          const animationFrameId = nextAnimationFrameId++;
-          activeAnimationFrames.set(animationFrameId, setTimeout(fn));
-          return animationFrameId;
-        });
-      cafSpy = jest
-        .spyOn(window, 'cancelAnimationFrame')
-        .mockImplementation((id: number) => {
-          const timeoutId = activeAnimationFrames.get(id);
-          if (timeoutId) {
-            clearTimeout(timeoutId);
-            activeAnimationFrames.delete(id);
-          }
-        });
+      clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
     });
 
     afterAll(() => {
       jest.useRealTimers();
-      rafSpy.mockRestore();
-      cafSpy.mockRestore();
+      clearTimeoutSpy.mockRestore();
     });
 
-    it('cleans up timeouts and rAFs on unmount', () => {
+    it('cleans up timeouts on unmount', () => {
       const { rerender, unmount } = render(
         <EuiPopover
           {...requiredProps}
@@ -541,14 +538,11 @@ describe('EuiPopover', () => {
         />
       );
 
-      expect(window.clearTimeout).toHaveBeenCalledTimes(3);
-      expect(rafSpy).toHaveBeenCalledTimes(1);
-      expect(activeAnimationFrames.size).toEqual(1);
+      expect(window.clearTimeout).toHaveBeenCalledTimes(2);
 
+      const clearTimeoutCallCount = clearTimeoutSpy.mock.calls.length;
       unmount();
-      expect(window.clearTimeout).toHaveBeenCalledTimes(8);
-      expect(cafSpy).toHaveBeenCalledTimes(1);
-      expect(activeAnimationFrames.size).toEqual(0);
+      expect(clearTimeoutSpy).toHaveBeenCalledTimes(clearTimeoutCallCount + 3);
 
       // EUI's jest configuration throws an error if there are any console.error calls, like
       // React's setState on an unmounted component warning
@@ -557,8 +551,7 @@ describe('EuiPopover', () => {
         console.error('This is a test');
       }).toThrow();
 
-      // execute any pending timeouts or animation frame callbacks
-      // and validate the timeout/rAF clearing done by EuiPopover
+      // execute any pending timeouts and validate the cleanup done by EuiPopover
       actAdvanceTimersByTime(300);
     });
   });
