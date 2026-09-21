@@ -13,6 +13,7 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { euiFormLabelAppendStyles } from './form_label_append.styles';
+import { EuiText } from '../../text';
 
 export type EuiFormLabelAppendProps = CommonProps &
   HTMLAttributes<HTMLSpanElement> & {
@@ -27,7 +28,7 @@ export const EuiFormLabelAppend: FunctionComponent<EuiFormLabelAppendProps> = ({
   const styles = useEuiMemoizedStyles(euiFormLabelAppendStyles);
 
   if (typeof children !== 'string') {
-    return <>{children}</>;
+    return <>{<EuiText size="xs">{children}</EuiText>}</>;
   }
 
   const classes = classNames('euiFormLabelAppend', className);
