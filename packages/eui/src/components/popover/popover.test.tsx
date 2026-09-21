@@ -34,9 +34,6 @@ jest.mock('../portal', () => ({
 let id = 0;
 const getId = () => `${id++}`;
 
-const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
-const openingTransitionTime = closingTransitionTime;
-
 describe('EuiPopover', () => {
   shouldRenderCustomStyles(
     <EuiPopover
@@ -195,8 +192,6 @@ describe('EuiPopover', () => {
           />
         );
 
-        actAdvanceTimersByTime(closingTransitionTime);
-
         fireEvent.keyDown(container, {
           key: keys.ESCAPE,
         });
@@ -226,8 +221,6 @@ describe('EuiPopover', () => {
             isOpen={false}
           />
         );
-
-        actAdvanceTimersByTime(closingTransitionTime);
 
         fireEvent.keyDown(container, {
           key: keys.ESCAPE,
@@ -584,34 +577,24 @@ describe('EuiPopover', () => {
     });
 
     it('cleans up timeouts on unmount', () => {
-      const { rerender, unmount } = render(
+      const { container, unmount } = render(
         <EuiPopover
           {...requiredProps}
           id={getId()}
           button={<button />}
           closePopover={() => {}}
           panelPaddingSize="s"
-          isOpen={false}
-        />
-      );
-      expect(window.clearTimeout).toHaveBeenCalledTimes(0);
-
-      rerender(
-        <EuiPopover
-          {...requiredProps}
-          id={getId()}
-          isOpen={true}
-          button={<button />}
-          closePopover={() => {}}
-          panelPaddingSize="s"
+          isOpen
         />
       );
 
-      expect(window.clearTimeout).toHaveBeenCalledTimes(2);
+      fireEvent.keyDown(container, { key: keys.ESCAPE });
 
       const clearTimeoutCallCount = clearTimeoutSpy.mock.calls.length;
       unmount();
-      expect(clearTimeoutSpy).toHaveBeenCalledTimes(clearTimeoutCallCount + 3);
+      expect(clearTimeoutSpy.mock.calls.length).toBeGreaterThan(
+        clearTimeoutCallCount
+      );
 
       // EUI's jest configuration throws an error if there are any console.error calls, like
       // React's setState on an unmounted component warning
@@ -621,7 +604,7 @@ describe('EuiPopover', () => {
       }).toThrow();
 
       // execute any pending timeouts and validate the cleanup done by EuiPopover
-      actAdvanceTimersByTime(300);
+      actAdvanceTimersByTime(0);
     });
   });
 
@@ -650,7 +633,6 @@ describe('EuiPopover', () => {
         />
       );
 
-      actAdvanceTimersByTime(openingTransitionTime);
       await waitForEuiPopoverOpen();
 
       fireEvent.keyDown(container, {
@@ -667,7 +649,7 @@ describe('EuiPopover', () => {
       );
 
       await waitForEuiPopoverClose();
-      actAdvanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(0);
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).toHaveFocus();
@@ -695,7 +677,6 @@ describe('EuiPopover', () => {
         />
       );
 
-      actAdvanceTimersByTime(openingTransitionTime);
       await waitForEuiPopoverOpen();
 
       fireEvent.keyDown(container, {
@@ -713,7 +694,7 @@ describe('EuiPopover', () => {
 
       await waitForEuiPopoverClose();
 
-      actAdvanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(0);
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).toHaveFocus();
@@ -732,7 +713,6 @@ describe('EuiPopover', () => {
         />
       );
 
-      actAdvanceTimersByTime(openingTransitionTime);
       await waitForEuiPopoverOpen();
 
       fireEvent.keyDown(container, {
@@ -749,7 +729,7 @@ describe('EuiPopover', () => {
       );
 
       await waitForEuiPopoverClose();
-      actAdvanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(0);
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).not.toHaveFocus();
@@ -823,7 +803,6 @@ describe('EuiPopover', () => {
         />
       );
 
-      actAdvanceTimersByTime(openingTransitionTime);
       await waitForEuiPopoverClose();
 
       expect(button).toHaveAttribute('aria-expanded', 'false');

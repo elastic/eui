@@ -304,7 +304,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
+      class="euiPopover euiPopover-isOpen euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
     >
       <input
         type="hidden"
@@ -386,11 +386,12 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
       <div
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-isAttached-bottom"
+        data-popover-open="true"
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 2px; left: 0px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+        style="top: 2px; left: 0px; z-index: 2000; inline-size: 0px;"
       >
         <div>
           <div
