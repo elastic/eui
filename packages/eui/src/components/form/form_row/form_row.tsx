@@ -78,9 +78,9 @@ type EuiFormRowCommonProps = CommonProps & {
   /**
    * Adds an extra node to the right of the form label without
    * being contained inside the form label. Good for things
-   * like documentation links.
+   * like required fields or documentation links.
    */
-  labelAppend?: any;
+  labelAppend?: String | ReactNode;
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
