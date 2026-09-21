@@ -225,6 +225,39 @@ describe('EuiFlyout standalone (non-managed) push padding', () => {
     _resetFlyoutManagerStore();
   });
 
+  it('clears the global offset variable from a root whose flyouts have all closed while another root still pushes', () => {
+    // Each React root sits under its own `EuiProvider`, which renders its own `:root` block for
+    // the global offset variable (Kibana's app root vs. a system flyout root). When the first
+    // root's flyout closes it must not keep a stale copy of the other root's offset.
+    const Root = ({ open }: { open: boolean }) =>
+      open ? (
+        <EuiFlyout
+          onClose={() => {}}
+          type="push"
+          pushMinBreakpoint="xs"
+          aria-label="Root flyout"
+        />
+      ) : null;
+    const pushOffsetVarRules = () =>
+      Array.from(document.querySelectorAll('style'))
+        .map((style) => style.textContent ?? '')
+        .filter((text) => text.includes('--euiPushFlyoutOffsetInlineEnd'));
+
+    const a = render(<Root open />);
+    const b = render(<Root open />);
+    expect(pushOffsetVarRules()).toHaveLength(2);
+
+    a.rerender(<Root open={false} />);
+    expect(bodyOffset()).toBe(PUSH_OFFSET);
+
+    b.rerender(<Root open={false} />);
+    expect(bodyOffset()).toBe('');
+    expect(pushOffsetVarRules()).toEqual([]);
+
+    a.unmount();
+    b.unmount();
+  });
+
   it('scopes the offset to a shared container element, not document.body', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);

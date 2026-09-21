@@ -298,10 +298,20 @@ const resolveContainer = (
  * inline padding is captured when the first contribution arrives and restored when the last one
  * leaves. See https://github.com/elastic/eui/issues/9788.
  */
+type EuiSetGlobalCSSVariables = ReturnType<
+  typeof useEuiThemeCSSVariables
+>['setGlobalCSSVariables'];
+
 interface EuiPushPaddingContribution {
   width: number;
   /** Whether the contributing flyout is part of a flyout manager session. */
   managed: boolean;
+  /**
+   * The contributing flyout's `EuiProvider` setter for the global push-offset CSS variable, when
+   * it sets one (no `container`). Flyouts in separate React roots sit under separate providers,
+   * each rendering its own `:root` variables, so every contributor's provider has to be updated.
+   */
+  setGlobalCSSVariables?: EuiSetGlobalCSSVariables;
 }
 
 interface EuiPushPaddingSideState {
@@ -697,11 +707,25 @@ export const EuiFlyoutComponent = forwardRef(
           ? `${total}px`
           : state.base;
         if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
+          const cssVars = {
             [euiSideCssVarKey(managerSide)]: hasContributions
               ? `${total}px`
               : null,
+          };
+          const setters = new Set<EuiSetGlobalCSSVariables>();
+          state.contributions.forEach((contribution) => {
+            if (contribution.setGlobalCSSVariables) {
+              setters.add(contribution.setGlobalCSSVariables);
+            }
           });
+          // Once this flyout no longer contributes, clear the variable from its own provider too,
+          // otherwise a root whose flyouts have all closed keeps a stale `:root` offset.
+          if (!setters.has(setGlobalCSSVariables)) {
+            setGlobalCSSVariables({
+              [euiSideCssVarKey(managerSide)]: null,
+            });
+          }
+          setters.forEach((set) => set(cssVars));
         }
         if (isInManagedContext) {
           flyoutManagerRef.current?.setPushPadding(
@@ -735,6 +759,9 @@ export const EuiFlyoutComponent = forwardRef(
       state.contributions.set(flyoutId, {
         width: paddingWidth,
         managed: isInManagedContext,
+        setGlobalCSSVariables: shouldSetGlobalPushVars
+          ? setGlobalCSSVariables
+          : undefined,
       });
       apply();
 
