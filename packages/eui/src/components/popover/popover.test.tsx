@@ -9,6 +9,7 @@
 import React, { ReactNode } from 'react';
 
 import { act, fireEvent } from '@testing-library/react';
+
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import {
@@ -16,14 +17,11 @@ import {
   waitForEuiPopoverClose,
   waitForEuiPopoverOpen,
 } from '../../test/rtl';
-
 import { keys } from '../../services';
-
 import {
   EuiPopover,
-  getPopoverPositionFromAnchorPosition,
-  getPopoverAlignFromAnchorPosition,
-  PopoverAnchorPosition,
+  type EuiPopoverProps,
+  type EuiPopoverRef,
 } from './popover';
 
 const actAdvanceTimersByTime = (time: number) =>
@@ -89,6 +87,77 @@ describe('EuiPopover', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('exposes the positioning API through its ref', () => {
+    const ref = React.createRef<EuiPopoverRef>();
+    const props: EuiPopoverProps = {
+      ...requiredProps,
+      button: <button />,
+      closePopover: () => {},
+    };
+
+    render(<EuiPopover {...props} ref={ref} />);
+
+    expect(ref.current?.positionPopoverFluid).toEqual(expect.any(Function));
+  });
+
+  it('updates consumer refs when ref props change', () => {
+    const firstPopoverRef = jest.fn();
+    const nextPopoverRef = jest.fn();
+    const firstPanelRef = jest.fn();
+    const nextPanelRef = jest.fn();
+    const props = {
+      ...requiredProps,
+      button: <button />,
+      closePopover: () => {},
+      isOpen: true,
+    };
+    const { rerender } = render(
+      <EuiPopover
+        {...props}
+        popoverRef={firstPopoverRef}
+        panelRef={firstPanelRef}
+      />
+    );
+
+    expect(firstPopoverRef).toHaveBeenLastCalledWith(expect.any(HTMLElement));
+    expect(firstPanelRef).toHaveBeenLastCalledWith(expect.any(HTMLElement));
+
+    rerender(
+      <EuiPopover
+        {...props}
+        popoverRef={nextPopoverRef}
+        panelRef={nextPanelRef}
+      />
+    );
+
+    expect(firstPopoverRef).toHaveBeenLastCalledWith(null);
+    expect(firstPanelRef).toHaveBeenLastCalledWith(null);
+    expect(nextPopoverRef).toHaveBeenLastCalledWith(expect.any(HTMLElement));
+    expect(nextPanelRef).toHaveBeenLastCalledWith(expect.any(HTMLElement));
+  });
+
+  it('repositions on resize in StrictMode', () => {
+    const onPositionChange = jest.fn();
+    render(
+      <React.StrictMode>
+        <EuiPopover
+          {...requiredProps}
+          button={<button />}
+          closePopover={() => {}}
+          isOpen
+          onPositionChange={onPositionChange}
+        />
+      </React.StrictMode>
+    );
+    const initialCallCount = onPositionChange.mock.calls.length;
+
+    act(() => window.dispatchEvent(new Event('resize')));
+
+    expect(onPositionChange.mock.calls.length).toBeGreaterThan(
+      initialCallCount
+    );
   });
 
   describe('props', () => {
@@ -760,37 +829,5 @@ describe('EuiPopover', () => {
       expect(button).toHaveAttribute('aria-expanded', 'false');
       expect(button).not.toHaveAttribute('aria-controls');
     });
-  });
-});
-
-describe('getPopoverPositionFromAnchorPosition', () => {
-  it('maps the first anchor position in a camel-cased string to a popover position', () => {
-    expect(getPopoverPositionFromAnchorPosition('upLeft')).toBe('top');
-    expect(getPopoverPositionFromAnchorPosition('rightDown')).toBe('right');
-    expect(getPopoverPositionFromAnchorPosition('downRight')).toBe('bottom');
-    expect(getPopoverPositionFromAnchorPosition('leftUp')).toBe('left');
-  });
-
-  it('returns undefined when an invalid position is extracted', () => {
-    expect(
-      getPopoverPositionFromAnchorPosition(
-        'nowhereNohow' as PopoverAnchorPosition
-      )
-    ).toBeUndefined();
-  });
-});
-
-describe('getPopoverAlignFromAnchorPosition', () => {
-  it('maps the second anchor position in a camel-cased string to a popover position', () => {
-    expect(getPopoverAlignFromAnchorPosition('upLeft')).toBe('left');
-    expect(getPopoverAlignFromAnchorPosition('rightDown')).toBe('bottom');
-    expect(getPopoverAlignFromAnchorPosition('downRight')).toBe('right');
-    expect(getPopoverAlignFromAnchorPosition('leftUp')).toBe('top');
-  });
-
-  it('returns undefined when an invalid position is extracted', () => {
-    expect(
-      getPopoverAlignFromAnchorPosition('nowhereNohow' as PopoverAnchorPosition)
-    ).toBeUndefined();
   });
 });

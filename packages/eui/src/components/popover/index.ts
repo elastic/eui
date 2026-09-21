@@ -8,7 +8,11 @@
 
 export type { EuiInputPopoverProps } from './input_popover';
 export { EuiInputPopover } from './input_popover';
-export type { EuiPopoverProps, PopoverAnchorPosition } from './popover';
+export type {
+  EuiPopoverProps,
+  EuiPopoverRef,
+  PopoverAnchorPosition,
+} from './popover';
 export { EuiPopover } from './popover';
 export type { EuiPopoverTitleProps } from './popover_title';
 export { EuiPopoverTitle } from './popover_title';

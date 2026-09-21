@@ -392,6 +392,7 @@ export const AppendPrepend: Story = {
                     onClick={action('onClick')}
                   />
                 }
+                closePopover={() => {}}
               />
             }
           />
