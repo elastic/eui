@@ -90,6 +90,22 @@ describe('EuiPopover', () => {
     expect(ref.current?.positionPopoverFluid).toEqual(expect.any(Function));
   });
 
+  it('keeps the imperative ref stable when positioning changes', () => {
+    const ref = React.createRef<EuiPopoverRef>();
+    const props: EuiPopoverProps = {
+      ...requiredProps,
+      button: <button />,
+      closePopover: () => {},
+      isOpen: true,
+    };
+    const { rerender } = render(<EuiPopover {...props} ref={ref} />);
+    const initialRef = ref.current;
+
+    rerender(<EuiPopover {...props} offset={8} ref={ref} />);
+
+    expect(ref.current).toBe(initialRef);
+  });
+
   it('updates consumer refs when ref props change', () => {
     const firstPopoverRef = jest.fn();
     const nextPopoverRef = jest.fn();
@@ -174,7 +190,9 @@ describe('EuiPopover', () => {
     );
     const initialCallCount = onPositionChange.mock.calls.length;
 
-    act(() => window.dispatchEvent(new Event('resize')));
+    act(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
 
     expect(onPositionChange.mock.calls.length).toBeGreaterThan(
       initialCallCount

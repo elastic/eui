@@ -62,6 +62,9 @@ import { EuiButtonResetProvider } from '../button/button_context';
 import { EuiPaddingSize } from '../../global_styling';
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
 
+const useIsomorphicLayoutEffect =
+  typeof document === 'undefined' ? useEffect : useLayoutEffect;
+
 export { popoverAnchorPosition };
 export type { PopoverAnchorPosition };
 
@@ -433,14 +436,20 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       [positionPopover]
     );
 
-    useImperativeHandle(ref, () => ({ positionPopoverFluid }), [
-      positionPopoverFluid,
-    ]);
-
     const positionPopoverFixedRef = useLatest(positionPopoverFixed);
     const positionPopoverFluidRef = useLatest(positionPopoverFluid);
     const repositionOnScrollPropRef = useLatest(repositionOnScroll);
     const componentDefaultsRef = useLatest(componentDefaults.EuiPopover);
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        positionPopoverFluid: () => {
+          positionPopoverFluidRef.current?.();
+        },
+      }),
+      [positionPopoverFluidRef]
+    );
 
     const repositionOnScrollCallback = useCallback(
       () => positionPopoverFixedRef.current?.(),
@@ -524,15 +533,15 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       [positionPopoverFixedRef]
     );
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       setSuppressingPopover(false);
     }, []);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       updateTriggerButtonAriaAttributes(getFocusableToggleButton());
     }, [getFocusableToggleButton, updateTriggerButtonAriaAttributes]);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (isOpen && !suppressingPopover) {
         clearStrandedFocusTimeout();
         positionPopoverFixedRef.current?.();
@@ -545,7 +554,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       suppressingPopover,
     ]);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (previousIsOpen.current && !isOpen) {
         focusTrapPubSub.publish();
       }
@@ -568,7 +577,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       zIndex: zIndexProp,
     });
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       const previous = previousPositioningProps.current;
       previousPositioningProps.current = {
         anchorPosition,
