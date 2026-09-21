@@ -166,19 +166,11 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     (event: KeyboardEvent<HTMLDivElement>) => {
       panelPropsOnKeyDown?.(event);
 
-      if (event.key === keys.TAB) {
-        if (disableFocusTrap) {
-          if (!ownFocus) {
-            handleTabNavigation(event);
-          }
-        } else {
-          if (!ownFocus) {
-            handleTabNavigation(event);
-          }
-        }
+      if (event.key === keys.TAB && !ownFocus) {
+        handleTabNavigation(event);
       }
     },
-    [disableFocusTrap, ownFocus, panelPropsOnKeyDown, handleTabNavigation]
+    [ownFocus, panelPropsOnKeyDown, handleTabNavigation]
   );
 
   /**
