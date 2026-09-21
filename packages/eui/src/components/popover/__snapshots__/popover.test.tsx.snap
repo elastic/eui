@@ -74,10 +74,10 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -90,7 +90,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -105,7 +105,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -125,10 +125,10 @@ exports[`EuiPopover props buffer 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -141,7 +141,7 @@ exports[`EuiPopover props buffer 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -156,7 +156,7 @@ exports[`EuiPopover props buffer 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -176,10 +176,10 @@ exports[`EuiPopover props buffer for all sides 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -192,7 +192,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -207,7 +207,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -235,14 +235,18 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
     <button
       aria-controls="euiPopover_generated-id_panelId"
       aria-expanded="true"
+      aria-hidden="true"
+      data-focus-on-hidden="true"
     />
     <div
+      aria-hidden="true"
       data-focus-guard="true"
+      data-focus-on-hidden="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -255,7 +259,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -268,9 +272,11 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
       </div>
     </div>
     <div
+      aria-hidden="true"
       data-focus-guard="true"
+      data-focus-on-hidden="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -302,10 +308,10 @@ exports[`EuiPopover props isOpen renders true 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -318,7 +324,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -333,7 +339,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -353,10 +359,10 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -369,7 +375,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -384,7 +390,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -418,7 +424,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
       >
         <div />
       </div>
@@ -446,10 +452,10 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -462,7 +468,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -477,7 +483,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -497,10 +503,10 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -513,7 +519,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -528,7 +534,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -548,10 +554,10 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
     <div
-      data-focus-lock-disabled="disabled"
+      data-focus-lock-disabled="false"
     >
       <div
         aria-describedby="euiPopover_generated-id_descriptionId"
@@ -565,7 +571,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         data-test-subj="test subject string"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -580,7 +586,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>
 </div>
@@ -615,7 +621,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 12px; left: 0px; z-index: 2000;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
