@@ -90,7 +90,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -141,7 +141,7 @@ exports[`EuiPopover props buffer 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -192,7 +192,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -259,7 +259,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -324,7 +324,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -375,7 +375,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -424,7 +424,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
       >
         <div />
       </div>
@@ -468,7 +468,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -519,7 +519,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -571,7 +571,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         data-test-subj="test subject string"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -621,7 +621,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
       >
         <p
           class="emotion-euiScreenReaderOnly"

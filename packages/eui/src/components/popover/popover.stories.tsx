@@ -123,7 +123,6 @@ const StatefulPopover = ({
   children,
   closePopover,
   isOpen: _isOpen,
-  hasArrow,
   renderContent,
   'data-test-subj': dataTestSubj,
   ...rest
@@ -135,19 +134,6 @@ const StatefulPopover = ({
   useEffect(() => {
     setOpen(_isOpen);
   }, [_isOpen]);
-
-  // ensure hasArrow control updates are applied without manually closing the popover
-  useEffect(() => {
-    if (_isOpen) {
-      setOpen(false);
-
-      setTimeout(() => {
-        setOpen(_isOpen);
-      }, 25);
-    }
-    // we don't want to trigger this on _isOpen change
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasArrow]);
 
   const handleOnClose = () => {
     setOpen(false);
@@ -172,7 +158,6 @@ const StatefulPopover = ({
         isOpen={isOpen}
         button={trigger}
         closePopover={handleOnClose}
-        hasArrow={hasArrow}
         {...rest}
       >
         {renderContent?.(handleOnClose) ?? children}
