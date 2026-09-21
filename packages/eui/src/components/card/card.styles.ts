@@ -11,7 +11,6 @@ import { css } from '@emotion/react';
 import {
   euiPaddingSize,
   logicalCSS,
-  logicals,
   logicalTextAlignCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -155,13 +154,15 @@ export const euiCardStyles = (
         /* Ensure the parent is only as tall as the image */
         ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
 
-        /* Match border radius, minus border width */
+        /* Match border radius */
         ${logicalCSS(
           'border-top-left-radius',
-          `calc(${euiTheme.border.radius.panel} - ${euiTheme.border.width.thin})`
+          `calc(${euiTheme.border.radius.panel})`
         )}
-        ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
-          .panel} - ${euiTheme.border.width.thin});
+        ${logicalCSS(
+          'border-top-right-radius',
+          `calc(${euiTheme.border.radius.panel})`
+        )};
 
         img {
           ${logicalCSS('width', '100%')}/* 4 */
