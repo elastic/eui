@@ -18,6 +18,11 @@ bucket_directory="$(buildkite-agent meta-data get bucket_directory)"
 copy_to_root_directory="$(buildkite-agent meta-data get copy_to_root_directory)"
 GCLOUD_BUCKET_FULL="$(buildkite-agent meta-data get gcloud_bucket_full)"
 
+if [[ -n "${BUILDKITE_PULL_REQUEST:-}" && "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
+  export PR_PREVIEW=true
+  echo "PR preview: disabling search engine indexing"
+fi
+
 GCLOUD_CP_ARGS=(
   --cache-control="public, max-age=1800, must-revalidate"
   --recursive
