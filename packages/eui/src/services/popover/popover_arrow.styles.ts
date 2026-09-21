@@ -32,7 +32,7 @@ export const _popoverArrowStyles = (
   );
 
   const arrowBorderRadius = mathWithUnits(
-    euiTheme.border.radius.small,
+    euiTheme.border.radius.inline,
     (x) => x / 2
   );
 

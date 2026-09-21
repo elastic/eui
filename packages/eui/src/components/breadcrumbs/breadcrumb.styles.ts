@@ -25,6 +25,10 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isCollapsed: css`
       flex-shrink: 0;
+
+      .euiLink {
+        text-decoration: none;
+      }
     `,
 
     // Types

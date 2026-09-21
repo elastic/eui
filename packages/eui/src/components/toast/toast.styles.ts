@@ -14,7 +14,10 @@ import {
 } from '@elastic/eui-theme-common';
 
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
-import { preventForcedColors } from '../../global_styling/functions/high_contrast';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
@@ -23,22 +26,37 @@ const TEXT_MAX_WIDTH = 1200;
 const CONTAINER_NAME = 'euiToast';
 const CQC_BREAKPOINT_NARROWEST = '(max-width: 320px)';
 
+const decorClipSize = '9px'; // the height of the decor clip that includes the border rounding
+const decorClipPath = `polygon(0 0, 100% 0, 100% ${decorClipSize}, 0 ${decorClipSize})`;
 const euiToastAnimation = keyframes`
   from {
-    transform: scaleX(1);
+    clip-path: ${decorClipPath};
   }
   to {
-    transform: scaleX(0);
+    clip-path: polygon(0 0, 0% 0, 0% ${decorClipSize}, 0 ${decorClipSize});
+  }
+`;
+
+const euiToastAnimationRTL = keyframes`
+  from {
+    clip-path: ${decorClipPath};
+  }
+  to {
+    clip-path: polygon(100% 0, 100% 0, 100% ${decorClipSize}, 100% ${decorClipSize});
   }
 `;
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
+  const borderRadius = euiTheme.border.radius.panel;
+  const decorLevel = Number(euiTheme.levels.content) + 1;
   const highlightSize = mathWithUnits(
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
-    (x, y) => x + y
+    (x, y) => (highContrastMode ? x * 2 + y : x + y)
   );
+  const highlightOffset = euiTheme.border.width.thin;
+  const highlightSizeOffset = mathWithUnits([highlightOffset], (x) => x * 2);
   const paddingTop = mathWithUnits(
     [euiTheme.size.base, highlightSize],
     (x, y) => x + y
@@ -48,13 +66,35 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x + y
   );
 
+  const decorCommonStyles = `
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    block-size: 100%;
+    inline-size: 100%;
+    border-radius: ${euiTheme.border.radius.panel};
+    border-end-start-radius: 0;
+    border-block-start: ${highlightSize} solid;
+    clip-path: ${decorClipPath};
+    pointer-events: none;
+
+    ${highContrastModeStyles(euiThemeContext, {
+      preferred: `
+        inset-block-start: -${highlightOffset};
+      inset-inline-start: -${highlightOffset};
+      inline-size: calc(100% + ${highlightSizeOffset});
+      `,
+    })}
+  `;
+
   return {
     // Base
     euiToast: css`
       container-type: inline-size;
       container-name: ${CONTAINER_NAME};
       position: relative;
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${borderRadius};
       ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
       ${logicalCSS('padding-top', paddingTop)}
@@ -68,36 +108,27 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     decor: css`
       position: absolute;
-      overflow: hidden;
-      inset-block-start: 0;
-      inset-inline: 0;
-      ${logicalCSS('height', highlightSize)}
-      border-start-start-radius: ${euiTheme.border.radius.medium};
-      border-start-end-radius: ${euiTheme.border.radius.medium};
-      background-color: var(--euiToastTypeBackgroundColor);
-
+      inset: 0;
+      pointer-events: none;
       ${preventForcedColors(euiThemeContext)}
 
-      &::before {
-        content: '';
-        position: absolute;
-        /* ensure highlight is on top of panel border */
-        z-index: ${euiTheme.levels.content};
-        inset-block-start: 0;
-        inset-inline: 0;
-        ${logicalCSS('height', '100%')}
-        border-radius: 1px;
-        border-end-start-radius: 0;
-        background-color: var(--euiToastTypeColor);
-        pointer-events: none;
-        ${preventForcedColors(euiThemeContext)}
-        transform-origin: left center;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          --euiToastTypeBackgroundColor: ${euiTheme.colors.borderBasePlain};
+        `,
+      })}
 
-        [dir='rtl'] & {
-          transform-origin: right center;
-          border-end-start-radius: 1px;
-          border-end-end-radius: 0;
-        }
+      &::before {
+        ${decorCommonStyles}
+        z-index: ${decorLevel};
+        border-block-start-color: var(--euiToastTypeBackgroundColor);
+      }
+
+      &::after {
+        ${decorCommonStyles}
+        /* ensure highlight is on top of panel border */
+        z-index: ${decorLevel + 1};
+        border-block-start-color: var(--euiToastTypeColor);
       }
     `,
     // handles content + actions layout
@@ -161,10 +192,16 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasAnimation: css`
-      &::before {
+      &::after {
         ${euiCanAnimate} {
+          will-change: clip-path;
           animation: ${euiToastAnimation} var(--euiToastAnimationMs) linear
             forwards;
+
+          [dir='rtl'] & {
+            animation: ${euiToastAnimationRTL} var(--euiToastAnimationMs) linear
+              forwards;
+          }
         }
       }
     `,
