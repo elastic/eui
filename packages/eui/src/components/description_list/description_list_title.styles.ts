@@ -29,7 +29,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     column: css``,
     inline: css`
       display: inline;
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${colorMode === 'DARK'
         ? euiTheme.colors.lightShade

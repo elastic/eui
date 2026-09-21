@@ -106,6 +106,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
       paddingSize: type === 'custom' ? 'none' : 's',
       borderRadius: type === 'regular' ? 'none' : 'm',
       hasShadow: false, // `plain` color needs this
+      hasBorder: false,
     }),
     [type, eventColor]
   );
