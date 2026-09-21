@@ -41,10 +41,19 @@ const openingTransitionTime = closingTransitionTime;
 
 describe('EuiPopover', () => {
   shouldRenderCustomStyles(
-    <EuiPopover button={<button />} closePopover={() => {}} />
+    <EuiPopover
+      {...requiredProps}
+      button={<button />}
+      closePopover={() => {}}
+    />
   );
   shouldRenderCustomStyles(
-    <EuiPopover button={<button />} closePopover={() => {}} isOpen />,
+    <EuiPopover
+      {...requiredProps}
+      button={<button />}
+      closePopover={() => {}}
+      isOpen
+    />,
     {
       childProps: ['panelProps'],
       skip: {
@@ -69,7 +78,12 @@ describe('EuiPopover', () => {
 
   test('children is rendered', () => {
     const { container } = render(
-      <EuiPopover id={getId()} button={<button />} closePopover={() => {}}>
+      <EuiPopover
+        {...requiredProps}
+        id={getId()}
+        button={<button />}
+        closePopover={() => {}}
+      >
         Children
       </EuiPopover>
     );
@@ -82,6 +96,7 @@ describe('EuiPopover', () => {
       test('is rendered', () => {
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             display="block"
             button={<button />}
@@ -103,6 +118,7 @@ describe('EuiPopover', () => {
 
         const { container, rerender } = render(
           <EuiPopover
+            {...requiredProps}
             id={id}
             button={<button />}
             closePopover={closePopoverHandler}
@@ -118,6 +134,7 @@ describe('EuiPopover', () => {
 
         rerender(
           <EuiPopover
+            {...requiredProps}
             id={id}
             button={<button />}
             closePopover={closePopoverHandler}
@@ -133,6 +150,7 @@ describe('EuiPopover', () => {
 
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={closePopoverHandler}
@@ -154,6 +172,7 @@ describe('EuiPopover', () => {
       test('defaults to centerDown', () => {
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -166,6 +185,7 @@ describe('EuiPopover', () => {
       test('leftCenter is rendered', () => {
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -179,6 +199,7 @@ describe('EuiPopover', () => {
       test('downRight is rendered', () => {
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -194,6 +215,7 @@ describe('EuiPopover', () => {
       test('defaults to false', () => {
         const { container } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -207,6 +229,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -224,6 +247,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               isOpen
               button={<button />}
@@ -239,6 +263,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               ownFocus={false}
               id={getId()}
               isOpen
@@ -256,6 +281,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -274,6 +300,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -292,6 +319,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -310,6 +338,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -331,6 +360,7 @@ describe('EuiPopover', () => {
       test('with arrow', () => {
         const { baseElement } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -348,6 +378,7 @@ describe('EuiPopover', () => {
       test('without arrow', () => {
         const { baseElement } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -365,6 +396,7 @@ describe('EuiPopover', () => {
       test('with attachToAnchor', () => {
         const { baseElement } = render(
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -385,6 +417,7 @@ describe('EuiPopover', () => {
         const { container } = render(
           <div>
             <EuiPopover
+              {...requiredProps}
               id={getId()}
               button={<button />}
               closePopover={() => {}}
@@ -402,6 +435,7 @@ describe('EuiPopover', () => {
       const { container } = render(
         <div>
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -418,6 +452,7 @@ describe('EuiPopover', () => {
       const { container } = render(
         <div>
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -434,6 +469,7 @@ describe('EuiPopover', () => {
       const { container } = render(
         <div>
           <EuiPopover
+            {...requiredProps}
             id={getId()}
             button={<button />}
             closePopover={() => {}}
@@ -484,6 +520,7 @@ describe('EuiPopover', () => {
     it('cleans up timeouts and rAFs on unmount', () => {
       const { rerender, unmount } = render(
         <EuiPopover
+          {...requiredProps}
           id={getId()}
           button={<button />}
           closePopover={() => {}}
@@ -495,6 +532,7 @@ describe('EuiPopover', () => {
 
       rerender(
         <EuiPopover
+          {...requiredProps}
           id={getId()}
           isOpen={true}
           button={<button />}
@@ -664,7 +702,11 @@ describe('EuiPopover', () => {
       const buttonTrigger = <button data-test-subj="buttonTrigger" />;
 
       const { getByTestSubject } = render(
-        <EuiPopover button={buttonTrigger} closePopover={() => {}} />
+        <EuiPopover
+          {...requiredProps}
+          button={buttonTrigger}
+          closePopover={() => {}}
+        />
       );
 
       const button = getByTestSubject('buttonTrigger');
@@ -677,6 +719,7 @@ describe('EuiPopover', () => {
 
       const { getByTestSubject } = render(
         <EuiPopover
+          {...requiredProps}
           button={inputTrigger}
           isOpen={false}
           closePopover={() => {}}
@@ -693,6 +736,7 @@ describe('EuiPopover', () => {
 
       const { rerender, getByTestSubject } = render(
         <EuiPopover
+          {...requiredProps}
           isOpen={true}
           button={buttonTrigger}
           closePopover={() => {}}
@@ -710,6 +754,7 @@ describe('EuiPopover', () => {
       // Close the popover
       rerender(
         <EuiPopover
+          {...requiredProps}
           isOpen={false}
           button={buttonTrigger}
           closePopover={() => {}}
