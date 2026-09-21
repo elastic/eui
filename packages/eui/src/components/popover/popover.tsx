@@ -663,12 +663,14 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
-      const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
-        ? panelProps['aria-modal']
-        : 'true';
-      const panelRole = panelProps?.hasOwnProperty('role')
-        ? panelProps.role
-        : 'dialog';
+      const panelAriaModal =
+        panelProps && Object.hasOwn(panelProps, 'aria-modal')
+          ? panelProps['aria-modal']
+          : 'true';
+      const panelRole =
+        panelProps && Object.hasOwn(panelProps, 'role')
+          ? panelProps.role
+          : 'dialog';
 
       if (ownFocus || panelAriaModal !== 'true') {
         tabIndex = tabIndexProp ?? 0;

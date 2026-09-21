@@ -418,6 +418,26 @@ describe('EuiPopover', () => {
 
         expect(baseElement).toMatchSnapshot();
       });
+
+      it('supports objects without an inherited hasOwnProperty method', () => {
+        const panelProps = Object.assign(Object.create(null), {
+          'aria-label': 'Popover panel',
+          role: 'menu',
+        });
+        const { baseElement } = render(
+          <EuiPopover
+            {...requiredProps}
+            button={<button />}
+            closePopover={() => {}}
+            panelProps={panelProps}
+            isOpen
+          />
+        );
+
+        expect(
+          baseElement.querySelector('[data-popover-panel]')
+        ).toHaveAttribute('role', 'menu');
+      });
     });
 
     describe('focusTrapProps', () => {
