@@ -26,6 +26,7 @@ import { EuiSpacer } from '../../spacer';
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
+import { EuiFormLabelAppend } from '../form_label_append';
 import { useFormContext } from '../eui_form_context';
 import { euiFormRowStyles } from './form_row.styles';
 
@@ -245,8 +246,14 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
           >
             {label}
           </EuiFormLabel>
-          {labelAppend && ' '}
-          {labelAppend}
+          {labelAppend && (
+            <>
+              {' '}
+              <EuiFormLabelAppend className="euiFormRow__labelAppend">
+                {labelAppend}
+              </EuiFormLabelAppend>
+            </>
+          )}
         </div>
       ) : (
         hasEmptyLabelSpace && (
