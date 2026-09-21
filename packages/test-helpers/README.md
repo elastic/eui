@@ -64,6 +64,15 @@ their own version at runtime.
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
 
+### Selectors
+
+Each Component Object's stable selectors are exported too (`EuiComboBoxSelectors`,
+`EuiDataGridSelectors`, and so on). `*_SELECTOR` values are CSS class selectors,
+`*_TEST_SUBJ` values are `data-test-subj` names EUI sets itself. Prefer the
+Component Objects. The selectors exist for tooling, such as lint rules that flag
+hand-written EUI selectors in consumer tests, and for the rare scoping need an
+object does not cover yet.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for design principles, directory structure, and how to add new Component Objects.

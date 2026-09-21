@@ -103,10 +103,13 @@ function walkJsxChild(
   visit: (node: TSESTree.Node) => void,
   sourceCode: TSESLint.SourceCode | undefined,
   visited: Set<string>,
-  shouldSkip: ((el: TSESTree.JSXElement) => boolean) | undefined
+  shouldSkip: ((el: TSESTree.JSXElement) => boolean) | undefined,
+  getChildren:
+    | ((el: TSESTree.JSXElement) => TSESTree.Node[] | undefined)
+    | undefined
 ): void {
   const walk = (n: TSESTree.Node) =>
-    walkJsxChild(n, visit, sourceCode, visited, shouldSkip);
+    walkJsxChild(n, visit, sourceCode, visited, shouldSkip, getChildren);
 
   switch (node.type) {
     case 'JSXElement': {
@@ -131,7 +134,7 @@ function walkJsxChild(
         }
       }
       if (shouldSkip?.(node)) {
-        node.children.forEach(walk);
+        (getChildren?.(node) ?? node.children).forEach(walk);
         return;
       }
       visit(node);
@@ -222,6 +225,10 @@ function walkJsxChild(
  * element itself and recurses into its children instead. Use this to make
  * layout wrappers or non-interactive shells transparent to the visitor.
  *
+ * `options.getChildren` - when provided, returns the rendered content roots to
+ * recurse into for JSX elements skipped by `shouldSkip`. Defaults to
+ * `node.children`.
+ *
  * `visit` is called for leaf nodes: JSXElement, JSXText, Literal,
  * TemplateLiteral, MemberExpression.
  */
@@ -231,6 +238,7 @@ export function walkJsxChildren(
   options: {
     sourceCode?: TSESLint.SourceCode;
     shouldSkip?: (el: TSESTree.JSXElement) => boolean;
+    getChildren?: (el: TSESTree.JSXElement) => TSESTree.Node[] | undefined;
   } = {}
 ): void {
   walkJsxChild(
@@ -238,6 +246,7 @@ export function walkJsxChildren(
     visit,
     options.sourceCode,
     new Set<string>(),
-    options.shouldSkip
+    options.shouldSkip,
+    options.getChildren
   );
 }

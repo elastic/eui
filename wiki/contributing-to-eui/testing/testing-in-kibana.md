@@ -1,10 +1,16 @@
 # Testing EUI features in Kibana ahead of time
 
+> [!TIP]
+> **Which page?**
+> - **This page** - run EUI in local Kibana or stage a `.tgz` Kibana draft PR.
+> - **[Nightly and Regression](https://github.com/elastic/eui-private/wiki/Nightly-and-Regression-testing-pipeline)** (internal) - Kibana CI against an npm snapshot.
+> - **[Upgrading EUI in Kibana](https://github.com/elastic/eui-private/wiki/Upgrading-EUI-in-Kibana)** (internal) - ship an official EUI release into Kibana.
+
 Most PRs should be tested in Kibana before merging into EUI main. Test a built version of EUI against Kibana and consider [staging the integration](#staging-integrations) to ensure the upgrade process is as painless as possible.
 
 ## Staging Integrations
 
-Use this **Staging Workflow** to assist the EUI team integrating your PR into Kibana during an upgrade. Useful when:
+Use this **Staging Workflow** to assist the EUI maintainers in integrating your PR into Kibana during an upgrade. Useful when:
 - PR involves breaking changes
 - You want to apply a new feature in Kibana to ensure adoption
 - Existing styles may need to be tweaked
@@ -12,7 +18,8 @@ Use this **Staging Workflow** to assist the EUI team integrating your PR into Ki
 
 1.  **Stage in Kibana:** Create a **Draft PR** in the Kibana repo. Use this to handle test failures, style tweaks, or API migrations.
 2.  **Reference in EUI PR:** Link the Kibana Draft in your EUI PR description.
-3.  **Final Upgrade:** The upgrader will cherry-pick your staged commits into the final Kibana version bump PR.
+3.  **Prep commits:** Add each staged commit URL under `# @next` in [`packages/release-cli/kibana-prep-commits`](https://github.com/elastic/eui/blob/main/packages/release-cli/kibana-prep-commits) (one URL per line). Nightly and the upgrade PR cherry-pick that list.
+4.  **Final Upgrade:** The upgrader will cherry-pick your staged commits into the final Kibana version bump PR.
 
 ### Example: Staging Workflow
 
@@ -20,7 +27,8 @@ Use this **Staging Workflow** to assist the EUI team integrating your PR into Ki
 | :--- | :--- | :--- |
 | **1. Staging** | [Kibana Draft \#248805](https://github.com/elastic/kibana/pull/248805) | Create commits for API updates, style adjustments, and test fixes. |
 | **2. Source** | [EUI PR \#9308](https://github.com/elastic/eui/pull/9308) | Note: *"All commits in the linked PR should be included in the upgrade."* |
-| **3. Final** | [Kibana Upgrade \#253286](https://github.com/elastic/kibana/pull/253286) | Upgrader cherry-picks staged commits into the version bump. |
+| **3. Prep list** | [`kibana-prep-commits`](https://github.com/elastic/eui/blob/main/packages/release-cli/kibana-prep-commits) | Add each staged commit URL under `# @next`. |
+| **4. Final** | [Kibana Upgrade \#253286](https://github.com/elastic/kibana/pull/253286) | Upgrader cherry-picks staged commits into the version bump. |
 
 ### Recommended Commit Structure
 
@@ -33,7 +41,7 @@ Keep staged commits atomic to simplify cherry-picking for the upgrader:
 
 ## Testing local EUI in local Kibana
 
-`yarn link` doesn't work between EUI and Kibana - EUI is on Yarn v4 and Kibana isn't, and their package manager (and its version) is not interoperable with ours. Instead, you have two options depending on your goal:
+`yarn link` doesn't work between EUI and Kibana - EUI is on Yarn v4 and Kibana is on pnpm, and their package managers are not interoperable. Instead, you have two options depending on your goal:
 
 - For **local development** against a Kibana instance running on your machine, use the [`yarn watch --kibana`](../developing/developing-in-kibana.md) watcher.
 - For **CI validation** — opening a Kibana draft PR so Kibana's CI runs against your EUI changes — use `yarn build-pack` (described below) to produce a `.tgz` that you commit to the Kibana PR.
@@ -74,12 +82,12 @@ This will create the required `.tgz` file(s) with the changes in your `eui` (and
 Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
 
 ```bash
-yarn kbn bootstrap --no-validate && yarn start
+pnpm kbn bootstrap --no-validate && pnpm start
 ```
 
 * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
   * Change the name of the `.tgz` after subsequent `yarn build-pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for the package manager to recognize new changes to the package.
-* Running Kibana with `yarn start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
+* Running Kibana with `pnpm start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
 
 ### Deploying local EUI in Kibana
 
@@ -101,7 +109,7 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 
 ```
 
-- Run `yarn kbn bootstrap` (requires pnpm on PATH — see [Developing EUI locally in Kibana](../developing/developing-in-kibana.md))
+- Run `pnpm kbn bootstrap` (requires pnpm on PATH — see [Developing EUI locally in Kibana](../developing/developing-in-kibana.md))
 - Commit the changed files (`package.json`, `pnpm-lock.yaml` and EUI `.tgz` package) and push your branch
 - Create a Kibana (draft) pull request
   - Kibana CI will run tests on this instance with your custom EUI package

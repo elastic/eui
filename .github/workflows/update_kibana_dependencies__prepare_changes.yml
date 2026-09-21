@@ -245,19 +245,20 @@ jobs:
           set -euo pipefail
           # pnpm freezes the lockfile on GHA. We just bumped package.json,
           # so the lockfile must change.
-          for attempt in 1 2 3 4 5; do
+          # Retry and wait until snapshot versions are on npm.
+          for attempt in $(seq 1 20); do
             if pnpm install --no-frozen-lockfile; then
               break
             fi
-            if [[ "$attempt" -eq 5 ]]; then
+            if [[ "$attempt" -eq 20 ]]; then
               exit 1
             fi
-            echo "install failed (attempt ${attempt}/5); retrying in 60s"
-            sleep 60
+            echo "install failed (attempt ${attempt}/20); retrying in 30s"
+            sleep 30
           done
           node scripts/deduplicate_dependencies
           pnpm install --no-frozen-lockfile --lockfile-only
-          yarn kbn bootstrap --force-install
+          pnpm kbn bootstrap --force-install
       - name: Sync EUI i18n tokens
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -279,6 +280,7 @@ jobs:
           # Handles strings, interpolation, plurals, and token additions, changes,
           # or removals. Preserves Kibana comments and translator descriptions.
           # Unknown function forms fail instead of creating an incomplete mapping.
+          translations_dir=x-pack/platform/plugins/private/translations/translations
           sync_script="$RUNNER_TEMP/sync_kibana_i18n.mjs"
           gh api "repos/elastic/eui/contents/scripts/sync_kibana_i18n.mjs?ref=${EUI_WORKFLOW_REF}" \
             --header "Accept: application/vnd.github.raw" \
@@ -291,6 +293,7 @@ jobs:
           if ! git diff --quiet "$mapping_file"; then
             node scripts/eslint --fix "$mapping_file"
             node scripts/jest --config "$MAPPING_DIR/jest.config.js" --updateSnapshot
+            node scripts/i18n_check --fix
           fi
 
           # Catch missing snapshot tokens before committing.
@@ -298,11 +301,12 @@ jobs:
 
           git add "$mapping_file"
           git add "$MAPPING_DIR/src/__snapshots__"
+          git add "$translations_dir"
           git diff --cached --quiet || git commit -m "chore: sync EUI i18n tokens"
       - name: Commit changed files
         # language=bash
         run: |
-          git add package.json pnpm-lock.yaml src/platform/packages/private/kbn-ui-shared-deps-npm/version_dependencies.txt
+          git add package.json pnpm-lock.yaml
           git commit -m "chore: update dependencies"
       - name: Push branch to elastic/eui-kibana
         env:
