@@ -185,6 +185,9 @@ export const PanelPaddingSize: Story = {
     isOpen: true,
   },
   render: (args) => <StatefulPopover {...args} />,
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible('.euiPopover');
+  }),
 };
 
 export const HighContrastMode: Story = {
