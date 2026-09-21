@@ -32,7 +32,33 @@ This guide explains how to develop EUI library locally while seeing changes refl
 
 ## Usage
 
-### In Kibana
+### Start Kibana from EUI
+
+In the **EUI** repository root, run the Kibana processes in one terminal:
+
+```bash
+yarn watch-kibana
+```
+
+This starts the EUI watcher, then starts Elasticsearch, the `@kbn/ui-shared-deps-npm` watcher, and the Kibana server after the initial EUI build. Press `Ctrl+C` to stop all four.
+
+If your Kibana directory is located elsewhere:
+
+```bash
+yarn watch-kibana --kibana-dir=/path/to/kibana
+# Shortcut:
+yarn watch-kibana -d /path/to/kibana
+```
+
+To watch only one EUI package:
+
+```bash
+yarn watch-kibana --package @elastic/eui
+# Shortcut:
+yarn watch-kibana -p @elastic/eui
+```
+
+### Run Kibana processes separately
 
 In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and start Elasticsearch:
 

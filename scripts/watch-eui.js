@@ -327,4 +327,5 @@ const IGNORED_FILES = [
   console.log(
     chalk.bold.green('\nWatcher is ready and listening for changes...')
   );
+  if (process.send) process.send('ready');
 })();
