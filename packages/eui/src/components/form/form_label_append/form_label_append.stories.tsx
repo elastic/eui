@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { hideStorybookControls } from '../../../../.storybook/utils';
