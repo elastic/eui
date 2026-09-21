@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, FunctionComponent, useMemo } from 'react';
+import React, { createContext, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { EuiPaddingSize } from '../../../global_styling';
 import { EuiPanel, _EuiPanelDivlike } from '../../panel/panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
@@ -43,31 +43,26 @@ export const EuiPopoverPanel: FunctionComponent<
   const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();
-  const cssStyles = useMemo(() => {
-    const styles = euiPopoverPanelStyles(euiThemeContext);
-    const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
-      'LIGHT' | 'DARK'
-    >;
-
-    const sharedStyles = [
-      styles.euiPopover__panel,
-      styles[colorMode],
-      isOpen && styles.isOpen,
-    ];
-
-    if (isAttached) {
-      return [
+  const styles = useEuiMemoizedStyles(euiPopoverPanelStyles);
+  const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
+    'LIGHT' | 'DARK'
+  >;
+  const sharedStyles = [
+    styles.euiPopover__panel,
+    styles[colorMode],
+    isOpen && styles.isOpen,
+  ];
+  const cssStyles = isAttached
+    ? [
         ...sharedStyles,
         styles.isAttached.isAttached,
         position && styles.isAttached[position],
+      ]
+    : [
+        ...sharedStyles,
+        styles.hasTransform.hasTransform,
+        isOpen && position && styles.hasTransform[position],
       ];
-    }
-    return [
-      ...sharedStyles,
-      styles.hasTransform.hasTransform,
-      isOpen && position && styles.hasTransform[position],
-    ];
-  }, [euiThemeContext, isOpen, position, isAttached]);
 
   return (
     <EuiPopoverPanelContext.Provider

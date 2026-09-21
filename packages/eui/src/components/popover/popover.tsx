@@ -35,6 +35,7 @@ import {
   performOnFrame,
   focusTrapPubSub,
   useCombinedRefs,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useLatest,
 } from '../../services';
@@ -646,7 +647,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     ]);
 
     const tabIndexProp = panelProps?.tabIndex ?? tabIndexPropFromProps;
-    const styles = euiPopoverStyles();
+    const styles = useEuiMemoizedStyles(euiPopoverStyles);
     const popoverStyles = [styles.euiPopover, { display, label: display }];
     const classes = classNames(
       'euiPopover',
