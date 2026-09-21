@@ -32,7 +32,7 @@ jobs:
   # Kibana integration chain after publishing.
   trigger_release:
     name: Trigger snapshot release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: >-
       (github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana') &&
       (github.event_name != 'schedule' || github.repository == 'elastic/eui')

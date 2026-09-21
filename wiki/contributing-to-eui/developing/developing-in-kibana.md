@@ -21,7 +21,7 @@ This guide explains how to develop EUI library locally while seeing changes refl
   nvm use
   corepack enable
   corepack prepare pnpm@$(node -pe "require('./package.json').engines.pnpm.replace(/^\D*/, '')") --activate
-  yarn kbn bootstrap
+  pnpm kbn bootstrap
   ```
 - (Optional) EUI and Kibana should be sibling directories for simplest DX:
   ```text
@@ -37,7 +37,7 @@ This guide explains how to develop EUI library locally while seeing changes refl
 In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and start Elasticsearch:
 
 ```bash
-yarn es snapshot --license trial
+pnpm es snapshot --license trial
 ```
 
 Then, run the `@kbn/ui-shared-deps-npm` watcher:
@@ -49,7 +49,7 @@ npx moon run @kbn/ui-shared-deps-npm:watch-webpack
 Finally, run the Kibana server:
 
 ```bash
-yarn start --no-cache
+pnpm start --no-cache
 ```
 
 ### In EUI
@@ -93,8 +93,8 @@ yarn watch -d /path/to/kibana
 These commands will:
 
 1. Watch for changes in the selected package(s).
-2. Compile the changed package(s).
-3. Sync the build artifacts directly into the Kibana directory, by default: `../kibana/node_modules`.
+2. Compile the changed package(s). With `--kibana`, `@elastic/eui` initially compiles `optimize/es` only (Kibana's alias), then incrementally compiles changed files.
+3. Sync the build artifacts into the Kibana directory, by default: `../kibana/node_modules`.
 
 ## How it works
 
@@ -103,12 +103,11 @@ The integration relies on a chain of file watchers and build triggers to propaga
 ### Data flow
 
 1. The script watches `src` directories using `chokidar`.
-2. Changed packages are rebuilt using their respective build commands.
-3. Build artifacts are copied to Kibana's `node_modules` using `fs.cp`.
-4. The script "touches" the `package.json` in the destination to notify Kibana's watcher.
-5. Webpack detects the change and rebuilds `@kbn/ui-shared-deps-npm.dll.js`.
-6. The `@kbn/cli-dev-mode` detects the new DLL and restarts the **Optimizer**.
-7. When the optimizer has rebuilt all plugins, the browser window can be refreshed.
+2. With `--kibana`, `@elastic/eui` runs one complete `build:optimize-es`, then Babel-compiles only changed source files. Changed JSON and SVG files are copied directly.
+3. `@elastic/eui` syncs only changed `optimize/es` files into Kibana's `node_modules` and touches `package.json` once per batch. Theme packages still rebuild and copy their full `files` list.
+4. Webpack detects the change and rebuilds `@kbn/ui-shared-deps-npm.dll.js`.
+5. The `@kbn/cli-dev-mode` detects the new DLL and restarts the **Optimizer**.
+6. When the optimizer has rebuilt all plugins, the browser window can be refreshed.
 
 ### Architecture diagram
 
@@ -141,9 +140,9 @@ Check the terminal output of the EUI watcher. If the `node_modules` propagation 
 
 - **Slow feedback loop?**
 
-The process involves two builds (EUI build + Kibana DLL build) and an Optimizer restart. This can typically take up to 2 minutes.
+With `--kibana`, `@elastic/eui` skips `lib/`, `es/`, types, and the rest of the package build. After the initial `optimize/es` build, only changed files are compiled. Most of the remaining feedback time is Kibana's DLL and optimizer.
 
-To make the EUI build process faster, you can omit generating type declaration file:
+`yarn watch` without `--kibana`, and theme packages, still run a full build. For those, you can omit generating type declaration files:
 
 ```bash
 yarn watch --no-declarations

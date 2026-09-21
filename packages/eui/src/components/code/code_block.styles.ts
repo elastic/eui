@@ -27,6 +27,7 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       max-inline-size: 100%;
       display: block;
       position: relative;
+      border-radius: ${euiTheme.border.radius.control};
       background: ${codeSyntaxVariables.backgroundColor};
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `border: ${euiTheme.border.thin};`,
