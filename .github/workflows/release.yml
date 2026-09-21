@@ -62,10 +62,10 @@ permissions:
 jobs:
   lint_and_unit_tests:
     name: Run lint and unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ !(inputs.type == 'snapshot' && inputs.skip_tests) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.release_ref }}
           persist-credentials: false
@@ -83,10 +83,10 @@ jobs:
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-unit
   cypress_tests:
     name: Run cypress tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ !(inputs.type == 'snapshot' && inputs.skip_tests) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.release_ref }}
           persist-credentials: false
@@ -102,7 +102,7 @@ jobs:
         run: yarn workspaces foreach --all --parallel --topological-dev --exclude @elastic/eui-website --exclude @elastic/eui-monorepo --exclude @elastic/eui-docgen run test-cypress
   release_snapshot:
     name: Create a snapshot release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: |
       always() &&
       inputs.type == 'snapshot' &&
@@ -114,7 +114,7 @@ jobs:
       contents: read
       actions: write # Required to dispatch the Kibana integration chain
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.release_ref }}
           # This is needed for yarn version to work properly, but it increases fetch time.
@@ -215,14 +215,14 @@ jobs:
           gh workflow run update_kibana_dependencies__prepare_changes.yml --repo "$GITHUB_REPOSITORY" "${args[@]}"
   release_official:
     name: Create an official release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: |
       inputs.type == 'official' &&
       needs.lint_and_unit_tests.result == 'success' &&
       needs.cypress_tests.result == 'success'
     needs: [ lint_and_unit_tests, cypress_tests ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.release_ref }}
           # This is needed for yarn version to work properly, but it increases fetch time.

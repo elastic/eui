@@ -8,7 +8,7 @@ jobs:
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
       id-token: write # Required for OIDC (Vault ephemeral token)
