@@ -304,8 +304,6 @@ type EuiSetGlobalCSSVariables = ReturnType<
 
 interface EuiPushPaddingContribution {
   width: number;
-  /** Whether the contributing flyout is part of a flyout manager session. */
-  managed: boolean;
   /**
    * The contributing flyout's `EuiProvider` setter for the global push-offset CSS variable, when
    * it sets one (no `container`). Flyouts in separate React roots sit under separate providers,
@@ -350,12 +348,10 @@ const euiGetPushPaddingSideState = (
 };
 
 const euiMaxContribution = (
-  contributions: Map<string, EuiPushPaddingContribution>,
-  managedOnly: boolean
+  contributions: Map<string, EuiPushPaddingContribution>
 ) => {
   let max = 0;
-  contributions.forEach(({ width, managed }) => {
-    if (managedOnly && !managed) return;
+  contributions.forEach(({ width }) => {
     if (width > max) max = width;
   });
   return max;
@@ -697,41 +693,23 @@ export const EuiFlyoutComponent = forwardRef(
       const styleKey = euiSideStyleKey(managerSide);
       const state = euiGetPushPaddingSideState(paddingTarget, managerSide);
 
-      // Write the offset derived from all current contributions. The inline padding and the
-      // global CSS variable follow the widest pushed flyout on this target; the manager's
-      // `pushPadding` only reflects managed flyouts (it gates overlay scroll locking).
+      // Write the offset derived from all current contributions: the widest pushed flyout on
+      // this target.
       const apply = () => {
-        const total = euiMaxContribution(state.contributions, false);
-        const hasContributions = state.contributions.size > 0;
-        paddingTarget.style[styleKey] = hasContributions
-          ? `${total}px`
-          : state.base;
+        const total = euiMaxContribution(state.contributions);
+        paddingTarget.style[styleKey] =
+          state.contributions.size > 0 ? `${total}px` : state.base;
         if (shouldSetGlobalPushVars) {
-          const cssVars = {
-            [euiSideCssVarKey(managerSide)]: hasContributions
-              ? `${total}px`
-              : null,
-          };
-          const setters = new Set<EuiSetGlobalCSSVariables>();
+          const cssVar = euiSideCssVarKey(managerSide);
+          // Clear this flyout's own provider first so a root whose flyouts have all closed does
+          // not keep a stale `:root` offset; any remaining contributor sharing it re-sets it below.
+          setGlobalCSSVariables({ [cssVar]: null });
           state.contributions.forEach((contribution) => {
-            if (contribution.setGlobalCSSVariables) {
-              setters.add(contribution.setGlobalCSSVariables);
-            }
+            contribution.setGlobalCSSVariables?.({ [cssVar]: `${total}px` });
           });
-          // Once this flyout no longer contributes, clear the variable from its own provider too,
-          // otherwise a root whose flyouts have all closed keeps a stale `:root` offset.
-          if (!setters.has(setGlobalCSSVariables)) {
-            setGlobalCSSVariables({
-              [euiSideCssVarKey(managerSide)]: null,
-            });
-          }
-          setters.forEach((set) => set(cssVars));
         }
         if (isInManagedContext) {
-          flyoutManagerRef.current?.setPushPadding(
-            managerSide,
-            euiMaxContribution(state.contributions, true)
-          );
+          flyoutManagerRef.current?.setPushPadding(managerSide, total);
         }
       };
 
@@ -758,7 +736,6 @@ export const EuiFlyoutComponent = forwardRef(
       }
       state.contributions.set(flyoutId, {
         width: paddingWidth,
-        managed: isInManagedContext,
         setGlobalCSSVariables: shouldSetGlobalPushVars
           ? setGlobalCSSVariables
           : undefined,
