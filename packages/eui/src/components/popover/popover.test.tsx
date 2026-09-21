@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode } from 'react';
+import React, { useState } from 'react';
 
 import { act, fireEvent } from '@testing-library/react';
 
@@ -14,6 +14,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import {
   render,
+  screen,
   waitForEuiPopoverClose,
   waitForEuiPopoverOpen,
 } from '../../test/rtl';
@@ -24,15 +25,7 @@ import {
   type EuiPopoverRef,
 } from './popover';
 
-const actAdvanceTimersByTime = (time: number) =>
-  act(() => jest.advanceTimersByTime(time));
-
-jest.mock('../portal', () => ({
-  EuiPortal: ({ children }: { children: ReactNode }) => children,
-}));
-
-let id = 0;
-const getId = () => `${id++}`;
+const runOnlyPendingTimers = () => act(() => jest.runOnlyPendingTimers());
 
 describe('EuiPopover', () => {
   shouldRenderCustomStyles(
@@ -61,7 +54,6 @@ describe('EuiPopover', () => {
   test('is rendered', () => {
     const { container } = render(
       <EuiPopover
-        id={getId()}
         button={<button />}
         closePopover={() => {}}
         {...requiredProps}
@@ -75,7 +67,6 @@ describe('EuiPopover', () => {
     const { container } = render(
       <EuiPopover
         {...requiredProps}
-        id={getId()}
         button={<button />}
         closePopover={() => {}}
       >
@@ -196,7 +187,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             display="block"
             button={<button />}
             closePopover={() => {}}
@@ -213,12 +203,10 @@ describe('EuiPopover', () => {
 
       it('is called when ESC key is hit and the popover is open', async () => {
         const closePopoverHandler = jest.fn();
-        const id = getId();
 
         const { container, rerender } = render(
           <EuiPopover
             {...requiredProps}
-            id={id}
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
@@ -232,7 +220,6 @@ describe('EuiPopover', () => {
         rerender(
           <EuiPopover
             {...requiredProps}
-            id={id}
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}
@@ -248,7 +235,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen={false}
@@ -268,7 +254,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
           />
@@ -281,7 +266,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             anchorPosition="leftCenter"
@@ -295,7 +279,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             anchorPosition="downRight"
@@ -311,7 +294,6 @@ describe('EuiPopover', () => {
         const { container } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
           />
@@ -321,11 +303,10 @@ describe('EuiPopover', () => {
       });
 
       test('renders true', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               isOpen
@@ -333,7 +314,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
 
       test('opens synchronously', () => {
@@ -343,24 +324,22 @@ describe('EuiPopover', () => {
           button: <button />,
           closePopover: () => {},
         };
-        const { container, rerender } = render(<EuiPopover {...props} />);
+        const { baseElement, rerender } = render(<EuiPopover {...props} />);
 
         rerender(<EuiPopover {...props} isOpen />);
 
-        expect(container.querySelector('[data-popover-panel]')).toHaveAttribute(
-          'data-popover-open',
-          'true'
-        );
+        expect(
+          baseElement.querySelector('[data-popover-panel]')
+        ).toHaveAttribute('data-popover-open', 'true');
       });
     });
 
     describe('ownFocus', () => {
       test('defaults to true', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               isOpen
               button={<button />}
               closePopover={() => {}}
@@ -368,16 +347,15 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
 
       test('renders false', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
               ownFocus={false}
-              id={getId()}
               isOpen
               button={<button />}
               closePopover={() => {}}
@@ -385,16 +363,15 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
     describe('panelClassName', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               panelClassName="test"
@@ -403,17 +380,16 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
 
     describe('panelPaddingSize', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               panelPaddingSize="s"
@@ -422,17 +398,16 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
 
     describe('panelProps', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               panelProps={requiredProps}
@@ -441,17 +416,16 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
 
     describe('focusTrapProps', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               focusTrapProps={{
@@ -464,7 +438,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
 
@@ -473,7 +447,6 @@ describe('EuiPopover', () => {
         const { baseElement } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             offset={10}
@@ -491,7 +464,6 @@ describe('EuiPopover', () => {
         const { baseElement } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             offset={10}
@@ -509,7 +481,6 @@ describe('EuiPopover', () => {
         const { baseElement } = render(
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             offset={10}
@@ -526,11 +497,10 @@ describe('EuiPopover', () => {
 
     describe('arrowChildren', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { baseElement } = render(
           <div>
             <EuiPopover
               {...requiredProps}
-              id={getId()}
               button={<button />}
               closePopover={() => {}}
               arrowChildren={<span />}
@@ -539,16 +509,15 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(baseElement).toMatchSnapshot();
       });
     });
 
     test('buffer', () => {
-      const { container } = render(
+      const { baseElement } = render(
         <div>
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             buffer={0}
@@ -557,15 +526,14 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('buffer for all sides', () => {
-      const { container } = render(
+      const { baseElement } = render(
         <div>
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             buffer={[20, 40, 60, 80]}
@@ -574,15 +542,14 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('popoverScreenReaderText', () => {
-      const { container } = render(
+      const { baseElement } = render(
         <div>
           <EuiPopover
             {...requiredProps}
-            id={getId()}
             button={<button />}
             closePopover={() => {}}
             isOpen
@@ -592,7 +559,7 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
   });
 
@@ -613,7 +580,6 @@ describe('EuiPopover', () => {
       const { container, unmount } = render(
         <EuiPopover
           {...requiredProps}
-          id={getId()}
           button={<button />}
           closePopover={() => {}}
           panelPaddingSize="s"
@@ -637,7 +603,7 @@ describe('EuiPopover', () => {
       }).toThrow();
 
       // execute any pending timeouts and validate the cleanup done by EuiPopover
-      actAdvanceTimersByTime(0);
+      runOnlyPendingTimers();
     });
   });
 
@@ -682,7 +648,7 @@ describe('EuiPopover', () => {
       );
 
       await waitForEuiPopoverClose();
-      actAdvanceTimersByTime(0);
+      runOnlyPendingTimers();
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).toHaveFocus();
@@ -727,7 +693,7 @@ describe('EuiPopover', () => {
 
       await waitForEuiPopoverClose();
 
-      actAdvanceTimersByTime(0);
+      runOnlyPendingTimers();
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).toHaveFocus();
@@ -762,7 +728,7 @@ describe('EuiPopover', () => {
       );
 
       await waitForEuiPopoverClose();
-      actAdvanceTimersByTime(0);
+      runOnlyPendingTimers();
 
       expect(closePopover).toHaveBeenCalled();
       expect(getByTestSubject('toggleButton')).not.toHaveFocus();
@@ -840,6 +806,68 @@ describe('EuiPopover', () => {
 
       expect(button).toHaveAttribute('aria-expanded', 'false');
       expect(button).not.toHaveAttribute('aria-controls');
+    });
+  });
+
+  describe('controlled behavior', () => {
+    const mockPopoverInteraction = jest.fn();
+
+    const MockPopoverComponent = () => {
+      const [isOpen, setIsOpen] = useState(false);
+
+      return (
+        <EuiPopover
+          {...requiredProps}
+          button={
+            <button onClick={() => setIsOpen(!isOpen)}>Open popover</button>
+          }
+          closePopover={() => setIsOpen(false)}
+          isOpen={isOpen}
+          data-test-subj="popover"
+        >
+          <span>Popover content</span>
+          <button onClick={mockPopoverInteraction}>
+            Button inside popover
+          </button>
+        </EuiPopover>
+      );
+    };
+
+    beforeEach(() => {
+      mockPopoverInteraction.mockClear();
+    });
+
+    it('opens the popover', () => {
+      render(<MockPopoverComponent />);
+
+      expect(screen.queryByText('Popover content')).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByText('Open popover'));
+
+      expect(screen.getByText('Popover content')).toBeInTheDocument();
+    });
+
+    it('allows interacting with popover children', async () => {
+      render(<MockPopoverComponent />);
+
+      fireEvent.click(screen.getByText('Open popover'));
+      await waitForEuiPopoverOpen();
+      fireEvent.click(screen.getByText('Button inside popover'));
+
+      expect(mockPopoverInteraction).toHaveBeenCalledTimes(1);
+    });
+
+    it('closes the popover on escape key press', async () => {
+      render(<MockPopoverComponent />);
+
+      fireEvent.click(screen.getByText('Open popover'));
+      await waitForEuiPopoverOpen();
+      fireEvent.keyDown(screen.getByTestSubject('popover'), {
+        key: keys.ESCAPE,
+      });
+      await waitForEuiPopoverClose();
+
+      expect(screen.queryByText('Popover content')).not.toBeInTheDocument();
     });
   });
 });
