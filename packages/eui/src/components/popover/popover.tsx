@@ -762,7 +762,9 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
         {...(!ownFocus && { onKeyDown })}
         {...rest}
       >
-        {button instanceof HTMLElement ? null : button}
+        {typeof HTMLElement !== 'undefined' && button instanceof HTMLElement
+          ? null
+          : button}
         {panel}
       </div>
     );
