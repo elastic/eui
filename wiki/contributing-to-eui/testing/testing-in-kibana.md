@@ -82,7 +82,7 @@ This will create the required `.tgz` file(s) with the changes in your `eui` (and
 
 ### In Kibana:
 
-Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
+Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic_eui_xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
 
 ```bash
 pnpm kbn bootstrap --no-validate && pnpm start
