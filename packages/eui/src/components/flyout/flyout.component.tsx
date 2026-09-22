@@ -297,10 +297,16 @@ const resolveContainer = (
  * inline padding is captured when the first contribution arrives and restored when the last one
  * leaves. See https://github.com/elastic/eui/issues/9788.
  */
+interface EuiPushPaddingContribution {
+  width: number;
+  /** Managed flyouts also report the offset to their flyout manager. */
+  managed: boolean;
+}
+
 interface EuiPushPaddingSideState {
   base: string;
   /** Pushed width per flyout id. */
-  contributions: Map<string, number>;
+  contributions: Map<string, EuiPushPaddingContribution>;
 }
 
 const euiPushPaddingRegistry = new WeakMap<
@@ -333,8 +339,16 @@ const euiGetPushPaddingSideState = (
   return state[side];
 };
 
-const euiMaxContribution = (contributions: Map<string, number>) =>
-  Math.max(0, ...contributions.values());
+const euiMaxContribution = (
+  contributions: Map<string, EuiPushPaddingContribution>,
+  filter: (contribution: EuiPushPaddingContribution) => boolean = () => true
+) =>
+  Math.max(
+    0,
+    ...Array.from(contributions.values(), (contribution) =>
+      filter(contribution) ? contribution.width : 0
+    )
+  );
 
 const defaultElement = 'div';
 
@@ -675,7 +689,7 @@ export const EuiFlyoutComponent = forwardRef(
         // written inline on `<html>` rather than through `EuiProvider`, because every React root
         // has its own provider rendering its own `:root` block and the last one inserted would
         // win regardless of which root's flyouts are still open.
-        if (paddingTarget === document.body) {
+        if (container == null) {
           const cssVar = euiSideCssVarKey(managerSide);
           if (isPushing) {
             document.documentElement.style.setProperty(cssVar, `${total}px`);
@@ -683,8 +697,13 @@ export const EuiFlyoutComponent = forwardRef(
             document.documentElement.style.removeProperty(cssVar);
           }
         }
+        // The manager only learns about managed flyouts, so it must not be told about a standalone
+        // flyout's width: nothing would ever reset it once that flyout closes.
         if (isInManagedContext) {
-          flyoutManagerRef.current?.setPushPadding(managerSide, total);
+          flyoutManagerRef.current?.setPushPadding(
+            managerSide,
+            euiMaxContribution(state.contributions, (c) => c.managed)
+          );
         }
       };
 
@@ -709,7 +728,10 @@ export const EuiFlyoutComponent = forwardRef(
         // First pushed flyout on this side: capture the app's own inline padding to restore later.
         state.base = paddingTarget.style[styleKey];
       }
-      state.contributions.set(flyoutId, paddingWidth);
+      state.contributions.set(flyoutId, {
+        width: paddingWidth,
+        managed: isInManagedContext,
+      });
       apply();
 
       return () => {

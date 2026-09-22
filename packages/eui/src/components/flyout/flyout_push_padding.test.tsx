@@ -12,12 +12,20 @@ import { act } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutManager } from './manager';
-import { _resetFlyoutManagerStore } from './manager/store';
+import {
+  _resetFlyoutManagerStore,
+  getFlyoutManagerStore,
+} from './manager/store';
 
 // Push padding is derived from the flyout's measured width. jsdom doesn't lay
-// out, so pin a non-zero width to make the applied offset observable.
+// out, so pin a non-zero width to make the applied offset observable. Tests
+// that need distinct widths per flyout register them here by `aria-label`.
+const mockWidths = new Map<string, number>();
 jest.mock('../observer/resize_observer', () => ({
-  useResizeObserver: () => ({ width: 300, height: 0 }),
+  useResizeObserver: (element: HTMLElement | null) => ({
+    width: mockWidths.get(element?.getAttribute('aria-label') ?? '') ?? 300,
+    height: 0,
+  }),
 }));
 
 jest.mock('../overlay_mask', () => ({
@@ -153,19 +161,47 @@ describe('EuiFlyout managed push padding', () => {
 });
 
 describe('EuiFlyout standalone (non-managed) push padding', () => {
-  const renderStandalone = () =>
-    render(
-      <EuiFlyout
-        onClose={() => {}}
-        type="push"
-        pushMinBreakpoint="xs"
-        aria-label="Standalone flyout"
-      />
-    );
+  const Standalone = ({ label = 'Standalone flyout' }: { label?: string }) => (
+    <EuiFlyout
+      onClose={() => {}}
+      type="push"
+      pushMinBreakpoint="xs"
+      aria-label={label}
+    />
+  );
+  const renderStandalone = () => render(<Standalone />);
 
   afterEach(() => {
+    mockWidths.clear();
     document.body.style.paddingInlineStart = '';
     document.body.style.paddingInlineEnd = '';
+  });
+
+  it('applies the widest contribution and follows resizes while several push flyouts are open', () => {
+    mockWidths.set('Narrow', 200);
+    mockWidths.set('Wide', 500);
+
+    const narrow = render(<Standalone label="Narrow" />);
+    expect(bodyOffset()).toBe('200px');
+
+    const wide = render(<Standalone label="Wide" />);
+    expect(bodyOffset()).toBe('500px');
+
+    // Resizing the wide flyout below the narrow one hands the offset over to the narrow one.
+    mockWidths.set('Wide', 100);
+    wide.rerender(<Standalone label="Wide" />);
+    expect(bodyOffset()).toBe('200px');
+
+    mockWidths.set('Wide', 500);
+    wide.rerender(<Standalone label="Wide" />);
+    expect(bodyOffset()).toBe('500px');
+
+    // Closing the widest flyout falls back to the next contribution, not to the base value.
+    wide.unmount();
+    expect(bodyOffset()).toBe('200px');
+
+    narrow.unmount();
+    expect(bodyOffset()).toBe('');
   });
 
   it('does not strand the body offset when two standalone push flyouts sharing document.body close (#9788)', () => {
@@ -221,6 +257,29 @@ describe('EuiFlyout standalone (non-managed) push padding', () => {
 
     managed.unmount();
     await flushCrossRoot();
+    expect(bodyOffset()).toBe('');
+    _resetFlyoutManagerStore();
+  });
+
+  it('does not report a standalone push flyout to the flyout manager', async () => {
+    _resetFlyoutManagerStore();
+    const managerPushPadding = () =>
+      getFlyoutManagerStore().getState().pushPadding?.right ?? 0;
+
+    const managed = renderManagedFlyout({ type: 'push' });
+    await flushCrossRoot();
+    const standalone = renderStandalone();
+    expect(managerPushPadding()).toBe(300);
+
+    // The body stays pushed for the standalone flyout, but the manager must
+    // not be left believing a managed flyout is still pushing: a later managed
+    // overlay would otherwise skip scroll locking.
+    managed.unmount();
+    await flushCrossRoot();
+    expect(bodyOffset()).toBe(PUSH_OFFSET);
+    expect(managerPushPadding()).toBe(0);
+
+    standalone.unmount();
     expect(bodyOffset()).toBe('');
     _resetFlyoutManagerStore();
   });
