@@ -25,17 +25,10 @@ import { EuiToolTipSelectors } from './components/tool_tip/selectors';
 import { EuiTreeViewSelectors } from './components/tree_view/selectors';
 
 /**
- * Stable selectors of every Component Object, keyed by component. `*_SELECTOR`
- * values are CSS class selectors EUI renders, `*_TEST_SUBJ` values are
- * `data-test-subj` names EUI sets itself.
+ * Stable selectors of every Component Object, keyed by component.
+ * `*_SELECTOR` values are CSS classes, `*_TEST_SUBJ` values are `data-test-subj` names.
  *
- * Prefer the Component Objects. These exist for tooling (for example lint rules
- * that flag hand-written EUI selectors in consumer tests) and for the rare
- * scoping need an object does not cover yet.
- *
- * @example
- *   import { selectors } from '@elastic/eui-test-helpers';
- *   page.locator(selectors.comboBox.PILL_SELECTOR);
+ * @example page.locator(selectors.comboBox.PILL_SELECTOR)
  */
 export const selectors = {
   accordion: EuiAccordionSelectors,
