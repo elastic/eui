@@ -653,8 +653,11 @@ export const EuiFlyoutComponent = forwardRef(
     // the document element so that the child (fill) flyout can track it
     // synchronously during drag resize, avoiding the 1-frame lag that
     // results from the async ResizeObserver → manager-state pipeline.
+    // Only the active session's main publishes: a backgrounded main keeps its
+    // `isMainFlyout` role but must not leave its width behind for the new
+    // session's child to read.
     useLayoutEffect(() => {
-      if (!isMainFlyout) return;
+      if (!isMainFlyout || !isActiveManagedFlyout) return;
 
       // Only set when we have a computed percentage (during active resize)
       if (typeof size === 'string' && size.endsWith('%')) {
@@ -667,7 +670,7 @@ export const EuiFlyoutComponent = forwardRef(
       return () => {
         document.documentElement.style.removeProperty('--euiFlyoutMainWidth');
       };
-    }, [isMainFlyout, size]);
+    }, [isMainFlyout, isActiveManagedFlyout, size]);
 
     /**
      * Setting up the refs on the actual flyout element in order to

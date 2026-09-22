@@ -106,4 +106,33 @@ describe('EuiFlyout sibling derivation across sessions', () => {
     second.unmount();
     first.unmount();
   });
+
+  it('publishes the main width variable only for the active session', async () => {
+    const mainWidthVar = () =>
+      document.documentElement.style.getPropertyValue('--euiFlyoutMainWidth');
+    const requestedWidth = 400;
+    const expectedPct = `${(requestedWidth / window.innerWidth) * 100}%`;
+
+    const first = renderManagedFlyout({
+      'aria-label': 'First',
+      resizable: true,
+      size: requestedWidth,
+    });
+    await flushCrossRoot();
+    expect(mainWidthVar()).toBe(expectedPct);
+
+    // A non-resizable main never writes the variable, so the backgrounded
+    // main has to clear its own value or the new session's child reads it.
+    const second = renderManagedFlyout({ 'aria-label': 'Second' });
+    await flushCrossRoot();
+    expect(mainWidthVar()).toBe('');
+
+    // Back in the foreground, the first main publishes again.
+    second.unmount();
+    await flushCrossRoot();
+    expect(mainWidthVar()).toBe(expectedPct);
+
+    first.unmount();
+    expect(mainWidthVar()).toBe('');
+  });
 });
