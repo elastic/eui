@@ -6,29 +6,53 @@
  * Side Public License, v 1.
  */
 
+import { EuiAccordionSelectors } from './components/accordion/selectors';
+import { EuiBasicTableSelectors } from './components/basic_table/selectors';
+import { EuiColorPickerSelectors } from './components/color_picker/selectors';
+import { EuiComboBoxSelectors } from './components/combo_box/selectors';
+import { EuiContextMenuSelectors } from './components/context_menu/selectors';
+import { EuiDataGridSelectors } from './components/datagrid/selectors';
+import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
+import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
+import { EuiFlyoutSelectors } from './components/flyout/selectors';
+import { EuiModalSelectors } from './components/modal/selectors';
+import { EuiPopoverSelectors } from './components/popover/selectors';
+import { EuiRangeSelectors } from './components/form/range/selectors';
+import { EuiSelectableSelectors } from './components/selectable/selectors';
+import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
+import { EuiGlobalToastListSelectors } from './components/toast/selectors';
+import { EuiToolTipSelectors } from './components/tool_tip/selectors';
+import { EuiTreeViewSelectors } from './components/tree_view/selectors';
+
 /**
- * Stable selectors used by the Component Objects, one constant object per
- * component. `*_SELECTOR` values are CSS class selectors EUI renders,
- * `*_TEST_SUBJ` values are `data-test-subj` names EUI sets itself.
+ * Stable selectors of every Component Object, keyed by component. `*_SELECTOR`
+ * values are CSS class selectors EUI renders, `*_TEST_SUBJ` values are
+ * `data-test-subj` names EUI sets itself.
  *
- * Prefer the Component Objects. These are exported for tooling (for example
- * lint rules that flag hand-written EUI selectors in consumer tests) and for
- * the rare scoping need an object does not cover yet.
+ * Prefer the Component Objects. These exist for tooling (for example lint rules
+ * that flag hand-written EUI selectors in consumer tests) and for the rare
+ * scoping need an object does not cover yet.
+ *
+ * @example
+ *   import { selectors } from '@elastic/eui-test-helpers';
+ *   page.locator(selectors.comboBox.PILL_SELECTOR);
  */
-export { EuiAccordionSelectors } from './components/accordion/selectors';
-export { EuiBasicTableSelectors } from './components/basic_table/selectors';
-export { EuiColorPickerSelectors } from './components/color_picker/selectors';
-export { EuiComboBoxSelectors } from './components/combo_box/selectors';
-export { EuiContextMenuSelectors } from './components/context_menu/selectors';
-export { EuiDataGridSelectors } from './components/datagrid/selectors';
-export { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
-export { EuiFilterButtonSelectors } from './components/filter_button/selectors';
-export { EuiFlyoutSelectors } from './components/flyout/selectors';
-export { EuiRangeSelectors } from './components/form/range/selectors';
-export { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
-export { EuiModalSelectors } from './components/modal/selectors';
-export { EuiPopoverSelectors } from './components/popover/selectors';
-export { EuiSelectableSelectors } from './components/selectable/selectors';
-export { EuiGlobalToastListSelectors } from './components/toast/selectors';
-export { EuiToolTipSelectors } from './components/tool_tip/selectors';
-export { EuiTreeViewSelectors } from './components/tree_view/selectors';
+export const selectors = {
+  accordion: EuiAccordionSelectors,
+  basicTable: EuiBasicTableSelectors,
+  colorPicker: EuiColorPickerSelectors,
+  comboBox: EuiComboBoxSelectors,
+  contextMenu: EuiContextMenuSelectors,
+  dataGrid: EuiDataGridSelectors,
+  draggable: EuiDraggableSelectors,
+  filterButton: EuiFilterButtonSelectors,
+  flyout: EuiFlyoutSelectors,
+  modal: EuiModalSelectors,
+  popover: EuiPopoverSelectors,
+  range: EuiRangeSelectors,
+  selectable: EuiSelectableSelectors,
+  superSelect: EuiSuperSelectSelectors,
+  toast: EuiGlobalToastListSelectors,
+  toolTip: EuiToolTipSelectors,
+  treeView: EuiTreeViewSelectors,
+} as const;
