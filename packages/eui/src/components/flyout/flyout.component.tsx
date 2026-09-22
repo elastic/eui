@@ -33,7 +33,6 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
-  useEuiThemeCSSVariables,
   focusTrapPubSub,
 } from '../../services';
 import { useIsInManagedFlyout, useFlyoutId, useFlyoutManager } from './manager';
@@ -298,23 +297,10 @@ const resolveContainer = (
  * inline padding is captured when the first contribution arrives and restored when the last one
  * leaves. See https://github.com/elastic/eui/issues/9788.
  */
-type EuiSetGlobalCSSVariables = ReturnType<
-  typeof useEuiThemeCSSVariables
->['setGlobalCSSVariables'];
-
-interface EuiPushPaddingContribution {
-  width: number;
-  /**
-   * The contributing flyout's `EuiProvider` setter for the global push-offset CSS variable, when
-   * it sets one (no `container`). Flyouts in separate React roots sit under separate providers,
-   * each rendering its own `:root` variables, so every contributor's provider has to be updated.
-   */
-  setGlobalCSSVariables?: EuiSetGlobalCSSVariables;
-}
-
 interface EuiPushPaddingSideState {
   base: string;
-  contributions: Map<string, EuiPushPaddingContribution>;
+  /** Pushed width per flyout id. */
+  contributions: Map<string, number>;
 }
 
 const euiPushPaddingRegistry = new WeakMap<
@@ -347,15 +333,8 @@ const euiGetPushPaddingSideState = (
   return state[side];
 };
 
-const euiMaxContribution = (
-  contributions: Map<string, EuiPushPaddingContribution>
-) => {
-  let max = 0;
-  contributions.forEach(({ width }) => {
-    if (width > max) max = width;
-  });
-  return max;
-};
+const euiMaxContribution = (contributions: Map<string, number>) =>
+  Math.max(0, ...contributions.values());
 
 const defaultElement = 'div';
 
@@ -420,8 +399,6 @@ export const EuiFlyoutComponent = forwardRef(
     const hasAnimationDefault = type === 'overlay';
     const hasAnimation = _hasAnimation ?? hasAnimationDefault;
 
-    const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
-
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -441,11 +418,6 @@ export const EuiFlyoutComponent = forwardRef(
       pushMinBreakpoint,
       containerWidth: containerReferenceWidth,
     });
-    // When no explicit container is provided, push padding targets
-    // document.body and global push-offset CSS vars are set. When a
-    // container is provided, only that element receives padding.
-    const shouldSetGlobalPushVars = container == null;
-
     if (
       'container' in props &&
       ('maskProps' in props || 'includeFixedHeadersInFocusTrap' in props) &&
@@ -697,16 +669,19 @@ export const EuiFlyoutComponent = forwardRef(
       // this target.
       const apply = () => {
         const total = euiMaxContribution(state.contributions);
-        paddingTarget.style[styleKey] =
-          state.contributions.size > 0 ? `${total}px` : state.base;
-        if (shouldSetGlobalPushVars) {
+        const isPushing = state.contributions.size > 0;
+        paddingTarget.style[styleKey] = isPushing ? `${total}px` : state.base;
+        // Without a `container` the offset is also exposed as a global CSS variable. It is
+        // written inline on `<html>` rather than through `EuiProvider`, because every React root
+        // has its own provider rendering its own `:root` block and the last one inserted would
+        // win regardless of which root's flyouts are still open.
+        if (paddingTarget === document.body) {
           const cssVar = euiSideCssVarKey(managerSide);
-          // Clear this flyout's own provider first so a root whose flyouts have all closed does
-          // not keep a stale `:root` offset; any remaining contributor sharing it re-sets it below.
-          setGlobalCSSVariables({ [cssVar]: null });
-          state.contributions.forEach((contribution) => {
-            contribution.setGlobalCSSVariables?.({ [cssVar]: `${total}px` });
-          });
+          if (isPushing) {
+            document.documentElement.style.setProperty(cssVar, `${total}px`);
+          } else {
+            document.documentElement.style.removeProperty(cssVar);
+          }
         }
         if (isInManagedContext) {
           flyoutManagerRef.current?.setPushPadding(managerSide, total);
@@ -734,12 +709,7 @@ export const EuiFlyoutComponent = forwardRef(
         // First pushed flyout on this side: capture the app's own inline padding to restore later.
         state.base = paddingTarget.style[styleKey];
       }
-      state.contributions.set(flyoutId, {
-        width: paddingWidth,
-        setGlobalCSSVariables: shouldSetGlobalPushVars
-          ? setGlobalCSSVariables
-          : undefined,
-      });
+      state.contributions.set(flyoutId, paddingWidth);
       apply();
 
       return () => {
@@ -750,13 +720,11 @@ export const EuiFlyoutComponent = forwardRef(
       isPushed,
       isInManagedContext,
       isActiveManagedFlyout,
-      setGlobalCSSVariables,
       side,
       width,
       layoutMode,
       isMainFlyout,
       _siblingFlyoutWidth,
-      shouldSetGlobalPushVars,
       container,
       flyoutId,
     ]);

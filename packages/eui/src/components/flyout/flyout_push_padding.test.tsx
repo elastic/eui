@@ -225,10 +225,10 @@ describe('EuiFlyout standalone (non-managed) push padding', () => {
     _resetFlyoutManagerStore();
   });
 
-  it('clears the global offset variable from a root whose flyouts have all closed while another root still pushes', () => {
-    // Each React root sits under its own `EuiProvider`, which renders its own `:root` block for
-    // the global offset variable (Kibana's app root vs. a system flyout root). When the first
-    // root's flyout closes it must not keep a stale copy of the other root's offset.
+  it('keeps the global offset variable while flyouts in separate roots close one after another', () => {
+    // Kibana's app root and each system flyout root are separate React roots. The variable is
+    // written inline on `<html>` rather than through each root's `EuiProvider`, so closing one
+    // root's flyout cannot leave a stale value from its provider behind.
     const Root = ({ open }: { open: boolean }) =>
       open ? (
         <EuiFlyout
@@ -238,21 +238,22 @@ describe('EuiFlyout standalone (non-managed) push padding', () => {
           aria-label="Root flyout"
         />
       ) : null;
-    const pushOffsetVarRules = () =>
-      Array.from(document.querySelectorAll('style'))
-        .map((style) => style.textContent ?? '')
-        .filter((text) => text.includes('--euiPushFlyoutOffsetInlineEnd'));
+    const offsetVar = () =>
+      document.documentElement.style.getPropertyValue(
+        '--euiPushFlyoutOffsetInlineEnd'
+      );
 
     const a = render(<Root open />);
     const b = render(<Root open />);
-    expect(pushOffsetVarRules()).toHaveLength(2);
+    expect(offsetVar()).toBe(PUSH_OFFSET);
 
     a.rerender(<Root open={false} />);
     expect(bodyOffset()).toBe(PUSH_OFFSET);
+    expect(offsetVar()).toBe(PUSH_OFFSET);
 
     b.rerender(<Root open={false} />);
     expect(bodyOffset()).toBe('');
-    expect(pushOffsetVarRules()).toEqual([]);
+    expect(offsetVar()).toBe('');
 
     a.unmount();
     b.unmount();
