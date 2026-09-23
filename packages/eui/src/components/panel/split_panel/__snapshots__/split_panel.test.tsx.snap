@@ -14,7 +14,7 @@ exports[`EuiSplitPanel accepts panel props 1`] = `
 
 exports[`EuiSplitPanel inner children are rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-column"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-column"
 >
   <div
     class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent-euiSplitPanelInner"
@@ -25,31 +25,31 @@ exports[`EuiSplitPanel inner children are rendered 1`] = `
 exports[`EuiSplitPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiSplitPanel testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-column-euiTestCss"
+  class="euiPanel euiPanel--plain euiSplitPanel testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-column-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiSplitPanel renders as row 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-row"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-row"
 />
 `;
 
 exports[`EuiSplitPanel responsive can be changed to different breakpoints 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-column"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-column"
 />
 `;
 
 exports[`EuiSplitPanel responsive can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-column"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-column"
 />
 `;
 
 exports[`EuiSplitPanel responsive is rendered at small screens 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow-euiSplitPanelOuter-column"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasBorder-euiSplitPanelOuter-column"
 />
 `;

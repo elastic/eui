@@ -14,6 +14,7 @@ export { EuiButtonEmpty } from './button_empty';
 
 export type {
   EuiButtonIconProps,
+  EuiButtonIconPropsForAnchor,
   EuiButtonIconPropsForButton,
 } from './button_icon';
 export { EuiButtonIcon } from './button_icon';

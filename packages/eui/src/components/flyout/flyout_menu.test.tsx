@@ -13,6 +13,7 @@ import { requiredProps } from '../../test';
 
 import { EuiFlyoutMenu } from './flyout_menu';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import type { EuiFlyoutMenuAction } from './flyout_menu/types';
 
 describe('EuiFlyoutMenu', () => {
   const onClose = jest.fn();
@@ -513,6 +514,53 @@ describe('EuiFlyoutMenu', () => {
         expect(
           container.querySelector('a[aria-label="Share link"]')
         ).toHaveAttribute('target', '_blank');
+      });
+    });
+
+    describe('prop forwarding', () => {
+      it('forwards arbitrary button props to the underlying EuiButtonIcon', () => {
+        const { container, getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'gear',
+                'aria-label': 'Settings',
+                'data-test-subj': 'settingsAction',
+                'data-telemetry-id': 'flyout-settings',
+                className: 'customActionClass',
+                id: 'settingsActionId',
+              },
+            ]}
+          />
+        );
+
+        const button = getByTestSubject('settingsAction');
+        expect(button).toHaveAttribute('data-telemetry-id', 'flyout-settings');
+        expect(button).toHaveClass('customActionClass');
+        expect(button).toBe(container.querySelector('#settingsActionId'));
+      });
+
+      it('keeps its own color and size when an action sets them', () => {
+        // These props are excluded from the type. A cast is required to test passing them.
+        const actionWithOwnedProps = {
+          iconType: 'gear',
+          'aria-label': 'Settings',
+          'data-test-subj': 'settingsAction',
+          color: 'danger',
+          size: 'm',
+        } as EuiFlyoutMenuAction;
+
+        const { getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[actionWithOwnedProps]}
+          />
+        );
+
+        expect(getByTestSubject('settingsAction').className).toContain(
+          'euiButtonIcon-xs-empty-text'
+        );
       });
     });
 

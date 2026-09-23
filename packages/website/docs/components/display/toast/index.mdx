@@ -226,6 +226,45 @@ Use `actionProps` to add a primary and an optional secondary action. A standalon
   ```
 </Demo>
 
+### Countdown animation
+
+To show a countdown animation on top of the toast to indicate the remaining time until it dismisses, use `animationMs`.
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React, { useEffect, useState } from 'react';
+  import { EuiToast, EuiButton, EuiFlexGroup } from '@elastic/eui';
+
+  const ANIMATION_MS = 6000;
+
+  export default () => {
+    const [animationMs, setAnimationMs] = useState<number | undefined>(undefined);
+
+    useEffect(() => {
+      setAnimationMs(ANIMATION_MS);
+    }, []);
+
+    return (
+      <EuiFlexGroup direction="column" gutterSize="m">
+        <EuiButton
+          style={{ maxInlineSize: 'max-content' }}
+          onClick={() => setAnimationMs(animationMs != null ? undefined : ANIMATION_MS)}
+        >
+          {animationMs != null ? 'Reset animation' : 'Start animation'}
+        </EuiButton>
+        <EuiToast
+          title="Your report is complete"
+          color="success"
+          text="A short toast text"
+          animationMs={animationMs}
+          onClose={() => {}}
+        />
+      </EuiFlexGroup>
+    );
+  };
+  ```
+</Demo>
+
 ## Guidelines
 
 import Guidelines from './_guidelines.mdx';

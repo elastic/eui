@@ -32,7 +32,7 @@ export const euiContextMenuStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '100%')}
       position: relative;
       overflow: hidden;
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
 
       ${euiCanAnimate} {
         transition: height ${euiTheme.animation.fast}
