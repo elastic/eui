@@ -19,21 +19,25 @@ import { UseEuiTheme } from '../../services';
 const TEXT_MAX_WIDTH = 1200;
 
 export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const paddingSizes = {
     s: euiTheme.size.m,
     m: euiTheme.size.base,
   };
-  const borderRadius = euiTheme.border.radius.small;
+  const borderRadius = euiTheme.border.radius.panel;
   const highlightSize = mathWithUnits(
     [euiTheme.border.width.thin, euiTheme.border.width.thick],
-    (x, y) => x + y
+    (x, y) => (highContrastMode ? x * 2 + y : x + y)
   );
   const highlightOffset = euiTheme.border.width.thin;
   const highlightSizeOffset = mathWithUnits([highlightOffset], (x) => x * 2);
   const separatorSize = mathWithUnits(
     [euiTheme.size.s, euiTheme.size.xxs],
+    (x, y) => x + y
+  );
+  const highlightClipSize = mathWithUnits(
+    [euiTheme.size.s, euiTheme.border.width.thin],
     (x, y) => x + y
   );
 
@@ -53,15 +57,29 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         content: '';
         position: absolute;
-        inset-block-start: -${euiTheme.border.width.thin};
-        inset-inline-start: -${euiTheme.border.width.thin};
+        inset-block-start: -${highlightOffset};
+        inset-inline-start: -${highlightOffset};
         block-size: calc(100% + ${highlightSizeOffset});
+        inline-size: 100%;
+        border-radius: ${borderRadius};
         border-inline-start: ${highlightSize} solid var(--euiCallOutTypeColor);
-        border-start-start-radius: ${borderRadius};
-        border-end-start-radius: ${borderRadius};
+        clip-path: polygon(
+          0 0,
+          ${highlightClipSize} 0,
+          ${highlightClipSize} 100%,
+          0 100%
+        );
         pointer-events: none;
-
         ${preventForcedColors(euiThemeContext)}
+      }
+
+      [dir='rtl'] &::before {
+        clip-path: polygon(
+          calc(100% - ${highlightClipSize}) 0,
+          100% 0,
+          100% 100%,
+          calc(100% - ${highlightClipSize}) 100%
+        );
       }
 
       &:where([data-size='s']) {

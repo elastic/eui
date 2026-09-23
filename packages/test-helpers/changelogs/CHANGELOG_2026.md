@@ -1,3 +1,7 @@
+## [`v1.8.0`](https://github.com/elastic/eui/releases/v1.8.0)
+
+- Exported the `Eui*Selectors` constants of every Component Object from the package index, for tooling such as lint rules ([#10049](https://github.com/elastic/eui/pull/10049))
+
 ## [`v1.7.0`](https://github.com/elastic/eui/releases/v1.7.0)
 
 - Added `EuiTreeViewObject`, a Playwright Component Object for `EuiTreeView` ([#10025](https://github.com/elastic/eui/pull/10025))

@@ -58,5 +58,6 @@ export const font: _EuiThemeFont = {
   },
   title: {
     weight: 'bold',
+    letterSpacing: '-0.2px',
   },
 };

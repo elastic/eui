@@ -74,7 +74,11 @@ interface FindPopoverPositionArgs {
   offset?: number;
   allowCrossAxis?: boolean;
   container?: HTMLElement;
-  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+  arrowConfig?: {
+    arrowWidth: number;
+    arrowBuffer: number;
+    borderRadius?: number;
+  };
   returnBoundingBox?: boolean;
 }
 
@@ -244,6 +248,32 @@ export function findPopoverPosition({
 
   if (returnBoundingBox) {
     bestPosition.anchorBoundingBox = anchorBoundingBox;
+  }
+
+  // Adjust the arrow position based on borderRadius to prevent unexpected rough edges.
+  // Done after position selection to ensure it doesn't affect the base panel position.
+  if (arrowConfig?.borderRadius && bestPosition.arrow) {
+    const crossAxisSide = positionSubstitutes[bestPosition.position];
+    const arrowValue = bestPosition.arrow[crossAxisSide];
+
+    if (
+      typeof arrowValue === 'number' &&
+      arrowValue < arrowConfig.borderRadius
+    ) {
+      // Clamp the arrow to the corner and shift the panel by the same amount in the
+      // opposite direction so the arrow still points at the same position on the anchor.
+      const delta = arrowConfig.borderRadius - arrowValue;
+      bestPosition.arrow = {
+        ...bestPosition.arrow,
+        [crossAxisSide]: arrowConfig.borderRadius,
+      };
+
+      if (crossAxisSide === 'top') {
+        bestPosition.top -= delta;
+      } else if (crossAxisSide === 'left') {
+        bestPosition.left -= delta;
+      }
+    }
   }
 
   return bestPosition;

@@ -16,7 +16,7 @@ export const euiBasicTablePanelStyles = ({ euiTheme }: UseEuiTheme) => css`
   border-block-end-width: 0;
   ${logicalShorthandCSS(
     'border-radius',
-    `${euiTheme.border.radius.medium} ${euiTheme.border.radius.medium} 0 0`
+    `${euiTheme.border.radius.panel} ${euiTheme.border.radius.panel} 0 0`
   )}
 
   /* Reset top border styles if the previous sibling is another panel */
