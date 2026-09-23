@@ -59,7 +59,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       ),
     },
     radius: {
-      outer: euiTheme.border.radius.medium,
+      outer: euiTheme.border.radius.control,
       inner: buttonSizeMap.s.radiusInset,
     },
     size: {
@@ -212,7 +212,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         /* splits padding between outer and inner container to ensure focus outlines are not clipped */
         padding: ${splitPadding};
         border-radius: ${buttonGroupVariables.radius.outer};
-        background-color: ${euiTheme.colors.backgroundBasePlain};
+        background-color: ${buttonGroupVariables.backgroundColor};
 
         &:where([data-size='s'] &) {
           --euiButtonGroupButtonInsetSize: ${buttonGroupVariables.size.s};

@@ -609,7 +609,7 @@ export class EuiPopover extends Component<Props, State> {
         ? 16 + offset
         : 8 + offset,
       arrowConfig: this.props.hasArrow
-        ? { arrowWidth: 16, arrowBuffer: 10 }
+        ? { arrowWidth: 16, arrowBuffer: 10, borderRadius: 12 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
@@ -799,6 +799,7 @@ export class EuiPopover extends Component<Props, State> {
                 isAttached={attachToAnchor}
                 className={classNames(panelClassName, panelProps?.className)}
                 hasShadow={false}
+                hasBorder={false}
                 paddingSize={panelPaddingSize}
                 tabIndex={tabIndex}
                 aria-live={ariaLive}

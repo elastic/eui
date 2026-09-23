@@ -25,4 +25,4 @@ export { EuiColorPickerObject } from './playwright/components/color_picker/objec
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
 export { EuiToolTipObject } from './playwright/components/tool_tip/object';
 
-export * from './selectors';
+export { selectors } from './selectors';

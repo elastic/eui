@@ -50,7 +50,7 @@ permissions:
 jobs:
   open_pr:
     name: Open PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       pr_url: ${{ steps.open_pr.outputs.pr_url }}
     steps:

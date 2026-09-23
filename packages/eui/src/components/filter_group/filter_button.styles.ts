@@ -53,7 +53,7 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       border: none;
       border-radius: var(
         --euiFilterButtonRadius,
-        ${euiTheme.border.radius.small}
+        ${euiTheme.border.radius.control}
       );
 
       &:not(${selectedSelector}) {

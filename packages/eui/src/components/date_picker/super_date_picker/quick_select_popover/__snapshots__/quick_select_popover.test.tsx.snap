@@ -242,7 +242,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
-            class="euiLink emotion-euiLink-primary"
+            class="euiLink emotion-euiLink-text"
             data-test-subj="superDatePickerCommonlyUsed_Today"
             type="button"
           >
@@ -271,7 +271,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
-            class="euiLink emotion-euiLink-primary"
+            class="euiLink emotion-euiLink-text"
             type="button"
           >
             Today
@@ -401,7 +401,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       class="emotion-euiQuickSelectPanel__section"
     >
       <button
-        class="euiLink emotion-euiLink-primary"
+        class="euiLink emotion-euiLink-text"
         data-test-subj="customComponentSelectPanel"
         type="button"
       >
@@ -421,12 +421,12 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     id="generated-id_euiToolTipAnchor"
   >
     <div
-      class="css-vmqubl-wrapper"
+      class="css-162bf1-wrapper"
     >
       <button
         aria-expanded="false"
         aria-label="Date quick select"
-        class="euiFormPrepend css-a31npo-side-uncompressed-empty-primary-isInteractive"
+        class="euiFormPrepend css-1t6a8ry-side-uncompressed-empty-primary-isInteractive"
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
         <span

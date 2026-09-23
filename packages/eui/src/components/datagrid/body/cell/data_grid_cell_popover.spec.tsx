@@ -263,7 +263,7 @@ describe('EuiDataGridCellPopover', () => {
         openCellPopover('B');
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
           .should('have.css', 'width', '225px') // 300 * .75
-          .should('have.css', 'height', '100px'); // 200 * .5
+          .should('have.css', 'height', '96px');
       });
 
       it('does not exceed 400px width if the column width is smaller than 400px', () => {
@@ -273,7 +273,7 @@ describe('EuiDataGridCellPopover', () => {
         openCellPopover('B');
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
           .should('have.css', 'width', '400px')
-          .should('have.css', 'height', '88px');
+          .should('have.css', 'height', '56px');
       });
 
       it('matches the width of the column if the column width is larger than 400px', () => {
@@ -289,7 +289,7 @@ describe('EuiDataGridCellPopover', () => {
         openCellPopover('B');
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
           .should('have.css', 'width', '500px')
-          .should('have.css', 'height', '64px');
+          .should('have.css', 'height', '56px');
       });
     });
   });

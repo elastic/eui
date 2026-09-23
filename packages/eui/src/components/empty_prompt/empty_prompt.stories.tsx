@@ -25,9 +25,9 @@ const meta: Meta<EuiEmptyPromptProps> = {
     // Component defaults
     titleSize: 'm',
     paddingSize: 'l',
-    color: 'plain', // Default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
+    // Default is actually 'transparent'; plain + bordered is easier to review in Storybook
+    color: 'plain',
     layout: 'vertical',
-    hasBorder: false,
     hasShadow: false,
   },
 };
