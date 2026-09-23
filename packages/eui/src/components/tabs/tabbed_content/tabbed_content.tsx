@@ -7,18 +7,18 @@
  */
 
 import React, {
-  Component,
-  createRef,
   HTMLAttributes,
   ReactNode,
   FocusEvent,
+  useRef,
+  useState,
+  FunctionComponent,
 } from 'react';
-
-import { htmlIdGenerator } from '../../../services';
 
 import { EuiTabs, EuiTabsSizes } from '../tabs';
 import { EuiTab, EuiTabProps } from '../tab';
 import { CommonProps } from '../../common';
+import { useGeneratedHtmlId } from '../../../services';
 
 /**
  * Marked as const so type is `['initial', 'selected']` instead of `string[]`
@@ -29,11 +29,6 @@ export interface EuiTabbedContentTab extends EuiTabProps {
   id: string;
   name: ReactNode;
   content: ReactNode;
-}
-
-interface EuiTabbedContentState {
-  selectedTabId: string | undefined;
-  inFocus: boolean;
 }
 
 export type EuiTabbedContentProps = CommonProps &
@@ -66,137 +61,103 @@ export type EuiTabbedContentProps = CommonProps &
     tabs: EuiTabbedContentTab[];
   };
 
-export class EuiTabbedContent extends Component<
-  EuiTabbedContentProps,
-  EuiTabbedContentState
-> {
-  static defaultProps: {
-    autoFocus: EuiTabbedContentProps['autoFocus'];
-  } = {
-    autoFocus: 'initial',
-  };
+export const EuiTabbedContent: FunctionComponent<EuiTabbedContentProps> = ({
+  autoFocus = 'initial',
+  className,
+  expand,
+  initialSelectedTab,
+  onTabClick,
+  selectedTab: externalSelectedTab,
+  size,
+  tabs,
+  ...rest
+}) => {
+  const rootId = useGeneratedHtmlId();
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const inFocusRef = useRef(false);
 
-  private readonly rootId = htmlIdGenerator()();
+  const [selectedTabId, setSelectedTabId] = useState<string | undefined>(() =>
+    externalSelectedTab ? undefined : initialSelectedTab?.id || tabs[0].id
+  );
 
-  private readonly tabsRef = createRef<HTMLDivElement>();
-
-  constructor(props: EuiTabbedContentProps) {
-    super(props);
-
-    const { initialSelectedTab, selectedTab, tabs } = props;
-
-    // Only track selection state if it's not controlled externally.
-    let selectedTabId;
-    if (!selectedTab) {
-      selectedTabId = initialSelectedTab?.id || tabs[0].id;
-    }
-
-    this.state = {
-      selectedTabId,
-      inFocus: false,
-    };
-  }
-
-  focusTab = () => {
-    const targetTab: HTMLDivElement | null =
-      this.tabsRef.current!.querySelector(`#${this.state.selectedTabId}`);
+  const focusTab = (id: string) => {
+    const targetTab: HTMLDivElement | null = tabsRef.current!.querySelector(
+      `#${id}`
+    );
     targetTab!.focus();
   };
 
-  initializeFocus = () => {
-    if (!this.state.inFocus && this.props.autoFocus === 'selected') {
-      // Must wait for setState to finish before calling `.focus()`
-      // as the focus call triggers a blur on the first tab
-      this.setState({ inFocus: true }, () => {
-        this.focusTab();
-      });
+  const initializeFocus = () => {
+    if (!inFocusRef.current && autoFocus === 'selected') {
+      inFocusRef.current = true;
+      focusTab(selectedTabId!);
     }
   };
 
-  removeFocus = (blurEvent: FocusEvent<HTMLDivElement>) => {
+  const removeFocus = (blurEvent: FocusEvent<HTMLDivElement>) => {
     // only set inFocus to false if the wrapping div doesn't contain the now-focusing element
     const currentTarget = blurEvent.currentTarget! as HTMLElement;
     const relatedTarget = blurEvent.relatedTarget! as HTMLElement;
     if (currentTarget.contains(relatedTarget) === false) {
-      this.setState({
-        inFocus: false,
-      });
+      inFocusRef.current = false;
     }
   };
 
-  onTabClick = (selectedTab: EuiTabbedContentTab) => {
-    const { onTabClick, selectedTab: externalSelectedTab } = this.props;
-
-    if (onTabClick) {
-      onTabClick(selectedTab);
-    }
+  const handleTabClick = (tab: EuiTabbedContentTab) => {
+    onTabClick?.(tab);
 
     // Only track selection state if it's not controlled externally.
     if (!externalSelectedTab) {
-      this.setState({ selectedTabId: selectedTab.id }, () => {
-        this.focusTab();
-      });
+      setSelectedTabId(tab.id);
+      focusTab(tab.id);
     }
   };
 
-  render() {
-    const {
-      className,
-      expand,
-      initialSelectedTab,
-      onTabClick,
-      selectedTab: externalSelectedTab,
-      size,
-      tabs,
-      autoFocus,
-      ...rest
-    } = this.props;
+  // Allow the consumer to control tab selection.
+  const selectedTab =
+    externalSelectedTab ||
+    tabs.find((tab) => tab.id === selectedTabId) ||
+    tabs[0]; // Fall back to the first tab if a selected tab can't be found
 
-    // Allow the consumer to control tab selection.
-    const selectedTab =
-      externalSelectedTab ||
-      tabs.find((tab) => tab.id === this.state.selectedTabId) ||
-      tabs[0]; // Fall back to the first tab if a selected tab can't be found
+  const { content: selectedTabContent, id: selectedTabContentId } = selectedTab;
 
-    const { content: selectedTabContent, id: selectedTabId } = selectedTab;
+  return (
+    <div className={className} {...rest}>
+      <EuiTabs
+        ref={tabsRef}
+        expand={expand}
+        size={size}
+        onFocus={initializeFocus}
+        onBlur={removeFocus}
+      >
+        {tabs.map((tab) => {
+          const {
+            id,
+            name,
+            content, // eslint-disable-line no-unused-vars
+            ...tabProps
+          } = tab;
 
-    return (
-      <div className={className} {...rest}>
-        <EuiTabs
-          ref={this.tabsRef}
-          expand={expand}
-          size={size}
-          onFocus={this.initializeFocus}
-          onBlur={this.removeFocus}
-        >
-          {tabs.map((tab) => {
-            const {
-              id,
-              name,
-              content, // eslint-disable-line no-unused-vars
-              ...tabProps
-            } = tab;
-            const props = {
-              key: id,
-              id,
-              ...tabProps,
-              onClick: () => this.onTabClick(tab),
-              isSelected: tab === selectedTab,
-              'aria-controls': `${this.rootId}`,
-            };
+          return (
+            <EuiTab
+              key={id}
+              id={id}
+              {...tabProps}
+              onClick={() => handleTabClick(tab)}
+              isSelected={tab === selectedTab}
+              aria-controls={rootId}
+            >
+              {name}
+            </EuiTab>
+          );
+        })}
+      </EuiTabs>
 
-            return <EuiTab {...props}>{name}</EuiTab>;
-          })}
-        </EuiTabs>
-
-        <div
-          role="tabpanel"
-          id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}
-        >
-          {selectedTabContent}
-        </div>
+      <div role="tabpanel" id={rootId} aria-labelledby={selectedTabContentId}>
+        {selectedTabContent}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+EuiTabbedContent.displayName = 'EuiTabbedContent';
