@@ -45,7 +45,7 @@ export const selectors = {
   range: EuiRangeSelectors,
   selectable: EuiSelectableSelectors,
   superSelect: EuiSuperSelectSelectors,
-  toast: EuiGlobalToastListSelectors,
+  globalToastList: EuiGlobalToastListSelectors,
   toolTip: EuiToolTipSelectors,
   treeView: EuiTreeViewSelectors,
 } as const;
