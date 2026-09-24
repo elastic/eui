@@ -10,7 +10,7 @@ import React, { FunctionComponent, useContext, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { EuiDisabledProps, useEuiTheme } from '../../../services';
-import { EuiPopover } from '../../popover';
+import { EuiPopover, type EuiPopoverProps } from '../../popover';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
 import { EuiButton, Props as EuiButtonProps } from '../button';
 import { isButtonDisabled } from '../button_display/_button_display';
@@ -40,7 +40,7 @@ export type EuiSplitButtonActionSecondaryProps = EuiDisabledProps &
      * Enables rendering an `EuiPopover` with the passed props.
      * When passed the secondary action icon will be fixed to `arrowDown`.
      */
-    popoverProps?: Omit<EuiPopover['props'], 'button'>;
+    popoverProps?: Omit<EuiPopoverProps, 'button'>;
   };
 
 export const EuiSplitButtonActionPrimary: FunctionComponent<

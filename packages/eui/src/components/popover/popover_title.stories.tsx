@@ -21,7 +21,11 @@ const meta: Meta<EuiPopoverTitleProps> = {
   component: EuiPopoverTitle,
   decorators: [
     (Story, { args }) => (
-      <EuiPopover isOpen button={<EuiButton>trigger</EuiButton>}>
+      <EuiPopover
+        isOpen
+        button={<EuiButton>trigger</EuiButton>}
+        closePopover={() => {}}
+      >
         <Story {...args} />
       </EuiPopover>
     ),

@@ -28,7 +28,7 @@ exports[`EuiTourStep renders 1`] = `
           data-popover-panel="true"
           id="euiPopover_generated-id_panelId"
           role="dialog"
-          style="top: -21px; left: -26px; will-change: transform, opacity; z-index: 2000;"
+          style="top: -21px; left: -18px; z-index: 2000;"
         >
           <div
             class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"

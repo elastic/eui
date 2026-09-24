@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { testOnReactVersion } from '../../../test/internal';
 
@@ -69,18 +69,18 @@ describe('useDataGridColumnSelector', () => {
   };
 
   describe('columnSelector', () => {
-    const openPopover = () => {
+    const openPopover = async () => {
       fireEvent.click(screen.getByTestSubject('dataGridColumnSelectorButton'));
-      waitForEuiPopoverOpen();
+      await waitForEuiPopoverOpen();
     };
 
     testOnReactVersion(['18'])(
       'renders a toolbar button/popover allowing users to set column visibility and order',
-      () => {
+      async () => {
         const { baseElement } = render(
           <MockComponent showColumnSelector={true} />
         );
-        openPopover();
+        await openPopover();
         expect(baseElement).toMatchSnapshot();
       }
     );
@@ -97,11 +97,11 @@ describe('useDataGridColumnSelector', () => {
     describe('column filtering', () => {
       const showColumnSelector = { allowHide: true, allowReorder: true };
 
-      it('renders a searchbar that filters displayed columns', () => {
+      it('renders a searchbar that filters displayed columns', async () => {
         const { getByTestSubject, getAllByRole } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover();
+        await openPopover();
 
         expect(getAllByRole('switch')).toHaveLength(2);
 
@@ -116,21 +116,20 @@ describe('useDataGridColumnSelector', () => {
     describe('column reordering', () => {
       const showColumnSelector = { allowHide: false, allowReorder: true };
 
-      it('renders draggable handles', () => {
+      it('renders draggable handles', async () => {
         render(<MockComponent showColumnSelector={showColumnSelector} />);
-        openPopover();
+        await openPopover();
 
         expect(
           document.querySelectorAll('[data-euiicon-type="dragVertical"]')
         ).toHaveLength(2);
       });
 
-      it('calls setColumns on drag end', () => {
-        const { getByTestSubject, getAllByLabelText } = render(
+      it('calls setColumns on drag end', async () => {
+        const { getAllByLabelText } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        fireEvent.click(getByTestSubject('dataGridColumnSelectorButton'));
-        waitForEuiPopoverOpen();
+        await openPopover();
         const getDragHandles = () => getAllByLabelText(/drag handle/);
 
         const columnA = getDragHandles()[0]!;
@@ -149,6 +148,10 @@ describe('useDataGridColumnSelector', () => {
           'data-rfd-drag-handle-draggable-id',
           'columnB'
         );
+
+        await act(async () => {
+          await new Promise((resolve) => setTimeout(resolve, 0));
+        });
       });
     });
 
@@ -176,11 +179,11 @@ describe('useDataGridColumnSelector', () => {
         expect(getBadgeText()).toEqual('0/2');
       });
 
-      it('toggles column visibility on switch interaction', () => {
+      it('toggles column visibility on switch interaction', async () => {
         const { getByTestSubject } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover();
+        await openPopover();
         expect(getBadgeText()).toEqual('2');
 
         fireEvent.click(
@@ -198,11 +201,11 @@ describe('useDataGridColumnSelector', () => {
         expect(getBadgeText()).toEqual('2');
       });
 
-      it('toggles all column visibility with the show/hide all buttons', () => {
+      it('toggles all column visibility with the show/hide all buttons', async () => {
         const { getByTestSubject } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover();
+        await openPopover();
 
         fireEvent.click(
           getByTestSubject('dataGridColumnSelectorHideAllButton')

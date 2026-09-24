@@ -52,7 +52,7 @@ exports[`CollapsedItemActions custom actions 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 0px; left: -12px; z-index: 2000;"
+        style="top: 0px; left: -4px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -178,7 +178,7 @@ exports[`CollapsedItemActions default actions - renders color on EuiContextMenuI
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 0px; left: -12px; z-index: 2000;"
+        style="top: 0px; left: -4px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -323,7 +323,7 @@ exports[`CollapsedItemActions default actions 1`] = `
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 0px; left: -12px; z-index: 2000;"
+        style="top: 0px; left: -4px; z-index: 2000;"
         tabindex="0"
       >
         <p
