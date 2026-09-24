@@ -10,6 +10,7 @@ export type {
   EuiButtonColor,
   EuiButtonSize,
   EuiButtonProps,
+  EuiButtonPropsForAnchor,
   EuiButtonPropsForButton,
 } from './button';
 export { COLORS, EuiButton } from './button';
