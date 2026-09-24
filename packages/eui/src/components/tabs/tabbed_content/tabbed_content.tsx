@@ -80,17 +80,15 @@ export const EuiTabbedContent: FunctionComponent<EuiTabbedContentProps> = ({
     externalSelectedTab ? undefined : initialSelectedTab?.id || tabs[0].id
   );
 
-  const focusTab = (id: string) => {
-    const targetTab: HTMLDivElement | null = tabsRef.current!.querySelector(
-      `#${id}`
-    );
-    targetTab!.focus();
+  const focusTab = (id?: string) => {
+    const targetTab = tabsRef.current?.querySelector<HTMLDivElement>(`#${id}`);
+    targetTab?.focus();
   };
 
   const initializeFocus = () => {
     if (!inFocusRef.current && autoFocus === 'selected') {
       inFocusRef.current = true;
-      focusTab(selectedTabId!);
+      focusTab(selectedTabId);
     }
   };
 
