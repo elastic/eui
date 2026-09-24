@@ -95,6 +95,12 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = memo(
       const innerElementStyles = useMemo(() => {
         return {
           ...memoizedStyles,
+          // react-window sets `pointer-events: none` while it thinks the grid is
+          // scrolling. Scroll events that don't move the grid can trigger this
+          // (e.g. Firefox rounding `scrollTop` above the maximum at fractional
+          // device pixel ratios), so hovered cells lose the pointer and tooltips
+          // get stuck opening and closing.
+          pointerEvents: undefined,
           height: memoizedStyles.height + headerRowHeight,
         };
       }, [memoizedStyles, headerRowHeight]);

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
 import { dataGridBodyProps } from './data_grid_body.test';
@@ -125,6 +125,61 @@ describe('EuiDataGridBodyVirtualized', () => {
         isScrolledToBlockEnd: true,
         isScrolledToInlineStart: true,
         isScrolledToInlineEnd: false,
+      });
+    });
+
+    describe('pointer events', () => {
+      beforeEach(() => {
+        Object.defineProperty(Element.prototype, 'scrollHeight', {
+          configurable: true,
+          value: 200,
+        });
+        Object.defineProperty(Element.prototype, 'clientHeight', {
+          configurable: true,
+          value: 100,
+        });
+      });
+
+      const setScrollTop = (value: number) =>
+        Object.defineProperty(Element.prototype, 'scrollTop', {
+          configurable: true,
+          value,
+        });
+
+      const renderGrid = () => {
+        const { container } = render(
+          <EuiDataGridBodyVirtualized {...dataGridBodyProps} />
+        );
+        const outer = container.querySelector<HTMLElement>(
+          '.euiDataGrid__virtualized'
+        )!;
+        return { outer, inner: outer.firstElementChild as HTMLElement };
+      };
+
+      it('does not disable pointer events on the inner element while scrolling', () => {
+        const { outer, inner } = renderGrid();
+
+        setScrollTop(50);
+        fireEvent.scroll(outer);
+
+        expect(inner.style.pointerEvents).not.toBe('none');
+      });
+
+      // https://github.com/elastic/eui/issues/10083
+      it('does not disable pointer events for a scroll event that does not move the grid, with `scrollTop` rounded above the maximum', async () => {
+        const { outer, inner } = renderGrid();
+
+        // Firefox at a devicePixelRatio of 1.25 can report a `scrollTop` above
+        // `scrollHeight - clientHeight` (100) when scrolled to the very bottom
+        setScrollTop(100.4);
+        fireEvent.scroll(outer);
+        await waitFor(() => expect(inner.style.pointerEvents).not.toBe('none'));
+
+        act(() => {
+          fireEvent.scroll(outer);
+        });
+
+        expect(inner.style.pointerEvents).not.toBe('none');
       });
     });
   });
