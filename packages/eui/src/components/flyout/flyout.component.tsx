@@ -660,15 +660,17 @@ export const EuiFlyoutComponent = forwardRef(
       if (!isMainFlyout || !isActiveManagedFlyout) return;
 
       // Only set when we have a computed percentage (during active resize)
-      if (typeof size === 'string' && size.endsWith('%')) {
-        document.documentElement.style.setProperty(
-          '--euiFlyoutMainWidth',
-          size
-        );
-      }
+      if (typeof size !== 'string' || !size.endsWith('%')) return;
+
+      const { style } = document.documentElement;
+      style.setProperty('--euiFlyoutMainWidth', size);
 
       return () => {
-        document.documentElement.style.removeProperty('--euiFlyoutMainWidth');
+        // Flyouts in separate React roots can run this cleanup after another
+        // main has already published its own width; leave that value alone.
+        if (style.getPropertyValue('--euiFlyoutMainWidth') === size) {
+          style.removeProperty('--euiFlyoutMainWidth');
+        }
       };
     }, [isMainFlyout, isActiveManagedFlyout, size]);
 

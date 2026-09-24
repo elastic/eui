@@ -110,8 +110,9 @@ describe('EuiFlyout sibling derivation across sessions', () => {
   it('publishes the main width variable only for the active session', async () => {
     const mainWidthVar = () =>
       document.documentElement.style.getPropertyValue('--euiFlyoutMainWidth');
+    const toPct = (width: number) => `${(width / window.innerWidth) * 100}%`;
     const requestedWidth = 400;
-    const expectedPct = `${(requestedWidth / window.innerWidth) * 100}%`;
+    const expectedPct = toPct(requestedWidth);
 
     const first = renderManagedFlyout({
       'aria-label': 'First',
@@ -129,6 +130,20 @@ describe('EuiFlyout sibling derivation across sessions', () => {
 
     // Back in the foreground, the first main publishes again.
     second.unmount();
+    await flushCrossRoot();
+    expect(mainWidthVar()).toBe(expectedPct);
+
+    // The backgrounded main's cleanup runs after the new main has published
+    // in its own root and must not remove the new value.
+    const third = renderManagedFlyout({
+      'aria-label': 'Third',
+      resizable: true,
+      size: 300,
+    });
+    await flushCrossRoot();
+    expect(mainWidthVar()).toBe(toPct(300));
+
+    third.unmount();
     await flushCrossRoot();
     expect(mainWidthVar()).toBe(expectedPct);
 
