@@ -34,7 +34,7 @@ const meta: Meta<EuiColorPickerProps> = {
     display: 'default',
     mode: 'default',
     secondaryInputDisplay: 'none',
-    swatches: euiPaletteColorBlind(),
+    swatches: euiPaletteColorBlind().slice(0, 10),
   },
 };
 enableFunctionToggleControls(meta, ['onChange']);
