@@ -12,6 +12,7 @@ import { render } from '../../../test/rtl';
 
 import { dataGridBodyProps } from './data_grid_body.test';
 
+import { EuiDataGridBodyProps } from '../data_grid_types';
 import { EuiDataGridBodyVirtualized } from './data_grid_body_virtualized';
 
 describe('EuiDataGridBodyVirtualized', () => {
@@ -81,6 +82,22 @@ describe('EuiDataGridBodyVirtualized', () => {
   });
 
   describe('scrolling', () => {
+    const originalDescriptors = (
+      ['scrollTop', 'scrollHeight', 'clientHeight'] as const
+    ).map(
+      (name) =>
+        [
+          name,
+          Object.getOwnPropertyDescriptor(Element.prototype, name)!,
+        ] as const
+    );
+
+    afterEach(() => {
+      originalDescriptors.forEach(([name, descriptor]) =>
+        Object.defineProperty(Element.prototype, name, descriptor)
+      );
+    });
+
     it('passes correct scroll position data to virtualizationOptions.onScroll', () => {
       Object.defineProperty(Element.prototype, 'scrollHeight', {
         configurable: true,
@@ -146,9 +163,14 @@ describe('EuiDataGridBodyVirtualized', () => {
           value,
         });
 
-      const renderGrid = () => {
+      const renderGrid = (
+        virtualizationOptions?: EuiDataGridBodyProps['virtualizationOptions']
+      ) => {
         const { container } = render(
-          <EuiDataGridBodyVirtualized {...dataGridBodyProps} />
+          <EuiDataGridBodyVirtualized
+            {...dataGridBodyProps}
+            virtualizationOptions={virtualizationOptions}
+          />
         );
         const outer = container.querySelector<HTMLElement>(
           '.euiDataGrid__virtualized'
@@ -180,6 +202,26 @@ describe('EuiDataGridBodyVirtualized', () => {
         });
 
         expect(inner.style.pointerEvents).not.toBe('none');
+      });
+
+      it('passes on a scroll back to the previous position that arrives before the grid re-renders', () => {
+        const onScroll = jest.fn();
+        const { outer } = renderGrid({ onScroll });
+
+        // Both events are handled before React re-renders the grid
+        act(() => {
+          setScrollTop(50);
+          fireEvent.scroll(outer);
+          setScrollTop(0);
+          fireEvent.scroll(outer);
+        });
+
+        expect(onScroll).toHaveBeenLastCalledWith(
+          expect.objectContaining({
+            scrollTop: 0,
+            verticalScrollDirection: 'backward',
+          })
+        );
       });
     });
   });

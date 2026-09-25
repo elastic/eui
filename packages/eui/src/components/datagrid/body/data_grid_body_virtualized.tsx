@@ -152,8 +152,7 @@ const OuterElement = forwardRef<HTMLDivElement, OuterElementProps>(
     // so hovered cells lose the pointer and tooltips repeatedly open and close.
     const onScrollIfMoved = useCallback(
       (event: UIEvent<HTMLDivElement>) => {
-        const scrollPosition = scrollPositionRef.current;
-        if (scrollPosition && direction !== 'rtl') {
+        if (direction !== 'rtl') {
           const {
             scrollTop,
             scrollLeft,
@@ -162,14 +161,28 @@ const OuterElement = forwardRef<HTMLDivElement, OuterElementProps>(
             clientHeight,
             clientWidth,
           } = event.currentTarget;
+          const scrollPosition = {
+            scrollTop: clampScrollOffset(
+              scrollTop,
+              scrollHeight - clientHeight
+            ),
+            scrollLeft: clampScrollOffset(
+              scrollLeft,
+              scrollWidth - clientWidth
+            ),
+          };
+          const previousScrollPosition = scrollPositionRef.current;
           if (
-            clampScrollOffset(scrollTop, scrollHeight - clientHeight) ===
-              scrollPosition.scrollTop &&
-            clampScrollOffset(scrollLeft, scrollWidth - clientWidth) ===
-              scrollPosition.scrollLeft
+            previousScrollPosition &&
+            scrollPosition.scrollTop === previousScrollPosition.scrollTop &&
+            scrollPosition.scrollLeft === previousScrollPosition.scrollLeft
           ) {
             return;
           }
+          // react-window may not have rendered the previous event's position
+          // yet, so the ref must reflect every forwarded event, not only the
+          // positions react-window reports back through its `onScroll` prop.
+          scrollPositionRef.current = scrollPosition;
         }
         onScroll(event);
       },
