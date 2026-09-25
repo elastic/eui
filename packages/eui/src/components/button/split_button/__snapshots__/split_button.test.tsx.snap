@@ -8,7 +8,7 @@ exports[`EuiSplitButton renders 1`] = `
   style="--euiSplitButtonBorderColor: #BFDBFF;"
 >
   <button
-    class="euiButton euiSplitButtonActionPrimary emotion-euiButtonDisplay-m-defaultMinWidth-base-primary-euiSplitButtonActionPrimary"
+    class="euiButton euiSplitButtonActionPrimary emotion-euiButtonDisplay-m-base-primary-euiSplitButtonActionPrimary"
     data-test-subj="primary-action"
     type="button"
   >

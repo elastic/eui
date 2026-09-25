@@ -15,7 +15,7 @@ const { argv } = yargs(hideBin(process.argv))
     'react-version': {
       type: 'number',
       default: 18,
-      choices: [16, 17, 18],
+      choices: [17, 18],
     },
     testMatch: {
       type: 'string',

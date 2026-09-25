@@ -43,7 +43,7 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     get trackBorderColor() {
       return this.trackColor;
     },
-    trackBorderRadius: euiTheme.border.radius.medium,
+    trackBorderRadius: euiTheme.border.radius.inline,
 
     tickHeight: trackHeight,
     tickWidth: euiTheme.size.xs,

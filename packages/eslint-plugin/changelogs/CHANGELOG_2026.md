@@ -1,3 +1,11 @@
+## [`v3.1.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.1.0)
+
+- Added new `@elastic/eui/no-nested-interactive-element` rule ([#10035](https://github.com/elastic/eui/pull/10035))
+
+**Bug fixes**
+
+- Fixed `@elastic/eui/tooltip-no-interactive-content` to also report `EuiBadge`, `EuiBetaBadge` and `EuiCard` with `onClick` or `href` inside tooltip content ([#10035](https://github.com/elastic/eui/pull/10035))
+
 ## [`v3.0.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.0.0)
 
 - Updated `button-group-no-invalid-children` rule to support checking button groups with `variant="selection"` ([#9950](https://github.com/elastic/eui/pull/9950))
