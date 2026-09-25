@@ -26,6 +26,7 @@ import { EuiSpacer } from '../../spacer';
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
+import { EuiFormLabelAppend } from '../form_label_append';
 import { useFormContext } from '../eui_form_context';
 import { euiFormRowStyles } from './form_row.styles';
 
@@ -77,9 +78,9 @@ type EuiFormRowCommonProps = CommonProps & {
   /**
    * Adds an extra node to the right of the form label without
    * being contained inside the form label. Good for things
-   * like documentation links.
+   * like required fields or documentation links.
    */
-  labelAppend?: any;
+  labelAppend?: String | ReactNode;
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
@@ -245,8 +246,14 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
           >
             {label}
           </EuiFormLabel>
-          {labelAppend && ' '}
-          {labelAppend}
+          {labelAppend && (
+            <>
+              {' '}
+              <EuiFormLabelAppend className="euiFormRow__labelAppend">
+                {labelAppend}
+              </EuiFormLabelAppend>
+            </>
+          )}
         </div>
       ) : (
         hasEmptyLabelSpace && (
