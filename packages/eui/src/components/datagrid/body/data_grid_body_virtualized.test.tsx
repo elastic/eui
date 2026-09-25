@@ -156,21 +156,21 @@ describe('EuiDataGridBodyVirtualized', () => {
         return { outer, inner: outer.firstElementChild as HTMLElement };
       };
 
-      it('does not disable pointer events on the inner element while scrolling', () => {
+      it('disables pointer events on the inner element while scrolling', () => {
         const { outer, inner } = renderGrid();
 
         setScrollTop(50);
         fireEvent.scroll(outer);
 
-        expect(inner.style.pointerEvents).not.toBe('none');
+        expect(inner.style.pointerEvents).toBe('none');
       });
 
-      // https://github.com/elastic/eui/issues/10083
       it('does not disable pointer events for a scroll event that does not move the grid, with `scrollTop` rounded above the maximum', async () => {
         const { outer, inner } = renderGrid();
 
         // Firefox at a devicePixelRatio of 1.25 can report a `scrollTop` above
-        // `scrollHeight - clientHeight` (100) when scrolled to the very bottom
+        // `scrollHeight - clientHeight` (100) when scrolled to the very bottom. This test
+        // ensures that pointer events are not disabled in the case of this false positive.
         setScrollTop(100.4);
         fireEvent.scroll(outer);
         await waitFor(() => expect(inner.style.pointerEvents).not.toBe('none'));

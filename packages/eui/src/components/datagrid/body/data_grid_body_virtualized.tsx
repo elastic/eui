@@ -16,7 +16,10 @@ import React, {
   useEffect,
   useRef,
   useMemo,
+  MutableRefObject,
   PropsWithChildren,
+  UIEvent,
+  UIEventHandler,
   memo,
 } from 'react';
 import {
@@ -95,12 +98,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = memo(
       const innerElementStyles = useMemo(() => {
         return {
           ...memoizedStyles,
-          // react-window sets `pointer-events: none` while it thinks the grid is
-          // scrolling. Scroll events that don't move the grid can trigger this
-          // (e.g. Firefox rounding `scrollTop` above the maximum at fractional
-          // device pixel ratios), so hovered cells lose the pointer and tooltips
-          // get stuck opening and closing.
-          pointerEvents: undefined,
           height: memoizedStyles.height + headerRowHeight,
         };
       }, [memoizedStyles, headerRowHeight]);
@@ -118,6 +115,71 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = memo(
   )
 );
 InnerElement.displayName = 'EuiDataGridInnerElement';
+
+type ScrollPosition = Pick<GridOnScrollProps, 'scrollTop' | 'scrollLeft'>;
+
+type DataGridOuterElementContextShape = {
+  outerElementType?: VariableSizeGridProps['outerElementType'];
+  direction?: VariableSizeGridProps['direction'];
+  scrollPositionRef: MutableRefObject<ScrollPosition | null>;
+};
+
+const DataGridOuterElementContext =
+  createContext<DataGridOuterElementContextShape>({
+    scrollPositionRef: { current: null },
+  });
+
+type OuterElementProps = PropsWithChildren & {
+  onScroll: UIEventHandler<HTMLDivElement>;
+};
+
+const clampScrollOffset = (offset: number, max: number) =>
+  Math.max(0, Math.min(offset, max));
+
+const OuterElement = forwardRef<HTMLDivElement, OuterElementProps>(
+  ({ onScroll, ...rest }, ref) => {
+    const {
+      outerElementType: Element = 'div',
+      direction,
+      scrollPositionRef,
+    } = useContext(DataGridOuterElementContext);
+
+    // react-window compares the raw scroll offsets against its own clamped
+    // offsets, and flags the grid as scrolling (setting `pointer-events: none`
+    // on the inner element) whenever they differ. Firefox can report a
+    // `scrollTop` above the maximum at fractional device pixel ratios, which
+    // makes every scroll event at the bottom of the grid look like a scroll,
+    // so hovered cells lose the pointer and tooltips repeatedly open and close.
+    const onScrollIfMoved = useCallback(
+      (event: UIEvent<HTMLDivElement>) => {
+        const scrollPosition = scrollPositionRef.current;
+        if (scrollPosition && direction !== 'rtl') {
+          const {
+            scrollTop,
+            scrollLeft,
+            scrollHeight,
+            scrollWidth,
+            clientHeight,
+            clientWidth,
+          } = event.currentTarget;
+          if (
+            clampScrollOffset(scrollTop, scrollHeight - clientHeight) ===
+              scrollPosition.scrollTop &&
+            clampScrollOffset(scrollLeft, scrollWidth - clientWidth) ===
+              scrollPosition.scrollLeft
+          ) {
+            return;
+          }
+        }
+        onScroll(event);
+      },
+      [onScroll, direction, scrollPositionRef]
+    );
+
+    return <Element ref={ref} onScroll={onScrollIfMoved} {...rest} />;
+  }
+);
+OuterElement.displayName = 'EuiDataGridOuterElement';
 
 export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps> =
   memo(
@@ -383,8 +445,26 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           footerRow,
         };
       }, [headerRowHeight, headerRow, footerRow, showHeader]);
+
+      const scrollPositionRef = useRef<ScrollPosition | null>(null);
+      const outerElementContextValue = useMemo(() => {
+        return {
+          outerElementType: virtualizationOptions?.outerElementType,
+          direction: virtualizationOptions?.direction,
+          scrollPositionRef,
+        };
+      }, [
+        virtualizationOptions?.outerElementType,
+        virtualizationOptions?.direction,
+      ]);
+
       const onScroll = useCallback(
         (args: GridOnScrollProps) => {
+          scrollPositionRef.current = {
+            scrollTop: args.scrollTop,
+            scrollLeft: args.scrollLeft,
+          };
+
           // check only if a callback is passed
           if (typeof virtualizationOptions?.onScroll !== 'function') return;
 
@@ -447,35 +527,40 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
 
       return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
         <DataGridWrapperRowsContext.Provider value={rowWrapperContextValue}>
-          <Grid
-            {...virtualizationOptions}
-            ref={gridRef}
-            className={classNames(
-              'euiDataGrid__virtualized',
-              className,
-              virtualizationOptions?.className
-            )}
-            onItemsRendered={onItemsRendered}
-            innerElementType={InnerElement}
-            outerRef={outerGridRef}
-            innerRef={innerGridRef}
-            columnCount={visibleColCount}
-            width={finalWidth}
-            columnWidth={getColumnWidth}
-            height={finalHeight}
-            rowHeight={getRowHeight}
-            itemData={itemData}
-            rowCount={
-              IS_JEST_ENVIRONMENT ||
-              headerRowHeight > 0 ||
-              (showHeader === false && innerGridRef.current)
-                ? visibleRowCount
-                : 0
-            }
-            onScroll={onScroll}
+          <DataGridOuterElementContext.Provider
+            value={outerElementContextValue}
           >
-            {Cell}
-          </Grid>
+            <Grid
+              {...virtualizationOptions}
+              ref={gridRef}
+              className={classNames(
+                'euiDataGrid__virtualized',
+                className,
+                virtualizationOptions?.className
+              )}
+              onItemsRendered={onItemsRendered}
+              outerElementType={OuterElement}
+              innerElementType={InnerElement}
+              outerRef={outerGridRef}
+              innerRef={innerGridRef}
+              columnCount={visibleColCount}
+              width={finalWidth}
+              columnWidth={getColumnWidth}
+              height={finalHeight}
+              rowHeight={getRowHeight}
+              itemData={itemData}
+              rowCount={
+                IS_JEST_ENVIRONMENT ||
+                headerRowHeight > 0 ||
+                (showHeader === false && innerGridRef.current)
+                  ? visibleRowCount
+                  : 0
+              }
+              onScroll={onScroll}
+            >
+              {Cell}
+            </Grid>
+          </DataGridOuterElementContext.Provider>
           {scrollBorderOverlay}
         </DataGridWrapperRowsContext.Provider>
       ) : null;
