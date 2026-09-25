@@ -15,7 +15,7 @@ import { euiPaletteColorBlind, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
 
-const VISUALIZATION_COLORS = euiPaletteColorBlind();
+const DEFAULT_SWATCHES = euiPaletteColorBlind().slice(0, 10);
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
@@ -250,11 +250,11 @@ describe('EuiColorPicker', () => {
     fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
     const swatches = document.querySelectorAll('button.euiColorPickerSwatch');
-    expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
+    expect(swatches.length).toBe(DEFAULT_SWATCHES.length);
 
     fireEvent.click(swatches[0]);
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(VISUALIZATION_COLORS[0], {
+    expect(onChange).toHaveBeenCalledWith(DEFAULT_SWATCHES[0], {
       hex: '#16c5c0',
       isValid: true,
       rgba: [22, 197, 192, 1],
@@ -309,7 +309,7 @@ describe('EuiColorPicker', () => {
     expect(document.querySelector('.euiHue')).toBeInTheDocument();
     expect(
       document.querySelectorAll('button.euiColorPickerSwatch').length
-    ).toBe(VISUALIZATION_COLORS.length);
+    ).toBe(DEFAULT_SWATCHES.length);
   });
 
   test('swatch mode does not render EuiSaturation or EuiHue', () => {
@@ -322,7 +322,7 @@ describe('EuiColorPicker', () => {
     expect(document.querySelector('.euiHue')).not.toBeInTheDocument();
     expect(
       document.querySelectorAll('button.euiColorPickerSwatch').length
-    ).toBe(VISUALIZATION_COLORS.length);
+    ).toBe(DEFAULT_SWATCHES.length);
   });
 
   test('picker mode does not render swatches', () => {
