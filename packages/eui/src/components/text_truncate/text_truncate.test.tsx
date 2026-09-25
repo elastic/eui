@@ -118,6 +118,18 @@ describe('EuiTextTruncate', () => {
       expect(queryByRole('tooltip')).toHaveTextContent('Hello world');
     });
 
+    it('passes toolTipProps to the tooltip', () => {
+      const { container, getByRole } = render(
+        <EuiTextTruncate
+          text="Hello world"
+          width={0}
+          toolTipProps={{ position: 'right' }}
+        />
+      );
+      fireEvent.mouseOver(container.querySelector('.euiTextTruncate')!);
+      expect(getByRole('tooltip')).toHaveAttribute('data-position', 'right');
+    });
+
     it('does not render a tooltip when not truncating', () => {
       const { container, queryByRole } = render(
         <EuiTextTruncate text="Hello world" width={50} />
