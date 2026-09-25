@@ -16,28 +16,28 @@ import { PRIMITIVE_COLORS } from './_primitive_colors';
 // The `behindText` variant is a direct copy of the hex output by the JS euiPaletteColorBlindBehindText() function
 const euiPaletteColorBlind = {
   euiColorVis0: {
-    graphic: SEMANTIC_COLORS.accentSecondary70,
+    graphic: SEMANTIC_COLORS.accentSecondary60,
   },
   euiColorVis1: {
-    graphic: SEMANTIC_COLORS.accentSecondary40,
+    graphic: SEMANTIC_COLORS.accentSecondary30,
   },
   euiColorVis2: {
-    graphic: SEMANTIC_COLORS.primary70,
+    graphic: SEMANTIC_COLORS.primary60,
   },
   euiColorVis3: {
-    graphic: SEMANTIC_COLORS.primary40,
+    graphic: SEMANTIC_COLORS.primary30,
   },
   euiColorVis4: {
-    graphic: SEMANTIC_COLORS.accent70,
+    graphic: SEMANTIC_COLORS.accent60,
   },
   euiColorVis5: {
-    graphic: SEMANTIC_COLORS.accent40,
+    graphic: SEMANTIC_COLORS.accent30,
   },
   euiColorVis6: {
-    graphic: SEMANTIC_COLORS.danger70,
+    graphic: SEMANTIC_COLORS.danger60,
   },
   euiColorVis7: {
-    graphic: SEMANTIC_COLORS.danger40,
+    graphic: SEMANTIC_COLORS.danger30,
   },
   euiColorVis8: {
     graphic: SEMANTIC_COLORS.warning60,
@@ -46,10 +46,10 @@ const euiPaletteColorBlind = {
     graphic: SEMANTIC_COLORS.warning30,
   },
   euiColorVis10: {
-    graphic: SEMANTIC_COLORS.assistance70,
+    graphic: SEMANTIC_COLORS.assistance60,
   },
   euiColorVis11: {
-    graphic: SEMANTIC_COLORS.assistance40,
+    graphic: SEMANTIC_COLORS.assistance30,
   },
 };
 

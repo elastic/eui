@@ -38,49 +38,49 @@ exports[`euiProgressStyles indeterminate div CSS colors success 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS colors vis0 1`] = `
 "&::before {
-    background-color: #00B0AA;
+    background-color: #16C5C0;
   };;label:vis0;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis1 1`] = `
 "&::before {
-    background-color: #77E5E0;
+    background-color: #A6EDEA;
   };;label:vis1;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis2 1`] = `
 "&::before {
-    background-color: #3788FF;
+    background-color: #61A2FF;
   };;label:vis2;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis3 1`] = `
 "&::before {
-    background-color: #A3CBFF;
+    background-color: #BFDBFF;
   };;label:vis3;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis4 1`] = `
 "&::before {
-    background-color: #E54A91;
+    background-color: #EE72A6;
   };;label:vis4;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis5 1`] = `
 "&::before {
-    background-color: #FBADCA;
+    background-color: #FFC7DB;
   };;label:vis5;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis6 1`] = `
 "&::before {
-    background-color: #EE4C48;
+    background-color: #F6726A;
   };;label:vis6;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis7 1`] = `
 "&::before {
-    background-color: #FFB5AD;
+    background-color: #FFC9C2;
   };;label:vis7;"
 `;
 
@@ -180,73 +180,73 @@ exports[`euiProgressStyles native progress CSS colors success 1`] = `
 
 exports[`euiProgressStyles native progress CSS colors vis0 1`] = `
 "&::-webkit-progress-value {
-    background-color: #00B0AA;
+    background-color: #16C5C0;
   }
   &::-moz-progress-bar {
-    background-color: #00B0AA;
+    background-color: #16C5C0;
   };;label:vis0;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis1 1`] = `
 "&::-webkit-progress-value {
-    background-color: #77E5E0;
+    background-color: #A6EDEA;
   }
   &::-moz-progress-bar {
-    background-color: #77E5E0;
+    background-color: #A6EDEA;
   };;label:vis1;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis2 1`] = `
 "&::-webkit-progress-value {
-    background-color: #3788FF;
+    background-color: #61A2FF;
   }
   &::-moz-progress-bar {
-    background-color: #3788FF;
+    background-color: #61A2FF;
   };;label:vis2;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis3 1`] = `
 "&::-webkit-progress-value {
-    background-color: #A3CBFF;
+    background-color: #BFDBFF;
   }
   &::-moz-progress-bar {
-    background-color: #A3CBFF;
+    background-color: #BFDBFF;
   };;label:vis3;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis4 1`] = `
 "&::-webkit-progress-value {
-    background-color: #E54A91;
+    background-color: #EE72A6;
   }
   &::-moz-progress-bar {
-    background-color: #E54A91;
+    background-color: #EE72A6;
   };;label:vis4;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis5 1`] = `
 "&::-webkit-progress-value {
-    background-color: #FBADCA;
+    background-color: #FFC7DB;
   }
   &::-moz-progress-bar {
-    background-color: #FBADCA;
+    background-color: #FFC7DB;
   };;label:vis5;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis6 1`] = `
 "&::-webkit-progress-value {
-    background-color: #EE4C48;
+    background-color: #F6726A;
   }
   &::-moz-progress-bar {
-    background-color: #EE4C48;
+    background-color: #F6726A;
   };;label:vis6;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis7 1`] = `
 "&::-webkit-progress-value {
-    background-color: #FFB5AD;
+    background-color: #FFC9C2;
   }
   &::-moz-progress-bar {
-    background-color: #FFB5AD;
+    background-color: #FFC9C2;
   };;label:vis7;"
 `;
 
