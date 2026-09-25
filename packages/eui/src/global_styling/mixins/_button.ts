@@ -20,29 +20,23 @@ import {
 } from '../../services';
 import { highContrastModeStyles, logicalCSS } from '../functions';
 import { euiDisabledSelector } from '../utility/selectors';
+import {
+  BUTTON_DISPLAYS,
+  EXTENDED_BUTTON_COLORS,
+  type _EuiButtonDisplay,
+  type _EuiExtendedButtonColor,
+} from './_button_constants';
 
-/** Tentative usage; these exist only to be used as button directly when used within other components */
-export const SEVERITY_COLORS = ['neutral', 'risk'] as const;
+export {
+  SEVERITY_COLORS,
+  BUTTON_COLORS,
+  EXTENDED_BUTTON_COLORS,
+  BUTTON_DISPLAYS,
+  type _EuiButtonColor,
+  type _EuiExtendedButtonColor,
+  type _EuiButtonDisplay,
+} from './_button_constants';
 
-export const BUTTON_COLORS = [
-  'text',
-  'accent',
-  'accentSecondary',
-  'primary',
-  'success',
-  'warning',
-  'danger',
-] as const;
-
-export const EXTENDED_BUTTON_COLORS = [
-  ...BUTTON_COLORS,
-  ...SEVERITY_COLORS,
-] as const;
-export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
-export type _EuiExtendedButtonColor = (typeof EXTENDED_BUTTON_COLORS)[number];
-
-export const BUTTON_DISPLAYS = ['base', 'fill', 'empty'] as const;
-export type _EuiButtonDisplay = (typeof BUTTON_DISPLAYS)[number];
 export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
 }

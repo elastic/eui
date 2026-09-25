@@ -32,6 +32,7 @@ import {
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
+import { BUTTON_DISPLAY_SIZES } from '../../../global_styling/mixins/_button_constants';
 import { euiButtonDisplayStyles } from './_button_display.styles';
 import {
   EuiButtonDisplayContent,
@@ -39,8 +40,7 @@ import {
   EuiButtonDisplayContentType,
 } from './_button_display_content';
 
-const SIZES = ['xs', 's', 'm'] as const;
-export type EuiButtonDisplaySizes = (typeof SIZES)[number];
+export type EuiButtonDisplaySizes = (typeof BUTTON_DISPLAY_SIZES)[number];
 
 /**
  * Extends EuiButtonDisplayContentProps which provides
