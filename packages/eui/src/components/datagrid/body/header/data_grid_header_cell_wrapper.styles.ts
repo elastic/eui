@@ -50,6 +50,36 @@ export const euiDataGridHeaderCellWrapperStyles = (
         }
       }
 
+      /* Match showActions gap when column actions stay visible (stable header height) */
+      &.euiDataGridHeaderCell--columnActionsAlwaysVisible {
+        &,
+        & > [data-focus-lock-disabled] {
+          gap: ${euiTheme.size.xxs};
+        }
+      }
+
+      /*
+       * When actions are overlaid they are not flex items; keep a steady gap between
+       * remaining flex items so hover/focus does not toggle layout.
+       */
+      &.euiDataGridHeaderCell--columnActionsOverlay {
+        &,
+        & > [data-focus-lock-disabled] {
+          gap: ${euiTheme.size.xxs};
+        }
+
+        .euiDataGridHeaderCell__columnActionsPopover {
+          position: absolute;
+          ${logicalCSS('top', 0)}
+          ${logicalCSS('bottom', 0)}
+          ${logicalCSS('right', 0)}
+          display: flex;
+          align-items: center;
+          ${logicalCSS('margin-left', 0)}
+          z-index: ${Number(euiTheme.levels.header) + 1};
+        }
+      }
+
       /* Workaround for focus trap */
       & > [data-focus-lock-disabled] {
         display: flex;

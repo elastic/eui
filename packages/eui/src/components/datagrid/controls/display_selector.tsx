@@ -48,6 +48,8 @@ export const startingStyles: EuiDataGridStyle = {
   header: 'shade',
   footer: 'overline',
   stickyFooter: true,
+  headerColumnActionsVisibility: 'hover',
+  headerColumnActionsDisplay: 'inline',
 };
 const emptyRowHeightsOptions: EuiDataGridRowHeightsOptions = {};
 
