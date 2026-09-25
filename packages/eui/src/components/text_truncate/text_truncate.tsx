@@ -101,10 +101,12 @@ export type EuiTextTruncateProps = Omit<
      */
     calculationDelayMs?: number;
     /**
-     * Props passed to the tooltip that shows the full text while truncating,
-     * e.g. `position` or `anchorProps`.
+     * Placement of the tooltip that shows the full text while truncating.
      */
-    toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+    toolTipProps?: Pick<
+      EuiToolTipProps,
+      'position' | 'offset' | 'repositionOnScroll'
+    >;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
