@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
@@ -164,11 +164,13 @@ describe('EuiDataGridBodyVirtualized', () => {
         });
 
       const renderGrid = (
-        virtualizationOptions?: EuiDataGridBodyProps['virtualizationOptions']
+        virtualizationOptions?: EuiDataGridBodyProps['virtualizationOptions'],
+        gridRef: EuiDataGridBodyProps['gridRef'] = dataGridBodyProps.gridRef
       ) => {
         const { container } = render(
           <EuiDataGridBodyVirtualized
             {...dataGridBodyProps}
+            gridRef={gridRef}
             virtualizationOptions={virtualizationOptions}
           />
         );
@@ -216,12 +218,65 @@ describe('EuiDataGridBodyVirtualized', () => {
           fireEvent.scroll(outer);
         });
 
+        // The callback's `scrollTop` is read from the DOM mock, so it stays 0
+        // even when the second event was dropped. Direction does not: mount
+        // reports `forward`, and `backward` means the reversal was applied.
         expect(onScroll).toHaveBeenLastCalledWith(
           expect.objectContaining({
-            scrollTop: 0,
             verticalScrollDirection: 'backward',
           })
         );
+      });
+
+      it('renders `virtualizationOptions.outerElementType` as the scroll container', () => {
+        const CustomOuter = forwardRef<
+          HTMLDivElement,
+          React.ComponentPropsWithoutRef<'div'>
+        >((props, ref) => (
+          <div data-test-subj="customOuter" ref={ref} {...props} />
+        ));
+        CustomOuter.displayName = 'CustomOuter';
+        const { outer, inner } = renderGrid({ outerElementType: CustomOuter });
+
+        expect(outer).toHaveAttribute('data-test-subj', 'customOuter');
+
+        setScrollTop(50);
+        fireEvent.scroll(outer);
+
+        expect(inner.style.pointerEvents).toBe('none');
+      });
+
+      it('does not treat a clamped scroll as movement after scrollTo past the end', async () => {
+        let scrollTop = 0;
+        const maxScrollTop = 100;
+        Object.defineProperty(Element.prototype, 'scrollTop', {
+          configurable: true,
+          get: () => scrollTop,
+          set: (value: number) => {
+            scrollTop = Math.max(0, Math.min(value, maxScrollTop));
+          },
+        });
+
+        const gridRef: EuiDataGridBodyProps['gridRef'] = { current: null };
+        const { outer, inner } = renderGrid(undefined, gridRef);
+
+        // Land on the real end so the ref holds the clamped position.
+        scrollTop = maxScrollTop;
+        fireEvent.scroll(outer);
+        await waitFor(() => expect(inner.style.pointerEvents).not.toBe('none'));
+
+        act(() => {
+          gridRef.current!.scrollTo({ scrollTop: 5000 });
+        });
+
+        // Firefox can then report a value above the maximum. The setter
+        // clamps programmatic writes, so the overshoot is applied directly.
+        scrollTop = 100.4;
+        act(() => {
+          fireEvent.scroll(outer);
+        });
+
+        expect(inner.style.pointerEvents).not.toBe('none');
       });
     });
   });
