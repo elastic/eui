@@ -473,10 +473,32 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
 
       const onScroll = useCallback(
         (args: GridOnScrollProps) => {
-          scrollPositionRef.current = {
-            scrollTop: args.scrollTop,
-            scrollLeft: args.scrollLeft,
-          };
+          const element = outerGridRef.current;
+          // `scrollTo` reports the requested offset, which can sit past the
+          // end. Storing that would replace the clamped position already
+          // taken from the DOM. Leave the ref unchanged instead of writing
+          // the clamped value: a scroll event that has not arrived yet still
+          // differs from the previous position and is forwarded.
+          const topInRange =
+            element == null ||
+            args.scrollTop ===
+              clampScrollOffset(
+                args.scrollTop,
+                element.scrollHeight - element.clientHeight
+              );
+          const leftInRange =
+            element == null ||
+            args.scrollLeft ===
+              clampScrollOffset(
+                args.scrollLeft,
+                element.scrollWidth - element.clientWidth
+              );
+          if (topInRange && leftInRange) {
+            scrollPositionRef.current = {
+              scrollTop: args.scrollTop,
+              scrollLeft: args.scrollLeft,
+            };
+          }
 
           // check only if a callback is passed
           if (typeof virtualizationOptions?.onScroll !== 'function') return;
