@@ -603,6 +603,32 @@ exports[`EuiColorPicker inline 1`] = `
         />
       </span>
     </li>
+    <li>
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <button
+          aria-label="Select #B386F9 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(179, 134, 249);"
+          type="button"
+        />
+      </span>
+    </li>
+    <li>
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+        id="generated-id_euiToolTipAnchor"
+      >
+        <button
+          aria-label="Select #E2D3FE as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(226, 211, 254);"
+          type="button"
+        />
+      </span>
+    </li>
   </ul>
 </div>
 `;
