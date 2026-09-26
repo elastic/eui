@@ -16,7 +16,10 @@ import React, {
   useEffect,
   useRef,
   useMemo,
+  MutableRefObject,
   PropsWithChildren,
+  UIEvent,
+  UIEventHandler,
   memo,
 } from 'react';
 import {
@@ -112,6 +115,84 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = memo(
   )
 );
 InnerElement.displayName = 'EuiDataGridInnerElement';
+
+type ScrollPosition = Pick<GridOnScrollProps, 'scrollTop' | 'scrollLeft'>;
+
+type DataGridOuterElementContextShape = {
+  outerElementType?: VariableSizeGridProps['outerElementType'];
+  direction?: VariableSizeGridProps['direction'];
+  scrollPositionRef: MutableRefObject<ScrollPosition | null>;
+};
+
+const DataGridOuterElementContext =
+  createContext<DataGridOuterElementContextShape>({
+    scrollPositionRef: { current: null },
+  });
+
+type OuterElementProps = PropsWithChildren & {
+  onScroll: UIEventHandler<HTMLDivElement>;
+};
+
+const clampScrollOffset = (offset: number, max: number) =>
+  Math.max(0, Math.min(offset, max));
+
+const OuterElement = forwardRef<HTMLDivElement, OuterElementProps>(
+  ({ onScroll, ...rest }, ref) => {
+    const {
+      outerElementType: Element = 'div',
+      direction,
+      scrollPositionRef,
+    } = useContext(DataGridOuterElementContext);
+
+    // react-window compares the raw scroll offsets against its own clamped
+    // offsets, and flags the grid as scrolling (setting `pointer-events: none`
+    // on the inner element) whenever they differ. Firefox can report a
+    // `scrollTop` above the maximum at fractional device pixel ratios, which
+    // makes every scroll event at the bottom of the grid look like a scroll,
+    // so hovered cells lose the pointer and tooltips repeatedly open and close.
+    const onScrollIfMoved = useCallback(
+      (event: UIEvent<HTMLDivElement>) => {
+        if (direction !== 'rtl') {
+          const {
+            scrollTop,
+            scrollLeft,
+            scrollHeight,
+            scrollWidth,
+            clientHeight,
+            clientWidth,
+          } = event.currentTarget;
+          const scrollPosition = {
+            scrollTop: clampScrollOffset(
+              scrollTop,
+              scrollHeight - clientHeight
+            ),
+            scrollLeft: clampScrollOffset(
+              scrollLeft,
+              scrollWidth - clientWidth
+            ),
+          };
+          const previousScrollPosition = scrollPositionRef.current;
+          if (
+            previousScrollPosition &&
+            scrollPosition.scrollTop === previousScrollPosition.scrollTop &&
+            scrollPosition.scrollLeft === previousScrollPosition.scrollLeft
+          ) {
+            return;
+          }
+          // react-window may not have rendered the previous event's position
+          // yet, so the ref must reflect every forwarded event, not only the
+          // positions react-window reports back through its `onScroll` prop.
+          scrollPositionRef.current = scrollPosition;
+        }
+        onScroll(event);
+      },
+      [onScroll, direction, scrollPositionRef]
+    );
+
+    return <Element ref={ref} onScroll={onScrollIfMoved} {...rest} />;
+  }
+);
+OuterElement.displayName = 'EuiDataGridOuterElement';
 
 export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps> =
   memo(
@@ -377,8 +458,48 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           footerRow,
         };
       }, [headerRowHeight, headerRow, footerRow, showHeader]);
+
+      const scrollPositionRef = useRef<ScrollPosition | null>(null);
+      const outerElementContextValue = useMemo(() => {
+        return {
+          outerElementType: virtualizationOptions?.outerElementType,
+          direction: virtualizationOptions?.direction,
+          scrollPositionRef,
+        };
+      }, [
+        virtualizationOptions?.outerElementType,
+        virtualizationOptions?.direction,
+      ]);
+
       const onScroll = useCallback(
         (args: GridOnScrollProps) => {
+          const element = outerGridRef.current;
+          // `scrollTo` reports the requested offset, which can sit past the
+          // end. Storing that would replace the clamped position already
+          // taken from the DOM. Leave the ref unchanged instead of writing
+          // the clamped value: a scroll event that has not arrived yet still
+          // differs from the previous position and is forwarded.
+          const topInRange =
+            element == null ||
+            args.scrollTop ===
+              clampScrollOffset(
+                args.scrollTop,
+                element.scrollHeight - element.clientHeight
+              );
+          const leftInRange =
+            element == null ||
+            args.scrollLeft ===
+              clampScrollOffset(
+                args.scrollLeft,
+                element.scrollWidth - element.clientWidth
+              );
+          if (topInRange && leftInRange) {
+            scrollPositionRef.current = {
+              scrollTop: args.scrollTop,
+              scrollLeft: args.scrollLeft,
+            };
+          }
+
           // check only if a callback is passed
           if (typeof virtualizationOptions?.onScroll !== 'function') return;
 
@@ -441,35 +562,40 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
 
       return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
         <DataGridWrapperRowsContext.Provider value={rowWrapperContextValue}>
-          <Grid
-            {...virtualizationOptions}
-            ref={gridRef}
-            className={classNames(
-              'euiDataGrid__virtualized',
-              className,
-              virtualizationOptions?.className
-            )}
-            onItemsRendered={onItemsRendered}
-            innerElementType={InnerElement}
-            outerRef={outerGridRef}
-            innerRef={innerGridRef}
-            columnCount={visibleColCount}
-            width={finalWidth}
-            columnWidth={getColumnWidth}
-            height={finalHeight}
-            rowHeight={getRowHeight}
-            itemData={itemData}
-            rowCount={
-              IS_JEST_ENVIRONMENT ||
-              headerRowHeight > 0 ||
-              (showHeader === false && innerGridRef.current)
-                ? visibleRowCount
-                : 0
-            }
-            onScroll={onScroll}
+          <DataGridOuterElementContext.Provider
+            value={outerElementContextValue}
           >
-            {Cell}
-          </Grid>
+            <Grid
+              {...virtualizationOptions}
+              ref={gridRef}
+              className={classNames(
+                'euiDataGrid__virtualized',
+                className,
+                virtualizationOptions?.className
+              )}
+              onItemsRendered={onItemsRendered}
+              outerElementType={OuterElement}
+              innerElementType={InnerElement}
+              outerRef={outerGridRef}
+              innerRef={innerGridRef}
+              columnCount={visibleColCount}
+              width={finalWidth}
+              columnWidth={getColumnWidth}
+              height={finalHeight}
+              rowHeight={getRowHeight}
+              itemData={itemData}
+              rowCount={
+                IS_JEST_ENVIRONMENT ||
+                headerRowHeight > 0 ||
+                (showHeader === false && innerGridRef.current)
+                  ? visibleRowCount
+                  : 0
+              }
+              onScroll={onScroll}
+            >
+              {Cell}
+            </Grid>
+          </DataGridOuterElementContext.Provider>
           {scrollBorderOverlay}
         </DataGridWrapperRowsContext.Provider>
       ) : null;
