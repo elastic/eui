@@ -234,17 +234,19 @@ export const EuiSelectableListItem: FunctionComponent<
         break;
     }
 
-    return state || instructions ? (
+    const enabledInstructions = disabled ? undefined : instructions;
+
+    return state || enabledInstructions ? (
       <EuiScreenReaderOnly>
         <div>
-          {state || instructions ? '. ' : null}
+          {state || enabledInstructions ? '. ' : null}
           {state}
-          {state && instructions ? ' ' : null}
-          {instructions}
+          {state && enabledInstructions ? ' ' : null}
+          {enabledInstructions}
         </div>
       </EuiScreenReaderOnly>
     ) : null;
-  }, [checked, searchable, allowExclusions]);
+  }, [checked, disabled, searchable, allowExclusions]);
 
   const hasToolTip = !!toolTipContent && (!disabled || hasAriaDisabled);
   const showOnFocusBadge =
