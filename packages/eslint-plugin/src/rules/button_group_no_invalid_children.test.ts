@@ -891,6 +891,19 @@ ruleTester.run(
         languageOptions,
         options: [{ additionalWrappers: ['MyTooltipWrapper'] }],
       },
+      {
+        name: 'locally-defined passthrough wrapper in additionalWrappers with valid button child is accepted',
+        code: dedent`
+          const CustomWrapper = ({ children }) => children;
+          <EuiButtonGroup legend="Actions">
+            <CustomWrapper>
+              <EuiButton>Save</EuiButton>
+            </CustomWrapper>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['CustomWrapper'] }],
+      },
     ],
 
     invalid: [
@@ -1313,6 +1326,29 @@ ruleTester.run(
               name: 'MyTooltipWrapper',
               allowed: DEFAULT_ALLOWED,
               wrappers: DEFAULT_WRAPPERS,
+            },
+          },
+        ],
+      },
+      {
+        name: 'locally-defined passthrough wrapper in additionalWrappers with invalid child is reported',
+        code: dedent`
+          const CustomWrapper = ({ children }) => children;
+          <EuiButtonGroup legend="Actions">
+            <CustomWrapper>
+              <div>Not a button</div>
+            </CustomWrapper>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['CustomWrapper'] }],
+        errors: [
+          {
+            messageId: 'invalidWrapperChild',
+            data: {
+              name: 'div',
+              wrapper: 'CustomWrapper',
+              allowed: DEFAULT_ALLOWED,
             },
           },
         ],
