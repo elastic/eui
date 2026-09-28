@@ -24,7 +24,7 @@ import {
   EuiResizeObserverProps,
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import { TruncationUtils } from './utils';
 import { euiTextTruncateStyles } from './text_truncate.styles';
@@ -100,6 +100,13 @@ export type EuiTextTruncateProps = Omit<
      * may help resolve any rendering issues.
      */
     calculationDelayMs?: number;
+    /**
+     * Placement of the tooltip that shows the full text while truncating.
+     */
+    toolTipProps?: Pick<
+      EuiToolTipProps,
+      'position' | 'offset' | 'repositionOnScroll'
+    >;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
@@ -130,6 +137,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   calculationDelayMs,
   containerRef,
   className,
+  toolTipProps,
   ...rest
 }) => {
   // Note: This needs to be a state and not a ref to trigger a rerender on mount
@@ -251,7 +259,12 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   );
 
   return isTruncating ? (
-    <EuiToolTip content={text} disableScreenReaderOutput display="block">
+    <EuiToolTip
+      content={text}
+      disableScreenReaderOutput
+      display="block"
+      {...toolTipProps}
+    >
       {content}
     </EuiToolTip>
   ) : (
