@@ -520,9 +520,23 @@ export const EuiFlyoutComponent = forwardRef(
       }
     }, [isInManagedContext, flyoutId]);
 
-    // Derive flyout identity and sibling info from the single context read
+    // Derive flyout identity and sibling info from the session this flyout
+    // belongs to. Not the current (top-most) session: a newly opened main
+    // renders once before it registers its own session, and a backgrounded
+    // main is not in the current session at all. Reading the current session
+    // in those cases would treat the other session's main as this flyout's
+    // sibling and clamp the resizable width against it.
+    const ownSession = useMemo(
+      () =>
+        managerSessions?.find(
+          (session) =>
+            session.mainFlyoutId === flyoutId ||
+            session.childFlyoutId === flyoutId
+        ) ?? null,
+      [managerSessions, flyoutId]
+    );
     const flyoutIdentity = useMemo(() => {
-      if (!flyoutId || !currentSession) {
+      if (!flyoutId || !ownSession) {
         return {
           isMainFlyout: false,
           siblingFlyoutId: null as string | null,
@@ -531,16 +545,16 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       const siblingFlyoutId =
-        currentSession.mainFlyoutId === flyoutId
-          ? currentSession.childFlyoutId
-          : currentSession.mainFlyoutId;
+        ownSession.mainFlyoutId === flyoutId
+          ? ownSession.childFlyoutId
+          : ownSession.mainFlyoutId;
 
       return {
-        isMainFlyout: currentSession.mainFlyoutId === flyoutId,
+        isMainFlyout: ownSession.mainFlyoutId === flyoutId,
         siblingFlyoutId,
         hasValidSession: true,
       };
-    }, [flyoutId, currentSession]);
+    }, [flyoutId, ownSession]);
 
     // Destructure for easier use
     const { siblingFlyoutId, isMainFlyout } = flyoutIdentity;
@@ -639,21 +653,26 @@ export const EuiFlyoutComponent = forwardRef(
     // the document element so that the child (fill) flyout can track it
     // synchronously during drag resize, avoiding the 1-frame lag that
     // results from the async ResizeObserver → manager-state pipeline.
+    // Only the active session's main publishes: a backgrounded main keeps its
+    // `isMainFlyout` role but must not leave its width behind for the new
+    // session's child to read.
     useLayoutEffect(() => {
-      if (!isMainFlyout) return;
+      if (!isMainFlyout || !isActiveManagedFlyout) return;
 
       // Only set when we have a computed percentage (during active resize)
-      if (typeof size === 'string' && size.endsWith('%')) {
-        document.documentElement.style.setProperty(
-          '--euiFlyoutMainWidth',
-          size
-        );
-      }
+      if (typeof size !== 'string' || !size.endsWith('%')) return;
+
+      const { style } = document.documentElement;
+      style.setProperty('--euiFlyoutMainWidth', size);
 
       return () => {
-        document.documentElement.style.removeProperty('--euiFlyoutMainWidth');
+        // Flyouts in separate React roots can run this cleanup after another
+        // main has already published its own width; leave that value alone.
+        if (style.getPropertyValue('--euiFlyoutMainWidth') === size) {
+          style.removeProperty('--euiFlyoutMainWidth');
+        }
       };
-    }, [isMainFlyout, size]);
+    }, [isMainFlyout, isActiveManagedFlyout, size]);
 
     /**
      * Setting up the refs on the actual flyout element in order to
