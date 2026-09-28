@@ -57,9 +57,29 @@ their own version at runtime.
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
 | `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
+| `EuiContextMenuObject` | [src/components/context_menu/README.md](src/components/context_menu/README.md) |
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
+| `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
+| `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
+
+### Selectors
+
+Each Component Object's stable selectors are exported under one `selectors`
+object, keyed by component (`selectors.comboBox`, `selectors.dataGrid`, and so
+on). `*_SELECTOR` values are CSS class selectors, `*_TEST_SUBJ` values are
+`data-test-subj` names EUI sets itself.
+
+```ts
+import { selectors } from '@elastic/eui-test-helpers';
+
+page.locator(selectors.basicTable.ROW_SELECTOR);
+```
+
+Prefer the Component Objects. The selectors exist for tooling, such as lint
+rules that flag hand-written EUI selectors in consumer tests, and for the rare
+scoping need an object does not cover yet.
 
 ## Contributing
 

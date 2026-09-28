@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiFlexGroup } from '../flex';
 import { useEuiTheme } from '../../services';
 
@@ -64,6 +64,32 @@ export const Playground: Story = {
     // `autoFocus` opens the tooltip immediately on load without needing an interaction
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
+  },
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <EuiFlexGroup alignItems="center" gutterSize="m">
+      <EuiToolTip content="Insufficient permissions">
+        <EuiButton isDisabled hasAriaDisabled>
+          Tooltip trigger
+        </EuiButton>
+      </EuiToolTip>
+      <EuiToolTip content="Insufficient permissions">
+        <EuiButtonIcon
+          iconType="lock"
+          aria-label="Locked"
+          isDisabled
+          hasAriaDisabled
+        />
+      </EuiToolTip>
+    </EuiFlexGroup>
+  ),
+  parameters: {
+    vrt: {
+      // Skipped: interaction-only check of mouse-out dismissal on aria-disabled triggers
+      skip: true,
+    },
   },
 };
 

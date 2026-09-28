@@ -94,11 +94,13 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   actions,
   className,
   layout = 'vertical',
-  hasBorder,
+  hasBorder: _hasBorder,
   color = 'transparent',
   footer,
   ...rest
 }) => {
+  const hasBorder = _hasBorder ?? color === 'plain';
+
   const classes = classNames('euiEmptyPrompt', className);
   const styles = useEuiMemoizedStyles(euiEmptyPromptStyles);
   const cssStyles = [styles.euiEmptyPrompt, styles[layout]];

@@ -23,7 +23,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const indicatorSize = euiTheme.size.m;
-  const borderRadius = euiTheme.border.radius.small;
+  const borderRadius = euiTheme.border.radius.control;
   // Without this slight decrease in border radius, the color can be seen
   // peeking through the top left corner of the saturation gradient
   const gradientBorderRadius = mathWithUnits(borderRadius, (x) => x - 1);

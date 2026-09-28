@@ -111,7 +111,7 @@ export const CustomQuickSelectPanel: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     await step('show popover on click of the quick select button', async () => {
-      canvas.waitForAndClick('superDatePickerToggleQuickMenuButton');
+      await canvas.waitForAndClick('superDatePickerToggleQuickMenuButton');
       await canvas.waitForEuiPopoverVisible();
       expect(canvas.getByText('Custom quick select panel')).toBeVisible();
     });

@@ -6,7 +6,7 @@ exports[`FieldValueToggleFilter render - active 1`] = `
 >
   <button
     aria-pressed="true"
-    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
+    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
     id="filter-button_generated-id"
     type="button"
   >
@@ -31,7 +31,7 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
 >
   <button
     aria-pressed="true"
-    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
+    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
     id="filter-button_generated-id"
     type="button"
   >
@@ -56,7 +56,7 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
 >
   <button
     aria-pressed="true"
-    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
+    class="euiButton euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-base-text-euiFilterButton-hasActiveFilters-toggle-isSelected"
     id="filter-button_generated-id"
     type="button"
   >
@@ -81,7 +81,7 @@ exports[`FieldValueToggleFilter renders 1`] = `
 >
   <button
     aria-pressed="false"
-    class="euiButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiFilterButton-toggle"
+    class="euiButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-base-text-euiFilterButton-toggle"
     id="filter-button_generated-id"
     type="button"
   >

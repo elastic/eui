@@ -7,6 +7,7 @@
  */
 
 import React, {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -218,6 +219,24 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       flyoutExistsInManagerRef.current = flyoutExistsInManager;
     }, [flyoutExistsInManager]);
 
+    // Closing a main closes its whole history group via `closeAllFlyouts`, which always targets
+    // the *current* session. A main that has been backgrounded by a newer session (e.g. closed
+    // programmatically from another React root) must only remove its own session, otherwise it
+    // tears down the foreground session and leaves its own stale session behind.
+    const closeOwnFlyouts = useCallback(() => {
+      if (level !== LEVEL_MAIN) {
+        closeFlyout(flyoutId);
+        return;
+      }
+      const { sessions } = getFlyoutManagerStore().getState();
+      const ownSession = sessions.find(
+        (session) => session.mainFlyoutId === flyoutId
+      );
+      const isBackgroundedMain =
+        ownSession != null && ownSession !== sessions[sessions.length - 1];
+      isBackgroundedMain ? closeFlyout(flyoutId) : closeAllFlyouts();
+    }, [level, flyoutId, closeFlyout, closeAllFlyouts]);
+
     // Register with flyout manager context when open, remove when closed
     // Using useLayoutEffect to run synchronously before DOM updates
     useLayoutEffect(() => {
@@ -239,7 +258,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
 
         if (stillInStore) {
           // Normal cleanup (deps changed or explicit close via isOpen=false)
-          level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
+          closeOwnFlyouts();
         } else if (wasRegisteredRef.current) {
           // Removed externally while mounted: forward the store-stamped reason
           // (e.g. `navigation-back` from goBack), defaulting to cascade.
@@ -259,8 +278,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       historyKey,
       _flyoutMenuProps?.iconType,
       addFlyout,
-      closeFlyout,
-      closeAllFlyouts,
+      closeOwnFlyouts,
     ]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
@@ -318,7 +336,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       // and ensures cascade close logic runs before DOM cleanup begins
       // Using flushSync to force synchronous state update completion
       flushSync(() => {
-        level === LEVEL_MAIN ? closeAllFlyouts() : closeFlyout(flyoutId);
+        closeOwnFlyouts();
       });
 
       if (onCloseCallbackRef.current) {

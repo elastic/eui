@@ -182,7 +182,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
     𐘂𐘂
   </span>
   <div
-    class="emotion-euiContainerCSS"
+    class="euiTable__wrapper emotion-euiContainerCSS"
   >
     <table
       class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"
@@ -288,7 +288,7 @@ exports[`EuiInMemoryTable with items 1`] = `
     𐘂𐘂
   </span>
   <div
-    class="emotion-euiContainerCSS"
+    class="euiTable__wrapper emotion-euiContainerCSS"
   >
     <table
       class="euiTable emotion-euiTable-fixed-uncompressed-hasBackground-desktop"

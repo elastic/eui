@@ -228,6 +228,47 @@ export const WithWrappingPopover: Story = {
   },
 };
 
+export const Loading: Story = {
+  parameters: {
+    vrt: {
+      // functional story only
+      skip: true,
+    },
+  },
+  render: function Render({ children, ...rest }) {
+    const [isLoadingPrimary, setLoadingPrimary] = useState(false);
+    const [isLoadingSecondary, setLoadingSecondary] = useState(false);
+
+    useEffect(() => {
+      if (isLoadingPrimary) {
+        setTimeout(() => setLoadingPrimary(false), 3000);
+      }
+    }, [isLoadingPrimary]);
+
+    useEffect(() => {
+      if (isLoadingSecondary) {
+        setTimeout(() => setLoadingSecondary(false), 3000);
+      }
+    }, [isLoadingSecondary]);
+
+    return (
+      <EuiSplitButton {...rest}>
+        <EuiSplitButton.ActionPrimary
+          isLoading={isLoadingPrimary}
+          onClick={() => setLoadingPrimary(!isLoadingPrimary)}
+        >
+          Button
+        </EuiSplitButton.ActionPrimary>
+        <EuiSplitButton.ActionSecondary
+          iconType="chevronSingleDown"
+          isLoading={isLoadingSecondary}
+          onClick={() => setLoadingSecondary(!isLoadingSecondary)}
+        />
+      </EuiSplitButton>
+    );
+  },
+};
+
 /* VRT only */
 
 export const KitchenSink: Story = {
@@ -313,6 +354,22 @@ export const KitchenSink: Story = {
           {
             color,
             fill: false,
+            children: defaultActions,
+            size: 's',
+          } as EuiSplitButtonProps,
+          {
+            color,
+            fill: true,
+            children: defaultActions,
+            size: 's',
+          } as EuiSplitButtonProps,
+        ])
+        .flat(),
+      variants
+        .map((color) => [
+          {
+            color,
+            fill: false,
             children: withIconActions,
           } as EuiSplitButtonProps,
           {
@@ -332,6 +389,22 @@ export const KitchenSink: Story = {
           {
             color,
             fill: true,
+            children: iconOnlyActions,
+          } as EuiSplitButtonProps,
+        ])
+        .flat(),
+      variants
+        .map((color) => [
+          {
+            color,
+            fill: false,
+            size: 's',
+            children: iconOnlyActions,
+          } as EuiSplitButtonProps,
+          {
+            color,
+            fill: true,
+            size: 's',
             children: iconOnlyActions,
           } as EuiSplitButtonProps,
         ])

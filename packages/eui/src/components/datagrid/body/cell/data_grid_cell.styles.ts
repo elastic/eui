@@ -21,7 +21,7 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
   const markedColor = euiTheme.components.dataGridRowBorderMarked;
   const outlineWidth = euiTheme.border.width.thick;
   const borderRadius = mathWithUnits(
-    euiTheme.border.radius.medium,
+    euiTheme.border.radius.inline,
     (x) => x / 2
   );
 

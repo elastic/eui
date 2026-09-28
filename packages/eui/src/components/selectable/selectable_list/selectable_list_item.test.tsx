@@ -129,6 +129,21 @@ describe('EuiSelectableListItem', () => {
       });
     });
 
+    test('title is rendered on the text element instead of the option element', () => {
+      const { getByRole, container } = render(
+        <EuiSelectableListItem title="Test option">
+          Test option
+        </EuiSelectableListItem>
+      );
+
+      // a `title` on the option element would become its accessible
+      // description, causing screen readers to announce the name twice
+      expect(getByRole('option')).not.toHaveAttribute('title');
+      expect(
+        container.querySelector('.euiSelectableListItem__text')
+      ).toHaveAttribute('title', 'Test option');
+    });
+
     test('showIcons can be turned off', () => {
       const { container } = render(<EuiSelectableListItem showIcons={false} />);
 

@@ -58,7 +58,7 @@ Declare internal getters `protected` rather than `private` so that subclasses ca
 
 ## Adding a new Component Object
 
-1. **Selectors** — add `data-test-subj` constants to `src/components/<name>/selectors.ts`. Never inline test-subj strings anywhere else.
+1. **Selectors** — add `data-test-subj` constants to `src/components/<name>/selectors.ts` and add the object to the `selectors` map in `src/selectors.ts`, keyed by component (`comboBox`, `dataGrid`, ...). Never inline test-subj strings anywhere else.
 2. **Object** — add the class in `src/playwright/components/<name>/object.ts`, extending `BaseObject`. Import constants from `selectors.ts`. Keep the public surface minimal; implement detection logic inside public methods rather than exposing variant-specific methods.
 3. **Validation tests** — follow the spec file structure below.
 4. **Re-export** — export the new class from `src/index.ts`.

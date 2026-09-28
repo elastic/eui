@@ -1020,7 +1020,7 @@ describe('EuiBasicTable', () => {
       expect(wrapper).toHaveStyleRule('border', euiTheme.border.thin);
       expect(wrapper).toHaveStyleRule(
         'border-radius',
-        euiTheme.border.radius.medium
+        euiTheme.border.radius.panel
       );
     });
 

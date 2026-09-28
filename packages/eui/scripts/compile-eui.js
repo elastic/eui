@@ -170,7 +170,12 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
 async function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
 
-  console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
+  const optimizeEsOnly = process.argv.includes('--optimize-es-only');
+  console.log(
+    optimizeEsOnly
+      ? 'Compiling src/ to optimize/es'
+      : 'Compiling src/ to es/, lib/, optimize/, and test-env/'
+  );
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
@@ -229,16 +234,43 @@ async function compileLib() {
     },
   ];
 
+  const configs = optimizeEsOnly
+    ? babelConfigs.filter((config) => config.outDir === 'optimize/es')
+    : babelConfigs;
+
   if (process.argv.includes('--no-parallel')) {
-    for (const config of babelConfigs) {
+    for (const config of configs) {
       await runBabel(config);
     }
   } else {
-    const results = await Promise.allSettled(babelConfigs.map(runBabel));
+    const results = await Promise.allSettled(configs.map(runBabel));
     const failed = results.filter((r) => r.status === 'rejected');
     if (failed.length) {
       throw new Error(`${failed.length} Babel builds failed`);
     }
+  }
+
+  if (optimizeEsOnly) {
+    const optimizeEsDir = path.join(packageRootDir, 'optimize', 'es');
+    const jsonCount = await copyFilesToDestinationDirs(
+      glob.globIterate('**/*.json', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    const svgCount = await copyFilesToDestinationDirs(
+      glob.globIterate('components/**/*.svg', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    console.log(
+      `Copied ${jsonCount} JSON and ${svgCount} SVG files to optimize/es`
+    );
+    console.log(chalk.green('✔ Finished compiling optimize/es'));
+    return;
   }
 
   await renameTestEnvFiles();
@@ -351,7 +383,9 @@ async function cleanup() {
 
         if (!shouldRetry) throw error;
 
-        await new Promise((resolve) => setTimeout(resolve, CLEANUP_RETRY_DELAY_MS));
+        await new Promise((resolve) =>
+          setTimeout(resolve, CLEANUP_RETRY_DELAY_MS)
+        );
       }
     }
   };
@@ -364,9 +398,21 @@ async function cleanup() {
 }
 
 async function compile() {
+  if (process.argv.includes('--optimize-es-only')) {
+    await fs.rm(path.join(packageRootDir, 'optimize', 'es'), {
+      recursive: true,
+      force: true,
+    });
+    await compileLib();
+    return;
+  }
+
   await cleanup();
   await compileLib();
   await compileBundle();
 }
 
-compile();
+compile().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

@@ -25,7 +25,7 @@ export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('min-width', childHeight)}
       padding-inline: ${euiTheme.size.s};
       display: inline-flex;
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.control};
       align-items: center;
       white-space: nowrap;
 

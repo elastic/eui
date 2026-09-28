@@ -86,14 +86,17 @@ export const euiBasicTableWrapperPanelledStyles =
 
     const styles = css`
       border: ${euiTheme.border.thin};
-      border-block-end-width: 0;
       /* Offset for the wrapper border to be rendered without being obstructed
        * by the child EuiTable's border */
       padding-block-start: ${euiTheme.border.width.thin};
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.panel};
+
+      &:not(:last-child) {
+        border-block-end-width: 0;
+      }
 
       .euiTable {
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.panel};
       }
 
       /* Reset top border radius when there are panels above. */
@@ -101,8 +104,18 @@ export const euiBasicTableWrapperPanelledStyles =
         border-start-start-radius: 0;
         border-start-end-radius: 0;
 
-        .euiTable {
+        .euiTable,
+        .euiTable__wrapper,
+        .euiTableStickyHeader__container {
           border-start-start-radius: 0;
+          border-start-end-radius: 0;
+        }
+
+        .euiTableHeaderCell[data-sticky='start'] {
+          border-start-start-radius: 0;
+        }
+
+        .euiTableHeaderCell[data-sticky='end'] {
           border-start-end-radius: 0;
         }
       }
@@ -117,6 +130,54 @@ export const euiBasicTableWrapperPanelledStyles =
         .euiTable {
           border-end-start-radius: 0;
           border-end-end-radius: 0;
+        }
+
+        .euiTableFooterCell {
+          &[data-sticky='start'],
+          &:first-child {
+            border-end-start-radius: 0;
+          }
+
+          &[data-sticky='end'],
+          &:last-child {
+            border-end-end-radius: 0;
+          }
+        }
+      }
+
+      .euiTable__wrapper,
+      .euiTableStickyHeader__container {
+        border-start-start-radius: ${euiTheme.border.radius.panel};
+        border-start-end-radius: ${euiTheme.border.radius.panel};
+      }
+
+      .euiTableHeaderCell {
+        &[data-sticky='start'] {
+          border-start-start-radius: ${euiTheme.border.radius.panel};
+        }
+
+        &[data-sticky='end'] {
+          border-start-end-radius: ${euiTheme.border.radius.panel};
+        }
+
+        .euiTableCellContent {
+          border-radius: inherit;
+        }
+      }
+
+      .euiTableFooterCell {
+        &[data-sticky='start'],
+        &:first-child {
+          border-end-start-radius: ${euiTheme.border.radius.panel};
+        }
+
+        &[data-sticky='end'],
+        &:last-child {
+          border-end-end-radius: ${euiTheme.border.radius.panel};
+        }
+
+        .euiTableCellContent {
+          border-radius: inherit;
         }
       }
     `;

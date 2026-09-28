@@ -33,7 +33,6 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
-  useEuiThemeCSSVariables,
   focusTrapPubSub,
 } from '../../services';
 import { useIsInManagedFlyout, useFlyoutId, useFlyoutManager } from './manager';
@@ -286,6 +285,71 @@ const resolveContainer = (
   return raw instanceof HTMLElement ? raw : null;
 };
 
+/**
+ * Per-target push-flyout offset bookkeeping, shared across every flyout React root (they all
+ * render from this one module). Keyed by the element the offset is applied to — a `container` or
+ * `document.body` — so flyouts targeting different elements never contend.
+ *
+ * Instead of a single owner per side, every currently-pushed flyout records its width as a
+ * contribution and the applied offset is derived from the set (the widest contribution). Closing,
+ * resizing, or backgrounding any one flyout just updates its own entry, so the result no longer
+ * depends on open/close order or on cross-root effect ordering. The target's base (pre-flyout)
+ * inline padding is captured when the first contribution arrives and restored when the last one
+ * leaves. See https://github.com/elastic/eui/issues/9788.
+ */
+interface EuiPushPaddingContribution {
+  width: number;
+  /** Managed flyouts also report the offset to their flyout manager. */
+  managed: boolean;
+}
+
+interface EuiPushPaddingSideState {
+  base: string;
+  /** Pushed width per flyout id. */
+  contributions: Map<string, EuiPushPaddingContribution>;
+}
+
+const euiPushPaddingRegistry = new WeakMap<
+  HTMLElement,
+  Record<'left' | 'right', EuiPushPaddingSideState>
+>();
+
+const euiSideStyleKey = (
+  side: 'left' | 'right'
+): 'paddingInlineStart' | 'paddingInlineEnd' =>
+  side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+
+const euiSideCssVarKey = (side: 'left' | 'right') =>
+  side === 'left'
+    ? '--euiPushFlyoutOffsetInlineStart'
+    : '--euiPushFlyoutOffsetInlineEnd';
+
+const euiGetPushPaddingSideState = (
+  target: HTMLElement,
+  side: 'left' | 'right'
+) => {
+  let state = euiPushPaddingRegistry.get(target);
+  if (!state) {
+    state = {
+      left: { base: '', contributions: new Map() },
+      right: { base: '', contributions: new Map() },
+    };
+    euiPushPaddingRegistry.set(target, state);
+  }
+  return state[side];
+};
+
+const euiMaxContribution = (
+  contributions: Map<string, EuiPushPaddingContribution>,
+  filter: (contribution: EuiPushPaddingContribution) => boolean = () => true
+) =>
+  Math.max(
+    0,
+    ...Array.from(contributions.values(), (contribution) =>
+      filter(contribution) ? contribution.width : 0
+    )
+  );
+
 const defaultElement = 'div';
 
 type Props<T extends ElementType> = CommonProps & {
@@ -349,8 +413,6 @@ export const EuiFlyoutComponent = forwardRef(
     const hasAnimationDefault = type === 'overlay';
     const hasAnimation = _hasAnimation ?? hasAnimationDefault;
 
-    const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
-
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -370,11 +432,6 @@ export const EuiFlyoutComponent = forwardRef(
       pushMinBreakpoint,
       containerWidth: containerReferenceWidth,
     });
-    // When no explicit container is provided, push padding targets
-    // document.body and global push-offset CSS vars are set. When a
-    // container is provided, only that element receives padding.
-    const shouldSetGlobalPushVars = container == null;
-
     if (
       'container' in props &&
       ('maskProps' in props || 'includeFixedHeadersInFocusTrap' in props) &&
@@ -463,9 +520,23 @@ export const EuiFlyoutComponent = forwardRef(
       }
     }, [isInManagedContext, flyoutId]);
 
-    // Derive flyout identity and sibling info from the single context read
+    // Derive flyout identity and sibling info from the session this flyout
+    // belongs to. Not the current (top-most) session: a newly opened main
+    // renders once before it registers its own session, and a backgrounded
+    // main is not in the current session at all. Reading the current session
+    // in those cases would treat the other session's main as this flyout's
+    // sibling and clamp the resizable width against it.
+    const ownSession = useMemo(
+      () =>
+        managerSessions?.find(
+          (session) =>
+            session.mainFlyoutId === flyoutId ||
+            session.childFlyoutId === flyoutId
+        ) ?? null,
+      [managerSessions, flyoutId]
+    );
     const flyoutIdentity = useMemo(() => {
-      if (!flyoutId || !currentSession) {
+      if (!flyoutId || !ownSession) {
         return {
           isMainFlyout: false,
           siblingFlyoutId: null as string | null,
@@ -474,16 +545,16 @@ export const EuiFlyoutComponent = forwardRef(
       }
 
       const siblingFlyoutId =
-        currentSession.mainFlyoutId === flyoutId
-          ? currentSession.childFlyoutId
-          : currentSession.mainFlyoutId;
+        ownSession.mainFlyoutId === flyoutId
+          ? ownSession.childFlyoutId
+          : ownSession.mainFlyoutId;
 
       return {
-        isMainFlyout: currentSession.mainFlyoutId === flyoutId,
+        isMainFlyout: ownSession.mainFlyoutId === flyoutId,
         siblingFlyoutId,
         hasValidSession: true,
       };
-    }, [flyoutId, currentSession]);
+    }, [flyoutId, ownSession]);
 
     // Destructure for easier use
     const { siblingFlyoutId, isMainFlyout } = flyoutIdentity;
@@ -582,21 +653,26 @@ export const EuiFlyoutComponent = forwardRef(
     // the document element so that the child (fill) flyout can track it
     // synchronously during drag resize, avoiding the 1-frame lag that
     // results from the async ResizeObserver → manager-state pipeline.
+    // Only the active session's main publishes: a backgrounded main keeps its
+    // `isMainFlyout` role but must not leave its width behind for the new
+    // session's child to read.
     useLayoutEffect(() => {
-      if (!isMainFlyout) return;
+      if (!isMainFlyout || !isActiveManagedFlyout) return;
 
       // Only set when we have a computed percentage (during active resize)
-      if (typeof size === 'string' && size.endsWith('%')) {
-        document.documentElement.style.setProperty(
-          '--euiFlyoutMainWidth',
-          size
-        );
-      }
+      if (typeof size !== 'string' || !size.endsWith('%')) return;
+
+      const { style } = document.documentElement;
+      style.setProperty('--euiFlyoutMainWidth', size);
 
       return () => {
-        document.documentElement.style.removeProperty('--euiFlyoutMainWidth');
+        // Flyouts in separate React roots can run this cleanup after another
+        // main has already published its own width; leave that value alone.
+        if (style.getPropertyValue('--euiFlyoutMainWidth') === size) {
+          style.removeProperty('--euiFlyoutMainWidth');
+        }
       };
-    }, [isMainFlyout, size]);
+    }, [isMainFlyout, isActiveManagedFlyout, size]);
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -617,23 +693,38 @@ export const EuiFlyoutComponent = forwardRef(
      * Uses useLayoutEffect so padding is applied before child render.
      */
     useLayoutEffect(() => {
-      if (!isPushed) {
-        return;
-      }
-
       const paddingTarget = container ?? document.body;
-
-      const shouldApplyPadding = !isInManagedContext || isActiveManagedFlyout;
-
-      const paddingSide =
-        side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
-      const cssVarName = `--euiPushFlyoutOffset${
-        side === 'left' ? 'InlineStart' : 'InlineEnd'
-      }`;
       const managerSide = side === 'left' ? 'left' : 'right';
+      const styleKey = euiSideStyleKey(managerSide);
+      const state = euiGetPushPaddingSideState(paddingTarget, managerSide);
 
-      // Capture pre-existing inline padding so it can be restored on cleanup
-      const previousPadding = paddingTarget.style[paddingSide];
+      // Write the offset derived from all current contributions: the widest pushed flyout on
+      // this target.
+      const apply = () => {
+        const total = euiMaxContribution(state.contributions);
+        const isPushing = state.contributions.size > 0;
+        paddingTarget.style[styleKey] = isPushing ? `${total}px` : state.base;
+        // Without a `container` the offset is also exposed as a global CSS variable. It is
+        // written inline on `<html>` rather than through `EuiProvider`, because every React root
+        // has its own provider rendering its own `:root` block and the last one inserted would
+        // win regardless of which root's flyouts are still open.
+        if (container == null) {
+          const cssVar = euiSideCssVarKey(managerSide);
+          if (isPushing) {
+            document.documentElement.style.setProperty(cssVar, `${total}px`);
+          } else {
+            document.documentElement.style.removeProperty(cssVar);
+          }
+        }
+        // The manager only learns about managed flyouts, so it must not be told about a standalone
+        // flyout's width: nothing would ever reset it once that flyout closes.
+        if (isInManagedContext) {
+          flyoutManagerRef.current?.setPushPadding(
+            managerSide,
+            euiMaxContribution(state.contributions, (c) => c.managed)
+          );
+        }
+      };
 
       const paddingWidth =
         layoutMode === LAYOUT_MODE_STACKED &&
@@ -642,52 +733,41 @@ export const EuiFlyoutComponent = forwardRef(
           ? _siblingFlyoutWidth
           : width;
 
-      if (shouldApplyPadding) {
-        paddingTarget.style[paddingSide] = `${paddingWidth}px`;
+      // A standalone flyout pushes whenever it is in push mode. A managed flyout only pushes while
+      // it is the active session's flyout; a backgrounded push flyout (e.g. under a new overlay
+      // session) withdraws its contribution so the page is not left pushed for it.
+      const shouldPush =
+        isPushed && (!isInManagedContext || isActiveManagedFlyout);
 
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: `${paddingWidth}px`,
-          });
-        }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, paddingWidth);
-        }
-      } else {
-        paddingTarget.style[paddingSide] = previousPadding;
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: null,
-          });
-        }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, 0);
-        }
+      if (!shouldPush) {
+        return;
       }
 
+      if (state.contributions.size === 0) {
+        // First pushed flyout on this side: capture the app's own inline padding to restore later.
+        state.base = paddingTarget.style[styleKey];
+      }
+      state.contributions.set(flyoutId, {
+        width: paddingWidth,
+        managed: isInManagedContext,
+      });
+      apply();
+
       return () => {
-        paddingTarget.style[paddingSide] = previousPadding;
-        if (shouldSetGlobalPushVars) {
-          setGlobalCSSVariables({
-            [cssVarName]: null,
-          });
-        }
-        if (isInManagedContext && flyoutManagerRef.current) {
-          flyoutManagerRef.current.setPushPadding(managerSide, 0);
-        }
+        state.contributions.delete(flyoutId);
+        apply();
       };
     }, [
       isPushed,
       isInManagedContext,
       isActiveManagedFlyout,
-      setGlobalCSSVariables,
       side,
       width,
       layoutMode,
       isMainFlyout,
       _siblingFlyoutWidth,
-      shouldSetGlobalPushVars,
       container,
+      flyoutId,
     ]);
 
     /**

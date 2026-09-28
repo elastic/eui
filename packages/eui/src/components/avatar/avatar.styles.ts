@@ -26,7 +26,7 @@ const _avatarSize = ({
 export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => {
   const borderRadius = {
     user: '50%',
-    space: euiTheme.border.radius.medium,
+    space: euiTheme.border.radius.control,
   };
 
   return {

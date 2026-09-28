@@ -135,6 +135,9 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       compressed: `
         border-radius: ${form.controlCompressedBorderRadius};
       `,
+      disabled: css`
+        background-color: ${form.backgroundDisabledColor};
+      `,
     },
 
     children: {

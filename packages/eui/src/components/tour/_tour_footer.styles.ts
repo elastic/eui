@@ -19,8 +19,8 @@ export const euiTourFooterStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiTourFooter: css`
       background-color: ${_tourFooterBgColor(euiThemeContext)};
-      ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)}
-      ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)}
+      ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.panel)}
+      ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.panel)}
     `,
   };
 };

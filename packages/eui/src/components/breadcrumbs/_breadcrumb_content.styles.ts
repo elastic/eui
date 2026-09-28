@@ -85,14 +85,14 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate('none')}
     `,
     isInteractive: css`
-      &:not(:disabled) {
-        text-decoration: underline;
+      &:where(:not(:disabled)) {
+        text-decoration: underline dotted;
 
         /* TODO: Remove this 'class*=' selector once the 'color' prop is removed */
         &[class*='euiLink-subdued'] {
           &:hover,
           &:focus {
-            color: ${euiTheme.colors.textParagraph};
+            color: ${euiTheme.colors.textPrimary};
           }
         }
       }
@@ -123,6 +123,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(a, button) {
         background-color: ${applicationButtonColors.backgroundColor};
         color: ${applicationButtonColors.color};
+        text-decoration: none;
       }
 
       &:focus {
@@ -130,7 +131,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:focus-visible {
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.control};
         clip-path: none;
 
         .euiBreadcrumb:has(&) {
@@ -143,12 +144,12 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     applicationStyles: {
       onlyChild: css`
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: ${euiTheme.border.radius.control};
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
       firstChild: css`
         ${logicalBorderRadiusCSS(
-          `${euiTheme.border.radius.medium} 0 0 ${euiTheme.border.radius.medium}`,
+          `${euiTheme.border.radius.control} 0 0 ${euiTheme.border.radius.control}`,
           true
         )}
         clip-path: polygon(
@@ -174,7 +175,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       lastChild: css`
         ${logicalBorderRadiusCSS(
-          `0 ${euiTheme.border.radius.medium} ${euiTheme.border.radius.medium} 0`,
+          `0 ${euiTheme.border.radius.control} ${euiTheme.border.radius.control} 0`,
           true
         )}
         clip-path: polygon(

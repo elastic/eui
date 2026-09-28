@@ -22,10 +22,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const badgeColors = euiBadgeColors(euiThemeContext);
-  const borderRadius = mathWithUnits(
-    euiTheme.border.radius.small,
-    (x) => x / 2
-  );
+  const sizeM = mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base);
 
   return {
     euiNotificationBadge: css`
@@ -35,7 +32,6 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       vertical-align: middle;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-      border-radius: ${borderRadius};
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `
           border: ${euiTheme.border.thin};
@@ -59,13 +55,12 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     s: css`
       ${logicalCSS('height', euiTheme.size.base)}
       ${logicalCSS('min-width', euiTheme.size.base)}
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     m: css`
-      ${logicalCSS(
-        'height',
-        mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)
-      )}
-      ${logicalCSS('min-width', euiTheme.size.l)}
+      ${logicalCSS('height', sizeM)}
+      ${logicalCSS('min-width', sizeM)}
+      border-radius: ${euiTheme.border.radius.control};
     `,
     // Colors
     accent: css(badgeColors.accentText),

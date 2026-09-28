@@ -43,7 +43,7 @@ const listItemCommonStyles = (euiThemeContext: UseEuiTheme) => {
     display: inline-flex; /* Necessary to make sure it doesn't force the whole popover to be too wide */
     align-items: center;
     ${logicalCSS('width', '100%')}
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.control};
     line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     color: ${euiTheme.colors.textParagraph};
@@ -70,6 +70,12 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `
           text-decoration: underline;
+
+          &:not(:focus, :focus-visible) {
+            /* uses outline to prevent layout jumps between navigated items */
+            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
+            outline-offset: -${euiTheme.border.width.thin};
+          }
         `,
       })}
     }
@@ -162,6 +168,13 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
             .backgroundBaseInteractiveSelectHover};
         }
       }
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderStrongPrimary};
+          outline-offset: -${euiTheme.border.width.thin};
+        `,
+      })}
 
       .euiIcon,
       .euiButtonIcon {

@@ -1,5 +1,29 @@
 [
   {
+    "version": "122.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.checkedOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiKeyboardShortcuts.cmd",
+        "changeType": "added",
+        "value": "Cmd"
+      },
+      {
+        "token": "euiKeyboardShortcuts.copyTitle",
+        "changeType": "added",
+        "value": "C"
+      },
+      {
+        "token": "euiKeyboardShortcuts.copyDescription",
+        "changeType": "added",
+        "value": "Copy the focused cell value"
+      }
+    ]
+  },
+  {
     "version": "121.0.0",
     "changes": [
       {

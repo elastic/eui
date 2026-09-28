@@ -27,10 +27,10 @@ describe('EuiButtonDisplay', () => {
   });
 
   describe('minWidth', () => {
-    it('applies a `defaultMinWidth` class and no inline styles by default', () => {
+    it('does not apply a `defaultMinWidth` class and no inline styles by default', () => {
       const { container } = render(<EuiButtonDisplay />);
 
-      expect(container.innerHTML).toContain('defaultMinWidth');
+      expect(container.innerHTML).not.toContain('defaultMinWidth');
       expect(container.innerHTML).not.toContain('style');
     });
 

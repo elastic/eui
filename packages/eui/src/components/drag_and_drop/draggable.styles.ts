@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { sharedSpacingPadding } from './droppable.styles';
@@ -41,9 +42,14 @@ export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiDraggableItemStyles = {
-  euiDraggable__item: css``,
-  disabled: css`
-    cursor: not-allowed;
-  `,
+export const euiDraggableItemStyles = (euiThemeContext: UseEuiTheme) => {
+  return {
+    euiDraggable__item: css``,
+    disabled: css`
+      cursor: not-allowed;
+    `,
+    isDragging: css`
+      ${euiShadow(euiThemeContext, 'm')}
+    `,
+  };
 };

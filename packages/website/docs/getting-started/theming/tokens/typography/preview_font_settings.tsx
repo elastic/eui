@@ -69,3 +69,33 @@ export const FontDefaultUnitsPreview = () => {
     </EuiProvider>
   );
 };
+
+export const FontTitleWeightPreview = () => {
+  const { euiTheme } = useEuiTheme();
+  const titleWeight = euiTheme.font.title.weight;
+
+  return (
+    <h2
+      css={css`
+        font-weight: ${euiTheme.font.weight[titleWeight]};
+      `}
+    >
+      {titleWeight}
+    </h2>
+  );
+};
+
+export const FontTitleLetterSpacingPreview = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <h3
+      css={css`
+        font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
+        letter-spacing: ${euiTheme.font.title.letterSpacing};
+      `}
+    >
+      The quick brown fox jumped over the blue moon
+    </h3>
+  );
+};

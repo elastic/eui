@@ -2,6 +2,7 @@
 
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -10,6 +11,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -35,6 +37,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup-fullWidth"
   role="group"
 >
@@ -43,6 +46,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -75,6 +79,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-s-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -83,6 +88,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -115,6 +121,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props props for the flex item containers are passed down 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -123,6 +130,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -155,6 +163,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
 
 exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -163,6 +172,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -195,6 +205,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -203,6 +214,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-l"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -245,6 +257,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>
@@ -277,6 +290,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
 
 exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
 <div
+  aria-labelledby="euiDescribedFormGroupTitle_generated-id"
   class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
@@ -285,6 +299,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+      id="euiDescribedFormGroupTitle_generated-id"
     >
       Title
     </h3>

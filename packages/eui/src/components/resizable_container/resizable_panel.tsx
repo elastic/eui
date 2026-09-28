@@ -173,6 +173,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   onToggleCollapsedInternal,
   wrapperProps,
   hasShadow = false,
+  hasBorder = false,
   borderRadius = 'none',
   color = 'transparent',
   paddingSize = 'm',
@@ -387,6 +388,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         css={contentCssStyles}
         className={panelClasses}
         hasShadow={hasShadow}
+        hasBorder={hasBorder}
         borderRadius={borderRadius}
         color={color}
         paddingSize={isCollapsed ? 'none' : paddingSize}
