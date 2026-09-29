@@ -39,8 +39,10 @@ on:
         description: Published @elastic/eui snapshot version
         type: string
 concurrency:
-  group: ${{ inputs.nightly && 'kibana-nightly' || (inputs.source_pr_number && format('open-kibana-pr-{0}', inputs.source_pr_number) || format('open-kibana-pr-{0}', github.run_id)) }}
-  cancel-in-progress: false
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('open-kibana-pr-{0}', inputs.source_pr_number && format('pr-{0}', inputs.source_pr_number) || github.run_id) }}
+  # A newer run for the same source PR supersedes the older run and reports
+  # status for the latest commits.
+  cancel-in-progress: ${{ !!inputs.source_pr_number }}
   queue: max
 permissions:
   contents: read

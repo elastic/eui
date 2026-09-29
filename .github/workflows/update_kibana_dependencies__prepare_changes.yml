@@ -44,7 +44,7 @@ on:
         description: Published @elastic/eui snapshot version
         type: string
 concurrency:
-  group: ${{ inputs.nightly && 'kibana-nightly' || (inputs.source_pr_number && format('prepare-kibana-{0}', inputs.source_pr_number) || format('prepare-kibana-{0}', github.run_id)) }}
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', inputs.source_pr_number && format('pr-{0}', inputs.source_pr_number) || github.run_id) }}
   cancel-in-progress: false
   queue: max
 permissions:
