@@ -1,3 +1,11 @@
+## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+
+- Added a `selectors` object that holds every Component Object's selectors keyed by component (`selectors.comboBox.PILL_SELECTOR`) ([#10076](https://github.com/elastic/eui/pull/10076))
+
+**Breaking changes**
+
+- Removed the flat `Eui*Selectors` exports. Use the `selectors` object instead. ([#10076](https://github.com/elastic/eui/pull/10076))
+
 ## [`v1.8.0`](https://github.com/elastic/eui/releases/v1.8.0)
 
 - Exported the `Eui*Selectors` constants of every Component Object from the package index, for tooling such as lint rules ([#10049](https://github.com/elastic/eui/pull/10049))

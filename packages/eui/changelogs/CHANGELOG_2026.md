@@ -1,3 +1,22 @@
+## [`v123.0.0`](https://github.com/elastic/eui/releases/v123.0.0)
+
+- Added `toolTipProps` to `EuiTextTruncate` to control where the full text tooltip opens, e.g. its `position` ([#10086](https://github.com/elastic/eui/pull/10086))
+- Added export for `EuiButtonPropsForButton` and `EuiButtonPropsForAnchor` types ([#10064](https://github.com/elastic/eui/pull/10064))
+
+**Bug fixes**
+
+- Fixed an issue where `EuiDataGrid` cell tooltips repeatedly opened and closed in Firefox when the grid was scrolled to the very bottom at fractional display scaling (e.g., 125%). ([#10084](https://github.com/elastic/eui/pull/10084))
+- Fixed `EuiFlyout` opening a new `session="start"` flyout at the wrong width while another session was still open. The new flyout was clamped against the previous session's main flyout as if the two were siblings, so it opened narrower than its `size` and alternated between widths on every other open. The backgrounded flyout could also call `onResize` with a width the user never chose. ([#10075](https://github.com/elastic/eui/pull/10075))
+- Fixed a backgrounded main flyout keeping the global `--euiFlyoutMainWidth` CSS variable set, which could size the active session's `fill` child from the hidden flyout's width. Only the active session's main flyout publishes it now, and a closing or backgrounded flyout no longer clears a value another flyout has just published. ([#10075](https://github.com/elastic/eui/pull/10075))
+- Fixed `EuiFlyout` leaving stale or missing push padding when multiple `type="push"` flyouts share a padding target (a `container` or `document.body`). The applied offset is now derived from all currently pushed flyouts, so it no longer depends on the order in which they open, close or resize. ([#10063](https://github.com/elastic/eui/pull/10063))
+- Fixed `EuiFlyoutMenu` actions ignoring `data-test-subj` and other `data-*` attributes. ([#10038](https://github.com/elastic/eui/pull/10038))
+- Fixed `EuiFlyout` tearing down the foreground session when a managed main flyout is closed while backgrounded by a newer session; the backgrounded main now closes only its own session ([#10062](https://github.com/elastic/eui/pull/10062))
+- Fixed `EuiDescribedFormGroup` rendering its `role="group"` wrapper without an accessible name. The group is now named by its `title`, unless an `aria-label` or `aria-labelledby` is passed ([#10060](https://github.com/elastic/eui/pull/10060))
+
+**Breaking changes**
+
+- Updated `EuiFlyoutMenuAction` to accept any `EuiButtonIcon` prop and arbitrary `data-*` attributes. The menu bar controls `color`, `size`, `display`, `iconSize`, and `isSelected` props. ([#10038](https://github.com/elastic/eui/pull/10038))
+
 ## [`v122.1.0`](https://github.com/elastic/eui/releases/v122.1.0)
 
 - Updated `EuiLink`: ([#9989](https://github.com/elastic/eui/pull/9989))
