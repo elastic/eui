@@ -6,11 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo, useState } from 'react';
-import { css } from '@emotion/react';
+import React, {
+  CSSProperties,
+  FunctionComponent,
+  useMemo,
+  useState,
+} from 'react';
 
-import { useEuiTheme } from '../../../src/services';
-import { useEuiFontSize } from '../../../src/global_styling';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../src/services';
 import { EuiBadge } from '../../../src/components/badge';
 import { EuiColorPickerSwatch } from '../../../src/components/color_picker/color_picker_swatch';
 import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
@@ -20,7 +23,11 @@ import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiStat } from '../../../src/components/stat';
 import { EuiText } from '../../../src/components/text';
 import { getApcaContrast } from './apca';
-import { PRIMITIVE_COLORS } from './borealis_primitives';
+import {
+  COLUMNS_VAR,
+  ROWS_VAR,
+  contrastMatrixStyles,
+} from './contrast_matrix.styles';
 import {
   ColorMap,
   Palette,
@@ -28,7 +35,7 @@ import {
   resolvePalette,
 } from './palette';
 
-export const SEMANTIC_ELEMENT_WIDTH_STOPS = [
+const SEMANTIC_ELEMENT_WIDTH_STOPS = [
   { px: 2, lc: 60 },
   { px: 3, lc: 45 },
   { px: 10, lc: 20 },
@@ -37,7 +44,7 @@ export const SEMANTIC_ELEMENT_WIDTH_STOPS = [
 
 export interface ContrastMatrixProps {
   palette: Palette;
-  colors?: ColorMap;
+  colors: ColorMap;
 }
 
 const Swatch: FunctionComponent<{ color: string; label: string }> = ({
@@ -71,9 +78,7 @@ const passRate = (
 ): PassRate | null => {
   const checks = values.filter((value): value is number => value != null);
   if (checks.length === 0) return null;
-  const passing = checks.filter(
-    (value) => Math.abs(value) >= threshold
-  ).length;
+  const passing = checks.filter((value) => Math.abs(value) >= threshold).length;
   return {
     percent: (passing / checks.length) * 100,
     passing,
@@ -114,10 +119,10 @@ const PassRateStat: FunctionComponent<{
 
 export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
   palette,
-  colors = PRIMITIVE_COLORS,
+  colors,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const fontSize = useEuiFontSize('xxs');
+  const styles = useEuiMemoizedStyles(contrastMatrixStyles);
 
   const [widthStopIndex, setWidthStopIndex] = useState(2);
   const { px: elementWidth, lc: threshold } =
@@ -177,84 +182,6 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
     return { columns, rows, contrasts, average, passRates };
   }, [palette, colors, themeBackgroundColor, threshold]);
 
-  const cell = 48;
-  const line = euiTheme.colors.borderBaseSubdued;
-
-  const hairline = (size: string) =>
-    `linear-gradient(${line}, ${line}) center / ${size} no-repeat`;
-
-  const styles = {
-    slider: css`
-      min-inline-size: 240px;
-      max-inline-size: 320px;
-    `,
-    grid: css`
-      display: inline-grid;
-      grid-template-columns: auto ${cell}px repeat(${columns.length}, ${cell}px);
-      grid-template-rows: auto ${cell}px repeat(${rows.length}, ${cell}px);
-    `,
-    cell: css`
-      position: relative;
-      isolation: isolate;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset-block: 0;
-        inset-inline: 0;
-        z-index: 0;
-        pointer-events: none;
-      }
-
-      > * {
-        position: relative;
-        z-index: 1;
-      }
-    `,
-    colHeader: css`
-      &::before {
-        /* vertical line from the swatch center down into the matrix */
-        background: ${hairline('1px 50%')};
-        background-position: center bottom;
-      }
-    `,
-    rowHeader: css`
-      &::before {
-        /* horizontal line from the swatch center across the matrix */
-        background: ${hairline('50% 1px')};
-        background-position: right center;
-      }
-    `,
-    intersection: css`
-      &::before {
-        background: ${hairline('1px 100%')}, ${hairline('100% 1px')};
-      }
-    `,
-    axisLabel: css`
-      color: ${euiTheme.colors.textSubdued};
-      ${fontSize}
-    `,
-    backgroundLabel: css`
-      justify-content: start;
-      align-items: center;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      line-height: 1;
-      white-space: nowrap;
-      ${fontSize}
-    `,
-    valueLabel: css`
-      justify-content: start;
-      ${fontSize}
-    `,
-    average: css`
-      padding-inline-start: ${cell}px;
-    `,
-  };
-
   return (
     <>
       <EuiFlexGroup alignItems="flexStart" gutterSize="xl" wrap>
@@ -304,24 +231,27 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
 
       <div
         css={styles.grid}
+        style={
+          {
+            [COLUMNS_VAR]: columns.length,
+            [ROWS_VAR]: rows.length,
+          } as CSSProperties
+        }
         role="table"
         aria-label={`APCA contrast matrix. Rows are the background, columns are the value. Threshold Lc ${threshold} for a ${elementWidth}px element.`}
       >
-        <div />
-        <div />
         <div css={[styles.cell, styles.axisLabel, styles.valueLabel]}>
           Value
         </div>
-        {columns.slice(1).map((value) => (
-          <div key={`label-spacer-${value.name}`} />
-        ))}
+        <div css={[styles.cell, styles.axisLabel, styles.backgroundLabel]}>
+          Background
+        </div>
 
-        <div />
-        <div />
-        {columns.map((value) => (
+        {columns.map((value, column) => (
           <div
             key={`col-${value.name}`}
             css={[styles.cell, styles.colHeader]}
+            style={{ gridColumn: column + 3 }}
             role="columnheader"
           >
             <Swatch color={value.value} label={`${value.name} value`} />
@@ -330,16 +260,11 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
 
         {rows.map((background, row) => (
           <React.Fragment key={background.name}>
-            {row === 0 ? (
-              <div
-                css={[styles.cell, styles.axisLabel, styles.backgroundLabel]}
-              >
-                Background
-              </div>
-            ) : (
-              <div />
-            )}
-            <div css={[styles.cell, styles.rowHeader]} role="rowheader">
+            <div
+              css={[styles.cell, styles.rowHeader]}
+              style={{ gridRow: row + 3 }}
+              role="rowheader"
+            >
               <Swatch
                 color={background.value}
                 label={`${background.name} background`}
@@ -356,6 +281,10 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
                 <div
                   key={key}
                   css={[styles.cell, styles.intersection]}
+                  style={{
+                    gridRow: row + 3,
+                    gridColumn: column + 3,
+                  }}
                   role="cell"
                   title={
                     contrast == null
