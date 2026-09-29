@@ -8,6 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PRIMITIVE_COLORS } from '@elastic/eui-theme-borealis/lib/esm/variables/colors/_primitive_colors.js';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
 import { EuiSpacer } from '../../../src/components/spacer';
@@ -18,7 +19,6 @@ import { useEuiPaletteColorBlind } from '../../../src/services/color/eui_palette
 import { ColorGrid } from './color_grid';
 import { ContrastMatrix } from './contrast_matrix';
 import { PaletteList } from './palette_list';
-import { PRIMITIVE_COLORS } from './borealis_primitives';
 import { normalizePaletteOrder, togglePaletteColor } from './palette';
 
 const PaletteTools = ({ cellSize }: { cellSize: number }) => {
@@ -34,8 +34,8 @@ const PaletteTools = ({ cellSize }: { cellSize: number }) => {
 
   return (
     <>
-      <EuiText size="s" color="subdued">
-        <p>Click a square to add to/remove from the palette.</p>
+      <EuiText component="p" size="s" color="subdued">
+        Click a square to add to/remove from the palette.
       </EuiText>
       <EuiSpacer size="m" />
 
@@ -64,12 +64,10 @@ const PaletteTools = ({ cellSize }: { cellSize: number }) => {
       <EuiTitle size="s">
         <h2>APCA contrast matrix</h2>
       </EuiTitle>
-      <EuiText size="s" color="subdued">
-        <p>
-          Every pair of palette colors, reading the row as the background and
-          the column as the value. Pills follow the APCA non-semantic element
-          minimum width contrast threshold.
-        </p>
+      <EuiText component="p" size="s" color="subdued">
+        Every pair of palette colors, reading the row as the background and the
+        column as the value. Pills follow the APCA non-semantic element minimum
+        width contrast threshold.
       </EuiText>
       <EuiSpacer size="m" />
       <ContrastMatrix palette={palette} colors={PRIMITIVE_COLORS} />
@@ -82,7 +80,6 @@ const meta: Meta<{ cellSize: number }> = {
   component: PaletteTools,
   parameters: {
     codeSnippet: { skip: true },
-    // Interactive checker; the matrix size tracks the selected palette.
     vrt: { skip: true },
   },
   argTypes: {
