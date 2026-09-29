@@ -904,6 +904,66 @@ ruleTester.run(
         languageOptions,
         options: [{ additionalWrappers: ['CustomWrapper'] }],
       },
+      // EUI built-in wrappers nested inside additional wrappers (regression: were falsely flagged)
+      {
+        name: 'EuiToolTip inside additional wrapper with valid button child is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiToolTip content="Delete">
+                <EuiButtonIcon iconType="trash" aria-label="Delete" />
+              </EuiToolTip>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+      },
+      {
+        name: 'EuiCopy inside additional wrapper with valid render-prop button is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiCopy textToCopy="text">
+                {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+              </EuiCopy>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+      },
+      {
+        name: 'EuiPopover inside additional wrapper with valid button prop is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiPopover button={<EuiButtonIcon iconType="trash" aria-label="Delete" />} isOpen={false} closePopover={() => {}}>
+                Panel content
+              </EuiPopover>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+      },
+      // Additional wrapper inside EuiToolTip as EuiPopover trigger (regression: was falsely flagged)
+      {
+        name: 'additional wrapper inside EuiToolTip as EuiPopover trigger with valid button is accepted',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <EuiPopover
+              button={<EuiToolTip content="tip"><MyWrapper><EuiButtonIcon iconType="trash" aria-label="Delete" /></MyWrapper></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              Panel content
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['MyWrapper'] }],
+      },
     ],
 
     invalid: [
@@ -1348,6 +1408,102 @@ ruleTester.run(
             data: {
               name: 'div',
               wrapper: 'CustomWrapper',
+              allowed: DEFAULT_ALLOWED,
+            },
+          },
+        ],
+      },
+      // EUI built-in wrappers nested inside additional wrappers — invalid inner content is still caught
+      {
+        name: 'EuiToolTip inside additional wrapper with invalid child is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiToolTip content="Delete">
+                <EuiText>Not a button</EuiText>
+              </EuiToolTip>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableWrapperChild',
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiToolTip',
+              allowed: DEFAULT_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'EuiCopy inside additional wrapper with invalid render-prop child is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiCopy textToCopy="text">
+                {(copy) => <EuiText onClick={copy}>Not a button</EuiText>}
+              </EuiCopy>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableWrapperChild',
+            data: {
+              name: 'EuiText',
+              wrapper: 'EuiCopy',
+              allowed: DEFAULT_ALLOWED,
+            },
+          },
+        ],
+      },
+      {
+        name: 'EuiPopover inside additional wrapper with invalid trigger is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <Suspense>
+              <EuiPopover button={<EuiText>Not a button</EuiText>} isOpen={false} closePopover={() => {}}>
+                Panel content
+              </EuiPopover>
+            </Suspense>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['Suspense'] }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvablePopoverButton',
+            data: { name: 'EuiText', allowed: DEFAULT_ALLOWED },
+          },
+        ],
+      },
+      // Additional wrapper inside EuiToolTip as EuiPopover trigger — invalid inner content is still caught
+      {
+        name: 'additional wrapper inside EuiToolTip as EuiPopover trigger with invalid child is reported',
+        code: dedent`
+          <EuiButtonGroup legend="Actions">
+            <EuiPopover
+              button={<EuiToolTip content="tip"><MyWrapper><EuiText>Not a button</EuiText></MyWrapper></EuiToolTip>}
+              isOpen={false}
+              closePopover={() => {}}
+            >
+              Panel content
+            </EuiPopover>
+          </EuiButtonGroup>
+        `,
+        languageOptions,
+        options: [{ additionalWrappers: ['MyWrapper'] }],
+        errors: [
+          {
+            messageId: 'invalidUnresolvableWrapperChild',
+            data: {
+              name: 'EuiText',
+              wrapper: 'MyWrapper',
               allowed: DEFAULT_ALLOWED,
             },
           },
