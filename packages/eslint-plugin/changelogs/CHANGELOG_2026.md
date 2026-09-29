@@ -1,3 +1,11 @@
+## [`v3.2.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.2.0)
+
+- Updated `button-group-no-invalid-children` rule to support `additionalWrappers` option ([#10024](https://github.com/elastic/eui/pull/10024))
+
+**Dependency updates**
+
+- Replaced `micromatch` with `picomatch` in `@elastic/eui/no-restricted-eui-imports` ([#10094](https://github.com/elastic/eui/pull/10094))
+
 ## [`v3.1.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.1.0)
 
 - Added new `@elastic/eui/no-nested-interactive-element` rule ([#10035](https://github.com/elastic/eui/pull/10035))
