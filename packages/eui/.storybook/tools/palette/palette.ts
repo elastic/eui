@@ -27,7 +27,7 @@ const normalize = (value: string) => value.trim().toLowerCase();
 const isColorString = (value: unknown): value is string =>
   typeof value === 'string';
 
-export const coercePalette = (palette: unknown): Palette => {
+const coercePalette = (palette: unknown): Palette => {
   if (Array.isArray(palette)) return palette.filter(Boolean);
   if (palette == null || typeof palette !== 'object') return [];
 
@@ -113,7 +113,7 @@ export const groupPaletteByHue = (
   return groups;
 };
 
-export const flattenHueGroups = (groups: PaletteHueGroup[]): string[] =>
+const flattenHueGroups = (groups: PaletteHueGroup[]): string[] =>
   groups.flatMap((group) => group.colors.map((color) => color.name));
 
 export const normalizePaletteOrder = (
