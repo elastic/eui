@@ -7,28 +7,31 @@
  */
 
 import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
-import { css } from '@emotion/react';
 
-import { useEuiTheme } from '../../../src/services';
-import { useEuiFontSize } from '../../../src/global_styling';
-import { PRIMITIVE_COLORS } from './borealis_primitives';
-import { Palette, parseColorName, resolvePalette } from './palette';
+import { useEuiMemoizedStyles } from '../../../src/services';
+import { EuiFlexGroup } from '../../../src/components/flex';
+import {
+  CELL_COLOR_VAR,
+  CELL_SIZE_VAR,
+  COLUMNS_VAR,
+  colorGridStyles,
+} from './color_grid.styles';
+import { ColorMap, Palette, parseColorName, resolvePalette } from './palette';
 
 export interface ColorGridProps {
   palette: Palette;
-  colors?: typeof PRIMITIVE_COLORS;
+  colors: ColorMap;
   cellSize?: number;
   onToggleColor?: (name: string) => void;
 }
 
 export const ColorGrid: FunctionComponent<ColorGridProps> = ({
   palette,
-  colors = PRIMITIVE_COLORS,
+  colors,
   cellSize = 32,
   onToggleColor,
 }) => {
-  const { euiTheme } = useEuiTheme();
-  const fontSize = useEuiFontSize('xs');
+  const styles = useEuiMemoizedStyles(colorGridStyles);
 
   const { hues, shades } = useMemo(() => {
     const hues: string[] = [];
@@ -84,128 +87,81 @@ export const ColorGrid: FunctionComponent<ColorGridProps> = ({
     };
   }, [palette, colors]);
 
-  const columnTemplate = `repeat(${shades.length}, ${cellSize}px)`;
-
-  const styles = {
-    stack: css`
-      display: inline-flex;
-      flex-direction: column;
-      gap: ${euiTheme.size.m};
-    `,
-    grid: css`
-      display: inline-grid;
-      grid-template-columns: ${columnTemplate};
-      gap: 1px;
-      background-color: ${euiTheme.colors.borderBaseSubdued};
-      border: 1px solid ${euiTheme.colors.borderBaseSubdued};
-    `,
-    cell: css`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      block-size: ${cellSize}px;
-      inline-size: ${cellSize}px;
-      background-color: ${euiTheme.colors.backgroundBasePlain};
-      color: ${euiTheme.colors.plainDark};
-      font-family: ${euiTheme.font.familyCode};
-      font-weight: ${euiTheme.font.weight.medium};
-      ${fontSize}
-    `,
-    interactive: css`
-      appearance: none;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      cursor: pointer;
-
-      &:hover:not([aria-pressed='true']) {
-        background-color: var(--euiColorGridCell);
-      }
-
-      &:focus-visible {
-        z-index: 1;
-      }
-    `,
-    labels: css`
-      display: inline-grid;
-      grid-template-columns: ${columnTemplate};
-      ${fontSize}
-      font-family: ${euiTheme.font.familyCode};
-      text-align: center;
-      color: ${euiTheme.colors.textDisabled};
-    `,
-    usedLabel: css`
-      color: ${euiTheme.colors.textParagraph};
-      font-weight: ${euiTheme.font.weight.bold};
-    `,
-  };
+  const gridVars = {
+    [COLUMNS_VAR]: shades.length,
+    [CELL_SIZE_VAR]: `${cellSize}px`,
+  } as CSSProperties;
 
   return (
-    <div>
-      <div css={styles.stack}>
-        <div
-          css={styles.grid}
-          role={onToggleColor ? 'group' : undefined}
-          aria-label={onToggleColor ? 'Palette colors' : undefined}
-        >
-          {hues.map((hue) =>
-            shades.map((shade) => {
-              const name = `${hue}${shade}`;
-              const value = colors[name as keyof typeof colors];
-              const swatch = filled.get(name);
-              const isInteractive = Boolean(
-                onToggleColor && value && value !== 'transparent'
-              );
+    <EuiFlexGroup
+      direction="column"
+      alignItems="flexStart"
+      gutterSize="m"
+      responsive={false}
+      style={gridVars}
+    >
+      <div
+        css={styles.grid}
+        role={onToggleColor ? 'group' : undefined}
+        aria-label={onToggleColor ? 'Palette colors' : undefined}
+      >
+        {hues.map((hue) =>
+          shades.map((shade) => {
+            const name = `${hue}${shade}`;
+            const value = colors[name];
+            const swatch = filled.get(name);
+            const isInteractive = Boolean(
+              onToggleColor && value && value !== 'transparent'
+            );
 
-              const title = swatch
-                ? `${swatch.index} · ${name} — ${swatch.value}`
-                : name;
-              const style = {
-                '--euiColorGridCell': value,
-                ...(swatch && { backgroundColor: swatch.value }),
-              } as CSSProperties;
+            const title = swatch
+              ? `${swatch.index} · ${name} — ${swatch.value}`
+              : name;
+            const style = {
+              [CELL_COLOR_VAR]: value,
+              ...(swatch && { backgroundColor: swatch.value }),
+            } as CSSProperties;
 
-              if (isInteractive) {
-                return (
-                  <button
-                    key={name}
-                    type="button"
-                    aria-pressed={Boolean(swatch)}
-                    aria-label={
-                      swatch
-                        ? `Remove ${name} from palette`
-                        : `Add ${name} to palette`
-                    }
-                    title={`${title} · Click to ${swatch ? 'remove' : 'add'}`}
-                    css={[styles.cell, styles.interactive]}
-                    style={style}
-                    onClick={() => onToggleColor?.(name)}
-                  >
-                    {swatch?.index}
-                  </button>
-                );
-              }
-
+            if (isInteractive) {
               return (
-                <div key={name} css={styles.cell} style={style} title={title}>
+                <button
+                  key={name}
+                  type="button"
+                  aria-pressed={Boolean(swatch)}
+                  aria-label={
+                    swatch
+                      ? `Remove ${name} from palette`
+                      : `Add ${name} to palette`
+                  }
+                  title={`${title} · Click to ${swatch ? 'remove' : 'add'}`}
+                  css={[styles.cell, styles.interactive]}
+                  style={style}
+                  onClick={() => onToggleColor?.(name)}
+                >
                   {swatch?.index}
-                </div>
+                </button>
               );
-            })
-          )}
-        </div>
+            }
 
-        <div css={styles.labels}>
-          {shades.map((shade) => (
-            <span
-              key={shade}
-              css={usedShades.has(shade) ? styles.usedLabel : undefined}
-            >
-              {shade}
-            </span>
-          ))}
-        </div>
+            return (
+              <div key={name} css={styles.cell} style={style} title={title}>
+                {swatch?.index}
+              </div>
+            );
+          })
+        )}
       </div>
-    </div>
+
+      <div css={styles.labels}>
+        {shades.map((shade) => (
+          <span
+            key={shade}
+            css={usedShades.has(shade) ? styles.usedLabel : undefined}
+          >
+            {shade}
+          </span>
+        ))}
+      </div>
+    </EuiFlexGroup>
   );
 };

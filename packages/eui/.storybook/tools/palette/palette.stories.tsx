@@ -6,58 +6,138 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PRIMITIVE_COLORS } from '@elastic/eui-theme-borealis/lib/esm/variables/colors/_primitive_colors.js';
 
-import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
+import {
+  EuiComboBox,
+  EuiComboBoxOptionOption,
+} from '../../../src/components/combo_box';
+import { EuiFormRow } from '../../../src/components/form/form_row';
+import { EuiSwitch } from '../../../src/components/form/switch';
 import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiText } from '../../../src/components/text';
 import { EuiTitle } from '../../../src/components/title';
-import { useEuiTheme } from '../../../src/services';
 import { useEuiPaletteColorBlind } from '../../../src/services/color/eui_palettes_hooks';
 import { ColorGrid } from './color_grid';
 import { ContrastMatrix } from './contrast_matrix';
-import { PaletteList } from './palette_list';
-import { PRIMITIVE_COLORS } from './borealis_primitives';
-import { normalizePaletteOrder, togglePaletteColor } from './palette';
+import { parseColorName, resolvePalette } from './palette';
+
+const Swatch = ({ color }: { color: string }) => (
+  <span
+    aria-hidden
+    css={({ euiTheme }) => ({
+      display: 'inline-block',
+      blockSize: euiTheme.size.m,
+      inlineSize: euiTheme.size.m,
+      borderRadius: euiTheme.border.radius.inline,
+      boxShadow: `inset 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors.borderBaseSubdued}`,
+    })}
+    style={{ backgroundColor: color }}
+  />
+);
+
+const primitiveOptions: Array<EuiComboBoxOptionOption<string>> = (() => {
+  const groups = new Map<string, Array<EuiComboBoxOptionOption<string>>>();
+
+  Object.entries(PRIMITIVE_COLORS).forEach(([name, value]) => {
+    if (value === 'transparent') return;
+
+    const hue = parseColorName(name)?.hue ?? 'other';
+    const option = {
+      label: name,
+      value: name,
+      prepend: <Swatch color={value} />,
+    };
+
+    const group = groups.get(hue);
+    if (group) group.push(option);
+    else groups.set(hue, [option]);
+  });
+
+  return [...groups.entries()].map(([label, options]) => ({
+    label,
+    options,
+  }));
+})();
+
+const optionByName = new Map(
+  primitiveOptions.flatMap((group) =>
+    (group.options ?? []).map((option) => [
+      option.value ?? option.label,
+      option,
+    ])
+  )
+);
+
+const namesFromPalette = (palette: string[]) =>
+  resolvePalette(palette, PRIMITIVE_COLORS).map((color) => color.name);
 
 const PaletteTools = ({ cellSize }: { cellSize: number }) => {
-  const { colorMode, highContrastMode } = useEuiTheme();
   const colorBlind = useEuiPaletteColorBlind();
-  const [palette, setPalette] = useState(() =>
-    normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS)
-  );
+  const [isCustom, setIsCustom] = useState(false);
+  const [customPalette, setCustomPalette] = useState<string[]>([]);
 
-  useEffect(() => {
-    setPalette(normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS));
-  }, [colorBlind, colorMode, highContrastMode]);
+  const palette = isCustom ? customPalette : colorBlind;
+
+  const selectedOptions = useMemo(
+    () =>
+      customPalette.flatMap((name) => {
+        const option = optionByName.get(name);
+        return option ? [option] : [];
+      }),
+    [customPalette]
+  );
 
   return (
     <>
-      <EuiText size="s" color="subdued">
-        <p>Click a square to add to/remove from the palette.</p>
-      </EuiText>
-      <EuiSpacer size="m" />
+      <EuiFormRow label="Palette" fullWidth>
+        <EuiSwitch
+          label="Custom palette"
+          checked={isCustom}
+          onChange={(event) => {
+            const next = event.target.checked;
+            if (next && customPalette.length === 0) {
+              setCustomPalette(namesFromPalette(colorBlind));
+            }
+            setIsCustom(next);
+          }}
+        />
+      </EuiFormRow>
 
-      <EuiFlexGroup alignItems="flexStart" gutterSize="xl" wrap>
-        <EuiFlexItem grow={false}>
-          <ColorGrid
-            palette={palette}
-            colors={PRIMITIVE_COLORS}
-            cellSize={cellSize}
-            onToggleColor={(name) => {
-              setPalette(togglePaletteColor(palette, name, PRIMITIVE_COLORS));
-            }}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <PaletteList
-            palette={palette}
-            colors={PRIMITIVE_COLORS}
-            onReorder={setPalette}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      {isCustom && (
+        <>
+          <EuiSpacer size="m" />
+          <EuiFormRow
+            label="Primitives"
+            helpText="Select primitive colors. Order is the order they were added."
+            fullWidth
+          >
+            <EuiComboBox
+              aria-label="Palette primitives"
+              placeholder="Add primitive colors"
+              options={primitiveOptions}
+              selectedOptions={selectedOptions}
+              onChange={(options) =>
+                setCustomPalette(
+                  options.map((option) => option.value ?? option.label)
+                )
+              }
+              isClearable
+              fullWidth
+            />
+          </EuiFormRow>
+        </>
+      )}
+
+      <EuiSpacer size="xl" />
+
+      <ColorGrid
+        palette={palette}
+        colors={PRIMITIVE_COLORS}
+        cellSize={cellSize}
+      />
 
       <EuiSpacer size="xxl" />
 
