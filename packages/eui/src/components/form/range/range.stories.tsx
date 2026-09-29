@@ -9,7 +9,10 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { VRT_SELECTORS } from '../../../../.storybook/vrt';
+import { userEvent } from 'storybook/test';
+
+import { within } from '../../../../.storybook/test';
+import { playDecorator, VRT_SELECTORS } from '../../../../.storybook/vrt';
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
@@ -255,16 +258,11 @@ export const InputWithPopover: Story = {
       { min: 20, max: 100, color: 'success' },
     ],
   },
-  // Force input popover open via programmatic ref
-  render: function Render(args) {
-    const [ref, setRef] = useState<any>();
-    useEffect(() => {
-      // Wrapping in a timeout avoids a width/render error during VRT.
-      // This doesn't happen on production
-      if (ref) setTimeout(() => ref.onInputFocus(), 1);
-    }, [ref]);
-    return <EuiRange {...args} ref={setRef} />;
-  },
+  play: playDecorator(async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('spinbutton'));
+    await canvas.waitForEuiPopoverVisible();
+  }),
 };
 
 export const HighContrast: Story = {
