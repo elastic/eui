@@ -29,13 +29,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
         data-test-subj="test subject string"
         id="generated-id_button"
         type="button"
-      >
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
-      </button>
+      />
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
@@ -85,11 +79,6 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
         type="button"
       >
         Plain text as a custom option
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -168,11 +157,6 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
             />
           </span>
         </span>
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -231,11 +215,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           aria-hidden="true"
           class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -294,11 +273,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           aria-hidden="true"
           class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -349,11 +323,6 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
         type="button"
       >
         Palette 1
-        <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          , 
-        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"

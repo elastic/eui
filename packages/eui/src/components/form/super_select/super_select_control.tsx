@@ -218,13 +218,6 @@ export const EuiSuperSelectControl: <T = string>(
           ) : (
             selectedValue
           )}
-          {!!externalLabelId && (
-            // Add a slight pause between reading out the multiple aria-labelledby elements,
-            // mimicking how screen readers handle native <select> elements
-            <EuiScreenReaderOnly>
-              <span>, </span>
-            </EuiScreenReaderOnly>
-          )}
         </button>
       </EuiFormControlLayout>
     </>

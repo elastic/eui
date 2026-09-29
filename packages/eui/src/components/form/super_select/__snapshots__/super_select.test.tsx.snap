@@ -183,13 +183,7 @@ exports[`EuiSuperSelect renders 1`] = `
             data-test-subj="test subject string"
             id="generated-id_button"
             type="button"
-          >
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              , 
-            </span>
-          </button>
+          />
           <div
             class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
           >

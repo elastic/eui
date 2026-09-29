@@ -89,7 +89,7 @@ describe('EuiSuperSelect', () => {
     const control = getByTestSubject('controlButton');
 
     expect(control).not.toHaveAttribute('aria-label');
-    expect(control).toHaveAccessibleName('Option #2 , Label');
+    expect(control).toHaveAccessibleName('Option #2 Label');
     expect(getByText('Label')).toBeInTheDocument();
   });
 
@@ -111,7 +111,7 @@ describe('EuiSuperSelect', () => {
       'aria-labelledby',
       `${control.id} external-label`
     );
-    expect(control).toHaveAccessibleName('Option #2 , Label');
+    expect(control).toHaveAccessibleName('Option #2 Label');
   });
 
   it('does not set `aria-labelledby` when no external label is passed', () => {
