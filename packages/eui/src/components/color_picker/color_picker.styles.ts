@@ -14,10 +14,10 @@ import { logicalCSS, mathWithUnits } from '../../global_styling';
 export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
-  // 5 columns of swatches + margins + border
+  // 6 columns of swatches + margins + border
   const colorPickerWidth = mathWithUnits(
     [euiTheme.size.l, euiTheme.size.s],
-    (x, y) => x * 5 + y * 4
+    (x, y) => x * 6 + y * 5
   );
 
   return {
