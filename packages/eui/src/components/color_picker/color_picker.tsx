@@ -108,8 +108,7 @@ export interface EuiColorPickerProps
   popoverZIndex?: number;
   readOnly?: boolean;
   /**
-   *  Array of hex strings (3 or 6 character) to use as swatch options.
-   *  Defaults to the first 10 EUI visualization colors.
+   *  Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors
    */
   swatches?: string[];
 
@@ -262,7 +261,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     suffix: 'closeLabel',
   });
 
-  const defaultSwatches = useEuiPaletteColorBlind().slice(0, 10);
+  const defaultSwatches = useEuiPaletteColorBlind();
   const swatches = _swatches ?? defaultSwatches;
 
   const preferredFormat = useMemo(() => {
