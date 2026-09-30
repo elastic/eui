@@ -396,8 +396,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       &.euiDataGrid--fullScreen .euiDataGrid__scrollOverlay,
       &.euiDataGrid--fullScreen .euiDataGridRow--first,
       &.euiDataGrid--fullScreen .euiDataGridRow--last,
-      &.euiDataGrid--fullScreen .euiDataGridRow--last > .euiDataGridRowCell--firstColumn,
-      &.euiDataGrid--fullScreen .euiDataGridRow--last > .euiDataGridRowCell--lastColumn,
+      &.euiDataGrid--fullScreen
+        .euiDataGridRow--last
+        > .euiDataGridRowCell--firstColumn,
+      &.euiDataGrid--fullScreen
+        .euiDataGridRow--last
+        > .euiDataGridRowCell--lastColumn,
       &.euiDataGrid--fullScreen.euiDataGrid--noHeader.euiDataGrid--noControls
         .euiDataGridRow--first
         > .euiDataGridRowCell--firstColumn,
