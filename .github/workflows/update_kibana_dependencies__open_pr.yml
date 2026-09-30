@@ -305,7 +305,7 @@ jobs:
     runs-on: ubuntu-slim
     needs: [open_pr, check_ci_status_1, check_ci_status_2]
     if: |
-      always() &&
+      !cancelled() &&
       (inputs.source_pr_number || inputs.nightly) &&
       (
         (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||
