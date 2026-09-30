@@ -64,6 +64,11 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       : euiTheme.components.dataGridVerticalLineBorderColor,
   };
   const border = `${euiTheme.border.width.thin} solid ${borderColors.default}`;
+  const panelRadius = euiTheme.border.radius.panel;
+  const cellOutlineRadius = mathWithUnits(
+    euiTheme.border.radius.inline,
+    (x) => x / 2
+  );
 
   return {
     euiDataGrid: css`
@@ -328,6 +333,95 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+    // Applied when `border` is not `none`. Fullscreen flattens these radii.
+    // Pagination has no border or fill, so it stays outside the radius.
+    borderedPanelRadius: css`
+      .euiDataGrid__controls {
+        overflow: hidden;
+        border-start-start-radius: ${panelRadius};
+        border-start-end-radius: ${panelRadius};
+      }
+
+      &.euiDataGrid--noControls .euiDataGrid__content,
+      &.euiDataGrid--noControls .euiDataGrid__virtualized,
+      &.euiDataGrid--noControls .euiDataGrid__scrollOverlay {
+        border-start-start-radius: ${panelRadius};
+        border-start-end-radius: ${panelRadius};
+      }
+
+      .euiDataGrid__content,
+      .euiDataGrid__virtualized,
+      .euiDataGrid__scrollOverlay {
+        border-end-start-radius: ${panelRadius};
+        border-end-end-radius: ${panelRadius};
+      }
+
+      /* The row clips its fill. Corner cells and their focus rings follow it. */
+      &:not(:has(.euiDataGridFooter)) .euiDataGridRow--last {
+        overflow: hidden;
+        border-end-start-radius: ${panelRadius};
+        border-end-end-radius: ${panelRadius};
+
+        > .euiDataGridRowCell--firstColumn,
+        > .euiDataGridRowCell--firstColumn::after {
+          border-end-start-radius: ${panelRadius};
+        }
+
+        > .euiDataGridRowCell--lastColumn,
+        > .euiDataGridRowCell--lastColumn::after {
+          border-end-end-radius: ${panelRadius};
+        }
+      }
+
+      &.euiDataGrid--noHeader.euiDataGrid--noControls .euiDataGridRow--first {
+        overflow: hidden;
+        border-start-start-radius: ${panelRadius};
+        border-start-end-radius: ${panelRadius};
+
+        > .euiDataGridRowCell--firstColumn,
+        > .euiDataGridRowCell--firstColumn::after {
+          border-start-start-radius: ${panelRadius};
+        }
+
+        > .euiDataGridRowCell--lastColumn,
+        > .euiDataGridRowCell--lastColumn::after {
+          border-start-end-radius: ${panelRadius};
+        }
+      }
+
+      &.euiDataGrid--fullScreen,
+      &.euiDataGrid--fullScreen .euiDataGrid__controls,
+      &.euiDataGrid--fullScreen .euiDataGrid__content,
+      &.euiDataGrid--fullScreen .euiDataGrid__virtualized,
+      &.euiDataGrid--fullScreen .euiDataGrid__scrollOverlay,
+      &.euiDataGrid--fullScreen .euiDataGridRow--first,
+      &.euiDataGrid--fullScreen .euiDataGridRow--last,
+      &.euiDataGrid--fullScreen .euiDataGridRow--last > .euiDataGridRowCell--firstColumn,
+      &.euiDataGrid--fullScreen .euiDataGridRow--last > .euiDataGridRowCell--lastColumn,
+      &.euiDataGrid--fullScreen.euiDataGrid--noHeader.euiDataGrid--noControls
+        .euiDataGridRow--first
+        > .euiDataGridRowCell--firstColumn,
+      &.euiDataGrid--fullScreen.euiDataGrid--noHeader.euiDataGrid--noControls
+        .euiDataGridRow--first
+        > .euiDataGridRowCell--lastColumn {
+        border-radius: 0;
+      }
+
+      &.euiDataGrid--fullScreen
+        .euiDataGridRow--last
+        > .euiDataGridRowCell--firstColumn::after,
+      &.euiDataGrid--fullScreen
+        .euiDataGridRow--last
+        > .euiDataGridRowCell--lastColumn::after,
+      &.euiDataGrid--fullScreen.euiDataGrid--noHeader.euiDataGrid--noControls
+        .euiDataGridRow--first
+        > .euiDataGridRowCell--firstColumn::after,
+      &.euiDataGrid--fullScreen.euiDataGrid--noHeader.euiDataGrid--noControls
+        .euiDataGridRow--first
+        > .euiDataGridRowCell--lastColumn::after {
+        border-radius: ${cellOutlineRadius};
+      }
+    `,
     // Sits below the controls above it and pagination below it
     euiDataGrid__content: css`
       z-index: 1;
