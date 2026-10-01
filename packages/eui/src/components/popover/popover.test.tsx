@@ -8,7 +8,11 @@
 
 import React, { useState } from 'react';
 
-import { act, fireEvent } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
@@ -75,6 +79,27 @@ describe('EuiPopover', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('keeps children mounted during the closing transition', () => {
+    jest.useFakeTimers();
+    const props = {
+      ...requiredProps,
+      button: <button />,
+      closePopover: () => {},
+    };
+    const { rerender } = render(
+      <EuiPopover {...props} isOpen>
+        Children
+      </EuiPopover>
+    );
+
+    rerender(<EuiPopover {...props}>Children</EuiPopover>);
+
+    expect(screen.getByText('Children')).toBeInTheDocument();
+    runOnlyPendingTimers();
+    expect(screen.queryByText('Children')).not.toBeInTheDocument();
+    jest.useRealTimers();
   });
 
   it('exposes the positioning API through its ref', () => {
@@ -904,6 +929,9 @@ describe('EuiPopover', () => {
         key: keys.ESCAPE,
       });
       await waitForEuiPopoverClose();
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText('Popover content')
+      );
 
       expect(screen.queryByText('Popover content')).not.toBeInTheDocument();
     });

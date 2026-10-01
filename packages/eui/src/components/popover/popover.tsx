@@ -217,6 +217,7 @@ const DEFAULT_POPOVER_STYLES = {
 };
 
 const returnFocusConfig = { preventScroll: true };
+const closingTransitionTime = 250;
 
 export type Props = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
 
@@ -282,6 +283,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     });
 
     const [suppressingPopover, setSuppressingPopover] = useState(isOpen);
+    const [keepPopoverMounted, setKeepPopoverMounted] = useState(isOpen);
     const [popoverPanelPosition, setPopoverPanelPosition] =
       useState<CSSProperties>(DEFAULT_POPOVER_STYLES);
     const [arrowStyles, setArrowStyles] = useState<CSSProperties>();
@@ -639,6 +641,21 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     }, [isOpen, resizeCallback]);
 
     useEffect(() => {
+      if (isOpen) {
+        setKeepPopoverMounted(true);
+        return;
+      }
+
+      if (!keepPopoverMounted) return;
+
+      const timeout = window.setTimeout(
+        () => setKeepPopoverMounted(false),
+        closingTransitionTime
+      );
+      return () => window.clearTimeout(timeout);
+    }, [isOpen, keepPopoverMounted]);
+
+    useEffect(() => {
       repositionOnScrollManager.subscribe();
       return () => {
         repositionOnScrollManager.cleanup();
@@ -666,7 +683,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
-    if (!suppressingPopover && isOpen) {
+    if (!suppressingPopover && (isOpen || keepPopoverMounted)) {
       let tabIndex = tabIndexProp;
       let initialFocus = initialFocusProp;
       let ariaDescribedby;
