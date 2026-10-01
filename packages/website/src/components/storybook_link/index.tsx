@@ -8,7 +8,9 @@ type Props = {
 export const StorybookLink = ({ id }: Props) => {
   const { siteConfig } = useDocusaurusContext();
 
-  const href = `${siteConfig.customFields.storybookBaseUrl}/iframe.html?id=${id}`;
+  const href = `${
+    siteConfig.customFields.storybookBaseUrl
+  }/index.html?path=/story/${encodeURIComponent(id)}`;
 
   return (
     <EuiButton iconType="external" href={href} target="_blank">
