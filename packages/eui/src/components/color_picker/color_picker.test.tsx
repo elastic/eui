@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import {
@@ -211,6 +211,9 @@ describe('EuiColorPicker', () => {
       key: keys.ESCAPE,
     });
     await waitForEuiPopoverClose();
+    await waitForElementToBeRemoved(() =>
+      queryByTestSubject('euiColorPickerPopover')
+    );
     expect(queryByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
     expect(onBlurHandler).toHaveBeenCalled();
   });
