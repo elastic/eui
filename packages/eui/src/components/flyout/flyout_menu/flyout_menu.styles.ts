@@ -15,7 +15,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiFlyoutMenu__container: css`
-      block-size: calc(${euiTheme.base * 3 + 1}px);
+      block-size: calc(${euiTheme.base * 3 + 2}px);
       flex-shrink: 0;
       /* Symmetric padding aligns the control row with the absolutely-positioned close button. */
       padding-block: ${euiTheme.size.s};
