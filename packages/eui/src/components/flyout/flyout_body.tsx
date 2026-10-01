@@ -17,31 +17,29 @@ import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutBodyStyles } from './flyout_body.styles';
 
-export type EuiFlyoutBodyProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> &
-    CommonProps & {
-      /**
-       * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
-       */
-      banner?: ReactNode;
-      /**
-       * [Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)
-       * to allow keyboard users to scroll the region via arrow keys.
-       *
-       * By default, EuiFlyoutBody's scroll overflow wrapper sets a `tabIndex` of `0`.
-       * If you know your flyout body content already contains focusable children
-       * that satisfy keyboard accessibility requirements, you can use this prop
-       * to override this default.
-       */
-      scrollableTabIndex?: number;
-      /**
-       * Use to access the flyout's internal scrollable container.
-       */
-      scrollContainerRef?: Ref<HTMLDivElement>;
-    }
->;
+export type EuiFlyoutBodyProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    /**
+     * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
+     */
+    banner?: ReactNode;
+    /**
+     * [Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)
+     * to allow keyboard users to scroll the region via arrow keys.
+     *
+     * By default, EuiFlyoutBody's scroll overflow wrapper sets a `tabIndex` of `0`.
+     * If you know your flyout body content already contains focusable children
+     * that satisfy keyboard accessibility requirements, you can use this prop
+     * to override this default.
+     */
+    scrollableTabIndex?: number;
+    /**
+     * Use to access the flyout's internal scrollable container.
+     */
+    scrollContainerRef?: Ref<HTMLDivElement>;
+  };
 
-export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
+export const EuiFlyoutBody: FunctionComponent<EuiFlyoutBodyProps> = ({
   children,
   className,
   banner,
