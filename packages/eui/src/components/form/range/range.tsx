@@ -36,6 +36,9 @@ import type { EuiRangeProps, EuiRangeTick } from './types';
 import { euiRangeStyles } from './range.styles';
 import { EuiI18n } from '../../i18n';
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/numeric/range-sliders/|EuiRange documentation}
+ */
 export const EuiRange: FunctionComponent<EuiRangeProps> = ({
   min = 0,
   max = 100,
