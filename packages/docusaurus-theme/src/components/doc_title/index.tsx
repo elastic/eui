@@ -71,7 +71,7 @@ export const DocTitle = ({ children }: PropsWithChildren) => {
     )}`;
   const popoverButton = (
     <EuiButtonEmpty
-      iconType="arrowDown"
+      iconType="chevronSingleDown"
       iconSide="right"
       onClick={() => setIsOpen(!isOpen)}
     >
