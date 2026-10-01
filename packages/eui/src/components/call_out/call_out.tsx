@@ -158,18 +158,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       onDismiss && styles.hasDismissButton,
     ];
 
-    const highlightColorToken = getTokenName(
+    const iconColorToken = getTokenName(
       'borderStrong',
       color
     ) as keyof _EuiThemeBorderColors;
-    const typeColor = euiTheme.colors[highlightColorToken];
-
-    const cssVariables = useMemo(
-      () => ({
-        '--euiCallOutTypeColor': typeColor,
-      }),
-      [typeColor]
-    );
+    const typeColor = euiTheme.colors[iconColorToken];
 
     const classes = classNames(
       'euiCallOut',
@@ -326,7 +319,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         className={classes}
         panelRef={panelRef}
         grow={false}
-        style={{ ...cssVariables, ...style }}
+        style={style}
         data-size={size}
         data-test-subj={dataTestSubj}
         {...rest}
