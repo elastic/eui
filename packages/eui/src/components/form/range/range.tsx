@@ -53,7 +53,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
   levels = [],
   className,
   disabled,
-  fullWidth,
+  fullWidth: _fullWidth,
   readOnly,
   id: propsId,
   name,
@@ -87,6 +87,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
   const styles = euiRangeStyles(theme);
   const cssStyles = [styles.euiRange, showInput && styles.hasInput];
   const thumbColor = levels && getLevelColor(levels, Number(value));
+  const fullWidth = _fullWidth ?? defaultFullWidth;
 
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>
@@ -154,7 +155,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
       name={name}
       onFocus={canShowDropdown ? onInputFocus : onFocus}
       onBlur={canShowDropdown ? onInputBlur : onBlur}
-      fullWidth={showInputOnly && (fullWidth ?? defaultFullWidth)}
+      fullWidth={showInputOnly && fullWidth}
       isLoading={showInputOnly && isLoading}
       isInvalid={isInvalid}
       autoSize={!showInputOnly}
@@ -173,7 +174,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
     <EuiRangeWrapper
       className={classes}
       css={cssStyles}
-      fullWidth={fullWidth ?? defaultFullWidth}
+      fullWidth={fullWidth}
       compressed={compressed}
     >
       {showLabels && (
@@ -279,7 +280,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
           inputPopoverProps?.className
         )}
         input={input}
-        fullWidth={fullWidth ?? defaultFullWidth}
+        fullWidth={fullWidth}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         disableFocusTrap
