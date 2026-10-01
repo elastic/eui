@@ -88,7 +88,9 @@ export default () => {
 
 ### Accessing flyout elements
 
-Pass a React `ref` to **EuiFlyoutHeader** or **EuiFlyoutFooter** to access its root `div`. The `ref` on **EuiFlyout** points to the flyout panel, while `scrollContainerRef` points to the outer `.euiFlyout__content` container. **EuiFlyoutBody** also accepts `scrollContainerRef`, which points to its separate internal overflow container. Use the ref for the region that actually scrolls in your flyout layout.
+Pass a React `ref` to **EuiFlyoutHeader** or **EuiFlyoutFooter** to access its root `div`. On **EuiFlyout**, `ref` points to the flyout panel and `scrollContainerRef` points to the outer `.euiFlyout__content` container wrapping the header, body, and footer. **EuiFlyoutBody** has a separate `scrollContainerRef` pointing to its inner overflow container.
+
+Normally, the body's container is what scrolls. The outer container scrolls only when using **EuiFlyoutBody** and the header, body, and footer exceed the viewport height (usually on short screens). To respond to every scroll, attach to both containers.
 
 ### More complicated flyout
 
