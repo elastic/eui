@@ -100,6 +100,8 @@ export const euiPaletteColorBlind = ({
     visColors.euiColorVis7,
     visColors.euiColorVis8,
     visColors.euiColorVis9,
+    visColors.euiColorVis10,
+    visColors.euiColorVis11,
   ];
 
   if (sortBy === 'natural') {
