@@ -89,7 +89,31 @@ function resolveLocalComponent(
       if (!def || def.type !== 'Variable' || !def.node.init) return null;
       const init = def.node.init;
       if (init.type !== 'ArrowFunctionExpression') return null;
-      if (init.body.type !== 'BlockStatement') return [init.body];
+      if (init.body.type !== 'BlockStatement') {
+        // Check for prop passthrough (e.g. `({ children }) => children`)
+        // and try to resolve it as a local variable. If that fails, treat
+        // the component as opaque.
+        if (init.body.type === 'Identifier') {
+          const resolved = resolveIdentifierValue(sourceCode, init.body);
+          return resolved !== null ? [resolved] : null;
+        }
+        // A prop passthrough with wrapping DOM element (e.g. `({ children }) => <div>{children}</div>`)
+        // is treated as opaque.
+        // Returned standalone components (e.g.`({ id, label }) => <EuiButton>{label}</EuiButton>`)
+        // are resolved transparently.
+        if (init.params.length > 0 && init.body.type === 'JSXElement') {
+          const rootName = init.body.openingElement.name;
+
+          if (
+            rootName.type === 'JSXIdentifier' &&
+            rootName.name[0] === rootName.name[0].toLowerCase()
+          ) {
+            return null;
+          }
+        }
+
+        return [init.body];
+      }
       const returns = collectReturnValues(init.body);
       return returns.length > 0 ? returns : null;
     }

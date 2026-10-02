@@ -29,6 +29,19 @@ jobs:
               body: process.env.COMMENT_BODY,
             });
 
+      - name: Comment on icons issues
+        if: ${{ github.event_name == 'issues' && github.event.label.name == 'icons' }}
+        uses: actions/github-script@v8
+        env:
+          COMMENT_BODY: 'cc @elastic/eui-icons'
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: process.env.COMMENT_BODY,
+            });
+
       - name: Comment on breaking change pull requests
         if: ${{ github.event_name == 'pull_request_target' && github.event.label.name == 'breaking change' }}
         uses: actions/github-script@v8
