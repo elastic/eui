@@ -415,6 +415,7 @@ export class EuiSelectableList<T> extends Component<
       isGroupLabel,
       checked,
       disabled,
+      hasAriaDisabled,
       prepend,
       append,
       ref,
@@ -507,6 +508,7 @@ export class EuiSelectableList<T> extends Component<
         }
         checked={checked}
         disabled={disabled}
+        hasAriaDisabled={hasAriaDisabled}
         prepend={prepend}
         append={append}
         aria-posinset={this.state.ariaPosInSetMap[index]}
