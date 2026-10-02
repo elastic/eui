@@ -412,14 +412,14 @@ export const typeToPathMap = {
   visLine: () => import('./assets/chart_line'), // Deprecated in favor of `chartLine`
   chartMix: withMetadata(() => import('./assets/chart_mix'), {
     synonyms: [
-      'chart', 
-      'graph', 
-      'visualization', 
-      'mix', 
-      'multiple', 
-      'line', 
-      'bar', 
-      'complex', 
+      'chart',
+      'graph',
+      'visualization',
+      'mix',
+      'multiple',
+      'line',
+      'bar',
+      'complex',
       'compound',
     ],
   }),
@@ -455,13 +455,7 @@ export const typeToPathMap = {
     ],
   }),
   chartWaffle: withMetadata(() => import('./assets/chart_waffle'), {
-    synonyms: [
-      'chart', 
-      'graph', 
-      'visualization', 
-      'waffle', 
-      'boxes',
-    ],
+    synonyms: ['chart', 'graph', 'visualization', 'waffle', 'boxes'],
   }),
   check: withMetadata(() => import('./assets/check'), {
     synonyms: ['tick', 'confirm', 'done', 'yes', 'approve', 'mark'],
@@ -817,7 +811,18 @@ export const typeToPathMap = {
     synonyms: ['mail', 'email', 'envelope', 'message', 'inbox'],
   }),
   emergencyLight: withMetadata(() => import('./assets/emergency_light'), {
-    synonyms: ['emergency', 'light', 'siren', 'police', 'ambulance', 'fire', 'responder', 'warning', 'error', 'incident'],
+    synonyms: [
+      'emergency',
+      'light',
+      'siren',
+      'police',
+      'ambulance',
+      'fire',
+      'responder',
+      'warning',
+      'error',
+      'incident',
+    ],
   }),
   empty: withMetadata(() => import('./assets/empty'), {
     synonyms: ['empty', 'blank', 'none', 'placeholder', 'void'],
@@ -1607,7 +1612,16 @@ export const typeToPathMap = {
     synonyms: ['agent', 'product', 'elastic agent', 'fleet', 'monitoring'],
   }),
   productCanvas: withMetadata(() => import('./assets/product_canvas'), {
-    synonyms: ['product', 'canvas', 'painting', 'easel', 'art', 'visualization', 'chart', 'graph'],
+    synonyms: [
+      'product',
+      'canvas',
+      'painting',
+      'easel',
+      'art',
+      'visualization',
+      'chart',
+      'graph',
+    ],
   }),
   productCloudInfra: withMetadata(
     () => import('./assets/product_cloud_infra'),
@@ -1619,14 +1633,25 @@ export const typeToPathMap = {
   productDiscover: withMetadata(() => import('./assets/product_discover'), {
     synonyms: ['discover', 'product', 'explore', 'data', 'search', 'kibana'],
   }),
-  productElasticAgent: withMetadata(() => import('./assets/product_elastic_agent'), {
-    synonyms: ['product', 'elastic agent', 'data shipper', 'data collector'],
-  }),
+  productElasticAgent: withMetadata(
+    () => import('./assets/product_elastic_agent'),
+    {
+      synonyms: ['product', 'elastic agent', 'data shipper', 'data collector'],
+    }
+  ),
   productFleet: withMetadata(() => import('./assets/product_fleet'), {
     synonyms: ['product', 'fleet', 'agent', 'server'],
   }),
   productLens: withMetadata(() => import('./assets/product_lens'), {
-    synonyms: ['product', 'lens', 'visualization', 'graph', 'chart', 'builder', 'generator'],
+    synonyms: [
+      'product',
+      'lens',
+      'visualization',
+      'graph',
+      'chart',
+      'builder',
+      'generator',
+    ],
   }),
   productML: withMetadata(() => import('./assets/product_ml'), {
     synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
