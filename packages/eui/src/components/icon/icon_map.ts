@@ -410,6 +410,19 @@ export const typeToPathMap = {
     ],
   }),
   visLine: () => import('./assets/chart_line'), // Deprecated in favor of `chartLine`
+  chartMix: withMetadata(() => import('./assets/chart_mix'), {
+    synonyms: [
+      'chart', 
+      'graph', 
+      'visualization', 
+      'mix', 
+      'multiple', 
+      'line', 
+      'bar', 
+      'complex', 
+      'compound',
+    ],
+  }),
   chartPie: withMetadata(() => import('./assets/chart_pie'), {
     synonyms: [
       'pie chart',
@@ -441,6 +454,15 @@ export const typeToPathMap = {
       'cutoff',
     ],
   }),
+  chartWaffle: withMetadata(() => import('./assets/chart_waffle'), {
+    synonyms: [
+      'chart', 
+      'graph', 
+      'visualization', 
+      'waffle', 
+      'boxes',
+    ],
+  }),
   check: withMetadata(() => import('./assets/check'), {
     synonyms: ['tick', 'confirm', 'done', 'yes', 'approve', 'mark'],
   }),
@@ -463,12 +485,18 @@ export const typeToPathMap = {
   clickRight: withMetadata(() => import('./assets/click_right'), {
     synonyms: ['click', 'right', 'mouse', 'context', 'button', 'tap'],
   }),
+  clipboardWarning: withMetadata(() => import('./assets/clipboard_warning'), {
+    synonyms: ['clipboard', 'warning', 'incident', 'event', 'accident', 'list'],
+  }),
   clock: withMetadata(() => import('./assets/clock'), { synonyms: ['clock'] }),
+  clockControl: withMetadata(() => import('./assets/clock_control'), {
+    synonyms: ['clock', 'control', 'time', 'schedule', 'timer', 'settings'],
+  }),
   clockCounter: withMetadata(() => import('./assets/clock_counter'), {
     synonyms: ['clock', 'counter', 'countdown', 'timer', 'time', 'elapsed'],
   }),
-  clockControl: withMetadata(() => import('./assets/clock_control'), {
-    synonyms: ['clock', 'control', 'time', 'schedule', 'timer', 'settings'],
+  clockUp: withMetadata(() => import('./assets/clock_up'), {
+    synonyms: ['clock', 'up', 'uptime', 'status'],
   }),
   cloud: withMetadata(() => import('./assets/cloud'), {
     synonyms: ['cloud', 'online', 'hosting', 'saas', 'remote'],
@@ -787,6 +815,9 @@ export const typeToPathMap = {
   list: () => import('./assets/list_bullet'), // Deprecated in favor of `listBullet`
   mail: withMetadata(() => import('./assets/mail'), {
     synonyms: ['mail', 'email', 'envelope', 'message', 'inbox'],
+  }),
+  emergencyLight: withMetadata(() => import('./assets/emergency_light'), {
+    synonyms: ['emergency', 'light', 'siren', 'police', 'ambulance', 'fire', 'responder', 'warning', 'error', 'incident'],
   }),
   empty: withMetadata(() => import('./assets/empty'), {
     synonyms: ['empty', 'blank', 'none', 'placeholder', 'void'],
@@ -1575,6 +1606,9 @@ export const typeToPathMap = {
   productAgent: withMetadata(() => import('./assets/product_agent'), {
     synonyms: ['agent', 'product', 'elastic agent', 'fleet', 'monitoring'],
   }),
+  productCanvas: withMetadata(() => import('./assets/product_canvas'), {
+    synonyms: ['product', 'canvas', 'painting', 'easel', 'art', 'visualization', 'chart', 'graph'],
+  }),
   productCloudInfra: withMetadata(
     () => import('./assets/product_cloud_infra'),
     { synonyms: ['cloud', 'infrastructure', 'product', 'hosting', 'platform'] }
@@ -1584,6 +1618,15 @@ export const typeToPathMap = {
   }),
   productDiscover: withMetadata(() => import('./assets/product_discover'), {
     synonyms: ['discover', 'product', 'explore', 'data', 'search', 'kibana'],
+  }),
+  productElasticAgent: withMetadata(() => import('./assets/product_elastic_agent'), {
+    synonyms: ['product', 'elastic agent', 'data shipper', 'data collector'],
+  }),
+  productFleet: withMetadata(() => import('./assets/product_fleet'), {
+    synonyms: ['product', 'fleet', 'agent', 'server'],
+  }),
+  productLens: withMetadata(() => import('./assets/product_lens'), {
+    synonyms: ['product', 'lens', 'visualization', 'graph', 'chart', 'builder', 'generator'],
   }),
   productML: withMetadata(() => import('./assets/product_ml'), {
     synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
@@ -1633,6 +1676,9 @@ export const typeToPathMap = {
   }),
   send: withMetadata(() => import('./assets/send'), {
     synonyms: ['send', 'submit', 'dispatch', 'arrow', 'share'],
+  }),
+  puzzlePiece: withMetadata(() => import('./assets/puzzle_piece'), {
+    synonyms: ['puzzle', 'piece', 'jigsaw', 'extension', 'plugin', 'game'],
   }),
   question: withMetadata(() => import('./assets/question'), {
     synonyms: ['question', 'help', 'unknown', 'faq', 'ask'],
@@ -1699,6 +1745,9 @@ export const typeToPathMap = {
   }),
   share: withMetadata(() => import('./assets/share'), {
     synonyms: ['share', 'send', 'distribute', 'social', 'export'],
+  }),
+  shield: withMetadata(() => import('./assets/shield'), {
+    synonyms: ['shield', 'security', 'protect', 'defend'],
   }),
   significantEvents: withMetadata(() => import('./assets/significant_events'), {
     synonyms: [
