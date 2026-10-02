@@ -7,6 +7,7 @@
  */
 
 import { themes as prismThemes } from 'prism-react-renderer';
+import { getSwcLoaderOptions } from '@docusaurus/faster';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
@@ -19,6 +20,7 @@ const SSPL_LICENSE_URL =
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 const isDevelopment = process.env.NODE_ENV === 'development';
+const noIndex = process.env.PR_PREVIEW === 'true';
 
 let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
 
@@ -40,6 +42,9 @@ const config: Config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl,
 
+  // Keep PR preview deployments out of search indexes
+  noIndex,
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -53,6 +58,36 @@ const config: Config = {
 
   customFields: {
     storybookBaseUrl,
+  },
+
+  // SWC ignores `babel.config.js`; keep Rspack but use Emotion's JSX runtime.
+  future: {
+    experimental_faster: {
+      swcJsLoader: false,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+    },
+  },
+
+  webpack: {
+    jsLoader: (isServer) => {
+      const options = getSwcLoaderOptions({ isServer });
+      options.jsc ??= {};
+      options.jsc.transform ??= {};
+      options.jsc.transform.react = {
+        ...options.jsc.transform.react,
+        runtime: 'automatic',
+        importSource: '@emotion/react',
+      };
+
+      return {
+        loader: 'builtin:swc-loader',
+        options,
+      };
+    },
   },
 
   presets: [

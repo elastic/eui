@@ -351,7 +351,8 @@ export const useRowHeightUtils = ({
       return;
     }
 
-    requestAnimationFrame(forceRenderRef.current);
+    const frameId = requestAnimationFrame(forceRenderRef.current);
+    return () => cancelAnimationFrame(frameId);
   }, [
     // Effects that should cause rerendering
     rowHeightsOptions?.defaultHeight,

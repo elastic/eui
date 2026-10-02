@@ -37,7 +37,7 @@ describe('EuiDataGridCellActions', () => {
       .toMatchInlineSnapshot(`
       <button
         aria-hidden="true"
-        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
+        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-empty-text-euiDataGridRowCell__actionButtonIcon"
         data-test-subj="euiDataGridCellExpandButton"
         tabindex="-1"
         type="button"
@@ -63,7 +63,7 @@ describe('EuiDataGridCellActions', () => {
     expect(getByTestSubject('mockCellAction')).toMatchInlineSnapshot(`
       <button
         aria-hidden="true"
-        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
+        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon emotion-euiButtonIcon-xs-empty-text-euiDataGridRowCell__actionButtonIcon"
         data-test-subj="mockCellAction"
         tabindex="-1"
         type="button"

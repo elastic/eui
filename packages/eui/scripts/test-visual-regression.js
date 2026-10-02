@@ -17,11 +17,14 @@ function findRepoRoot(start) {
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const REPO_ROOT = findRepoRoot(PACKAGE_ROOT);
 
-/**
- * The test-runner is invoked once per variant.
- * These names must match the keys of the `VARIANTS` map in `.storybook/vrt.ts`.
- */
-const VARIANTS = ['desktop', 'mobile'];
+const VARIANTS = Object.keys(
+  JSON.parse(
+    fs.readFileSync(
+      path.join(PACKAGE_ROOT, '.storybook/vrt-variants.json'),
+      'utf8'
+    )
+  )
+);
 
 const { argv } = yargs(hideBin(process.argv))
   .parserConfiguration({
@@ -242,9 +245,9 @@ if (useDocker) {
       `if ! (echo > /dev/tcp/127.0.0.1/${STATIC_PORT}) 2>/dev/null; then echo "Timed out waiting for static Storybook on port ${STATIC_PORT}"; kill "$server_pid"; exit 1; fi; `
     : '';
 
-  // `--maxWorkers`/`--testTimeout` add headroom for the slower emulated env.
+  // `--maxWorkers` adds headroom for the slower emulated env.
   const failed = runVariants((variant) => {
-    const innerCmd = `set -e; ${setup}; ${staticServe}VRT_VARIANT=${variant} yarn test-storybook --maxWorkers=2 --testTimeout=60000${argsSuffix}`;
+    const innerCmd = `set -e; ${setup}; ${staticServe}VRT_VARIANT=${variant} yarn test-storybook --maxWorkers=2${argsSuffix}`;
     runInDocker(innerCmd);
   });
 
@@ -288,7 +291,6 @@ const runNativeTests = async () => {
   const baseCmd = [
     'yarn test-storybook',
     !isCI && '--maxWorkers=2',
-    !isCI && '--testTimeout=60000',
     isUpdate && '--updateSnapshot',
     !useStatic && argv.url && `--url ${argv.url}`,
     ...extraArgs,

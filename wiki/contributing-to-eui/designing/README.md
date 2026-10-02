@@ -9,7 +9,7 @@ Code changes that impact design and require Figma library updates include:
 - *Props modifications:* Adding, removing, or changing component properties that affect visual output
 - *Icon additions/changes:* New icons or modifications to existing ones per icon creation guidelines
 - *Design token updates:* Changes to colors, spacing, typography, or other design tokens
-*Behavioral changes:* Interactions, states, or animations that alter user experience
+- *Behavioral changes:* Interactions, states, or animations that alter user experience
 
 ## Design Review Process
 

@@ -19,7 +19,7 @@ export const euiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiCheckboxControl: css`
       ${controlStyles.input.fauxInput}
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     enabled: {
       selected: css(controlStyles.input.enabled.selected),

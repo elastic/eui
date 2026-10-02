@@ -21,6 +21,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
+import { EuiFlyoutBody } from './flyout_body';
 import { MENU_DISPLAY_ALWAYS } from './const';
 
 jest.mock('../overlay_mask', () => ({
@@ -37,6 +38,45 @@ jest.mock('../portal', () => ({
 }));
 
 describe('EuiFlyout', () => {
+  test('exposes the outer scroll container separately from the flyout and body', () => {
+    const flyoutRef = React.createRef<HTMLDivElement>();
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
+    const bodyScrollContainerRef = React.createRef<HTMLDivElement>();
+    const { unmount } = render(
+      <EuiFlyout
+        onClose={() => {}}
+        aria-label="Test flyout"
+        ref={flyoutRef}
+        scrollContainerRef={scrollContainerRef}
+      >
+        <EuiFlyoutBody scrollContainerRef={bodyScrollContainerRef} />
+      </EuiFlyout>
+    );
+
+    expect(scrollContainerRef.current).toHaveClass('euiFlyout__content');
+    expect(flyoutRef.current).toContainElement(scrollContainerRef.current);
+    expect(scrollContainerRef.current).not.toBe(flyoutRef.current);
+    expect(scrollContainerRef.current).not.toBe(bodyScrollContainerRef.current);
+    unmount();
+    expect(scrollContainerRef.current).toBeNull();
+  });
+
+  test('exposes the outer scroll container in a managed flyout', () => {
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
+    render(
+      <EuiFlyoutManager>
+        <EuiFlyout
+          onClose={() => {}}
+          aria-label="Test managed flyout"
+          session="start"
+          scrollContainerRef={scrollContainerRef}
+        />
+      </EuiFlyoutManager>
+    );
+
+    expect(scrollContainerRef.current).toHaveClass('euiFlyout__content');
+  });
+
   shouldRenderCustomStyles(
     <EuiFlyout {...requiredProps} onClose={() => {}} />,
     { childProps: ['closeButtonProps', 'maskProps'] }

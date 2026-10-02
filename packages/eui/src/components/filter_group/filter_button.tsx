@@ -23,14 +23,15 @@ import { DistributiveOmit } from '../common';
 import { EuiNotificationBadge } from '../badge';
 import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
+import { type Props as EuiButtonProps, EuiButton } from '../button/button';
+import { _compressedButtonFocusColors } from '../button/button_group/button_group_button.styles';
 
 import {
   euiFilterButtonStyles,
   euiFilterButtonWrapperStyles,
   euiFilterButtonChildStyles,
 } from './filter_button.styles';
-import { EuiButtonGroupButton } from '../button/button_group/button_group_button';
-import { _compressedButtonFocusColors } from '../button/button_group/button_group_button.styles';
+import { useEuiFilterGroupContext } from './filter_group_context';
 
 export type EuiFilterButtonProps = {
   /**
@@ -78,6 +79,7 @@ export type EuiFilterButtonProps = {
    */
   badgeColor?: BadgeNotificationColor;
   /**
+   * @deprecated - Will be fixed to 'text' in the future.
    * Any of the named color palette options.
    *
    * Do not use the following colors for standalone buttons directly,
@@ -103,7 +105,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   numFilters,
   numActiveFilters,
   isToggle,
-  isDisabled,
+  isDisabled: _isDisabled,
+  disabled,
   isSelected,
   type = 'button',
   grow = true,
@@ -112,12 +115,16 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   contentProps,
   ...rest
 }) => {
+  const { colorMode } = useEuiTheme();
+
+  const { compressed, display, showDividers } = useEuiFilterGroupContext();
+  const isDisabled = _isDisabled || disabled;
+  const fill =
+    isToggle && isSelected && (display === 'highlighted' || color !== 'text');
+
   const id = useGeneratedHtmlId({ prefix: 'filter-button' });
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
   const numActiveFiltersDefined = !!numActiveFilters;
-
-  const euiThemeContext = useEuiTheme();
-  const { colorMode } = euiThemeContext;
 
   // assumption about type of usage based on icon usage
   // requires manual override to apply correct aria attributes for more custom usages
@@ -129,13 +136,19 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 
   const toggleVariantStyles = [
     isToggle && styles.buttonType.toggle,
+    isToggle &&
+      isSelected &&
+      display !== 'highlighted' &&
+      color === 'text' &&
+      styles.isSelected,
     !isToggle && !isDisabled && focusColorStyles[color],
-    !isToggle && styles.buttonType.default,
   ];
 
   const cssStyles = [
     styles.euiFilterButton,
     hasActiveFilters && styles.hasActiveFilters,
+    compressed && styles.compressed,
+    !children && styles.isIconOnly,
     ...toggleVariantStyles,
   ];
 
@@ -145,7 +158,9 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     wrapperStyles.wrapper,
     withNext && styles.withNext,
     numFiltersDefined && styles.hasNotification,
-    isToggle && wrapperStyles.hasToggle,
+    compressed && wrapperStyles.compressed,
+    showDividers && wrapperStyles.hasDividers,
+    !children && wrapperStyles.isIconOnly,
     !grow && styles.noGrow,
   ];
 
@@ -162,6 +177,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
+      'euiFilterButton-isIconOnly': !children,
       'euiFilterButton-isToggle': isToggle,
     },
     className
@@ -225,7 +241,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const dataText =
     children && typeof children === 'string' ? children : innerText;
 
-  const textContent = (
+  const textContent = children && (
     <span
       ref={ref}
       data-text={dataText}
@@ -274,23 +290,17 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   return (
     <div className={wrapperClasses} css={wrapperCssStyles}>
       {isToggle && !isCollapsible ? (
-        <EuiButtonGroupButton
+        <EuiButton
           id={id}
-          label={
-            <>
-              {textContent}
-              {badgeElement}
-            </>
-          }
           className={classes}
           css={cssStyles}
           color={color}
           isSelected={isSelected}
-          size="compressed"
+          fill={fill}
+          size="s"
           isDisabled={isDisabled}
           iconSide={iconSide}
           iconType={iconType}
-          isIconOnly={false}
           type={type}
           textProps={false}
           contentProps={{
@@ -301,9 +311,12 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
               contentProps?.css,
             ],
           }}
-          {...rest}
+          {...(rest as EuiButtonProps)}
           onClick={onToggleClick}
-        />
+        >
+          {textContent}
+          {badgeElement}
+        </EuiButton>
       ) : (
         button
       )}

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fireEvent, waitFor } from 'storybook/test';
 import { within } from '../../../../.storybook/test';
 import { VRT_SELECTORS } from '../../../../.storybook/vrt';

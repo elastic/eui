@@ -46,4 +46,4 @@ Any violations should be confirmed using the [axe browser plugin](https://deque.
 
 ## Testing environment
 
-This testing suite can be run on your local machine or in a Docker container. The EUI team has a plan to run these tests in a scheduled Buildkite job using the CI Docker container.
+Run the suite locally with `yarn test-cypress-a11y`. CI already runs it on every pull request (Buildkite job **Cypress accessibility (a11y) tests on React 18**).

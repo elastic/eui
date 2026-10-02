@@ -1,3 +1,26 @@
+## [`v8.1.0`](https://github.com/elastic/eui/releases/v8.1.0)
+
+- Added `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))
+- Added semantic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.inline`
+  - `euiTheme.border.radius.control`
+  - `euiTheme.border.radius.panel`
+  - `euiTheme.border.radius.frame`
+- Added `euiTheme.font.title.letterSpacing` token ([#9968](https://github.com/elastic/eui/pull/9968))
+- Updated color token values for: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.colors.backgroundBaseSubdued`
+  - `euiTheme.colors.backgroundBasePlain`
+  - `euiTheme.colors.body`
+  - `euiTheme.colors.textParagraph`
+  - `euiTheme.colors.text` (do not use, legacy value)
+  - `euiTheme.colors.emptyShade` (do not use, legacy value)
+
+**Deprecations**
+
+- Deprecated generic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.small`
+  - `euiTheme.border.radius.medium`
+
 ## [`v8.0.0`](https://github.com/elastic/eui/releases/v8.0.0)
 
 **Breaking changes**

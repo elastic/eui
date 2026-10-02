@@ -9,20 +9,32 @@
 import type { PlayFunction } from 'storybook/internal/csf';
 import type { ReactRenderer } from '@storybook/react';
 
+// eslint-disable-next-line prettier/prettier -- Prettier 2 doesn't support JSON imports, we need to upgrade to Prettier 3
+import variants from './vrt-variants.json' with { type: 'json' };
+
 /**
- * Viewport variants every story is screenshotted under. The test-runner is
- * invoked once per variant (see `scripts/test-visual-regression.js`) using the
- * `VRT_VARIANT` env var.
+ * Type union of all variant names.
  *
- * Keys are the variant names, used both as the baseline suffix
+ * Variant names are used both as the baseline suffix
  * (e.g. `${context.id}-desktop.png`) and in `parameters.vrt.skip`.
  */
-export const VARIANTS = {
-  desktop: { name: 'desktop', viewport: { width: 1440, height: 900 } },
-  mobile: { name: 'mobile', viewport: { width: 390, height: 844 } },
-} as const;
+export type VariantName = keyof typeof variants;
 
-export type VariantName = keyof typeof VARIANTS;
+export type Viewport = {
+  width: number;
+  height: number;
+};
+
+/**
+ * Object mapping variant names to their properties.
+ *
+ * Every story is screenshotted against all variants. The test-runner is
+ * invoked once per variant.
+ */
+export const VARIANTS = variants satisfies Record<
+  VariantName,
+  { name: string; viewport: Viewport }
+>;
 
 /**
  * `parameters.vrt.skip` opts a story out of VRT:

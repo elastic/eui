@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiTimeline, EuiTimelineProps } from './timeline';
 
@@ -38,7 +38,7 @@ export const Playground: Story = {
         ),
       },
       {
-        icon: 'folderClosed',
+        icon: 'folder',
         children: 'The project was archived.',
       },
     ],

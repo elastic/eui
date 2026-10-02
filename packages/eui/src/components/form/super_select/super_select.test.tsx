@@ -6,15 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import React, { createRef } from 'react';
+import { act, fireEvent } from '@testing-library/react';
 import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
 import { EuiFormRow } from '../form_row';
 
-import { EuiSuperSelect } from './super_select';
+import { EuiSuperSelect, type EuiSuperSelectRef } from './super_select';
 
 const options = [
   { value: '1', inputDisplay: 'Option #1' },
@@ -75,6 +75,57 @@ describe('EuiSuperSelect', () => {
       'test-button test-label'
     );
     expect(control).toHaveAttribute('aria-describedby', 'test-help-0');
+  });
+
+  it('combines an `aria-label` with the selected value instead of overriding it', () => {
+    const { getByTestSubject, getByText } = render(
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected="2"
+        aria-label="Label"
+        data-test-subj="controlButton"
+      />
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).not.toHaveAttribute('aria-label');
+    expect(control).toHaveAccessibleName('Option #2 Label');
+    expect(getByText('Label')).toBeInTheDocument();
+  });
+
+  it('combines an `aria-labelledby` with the selected value instead of overriding it', () => {
+    const { getByTestSubject } = render(
+      <>
+        <span id="external-label">Label</span>
+        <EuiSuperSelect
+          options={options}
+          valueOfSelected="2"
+          aria-labelledby="external-label"
+          data-test-subj="controlButton"
+        />
+      </>
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).toHaveAttribute(
+      'aria-labelledby',
+      `${control.id} external-label`
+    );
+    expect(control).toHaveAccessibleName('Option #2 Label');
+  });
+
+  it('does not set `aria-labelledby` when no external label is passed', () => {
+    const { getByTestSubject } = render(
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected="2"
+        data-test-subj="controlButton"
+      />
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).not.toHaveAttribute('aria-labelledby');
+    expect(control).toHaveAccessibleName('Option #2');
   });
 
   describe('props', () => {
@@ -194,6 +245,37 @@ describe('EuiSuperSelect', () => {
     });
   });
 
+  describe('ref', () => {
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('exposes openPopover and closePopover', () => {
+      jest.useFakeTimers();
+
+      const ref = createRef<EuiSuperSelectRef>();
+      const { queryByRole } = render(
+        <EuiSuperSelect ref={ref} options={options} />
+      );
+
+      expect(queryByRole('listbox')).not.toBeInTheDocument();
+
+      act(() => {
+        ref.current?.openPopover();
+        jest.runOnlyPendingTimers();
+      });
+
+      expect(queryByRole('listbox')).toBeInTheDocument();
+
+      act(() => {
+        ref.current?.closePopover();
+        jest.runAllTimers();
+      });
+
+      expect(document.querySelector('[data-popover-open]')).toBeFalsy();
+    });
+  });
+
   // No assertions or rendering on these tests - they're here to check that ts/lint passes or fails
   describe('typing', () => {
     // Silence expected propTypes errors
@@ -209,9 +291,10 @@ describe('EuiSuperSelect', () => {
 
     it('allows customizing the value type via TS generic', () => {
       <EuiSuperSelect<number> options={[{ value: 2 }]} valueOfSelected={2} />;
-      // @ts-expect-error should error since it expects a number
       <EuiSuperSelect<number>
+        // @ts-expect-error should error since it expects a number
         options={[{ value: 'should error' }]}
+        // @ts-expect-error should error since it expects a number
         valueOfSelected="2"
       />;
 
@@ -219,9 +302,10 @@ describe('EuiSuperSelect', () => {
         options={[{ value: true }]}
         valueOfSelected={true}
       />;
-      // @ts-expect-error should error since it expects a boolean
       <EuiSuperSelect<number>
+        // @ts-expect-error should error since it expects a number
         options={[{ value: 'should error' }]}
+        // @ts-expect-error should error since it expects a number
         valueOfSelected="true"
       />;
 

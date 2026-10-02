@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SPREAD_STORY_ARGS_MARKER } from '../../../.storybook/addons/code-snippet/constants';
 
 import { EuiPanel } from '../panel';

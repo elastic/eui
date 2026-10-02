@@ -14,9 +14,10 @@ import { ShortDate, ApplyTime } from '../types';
 import { usePrettyInterval } from './pretty_interval';
 import { isRelativeToNow } from './relative_utils';
 
-import { EuiButtonGroupButton } from '../../button/button_group/button_group_button';
-import { euiButtonGroupButtonsStyles } from '../../button/button_group/button_group.styles';
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
+import { EuiButtonIcon } from '../../button';
+import { EuiToolTip } from '../../tool_tip';
+import { EuiButtonGroup } from '../../button/button_group/button_group';
 import { useEuiI18n } from '../../i18n';
 
 export const ZOOM_FACTOR_DEFAULT = 0.5;
@@ -70,10 +71,8 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   showShiftArrows = true,
   zoomFactor = ZOOM_FACTOR_DEFAULT,
 }) => {
-  const buttonColor = 'text';
   const buttonSize = compressed ? 's' : 'm';
   const iconSize = 'm';
-  const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
 
   const {
     displayInterval,
@@ -84,6 +83,11 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
     shrinkWindow,
     isWindowDurationZero,
   } = useEuiTimeWindow(start, end, applyTime, { zoomFactor });
+
+  const groupLabel = useEuiI18n(
+    'euiTimeWindowButtons.label',
+    'Time window controls'
+  );
 
   const previousDescription = useEuiI18n(
     'euiTimeWindowButtons.previousDescription',
@@ -147,82 +151,74 @@ export const EuiTimeWindowButtons: React.FC<EuiTimeWindowButtonsProps> = ({
   if (!showZoomIn && !showZoomOut && !showShiftArrows) return null;
 
   return (
-    <div
+    <EuiButtonGroup
+      legend={groupLabel}
+      variant="segmented"
+      buttonSize={buttonSize}
+      showDividers
+      wrap={false}
       className="euiSuperDatePicker__timeWindowButtons"
-      css={[styles.euiButtonGroup__buttons, styles.size[buttonSize]]}
       data-test-subj="timeWindowButtons"
     >
       {showShiftArrows && (
-        <EuiButtonGroupButton
-          id={previousId}
-          data-test-subj="timeWindowButtonsPrevious"
-          label={previousLabel}
-          title=""
-          toolTipContent={!isDisabled && previousTooltipContent}
-          color={buttonColor}
-          size={buttonSize}
-          iconType="chevronSingleLeft"
-          iconSize={iconSize}
-          isIconOnly
-          isDisabled={isWindowDurationZero || isDisabled}
-          onClick={stepBackward}
-        />
+        <EuiToolTip content={!isDisabled && previousTooltipContent}>
+          <EuiButtonIcon
+            id={previousId}
+            iconType="chevronSingleLeft"
+            iconSize={iconSize}
+            isDisabled={isWindowDurationZero || isDisabled}
+            onClick={stepBackward}
+            aria-label={previousLabel}
+            data-test-subj="timeWindowButtonsPrevious"
+          />
+        </EuiToolTip>
       )}
       {showZoomIn && (
-        <EuiButtonGroupButton
-          id={zoomInId}
-          data-test-subj="timeWindowButtonsZoomIn"
-          label={zoomInLabel}
-          title=""
-          toolTipContent={!isDisabled && zoomInTooltipContent}
-          toolTipProps={{
-            disableScreenReaderOutput: zoomInLabel === zoomInTooltipContent,
-          }}
-          color={buttonColor}
-          size={buttonSize}
-          iconType="magnifyPlus"
-          iconSize={iconSize}
-          isIconOnly
-          isDisabled={isWindowDurationZero || isDisabled}
-          onClick={shrinkWindow}
-        />
+        <EuiToolTip
+          content={!isDisabled && zoomInTooltipContent}
+          disableScreenReaderOutput={zoomInLabel === zoomInTooltipContent}
+        >
+          <EuiButtonIcon
+            id={zoomInId}
+            iconType="magnifyPlus"
+            iconSize={iconSize}
+            isDisabled={isWindowDurationZero || isDisabled}
+            onClick={shrinkWindow}
+            aria-label={zoomInLabel}
+            data-test-subj="timeWindowButtonsZoomIn"
+          />
+        </EuiToolTip>
       )}
       {showZoomOut && (
-        <EuiButtonGroupButton
-          id={zoomOutId}
-          data-test-subj="timeWindowButtonsZoomOut"
-          label={zoomOutLabel}
-          title=""
-          toolTipContent={!isDisabled && zoomOutTooltipContent}
-          toolTipProps={{
-            disableScreenReaderOutput: zoomOutLabel === zoomOutTooltipContent,
-          }}
-          color={buttonColor}
-          size={buttonSize}
-          iconType="magnifyMinus"
-          iconSize={iconSize}
-          isIconOnly
-          isDisabled={isDisabled}
-          onClick={expandWindow}
-        />
+        <EuiToolTip
+          content={!isDisabled && zoomOutTooltipContent}
+          disableScreenReaderOutput={zoomOutLabel === zoomOutTooltipContent}
+        >
+          <EuiButtonIcon
+            id={zoomOutId}
+            iconType="magnifyMinus"
+            iconSize={iconSize}
+            isDisabled={isDisabled}
+            onClick={expandWindow}
+            aria-label={zoomOutLabel}
+            data-test-subj="timeWindowButtonsZoomOut"
+          />
+        </EuiToolTip>
       )}
       {showShiftArrows && (
-        <EuiButtonGroupButton
-          id={nextId}
-          data-test-subj="timeWindowButtonsNext"
-          label={nextLabel}
-          title=""
-          toolTipContent={!isDisabled && nextTooltipContent}
-          color={buttonColor}
-          size={buttonSize}
-          iconType="chevronSingleRight"
-          iconSize={iconSize}
-          isIconOnly
-          isDisabled={isWindowDurationZero || isDisabled}
-          onClick={stepForward}
-        />
+        <EuiToolTip content={!isDisabled && nextTooltipContent}>
+          <EuiButtonIcon
+            id={nextId}
+            iconType="chevronSingleRight"
+            iconSize={iconSize}
+            isDisabled={isWindowDurationZero || isDisabled}
+            onClick={stepForward}
+            aria-label={nextLabel}
+            data-test-subj="timeWindowButtonsNext"
+          />
+        </EuiToolTip>
       )}
-    </div>
+    </EuiButtonGroup>
   );
 };
 

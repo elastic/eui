@@ -81,7 +81,9 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   return `
     background-color: ${backgroundColor};
 
+    .euiHeaderLogo,
     .euiHeaderLogo__text,
+    .euiHeaderLogo__image,
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
       color: ${euiTheme.colors.textGhost};

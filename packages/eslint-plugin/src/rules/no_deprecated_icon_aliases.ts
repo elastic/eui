@@ -10,7 +10,11 @@ import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 
 export const DEPRECATED_ICON_ALIASES = {
   alert: 'warning',
+  analyzeEvent: 'cube',
   anomalyChart: 'chartAnomaly',
+  anomalySwimLane: 'chartHeatmap',
+  annotation: 'flag',
+  apps: 'grid',
   apmTrace: 'chartWaterfall',
   arrowDown: 'chevronSingleDown',
   arrowEnd: 'chevronLimitRight',
@@ -24,9 +28,15 @@ export const DEPRECATED_ICON_ALIASES = {
   changePointDetection: 'chartChangePoint',
   checkInCircleFilled: 'checkCircleFill',
   cheer: 'popper',
+  cloudDrizzle: 'cloudRain',
+  cloudStormy: 'cloudBolt',
+  cloudSunny: 'cloudSun',
   color: 'paintBucket',
   compute: 'processor',
   console: 'commandLine',
+  container: 'package',
+  continuityAbove: 'upload',
+  continuityWithin: 'maximize',
   contrastHigh: 'contrastFill',
   controlsHorizontal: 'controls',
   controlsVertical: 'controls',
@@ -73,6 +83,7 @@ export const DEPRECATED_ICON_ALIASES = {
   editorUnorderedList: 'listBullet',
   email: 'mail',
   eql: 'query',
+  esqlVis: 'query',
   errorFilled: 'errorFill',
   exit: 'logOut',
   expand: 'maximize',
@@ -82,15 +93,23 @@ export const DEPRECATED_ICON_ALIASES = {
   eyeClosed: 'eyeSlash',
   fieldStatistics: 'tableInfo',
   filterInCircle: 'filter',
+  fold: 'minimize',
   folderCheck: 'check',
+  folderClose: 'folder',
+  folderClosed: 'folder',
   folderOpened: 'folderOpen',
+  frameNext: 'chevronSingleRight',
+  framePrevious: 'chevronSingleLeft',
   glasses: 'readOnly',
+  help: 'question',
   grab: 'dragVertical',
   grabHorizontal: 'dragHorizontal',
   grabOmnidirectional: 'drag',
   heatmap: 'chartHeatmap',
   importAction: 'download',
+  index: 'table',
   indexClose: 'tableCross',
+  ip: 'tokenIP',
   indexEdit: 'tablePencil',
   indexFlush: 'chartThreshold',
   indexMapping: 'mapping',
@@ -100,6 +119,7 @@ export const DEPRECATED_ICON_ALIASES = {
   indexTemporary: 'tableTime',
   invert: 'contrast',
   kqlField: 'queryField',
+  kqlFunction: 'push',
   kqlOperand: 'queryOperand',
   kqlSelector: 'querySelector',
   kqlValue: 'queryValue',
@@ -112,20 +132,27 @@ export const DEPRECATED_ICON_ALIASES = {
   listAdd: 'plusCircle',
   logPatternAnalysis: 'pattern',
   logRateAnalysis: 'chartBarVertical',
+  logstashFilter: 'filter',
   logstashIf: 'if',
+  logstashInput: 'download',
+  logstashOutput: 'upload',
   logstashQueue: 'queue',
   magnifyWithExclamation: 'magnifyExclamation',
   magnifyWithMinus: 'magnifyMinus',
   magnifyWithPlus: 'magnifyPlus',
   mapMarker: 'waypoint',
+  menuDown: 'transitionBottomOut',
+  menuUp: 'transitionTopOut',
   minusInCircle: 'minusCircle',
   minusInCircleFilled: 'minusCircle',
   minusInSquare: 'minusSquare',
+  namespace: 'kubernetesNamespace',
   newChat: 'plusCircle',
   node: 'vectorTriangle',
   offline: 'wifiSlash',
   online: 'wifi',
   pagesSelect: 'documentsCheck',
+  payment: 'money',
   pinFilled: 'pinFill',
   pipeBreaks: 'lineBreak',
   pipeNoBreaks: 'lineBreakSlash',
@@ -135,19 +162,30 @@ export const DEPRECATED_ICON_ALIASES = {
   plusInSquare: 'plusSquare',
   popout: 'external',
   productRobot: 'productAgent',
-  push: 'send',
   returnKey: 'return',
   search: 'magnify',
   securitySignal: 'radar',
+  sessionViewer: 'commandLine',
+  singleMetricViewer: 'chartArea',
+  spaces: 'grid',
   starEmpty: 'star',
+  starEmptySpace: 'star',
+  starFillSpace: 'starFill',
   starFilled: 'starFill',
-  starFilledSpace: 'starFillSpace',
-  starMinusFilled: 'starMinusFill',
-  starPlusFilled: 'starPlusFill',
+  starFilledSpace: 'starFill',
+  starMinusEmpty: 'star',
+  starMinusFill: 'starFill',
+  starMinusFilled: 'starFill',
+  starPlusEmpty: 'star',
+  starPlusFill: 'starFill',
+  starPlusFilled: 'starFill',
   stopFilled: 'stopFill',
+  stats: 'chartLine',
   streamsClassic: 'productStreamsClassic',
   streamsWired: 'productStreamsWired',
+  string: 'tokenString',
   submodule: 'merge',
+  tableOfContents: 'listBullet',
   tableDensityCompact: 'tableDensityHigh',
   tableDensityExpanded: 'tableDensityLow',
   tableDensityNormal: 'table',
@@ -157,6 +195,7 @@ export const DEPRECATED_ICON_ALIASES = {
   timeslider: 'clockControl',
   tokenDenseVector: 'tokenVectorDense',
   training: 'presentation',
+  unfold: 'maximize',
   unlink: 'linkSlash',
   userAvatar: 'user',
   vector: 'vectorSquare',
@@ -167,6 +206,7 @@ export const DEPRECATED_ICON_ALIASES = {
   visBarVertical: 'chartBarVertical',
   visBarVerticalStacked: 'chartBarVerticalStack',
   visGauge: 'chartGauge',
+  visGoal: 'chartGauge',
   visLine: 'chartLine',
   visMapCoordinate: 'waypoint',
   visMapRegion: 'map',
@@ -175,14 +215,41 @@ export const DEPRECATED_ICON_ALIASES = {
   visTable: 'table',
   visTagCloud: 'chartTagCloud',
   visText: 'text',
+  visTimelion: 'productTimelion',
   visVega: 'code',
+  visVisualBuilder: 'productTSVB',
   warningFilled: 'warningFill',
+  wordWrap: 'lineBreak',
+  wordWrapDisabled: 'lineBreakSlash',
 } as const;
 
 export const DEPRECATED_ICONS_WITHOUT_REPLACEMENT: ReadonlySet<string> =
-  new Set(['mobile']);
+  new Set([
+    'article',
+    'dotInCircle',
+    'kubernetesNode',
+    'mobile',
+    'scale',
+    'securitySignalDetected',
+  ]);
+
+export const DEPRECATED_ICONS_WITH_GUIDANCE = {
+  folderExclamation:
+    'Use `linkSlash` for unlink actions or `hourglass` for Kibana Cases status.',
+  stopFill:
+    'Use `EuiColorPickerSwatch` for a color chip or `stop` otherwise.',
+  stopSlash:
+    'Use `EuiColorPickerSwatch` for no/transparent color or `stop` otherwise.',
+} as const;
 
 type DeprecatedIconAlias = keyof typeof DEPRECATED_ICON_ALIASES;
+type DeprecatedIconWithGuidance = keyof typeof DEPRECATED_ICONS_WITH_GUIDANCE;
+
+const isDeprecatedIconWithGuidance = (
+  value: string
+): value is DeprecatedIconWithGuidance =>
+  value in DEPRECATED_ICONS_WITH_GUIDANCE;
+
 type StaticStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;
 
 const getComponentName = (
@@ -313,6 +380,18 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
         }
 
         if (!isDeprecatedIconAlias(iconType)) {
+          if (isDeprecatedIconWithGuidance(iconType)) {
+            context.report({
+              node: staticStringNode,
+              messageId: 'deprecatedIconGuidance',
+              data: {
+                iconType,
+                guidance: DEPRECATED_ICONS_WITH_GUIDANCE[iconType],
+              },
+            });
+            return;
+          }
+
           if (DEPRECATED_ICONS_WITHOUT_REPLACEMENT.has(iconType)) {
             context.report({
               node: staticStringNode,
@@ -354,6 +433,8 @@ export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
         'Icon `{{iconType}}` is deprecated and has no direct replacement.',
       deprecatedIconAlias:
         'Icon alias `{{alias}}` is deprecated. Use `{{replacement}}` instead.',
+      deprecatedIconGuidance:
+        'Icon `{{iconType}}` is deprecated. {{guidance}}',
     },
   },
   defaultOptions: [],

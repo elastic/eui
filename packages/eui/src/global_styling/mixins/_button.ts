@@ -374,31 +374,39 @@ const euiButtonFocusCSS = (_euiThemeContext: UseEuiTheme) => {
 export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  // TODO: replace with token once available
-  const radiusInset = '2px';
+  // Used for inset buttons that sit within a parent container
+  const radiusInset = mathWithUnits(
+    [euiTheme.border.radius.control, euiTheme.size.xxs],
+    (x, y) => x - y
+  );
+  const getInsetHeight = (height: string, padding: string) =>
+    mathWithUnits([height, padding], (x, y) => x - y * 2);
 
   return {
     xs: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.l,
+      getInsetHeight,
       padding: mathWithUnits(euiTheme.size.m, (x) => x / 2),
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 'xs' as const,
     },
     s: {
       minWidth: euiTheme.base * 6,
       height: euiTheme.size.xl,
+      getInsetHeight,
       padding: euiTheme.size.s,
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 's' as const,
     },
     m: {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
+      getInsetHeight,
       padding: euiTheme.size.m,
-      radius: euiTheme.border.radius.small,
+      radius: euiTheme.border.radius.control,
       radiusInset,
       fontScale: 's' as const,
     },
@@ -487,7 +495,7 @@ export const highContrastHoverIndicatorStyles = ({ euiTheme }: UseEuiTheme) => `
         euiTheme.border.width.thick
       } solid var(--highContrastHoverIndicatorColor, ${euiTheme.border.color});
       border-radius: ${mathWithUnits(
-        euiTheme.border.radius.small,
+        euiTheme.border.radius.inline,
         (x) => x / 2
       )};
       background-color: transparent;

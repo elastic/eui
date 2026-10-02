@@ -141,7 +141,7 @@ export class EuiSuperUpdateButton extends Component<
 
     const sharedButtonProps = {
       color: needsUpdate || isLoading ? 'success' : 'primary',
-      iconType: needsUpdate || isLoading ? 'kqlFunction' : 'refresh',
+      iconType: needsUpdate || isLoading ? 'push' : 'refresh',
       isDisabled: isDisabled,
       onClick: onClick,
       isLoading: isLoading,

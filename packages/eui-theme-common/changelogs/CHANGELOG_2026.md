@@ -1,3 +1,20 @@
+## [`v10.1.0`](https://github.com/elastic/eui/releases/v10.1.0)
+
+- Added type for `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))
+- Added types for semantic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.inline`
+  - `euiTheme.border.radius.control`
+  - `euiTheme.border.radius.panel`
+  - `euiTheme.border.radius.frame`
+- Added type for `euiTheme.font.title.letterSpacing` ([#9968](https://github.com/elastic/eui/pull/9968))
+
+**Deprecations**
+
+- Deprecate `euiTheme.colors.link` token ([#9989](https://github.com/elastic/eui/pull/9989))
+- Deprecated generic border radius token types: ([#9968](https://github.com/elastic/eui/pull/9968))
+  - `euiTheme.border.radius.small`
+  - `euiTheme.border.radius.medium`
+
 ## [`v10.0.0`](https://github.com/elastic/eui/releases/v10.0.0)
 
 **Breaking changes**

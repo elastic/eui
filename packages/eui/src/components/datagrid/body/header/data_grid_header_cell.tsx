@@ -113,6 +113,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               id={id}
               index={index}
               isLastColumn={isLastColumn}
+              isLastCopyColumn={
+                columns.length > 0
+                  ? columns[columns.length - 1].id === id
+                  : isLastColumn
+              }
               width={width}
               aria-sort={ariaSort}
               aria-labelledby={cellContentId}

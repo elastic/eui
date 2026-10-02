@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { faker } from '@faker-js/faker';
 
 faker.seed(42);
@@ -21,9 +21,8 @@ const meta: Meta<EuiTextProps> = {
     color: { control: 'text' },
   },
   args: {
-    size: 'm',
+    size: 's',
     grow: true,
-    color: 'default',
     textAlign: 'left',
     component: 'div',
   },

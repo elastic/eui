@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-webpack5';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
 import type { PlayFunctionContext } from 'storybook/internal/csf';
 import { expect, fireEvent, waitFor } from 'storybook/test';
 import type { DragDropContextProps } from '@hello-pangea/dnd';

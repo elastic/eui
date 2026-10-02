@@ -8,7 +8,7 @@
 
 import React, { cloneElement, isValidElement } from 'react';
 import { css } from '@emotion/react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';

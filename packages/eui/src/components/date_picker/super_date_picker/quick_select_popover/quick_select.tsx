@@ -7,14 +7,14 @@
  */
 
 import React, {
-  Component,
   ChangeEventHandler,
   KeyboardEventHandler,
+  useState,
 } from 'react';
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
 
-import { htmlIdGenerator } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services';
 import { EuiI18n } from '../../../i18n';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiButton, EuiButtonIcon } from '../../../button';
@@ -37,86 +37,91 @@ export interface EuiQuickSelectProps {
   timeOptions: TimeOptions;
 }
 
-export class EuiQuickSelect extends Component<
-  EuiQuickSelectProps,
-  EuiQuickSelectState
-> {
-  constructor(props: EuiQuickSelectProps) {
-    super(props);
-
+export const EuiQuickSelect = ({
+  applyTime,
+  start,
+  end,
+  prevQuickSelect,
+  timeOptions,
+}: EuiQuickSelectProps) => {
+  const [state, setState] = useState<EuiQuickSelectState>(() => {
     const {
       timeTense: timeTenseDefault,
       timeUnits: timeUnitsDefault,
       timeValue: timeValueDefault,
-    } = parseTimeParts(props.start, props.end);
+    } = parseTimeParts(start, end);
 
-    this.state = {
+    return {
       timeTense:
-        props.prevQuickSelect && props.prevQuickSelect.timeTense
-          ? props.prevQuickSelect.timeTense
+        prevQuickSelect && prevQuickSelect.timeTense
+          ? prevQuickSelect.timeTense
           : timeTenseDefault,
       timeValue:
-        props.prevQuickSelect && props.prevQuickSelect.timeValue
-          ? props.prevQuickSelect.timeValue
+        prevQuickSelect && prevQuickSelect.timeValue
+          ? prevQuickSelect.timeValue
           : timeValueDefault,
       timeUnits:
-        props.prevQuickSelect && props.prevQuickSelect.timeUnits
-          ? props.prevQuickSelect.timeUnits
+        prevQuickSelect && prevQuickSelect.timeUnits
+          ? prevQuickSelect.timeUnits
           : timeUnitsDefault,
     };
-  }
+  });
 
-  generateId = htmlIdGenerator();
-  timeSelectionId = this.generateId();
-  legendId = this.generateId();
+  const timeSelectionId = useGeneratedHtmlId();
+  const legendId = useGeneratedHtmlId();
 
-  onTimeTenseChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    this.setState({
-      timeTense: event.target.value,
-    });
+  const onTimeTenseChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const timeTense = event.target.value;
+    setState((state) => ({
+      ...state,
+      timeTense,
+    }));
   };
 
-  onTimeValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const onTimeValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);
-    this.setState({
+    setState((state) => ({
+      ...state,
       timeValue: isNaN(sanitizedValue) ? 0 : sanitizedValue,
-    });
+    }));
   };
 
-  onTimeUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    this.setState({
-      timeUnits: event.target.value as TimeUnitId,
-    });
+  const onTimeUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const timeUnits = event.target.value as TimeUnitId;
+    setState((state) => ({
+      ...state,
+      timeUnits,
+    }));
   };
 
-  handleKeyDown: KeyboardEventHandler<HTMLElement> = ({ key }) => {
-    if (key === 'Enter') {
-      this.applyQuickSelect();
-    }
-  };
-
-  applyQuickSelect = () => {
-    const { timeTense, timeValue, timeUnits } = this.state;
+  const applyQuickSelect = () => {
+    const { timeTense, timeValue, timeUnits } = state;
 
     if (timeTense === NEXT) {
-      this.props.applyTime({
+      applyTime({
         start: 'now',
         end: `now+${timeValue}${timeUnits}`,
-        quickSelect: { ...this.state },
+        quickSelect: { ...state },
       });
       return;
     }
 
-    this.props.applyTime({
+    applyTime({
       start: `now-${timeValue}${timeUnits}`,
       end: 'now',
-      quickSelect: { ...this.state },
+      quickSelect: { ...state },
     });
   };
 
-  getBounds = () => {
-    const startMoment = dateMath.parse(this.props.start);
-    const endMoment = dateMath.parse(this.props.end, { roundUp: true });
+  const handleKeyDown: KeyboardEventHandler<HTMLElement> = ({ key }) => {
+    if (key === 'Enter') {
+      applyQuickSelect();
+    }
+  };
+
+  const getBounds = () => {
+    const startMoment = dateMath.parse(start);
+    const endMoment = dateMath.parse(end, { roundUp: true });
     return {
       min:
         startMoment && startMoment.isValid()
@@ -126,165 +131,160 @@ export class EuiQuickSelect extends Component<
     };
   };
 
-  stepForward = () => {
-    const { min, max } = this.getBounds();
+  const stepForward = () => {
+    const { min, max } = getBounds();
     const diff = max.diff(min);
-    this.props.applyTime({
+    applyTime({
       start: moment(max).toISOString(),
       end: moment(max).add(diff, 'ms').toISOString(),
       keepPopoverOpen: true,
     });
   };
 
-  stepBackward = () => {
-    const { min, max } = this.getBounds();
+  const stepBackward = () => {
+    const { min, max } = getBounds();
     const diff = max.diff(min);
-    this.props.applyTime({
+    applyTime({
       start: moment(min).subtract(diff, 'ms').toISOString(),
       end: moment(min).toISOString(),
       keepPopoverOpen: true,
     });
   };
 
-  render() {
-    const { timeTense, timeValue, timeUnits } = this.state;
-    const { timeTenseOptions, timeUnitsOptions } = this.props.timeOptions;
+  const { timeTense, timeValue, timeUnits } = state;
+  const { timeTenseOptions, timeUnitsOptions } = timeOptions;
 
-    const matchedTimeUnit = timeUnitsOptions.find(
-      ({ value }) => value === timeUnits
-    );
-    const timeUnit = matchedTimeUnit ? matchedTimeUnit.text : '';
+  const matchedTimeUnit = timeUnitsOptions.find(
+    ({ value }) => value === timeUnits
+  );
+  const timeUnit = matchedTimeUnit ? matchedTimeUnit.text : '';
 
-    return (
-      <EuiQuickSelectPanel
-        component="fieldset"
-        title={
-          <EuiI18n
-            token="euiQuickSelect.quickSelectTitle"
-            default="Quick select"
-          />
-        }
-        titleId={this.legendId}
-        aria-describedby={this.timeSelectionId}
-        css={{ '> div': { position: 'relative', overflow: 'visible' } }}
+  return (
+    <EuiQuickSelectPanel
+      component="fieldset"
+      title={
+        <EuiI18n
+          token="euiQuickSelect.quickSelectTitle"
+          default="Quick select"
+        />
+      }
+      titleId={legendId}
+      aria-describedby={timeSelectionId}
+      css={{ '> div': { position: 'relative', overflow: 'visible' } }}
+    >
+      {/* Absolutely position the prev/next arrows in the top right hand corner */}
+      <EuiFlexGroup
+        css={{
+          position: 'absolute',
+          right: '0',
+          bottom: '100%',
+          transform: 'translateY(-33%)',
+        }}
+        alignItems="center"
+        gutterSize="s"
+        responsive={false}
       >
-        {/* Absolutely position the prev/next arrows in the top right hand corner */}
-        <EuiFlexGroup
-          css={{
-            position: 'absolute',
-            right: '0',
-            bottom: '100%',
-            transform: 'translateY(-33%)',
-          }}
-          alignItems="center"
-          gutterSize="s"
-          responsive={false}
-        >
-          <EuiFlexItem grow={false}>
-            <EuiI18n
-              token="euiQuickSelect.previousLabel"
-              default="Previous time window"
-            >
-              {(previousLabel: string) => (
-                <EuiToolTip content={previousLabel} disableScreenReaderOutput>
-                  <EuiButtonIcon
-                    aria-label={previousLabel}
-                    iconType="chevronSingleLeft"
-                    onClick={this.stepBackward}
-                  />
-                </EuiToolTip>
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiI18n
-              token="euiQuickSelect.nextLabel"
-              default="Next time window"
-            >
-              {(nextLabel: string) => (
-                <EuiToolTip content={nextLabel} disableScreenReaderOutput>
-                  <EuiButtonIcon
-                    aria-label={nextLabel}
-                    iconType="chevronSingleRight"
-                    onClick={this.stepForward}
-                  />
-                </EuiToolTip>
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup gutterSize="s" responsive={false}>
-          <EuiFlexItem>
-            <EuiI18n token="euiQuickSelect.tenseLabel" default="Time tense">
-              {(tenseLabel: string) => (
-                <EuiSelect
-                  compressed
-                  onKeyDown={this.handleKeyDown}
-                  aria-label={tenseLabel}
-                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-                  value={timeTense}
-                  options={timeTenseOptions}
-                  onChange={this.onTimeTenseChange}
+        <EuiFlexItem grow={false}>
+          <EuiI18n
+            token="euiQuickSelect.previousLabel"
+            default="Previous time window"
+          >
+            {(previousLabel: string) => (
+              <EuiToolTip content={previousLabel} disableScreenReaderOutput>
+                <EuiButtonIcon
+                  aria-label={previousLabel}
+                  iconType="chevronSingleLeft"
+                  onClick={stepBackward}
                 />
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiI18n token="euiQuickSelect.valueLabel" default="Time value">
-              {(valueLabel: string) => (
-                <EuiFieldNumber
-                  compressed
-                  onKeyDown={this.handleKeyDown}
-                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-                  aria-label={valueLabel}
-                  value={timeValue}
-                  onChange={this.onTimeValueChange}
+              </EuiToolTip>
+            )}
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiI18n token="euiQuickSelect.nextLabel" default="Next time window">
+            {(nextLabel: string) => (
+              <EuiToolTip content={nextLabel} disableScreenReaderOutput>
+                <EuiButtonIcon
+                  aria-label={nextLabel}
+                  iconType="chevronSingleRight"
+                  onClick={stepForward}
                 />
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiI18n token="euiQuickSelect.unitLabel" default="Time unit">
-              {(unitLabel: string) => (
-                <EuiSelect
-                  compressed
-                  onKeyDown={this.handleKeyDown}
-                  aria-label={unitLabel}
-                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-                  value={timeUnits}
-                  options={timeUnitsOptions}
-                  onChange={this.onTimeUnitsChange}
-                />
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-              data-test-subj="superDatePickerQuickSelectApplyButton"
-              minWidth={0} // Allow the button to shrink
-              size="s"
-              onClick={this.applyQuickSelect}
-              disabled={timeValue <= 0}
-            >
-              <EuiI18n token="euiQuickSelect.applyButton" default="Apply" />
-            </EuiButton>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiScreenReaderOnly>
-          <p id={this.timeSelectionId}>
-            <EuiI18n
-              token="euiQuickSelect.fullDescription"
-              default="Currently set to {timeTense} {timeValue} {timeUnit}."
-              values={{
-                timeTense,
-                timeValue,
-                timeUnit,
-              }}
-            />
-          </p>
-        </EuiScreenReaderOnly>
-      </EuiQuickSelectPanel>
-    );
-  }
-}
+              </EuiToolTip>
+            )}
+          </EuiI18n>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiFlexGroup gutterSize="s" responsive={false}>
+        <EuiFlexItem>
+          <EuiI18n token="euiQuickSelect.tenseLabel" default="Time tense">
+            {(tenseLabel: string) => (
+              <EuiSelect
+                compressed
+                onKeyDown={handleKeyDown}
+                aria-label={tenseLabel}
+                aria-describedby={`${timeSelectionId} ${legendId}`}
+                value={timeTense}
+                options={timeTenseOptions}
+                onChange={onTimeTenseChange}
+              />
+            )}
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiI18n token="euiQuickSelect.valueLabel" default="Time value">
+            {(valueLabel: string) => (
+              <EuiFieldNumber
+                compressed
+                onKeyDown={handleKeyDown}
+                aria-describedby={`${timeSelectionId} ${legendId}`}
+                aria-label={valueLabel}
+                value={timeValue}
+                onChange={onTimeValueChange}
+              />
+            )}
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiI18n token="euiQuickSelect.unitLabel" default="Time unit">
+            {(unitLabel: string) => (
+              <EuiSelect
+                compressed
+                onKeyDown={handleKeyDown}
+                aria-label={unitLabel}
+                aria-describedby={`${timeSelectionId} ${legendId}`}
+                value={timeUnits}
+                options={timeUnitsOptions}
+                onChange={onTimeUnitsChange}
+              />
+            )}
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            aria-describedby={`${timeSelectionId} ${legendId}`}
+            data-test-subj="superDatePickerQuickSelectApplyButton"
+            minWidth={0} // Allow the button to shrink
+            size="s"
+            onClick={applyQuickSelect}
+            disabled={timeValue <= 0}
+          >
+            <EuiI18n token="euiQuickSelect.applyButton" default="Apply" />
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiScreenReaderOnly>
+        <p id={timeSelectionId}>
+          <EuiI18n
+            token="euiQuickSelect.fullDescription"
+            default="Currently set to {timeTense} {timeValue} {timeUnit}."
+            values={{
+              timeTense,
+              timeValue,
+              timeUnit,
+            }}
+          />
+        </p>
+      </EuiScreenReaderOnly>
+    </EuiQuickSelectPanel>
+  );
+};

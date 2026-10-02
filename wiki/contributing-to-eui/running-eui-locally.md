@@ -1,6 +1,6 @@
 # Setting up and running EUI locally
 
-The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected.
+The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `packages/eui/src/` reflected.
 
 > [!IMPORTANT]
 > This repository is a monorepo, meaning that it contains sources of multiple packages within a single git repository. You can find all packages in the [`packages`](../../packages) directory.
@@ -43,15 +43,6 @@ yarn
 
 Remember to run `yarn` whenever you're switching branches to ensure all dependencies are installed and have correct versions.
 
-#### Puppeteer issues
-
-If you're on an Apple arm64 machine and receive an error on `yarn` about Puppeteer/the chromium binary not being available, you have two options:
-
-1. If you don't need to run Puppeteer tests locally:
-   - Paste `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true` into your terminal as an environment variable
-2. If you do need need to run Puppeteer locally:
-   - [Follow these steps](https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758) to install the Chromium binary globally and update your `~/.zshrc`.
-
 ## Running
 
 ### Storybook
@@ -61,7 +52,7 @@ This is the recommended way to work with components locally. Storybook runs at [
 > [!IMPORTANT]
 > The commands below must be run from the `packages/eui` directory. Running `yarn start` from the repo root will exit with an error message pointing you there.
 
-If running for the first time, build dependant workspaces:
+If running for the first time, build dependent workspaces:
 
 ```shell
 yarn build:workspaces
@@ -75,7 +66,7 @@ yarn start
 
 ### Website
 
-If running for the first time, build dependant workspaces:
+If running for the first time, build dependent workspaces:
 
 ```
 yarn workspace @elastic/eui-website build:workspaces

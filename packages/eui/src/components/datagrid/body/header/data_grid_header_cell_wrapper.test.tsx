@@ -152,4 +152,23 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   });
 
   // Focus behavior tested in `focus_utils.spec.tsx`
+
+  it('excludes control columns from tabular copy', () => {
+    const { container, getByText } = renderWithContext({
+      isControlColumn: true,
+      isLastColumn: false,
+      children: 'Row actions',
+    });
+
+    expect(getByText('Row actions')).toBeInTheDocument();
+    expect(
+      container.querySelectorAll('[data-tabular-copy-marker="no-copy"]')
+    ).toHaveLength(2);
+    expect(
+      container.querySelector('[data-tabular-copy-marker="tab"]')
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector('[data-tabular-copy-marker="newline"]')
+    ).not.toBeInTheDocument();
+  });
 });

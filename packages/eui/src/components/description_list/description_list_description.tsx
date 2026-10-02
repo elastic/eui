@@ -29,10 +29,13 @@ export const EuiDescriptionListDescription: FunctionComponent<
 
   const styles = useEuiMemoizedStyles(euiDescriptionListDescriptionStyles);
 
-  let conditionalStyles =
-    compressed && textStyle === 'reverse'
-      ? [styles.fontStyles.compressed]
-      : [styles.fontStyles[textStyle]];
+  let conditionalStyles = compressed
+    ? [
+        textStyle === 'reverse'
+          ? styles.fontStyles.compressed
+          : styles.fontStyles.compressedNormal,
+      ]
+    : [styles.fontStyles[textStyle]];
 
   switch (type) {
     case 'inline':

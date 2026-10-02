@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 import { css } from '@emotion/react';
 import { find, findIndex } from 'lodash';
@@ -382,7 +382,7 @@ const FullHeaderPatternExample = () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+    <EuiHeaderLogo logoType="horizontal" />,
   ];
 
   return (

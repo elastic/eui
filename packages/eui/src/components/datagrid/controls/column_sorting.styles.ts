@@ -72,7 +72,9 @@ export const euiDataGridColumnSortingStyles = (
       }
     `,
     euiDataGridColumnSorting__dragHandle: css`
-      ${logicalCSS('padding-right', euiTheme.size.xs)}
+      & + .euiDataGridColumnSorting__dragHandle {
+        margin-block-start: ${euiTheme.size.xxs};
+      }
     `,
 
     /**

@@ -11,7 +11,6 @@ import {
   logicalCSS,
   logicalShorthandCSS,
   mathWithUnits,
-  preventForcedColors,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -25,13 +24,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
     s: euiTheme.size.m,
     m: euiTheme.size.base,
   };
-  const borderRadius = euiTheme.border.radius.small;
-  const highlightSize = mathWithUnits(
-    [euiTheme.border.width.thin, euiTheme.border.width.thick],
-    (x, y) => x + y
-  );
-  const highlightOffset = euiTheme.border.width.thin;
-  const highlightSizeOffset = mathWithUnits([highlightOffset], (x) => x * 2);
+  const borderRadius = euiTheme.border.radius.panel;
   const separatorSize = mathWithUnits(
     [euiTheme.size.s, euiTheme.size.xxs],
     (x, y) => x + y
@@ -48,20 +41,6 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:focus {
         outline-offset: 2px;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset-block-start: -${euiTheme.border.width.thin};
-        inset-inline-start: -${euiTheme.border.width.thin};
-        block-size: calc(100% + ${highlightSizeOffset});
-        border-inline-start: ${highlightSize} solid var(--euiCallOutTypeColor);
-        border-start-start-radius: ${borderRadius};
-        border-end-start-radius: ${borderRadius};
-        pointer-events: none;
-
-        ${preventForcedColors(euiThemeContext)}
       }
 
       &:where([data-size='s']) {

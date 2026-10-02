@@ -3,7 +3,8 @@
   "include": ["./**/*", "../src/**/*.stories.*", "../src/**/*.d.ts"],
   "compilerOptions": {
     "noEmit": true,
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
   },
   "exclude": ["node_modules", "../src/custom_typings/emotion-css-prop.d.ts"],
 }

@@ -629,9 +629,8 @@ describe('EuiSuperDatePicker', () => {
       expect(prevBtn).toBeInTheDocument();
       expect(nextBtn).toBeInTheDocument();
 
-      // Step forward (should move window forward by the same duration)
-      await act(async () => {
-        await userEvent.click(nextBtn);
+      act(() => {
+        fireEvent.click(nextBtn);
       });
 
       const nextStart = lastTimeChange.start;
@@ -670,8 +669,8 @@ describe('EuiSuperDatePicker', () => {
 
       expect(prevBtn).toBeInTheDocument();
 
-      await act(async () => {
-        await userEvent.click(prevBtn);
+      act(() => {
+        fireEvent.click(prevBtn);
       });
 
       const prevStart = lastTimeChange.start;

@@ -1205,15 +1205,22 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 style="width: 50px;"
                 tabindex="-1"
               >
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="no-copy"
+                >
+                  ✄𐘗
+                </span>
                 <span>
                   leading heading
                 </span>
                 <span
                   aria-hidden="true"
                   class="euiScreenReaderOnly"
-                  data-tabular-copy-marker="tab"
+                  data-tabular-copy-marker="no-copy"
                 >
-                  ↦
+                  ✄𐘗
                 </span>
               </div>
               <div
@@ -1315,9 +1322,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 <span
                   aria-hidden="true"
                   class="euiScreenReaderOnly"
-                  data-tabular-copy-marker="tab"
+                  data-tabular-copy-marker="newline"
                 >
-                  ↦
+                  ↵
                 </span>
               </div>
               <div
@@ -1331,15 +1338,22 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 style="width: 50px;"
                 tabindex="-1"
               >
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="no-copy"
+                >
+                  ✄𐘗
+                </span>
                 <span>
                   trailing heading
                 </span>
                 <span
                   aria-hidden="true"
                   class="euiScreenReaderOnly"
-                  data-tabular-copy-marker="newline"
+                  data-tabular-copy-marker="no-copy"
                 >
-                  ↵
+                  ✄𐘗
                 </span>
               </div>
             </div>
@@ -1355,6 +1369,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1364,9 +1385,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="no-copy"
               >
-                ↦
+                ✄𐘗
               </span>
             </div>
             <div
@@ -1416,9 +1437,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="newline"
               >
-                ↦
+                ↵
               </span>
             </div>
             <div
@@ -1433,6 +1454,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1442,9 +1470,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="newline"
+                data-tabular-copy-marker="no-copy"
               >
-                ↵
+                ✄𐘗
               </span>
             </div>
             <div
@@ -1459,6 +1487,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1468,9 +1503,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="no-copy"
               >
-                ↦
+                ✄𐘗
               </span>
             </div>
             <div
@@ -1520,9 +1555,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="newline"
               >
-                ↦
+                ↵
               </span>
             </div>
             <div
@@ -1537,6 +1572,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1546,9 +1588,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="newline"
+                data-tabular-copy-marker="no-copy"
               >
-                ↵
+                ✄𐘗
               </span>
             </div>
             <div
@@ -1563,6 +1605,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1572,9 +1621,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="no-copy"
               >
-                ↦
+                ✄𐘗
               </span>
             </div>
             <div
@@ -1624,9 +1673,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="tab"
+                data-tabular-copy-marker="newline"
               >
-                ↦
+                ↵
               </span>
             </div>
             <div
@@ -1641,6 +1690,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="no-copy"
+              >
+                ✄𐘗
+              </span>
               <div
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
@@ -1650,9 +1706,9 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               <span
                 aria-hidden="true"
                 class="euiScreenReaderOnly"
-                data-tabular-copy-marker="newline"
+                data-tabular-copy-marker="no-copy"
               >
-                ↵
+                ✄𐘗
               </span>
             </div>
           </div>

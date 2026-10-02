@@ -32,6 +32,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         index={index}
         width={width}
         isLastColumn={isLastColumn}
+        isControlColumn
       >
         <HeaderCellRender />
       </EuiDataGridHeaderCellWrapper>

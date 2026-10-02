@@ -55,7 +55,7 @@ Note: Most PRs should be [tested in Kibana](https://github.com/elastic/eui/blob/
 - [ ] 🔧 **Hard to integrate** — If changes require substantial updates to Kibana, please [stage the changes](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md#staging-integrations) and link them here.
 
 <!--
-If this PR needs an accompanying Kibana change to keep the nightly integration test green, add the Kibana PR commit URL to `packages/release-cli/kibana-prep-commits` (one URL per line). The nightly Kibana integration run cherry-picks those commits onto its draft PR. Entries are cleared automatically during the EUI release process.
+If this PR needs an accompanying Kibana change to keep the nightly integration test green, add the Kibana PR commit URL under `@next` in `packages/release-cli/kibana-prep-commits` (one URL per line). Nightly cherry-picks `@next` and `@previous`. On release, `@next` moves to `@previous` and `@previous` is cleared. Missing or already-applied commits are skipped.
 -->
 
 **Impact level:** 🟢 None / 🟢 Low / 🟡 Moderate / 🔴 High

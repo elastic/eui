@@ -6,45 +6,48 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  AnchorHTMLAttributes,
-  ReactNode,
-} from 'react';
+import React, { AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
+import {
+  useEuiMemoizedStyles,
+  getSecureRelForTarget,
+  useEuiTheme,
+} from '../../../services';
 import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonColorCSS } from '../../../global_styling';
-import { EuiIcon, IconType } from '../../icon';
+
+import { EuiIcon } from '../../icon';
 import { CommonProps } from '../../common';
 
 import { euiHeaderLogoStyles } from './header_logo.styles';
+import SvgElasticLogoFull from './elastic_logo_full';
 
 export type EuiHeaderLogoProps = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'> & {
     href?: string;
     rel?: string;
     target?: string;
-    iconType?: IconType;
     iconTitle?: string;
-    /**
-     * ReactNode to render as this component's content
-     */
-    children?: ReactNode;
+    logoType?: 'glyph' | 'horizontal';
   };
 
-export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
-  iconType = 'logoElastic',
+export const EuiHeaderLogo = ({
   iconTitle = 'Elastic',
   href,
   rel,
   target,
-  children,
   className,
+  logoType = 'glyph',
   ...rest
-}) => {
+}: EuiHeaderLogoProps) => {
+  // Keep this to prevent legacy runtime `iconType` props from being forwarded to the anchor.
+  const { iconType: _ignoredIconType, ...anchorProps } = rest as typeof rest & {
+    iconType?: unknown;
+  };
+
   const classes = classNames('euiHeaderLogo', className);
+  const { euiTheme } = useEuiTheme();
   const styles = useEuiMemoizedStyles(euiHeaderLogoStyles);
   const buttonColorStyles = useEuiButtonColorCSS({ display: 'empty' });
   const cssStyles = [styles.euiHeaderLogo, buttonColorStyles.text];
@@ -59,19 +62,22 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
       target={target}
       css={cssStyles}
       className={classes}
-      {...rest}
+      {...anchorProps}
     >
-      <EuiIcon
-        aria-label={iconTitle}
-        className="euiHeaderLogo__icon"
-        size="l"
-        type={iconType}
-      />
-
-      {children && (
-        <span css={styles.euiHeaderLogo__text} className="euiHeaderLogo__text">
-          {children}
-        </span>
+      {logoType === 'glyph' && (
+        <EuiIcon
+          aria-label={iconTitle}
+          className="euiHeaderLogo__icon"
+          size="l"
+          type="logoElastic"
+        />
+      )}
+      {logoType === 'horizontal' && (
+        <SvgElasticLogoFull
+          title={iconTitle}
+          style={{ maxHeight: euiTheme.size.l, width: 'auto' }}
+          className="euiHeaderLogo__image"
+        />
       )}
     </a>
   );

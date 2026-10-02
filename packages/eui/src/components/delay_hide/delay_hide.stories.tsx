@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiLoadingSpinner } from '../loading';
 import { EuiDelayHide, EuiDelayHideProps } from './delay_hide';

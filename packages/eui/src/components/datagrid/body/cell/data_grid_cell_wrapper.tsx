@@ -83,6 +83,9 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
 
     const isFirstColumn = colIndex === 0;
     const isLastColumn = colIndex === visibleColCount - 1;
+    const isLastCopyColumn =
+      columns.length > 0 &&
+      colIndex === leadingControlColumns.length + columns.length - 1;
 
     const isLeadingControlColumn = colIndex < leadingControlColumns.length;
     const isTrailingControlColumn =
@@ -124,6 +127,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
         popoverContext,
         pagination,
         cellContext,
+        isLastCopyColumn,
       };
     }, [
       colIndex,
@@ -140,6 +144,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
       cellContext,
       isFirstColumn,
       isLastColumn,
+      isLastCopyColumn,
       isLeadingControlColumn,
       isTrailingControlColumn,
       textTransform,

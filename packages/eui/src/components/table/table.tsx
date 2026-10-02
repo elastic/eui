@@ -139,7 +139,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = (originalProps) => {
           isResponsive={isResponsive}
         />
       )}
-      <div css={cssStyles} ref={tableWrapperRef}>
+      <div className="euiTable__wrapper" css={cssStyles} ref={tableWrapperRef}>
         <table
           tabIndex={-1}
           css={tableStyles}

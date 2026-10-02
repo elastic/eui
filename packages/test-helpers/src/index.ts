@@ -12,3 +12,17 @@ export { EuiDataGridObject } from './playwright/components/datagrid/object';
 export { EuiSuperSelectObject } from './playwright/components/form/super_select/object';
 export { EuiGlobalToastListObject } from './playwright/components/toast/object';
 export { EuiSelectableObject } from './playwright/components/selectable/object';
+export { EuiDraggableObject } from './playwright/components/drag_and_drop/object';
+export { EuiFilterButtonObject } from './playwright/components/filter_button/object';
+export { EuiRangeObject } from './playwright/components/form/range/object';
+export { EuiPopoverObject } from './playwright/components/popover/object';
+export { EuiFlyoutObject } from './playwright/components/flyout/object';
+export { EuiAccordionObject } from './playwright/components/accordion/object';
+export { EuiContextMenuObject } from './playwright/components/context_menu/object';
+export { EuiModalObject } from './playwright/components/modal/object';
+export { EuiBasicTableObject } from './playwright/components/basic_table/object';
+export { EuiColorPickerObject } from './playwright/components/color_picker/object';
+export { EuiTreeViewObject } from './playwright/components/tree_view/object';
+export { EuiToolTipObject } from './playwright/components/tool_tip/object';
+
+export { selectors } from './selectors';

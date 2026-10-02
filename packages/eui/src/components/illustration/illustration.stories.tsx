@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj, StoryContext } from '@storybook/react-webpack5';
+import type { Meta, StoryObj, StoryContext } from '@storybook/react-vite';
 import { css } from '@emotion/react';
 
 import { illustrations } from '@elastic/eui-illustrations';

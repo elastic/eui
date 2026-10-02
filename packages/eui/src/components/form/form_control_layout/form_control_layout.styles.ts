@@ -135,6 +135,9 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       compressed: `
         border-radius: ${form.controlCompressedBorderRadius};
       `,
+      disabled: css`
+        background-color: ${form.backgroundDisabledColor};
+      `,
     },
 
     children: {
@@ -257,6 +260,11 @@ export const euiFormControlLayoutSideNodeStyles = (
       /* Override to ensure that nested controls (e.g. EuiCheckbox) have a proper color */
       :where(:not(:has(:disabled))) label {
         color: ${form.labelColor};
+      }
+
+      /* padding is handled in the form layout side wrapper */
+      .euiFilterButton__wrapper {
+        padding: 0;
       }
     `,
     uncompressed: {

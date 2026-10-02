@@ -58,11 +58,11 @@ const config = {
   ],
   coverageDirectory: '<rootDir>/reports/jest-coverage',
   coverageReporters: ['json', 'html'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(js|tsx?)$': ['babel-jest', {
+    '^.+\\.(jsx?|tsx?)$': ['babel-jest', {
       configFile: path.resolve(__dirname, '../../.babelrc.js'),
     }],
   },

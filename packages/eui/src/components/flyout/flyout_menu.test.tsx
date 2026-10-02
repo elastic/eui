@@ -13,6 +13,7 @@ import { requiredProps } from '../../test';
 
 import { EuiFlyoutMenu } from './flyout_menu';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
+import type { EuiFlyoutMenuAction } from './flyout_menu/types';
 
 describe('EuiFlyoutMenu', () => {
   const onClose = jest.fn();
@@ -407,6 +408,160 @@ describe('EuiFlyoutMenu', () => {
       fireEvent.mouseOver(screen.getByLabelText('Minimize'));
 
       expect(getByRole('tooltip').className).toContain('euiToolTip-left');
+    });
+
+    describe('isDisabled', () => {
+      it('disables the action button when isDisabled is true', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'lock',
+                onClick: jest.fn(),
+                'aria-label': 'Locked',
+                isDisabled: true,
+              },
+            ]}
+          />
+        );
+
+        expect(container.querySelector('[aria-label="Locked"]')).toBeDisabled();
+      });
+
+      it('still shows the tooltip when isDisabled is true', () => {
+        const { getByRole } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'lock',
+                onClick: jest.fn(),
+                'aria-label': 'Locked',
+                toolTipContent: 'Insufficient permissions',
+                isDisabled: true,
+              },
+            ]}
+          />
+        );
+
+        // Fire on the tooltip anchor span — the button has aria-disabled which intercepts
+        // pointer events at the element level, so mouseOver must target the wrapper.
+        const button = screen.getByLabelText('Locked');
+        fireEvent.mouseOver(button.closest('.euiToolTipAnchor')!);
+
+        expect(getByRole('tooltip')).toHaveTextContent(
+          'Insufficient permissions'
+        );
+      });
+    });
+
+    describe('isLoading', () => {
+      it('disables the action button when isLoading is true', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'gear',
+                onClick: jest.fn(),
+                'aria-label': 'Saving',
+                isLoading: true,
+              },
+            ]}
+          />
+        );
+
+        expect(container.querySelector('[aria-label="Saving"]')).toBeDisabled();
+      });
+    });
+
+    describe('href', () => {
+      it('renders the action as an anchor when href is provided', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'share',
+                'aria-label': 'Share link',
+                href: 'https://elastic.co',
+              },
+            ]}
+          />
+        );
+
+        const anchor = container.querySelector('a[aria-label="Share link"]');
+        expect(anchor).toBeInTheDocument();
+        expect(anchor).toHaveAttribute('href', 'https://elastic.co');
+      });
+
+      it('forwards the target attribute to the anchor', () => {
+        const { container } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'share',
+                'aria-label': 'Share link',
+                href: 'https://elastic.co',
+                target: '_blank',
+              },
+            ]}
+          />
+        );
+
+        expect(
+          container.querySelector('a[aria-label="Share link"]')
+        ).toHaveAttribute('target', '_blank');
+      });
+    });
+
+    describe('prop forwarding', () => {
+      it('forwards arbitrary button props to the underlying EuiButtonIcon', () => {
+        const { container, getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[
+              {
+                iconType: 'gear',
+                'aria-label': 'Settings',
+                'data-test-subj': 'settingsAction',
+                'data-telemetry-id': 'flyout-settings',
+                className: 'customActionClass',
+                id: 'settingsActionId',
+              },
+            ]}
+          />
+        );
+
+        const button = getByTestSubject('settingsAction');
+        expect(button).toHaveAttribute('data-telemetry-id', 'flyout-settings');
+        expect(button).toHaveClass('customActionClass');
+        expect(button).toBe(container.querySelector('#settingsActionId'));
+      });
+
+      it('keeps its own color and size when an action sets them', () => {
+        // These props are excluded from the type. A cast is required to test passing them.
+        const actionWithOwnedProps = {
+          iconType: 'gear',
+          'aria-label': 'Settings',
+          'data-test-subj': 'settingsAction',
+          color: 'danger',
+          size: 'm',
+        } as EuiFlyoutMenuAction;
+
+        const { getByTestSubject } = renderWithContext(
+          <EuiFlyoutMenu
+            title="Test Title"
+            trailingActions={[actionWithOwnedProps]}
+          />
+        );
+
+        expect(getByTestSubject('settingsAction').className).toContain(
+          'euiButtonIcon-xs-empty-text'
+        );
+      });
     });
 
     it('falls back to the deprecated customActions alias when trailingActions is not supplied', () => {

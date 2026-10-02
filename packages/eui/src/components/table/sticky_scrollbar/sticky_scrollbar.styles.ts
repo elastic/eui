@@ -24,6 +24,6 @@ export const euiTableStickyScrollbarStyles = ({ euiTheme }: UseEuiTheme) => ({
   track: css`
     block-size: 100%;
     background: ${transparentize(euiTheme.colors.darkShade, 0.5)};
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.inline};
   `,
 });

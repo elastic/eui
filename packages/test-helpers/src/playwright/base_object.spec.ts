@@ -72,3 +72,31 @@ test.describe('BaseObject component-type guard', () => {
     expect(object.syncMethod()).toBe('sync');
   });
 });
+
+test.describe('BaseObject root matching', () => {
+  test('matches a testSubj that is one of several space-separated tokens', async ({
+    page,
+  }) => {
+    // EuiColorPicker renders its anchor as `data-test-subj="euiColorPickerAnchor
+    // <consumerSubj>"`, so an exact match on the consumer's subj alone misses it.
+    await page.setContent(
+      '<div class="euiComboBox" data-test-subj="euiColorPickerAnchor target"></div>'
+    );
+
+    const object = new TestObject(page, 'target', '.euiComboBox');
+
+    await expect(object.locator).toHaveCount(1);
+  });
+
+  test('does not match a testSubj that is only a substring of a token', async ({
+    page,
+  }) => {
+    await page.setContent(
+      '<div class="euiComboBox" data-test-subj="targetExtra"></div>'
+    );
+
+    const object = new TestObject(page, 'target', '.euiComboBox');
+
+    await expect(object.locator).toHaveCount(0);
+  });
+});

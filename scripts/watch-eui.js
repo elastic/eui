@@ -11,6 +11,7 @@ const {
   IGNORE_TESTENV,
   IGNORE_PACKAGES,
 } = require('./constants');
+const kibanaWatch = require('../packages/eui/scripts/kibana_watch');
 
 const { values: args } = parseArgs({
   options: {
@@ -26,6 +27,7 @@ const KIBANA_ROOT = args['kibana-dir']
   ? path.resolve(process.cwd(), args['kibana-dir'])
   : // fallback to a sibling directory
     path.resolve(EUI_ROOT, '../kibana');
+const USE_KIBANA_SYNC = Boolean(args.kibana || args['kibana-dir']);
 const DEBOUNCE_TIME = 300;
 const RESTART_DELAY = 500;
 const SHUTDOWN_TIMEOUT = 1000;
@@ -65,26 +67,40 @@ const activePackages = selection.map((name) => {
     console.error(chalk.red(`Unknown package: ${name}`));
     process.exit(1);
   }
+
+  const kibanaEui = USE_KIBANA_SYNC && name === '@elastic/eui';
+
   return {
     name,
     path: pkgPath,
     src: path.join(pkgPath, 'src'),
+    kibanaEui,
     cmd: 'yarn',
-    args: [
-      'workspace',
-      name,
-      'build',
-      ...(name === '@elastic/eui' && process.argv.includes('--no-declarations')
-        ? ['--no-declarations']
-        : []),
-    ],
-    status: { activeProcess: null, abortPending: false, resolvePromise: null },
+    args: kibanaEui
+      ? ['workspace', name, 'run', 'build:optimize-es']
+      : [
+          'workspace',
+          name,
+          'build',
+          ...(name === '@elastic/eui' &&
+          process.argv.includes('--no-declarations')
+            ? ['--no-declarations']
+            : []),
+        ],
+    pendingChanges: new Map(),
+    status: {
+      activeProcess: null,
+      abortPending: false,
+      resolvePromise: null,
+      building: false,
+      isInitial: kibanaEui,
+    },
     timer: null,
   };
 });
 
 async function syncToKibana(pkg) {
-  if (!args.kibana && !args['kibana-dir']) return;
+  if (!USE_KIBANA_SYNC) return;
   try {
     // `files` array from `package.json` that defines build artifacts
     const pkgJson = JSON.parse(
@@ -127,7 +143,89 @@ async function syncToKibana(pkg) {
   }
 }
 
+function spawnPackageBuild(pkg) {
+  return new Promise((resolve, reject) => {
+    pkg.status.activeProcess = spawn(pkg.cmd, pkg.args, {
+      cwd: EUI_ROOT,
+      stdio: 'inherit',
+      env: { ...process.env, FORCE_COLOR: 'true' },
+    });
+
+    pkg.status.activeProcess.on('close', (code) => {
+      pkg.status.activeProcess = null;
+
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Build exited with code ${code}`));
+      }
+    });
+  });
+}
+
+async function runKibanaEuiBuild(pkg) {
+  if (pkg.status.building) return;
+
+  pkg.status.building = true;
+
+  const changes = [...pkg.pendingChanges].map(([filePath, event]) => [
+    event,
+    filePath,
+  ]);
+  pkg.pendingChanges.clear();
+
+  const fullBuild =
+    pkg.status.isInitial || changes.length >= kibanaWatch.FULL_BUILD_THRESHOLD;
+  const start = Date.now();
+
+  console.log(
+    chalk.blue(
+      `\nBuilding ${pkg.name} (${
+        fullBuild ? 'full optimize/es' : `${changes.length} changed file(s)`
+      })...`
+    )
+  );
+
+  try {
+    if (fullBuild) {
+      await spawnPackageBuild(pkg);
+      await kibanaWatch.syncFullBuild(KIBANA_ROOT, pkg.name, pkg.path);
+      pkg.status.isInitial = false;
+    } else {
+      const { completed, failed } = await kibanaWatch.processChanges(
+        pkg.path,
+        EUI_ROOT,
+        changes
+      );
+
+      await kibanaWatch.syncChanges(KIBANA_ROOT, pkg.name, pkg.path, completed);
+
+      if (failed.length > 0) {
+        throw new Error(failed.map(({ message }) => message).join('\n'));
+      }
+    }
+
+    console.log(chalk.green(`✔ Built ${pkg.name} (${Date.now() - start}ms)`));
+  } catch (err) {
+    console.error(chalk.red(`✘ Build failed [${pkg.name}]: ${err.message}`));
+  } finally {
+    const resolveInitial = pkg.status.resolvePromise;
+    pkg.status.resolvePromise = null;
+    pkg.status.building = false;
+    if (resolveInitial) resolveInitial();
+
+    if (pkg.pendingChanges.size > 0) {
+      setTimeout(() => runKibanaEuiBuild(pkg), RESTART_DELAY);
+    }
+  }
+}
+
 function runBuild(pkg) {
+  if (pkg.kibanaEui) {
+    runKibanaEuiBuild(pkg);
+    return;
+  }
+
   if (pkg.status.activeProcess) {
     pkg.status.abortPending = true;
     pkg.status.activeProcess.kill('SIGTERM');
@@ -208,7 +306,14 @@ const IGNORED_FILES = [
           );
         },
       })
-      .on('all', () => {
+      .on('all', (event, filePath) => {
+        if (
+          pkg.kibanaEui &&
+          (event === 'add' || event === 'change' || event === 'unlink')
+        ) {
+          pkg.pendingChanges.set(filePath, event);
+        }
+
         clearTimeout(pkg.timer);
         pkg.timer = setTimeout(() => runBuild(pkg), DEBOUNCE_TIME);
       });

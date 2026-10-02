@@ -128,7 +128,8 @@ export class EuiComboBoxObject extends BaseObject {
    * Clear all selected options. No-op if nothing is selected.
    *
    * Auto-detects the combo box configuration and uses the appropriate strategy:
-   * - Pills present → {@link clickPillClearButtons}
+   * - Pills with a close button → {@link clickPillClearButtons}
+   * - Pills without a close button (`singleSelection`) → {@link clearPillWithoutCloseButton}
    * - `asPlainText` with a confirmed input selection → {@link deleteSearchInput}
    * - Otherwise → {@link deselectAllFromDropdown}
    *
@@ -142,7 +143,11 @@ export class EuiComboBoxObject extends BaseObject {
     }
 
     if (await this.hasPills()) {
-      await this.clickPillClearButtons();
+      if (await this.hasPillCloseButtons()) {
+        await this.clickPillClearButtons();
+      } else {
+        await this.clearPillWithoutCloseButton();
+      }
       return;
     }
 
@@ -176,15 +181,31 @@ export class EuiComboBoxObject extends BaseObject {
     return (await this.pills.count()) > 0;
   }
 
+  private async hasPillCloseButtons(): Promise<boolean> {
+    return (await this.pills.first().locator('button').count()) > 0;
+  }
+
   /**
    * Clicks the `×` button on each selected pill individually.
-   * Works regardless of `isClearable` — pill close buttons are always present.
    * No-op if no pills are rendered.
    */
   private async clickPillClearButtons(): Promise<void> {
     while (await this.hasPills()) {
       const countBefore = await this.pills.count();
       await this.pills.first().locator('button').click();
+      await expect(this.pills).not.toHaveCount(countBefore);
+    }
+  }
+
+  /**
+   * `singleSelection` pills render without a close button, whatever
+   * `isClearable` is. Backspace on an empty search input removes the
+   * selection instead.
+   */
+  private async clearPillWithoutCloseButton(): Promise<void> {
+    while (await this.hasPills()) {
+      const countBefore = await this.pills.count();
+      await this.searchInput.press('Backspace');
       await expect(this.pills).not.toHaveCount(countBefore);
     }
   }

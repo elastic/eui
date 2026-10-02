@@ -40,7 +40,6 @@ import { useGeneratedHtmlId } from '../../services';
 const Header = () => {
   const renderLogo = () => (
     <EuiHeaderLogo
-      iconType="logoElastic"
       href="#"
       onClick={(e) => e.preventDefault()}
       aria-label="Go to home page"

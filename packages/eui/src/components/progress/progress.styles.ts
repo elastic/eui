@@ -219,6 +219,7 @@ export const euiProgressStyles = (
     `,
     absolute: css`
       position: absolute;
+      z-index: ${Number(euiTheme.levels.content) + 1};
       ${nonStaticPositioning(isNative)}
       ${logicalCSS('border-top-left-radius', 'inherit')}
       ${logicalCSS('border-top-right-radius', 'inherit')}

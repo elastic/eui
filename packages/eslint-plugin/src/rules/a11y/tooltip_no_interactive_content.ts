@@ -7,32 +7,45 @@
  */
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
-import {
-  INTERACTIVE_EUI_COMPONENTS,
-  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS,
-} from '../../utils/constants';
 import { walkJsxChildren } from '../../utils/walk_jsx_children';
 import { getElementName } from '../../utils/get_element_name';
+import { hasMeaningfulAttr } from '../../utils/has_meaningful_attr';
+import { isInteractiveElement } from '../../utils/is_interactive_element';
 
 const TOOLTIP_COMPONENTS = ['EuiToolTip', 'EuiIconTip'];
 const TOOLTIP_CONTENT_PROPS = ['content', 'title'];
-const INTERACTIVE_HTML_ELEMENTS = [
-  'a',
-  'button',
-  'input',
-  'select',
-  'textarea',
-];
-const CONDITIONALLY_INTERACTIVE_SET = new Set(
-  CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS
-);
+const LIST_GROUP_ITEM = 'EuiListGroupItem';
+const LIST_GROUP_ITEM_EXTRA_ACTION = 'EuiButtonIcon';
 
-const INTERACTIVE_ELEMENTS = new Set([
-  ...INTERACTIVE_HTML_ELEMENTS,
-  ...INTERACTIVE_EUI_COMPONENTS.filter(
-    (c) => !CONDITIONALLY_INTERACTIVE_SET.has(c)
-  ),
-]);
+function getSyntheticInteractiveElementName(
+  element: TSESTree.JSXElement
+): string | null {
+  const componentName = getElementName(element.openingElement);
+
+  if (
+    componentName === LIST_GROUP_ITEM &&
+    hasMeaningfulAttr(element.openingElement, 'extraAction')
+  ) {
+    return LIST_GROUP_ITEM_EXTRA_ACTION;
+  }
+
+  return null;
+}
+
+function shouldSkipTooltipContentElement(element: TSESTree.JSXElement): boolean {
+  const elementName = getElementName(element.openingElement);
+
+  if (!elementName) return true;
+  if (getSyntheticInteractiveElementName(element)) return false;
+
+  // Custom components stay traversable here; local ones are resolved by
+  // `walkJsxChildren` before this guard runs, and unresolved ones remain opaque.
+  if (/^[A-Z]/.test(elementName) && !elementName.startsWith('Eui')) {
+    return true;
+  }
+
+  return !isInteractiveElement(element);
+}
 
 export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -72,29 +85,27 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             expression,
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
-
-              const el = leaf as TSESTree.JSXElement;
-              const name = getElementName(el.openingElement);
-
-              if (!name || !INTERACTIVE_ELEMENTS.has(name)) return;
+              const syntheticElementName = getSyntheticInteractiveElementName(leaf);
+              const elementName =
+                syntheticElementName ?? getElementName(leaf.openingElement);
+              if (!elementName || (!syntheticElementName && !isInteractiveElement(leaf))) {
+                return;
+              }
 
               context.report({
-                node: el.openingElement,
+                node: leaf.openingElement,
                 messageId: 'noInteractiveContent',
                 data: {
                   propName: (attr.name as TSESTree.JSXIdentifier).name,
                   componentName,
-                  elementName: name,
+                  elementName,
                 },
               });
               found = true;
             },
             {
-              shouldSkip: (el) => {
-                const name = getElementName(el.openingElement);
-
-                return !name || !INTERACTIVE_ELEMENTS.has(name);
-              },
+              sourceCode: context.sourceCode,
+              shouldSkip: shouldSkipTooltipContentElement,
             }
           );
         }

@@ -1,3 +1,11 @@
+## [`v2.8.0`](https://github.com/elastic/eui/releases/v2.8.0)
+
+- Added a hover animation to the EUI mark in the documentation navbar. ([#9924](https://github.com/elastic/eui/pull/9924))
+
+**Bug fixes**
+
+- Fixed overlapping rows and inconsistent hover highlighting in `VersionSwitcher` ([#9925](https://github.com/elastic/eui/pull/9925))
+
 ## [`v2.7.0`](https://github.com/elastic/eui/releases/v2.7.0)
 
 - Refactored the FigmaEmbed component to become a more generic FigmaAsset so that can output either an SVG (Now as a default) raster image asset or a Figma embed iframe. ([#9830](https://github.com/elastic/eui/pull/9830))

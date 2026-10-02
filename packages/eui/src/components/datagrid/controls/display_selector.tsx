@@ -21,7 +21,12 @@ import { logicalStyle, mathWithUnits } from '../../../global_styling';
 import { useUpdateEffect, useDeepEqual, useEuiTheme } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
-import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
+import {
+  EuiButtonIcon,
+  EuiButtonGroup,
+  EuiButtonEmpty,
+  EuiButton,
+} from '../../button';
 import { EuiFormRow, EuiFieldNumber } from '../../form';
 import { euiFormMaxWidth } from '../../form/form.styles';
 import { EuiFlexGroup } from '../../flex';
@@ -45,6 +50,18 @@ export const startingStyles: EuiDataGridStyle = {
   stickyFooter: true,
 };
 const emptyRowHeightsOptions: EuiDataGridRowHeightsOptions = {};
+
+const ButtonGroupButton = ({ id, label }: { id: string; label: string }) => (
+  <EuiButton
+    key={id}
+    id={id}
+    textProps={{ 'data-text': label }}
+    title={label}
+    data-test-subj={id}
+  >
+    {label}
+  </EuiButton>
+);
 
 /**
  * Cell density
@@ -106,26 +123,28 @@ const DensityControl = ({
         <EuiFormRow label={densityLabel} display="columnCompressed">
           <EuiButtonGroup
             legend={densityLabel}
-            buttonSize="compressed"
+            variant="selection"
+            buttonSize="s"
             isFullWidth
-            options={[
-              {
-                id: densityOptions[0],
-                label: labelCompact,
-              },
-              {
-                id: densityOptions[1],
-                label: labelNormal,
-              },
-              {
-                id: densityOptions[2],
-                label: labelExpanded,
-              },
-            ]}
+            wrap={false}
             onChange={setDensity}
             idSelected={getDensity}
             data-test-subj="densityButtonGroup"
-          />
+          >
+            {densityOptions.map((option) => (
+              <ButtonGroupButton
+                key={option}
+                id={option}
+                label={
+                  option === densityOptions[0]
+                    ? labelCompact
+                    : option === densityOptions[1]
+                    ? labelNormal
+                    : labelExpanded
+                }
+              />
+            ))}
+          </EuiButtonGroup>
         </EuiFormRow>
       )}
     </EuiI18n>
@@ -239,19 +258,28 @@ const RowHeightControl = ({
             <EuiButtonGroup
               legend={rowHeightLabel}
               css={{ flexShrink: 0, flexBasis: '66.6%' }}
-              buttonSize="compressed"
+              variant="selection"
+              buttonSize="s"
               isFullWidth
-              options={[
-                { id: rowHeightSelectionOptions[0], label: labelAuto },
-                {
-                  id: rowHeightSelectionOptions[1],
-                  label: autoBelowLineCount ? labelMax : labelStatic,
-                },
-              ]}
+              wrap={false}
               onChange={setRowHeight}
               idSelected={rowHeightSelection}
               data-test-subj="rowHeightButtonGroup"
-            />
+            >
+              {rowHeightSelectionOptions.map((option) => (
+                <ButtonGroupButton
+                  key={option}
+                  id={option}
+                  label={
+                    option === rowHeightSelectionOptions[0]
+                      ? labelAuto
+                      : autoBelowLineCount
+                      ? labelMax
+                      : labelStatic
+                  }
+                />
+              ))}
+            </EuiButtonGroup>
             <EuiFieldNumber
               aria-label={rowHeightLabel}
               compressed

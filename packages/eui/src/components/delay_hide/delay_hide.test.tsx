@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { render } from '../../test/rtl';
 import { act } from '@testing-library/react';
 import { EuiDelayHide } from './index';
@@ -255,6 +255,75 @@ describe('when EuiDelayHide has been visible and become hidden', () => {
       <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
     ); // Re-render to trigger hide
 
+    expect(container.firstChild).toMatchInlineSnapshot(`null`);
+  });
+});
+
+describe('when EuiDelayHide is rendered in React StrictMode', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  it('should still hide after the minimum duration', () => {
+    const { container, rerender } = render(
+      <StrictMode>
+        <EuiDelayHide hide={false} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+    actAdvanceTimersByTime(1100);
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+
+    expect(container.firstChild).toMatchInlineSnapshot(`null`);
+  });
+
+  it('should restart the countdown when becoming visible again', () => {
+    const { container, rerender } = render(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+    expect(container.firstChild).toMatchInlineSnapshot(`null`);
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={false} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div>
+        Hello World
+      </div>
+    `);
+
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
+    actAdvanceTimersByTime(900);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div>
+        Hello World
+      </div>
+    `);
+
+    actAdvanceTimersByTime(200);
+    rerender(
+      <StrictMode>
+        <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
+      </StrictMode>
+    );
     expect(container.firstChild).toMatchInlineSnapshot(`null`);
   });
 });

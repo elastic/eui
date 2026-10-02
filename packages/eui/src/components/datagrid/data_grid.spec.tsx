@@ -18,7 +18,8 @@ import {
   EuiDataGridProps,
 } from './index';
 import { EuiLink } from '../link';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 const baseProps: EuiDataGridProps = {
   'aria-label': 'grid for testing',
@@ -722,18 +723,149 @@ describe('EuiDataGrid', () => {
   });
 
   describe('copying tabular content', () => {
-    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
-      cy.realMount(<EuiDataGrid {...baseProps} />);
-
-      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
-        expect(copiedText).to.eq(
-          `First\tSecond
+    const copiedDataColumns = `First\tSecond
 a, 0\tb, 0
 a, 1\tb, 1
 a, 2\tb, 2
 a, footer\tb, footer
-`
-        );
+`;
+
+    const gridWithControlColumns = () => (
+      <EuiDataGrid
+        {...baseProps}
+        leadingControlColumns={[
+          {
+            id: 'select',
+            width: 32,
+            headerCellRender: () => null,
+            rowCellRender: () => null,
+          },
+        ]}
+        trailingControlColumns={[
+          {
+            id: 'actions',
+            width: 40,
+            headerCellRender: () => (
+              <EuiScreenReaderOnly>
+                <span>Row actions</span>
+              </EuiScreenReaderOnly>
+            ),
+            rowCellRender: () => (
+              <EuiButtonIcon
+                iconType="boxesHorizontal"
+                aria-label="Open actions"
+              />
+            ),
+          },
+        ]}
+      />
+    );
+
+    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
+      });
+    });
+
+    it('keeps headers aligned with body rows when control columns are present (#9951)', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.selectAndCopy(
+        '.euiDataGrid__content',
+        '[data-gridcell-column-id="a"][role="columnheader"]'
+      ).then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
+      });
+    });
+
+    it('excludes control columns from a full-grid copy', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(copiedDataColumns);
+      });
+    });
+
+    it('does not allow text selection to start in control columns', () => {
+      cy.realMount(gridWithControlColumns());
+
+      cy.get('[data-gridcell-column-id="select"][role="columnheader"]').should(
+        'have.css',
+        'user-select',
+        'none'
+      );
+      cy.get('.euiDataGridRowCell--controlColumn')
+        .first()
+        .should('have.css', 'user-select', 'none');
+      cy.get('[data-gridcell-column-id="a"][role="columnheader"]').should(
+        'not.have.css',
+        'user-select',
+        'none'
+      );
+    });
+  });
+
+  describe('copying a focused cell', () => {
+    const focusCell = (columnId: string, rowIndex = 0) => {
+      cy.get(
+        `[data-gridcell-column-id="${columnId}"][data-gridcell-row-index="${rowIndex}"]`
+      ).click();
+      cy.focused().should('have.attr', 'data-gridcell-column-id', columnId);
+    };
+
+    it('copies the focused cell value when no text is selected', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      focusCell('a');
+      cy.copyWithoutSelecting().then((copiedText) => {
+        expect(copiedText).to.eq('a, 0');
+      });
+    });
+
+    it('does not override a text selection', () => {
+      cy.realMount(
+        <EuiDataGrid {...baseProps} renderCellValue={() => 'hello world'} />
+      );
+
+      focusCell('a');
+      cy.get(
+        '[data-gridcell-column-id="a"][data-gridcell-row-index="0"] [data-datagrid-cellcontent]'
+      ).then(($el) => {
+        const el = $el[0];
+        const textNode = el.firstChild as Text;
+        const range = el.ownerDocument.createRange();
+        range.setStart(textNode, 0);
+        range.setEnd(textNode, 5);
+        const selection = el.ownerDocument.getSelection()!;
+        selection.removeAllRanges();
+        selection.addRange(range);
+      });
+
+      cy.copyToClipboard().then((copiedText) => {
+        expect(copiedText).to.eq('hello');
+      });
+    });
+
+    it('does not copy control column cells', () => {
+      cy.realMount(
+        <EuiDataGrid
+          {...baseProps}
+          leadingControlColumns={[
+            {
+              id: 'select',
+              width: 40,
+              headerCellRender: () => null,
+              rowCellRender: () => 'CTRL',
+            },
+          ]}
+        />
+      );
+
+      focusCell('select');
+      cy.copyWithoutSelecting().then((copiedText) => {
+        expect(copiedText).to.not.eq('CTRL');
       });
     });
   });
