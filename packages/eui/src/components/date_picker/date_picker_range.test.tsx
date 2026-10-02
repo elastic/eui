@@ -130,6 +130,37 @@ describe('EuiDatePickerRange', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    describe('clear', () => {
+      it('renders a clear button that calls onClick', () => {
+        const onClear = jest.fn();
+        const { container, getByLabelText } = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            clear={{ onClick: onClear }}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+
+        fireEvent.click(getByLabelText('Clear input'));
+        expect(onClear).toHaveBeenCalledTimes(1);
+      });
+
+      it('is not rendered when inline', () => {
+        const { queryByLabelText } = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            clear={{ onClick: jest.fn() }}
+            inline
+          />
+        );
+
+        expect(queryByLabelText('Clear input')).not.toBeInTheDocument();
+      });
+    });
+
     describe('inline', () => {
       it('renders', () => {
         const selectedStartDate = moment('2000-01-01T00:00:00-0800');
