@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
+import React, {
+  InputHTMLAttributes,
+  KeyboardEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -74,74 +82,97 @@ export interface EuiFieldSearchProps
   append?: EuiFormControlLayoutProps['append'];
 }
 
-interface EuiFieldSearchState {
-  value: string;
-}
+export const EuiFieldSearchUI: React.FC<
+  EuiFieldSearchProps & WithEuiStylesMemoizerProps
+> = ({
+  stylesMemoizer,
+  className,
+  id,
+  name,
+  placeholder,
+  value: valueProp,
+  defaultValue,
+  isInvalid,
+  disabled,
+  fullWidth: fullWidthProp,
+  isLoading = false,
+  inputRef,
+  incremental = false,
+  compressed = false,
+  onSearch,
+  isClearable: _isClearable = true,
+  append,
+  prepend,
+  onKeyUp: onKeyUpProp,
+  ...rest
+}) => {
+  const { defaultFullWidth } = useContext(FormContext) as FormContextValue;
+  const fullWidth = fullWidthProp ?? defaultFullWidth;
 
-let isSearchSupported: boolean = false;
+  const [valueState, setValueState] = useState(
+    valueProp || String(defaultValue || '')
+  );
 
-export class EuiFieldSearchClass extends Component<
-  EuiFieldSearchProps & WithEuiStylesMemoizerProps,
-  EuiFieldSearchState
-> {
-  static contextType = FormContext;
-  static defaultProps = {
-    isLoading: false,
-    incremental: false,
-    compressed: false,
-    isClearable: true,
-  };
+  const inputRefInternal = useRef<HTMLInputElement | null>(null);
 
-  state = {
-    value: this.props.value || String(this.props.defaultValue || ''),
-  };
+  const setRef = useCallback(
+    (node: HTMLInputElement | null) => {
+      inputRefInternal.current = node;
+      if (inputRef) {
+        inputRef(node);
+      }
+    },
+    [inputRef]
+  );
 
-  inputElement: HTMLInputElement | null = null;
-  cleanups: Array<() => void> = [];
+  let value = valueProp;
+  if (typeof valueProp !== 'string') value = valueState;
 
-  componentDidMount() {
-    if (!this.inputElement) return;
-    isSearchSupported = Browser.isEventSupported('search', this.inputElement);
-    if (isSearchSupported) {
-      const onSearch = (event?: Event) => {
-        if (this.props.onSearch) {
-          if (!event || !event.target || event.defaultPrevented) return;
-          this.props.onSearch((event.target as HTMLInputElement).value);
-        }
-      };
-      this.inputElement.addEventListener('search', onSearch);
-      this.cleanups.push(() => {
-        if (!this.inputElement) return;
-        this.inputElement.removeEventListener('search', onSearch);
-      });
-    }
-    const onChange = (event: Event) => {
+  const isClearable = Boolean(
+    _isClearable && value && !rest.readOnly && !disabled
+  );
+
+  useEffect(() => {
+    const inputElement = inputRefInternal.current;
+    if (!inputElement) return;
+
+    const isSearchSupported = Browser.isEventSupported('search', inputElement);
+
+    const handleSearch = (event?: Event) => {
+      if (onSearch) {
+        if (!event || !event.target || event.defaultPrevented) return;
+        onSearch((event.target as HTMLInputElement).value);
+      }
+    };
+
+    const handleChange = (event: Event) => {
       if (
         event.target &&
-        (event.target as HTMLInputElement).value !== this.state.value
+        (event.target as HTMLInputElement).value !== valueState
       ) {
-        this.setState({
-          value: (event.target as HTMLInputElement).value,
-        });
-        if (this.props.onSearch) {
-          this.props.onSearch((event.target as HTMLInputElement).value);
+        const newValue = (event.target as HTMLInputElement).value;
+        setValueState(newValue);
+        if (onSearch) {
+          onSearch(newValue);
         }
       }
     };
-    this.inputElement.addEventListener('change', onChange);
-  }
 
-  onClear = () => {
-    // clear the field's value
+    if (isSearchSupported) {
+      inputElement.addEventListener('search', handleSearch);
+    }
+    inputElement.addEventListener('change', handleChange);
 
-    // 1. React doesn't listen for `change` events, instead it maps `input` events to `change`
-    // 2. React only fires the mapped `change` event if the element's value has changed
-    // 3. An input's value is, in addition to other methods, tracked by intercepting element.value = '...'
-    //
-    // So we have to go below the element's value setter to avoid React intercepting it,
-    // only then will React treat the value as different and fire its `change` event
-    //
-    // https://stackoverflow.com/questions/23892547/what-is-the-best-way-to-trigger-onchange-event-in-react-js
+    return () => {
+      if (isSearchSupported) {
+        inputElement.removeEventListener('search', handleSearch);
+      }
+      inputElement.removeEventListener('change', handleChange);
+    };
+  }, [onSearch, valueState]);
+
+  const onClear = () => {
+    const inputElement = inputRefInternal.current;
     const nativeInputValue = Object.getOwnPropertyDescriptor(
       HTMLInputElement.prototype,
       'value'
@@ -149,55 +180,42 @@ export class EuiFieldSearchClass extends Component<
     const nativeInputValueSetter = nativeInputValue
       ? nativeInputValue.set
       : undefined;
-    if (nativeInputValueSetter) {
-      nativeInputValueSetter.call(this.inputElement, '');
+
+    if (nativeInputValueSetter && inputElement) {
+      nativeInputValueSetter.call(inputElement, '');
     }
 
-    // dispatch input event
     const event = new Event('input', {
       bubbles: true,
       cancelable: false,
     });
 
-    if (this.inputElement) {
-      this.inputElement.dispatchEvent(event);
-      // set focus on the search field
-      this.inputElement.focus();
-      this.inputElement.dispatchEvent(new Event('change'));
+    if (inputElement) {
+      inputElement.dispatchEvent(event);
+      inputElement.focus();
+      inputElement.dispatchEvent(new Event('change'));
     }
-    this.setState({ value: '' });
-
-    const { incremental, onSearch } = this.props;
+    setValueState('');
 
     if (onSearch && incremental) {
       onSearch('');
     }
   };
 
-  componentWillUnmount() {
-    this.cleanups.forEach((cleanup) => cleanup());
-  }
+  const onKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    setValueState((event.target as HTMLInputElement).value);
 
-  setRef = (inputElement: HTMLInputElement | null) => {
-    this.inputElement = inputElement;
-    if (this.props.inputRef) {
-      this.props.inputRef(inputElement);
-    }
-  };
-
-  onKeyUp = (
-    event: KeyboardEvent<HTMLInputElement>,
-    incremental?: boolean,
-    onSearch?: (value: string) => void
-  ) => {
-    this.setState({ value: (event.target as HTMLInputElement).value });
-
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(event);
+    if (onKeyUpProp) {
+      onKeyUpProp(event);
       if (event.defaultPrevented) {
         return;
       }
     }
+
+    const inputElement = inputRefInternal.current;
+    const isSearchSupported = inputElement
+      ? Browser.isEventSupported('search', inputElement)
+      : false;
 
     if (
       onSearch &&
@@ -208,102 +226,72 @@ export class EuiFieldSearchClass extends Component<
     }
   };
 
-  render() {
-    const { defaultFullWidth } = this.context as FormContextValue;
-    const {
-      stylesMemoizer,
-      className,
-      id,
-      name,
-      placeholder,
-      isInvalid,
-      disabled,
-      fullWidth = defaultFullWidth,
-      isLoading,
-      inputRef,
-      incremental,
-      compressed,
-      onSearch,
-      isClearable: _isClearable,
-      append,
-      prepend,
-      ...rest
-    } = this.props;
+  const classes = classNames(
+    'euiFieldSearch',
+    {
+      'euiFieldSearch-isLoading': isLoading,
+      'euiFieldSearch-isClearable': isClearable,
+      'euiFieldSearch-isInvalid': isInvalid,
+    },
+    className
+  );
 
-    let value = this.props.value;
-    if (typeof this.props.value !== 'string') value = this.state.value;
+  const styles = stylesMemoizer(euiFieldSearchStyles);
+  const cssStyles = [
+    styles.euiFieldSearch,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    (prepend || append) && styles.inGroup,
+  ];
 
-    // Set actual value of isClearable if value exists as well
-    const isClearable = Boolean(
-      _isClearable && value && !rest.readOnly && !disabled
-    );
-
-    const classes = classNames(
-      'euiFieldSearch',
-      {
-        'euiFieldSearch-isLoading': isLoading,
-        'euiFieldSearch-isClearable': isClearable,
-        'euiFieldSearch-isInvalid': isInvalid,
-      },
-      className
-    );
-
-    const styles = stylesMemoizer(euiFieldSearchStyles);
-    const cssStyles = [
-      styles.euiFieldSearch,
-      compressed ? styles.compressed : styles.uncompressed,
-      fullWidth ? styles.fullWidth : styles.formWidth,
-      (prepend || append) && styles.inGroup,
-    ];
-
-    return (
-      <EuiI18n
-        token="euiFieldSearch.clearSearchButtonLabel"
-        default="Clear search input"
-      >
-        {(clearSearchButtonLabel: string) => (
-          <EuiFormControlLayout
-            icon="magnify"
-            fullWidth={fullWidth}
-            isLoading={isLoading}
-            isInvalid={isInvalid}
-            isDisabled={disabled}
-            clear={
-              isClearable
-                ? {
-                    onClick: this.onClear,
-                    'aria-label': clearSearchButtonLabel,
-                    'data-test-subj': 'clearSearchButton',
-                  }
-                : undefined
-            }
-            compressed={compressed}
-            append={append}
-            prepend={prepend}
-          >
-            <EuiValidatableControl isInvalid={isInvalid}>
-              <input
-                type="search"
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                className={classes}
-                css={cssStyles}
-                onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
-                disabled={disabled}
-                ref={this.setRef}
-                {...rest}
-              />
-            </EuiValidatableControl>
-          </EuiFormControlLayout>
-        )}
-      </EuiI18n>
-    );
-  }
-}
+  return (
+    <EuiI18n
+      token="euiFieldSearch.clearSearchButtonLabel"
+      default="Clear search input"
+    >
+      {(clearSearchButtonLabel: string) => (
+        <EuiFormControlLayout
+          icon="magnify"
+          fullWidth={fullWidth}
+          isLoading={isLoading}
+          isInvalid={isInvalid}
+          isDisabled={disabled}
+          clear={
+            isClearable
+              ? {
+                  onClick: onClear,
+                  'aria-label': clearSearchButtonLabel,
+                  'data-test-subj': 'clearSearchButton',
+                }
+              : undefined
+          }
+          compressed={compressed}
+          append={append}
+          prepend={prepend}
+        >
+          <EuiValidatableControl isInvalid={isInvalid}>
+            <input
+              type="search"
+              id={id}
+              name={name}
+              placeholder={placeholder}
+              className={classes}
+              css={cssStyles}
+              onKeyUp={onKeyUp}
+              disabled={disabled}
+              ref={setRef}
+              {...rest}
+            />
+          </EuiValidatableControl>
+        </EuiFormControlLayout>
+      )}
+    </EuiI18n>
+  );
+};
 
 /**
  * @see {@link https://eui.elastic.co/docs/components/forms/search-and-filter/search/|EuiFieldSearch documentation}
  */
-export const EuiFieldSearch =
-  withEuiStylesMemoizer<EuiFieldSearchProps>(EuiFieldSearchClass);
+export const EuiFieldSearch = withEuiStylesMemoizer<EuiFieldSearchProps>(
+  EuiFieldSearchUI
+);
