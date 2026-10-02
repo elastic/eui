@@ -14,7 +14,8 @@ import {
   enableFunctionToggleControls,
   disableStorybookControls,
 } from '../../../.storybook/utils';
-import { VRT_SELECTORS } from '../../../.storybook/vrt';
+import { within } from '../../../.storybook/test';
+import { playDecorator, VRT_SELECTORS } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -156,6 +157,9 @@ export const WithPopover: Story = {
 
     return <EuiCallOut {...rest} actionProps={actionProps} />;
   },
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible();
+  }),
 };
 disableStorybookControls(WithPopover, ['onDismiss']);
 
