@@ -93,6 +93,7 @@ describe('ColumnActions', () => {
     hasFocusTrap: false,
     setPropsFromColumnActions: jest.fn(),
     actionsButtonRef: jest.fn(),
+    showColumnActionsAlways: false,
   };
 
   it('renders', async () => {
