@@ -5,9 +5,12 @@ sidebar_position: 4
 
 # Filter group
 
-## Filter buttons
+Use **EuiFilterGroup** to wrap **EuiFilterButton** components into a container that looks nice against form fields (like search).
 
-Use **EuiFilterGroup** to wrap **EuiFilterButtons** into a container that looks nice against form fields (like search). These buttons are used in two different patterns. The most simplest use is that of an on/off pattern to show whether a filter is on. Add the prop `withNext` to remove the border between it and the next EuiFilterButton to visually group similar or opposite style filters.
+Use `display="highlighted"` only when multiple filter groups are used together to visually distinguish one group above the others.
+To hide the dividers between buttons, set `showDividers={false}`.
+
+## Filter buttons
 
 Add the prop `withNext` to remove the border between it and the next EuiFilterButton to visually group similar or opposite style filters.
 
@@ -17,50 +20,88 @@ Use `isToggle` to change the visual and functional type of the button element th
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiFilterGroup, EuiFilterButton } from '@elastic/eui';
+import {
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
 
 export default () => {
+  const [display, setDisplay] = useState<'regular' | 'highlighted'>('regular');
+  const [showDividers, setShowDividers] = useState(true);
   const [isFilterOn, setIsFilterOn] = useState(false);
   const [isOnFilterOn, setIsOnFilterOn] = useState(false);
   const [isOffFilterOn, setIsOffFilterOn] = useState(false);
 
-  const toggleFilter = () => {
-    setIsFilterOn(!isFilterOn);
-  };
-
-  const toggleOnFilter = () => {
-    setIsOnFilterOn(!isOnFilterOn);
-    setIsOffFilterOn(isOffFilterOn && !isOnFilterOn ? false : isOffFilterOn);
-  };
-
-  const toggleOffFilter = () => {
-    setIsOffFilterOn(!isOffFilterOn);
-    setIsOnFilterOn(isOnFilterOn && !isOffFilterOn ? false : isOnFilterOn);
-  };
-
   return (
-    <EuiFilterGroup>
-      <EuiFilterButton hasActiveFilters={isFilterOn} isSelected={isFilterOn} onClick={toggleFilter} isToggle>
-        Single filter
-      </EuiFilterButton>
-      <EuiFilterButton
-        withNext
-        hasActiveFilters={isOnFilterOn}
-        isSelected={isOnFilterOn}
-        onClick={toggleOnFilter}
-        isToggle
-      >
-        On
-      </EuiFilterButton>
-      <EuiFilterButton
-        hasActiveFilters={isOffFilterOn}
-        isSelected={isOffFilterOn}
-        onClick={toggleOffFilter}
-        isToggle
-      >
-        Off
-      </EuiFilterButton>
-    </EuiFilterGroup>
+    <>
+      <EuiFlexGroup alignItems="center" gutterSize="m" wrap>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            compressed
+            prepend="display"
+            options={[
+              { value: 'regular', text: 'regular' },
+              { value: 'highlighted', text: 'highlighted' },
+            ]}
+            value={display}
+            onChange={(e) =>
+              setDisplay(e.target.value as 'regular' | 'highlighted')
+            }
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="showDividers"
+            checked={showDividers}
+            onChange={(e) => setShowDividers(e.target.checked)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="m" />
+      <EuiFilterGroup display={display} showDividers={showDividers}>
+        <EuiFilterButton
+          isToggle
+          isSelected={isFilterOn}
+          hasActiveFilters={isFilterOn}
+          onClick={() => setIsFilterOn(!isFilterOn)}
+        >
+          Single filter
+        </EuiFilterButton>
+        <EuiFilterButton
+          withNext
+          isToggle
+          isSelected={isOnFilterOn}
+          hasActiveFilters={isOnFilterOn}
+          onClick={() => {
+            setIsOnFilterOn(!isOnFilterOn);
+            setIsOffFilterOn(
+              isOffFilterOn && !isOnFilterOn ? false : isOffFilterOn
+            );
+          }}
+        >
+          On
+        </EuiFilterButton>
+        <EuiFilterButton
+          isToggle
+          isSelected={isOffFilterOn}
+          hasActiveFilters={isOffFilterOn}
+          onClick={() => {
+            setIsOffFilterOn(!isOffFilterOn);
+            setIsOnFilterOn(
+              isOnFilterOn && !isOffFilterOn ? false : isOnFilterOn
+            );
+          }}
+        >
+          Off
+        </EuiFilterButton>
+      </EuiFilterGroup>
+    </>
   );
 };
 ```

@@ -65,6 +65,9 @@ export interface EuiPaginationProps {
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/pagination/|EuiPagination documentation}
+ */
 export const EuiPagination: FunctionComponent<Props> = ({
   className,
   pageCount = 1,

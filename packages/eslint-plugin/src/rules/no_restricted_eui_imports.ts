@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import micromatch from 'micromatch';
+import picomatch from 'picomatch';
 import { TSESTree, TSESLint } from '@typescript-eslint/utils';
 
 type Option = {
@@ -30,7 +30,7 @@ export const NoRestrictedEuiImports: TSESLint.RuleModule<never, Readonly<Option>
     return {
       ImportDeclaration(node: TSESTree.ImportDeclaration) {
         options.forEach(({ patterns, message }: Option) => {
-          if (micromatch.isMatch(node.source.value, patterns)) {
+          if (picomatch.isMatch(node.source.value, patterns)) {
             context.report({
               loc: node.source.loc,
               // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API

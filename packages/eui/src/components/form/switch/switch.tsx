@@ -52,6 +52,9 @@ export type EuiSwitchProps = CommonProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/selection/switch/|EuiSwitch documentation}
+ */
 export const EuiSwitch: FunctionComponent<
   EuiSwitchProps & {
     /**

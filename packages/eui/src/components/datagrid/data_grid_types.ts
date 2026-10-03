@@ -175,6 +175,8 @@ export interface EuiDataGridHeaderCellWrapperProps {
   id: string;
   index: number;
   isLastColumn: boolean;
+  isLastCopyColumn?: boolean;
+  isControlColumn?: boolean;
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
@@ -461,11 +463,6 @@ export interface EuiDataGridColumnResizerProps {
   isLastColumn: boolean;
 }
 
-export interface EuiDataGridColumnResizerState {
-  initialX: number;
-  offset: number;
-}
-
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
   direction: string;
@@ -689,6 +686,7 @@ export interface EuiDataGridCellProps {
   rowManager?: EuiDataGridRowManager;
   pagination?: Required<EuiDataGridPaginationProps>;
   gridStyles: EuiDataGridStyle;
+  isLastCopyColumn?: boolean;
 }
 
 export interface EuiDataGridCellState {

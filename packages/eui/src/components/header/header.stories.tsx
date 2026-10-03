@@ -7,9 +7,9 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import { userEvent, waitFor, within, expect } from 'storybook/test';
 
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import {
@@ -62,11 +62,7 @@ export const Sections: Story = {
     sections: [
       {
         items: [
-          <EuiHeaderLogo
-            iconType="logoElastic"
-            href="#"
-            aria-label="Go to home page"
-          />,
+          <EuiHeaderLogo href="#" aria-label="Go to home page" />,
           <EuiHeaderSectionItemButton aria-label="Spaces menu">
             <EuiAvatar type="space" name="Sales Team" size="s" />
           </EuiHeaderSectionItemButton>,
@@ -106,18 +102,19 @@ export const DarkThemeWithSitewideSearch: Story = {
   parameters: {
     layout: 'fullscreen',
     controls: { include: ['theme'] },
-    vrt: { selector: VRT_SELECTORS.portal }, // Required to capture the open popover
+    vrt: { selector: VRT_SELECTORS.portal },
   },
+  play: playDecorator(async ({ bodyElement }) => {
+    await waitFor(() =>
+      expect(bodyElement.querySelector('[data-popover-open]')).toBeVisible()
+    );
+  }),
   args: {
     theme: 'dark',
     position: 'fixed',
     sections: [
       {
-        items: [
-          <EuiHeaderLogo iconType="logoElastic" href="">
-            Elastic
-          </EuiHeaderLogo>,
-        ],
+        items: [<EuiHeaderLogo logoType="horizontal" href="" />],
       },
       {
         items: [
@@ -180,13 +177,7 @@ const MultipleFixedHeadersExample = () => {
 
   const sections = [
     {
-      items: [
-        <EuiHeaderLogo
-          iconType="logoElastic"
-          href="#"
-          aria-label="Go to home page"
-        />,
-      ],
+      items: [<EuiHeaderLogo href="#" aria-label="Go to home page" />],
     },
     {
       items: [
@@ -534,9 +525,7 @@ const ElasticNavigationPatternExample = () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo iconType="logoElastic" href="">
-                Elastic
-              </EuiHeaderLogo>,
+              <EuiHeaderLogo logoType="horizontal" href="" />,
               deploymentMenu,
             ],
           },

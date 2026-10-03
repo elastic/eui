@@ -21,6 +21,7 @@ import {
 } from './flyout';
 import { EuiProvider } from '../provider';
 import { EuiFlyoutManager } from './manager';
+import { EuiFlyoutBody } from './flyout_body';
 import { MENU_DISPLAY_ALWAYS } from './const';
 
 jest.mock('../overlay_mask', () => ({
@@ -37,6 +38,45 @@ jest.mock('../portal', () => ({
 }));
 
 describe('EuiFlyout', () => {
+  test('exposes the outer scroll container separately from the flyout and body', () => {
+    const flyoutRef = React.createRef<HTMLDivElement>();
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
+    const bodyScrollContainerRef = React.createRef<HTMLDivElement>();
+    const { unmount } = render(
+      <EuiFlyout
+        onClose={() => {}}
+        aria-label="Test flyout"
+        ref={flyoutRef}
+        scrollContainerRef={scrollContainerRef}
+      >
+        <EuiFlyoutBody scrollContainerRef={bodyScrollContainerRef} />
+      </EuiFlyout>
+    );
+
+    expect(scrollContainerRef.current).toHaveClass('euiFlyout__content');
+    expect(flyoutRef.current).toContainElement(scrollContainerRef.current);
+    expect(scrollContainerRef.current).not.toBe(flyoutRef.current);
+    expect(scrollContainerRef.current).not.toBe(bodyScrollContainerRef.current);
+    unmount();
+    expect(scrollContainerRef.current).toBeNull();
+  });
+
+  test('exposes the outer scroll container in a managed flyout', () => {
+    const scrollContainerRef = React.createRef<HTMLDivElement>();
+    render(
+      <EuiFlyoutManager>
+        <EuiFlyout
+          onClose={() => {}}
+          aria-label="Test managed flyout"
+          session="start"
+          scrollContainerRef={scrollContainerRef}
+        />
+      </EuiFlyoutManager>
+    );
+
+    expect(scrollContainerRef.current).toHaveClass('euiFlyout__content');
+  });
+
   shouldRenderCustomStyles(
     <EuiFlyout {...requiredProps} onClose={() => {}} />,
     { childProps: ['closeButtonProps', 'maskProps'] }
@@ -247,7 +287,7 @@ describe('EuiFlyout', () => {
           <EuiFlyout
             onClose={() => {}}
             flyoutMenuProps={{
-              customActions: [
+              trailingActions: [
                 {
                   iconType: 'gear',
                   onClick: () => {},
@@ -940,6 +980,45 @@ describe('EuiFlyout', () => {
       expect(dialog).toBeInTheDocument();
       expect(dialog).toHaveAttribute('aria-label', 'Test flyout');
       expect(dialog).toHaveAttribute('data-managed-flyout-level', 'main');
+    });
+
+    it('only renders the history popover once more than two sessions are in history', () => {
+      const sharedKey = Symbol();
+      const Sessions = ({ count }: { count: number }) => (
+        <EuiFlyoutManager>
+          {Array.from({ length: count }, (_, index) => (
+            <EuiFlyout
+              key={index}
+              session="start"
+              historyKey={sharedKey}
+              onClose={() => {}}
+              flyoutMenuProps={{ title: `Session ${index + 1}` }}
+              aria-label={`Session ${index + 1}`}
+            >
+              Content
+            </EuiFlyout>
+          ))}
+        </EuiFlyoutManager>
+      );
+
+      const { queryAllByTestSubject, rerender } = render(
+        <Sessions count={2} />
+      );
+
+      // Two sessions leaves a single history entry, which the back button
+      // already navigates to
+      expect(
+        queryAllByTestSubject('euiFlyoutMenuBackButton').length
+      ).toBeGreaterThan(0);
+      expect(queryAllByTestSubject('euiFlyoutMenuHistoryButton')).toHaveLength(
+        0
+      );
+
+      rerender(<Sessions count={3} />);
+
+      expect(
+        queryAllByTestSubject('euiFlyoutMenuHistoryButton').length
+      ).toBeGreaterThan(0);
     });
   });
 

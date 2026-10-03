@@ -58,6 +58,7 @@ import {
   schemaDetectors as providedSchemaDetectors,
   useMergedSchema,
 } from './utils/data_grid_schema';
+import { useCopyFocusedDataGridCell } from './utils/copy_focused_cell';
 import { useImperativeGridRef } from './utils/ref';
 import {
   emptyControlColumns,
@@ -114,6 +115,9 @@ const cellPaddingsToClassMap: {
 
 const emptyVirtualizationOptions = {};
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/data-grid/|EuiDataGrid documentation}
+ */
 export const EuiDataGrid = memo(
   forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
     const {
@@ -327,6 +331,7 @@ export const EuiDataGrid = memo(
     const showToolbar = !!toolbarVisibility;
 
     const { keyboardShortcuts } = useDataGridKeyboardShortcuts();
+    useCopyFocusedDataGridCell();
 
     const {
       isFullScreen,

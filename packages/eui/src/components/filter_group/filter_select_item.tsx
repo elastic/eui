@@ -8,13 +8,15 @@
 
 import React, {
   ButtonHTMLAttributes,
-  Component,
-  createRef,
+  FunctionComponent,
   isValidElement,
+  useEffect,
+  useMemo,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
-import { withEuiTheme, WithEuiThemeProps } from '../../services';
+import { useCombinedRefs, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -59,176 +61,138 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
  *
  * @deprecated - Use EuiSelectable instead
  */
-export class EuiFilterSelectItemClass extends Component<
-  WithEuiThemeProps & EuiFilterSelectItemProps
-> {
-  static defaultProps = {
-    showIcons: true,
-    truncateContent: true,
-  };
+const EuiFilterSelectItemComponent: FunctionComponent<
+  EuiFilterSelectItemProps
+> = ({
+  children,
+  className,
+  disabled,
+  checked,
+  isFocused,
+  showIcons = true,
+  toolTipContent,
+  toolTipProps,
+  style,
+  truncateContent = true,
+  forwardRef,
+  ...rest
+}) => {
+  const theme = useEuiTheme();
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const tooltipRef = useRef<EuiToolTipRef>(null);
+  const combinedButtonRefs = useMemo(
+    () => [buttonRef, forwardRef],
+    [forwardRef]
+  );
+  const setButtonRef = useCombinedRefs(combinedButtonRefs);
+  const previousIsFocused = useRef(isFocused);
+  const isMounted = useRef(false);
 
-  buttonRef: HTMLButtonElement | null = null;
-  tooltipRef = createRef<EuiToolTipRef>();
+  const hasToolTip =
+    // we're using isValidElement here as EuiToolTipAnchor uses
+    // cloneElement to enhance the element with required attributes
+    isValidElement(children) && !disabled && toolTipContent;
 
-  state = {
-    hasFocus: false,
-  };
-
-  setButtonRef = (node: HTMLButtonElement | null) => {
-    this.buttonRef = node;
-    this.props.forwardRef?.(node);
-  };
-
-  focus = () => {
-    if (this.buttonRef) {
-      this.buttonRef.focus();
+  useEffect(() => {
+    if (isMounted.current && isFocused && !previousIsFocused.current) {
+      buttonRef.current?.scrollIntoView?.({ block: 'nearest' });
     }
-  };
 
-  toggleToolTip = (isFocused: boolean) => {
-    if (isFocused) {
-      this.tooltipRef?.current?.showToolTip();
-    } else {
-      this.tooltipRef?.current?.hideToolTip();
-    }
-  };
-
-  hasFocus = () => {
-    return this.state.hasFocus;
-  };
-
-  componentDidMount() {
-    const { isFocused, toolTipContent, disabled, children } = this.props;
-    if (isValidElement(children) && !disabled && toolTipContent) {
-      this.toggleToolTip(isFocused ?? false);
-    }
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<WithEuiThemeProps<{}> & EuiFilterSelectItemProps>
-  ) {
-    if (this.props.isFocused && !prevProps.isFocused) {
-      this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
-    }
-    const { isFocused, toolTipContent, disabled, children } = this.props;
     if (
-      isValidElement(children) &&
-      !disabled &&
-      toolTipContent &&
-      isFocused !== prevProps.isFocused
+      hasToolTip &&
+      (!isMounted.current || isFocused !== previousIsFocused.current)
     ) {
-      this.toggleToolTip(isFocused ?? false);
+      if (isFocused) {
+        tooltipRef.current?.showToolTip();
+      } else {
+        tooltipRef.current?.hideToolTip();
+      }
     }
+
+    previousIsFocused.current = isFocused;
+    isMounted.current = true;
+  }, [hasToolTip, isFocused]);
+
+  const styles = euiFilterSelectItemStyles(theme);
+  const cssStyles = [styles.euiFilterSelectItem, isFocused && styles.isFocused];
+
+  const classes = classNames('euiFilterSelectItem', className);
+
+  let anchorProps = undefined;
+
+  if (hasToolTip) {
+    const anchorStyles = toolTipProps?.anchorProps?.style
+      ? { ...toolTipProps?.anchorProps?.style, ...style }
+      : style;
+
+    anchorProps = toolTipProps?.anchorProps
+      ? {
+          ...toolTipProps.anchorProps,
+          style: anchorStyles,
+        }
+      : { style };
   }
 
-  render() {
-    const {
-      theme,
-      children,
-      className,
-      disabled,
-      checked,
-      isFocused,
-      showIcons,
-      toolTipContent,
-      toolTipProps,
-      style,
-      truncateContent,
-      forwardRef,
-      ...rest
-    } = this.props;
+  let iconNode;
+  if (showIcons) {
+    const { icon, color } = resolveIconAndColor(checked);
+    iconNode = (
+      <EuiFlexItem grow={false}>
+        <EuiIcon color={color} type={icon} />
+      </EuiFlexItem>
+    );
+  }
 
-    const styles = euiFilterSelectItemStyles(theme);
-    const cssStyles = [
-      styles.euiFilterSelectItem,
-      isFocused && styles.isFocused,
-    ];
-
-    const classes = classNames('euiFilterSelectItem', className);
-
-    const hasToolTip =
-      // we're using isValidElement here as EuiToolTipAnchor uses
-      // cloneElement to enhance the element with required attributes
-      isValidElement(children) && !disabled && toolTipContent;
-
-    let anchorProps = undefined;
-
-    if (hasToolTip) {
-      const anchorStyles = toolTipProps?.anchorProps?.style
-        ? { ...toolTipProps?.anchorProps?.style, ...style }
-        : style;
-
-      anchorProps = toolTipProps?.anchorProps
-        ? {
-            ...toolTipProps.anchorProps,
-            style: anchorStyles,
-          }
-        : { style };
-    }
-
-    let iconNode;
-    if (showIcons) {
-      const { icon, color } = resolveIconAndColor(checked);
-      iconNode = (
-        <EuiFlexItem grow={false}>
-          <EuiIcon color={color} type={icon} />
-        </EuiFlexItem>
-      );
-    }
-
-    const optionItem = (
-      <button
-        ref={this.setButtonRef}
-        role="option"
-        type="button"
-        aria-selected={checked === 'on'}
-        className={classes}
-        css={cssStyles}
-        disabled={disabled}
-        aria-disabled={disabled}
-        style={!hasToolTip ? style : undefined}
-        {...rest}
+  const optionItem = (
+    <button
+      ref={setButtonRef}
+      role="option"
+      type="button"
+      aria-selected={checked === 'on'}
+      className={classes}
+      css={cssStyles}
+      disabled={disabled}
+      aria-disabled={disabled}
+      style={!hasToolTip ? style : undefined}
+      {...rest}
+    >
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        component="span"
+        responsive={false}
       >
-        <EuiFlexGroup
-          alignItems="center"
-          gutterSize="s"
+        {iconNode}
+        <EuiFlexItem
+          className={classNames(
+            'euiFilterSelectItem__content',
+            truncateContent && 'eui-textTruncate'
+          )}
           component="span"
-          responsive={false}
         >
-          {iconNode}
-          <EuiFlexItem
-            className={classNames(
-              'euiFilterSelectItem__content',
-              this.props.truncateContent && 'eui-textTruncate'
-            )}
-            component="span"
-          >
-            {children}
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </button>
-    );
+          {children}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </button>
+  );
 
-    return hasToolTip ? (
-      <EuiToolTip
-        ref={this.tooltipRef}
-        display="block"
-        content={toolTipContent}
-        position="left"
-        {...toolTipProps}
-        anchorProps={anchorProps}
-      >
-        {optionItem}
-      </EuiToolTip>
-    ) : (
-      optionItem
-    );
-  }
-}
+  return hasToolTip ? (
+    <EuiToolTip
+      ref={tooltipRef}
+      display="block"
+      content={toolTipContent}
+      position="left"
+      {...toolTipProps}
+      anchorProps={anchorProps}
+    >
+      {optionItem}
+    </EuiToolTip>
+  ) : (
+    optionItem
+  );
+};
 
 /**
  * @deprecated - Use EuiSelectable instead
  */
-export const EuiFilterSelectItem = withEuiTheme<EuiFilterSelectItemProps>(
-  EuiFilterSelectItemClass
-);
+export const EuiFilterSelectItem = EuiFilterSelectItemComponent;

@@ -56,6 +56,10 @@ export const euiDataGridHeaderCellWrapperStyles = (
         align-items: center;
         ${logicalCSS('width', '100%')}
       }
+
+      &:where(.euiDataGridHeaderCell--controlColumn) {
+        user-select: none;
+      }
     `,
   };
 };

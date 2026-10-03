@@ -7,8 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within } from 'storybook/test';
 
 import {
   enableFunctionToggleControls,
@@ -127,6 +127,15 @@ export const WithSearch: Story = {
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
 
+export const SingleSelection: Story = {
+  args: {
+    options,
+    singleSelection: true,
+    searchable: false,
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+
 export const WithTooltip: Story = {
   parameters: {
     controls: {
@@ -148,9 +157,9 @@ export const WithTooltip: Story = {
     const options = body.getAllByRole('option');
     const tooltipTarget = (options[0].firstElementChild ??
       options[0]) as HTMLElement;
-    await userEvent.hover(tooltipTarget);
 
-    await waitFor(() => expect(body.getByRole('tooltip')).toBeVisible());
+    await userEvent.hover(tooltipTarget, { pointerEventsCheck: 0 });
+    await body.findByRole('tooltip');
   }),
 };
 

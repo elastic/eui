@@ -56,7 +56,7 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
             </span>
           </button>
           <button
-            class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-fill-primary"
+            class="euiButton emotion-euiButtonDisplay-m-fill-primary"
             data-test-subj="confirmModalConfirmButton"
             type="button"
           >

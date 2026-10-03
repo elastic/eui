@@ -115,6 +115,9 @@ export type EuiAccordionProps = CommonProps &
     isDisabled?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/accordion/|EuiAccordion documentation}
+ */
 export const EuiAccordion: FunctionComponent<EuiAccordionProps> = ({
   children,
   className,

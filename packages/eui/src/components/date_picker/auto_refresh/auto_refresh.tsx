@@ -34,6 +34,9 @@ export type EuiAutoRefreshProps = EuiAutoRefreshSharedProps & {
   readOnly?: EuiFieldTextProps['readOnly'];
 } & Omit<EuiFieldTextProps, 'icon' | 'prepend' | 'controlOnly' | 'readOnly'>;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/date-and-time/auto-refresh/|EuiAutoRefresh documentation}
+ */
 export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
   className,
   onRefreshChange,

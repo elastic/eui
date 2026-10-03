@@ -52,7 +52,7 @@ export const createMockState = (): EuiFlyoutManagerState => ({
 /**
  * Factory for creating flyout manager API mock.
  */
-export const createFlyoutManagerMock = () => ({
+export const createFlyoutManagerMock = (): FlyoutManagerApi => ({
   state: createMockState(),
   historyItems: [],
   ...createMockFunctions(),

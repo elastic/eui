@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';

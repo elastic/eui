@@ -59,6 +59,9 @@ export interface EuiFacetButtonProps
   quantity?: number;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/facet/|EuiFacetButton documentation}
+ */
 export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   children,
   className,

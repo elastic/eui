@@ -37,6 +37,9 @@ export type EuiLoadingSpinnerProps = CommonProps &
     color?: EuiLoadingSpinnerColor;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/loading/|EuiLoadingSpinner documentation}
+ */
 export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   size = 'm',
   className,

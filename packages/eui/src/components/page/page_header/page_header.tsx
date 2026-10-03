@@ -45,6 +45,9 @@ export interface EuiPageHeaderProps
   color?: 'plain' | 'transparent';
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/layout/page-header/|EuiPageHeader documentation}
+ */
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
   restrictWidth = false,

@@ -11,9 +11,9 @@ jobs:
     permissions:
       pull-requests: write
       issues: none # this will generate GH actions permissions errors. This is fine; we'd rather the action error than try to parse issues it doesn't need to
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/stale@v8
+      - uses: actions/stale@v10
         with:
           stale-pr-message: '👋 Hey there. This PR hasn''t had any activity for 90 days. We''ll automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
           close-pr-message: '❌ We''re automatically closing this PR due to lack of activity. Please comment if you feel this was done in error.'
@@ -29,9 +29,9 @@ jobs:
     permissions:
       issues: write
       pull-requests: none # this will generate GH actions permissions errors. This is fine; we'd rather the action error than try to parse PRs it doesn't need to
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/stale@v8
+      - uses: actions/stale@v10
         with:
           stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our roadmap, it''s unlikely that we''ll pick this issue up. We would sincerely appreciate a PR/community contribution if this is something that matters to you! If not, and there is no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
           close-issue-message: '❌ Per our previous message, this issue is auto-closing after having been open and inactive for a year. If you strongly feel this is still a high-priority issue, or are interested in contributing, please leave a comment or open a new issue linking to this one for context.'
@@ -49,9 +49,9 @@ jobs:
     permissions:
       issues: write
       pull-requests: none  # this will generate GH actions permissions errors. This is fine; we'd rather the action error than try to parse PRs it doesn't need to
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/stale@v8
+      - uses: actions/stale@v10
         with:
           days-before-stale: -1 # the label should be manually applied
           days-before-close: 3

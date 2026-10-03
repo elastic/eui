@@ -12,7 +12,7 @@
 
 import React, { ComponentProps, useState } from 'react';
 
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiFlyout } from '../flyout';
 import { EuiModal } from '../modal';
 import { EuiPopover } from '../popover';
@@ -75,6 +75,35 @@ describe('EuiToolTip', () => {
     cy.get('[data-test-subj="tooltip"]').should('exist');
 
     cy.get('[data-test-subj="tooltipAnchor"]').trigger('mouseout');
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+  });
+
+  it('hides the tooltip on mouse-out of an aria-disabled child', () => {
+    cy.realMount(
+      <>
+        <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+          <EuiButtonIcon
+            data-test-subj="toggleToolTip"
+            iconType="lock"
+            aria-label="Locked"
+            hasAriaDisabled
+            isDisabled
+          />
+        </EuiToolTip>
+        <EuiButton data-test-subj="after">After</EuiButton>
+      </>
+    );
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+    cy.get('[data-test-subj="toggleToolTip"]').should(
+      'have.css',
+      'pointer-events',
+      'none'
+    );
+
+    cy.get('[data-test-subj="toggleToolTip"]').realHover();
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="after"]').realHover();
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 

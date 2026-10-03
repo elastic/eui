@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { actions } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
+import { actions } from 'storybook/actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
 
 import { EuiBreakpointSize, useEuiTheme } from '../../../services';
@@ -150,8 +150,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
     mainResizable: true,
     childResizable: false,
-    mainMinWidth: 200,
-    childMinWidth: 200,
+    mainMinWidth: undefined,
+    childMinWidth: undefined,
     mainMaxWidth: undefined,
     childMaxWidth: undefined,
   },

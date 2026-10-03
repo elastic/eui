@@ -40,6 +40,7 @@ export interface LinkButtonProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
+   * @default text
    */
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -54,6 +55,7 @@ export interface LinkAnchorProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
+   * @default text
    */
   color?: EuiLinkColor;
   /**
@@ -75,11 +77,14 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/link/|EuiLink documentation}
+ */
 const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,
-      color = 'primary',
+      color = 'text',
       className,
       href,
       external,

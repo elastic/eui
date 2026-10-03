@@ -15,9 +15,9 @@ import type { Options } from 'react-element-to-jsx-string';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import { camelCase, isEmpty } from 'lodash';
 import type { ReactRenderer, Args } from '@storybook/react';
-import type { StoryContext } from '@storybook/types';
-import { getDocgenSection } from '@storybook/docs-tools';
-import { logger } from '@storybook/client-logger';
+import type { StoryContext } from 'storybook/internal/csf';
+import { getDocgenSection } from 'storybook/internal/docs-tools';
+import { logger } from 'storybook/internal/client-logger';
 
 import { UseEuiTheme } from '../../../../src/services';
 import { ADDON_PARAMETER_KEY, EXCLUDED_PROPS } from '../constants';

@@ -56,13 +56,13 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
 
 export const dark_text_colors: _EuiThemeTextColors = {
   /* Legacy colors */
-  text: SEMANTIC_COLORS.shade30,
+  text: SEMANTIC_COLORS.shade40,
   title: SEMANTIC_COLORS.shade20,
   subduedText: SEMANTIC_COLORS.shade55,
   link: SEMANTIC_COLORS.primary60,
 
   /* New colors */
-  textParagraph: SEMANTIC_COLORS.shade30,
+  textParagraph: SEMANTIC_COLORS.shade40,
   textHeading: SEMANTIC_COLORS.shade20,
   textSubdued: SEMANTIC_COLORS.shade55,
   textDisabled: SEMANTIC_COLORS.shade80,
@@ -72,7 +72,7 @@ export const dark_text_colors: _EuiThemeTextColors = {
 };
 
 export const dark_shades: _EuiThemeShadeColors = {
-  emptyShade: SEMANTIC_COLORS.shade145,
+  emptyShade: SEMANTIC_COLORS.shade140,
   lightestShade: SEMANTIC_COLORS.shade135,
   lightShade: SEMANTIC_COLORS.shade125,
   mediumShade: SEMANTIC_COLORS.shade95,
@@ -91,8 +91,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseRisk: SEMANTIC_COLORS.risk140,
   backgroundBaseDanger: SEMANTIC_COLORS.danger140,
   backgroundBaseAssistance: SEMANTIC_COLORS.assistance140,
-  backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
-  backgroundBasePlain: SEMANTIC_COLORS.shade145,
+
+  backgroundBaseRecessed: SEMANTIC_COLORS.plainDark,
+  backgroundBaseSubdued: SEMANTIC_COLORS.shade145,
+  backgroundBasePlain: SEMANTIC_COLORS.shade140,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade130,
   backgroundBaseHighlighted: SEMANTIC_COLORS.shade135,
 

@@ -162,18 +162,18 @@ export interface _EuiComboBoxProps<T>
    */
   autoFocus?: boolean;
   /**
-   * Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts).
+   * Required when rendering without a visible label from [EuiFormRow](https://eui.elastic.co/docs/components/forms/layouts/row/).
    */
   'aria-label'?: string;
   /**
    * Reference ID of a text element containing the visible label for the combo box when not
-   * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
+   * supplied by `aria-label` or from [EuiFormRow](https://eui.elastic.co/docs/components/forms/layouts/).
    */
   'aria-labelledby'?: string;
   /**
    * By default, EuiComboBox will truncate option labels at the end of
    * the string. You can pass in a custom truncation configuration that
-   * accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop,
+   * accepts any [EuiTextTruncate](https://eui.elastic.co/docs/utilities/text-truncation/) prop,
    * except for `text` and `children`.
    *
    * Note: when searching, custom truncation props are ignored. The highlighted search

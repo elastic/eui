@@ -47,6 +47,9 @@ export interface EuiPageProps
   color?: 'plain' | 'transparent';
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/layout/page-components/|EuiPage documentation}
+ */
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
   restrictWidth = false,

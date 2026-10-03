@@ -7,6 +7,7 @@
  */
 
 import { themes as prismThemes } from 'prism-react-renderer';
+import { getSwcLoaderOptions } from '@docusaurus/faster';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
@@ -18,10 +19,12 @@ const SSPL_LICENSE_URL =
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
+const isDevelopment = process.env.NODE_ENV === 'development';
+const noIndex = process.env.PR_PREVIEW === 'true';
 
 let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
 
-if (process.env.NODE_ENV === 'development') {
+if (isDevelopment) {
   storybookBaseUrl = 'http://localhost:6006';
 } else if (process.env.STORYBOOK_BASE_URL) {
   storybookBaseUrl = process.env.STORYBOOK_BASE_URL;
@@ -30,7 +33,7 @@ if (process.env.NODE_ENV === 'development') {
 const config: Config = {
   title: 'Elastic UI Framework',
   tagline: 'The framework powering the Elastic Stack',
-  favicon: 'favicon.ico',
+  favicon: isDevelopment ? 'favicon-dev.svg' : 'favicon.ico',
   trailingSlash: true,
 
   // Set the production url of your site here
@@ -38,6 +41,9 @@ const config: Config = {
 
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl,
+
+  // Keep PR preview deployments out of search indexes
+  noIndex,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -52,6 +58,36 @@ const config: Config = {
 
   customFields: {
     storybookBaseUrl,
+  },
+
+  // SWC ignores `babel.config.js`; keep Rspack but use Emotion's JSX runtime.
+  future: {
+    experimental_faster: {
+      swcJsLoader: false,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+    },
+  },
+
+  webpack: {
+    jsLoader: (isServer) => {
+      const options = getSwcLoaderOptions({ isServer });
+      options.jsc ??= {};
+      options.jsc.transform ??= {};
+      options.jsc.transform.react = {
+        ...options.jsc.transform.react,
+        runtime: 'automatic',
+        importSource: '@emotion/react',
+      };
+
+      return {
+        loader: 'builtin:swc-loader',
+        options,
+      };
+    },
   },
 
   presets: [

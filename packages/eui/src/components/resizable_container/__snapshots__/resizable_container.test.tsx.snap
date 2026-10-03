@@ -240,7 +240,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="menuRight"
+        data-euiicon-type="transitionLeftIn"
       />
     </button>
     <div
@@ -333,7 +333,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="menuRight"
+        data-euiicon-type="transitionLeftIn"
       />
     </button>
     <div

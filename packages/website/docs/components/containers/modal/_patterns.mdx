@@ -1,3 +1,7 @@
+import figmaModalConfirmingAnAction from '!url-loader!./assets/modal_confirming-an-action.svg';
+import figmaModalConfirmingADestructiveAction from '!url-loader!./assets/modal_confirming-a-destructive-action.svg';
+
+
 ### Configuring forms
 
 Since the child components of **EuiModal** are required to be in a specific order, you can only wrap the contents within **EuiModalBody** with the `<form />` element. You can then hook up your submit button inside **EuiModalFooter** by adding the `id` of the `<form />` element to the `form` prop of the button.
@@ -236,7 +240,11 @@ export default () => {
 
 Use a [Modal](#confirming-an-action) when you need to interrupt a user and ask them to confirm an action.
 
-<FigmaEmbed url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=6-343&mode=design&t=LrJcE5JqrDwsT5DX-0" title="Generic confirmation modal" />
+<FigmaAsset
+  url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=6-343&mode=design&t=LrJcE5JqrDwsT5DX-0"
+  src={figmaModalConfirmingAnAction}
+  title="Generic confirmation modal"
+/>
 
 **Structure**
 1. **Title** _mandatory_
@@ -267,4 +275,8 @@ Asking to confirm a delete or remove action follows the same principles as the d
 - The body is unambiguous about what won’t be recoverable after the action is confirmed.
 - Optionally, and depending on the importance of the destructive action, you may include an extra confirmation within the **body** of the modal. If you do so, use something generic, such as "delete" or that users can copy easily that will remind them of what they are actually deleting.
 
-<FigmaEmbed url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=501-990&mode=design&t=LrJcE5JqrDwsT5DX-0" title="Confirmation modal for a destructive action" />
+<FigmaAsset
+  url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=501-990&mode=design&t=LrJcE5JqrDwsT5DX-0"
+  src={figmaModalConfirmingADestructiveAction}
+  title="Confirmation modal for a destructive action"
+/>

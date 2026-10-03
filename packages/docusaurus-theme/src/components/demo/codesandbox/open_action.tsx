@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from 'react';
-import { getParameters } from 'codesandbox/lib/api/define';
+import { getParameters } from './get_parameters';
 import dedent from 'dedent';
 import { EuiButtonIcon, EuiToolTip } from '@elastic/eui';
 import type { ActionComponent } from '../../../theme/Demo/actions';
@@ -142,8 +142,10 @@ export const createOpenInCodeSandboxAction =
           },
           ...codeSandboxFiles,
         },
-      } as any);
+      });
     }, [activeSource, extraFiles, previewWrapperSource]);
+
+    const openInCodeSandboxLabel = 'Open in CodeSandbox';
 
     return (
       <form
@@ -157,13 +159,13 @@ export const createOpenInCodeSandboxAction =
           name="query"
           value={`module=/demo.tsx&view=split`}
         />
-        <EuiToolTip content="Open in CodeSandbox">
+        <EuiToolTip content={openInCodeSandboxLabel} disableScreenReaderOutput>
           <EuiButtonIcon
             type="submit"
             size="s"
             iconType={CodeSandboxIcon}
             color="text"
-            aria-label="Open in CodeSandbox"
+            aria-label={openInCodeSandboxLabel}
           />
         </EuiToolTip>
       </form>

@@ -7,28 +7,52 @@
  */
 
 import { type ReleaseOptions } from '../release';
-import { runScriptOnAllWorkspaces } from '../yarn_utils';
+import { runScriptOnWorkspaces, type YarnWorkspace } from '../yarn_utils';
 
 /**
- * Runs the `prerelease` script in all workspaces that define it in their
+ * Runs the `prerelease` script in released workspaces that define it in their
  * package.json `scripts` section.
  */
-export const stepRunPreScripts = async (options: ReleaseOptions) => {
+export const stepRunPreScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
   const { logger } = options;
 
   logger.info('Running pre release scripts');
 
-  await runScriptOnAllWorkspaces('prerelease');
-}
+  await runScriptOnWorkspaces('prerelease', workspaces);
+};
 
 /**
- * Runs the `postrelease` script in all workspaces that define it in their
+ * Runs the `postrelease` script in released workspaces that define it in their
  * package.json `scripts` section.
  */
-export const stepRunPostScripts = async (options: ReleaseOptions) => {
+export const stepRunPostScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
   const { logger } = options;
 
   logger.info('Running post release scripts');
 
-  await runScriptOnAllWorkspaces('postrelease');
-}
+  await runScriptOnWorkspaces('postrelease', workspaces);
+};
+
+/**
+ * Runs the `postrelease-global` script in the provided workspaces that define it in their
+ * package.json `scripts` section.
+ * Use this script for side effects that must run on every release (e.g. updating
+ * a version manifest), even when a workspace wasn't part of the release set,
+ * as opposed to `postrelease` which is scoped to changed/released workspaces.
+ */
+export const stepRunGlobalPostScripts = async (
+  options: ReleaseOptions,
+  workspaces: YarnWorkspace[]
+) => {
+  const { logger } = options;
+
+  logger.info('Running global post release scripts');
+
+  await runScriptOnWorkspaces('postrelease-global', workspaces);
+};

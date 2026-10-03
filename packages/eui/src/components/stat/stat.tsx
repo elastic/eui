@@ -72,6 +72,9 @@ export interface EuiStatProps {
   descriptionElement?: string;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/stat/|EuiStat documentation}
+ */
 export const EuiStat: FunctionComponent<
   CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiStatProps
 > = ({

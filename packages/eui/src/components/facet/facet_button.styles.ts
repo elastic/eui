@@ -36,7 +36,7 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     &:disabled {
-      color: ${euiTheme.colors.disabledText};
+      color: ${euiTheme.colors.textDisabled};
       pointer-events: none;
     }
   `,

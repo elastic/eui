@@ -13,14 +13,19 @@ import {
   logicalCSSWithFallback,
   euiYScrollWithShadows,
 } from '../../global_styling';
-import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
   return {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
+      /* Preserve a standard control plus the content padding and scroll fade */
+      ${logicalCSS(
+        'min-height',
+        `calc(${euiTheme.size.xxl} + var(--euiFlyoutBodyPadding, 0px) + var(--euiFlyoutBodyPadding, 0px) + ${euiTheme.size.s})`
+      )}
     `,
     overflow: {
       euiFlyoutBody__overflow: css``,
@@ -32,10 +37,14 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      ${logicalCSSWithFallback('overflow-x', 'hidden')}
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: logicalCSS('border-bottom', euiTheme.border.thin),
-      })}
+      /* Omit bottom padding so body content keeps owning the gap below the banner */
+      ${logicalCSS('padding-top', 'var(--euiFlyoutBodyPadding, 0)')}
+      ${logicalCSS('padding-horizontal', 'var(--euiFlyoutBodyPadding, 0)')}
+
+      .euiFlyout:not(:has(.euiFlyoutHeader, .euiFlyoutMenu)) & {
+        /* Extra end padding so the banner clears the absolutely positioned close button */
+        ${logicalCSS('padding-right', euiTheme.size.xxl)}
+      }
     `,
   };
 };

@@ -123,7 +123,9 @@ export const ColumnActions: FunctionComponent<
       "Press the Enter key to view this column's actions"
     );
     const openActionsPopoverOnEnter: KeyboardEventHandler = useCallback((e) => {
-      if (e.key === keys.ENTER) {
+      // Only handle Enter when the cell div itself is focused,
+      // not when it bubbles up from the nested button
+      if (e.key === keys.ENTER && e.target === e.currentTarget) {
         setIsPopoverOpen(true);
       }
     }, []);
@@ -197,7 +199,7 @@ export const ColumnActions: FunctionComponent<
         css={styles.euiDataGridHeaderCell__popover}
         button={
           <EuiButtonIcon
-            iconType="boxesVertical"
+            iconType="ellipsis"
             iconSize="s"
             color="text"
             className="euiDataGridHeaderCell__button"

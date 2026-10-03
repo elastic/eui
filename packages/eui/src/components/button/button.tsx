@@ -26,8 +26,8 @@ import {
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
-  isButtonDisabled,
 } from './button_display/_button_display';
+import { useEuiButtonCommonProps } from './use_button_common_props';
 
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
@@ -87,19 +87,44 @@ export type Props = ExclusiveUnion<
 /**
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
+ * @see {@link https://eui.elastic.co/docs/components/navigation/buttons/button/|EuiButton documentation}
  */
 export const EuiButton: FunctionComponent<Props> = ({
   className,
   buttonRef,
-  size = 'm',
-  color = 'primary',
-  fill,
+  size: _size = 'm',
+  color: _color = 'primary',
+  fill: _fill,
+  isDisabled: _isDisabled,
+  hasAriaDisabled: _hasAriaDisabled,
+  fullWidth: _fullWidth,
+  id,
+  onClick: _onClick,
+  isSelected: _isSelected,
   ...rest
 }) => {
-  const isDisabled = isButtonDisabled({
+  const {
+    size,
+    color,
+    isDisabled,
+    hasAriaDisabled,
+    fullWidth,
+    fill,
+    isSelected,
+    onClick,
+  } = useEuiButtonCommonProps<EuiButtonSize, EuiButtonColor>({
+    size: _size,
+    color: _color,
+    isDisabled: _isDisabled,
+    hasAriaDisabled: _hasAriaDisabled,
+    fullWidth: _fullWidth,
+    fill: _fill,
+    isSelected: _isSelected,
     href: rest.href,
-    isDisabled: rest.isDisabled || rest.disabled,
+    disabled: rest.disabled,
     isLoading: rest.isLoading,
+    id,
+    onClick: _onClick,
   });
 
   const buttonColorStyles = useEuiButtonColorCSS({
@@ -113,11 +138,17 @@ export const EuiButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
+      ref={buttonRef}
       className={classes}
       css={cssStyles}
-      ref={buttonRef}
       size={size}
+      isDisabled={isDisabled}
+      hasAriaDisabled={hasAriaDisabled}
+      fullWidth={fullWidth}
       {...rest}
+      id={id}
+      isSelected={isSelected}
+      onClick={onClick}
     />
   );
 };

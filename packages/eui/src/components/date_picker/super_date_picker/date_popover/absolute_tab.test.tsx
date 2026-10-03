@@ -8,11 +8,11 @@
 
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
-import { render } from '../../../../test/rtl';
-
-import { EuiAbsoluteTab } from './absolute_tab';
 import { LocaleSpecifier } from 'moment';
-import { userEvent } from '@storybook/test';
+import { userEvent } from '@testing-library/user-event';
+
+import { render } from '../../../../test/rtl';
+import { EuiAbsoluteTab } from './absolute_tab';
 
 // Mock EuiDatePicker - 3rd party datepicker lib causes render issues
 jest.mock('../../date_picker', () => ({

@@ -13,11 +13,12 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-import { css } from '@emotion/react';
+import { Global, css } from '@emotion/react';
 import type { Preview } from '@storybook/react';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeColorMode } from '../src/services';
+import { useEuiTheme } from '../src/services/theme';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
 
 export const AVAILABLE_THEMES = [
@@ -77,10 +78,31 @@ export const EuiProviderDecorator: FunctionComponent<
       {...euiThemeProp}
       {...euiProviderProps}
     >
-      <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
+      <GlobalStyles />
+      <div
+        id="story-wrapper"
+        ref={setPortalSibling}
+        css={writingModeCss}
+        dir={writingMode === 'rtl' ? 'rtl' : 'ltr'}
+      >
         {portalInsert && children}
       </div>
     </EuiProvider>
+  );
+};
+
+const GlobalStyles: FunctionComponent = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <Global
+      styles={css`
+        html {
+          /* We align with the content level instead of the app level styling */
+          background-color: ${euiTheme.colors.backgroundBasePlain};
+        }
+      `}
+    />
   );
 };
 
@@ -109,35 +131,23 @@ const writingModeStyles = {
 };
 type WritingModes = keyof typeof writingModeStyles;
 
-/**
- * Storybook toolbar types - define these separately so that we can ensure
- * their values match ones that EuiProviderDecorator expects
- */
-type ToolbarDisplay = { title: string; icon: string };
+const storybookToolbarColorModes = [
+  { value: 'light', title: 'Light mode', icon: 'circlehollow' as const },
+  { value: 'dark', title: 'Dark mode', icon: 'circle' as const },
+] satisfies Array<{ value: EuiThemeColorMode; title: string; icon: string }>;
 
-const storybookToolbarColorModes: Array<
-  ToolbarDisplay & { value: EuiThemeColorMode }
-> = [
-  { value: 'light', title: 'Light mode', icon: 'circlehollow' },
-  { value: 'dark', title: 'Dark mode', icon: 'circle' },
+const storybookToolbarHighContrastMode = [
+  { value: 'false', title: 'High contrast off', icon: 'circlehollow' as const },
+  { value: 'true', title: 'High contrast on', icon: 'circle' as const },
 ];
 
-const storybookToolbarHighContrastMode: Array<
-  ToolbarDisplay & { value: boolean }
-> = [
-  { value: false, title: 'High contrast off', icon: 'circlehollow' },
-  { value: true, title: 'High contrast on', icon: 'circle' },
-];
-
-const storybookToolbarWritingModes: Array<
-  ToolbarDisplay & { value: WritingModes }
-> = [
-  { value: 'ltr', title: 'LTR', icon: 'arrowleft' },
-  { value: 'rtl', title: 'RTL', icon: 'arrowright' },
-  { value: 'vertical-lr', title: 'Vertical LTR', icon: 'arrowup' },
-  { value: 'vertical-rl', title: 'Vertical RTL', icon: 'arrowdown' },
-  { value: 'sideways', title: 'Sideways LTR', icon: 'collapse' },
-];
+const storybookToolbarWritingModes = [
+  { value: 'ltr', title: 'LTR', icon: 'arrowleft' as const },
+  { value: 'rtl', title: 'RTL', icon: 'arrowright' as const },
+  { value: 'vertical-lr', title: 'Vertical LTR', icon: 'arrowup' as const },
+  { value: 'vertical-rl', title: 'Vertical RTL', icon: 'arrowdown' as const },
+  { value: 'sideways', title: 'Sideways LTR', icon: 'collapse' as const },
+] satisfies Array<{ value: WritingModes; title: string; icon: string }>;
 
 /**
  * Export Storybook toolbar globals/context that affect our EuiProvider decorator
@@ -158,8 +168,8 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
   highContrastMode: {
     description: 'High contrast mode for EuiProvider theme',
     defaultValue: window?.matchMedia?.('(prefers-contrast: more)').matches
-      ? true
-      : false,
+      ? 'true'
+      : 'false',
     toolbar: {
       title: 'Contrast mode',
       items: storybookToolbarHighContrastMode,

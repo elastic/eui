@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiIcon } from '../icon';
 import { EuiToken } from '../token';
@@ -58,7 +58,7 @@ export const Playground: Story = {
       {
         label: 'Item One',
         id: 'item_one',
-        icon: <EuiIcon type="folderClosed" />,
+        icon: <EuiIcon type="folder" />,
         iconWhenExpanded: <EuiIcon type="folderOpen" />,
         isExpanded: true,
         children: [

@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { VRT_SELECTORS } from '../../../../.storybook/vrt';
@@ -140,14 +140,14 @@ export const WithTooltips: Story = {
       },
       {
         id: 'button2',
-        iconType: 'securitySignalResolved',
+        iconType: 'check',
         label: 'Standard tooltip',
         toolTipContent: 'Hello world',
         autoFocus: true, // dev-only usage to showcase tooltip on load
       } as EuiButtonGroupOptionProps,
       {
         id: 'customToolTipProps',
-        iconType: 'securitySignalDetected',
+        iconType: 'warning',
         label: 'Custom tooltip',
         toolTipContent: 'Custom tooltip position',
         toolTipProps: {

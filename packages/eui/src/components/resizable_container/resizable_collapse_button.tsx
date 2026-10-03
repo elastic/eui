@@ -76,12 +76,18 @@ export const EuiResizableCollapseButton: FunctionComponent<
 
   switch (externalPosition) {
     case 'before':
-      COLLAPSED_ICON = isHorizontal ? 'menuLeft' : 'menuUp';
-      NOT_COLLAPSED_ICON = isHorizontal ? 'menuRight' : 'menuDown';
+      COLLAPSED_ICON = isHorizontal ? 'transitionLeftOut' : 'transitionTopOut';
+      NOT_COLLAPSED_ICON = isHorizontal
+        ? 'transitionLeftIn'
+        : 'transitionTopIn';
       break;
     case 'after':
-      COLLAPSED_ICON = isHorizontal ? 'menuRight' : 'menuDown';
-      NOT_COLLAPSED_ICON = isHorizontal ? 'menuLeft' : 'menuUp';
+      COLLAPSED_ICON = isHorizontal
+        ? 'transitionRightOut'
+        : 'transitionBottomOut';
+      NOT_COLLAPSED_ICON = isHorizontal
+        ? 'transitionRightIn'
+        : 'transitionBottomIn';
       break;
   }
 

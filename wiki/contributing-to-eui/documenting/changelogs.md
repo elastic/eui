@@ -6,7 +6,7 @@ Our release script automatically handles collating these files on new EUI versio
 
 ## When to write a changelog
 
-- Any updates to the `src/` folder should include a changelog
+- Any updates to the `packages/eui/src/` folder should include a changelog
 - `dependency` upgrades in `package.json` should contain a changelog
 
 ## When to skip a changelog

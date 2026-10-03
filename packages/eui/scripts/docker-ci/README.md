@@ -25,9 +25,10 @@ To start, you'll need to setup a local Docker environment. See [Docker's "Get st
 From the `scripts/docker-ci` directory:
 
 ```bash
-docker build [--no-cache] [--tag ci:x.x] .
+docker build --platform linux/amd64 [--no-cache] [--tag ci:x.x] .
 ```
 
+* Use the `--platform linux/amd64` option to build the image for CI's target architecture.
 * Use the `--no-cache` option if attempting the upgrade environment installations, like `node.js`, for instance.
 * Use the `--tag` option to give the image a reference name. Helpful if you plan on running the image locally (see next step).
 
@@ -54,6 +55,13 @@ docker tag IMAGE_ID docker.elastic.co/eui/ci:x.x
 
 ```bash
 docker push docker.elastic.co/eui/ci:x.x
+```
+
+After pushing, verify the published image is pullable and targets the right architecture:
+
+```bash
+docker manifest inspect docker.elastic.co/eui/ci:x.x
+# expect "architecture": "amd64" and "os": "linux"
 ```
 
 > :warning: There is a ~3 minute JWT timeout for docker image uploads (set by Elastic for security reasons and cannot be changed). If you receive a `unauthorized: authentication required` error after `docker push`, this means that your upload has timed out. Since docker uploads images in concurrent layers, it should still have uploaded a portion of the image.

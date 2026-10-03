@@ -24,14 +24,18 @@ export type EuiTextProps = SharedTextProps &
   EuiTextAlignment & {
     /**
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
+     * @default 's'
      */
     size?: TextSize;
     grow?: boolean;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/text/|EuiText documentation}
+ */
 export const EuiText: FunctionComponent<EuiTextProps> = ({
   component = 'div',
-  size = 'm',
+  size = 's',
   color,
   grow = true,
   textAlign,

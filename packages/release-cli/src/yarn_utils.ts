@@ -30,8 +30,21 @@ export const getYarnWorkspaces = async (includeRoot: boolean = false) => {
   return workspaces.filter((workspace) => workspace.location !== '.');
 };
 
-export const runScriptOnAllWorkspaces = async (script: string) => {
-  return execPromise(`yarn workspaces foreach --all run ${script}`);
+export const getWorkspacePattern = (workspaces: YarnWorkspace[]) => {
+  const workspaceNames = workspaces.map(({ name }) => name);
+  return workspaceNames.length === 1
+    ? workspaceNames[0]
+    : `{${workspaceNames.join(',')}}`;
+};
+
+export const runScriptOnWorkspaces = async (
+  script: string,
+  workspaces: YarnWorkspace[]
+) => {
+  const workspacePattern = getWorkspacePattern(workspaces);
+  return execPromise(
+    `yarn workspaces foreach --all --include "${workspacePattern}" run ${script}`
+  );
 };
 
 export const updateWorkspaceVersion = async (workspace: string, version: string) => {

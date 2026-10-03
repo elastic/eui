@@ -9,7 +9,7 @@
 import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-import { BaseObject } from '../../base_object';
+import { BaseObject, type ObjectScope } from '../../base_object';
 import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
 
 /**
@@ -21,6 +21,10 @@ import { EuiComboBoxSelectors } from '../../../components/combo_box/selectors';
  * `comboBoxInput`).
  */
 export class EuiComboBoxObject extends BaseObject {
+  constructor(scope: ObjectScope, testSubj: string) {
+    super(scope, testSubj, EuiComboBoxSelectors.ROOT_SELECTOR);
+  }
+
   /**
    * Replace the current selection with `labels`. Set-semantics: order-
    * independent — already-selected labels are kept, missing ones are added,
@@ -28,8 +32,15 @@ export class EuiComboBoxObject extends BaseObject {
    *
    * Throws with a descriptive message if any label never appears in the
    * dropdown (catches test/data drift early).
+   *
+   * `timeout` bounds how long each option is awaited in the dropdown after
+   * typing — raise it for slow / server-backed combos whose options load
+   * asynchronously.
    */
-  async setSelectedOptions(labels: string[]): Promise<void> {
+  async setSelectedOptions(
+    labels: string[],
+    { timeout = 2_500 }: { timeout?: number } = {}
+  ): Promise<void> {
     // Dedupe while preserving order.
     const targetLabels = [...new Set(labels)];
     // `[...arr].sort()` (not `arr.sort()`) — sort mutates in place; the copy
@@ -46,29 +57,79 @@ export class EuiComboBoxObject extends BaseObject {
       return;
     }
 
-    // Naive replace — clear, then add each. A diff-based approach would do
-    // less DOM work but require a per-pill remove primitive we don't ship yet.
-    await this.clear();
-
-    for (const label of targetLabels) {
-      await this.addOption(label);
+    // Naive replace — clear, then add each. Exception: asPlainText single-select
+    // replaces its selection when a new option is picked, so clearing first is
+    // unnecessary — and its input can hold a non-clearable default (a placeholder
+    // rendered as the value) that clear() can't empty. Still clear when the target
+    // is empty (nothing to select would leave the old selection in place).
+    if (targetLabels.length === 0 || !(await this.isPlainText())) {
+      await this.clear();
     }
 
-    if (targetLabels.length > 0) {
+    for (const label of targetLabels) {
+      await this.addOption(label, timeout);
+    }
+
+    if (targetLabels.length > 0 && !(await this.isPlainText())) {
       // Blur the input to close the dropdown. Using blur() rather than a
       // keyboard event avoids bubbling Escape to page-level handlers
-      // (modal/flyout close listeners) on the consumer page.
+      // (modal/flyout close listeners) on the consumer page. Skipped for
+      // asPlainText: picking an option there already commits and closes the
+      // dropdown, and an extra blur can race the (often parent-controlled)
+      // selectedOptions update and discard the just-picked value.
       await this.searchInput.blur();
     }
 
-    expect([...(await this.getSelectedOptions())].sort()).toEqual(sortedTarget);
+    // Poll rather than assert once: an asPlainText selection is committed via
+    // the consumer's onChange, which can land a tick after the click.
+    await expect
+      .poll(() => this.getSelectedOptions().then((options) => [...options].sort()), { timeout })
+      .toEqual(sortedTarget);
+  }
+
+  /**
+   * Set free-text values on an `onCreateOption` combo box by typing and
+   * committing each with Enter, then verifying it was accepted. Unlike
+   * {@link setSelectedOptions}, this creates values rather than picking
+   * existing options.
+   */
+  async setCustomSelectedOptions(
+    labels: string[],
+    { timeout = 2_500 }: { timeout?: number } = {}
+  ): Promise<void> {
+    for (const label of labels) {
+      await this.input.click();
+      await this.searchInput.fill(label);
+      await this.searchInput.press('Enter');
+      await this.searchInput.blur();
+    }
+    // The typed value equals the resulting pill/input label, so membership is
+    // an exact check.
+    for (const label of labels) {
+      await expect.poll(() => this.getSelectedOptions(), { timeout }).toContain(label);
+    }
+  }
+
+  /**
+   * Open the dropdown and return the labels of the currently visible options.
+   * Virtualized lists mount only a subset, so this is the visible slice — not
+   * guaranteed to be every option.
+   */
+  async getAllVisibleOptions(): Promise<string[]> {
+    await this.input.click();
+    const optionsList = this.root
+      .page()
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj));
+    await optionsList.waitFor({ state: 'visible' });
+    return optionsList.getByRole('option').allInnerTexts();
   }
 
   /**
    * Clear all selected options. No-op if nothing is selected.
    *
    * Auto-detects the combo box configuration and uses the appropriate strategy:
-   * - Pills present → {@link clickPillClearButtons}
+   * - Pills with a close button → {@link clickPillClearButtons}
+   * - Pills without a close button (`singleSelection`) → {@link clearPillWithoutCloseButton}
    * - `asPlainText` with a confirmed input selection → {@link deleteSearchInput}
    * - Otherwise → {@link deselectAllFromDropdown}
    *
@@ -82,7 +143,11 @@ export class EuiComboBoxObject extends BaseObject {
     }
 
     if (await this.hasPills()) {
-      await this.clickPillClearButtons();
+      if (await this.hasPillCloseButtons()) {
+        await this.clickPillClearButtons();
+      } else {
+        await this.clearPillWithoutCloseButton();
+      }
       return;
     }
 
@@ -98,10 +163,8 @@ export class EuiComboBoxObject extends BaseObject {
    * Currently selected option labels.
    *
    * - Multi-select / `singleSelection=true` → pill texts.
-   * - `singleSelection={{ asPlainText: true }}` → the input value. EUI
-   *   renders no pills in this mode; the input IS the selection display.
-   *   Works correctly with both `isClearable=true` (default) and
-   *   `isClearable=false`.
+   * - `singleSelection={{ asPlainText: true }}` → the input value (EUI renders
+   *   no pills in this mode).
    * - Nothing selected → `[]`.
    */
   async getSelectedOptions(): Promise<string[]> {
@@ -118,15 +181,31 @@ export class EuiComboBoxObject extends BaseObject {
     return (await this.pills.count()) > 0;
   }
 
+  private async hasPillCloseButtons(): Promise<boolean> {
+    return (await this.pills.first().locator('button').count()) > 0;
+  }
+
   /**
    * Clicks the `×` button on each selected pill individually.
-   * Works regardless of `isClearable` — pill close buttons are always present.
    * No-op if no pills are rendered.
    */
   private async clickPillClearButtons(): Promise<void> {
     while (await this.hasPills()) {
       const countBefore = await this.pills.count();
       await this.pills.first().locator('button').click();
+      await expect(this.pills).not.toHaveCount(countBefore);
+    }
+  }
+
+  /**
+   * `singleSelection` pills render without a close button, whatever
+   * `isClearable` is. Backspace on an empty search input removes the
+   * selection instead.
+   */
+  private async clearPillWithoutCloseButton(): Promise<void> {
+    while (await this.hasPills()) {
+      const countBefore = await this.pills.count();
+      await this.searchInput.press('Backspace');
       await expect(this.pills).not.toHaveCount(countBefore);
     }
   }
@@ -156,27 +235,32 @@ export class EuiComboBoxObject extends BaseObject {
     await this.searchInput.blur();
   }
 
-  private async addOption(label: string): Promise<void> {
+  private async addOption(label: string, timeout = 2_500): Promise<void> {
     // Clicking the outer wrapper does not reliably open the dropdown; the
     // inner `comboBoxInput` element does.
     await this.input.click();
 
-    // Don't type to filter: EUI only sets an option's `title` while the input
-    // is empty, and the getByTitle match below relies on it. setSelectedOptions
-    // clears the selection first, so the list is unfiltered and every option
-    // renders its title.
-    //
-    // Options list is rendered in a portal outside `this.root`, so locate
-    // from page level. Use .and(getByTitle) rather than embedding the label
-    // in the CSS string — CSS attribute selectors break on labels containing
-    // quotes, brackets, or backslashes. getByTitle alone would search
-    // descendants; .and() intersects so it matches the option element itself.
-    const option = this.root
+    // Type to filter, then wait for the (now narrowed) options to render.
+    await this.searchInput.fill(label);
+    const options = this.root
       .page()
-      .locator(EuiComboBoxSelectors.optionFor(this.testSubj))
-      .and(this.root.page().getByTitle(label, { exact: true }));
-    await option.waitFor({ state: 'visible' });
-    await option.click();
+      .locator(EuiComboBoxSelectors.optionsListFor(this.testSubj))
+      .getByRole('option');
+    await expect.poll(() => options.count(), { timeout }).toBeGreaterThan(0);
+
+    // Match on each option's full text so "ip" doesn't select "clientip" (EUI
+    // wraps the matched substring in `<mark>` while filtering, so a text-node
+    // lookup would match inside a longer option). If the text is truncated and
+    // has no exact match, fall back to keyboard-selecting the highlighted option.
+    const trimmed = label.trim();
+    const texts = await options.allInnerTexts();
+    const exactIndex = texts.findIndex((text) => text.trim() === trimmed);
+    if (exactIndex >= 0) {
+      await options.nth(exactIndex).click();
+    } else {
+      await this.searchInput.press('ArrowDown');
+      await this.searchInput.press('Enter');
+    }
   }
 
   /**
@@ -228,7 +312,7 @@ export class EuiComboBoxObject extends BaseObject {
   }
 
   private get pills(): Locator {
-    return this.root.getByTestId(EuiComboBoxSelectors.PILL_TEST_SUBJ);
+    return this.root.locator(EuiComboBoxSelectors.PILL_SELECTOR);
   }
 
   private async isPlainText(): Promise<boolean> {

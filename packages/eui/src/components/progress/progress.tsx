@@ -89,6 +89,9 @@ type Determinate = EuiProgressProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/progress/|EuiProgress documentation}
+ */
 export const EuiProgress: FunctionComponent<
   ExclusiveUnion<Determinate, Indeterminate>
 > = ({

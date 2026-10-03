@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiLink, EuiLinkProps } from './link';
 
@@ -20,7 +20,7 @@ const meta: Meta<EuiLinkProps> = {
     disabled: { control: { type: 'boolean' } },
   },
   args: {
-    color: 'primary',
+    color: 'text',
     type: 'button',
   },
 };
@@ -32,5 +32,15 @@ export const Playground: Story = {
   args: {
     children: 'Elastic website',
     href: 'http://www.elastic.co/',
+  },
+};
+
+export const External: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: 'Elastic website',
+    href: 'http://www.elastic.co/',
+    external: true,
+    target: '_blank',
   },
 };

@@ -1,3 +1,41 @@
+## [`v2.8.0`](https://github.com/elastic/eui/releases/v2.8.0)
+
+- Added a hover animation to the EUI mark in the documentation navbar. ([#9924](https://github.com/elastic/eui/pull/9924))
+
+**Bug fixes**
+
+- Fixed overlapping rows and inconsistent hover highlighting in `VersionSwitcher` ([#9925](https://github.com/elastic/eui/pull/9925))
+
+## [`v2.7.0`](https://github.com/elastic/eui/releases/v2.7.0)
+
+- Refactored the FigmaEmbed component to become a more generic FigmaAsset so that can output either an SVG (Now as a default) raster image asset or a Figma embed iframe. ([#9830](https://github.com/elastic/eui/pull/9830))
+
+## [`v2.6.0`](https://github.com/elastic/eui/releases/v2.6.0)
+
+- Updated `icon_map.ts` to centralise all available icons in a single file, with optional metadata like synonyms and categories alongside each icon reference. ([#9675](https://github.com/elastic/eui/pull/9675))
+- Removed redundant static icon type files: `icon_types.ts`, `icon_types_apps.ts`, `icon_types_logos.ts`, `icon_types_ml.ts`, `icon_types_tokens.ts`. ([#9675](https://github.com/elastic/eui/pull/9675))
+
+**Accessibility**
+
+- Adding synonyms to each icon improves discoverability and search experience when looking for specific icons. ([#9675](https://github.com/elastic/eui/pull/9675))
+
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
+
+- Wrapped the documentation heading anchor link `EuiButtonIcon` in an `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
+- Wrapped navbar icon links and toggles in `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
+- Added vertical spacing around MDX code blocks in the Docusaurus theme. ([#9762](https://github.com/elastic/eui/pull/9762))
+
+**Bug fixes**
+
+- Disabled the fullscreen button for one-liner code snippets on the docs site. ([#9792](https://github.com/elastic/eui/pull/9792))
+- Fixed the docs Demo source editor to match the selected color mode. ([#9769](https://github.com/elastic/eui/pull/9769))
+- Fixed the docs navbar to switch to mobile navigation at tablet widths. ([#9738](https://github.com/elastic/eui/pull/9738))
+- Added `EuiThemeProvider` on `DemoPreview` to reset doc level overrides. ([#9642](https://github.com/elastic/eui/pull/9642))
+
+**Dependency updates**
+
+- Replaced `codesandbox` with `lz-string@^1.5.0` for CodeSandbox demo parameter encoding, removing vulnerable transitive dependencies from `axios`. ([#9790](https://github.com/elastic/eui/pull/9790))
+
 ## [`v2.4.0`](https://github.com/elastic/eui/releases/v2.4.0)
 
 - Updated `VersionSwitcher` to align with the updated API for `EuiListGroupItem` ([#9579](https://github.com/elastic/eui/pull/9579))

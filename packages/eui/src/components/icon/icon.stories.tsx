@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiIcon, EuiIconProps, TYPES as ICON_TYPES } from './icon';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -32,6 +32,9 @@ export const Playground: Story = {};
 
 export const AllIcons: Story = {
   tags: ['vrt-only'],
+  parameters: {
+    vrt: { skip: ['mobile'] },
+  },
   render: () => (
     <EuiFlexGroup wrap gutterSize="s">
       {ICON_TYPES.map((iconType) => (

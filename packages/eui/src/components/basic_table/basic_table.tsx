@@ -320,6 +320,9 @@ function hasPagination<T extends object>(
   return x.hasOwnProperty('pagination') && !!x.pagination;
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/tables/basic/|EuiBasicTable documentation}
+ */
 export class EuiBasicTable<T extends object = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>

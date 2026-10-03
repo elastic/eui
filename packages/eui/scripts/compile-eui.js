@@ -87,14 +87,50 @@ async function copySvgFiles() {
     realpath: true,
   });
 
-  const destinationDirs = ['optimize/lib', 'lib'].map((dir) =>
-    path.join(packageRootDir, dir)
+  const destinationDirs = ['optimize/lib', 'optimize/es', 'lib', 'es'].map(
+    (dir) => path.join(packageRootDir, dir)
   );
 
   const count = await copyFilesToDestinationDirs(files, destinationDirs);
 
   console.log(
-    `Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`
+    `Successfully copied ${count} SVG files from src/ to lib/, es/, optimize/lib/, and optimize/es/`
+  );
+}
+
+// NOTE: eui-icons.json is for server-side/build-time use only; client-side imports will bundle all SVGs.
+async function buildSvgBundle() {
+  const svgsRootDir = path.join(srcDir, 'components', 'icon', 'svgs');
+  const distSvgsDir = path.join(packageRootDir, 'dist', 'svgs');
+  const manifest = {};
+
+  const files = glob.globIterate('components/icon/svgs/**/*.svg', {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  for await (const filePath of files) {
+    const fullSrcPath = path.join(srcDir, filePath);
+    // Use path.relative() to derive the path from the svgs root — handles both
+    // absolute paths and OS-specific separators correctly
+    const svgRelPath = path.relative(svgsRootDir, fullSrcPath);
+    const destPath = path.join(distSvgsDir, svgRelPath);
+
+    await fs.mkdir(path.dirname(destPath), { recursive: true });
+    await fs.copyFile(fullSrcPath, destPath);
+
+    const svgContent = await fs.readFile(fullSrcPath, 'utf8');
+    // Normalize to POSIX separators for cross-platform manifest keys
+    const key = svgRelPath.replace(/\\/g, '/').replace(/\.svg$/, '');
+    manifest[key] = svgContent;
+  }
+
+  const manifestPath = path.join(packageRootDir, 'dist', 'eui-icons.json');
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const count = Object.keys(manifest).length;
+  console.log(
+    `Successfully built SVG bundle: ${count} icons copied to dist/svgs/ and manifest written to dist/eui-icons.json`
   );
 }
 
@@ -103,7 +139,7 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
     const args = [
       '--quiet',
       `--out-dir=${outDir}`,
-      '--extensions=.js,.ts,.tsx',
+      '--extensions=.js,.jsx,.ts,.tsx',
       `--ignore=${ignore}`,
     ];
 
@@ -134,7 +170,12 @@ function runBabel({ outDir, ignore, configFile, env = {} }) {
 async function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
 
-  console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
+  const optimizeEsOnly = process.argv.includes('--optimize-es-only');
+  console.log(
+    optimizeEsOnly
+      ? 'Compiling src/ to optimize/es'
+      : 'Compiling src/ to es/, lib/, optimize/, and test-env/'
+  );
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
@@ -193,16 +234,43 @@ async function compileLib() {
     },
   ];
 
+  const configs = optimizeEsOnly
+    ? babelConfigs.filter((config) => config.outDir === 'optimize/es')
+    : babelConfigs;
+
   if (process.argv.includes('--no-parallel')) {
-    for (const config of babelConfigs) {
+    for (const config of configs) {
       await runBabel(config);
     }
   } else {
-    const results = await Promise.allSettled(babelConfigs.map(runBabel));
+    const results = await Promise.allSettled(configs.map(runBabel));
     const failed = results.filter((r) => r.status === 'rejected');
     if (failed.length) {
       throw new Error(`${failed.length} Babel builds failed`);
     }
+  }
+
+  if (optimizeEsOnly) {
+    const optimizeEsDir = path.join(packageRootDir, 'optimize', 'es');
+    const jsonCount = await copyFilesToDestinationDirs(
+      glob.globIterate('**/*.json', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    const svgCount = await copyFilesToDestinationDirs(
+      glob.globIterate('components/**/*.svg', {
+        cwd: srcDir,
+        realpath: true,
+      }),
+      [optimizeEsDir]
+    );
+    console.log(
+      `Copied ${jsonCount} JSON and ${svgCount} SVG files to optimize/es`
+    );
+    console.log(chalk.green('✔ Finished compiling optimize/es'));
+    return;
   }
 
   await renameTestEnvFiles();
@@ -295,6 +363,8 @@ async function compileBundle() {
 
     console.log(chalk.green('✔ Finished test utils files'));
   }
+
+  await buildSvgBundle();
 }
 
 async function cleanup() {
@@ -313,7 +383,9 @@ async function cleanup() {
 
         if (!shouldRetry) throw error;
 
-        await new Promise((resolve) => setTimeout(resolve, CLEANUP_RETRY_DELAY_MS));
+        await new Promise((resolve) =>
+          setTimeout(resolve, CLEANUP_RETRY_DELAY_MS)
+        );
       }
     }
   };
@@ -326,9 +398,21 @@ async function cleanup() {
 }
 
 async function compile() {
+  if (process.argv.includes('--optimize-es-only')) {
+    await fs.rm(path.join(packageRootDir, 'optimize', 'es'), {
+      recursive: true,
+      force: true,
+    });
+    await compileLib();
+    return;
+  }
+
   await cleanup();
   await compileLib();
   await compileBundle();
 }
 
-compile();
+compile().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

@@ -1,5 +1,110 @@
 [
   {
+    "version": "122.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.checkedOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiKeyboardShortcuts.cmd",
+        "changeType": "added",
+        "value": "Cmd"
+      },
+      {
+        "token": "euiKeyboardShortcuts.copyTitle",
+        "changeType": "added",
+        "value": "C"
+      },
+      {
+        "token": "euiKeyboardShortcuts.copyDescription",
+        "changeType": "added",
+        "value": "Copy the focused cell value"
+      }
+    ]
+  },
+  {
+    "version": "121.0.0",
+    "changes": [
+      {
+        "token": "euiTimeWindowButtons.label",
+        "changeType": "added",
+        "value": "Time window controls"
+      }
+    ]
+  },
+  {
+    "version": "119.1.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.back.tooltip",
+        "changeType": "added",
+        "value": "Back to {previousPage}"
+      }
+    ]
+  },
+  {
+    "version": "118.0.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.history.tooltip",
+        "changeType": "added",
+        "value": "Recently visited"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.first",
+        "changeType": "added",
+        "value": "First"
+      },
+      {
+        "token": "euiFlyoutMenu.pagination.last",
+        "changeType": "added",
+        "value": "Last"
+      }
+    ]
+  },
+  {
+    "version": "118.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavBeta.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.groupLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsedNavButton.ariaLabelButtonIcon",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "116.4.0",
     "changes": [
       {

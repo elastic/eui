@@ -82,6 +82,9 @@ export type EuiFormControlLayoutProps = CommonProps &
     wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/layouts/controls/|EuiFormControlLayout documentation}
+ */
 export const EuiFormControlLayout: FunctionComponent<
   EuiFormControlLayoutProps & {
     // Internal prop used by EuiFormControlLayoutDelimited
@@ -132,6 +135,7 @@ export const EuiFormControlLayout: FunctionComponent<
       ? [
           styles.group.group,
           compressed ? styles.group.compressed : styles.group.uncompressed,
+          (isDisabled || readOnly) && styles.group.disabled,
         ]
       : []),
   ];

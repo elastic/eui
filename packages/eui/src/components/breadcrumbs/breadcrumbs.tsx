@@ -29,6 +29,9 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/breadcrumbs/|EuiBreadcrumbs documentation}
+ */
 export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,

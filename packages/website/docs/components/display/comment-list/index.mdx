@@ -24,6 +24,7 @@ import {
   EuiBadge,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiToolTip,
 } from '@elastic/eui';
 
 const body = (
@@ -35,13 +36,16 @@ const body = (
   </EuiText>
 );
 
+const customActionLabel = 'Custom action';
+
 const copyAction = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="text"
-    iconType="copy"
-  />
+  <EuiToolTip content={customActionLabel} disableScreenReaderOutput>
+    <EuiButtonIcon
+      aria-label={customActionLabel}
+      color="text"
+      iconType="copy"
+    />
+  </EuiToolTip>
 );
 
 const complexEvent = (
@@ -157,6 +161,7 @@ import {
   EuiSelect,
   EuiCode,
   EuiCommentEventProps,
+  EuiToolTip,
 } from '@elastic/eui';
 
 const body = (
@@ -168,13 +173,16 @@ const body = (
   </EuiText>
 );
 
+const customActionLabel = 'Custom action';
+
 const copyAction = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="text"
-    iconType="copy"
-  />
+  <EuiToolTip content={customActionLabel} disableScreenReaderOutput>
+    <EuiButtonIcon
+      aria-label={customActionLabel}
+      color="text"
+      iconType="copy"
+    />
+  </EuiToolTip>
 );
 
 const eventWithMultipleTags = (
@@ -460,16 +468,20 @@ export default () => {
     </EuiFlyout>
   );
 
+  const actionsLabel = 'Actions';
+
   const customActions = (
     <EuiPopover
       button={
-        <EuiButtonIcon
-          aria-label="Actions"
-          iconType="boxes_vertical"
-          size="xs"
-          color="text"
-          onClick={togglePopover}
-        />
+        <EuiToolTip content={actionsLabel} disableScreenReaderOutput>
+          <EuiButtonIcon
+            aria-label={actionsLabel}
+            iconType="boxes_vertical"
+            size="xs"
+            color="text"
+            onClick={togglePopover}
+          />
+        </EuiToolTip>
       }
       isOpen={isPopoverOpen}
       closePopover={togglePopover}
@@ -492,24 +504,26 @@ export default () => {
     </EuiPopover>
   );
 
+  const copyAlertLinkLabel = 'Copy alert link';
+
   const updateActions = [
-    <EuiButtonIcon
-      key="copy-alert"
-      title="Copy alert link"
-      aria-label="Copy alert link"
-      iconType="link"
-      size="xs"
-      color="text"
-    />,
-    <EuiButtonIcon
-      key="show-details"
-      title="Show the alert details in a flyout"
-      aria-label="Show details"
-      iconType="external"
-      size="xs"
-      color="text"
-      onClick={toggleFlyout}
-    />,
+    <EuiToolTip key="copy-alert" content={copyAlertLinkLabel} disableScreenReaderOutput>
+      <EuiButtonIcon
+        aria-label={copyAlertLinkLabel}
+        iconType="link"
+        size="xs"
+        color="text"
+      />
+    </EuiToolTip>,
+    <EuiToolTip key="show-details" content="Show the alert details in a flyout">
+      <EuiButtonIcon
+        aria-label="Show details"
+        iconType="external"
+        size="xs"
+        color="text"
+        onClick={toggleFlyout}
+      />
+    </EuiToolTip>,
   ];
 
   return (
@@ -574,13 +588,16 @@ import {
   EuiAvatar,
 } from '@elastic/eui';
 
+const customActionLabel = 'Custom action';
+
 const actionButton = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="text"
-    iconType="copy"
-  />
+  <EuiToolTip content={customActionLabel} disableScreenReaderOutput>
+    <EuiButtonIcon
+      aria-label={customActionLabel}
+      color="text"
+      iconType="copy"
+    />
+  </EuiToolTip>
 );
 
 const complexEvent = (

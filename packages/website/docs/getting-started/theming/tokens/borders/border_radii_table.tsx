@@ -9,6 +9,10 @@ import { ThemeValuesTable } from '../../theme_values_table';
 const borderRadii: Array<keyof _EuiThemeBorderRadiusValues> = [
   'small',
   'medium',
+  'inline',
+  'control',
+  'panel',
+  'frame',
 ];
 
 export const BorderRadiiTable = () => {

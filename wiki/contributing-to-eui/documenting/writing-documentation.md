@@ -15,7 +15,7 @@
   - [Full-screen example](#full-screen-example)
   - [Tables](#tables)
   - [Dos and Don'ts](#dos-and-donts)
-  - [Figma embed](#figma-embed)
+  - [Figma asset](#figma-asset)
   - [Props table](#props-table)
   - [Images](#images)
 
@@ -41,7 +41,7 @@ Files and folder names must use [kebab-case](https://developer.mozilla.org/en-US
 There are a few React components that can be used in `.mdx` files without being imported. They are part of the [MDX scope](https://docusaurus.io/docs/next/markdown-features/react/#mdx-component-scope). Some of them, documented below, are:
 
 - [`Demo`](#demo-props)
-- [`FigmaEmbed`](#figma-embed)
+- [`FigmaAsset`](#figma-asset)
 - [`Guideline`](#guideline-props)
 - [`PropTable`](#props-table)
 
@@ -354,13 +354,41 @@ For dos and don'ts sections there's a `Guideline` component with the appropriate
 - `panelPadding` (optional) - To adjust the padding of the panel
 - `panelStyle` (optional) - To further customize the panel styles
 
-### Figma embed
+### Figma asset
 
-It's possible to embed a Figma file right into a page. The `FigmaEmbed` component accepts a `url` from a Figma file and a `title`:
+Use `FigmaAsset` to show a Figma design in docs. By default it renders a static image (SVG preferred). Pass `type="embed"` to show an interactive Figma iframe instead.
+
+Props are a discriminated union on `type`: image mode requires `src` (and forbids embedding-only combinations); embed mode forbids `src`. `title` is always required for accessibility.
+
+**Image (default)** — import a colocated asset as a URL (use `!url-loader!` for SVGs; bare `.svg` imports become React components via SVGR). WebP/PNG imports work the same way if you need them later:
 
 ```mdx
-<FigmaEmbed url="https://www.figma.com/file/Uo8i…DX-0" title="Title of the embed" />
+import confirmationModal from '!url-loader!./assets/modal_confirming-an-action.svg';
+
+<FigmaAsset
+  url="https://www.figma.com/file/Uo8i…DX-0"
+  src={confirmationModal}
+  title="Title of the asset"
+/>
 ```
+
+**Embed** — interactive iframe from the Figma `url`:
+> **Important note:** Use it only when necessary — only when users need to zoom into UI details. It impacts rendering performance and stability in the sections where applied.
+
+```mdx
+<FigmaAsset
+  type="embed"
+  url="https://www.figma.com/file/Uo8i…DX-0"
+  title="Title of the embed"
+/>
+```
+
+| Prop | Description |
+| ---- | ----------- |
+| `url` | Figma file/node URL (used for embed; kept as source reference for images) |
+| `src` | Image URL string — SVG preferred; WebP/PNG supported (**required** for `type="image"`; not allowed for `type="embed"`) |
+| `type` | `"image"` (default) or `"embed"` |
+| `title` | **Required** accessible text (image `alt` / iframe `title`) |
 
 ### Props table
 

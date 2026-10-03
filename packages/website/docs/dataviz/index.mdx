@@ -2,6 +2,13 @@
 sidebar_position: 1
 ---
 
+import figmaDatavizConsistency from '!url-loader!./assets/dataviz_consistency.svg';
+import figmaDatavizHierarchyOfInformation from '!url-loader!./assets/dataviz_hierarchy-of-information.svg';
+import figmaDatavizSemantic from '!url-loader!./assets/dataviz_semantic.svg';
+import figmaDatavizTitlesAndLabels from '!url-loader!./assets/dataviz_titles-and-labels.svg';
+import figmaDatavizMultiPurposeCharts from '!url-loader!./assets/dataviz_multi-purpose-charts.svg';
+import figmaDatavizTimeAxis from '!url-loader!./assets/dataviz_time-axis.svg';
+
 # Overview
 
 import VersionBadge from './version_badge';
@@ -20,8 +27,10 @@ Please consider that the work described in this page is a long term goal that we
 It might sound simple, even trivial from some points of view, but the most important thing is that all charts should look like they belong to the same system. Charts should behave (link to interaction page) and look similar, there should be an overall shared aesthetic that is consistent among them and with EUI.
 If charts, such as any other component, look different from the rest of elements they will be perceived as detached from the product and the whole user experience would be affected, this is why elements within charts follow the same set of rules of positioning, style and interaction.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1713-24059&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="Library consistency."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1713-24059&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizConsistency}
+  title="Library consistency."
 />
 
 ---
@@ -34,8 +43,10 @@ We consider the concept of style as not purely related to aesthetics. While we o
 
 Labels on top of charts are a good example of this concept. Up until 8.11, charts such as pie charts and treemaps have been displaying information in a slightly confusing and conflicting way (left). Reading direction would suggest that the first information we display is the most important, while font-weight in communicating the opposite, giving the values a stronger visual role. The planned design update (right) reinforces these roles being redundant in both position and weight across these two elements.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=2301-2073&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="Hierarchy of information."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=2301-2073&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizHierarchyOfInformation}
+  title="Hierarchy of information."
 />
 
 ### Semantic
@@ -44,8 +55,10 @@ When representing data, everything should have a meaning and every detail should
 Labels that describe passage of time (such as timestamps, dates or hours and minutes) are always positioned right next to the gridlines, suggesting that a specific portion of time starts from that specific point and proceeds from that.
 Categorical labels (such as the name of a Country, or a specific data series), instead, are always centered on the element in order to directly associate the label with the referred element.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-43337&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="Charts semantics."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-43337&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizSemantic}
+  title="Charts semantics."
 />
 
 ---
@@ -56,8 +69,10 @@ Titles and subtitles play a crucial role in describing what the user is supposed
 
 Few typologies of charts (e.g. Metric and Bullet) include, by design, their own title and subtitle while in other cases (e.g. line charts, barchart) that is not required. Both these cases should be consistent and should follow the same rules in order to have a cohesive visual appearance when placed next to each other.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-45544&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="titles and labels."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-45544&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizTitlesAndLabels}
+  title="titles and labels."
 />
 
 ---
@@ -78,8 +93,10 @@ In data visualization you can often obtain the same representation with differen
 
 A good example would be a representation of the health status of a monitored environment, which we represent here with a heatmap and a barchart getting pretty similar results.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1701-19998&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="Multi-purpose charts."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1701-19998&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizMultiPurposeCharts}
+  title="Multi-purpose charts."
 />
 
 ---
@@ -92,6 +109,8 @@ A first set of gridlines display the detailed set of time buckets while a higher
 
 Timestamps are also automatically transformed into common ways of writing time such as hours and minutes instead of milliseconds.
 
-<FigmaEmbed url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-43797&mode=design&t=k01qLYeiGwXgx47y-4"
-    title="Time axis."
+<FigmaAsset
+  url="https://www.figma.com/file/aOhpp2CK5tZTGxerdklavR/Elastic-Charts-as-a-Design-System-%5B220%5D?type=design&node-id=1732-43797&mode=design&t=k01qLYeiGwXgx47y-4"
+  src={figmaDatavizTimeAxis}
+  title="Time axis."
 />

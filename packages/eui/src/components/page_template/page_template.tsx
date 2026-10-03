@@ -251,6 +251,9 @@ const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
 };
 _EuiPageBottomBar.displayName = 'EuiPageTemplate.BottomBar';
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/templates/page-template/|EuiPageTemplate documentation}
+ */
 export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
   Sidebar: _EuiPageSidebar,
   Header: _EuiPageHeader,

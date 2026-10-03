@@ -38,6 +38,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   id,
   index,
   isLastColumn,
+  isLastCopyColumn = isLastColumn,
+  isControlColumn = false,
   width,
   className,
   children,
@@ -110,6 +112,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       aria-labelledby={renderFocusTrap ? ariaLabelledby : undefined}
       {...rest}
     >
+      {isControlColumn && tabularCopyMarkers.hiddenNoCopyBoundary}
       <HandleInteractiveChildren
         cellEl={isDragging ? null : headerEl}
         renderFocusTrap={isDragging ? false : renderFocusTrap}
@@ -118,7 +121,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       >
         {typeof children === 'function' ? children(renderFocusTrap) : children}
       </HandleInteractiveChildren>
-      {isLastColumn
+      {isControlColumn
+        ? tabularCopyMarkers.hiddenNoCopyBoundary
+        : isLastCopyColumn
         ? tabularCopyMarkers.hiddenNewline
         : tabularCopyMarkers.hiddenTab}
     </div>

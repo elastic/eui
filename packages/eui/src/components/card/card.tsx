@@ -138,6 +138,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     hasBorder?: EuiPanelProps['hasBorder'];
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/containers/card/|EuiCard documentation}
+ */
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
   description,
@@ -404,7 +407,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={isDisabled || display ? false : true}
-      hasBorder={display ? false : undefined}
+      hasBorder={false}
       paddingSize={paddingSize}
       {...rest}
     >

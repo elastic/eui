@@ -25,6 +25,11 @@ export const useDataGridKeyboardShortcuts = (): {
 
   const title = useEuiI18n('euiKeyboardShortcuts.title', 'Keyboard shortcuts');
   const titleId = useGeneratedHtmlId();
+  const copyModifier =
+    typeof navigator !== 'undefined' &&
+    /Mac|iP(hone|od|ad)/.test(navigator.platform)
+      ? 'Cmd'
+      : 'Ctrl';
 
   const styles = useEuiMemoizedStyles(euiDataGridKeyboardShortcutsStyles);
 
@@ -272,12 +277,43 @@ export const useDataGridKeyboardShortcuts = (): {
                   />
                 ),
               },
+              {
+                title: (
+                  <>
+                    <kbd>
+                      {copyModifier === 'Cmd' ? (
+                        <EuiI18n
+                          token="euiKeyboardShortcuts.cmd"
+                          default="Cmd"
+                        />
+                      ) : (
+                        <EuiI18n
+                          token="euiKeyboardShortcuts.ctrl"
+                          default="Ctrl"
+                        />
+                      )}
+                    </kbd>{' '}
+                    <kbd>
+                      <EuiI18n
+                        token="euiKeyboardShortcuts.copyTitle"
+                        default="C"
+                      />
+                    </kbd>
+                  </>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.copyDescription"
+                    default="Copy the focused cell value"
+                  />
+                ),
+              },
             ]}
           />
         </EuiText>
       </EuiPopover>
     ),
-    [isOpen, title, titleId, styles]
+    [isOpen, title, titleId, styles, copyModifier]
   );
 
   return { keyboardShortcuts };

@@ -29,7 +29,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.control};
       color: ${euiTheme.colors
         .textParagraph}; /* Override possible link color */
 
@@ -59,6 +59,12 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     selected: css`
       color: ${euiTheme.colors.textHeading};
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.primary};
+        `,
+      })}
 
       &:is(*, :hover, :focus, :focus-within) {
         color: ${euiTheme.colors.textPrimary};

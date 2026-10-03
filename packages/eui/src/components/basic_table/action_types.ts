@@ -64,6 +64,10 @@ export interface DefaultItemEmptyButtonAction<T extends object>
    * The type of action
    */
   type?: 'button';
+  /**
+   * Defines the color of the button.
+   * @default text
+   */
   color?: EuiButtonEmptyProps['color'] | EuiButtonIconColorFunction<T>;
 }
 
@@ -76,6 +80,7 @@ export interface DefaultItemIconButtonAction<T extends object>
   icon: EuiIconType | IconFunction<T>;
   /**
    * Defines the color of the button
+   * @default text
    */
   color?: EuiButtonIconProps['color'] | EuiButtonIconColorFunction<T>;
 }

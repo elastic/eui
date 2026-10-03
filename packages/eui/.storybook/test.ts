@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { queries, within, waitFor, fireEvent, expect } from '@storybook/test';
+import { queries, within, waitFor, fireEvent, expect } from 'storybook/test';
 import * as dataTestSubjQueries from '../src/test/rtl/data_test_subj_queries';
 
 /**
@@ -37,10 +37,42 @@ const customWithin = (canvasElement: HTMLElement) => {
       await fireEvent.click(canvas.getByTestSubject(testSubject));
     },
 
-    waitForEuiPopoverVisible: async () =>
+    waitForEuiPopoverVisible: async (anchorSelector?: string) => {
       await waitFor(() =>
         expect(canvasElement.querySelector('[data-popover-open]')).toBeVisible()
-      ),
+      );
+
+      if (anchorSelector) {
+        await waitFor(() =>
+          expect(canvasElement.querySelector(anchorSelector)).toBeTruthy()
+        );
+      }
+
+      // Popover takes the available space so it can shift depending on the anchor position.
+      // Wait until the panel stops moving.
+
+      let lastLeft: number | undefined;
+      let lastTop: number | undefined;
+
+      await waitFor(() => {
+        const panel =
+          canvasElement.ownerDocument.querySelector('[data-popover-panel]') ??
+          canvasElement.querySelector('[data-popover-open]');
+
+        if (!panel) throw new Error('Popover did not render');
+
+        const { left, top } = panel.getBoundingClientRect();
+        const nextLeft = Math.round(left);
+        const nextTop = Math.round(top);
+        const settled = lastLeft === nextLeft && lastTop === nextTop;
+
+        lastLeft = nextLeft;
+        lastTop = nextTop;
+
+        expect(settled).toBe(true);
+      });
+    },
+
     waitForEuiPopoverHidden: async () =>
       await waitFor(() =>
         expect(

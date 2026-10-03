@@ -7,12 +7,14 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiFlexGroup } from '../flex';
+import { useEuiTheme } from '../../services';
+
 import {
   EuiToolTip,
   EuiToolTipProps,
@@ -63,6 +65,57 @@ export const Playground: Story = {
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <EuiFlexGroup alignItems="center" gutterSize="m">
+      <EuiToolTip content="Insufficient permissions">
+        <EuiButton isDisabled hasAriaDisabled>
+          Tooltip trigger
+        </EuiButton>
+      </EuiToolTip>
+      <EuiToolTip content="Insufficient permissions">
+        <EuiButtonIcon
+          iconType="lock"
+          aria-label="Locked"
+          isDisabled
+          hasAriaDisabled
+        />
+      </EuiToolTip>
+    </EuiFlexGroup>
+  ),
+  parameters: {
+    vrt: {
+      // Skipped: interaction-only check of mouse-out dismissal on aria-disabled triggers
+      skip: true,
+    },
+  },
+};
+
+const TooltipGroupStory = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiFlexGroup
+      gutterSize="s"
+      css={{
+        alignSelf: 'flex-start',
+        padding: euiTheme.size.m,
+        inlineSize: '100%',
+      }}
+    >
+      {['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'].map((label) => (
+        <EuiToolTip key={label} content={`Tooltip for ${label}`}>
+          <EuiButton>{label}</EuiButton>
+        </EuiToolTip>
+      ))}
+    </EuiFlexGroup>
+  );
+};
+
+export const TooltipGroup: Story = {
+  render: () => <TooltipGroupStory />,
 };
 
 /**

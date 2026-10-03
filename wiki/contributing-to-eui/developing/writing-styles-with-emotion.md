@@ -93,7 +93,7 @@ const cssStyles = [
 
 Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
 
-_examples from [avatar.tsx](https://github.com/elastic/eui/blob/main/src/components/avatar/avatar.tsx)_
+_examples from [avatar.tsx](https://github.com/elastic/eui/blob/main/packages/eui/src/components/avatar/avatar.tsx)_
 
 ```tsx
 export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
@@ -506,7 +506,7 @@ export const EuiComponentName = ({ componentProps }) => {
 );
 ```
 
-**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
+**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../../../packages/eui/src/components/bottom_bar/bottom_bar.tsx)**
 
 ## Emotion mixins & utilities
 
@@ -597,7 +597,7 @@ If the mixin does not accept required or optional properties, the argument can b
 
 ## Writing unit tests for output styles
 
-If using complex utilities or calculations that leaves you unsure as to the output of your styles, it may be worth writing Jest snapshot tests to capture the final output. See [EuiText's style](https://github.com/elastic/eui/blob/main/src/components/text/text.styles.test.ts) [snapshots](https://github.com/elastic/eui/blob/main/src/components/text/__snapshots__/text.styles.test.ts.snap) or [EuiTitle](https://github.com/elastic/eui/blob/main/src/components/title/title.styles.test.ts) for an example of this.
+If using complex utilities or calculations that leaves you unsure as to the output of your styles, it may be worth writing Jest snapshot tests to capture the final output. See [EuiText's style](https://github.com/elastic/eui/blob/main/packages/eui/src/components/text/text.styles.test.ts) [snapshots](https://github.com/elastic/eui/blob/main/packages/eui/src/components/text/__snapshots__/text.styles.test.ts.snap) or [EuiTitle](https://github.com/elastic/eui/blob/main/packages/eui/src/components/title/title.styles.test.ts) for an example of this.
 
 If writing straightforward or static CSS, unit tests should be unnecessary.
 

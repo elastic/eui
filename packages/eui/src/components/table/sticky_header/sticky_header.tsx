@@ -165,6 +165,7 @@ export const EuiTableStickyHeader = ({
     <EuiTableWithinStickyHeaderProvider>
       <div css={styles.wrapper} aria-hidden="true">
         <div
+          className="euiTableStickyHeader__container"
           css={[
             // This CSS container is needed to feed `<EuiTableHeaderCell>`
             // with `sticky` prop set the necessary scroll state
@@ -173,7 +174,11 @@ export const EuiTableStickyHeader = ({
           ]}
           ref={stickyTableWrapperRef}
         >
-          <table css={tableStyles} ref={stickyTableRef}>
+          <table
+            className="euiTableStickyHeader"
+            css={tableStyles}
+            ref={stickyTableRef}
+          >
             <EuiTableHeader css={styles.header}>
               {columns.map(([name, data], index) =>
                 data.renderHeaderCellRef.current?.({

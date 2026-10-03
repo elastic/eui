@@ -138,6 +138,7 @@ export type _EuiThemeTextColors = {
   subduedText: ColorModeSwitch;
   /**
    * Computed against `colors.textPrimary`
+   * @deprecated - use semantic text or component tokens instead
    */
   link: ColorModeSwitch;
 
@@ -188,6 +189,14 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseRisk: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseAssistance: ColorModeSwitch;
+  /**
+   * Intermediate layer between page layer and raised surfaces.
+   * Use sparingly. Prefer `backgroundBasePlain` or `backgroundBaseSubdued` for general UI.
+   */
+  backgroundBaseRecessed: ColorModeSwitch;
+  /**
+   * Secondary or inner surface (e.g. nested steps, secondary nav)
+   */
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;

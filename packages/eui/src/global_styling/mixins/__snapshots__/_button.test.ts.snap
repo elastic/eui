@@ -276,9 +276,9 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "1am2lf7-displaysColorsMap-display-color",
+    "name": "1mo0oxe-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1d2a3e;background-color:#FFFFFF;     
+    "styles": "color:#384861;background-color:#FFFFFF;     
     position: relative;
         overflow: hidden;
 
@@ -623,9 +623,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "o4omlr-displaysColorsMap-display-color",
+    "name": "14nzct4-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1d2a3e;    
+    "styles": "color:#384861;    
     position: relative;
         overflow: hidden;
 

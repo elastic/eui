@@ -344,5 +344,8 @@ export class EuiIconClass extends PureComponent<
   }
 }
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/icons/|EuiIcon documentation}
+ */
 export const EuiIcon = withEuiStylesMemoizer<EuiIconProps>(EuiIconClass);
 EuiIcon.displayName = 'EuiIcon';

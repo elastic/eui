@@ -14,7 +14,6 @@ import { getAllByTestSubject, render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { keys } from '../../services';
 
-import { EuiDataGridColumnResizer } from './body/header/column_resizer';
 import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { EuiDataGrid } from './';
 
@@ -108,17 +107,23 @@ function resizeColumn(
 
   const firstResizer = datagrid
     .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
-    .instance() as EuiDataGridColumnResizer;
+    .find('div.euiDataGridColumnResizer');
 
   act(() => {
-    firstResizer.onMouseDown({
+    firstResizer.simulate('mousedown', {
       pageX: originalWidth,
       stopPropagation: () => {},
       preventDefault: () => {},
-    } as React.MouseEvent<HTMLDivElement>);
+    });
   });
-  act(() => firstResizer.onMouseMove({ pageX: columnWidth }));
-  act(() => firstResizer.onMouseUp());
+  // `mousemove` and `mouseup` are bound to `window`; jsdom derives `pageX`
+  // from `clientX`
+  act(() => {
+    fireEvent.mouseMove(window, { clientX: columnWidth });
+  });
+  act(() => {
+    fireEvent.mouseUp(window);
+  });
 
   datagrid.update();
 }
@@ -202,9 +207,9 @@ function getColumnSortDirection(
   }
 
   expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter.find(
-    'button[className*="euiButtonGroupButton-isSelected"]'
-  );
+  const activeSort = columnSorter
+    .find('button')
+    .filterWhere((btn) => btn.prop('aria-pressed') === true);
 
   const sortDirection = (
     activeSort.props() as {

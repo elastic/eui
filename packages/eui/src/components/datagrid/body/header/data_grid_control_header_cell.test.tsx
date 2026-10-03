@@ -38,6 +38,13 @@ describe('EuiDataGridControlHeaderCell', () => {
         style="width: 50px;"
         tabindex="-1"
       >
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="no-copy"
+        >
+          ✄𐘗
+        </span>
         <div
           data-focus-guard="true"
           style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -71,9 +78,9 @@ describe('EuiDataGridControlHeaderCell', () => {
         <span
           aria-hidden="true"
           class="euiScreenReaderOnly"
-          data-tabular-copy-marker="newline"
+          data-tabular-copy-marker="no-copy"
         >
-          ↵
+          ✄𐘗
         </span>
       </div>
     `);

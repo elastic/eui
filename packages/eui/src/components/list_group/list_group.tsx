@@ -59,6 +59,9 @@ export type EuiListGroupProps = CommonProps &
     ariaLabelledby?: string;
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/list-group/|EuiListGroup documentation}
+ */
 export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   children,
   className,

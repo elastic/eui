@@ -148,5 +148,19 @@ describe('EuiTabbedContent', () => {
       );
       expect(getAllByRole('tab')[0]).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('keeps controlled tab selection when autoFocus is selected', () => {
+      const { getAllByRole } = render(
+        <EuiTabbedContent
+          tabs={tabs}
+          selectedTab={kibanaTab}
+          autoFocus="selected"
+        />
+      );
+      const tabElements = getAllByRole('tab');
+      tabElements[0].focus();
+      expect(tabElements[0]).toHaveAttribute('aria-selected', 'false');
+      expect(tabElements[1]).toHaveAttribute('aria-selected', 'true');
+    });
   });
 });

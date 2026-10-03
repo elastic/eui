@@ -95,7 +95,7 @@ export type EuiListItemLayoutSharedProps = CommonProps &
     /**
      * Props applied to the label text element.
      */
-    textProps?: CommonProps;
+    textProps?: CommonProps & HTMLAttributes<HTMLElement>;
     prependProps?: CommonProps;
     appendProps?: CommonProps;
     tooltipProps?: Omit<EuiToolTipProps, 'children'>;

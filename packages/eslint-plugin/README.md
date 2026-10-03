@@ -29,6 +29,16 @@ We don't use `no-restricted-imports` because ESLint doesn't allow multiple error
 
 All deprecations still must follow our [deprecation process](../../wiki/eui-team-processes/deprecations.md).
 
+### `@elastic/eui/no-deprecated-icon-aliases`
+
+Disallows deprecated EUI icon aliases in static JSX props on components imported
+from `@elastic/eui`. The rule checks props ending in `IconType`, the `type` prop
+on `EuiIcon` and `EuiIconTip`, and component-specific icon props such as
+`timelineAvatar`, `icon`, `logo`, `iconLeft`, and `iconRight`. It automatically
+replaces deprecated aliases with their supported icon handles.
+
+See the full table of icon replacements here: https://github.com/elastic/eui/issues/9561
+
 ### `@elastic/eui/no-css-color`
 
 This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
@@ -157,6 +167,57 @@ Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `nam
 
 Ensure that `EuiCallOut` components rendered conditionally have the `announceOnMount` prop for better accessibility. When callouts appear dynamically (e.g., after user interactions, form validation errors, or status changes), screen readers may not announce their content to users. The `announceOnMount` prop ensures these messages are properly announced to users with assistive technologies.
 
+### `@elastic/eui/callout-prefer-props-for-content`
+
+Enforce correct usage of `EuiCallOut` `text` and `actionProps` props and discourage using `children` for content.
+
+`EuiCallOut` accepts dedicated `text` and `actionProps` props introduced to standardize callout content:
+
+- **Text content** (plain text, `<p>`, `<span>`, `<strong>`, etc. or EUI text components like `EuiText`) should be passed via the `text` prop.
+- **Action elements** (buttons and non-inline links) should be passed via `actionProps`, which renders standardized primary and secondary action buttons.
+
+The rule warns (rather than errors) to allow incremental migration from the `children` pattern.
+
+#### Examples
+
+```tsx
+// ✗ Flagged — text content via children
+<EuiCallOut title="Title">
+  <p>Callout body text.</p>
+</EuiCallOut>
+
+// ✓ Good
+<EuiCallOut title="Title" text={<p>Callout body text.</p>} />
+```
+
+```tsx
+// ✗ Flagged — action button via children
+<EuiCallOut title="Title">
+  <EuiButton onClick={onClick}>Take action</EuiButton>
+</EuiCallOut>
+
+// ✓ Good
+<EuiCallOut
+  title="Title"
+  actionProps={{ primary: { children: 'Take action', onClick: onClick } }}
+/>
+```
+
+The rule traverses fragments (`<>`, `<React.Fragment>`, `<Fragment>`), layout containers (`EuiFlexGroup`, `EuiFlexGrid`, `EuiFlexItem`, `div`), and conditional/logical expressions. It does not traverse custom component children, since their content cannot be statically analyzed.
+
+#### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `components` | `string[]` | `['EuiCallOut']` | Component names to check. Replaces the default — include `'EuiCallOut'` explicitly if you also want to keep checking it. |
+
+```js
+// .eslintrc.js
+'@elastic/eui/callout-prefer-props-for-content': ['warn', {
+  components: ['EuiCallOut', 'KbnWarningCallout'],
+}]
+```
+
 ### `@elastic/eui/no-unnamed-interactive-element`
 
 Ensure that appropriate aria-attributes are set for `EuiBetaBadge`, `EuiButtonIcon`, `EuiComboBox`, `EuiSelect`, `EuiSelectWithWidth`,`EuiSuperSelect`,`EuiPagination`, `EuiTreeView`, `EuiBreadcrumbs`. Without this rule, screen reader users lose context, keyboard navigation can be confusing.
@@ -205,6 +266,8 @@ The rule reports two situations:
 
 Buttons with spread props (`{...props}`) are intentionally skipped when no `title` prop is explicitly present because their final prop set cannot be statically determined.
 
+**Exception**: an `EuiButtonIcon` rendered as the render-prop child of an `EuiCopy` that sets a non-empty `beforeMessage` is not flagged for a missing wrapper. `EuiCopy` wraps its child in an `EuiToolTip` using `beforeMessage` as the content, so adding another `EuiToolTip` would create nested, conflicting tooltips — see `@elastic/eui/no-nested-copy-tooltip`. This exception is conditional: because `EuiToolTip` suppresses itself when its content is empty, an `EuiButtonIcon` inside an `EuiCopy` with a missing or statically empty/falsy `beforeMessage` (e.g. `""`, `{null}`, `{undefined}`, `{false}`) has no visible tooltip and is still reported. A button passed through the `beforeMessage` prop itself (rather than the render-prop child) is also still reported, since it is not the element `EuiCopy`'s tooltip wraps. A `title` prop is always reported in this case, since browser-native tooltips remain discouraged.
+
 #### Examples
 
 ```tsx
@@ -215,6 +278,11 @@ Buttons with spread props (`{...props}`) are intentionally skipped when no `titl
 <EuiToolTip content="Edit item">
   <EuiButtonIcon aria-label="Edit item" iconType="pencil" />
 </EuiToolTip>
+
+// ✓ Good - EuiCopy provides the tooltip via `beforeMessage`, no wrapper needed
+<EuiCopy textToCopy="some text" beforeMessage="Copy me">
+  {(copy) => <EuiButtonIcon onClick={copy} aria-label="Copy" iconType="copy" />}
+</EuiCopy>
 ```
 
 ```tsx
@@ -277,6 +345,273 @@ it('shows tooltip on focus', async () => {
 ```
 
 
+### `@elastic/eui/no-nested-copy-tooltip`
+
+Disallow wrapping the `EuiCopy` render-prop child in an `EuiToolTip` when the `beforeMessage` prop is set.
+
+`EuiCopy` already wraps its child in an `EuiToolTip` internally and uses `beforeMessage` as that tooltip's content. If the render-prop returns its own `EuiToolTip` as the first child, the result is a nested, conflicting tooltip. Remove the `EuiToolTip` wrapper and move its message into the `beforeMessage` prop so `EuiCopy`'s built-in tooltip is the single source of truth.
+
+This rule reports the pattern but does not autofix it, because the tooltip's `content` and the existing `beforeMessage` value cannot always be merged safely (e.g. when either is a variable or JSX). Apply the fix manually.
+
+#### Examples
+
+```tsx
+// ✗ Bad - nested tooltips, the child EuiToolTip conflicts with `beforeMessage`
+<EuiCopy textToCopy="some text" beforeMessage="Click to copy">
+  {(copy) => (
+    <EuiToolTip content="Copy me">
+      <EuiButton onClick={copy}>Copy</EuiButton>
+    </EuiToolTip>
+  )}
+</EuiCopy>
+
+// ✓ Good - drop the EuiToolTip wrapper and let `beforeMessage` drive the tooltip
+<EuiCopy textToCopy="some text" beforeMessage="Copy me">
+  {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+</EuiCopy>
+```
+
+When the render-prop child is not an `EuiToolTip`, `beforeMessage` simply configures `EuiCopy`'s own tooltip and the pattern is left untouched.
+
+### `@elastic/eui/button-group-no-invalid-children`
+
+Enforce that `EuiButtonGroup` children (when using the Children API) are valid button components.
+
+Valid direct children depend on the variant:
+- `variant="default"` (or no variant): `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`
+- `variant="segmented"`: `EuiButton` and `EuiButtonIcon` only (`EuiButtonEmpty` is not allowed)
+- `variant="selection"`: `EuiButton` and `EuiButtonIcon` only (`EuiButtonEmpty` is not allowed)
+
+In addition, these wrapper components are allowed for all variants: `EuiPopover`, `EuiToolTip`, and `EuiCopy`.
+
+For `variant="segmented"` and `variant="selection"`, all children must also use the **same button type** — either all `EuiButton` or all `EuiButtonIcon`. Mixing both types is reported as an error, including when buttons appear inside `EuiToolTip`, as an `EuiPopover` trigger, or in an `EuiCopy` render prop.
+
+#### Examples
+
+```tsx
+// ✗ Bad - non-button elements
+<EuiButtonGroup legend="Actions">
+  <div>Not a button</div>
+  <EuiFlexGroup>...</EuiFlexGroup>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="segmented" with EuiButtonEmpty (not allowed)
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="segmented" mixing EuiButton and EuiButtonIcon
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonIcon iconType="trash" aria-label="Delete" />
+</EuiButtonGroup>
+
+// ✗ Bad - variant="selection" with EuiButtonEmpty (not allowed)
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButtonEmpty color="text">Bold</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✗ Bad - variant="selection" mixing EuiButton and EuiButtonIcon
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiButtonIcon id="italic" iconType="italic" aria-label="Italic" />
+</EuiButtonGroup>
+
+// ✓ Good - direct buttons
+<EuiButtonGroup legend="Actions">
+  <EuiButton>Save</EuiButton>
+  <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+</EuiButtonGroup>
+
+// ✓ Good - icon button with tooltip
+<EuiButtonGroup legend="Actions">
+  <EuiButton>Save</EuiButton>
+  <EuiToolTip content="Delete">
+    <EuiButtonIcon iconType="trash" aria-label="Delete" />
+  </EuiToolTip>
+</EuiButtonGroup>
+
+// ✓ Good - EuiCopy with render prop (expression or block body)
+<EuiButtonGroup legend="Actions">
+  <EuiCopy textToCopy="text">
+    {(copy) => <EuiButton onClick={copy}>Copy</EuiButton>}
+  </EuiCopy>
+</EuiButtonGroup>
+
+// ✓ Good - .map() with expression or block body
+<EuiButtonGroup legend="Actions">
+  {buttons.map((b) => <EuiButton key={b.id} onClick={b.onClick}>{b.label}</EuiButton>)}
+</EuiButtonGroup>
+
+// ✓ Good - EuiPopover with a button trigger
+<EuiButtonGroup legend="Actions">
+  <EuiPopover
+    button={<EuiButton onClick={togglePopover}>More</EuiButton>}
+    isOpen={isOpen}
+    closePopover={closePopover}
+  >
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - EuiPopover with an EuiToolTip-wrapped icon trigger
+<EuiButtonGroup legend="Actions">
+  <EuiPopover
+    button={
+      <EuiToolTip content="More options">
+        <EuiButtonIcon iconType="boxesVertical" aria-label="More options" />
+      </EuiToolTip>
+    }
+    isOpen={isOpen}
+    closePopover={closePopover}
+  >
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - variant="segmented" with all EuiButton
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButton>Save</EuiButton>
+  <EuiButton color="danger">Delete</EuiButton>
+</EuiButtonGroup>
+
+// ✓ Good - variant="segmented" with all EuiButtonIcon
+<EuiButtonGroup legend="Actions" variant="segmented">
+  <EuiButtonIcon iconType="pencil" aria-label="Edit" />
+  <EuiButtonIcon iconType="trash" aria-label="Delete" />
+</EuiButtonGroup>
+
+// ✓ Good - variant="selection" with all EuiButton
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiButton id="italic">Italic</EuiButton>
+</EuiButtonGroup>
+
+// ✓ Good - variant="selection" with all EuiButtonIcon
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButtonIcon id="bold" iconType="bold" aria-label="Bold" />
+  <EuiButtonIcon id="italic" iconType="italic" aria-label="Italic" />
+</EuiButtonGroup>
+```
+
+#### Custom button wrapper components
+
+If a project-specific button component (e.g. `<SaveButton />`) is used as a child and the rule cannot resolve it statically, it reports `invalidUnresolvableChild` which suggests suppressing the rule inline with a comment:
+
+```tsx
+// eslint-disable-next-line @elastic/eui/button-group-no-invalid-children -- SaveButton returns EuiButton
+<SaveButton />
+```
+
+### `@elastic/eui/button-group-selection-require-id`
+
+Enforce that every `EuiButton` and `EuiButtonIcon` child of an `EuiButtonGroup` with `variant="selection"` has an `id` prop. The selection variant uses the `id` of each button to track which buttons are selected, so a missing `id` will cause incorrect or broken selection state at runtime.
+
+The rule only fires when `variant="selection"` is set as a static string. Dynamic variants (`variant={myVar}`) are skipped conservatively. It traverses the same nesting depth as `button-group-no-invalid-children`: fragments, conditionals, variable resolution, `.map()`, and the three supported wrappers (`EuiToolTip`, `EuiPopover` trigger, `EuiCopy` render prop). Children with spread props (`{...props}`) are skipped — the `id` may be provided via the spread.
+
+#### Examples
+
+```tsx
+// ✗ Bad - missing id on direct child
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton>Bold</EuiButton>
+</EuiButtonGroup>
+
+// ✗ Bad - missing id on button inside EuiToolTip
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiToolTip content="Italic">
+    <EuiButton>Italic</EuiButton>
+  </EuiToolTip>
+</EuiButtonGroup>
+
+// ✗ Bad - missing id on EuiPopover trigger
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiPopover button={<EuiButton>More</EuiButton>} isOpen={false} closePopover={() => {}}>
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - all children have id
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton id="bold">Bold</EuiButton>
+  <EuiToolTip content="Italic">
+    <EuiButton id="italic">Italic</EuiButton>
+  </EuiToolTip>
+  <EuiPopover button={<EuiButton id="more">More</EuiButton>} isOpen={false} closePopover={() => {}}>
+    Panel content
+  </EuiPopover>
+</EuiButtonGroup>
+
+// ✓ Good - spread props are skipped (id may come from the spread)
+<EuiButtonGroup legend="Format" variant="selection">
+  <EuiButton {...buttonProps} />
+</EuiButtonGroup>
+```
+
+### `@elastic/eui/no-nested-interactive-element`
+
+Disallow interactive elements nested inside other interactive elements.
+
+Nesting a control inside another control produces invalid HTML (`<button>` inside `<button>`, `<a>` inside `<a>`) and leaves the inner control unreachable or ambiguous for keyboard and screen-reader users.
+
+The rule checks three groups of outer elements:
+
+- **Native leaf controls** — `button` and `a` with `href`.
+- **Leaf controls** — components that render their content inside a single focusable element: `EuiButton`, `EuiButtonEmpty`, `EuiButtonIcon`, `EuiContextMenuItem`, `EuiFacetButton`, `EuiFilterButton`, `EuiHeaderLink`, `EuiHeaderSectionItemButton`, `EuiKeyPadMenuItem`, `EuiLink`, `EuiListGroupItem`, `EuiStepHorizontal`, and `EuiTab`. Some of these only render a control when given the right props — `EuiListGroupItem` is an `<li>` without `onClick`/`href`, `EuiContextMenuItem` a `<div>` without `onClick`/`href`/`toolTipContent` — and are checked accordingly. Composite components whose purpose is to host controls (`EuiBasicTable`, `EuiSelectable`, `EuiSideNav`, `EuiButtonGroup`, …) are intentionally not checked.
+- **Clickable `EuiCard`** — a card with `onClick` or `href` forwards clicks anywhere in the card to its title link, so a control in `title`, `description`, `footer`, `image`, or the card's children fires both its own action and the card's. Statically disabled cards (`isDisabled`) attach no handler and are skipped, as are `selectable` cards: pairing the select button with a footer action is a pattern EUI itself ships.
+
+Beyond children, the rule also checks props whose value renders inside the focusable element: `label` and `icon` on `EuiListGroupItem`, `label` on `EuiKeyPadMenuItem`, `title` on `EuiStepHorizontal`, `prepend`/`append` on `EuiTab`, `icon` on `EuiFacetButton` and `EuiContextMenuItem`, and `notification` on `EuiHeaderSectionItemButton`. Props that render a **sibling** control (`EuiListGroupItem`'s `extraAction`) or render into a portal (`EuiContextMenuItem`'s `toolTipContent`) are not reported.
+
+What counts as nested content:
+
+- Non-interactive wrappers (`EuiFlexGroup`, `EuiText`, `EuiToolTip`, …) are traversed, so a control behind them is still found.
+- Controls referenced through a local variable or a local arrow-function component are resolved and checked.
+- Conditionally-interactive elements only count as interactive content when the relevant prop is present:
+  - `EuiBadge`: `onClick`, `href`, or `iconOnClick`
+  - `EuiBetaBadge`: `onClick`, `href`, or `tooltipContent`
+  - `EuiCard`: `onClick`, `href`, or `selectable`
+  - `EuiContextMenuItem`: `onClick`, `href`, or `toolTipContent`
+  - `EuiListGroupItem`: `onClick` or `href` (`extraAction` is checked separately as a sibling `EuiButtonIcon`)
+  - Native `<a>` and `EuiHeaderLogo`: `href` (including `href=""`)
+- Note the exact prop casing: `EuiBetaBadge` uses `tooltipContent`, while `EuiContextMenuItem` uses `toolTipContent`.
+- Dynamic content (e.g. `{renderLabel()}`) cannot be statically analyzed and is skipped.
+
+#### Examples
+
+```tsx
+// ✗ Bad - link inside a button
+<EuiButton onClick={onClick}>
+  Read the <EuiLink href="/docs">docs</EuiLink>
+</EuiButton>
+
+// ✓ Render the controls as siblings
+<EuiFlexGroup>
+  <EuiButton onClick={onClick}>Save</EuiButton>
+  <EuiLink href="/docs">Read the docs</EuiLink>
+</EuiFlexGroup>
+```
+
+```tsx
+// ✗ Bad - the footer button also triggers the card's `onClick`
+<EuiCard
+  title="Dashboard"
+  description="View metrics"
+  onClick={onClick}
+  footer={<EuiButton>Open</EuiButton>}
+/>
+
+// ✓ One action per card - either a clickable card…
+<EuiCard title="Dashboard" description="View metrics" onClick={onClick} />
+
+// ✓ …or a footer action
+<EuiCard
+  title="Dashboard"
+  description="View metrics"
+  footer={<EuiButton>Open</EuiButton>}
+/>
+```
+
 ## Testing
 
 ### Running unit tests
@@ -298,7 +633,7 @@ To test the local changes to the plugin, you must:
 3. Build the package: `yarn build`
 4. Run `yalc publish` in the plugin's directory to publish it locally.
 5. In your project's directory, run `yalc add @elastic/eslint-plugin-eui` to link the locally published package.
-6. Install dependencies: `yarn` (if you're a Kibana contributor, run `yarn kbn bootstrap --no-validate`).
+6. Install dependencies using your package manager.
 7. After making further changes to the plugin, repeat the steps from 3.
 
 ## Publishing

@@ -7,7 +7,7 @@ exports[`ExpandedItemActions renders 1`] = `
     id="generated-id-wrapper"
   >
     <button
-      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
       type="button"
     >
       <span
@@ -29,7 +29,7 @@ exports[`ExpandedItemActions renders 1`] = `
     id="generated-id-wrapper"
   >
     <a
-      class="euiButtonEmpty euiBasicTableAction-showOnHover emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+      class="euiButtonEmpty euiBasicTableAction-showOnHover emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-right"
       href="#"
       rel="noreferrer"
     >

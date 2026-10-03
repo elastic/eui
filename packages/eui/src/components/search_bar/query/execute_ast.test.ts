@@ -53,6 +53,17 @@ describe('execute ast', () => {
     expect(result).toHaveLength(0);
   });
 
+  test('multi-valued field clause with negation', () => {
+    const items = [{ name: 'john' }, { name: 'doe' }, { name: 'foo' }];
+    // `-name:(john or doe)` must exclude both john and doe, not just one.
+    const result = executeAst(
+      AST.create([AST.Field.mustNot.eq('name', ['john', 'doe'])]),
+      items
+    );
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('foo');
+  });
+
   test('single non-matching field clause', () => {
     const items = [{ name: 'john' }, { name: 'joe' }];
     const result = executeAst(

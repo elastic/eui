@@ -94,6 +94,9 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   };
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/templates/sitewide-search/|EuiSelectableTemplateSitewide documentation}
+ */
 export const EuiSelectableTemplateSitewide: FunctionComponent<
   EuiSelectableTemplateSitewideProps
 > = ({

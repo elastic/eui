@@ -7,8 +7,8 @@
  */
 
 import React, { useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import { EuiButton, EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../index';
 
@@ -24,7 +24,7 @@ import { DEFAULT_MENU_DISPLAY_MODE, FLYOUT_MENU_DISPLAY_MODES } from './const';
 
 interface FlyoutStoryArgs extends EuiFlyoutProps {
   onToggle?: (open: boolean) => void;
-  showCustomActions?: boolean;
+  showTrailingActions?: boolean;
 }
 
 const meta: Meta<FlyoutStoryArgs> = {
@@ -38,7 +38,7 @@ const meta: Meta<FlyoutStoryArgs> = {
       control: { type: 'radio' },
       description: 'The display mode of the flyout menu.',
     },
-    showCustomActions: { control: 'boolean' },
+    showTrailingActions: { control: 'boolean' },
   },
   args: {
     // Component defaults
@@ -53,7 +53,7 @@ const meta: Meta<FlyoutStoryArgs> = {
     hideCloseButton: false,
     ownFocus: true,
     flyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
-    showCustomActions: true,
+    showTrailingActions: true,
   },
   parameters: {
     vrt: {
@@ -68,16 +68,18 @@ type Story = StoryObj<EuiFlyoutProps>;
 
 const onClose = action('onClose');
 
-const customActions = [
+const trailingActions = [
   {
     iconType: 'gear',
     onClick: () => action('Settings clicked')(),
     'aria-label': 'Settings',
+    toolTipContent: 'Settings',
   },
 ];
 
 const StatefulFlyout = (props: Partial<FlyoutStoryArgs>) => {
-  const { onToggle, flyoutMenuDisplayMode, showCustomActions, ...rest } = props;
+  const { onToggle, flyoutMenuDisplayMode, showTrailingActions, ...rest } =
+    props;
   const [_isOpen, setIsOpen] = useState(true);
 
   const handleToggle = (open: boolean) => {
@@ -94,7 +96,7 @@ const StatefulFlyout = (props: Partial<FlyoutStoryArgs>) => {
         <EuiFlyout
           flyoutMenuDisplayMode={flyoutMenuDisplayMode}
           flyoutMenuProps={{
-            customActions: showCustomActions ? customActions : undefined,
+            trailingActions: showTrailingActions ? trailingActions : undefined,
           }}
           {...rest}
           onClose={() => {
@@ -117,6 +119,40 @@ export const Playground: Story = {
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
+export const WithBanner: Story = {
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody
+          banner={
+            <EuiCallOut
+              title="Flyout banner title."
+              size="s"
+              text="Flyout banner text"
+            />
+          }
+        >
+          Flyout body
+        </EuiFlyoutBody>
         <EuiFlyoutFooter>
           <EuiButton fill>Flyout footer</EuiButton>
         </EuiFlyoutFooter>
@@ -172,6 +208,8 @@ export const ManualReturnFocus: Story = {
     controls: {
       include: ['focusTrapProps'],
     },
+    // This story is visually identical to the default; it's purely behavioral.
+    vrt: { skip: true },
   },
   args: {
     children: (
@@ -220,6 +258,57 @@ export const ManualReturnFocus: Story = {
   },
 };
 
+export const WithBannerNoHeader: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <EuiFlyoutBody
+        banner={
+          <EuiCallOut
+            title="Flyout banner title."
+            size="s"
+            text="Flyout banner text"
+          />
+        }
+      >
+        Flyout body
+      </EuiFlyoutBody>
+    ),
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
+export const WithBannerNoMenu: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['paddingSize', 'size', 'side', 'type'],
+    },
+  },
+  args: {
+    children: (
+      <EuiFlyoutBody
+        banner={
+          <EuiCallOut
+            title="Flyout banner title."
+            size="s"
+            text="Flyout banner text"
+          />
+        }
+      >
+        Flyout body
+      </EuiFlyoutBody>
+    ),
+    flyoutMenuProps: {},
+  },
+  render: ({ ...args }) => <StatefulFlyout {...args} />,
+};
+
 export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
@@ -231,7 +320,15 @@ export const HighContrast: Story = {
             <h2>Flyout header</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody banner={<EuiCallOut>Flyout banner</EuiCallOut>}>
+        <EuiFlyoutBody
+          banner={
+            <EuiCallOut
+              title="Flyout banner title."
+              size="s"
+              text="Flyout banner text"
+            />
+          }
+        >
           Flyout body
         </EuiFlyoutBody>
         <EuiFlyoutFooter>

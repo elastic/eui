@@ -130,7 +130,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       isLoading,
       isSelected,
       fullWidth,
-      minWidth,
+      minWidth = false,
       contentProps,
       textProps,
       href,

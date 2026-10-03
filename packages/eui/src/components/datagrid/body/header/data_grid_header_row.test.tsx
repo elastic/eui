@@ -93,7 +93,7 @@ describe('EuiDataGridHeaderRow', () => {
                 aria-hidden="true"
                 class="euiButtonIcon__icon"
                 color="inherit"
-                data-euiicon-type="boxesVertical"
+                data-euiicon-type="ellipsis"
               />
             </button>
           </div>

@@ -123,11 +123,11 @@ export const euiTokenStyles = (
       border-radius: 50%;
     `,
     square: css`
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     rectangle: css`
       box-sizing: content-box;
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
     `,
     // Sizes
     xs: css`
@@ -136,7 +136,7 @@ export const euiTokenStyles = (
       &[class*='-square'],
       &[class*='-rectangle'] {
         border-radius: ${mathWithUnits(
-          euiTheme.border.radius.small,
+          euiTheme.border.radius.inline,
           (x) => x / 2
         )};
       }

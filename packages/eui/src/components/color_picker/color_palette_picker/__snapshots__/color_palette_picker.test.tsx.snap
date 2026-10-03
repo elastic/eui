@@ -8,6 +8,12 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
     type="hidden"
     value=""
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -18,9 +24,10 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       />
       <div
@@ -49,6 +56,12 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
     type="hidden"
     value="custom"
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -59,9 +72,10 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       >
         Plain text as a custom option
@@ -92,6 +106,12 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
     type="hidden"
     value="paletteFixed"
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -102,9 +122,10 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       >
         <span
@@ -163,6 +184,12 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
     type="hidden"
     value="paletteLinear"
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -173,9 +200,10 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       >
         <span
@@ -214,6 +242,12 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
     type="hidden"
     value="paletteLinearStops"
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -224,9 +258,10 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       >
         <span
@@ -265,6 +300,12 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
     type="hidden"
     value="paletteFixed"
   />
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_label"
+  >
+    aria-label
+  </span>
   <div
     class="euiFormControlLayout emotion-euiFormControlLayout"
   >
@@ -275,9 +316,10 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        aria-label="aria-label"
+        aria-labelledby="generated-id_button generated-id_label"
         class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
+        id="generated-id_button"
         type="button"
       >
         Palette 1

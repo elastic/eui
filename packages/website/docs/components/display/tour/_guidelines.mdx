@@ -1,8 +1,11 @@
-import { EuiAspectRatio, EuiFlexGroup, EuiFlexItem, EuiImage, EuiPanel, EuiSpacer } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiImage, EuiPanel, EuiSpacer } from '@elastic/eui';
 
 import image1Do from '!url-loader!./tour_1_do.svg';
 import image1Dont from '!url-loader!./tour_1_dont.svg';
 import image6Example from '!url-loader!./tour_6.gif';
+import figmaTourExplainWhyTheActionsYouWantUsersToPerformAreUseful from '!url-loader!./assets/tour_explain-why-the-actions-you-want-users-to-perform-are-useful.svg';
+import figmaTourKeepTheToneConversationalAndFriendly from '!url-loader!./assets/tour_keep-the-tone-conversational-and-friendly.svg';
+import figmaTourAllowUsersToEndAndRestartTheTourAtAnyTime from '!url-loader!./assets/tour_allow-users-to-end-and-restart-the-tour-at-any-time.svg';
 
 This page documents best practices for tour design including content, length and use cases.
 
@@ -43,40 +46,31 @@ If you include information that is too obvious or basic, it is more likely that 
 
 If users see value in an action they'll be more likely to engage.
 
-<EuiAspectRatio width={2} height={1}>
-  <iframe
-    width="800"
-    title="tour useful step"
-    height="450"
-    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315602"
-  />
-</EuiAspectRatio>
+<FigmaAsset
+  url="https://www.figma.com/file/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=21976-315602"
+  src={figmaTourExplainWhyTheActionsYouWantUsersToPerformAreUseful}
+  title="Tour useful step"
+/>
 
 ### Keep the tone conversational and friendly
 
 Good copy is a key element for a product tour's success. Make sure you work alongside a writer in this process.
 
-<EuiAspectRatio width={2} height={1}>
-  <iframe
-    width="800"
-    title="step with good copy"
-    height="450"
-    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315599"
-  />
-</EuiAspectRatio>
+<FigmaAsset
+  url="https://www.figma.com/file/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=21976-315599"
+  src={figmaTourKeepTheToneConversationalAndFriendly}
+  title="Step with good copy"
+/>
 
 ### Allow users to end and restart the tour at any time
 
 You can include a “Skip tour” button in your step's footer. Users might be quick to dismiss a tour but realize they need to use it later on. Give them the option to re-trigger the tour at any time. A good spot for a tour's trigger is the application's help menu.
 
-<EuiAspectRatio width={2} height={1}>
-  <iframe
-    width="800"
-    height="450"
-    title="skip tour button"
-    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315575"
-  /> 
-</EuiAspectRatio>
+<FigmaAsset
+  url="https://www.figma.com/file/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=21976-315575"
+  src={figmaTourAllowUsersToEndAndRestartTheTourAtAnyTime}
+  title="Skip tour button"
+/>
 
 <EuiSpacer size="xl" />
 

@@ -80,6 +80,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   const { cloneItems } = useContext(EuiDroppableContext);
 
   const styles = useEuiMemoizedStyles(euiDraggableStyles);
+  const itemStyles = useEuiMemoizedStyles(euiDraggableItemStyles);
 
   const hasCustomDragHandle = customDragHandle !== false;
 
@@ -150,8 +151,9 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                   childClasses
                 ),
                 css: [
-                  euiDraggableItemStyles.euiDraggable__item,
-                  isDragDisabled && euiDraggableItemStyles.disabled,
+                  itemStyles.euiDraggable__item,
+                  isDragDisabled && itemStyles.disabled,
+                  isDragging && itemStyles.isDragging,
                 ],
               })}
             </div>

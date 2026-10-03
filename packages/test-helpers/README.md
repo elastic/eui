@@ -1,8 +1,9 @@
 # EUI Test Helpers
 
-`@elastic/eui-test-helpers` is a library of test helpers to use when testing EUI components
-with [Cypress], [React Testing Library], or [Scout]. It provides assertion, find, and query helpers to make interacting
-with EUI components easy and reliable. Say goodbye to finding CSS selectors to query that _seem_ right.
+`@elastic/eui-test-helpers` provides helpers for interacting with EUI components reliably in
+consumer tests — no more guessing at CSS selectors that only _seem_ right. Today it ships
+**Playwright Component Objects** for [Scout]/[Playwright] consumers; [Cypress] and
+[React Testing Library] helpers may follow.
 
 > [!NOTE]
 > This library is in early stages of development and is missing many useful utilities. Please contribute or
@@ -46,11 +47,45 @@ their own version at runtime.
 | Component | Documentation |
 |---|---|
 | `EuiComboBoxObject` | [src/components/combo_box/README.md](src/components/combo_box/README.md) |
+| `EuiDataGridObject` | [src/components/datagrid/README.md](src/components/datagrid/README.md) |
+| `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
+| `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
+| `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
+| `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
+| `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
+| `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
+| `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
+| `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
+| `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
+| `EuiContextMenuObject` | [src/components/context_menu/README.md](src/components/context_menu/README.md) |
+| `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
+| `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
+| `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
+| `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
+| `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
+
+### Selectors
+
+Each Component Object's stable selectors are exported under one `selectors`
+object, keyed by component (`selectors.comboBox`, `selectors.dataGrid`, and so
+on). `*_SELECTOR` values are CSS class selectors, `*_TEST_SUBJ` values are
+`data-test-subj` names EUI sets itself.
+
+```ts
+import { selectors } from '@elastic/eui-test-helpers';
+
+page.locator(selectors.basicTable.ROW_SELECTOR);
+```
+
+Prefer the Component Objects. The selectors exist for tooling, such as lint
+rules that flag hand-written EUI selectors in consumer tests, and for the rare
+scoping need an object does not cover yet.
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for design principles, directory structure, and how to add new Component Objects.
 
+[Playwright]: https://playwright.dev
 [Cypress]: https://github.com/cypress-io/cypress
 [React Testing Library]: https://github.com/testing-library/react-testing-library
 [Scout]: https://github.com/elastic/kibana/tree/main/src/platform/packages/shared/kbn-scout

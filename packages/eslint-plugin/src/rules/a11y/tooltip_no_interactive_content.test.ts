@@ -95,6 +95,67 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
   ],
   invalid: [
     {
+      name: 'conditionally-interactive component with `onClick` in content',
+      code: dedent`
+        <EuiToolTip content={<EuiBadge onClick={onClick}>v2.0</EuiBadge>}>
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
+      name: '`EuiBadge` icon button in content',
+      code: dedent`
+        <EuiToolTip
+          content={
+            <EuiBadge
+              iconType="cross"
+              iconOnClick={onRemove}
+              iconOnClickAriaLabel="Remove"
+            >
+              v2.0
+            </EuiBadge>
+          }
+        >
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
+      name: '`EuiBetaBadge` tooltip trigger in content',
+      code: dedent`
+        <EuiToolTip content={<EuiBetaBadge label="Beta" tooltipContent="Info" />}>
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
+      name: '`EuiListGroupItem` extra action in content',
+      code: dedent`
+        <EuiToolTip
+          content={
+            <EuiListGroupItem
+              label="Item"
+              extraAction={{
+                iconType: 'trash',
+                onClick: onDelete,
+                'aria-label': 'Delete',
+              }}
+            />
+          }
+        >
+          <EuiButton>Hover me</EuiButton>
+        </EuiToolTip>
+      `,
+      errors: [{ messageId: 'noInteractiveContent' }],
+      languageOptions,
+    },
+    {
       name: '`EuiLink` in content',
       code: dedent`
         <EuiToolTip content={<EuiLink href="/docs">Learn more</EuiLink>}>
@@ -143,6 +204,21 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       name: 'native `<a>` in content',
       code: dedent`
         <EuiToolTip content={<span><a href="/docs">link</a></span>}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'a', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
+      name: 'native `<a href=\"\">` in content',
+      code: dedent`
+        <EuiToolTip content={<a href="">link</a>}>
           <EuiButton>Hover</EuiButton>
         </EuiToolTip>
       `,
@@ -276,6 +352,22 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       name: 'interactive element nested inside a fragment in content',
       code: dedent`
         <EuiToolTip content={<><span>Text</span><EuiLink href="#">Link</EuiLink></>}>
+          <EuiButton>Hover</EuiButton>
+        </EuiToolTip>
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'noInteractiveContent',
+          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+        },
+      ],
+    },
+    {
+      name: 'interactive element inside a local wrapper component in content',
+      code: dedent`
+        const Content = () => <span><EuiLink href="#">Link</EuiLink></span>;
+        <EuiToolTip content={<Content />}>
           <EuiButton>Hover</EuiButton>
         </EuiToolTip>
       `,

@@ -507,6 +507,7 @@ import {
   EuiTableSortingType,
   Criteria,
   EuiButtonIcon,
+  EuiToolTip,
   EuiHealth,
   EuiDescriptionList,
   EuiScreenReaderOnly,
@@ -648,17 +649,20 @@ export default () => {
       mobileOptions: { header: false },
       render: (user: User) => {
         const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+        const expandCollapseLabel = itemIdToExpandedRowMapValues[user.id]
+          ? 'Collapse'
+          : 'Expand';
 
         return (
-          <EuiButtonIcon
-            onClick={() => toggleDetails(user)}
-            aria-label={
-              itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
-            }
-            iconType={
-              itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
-            }
-          />
+          <EuiToolTip content={expandCollapseLabel} disableScreenReaderOutput>
+            <EuiButtonIcon
+              onClick={() => toggleDetails(user)}
+              aria-label={expandCollapseLabel}
+              iconType={
+                itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
+              }
+            />
+          </EuiToolTip>
         );
       },
     },

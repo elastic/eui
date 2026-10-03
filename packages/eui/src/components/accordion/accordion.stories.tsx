@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiAccordion, EuiAccordionProps } from './accordion';
 
@@ -40,4 +41,21 @@ export const Playground: Story = {
     buttonContent: 'Accordion toggle content',
     children: 'Accordion content',
   },
+};
+
+export const NestedAccordion: Story = {
+  render: (args) => (
+    <EuiAccordion {...args} buttonContent="Parent accordion" initialIsOpen>
+      <EuiAccordion
+        {...args}
+        data-test-subj={
+          args['data-test-subj'] && `${args['data-test-subj']}--child`
+        }
+        buttonContent="Child accordion"
+        initialIsOpen
+      >
+        Child accordion content
+      </EuiAccordion>
+    </EuiAccordion>
+  ),
 };

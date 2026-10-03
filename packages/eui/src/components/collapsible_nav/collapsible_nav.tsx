@@ -54,6 +54,9 @@ export type EuiCollapsibleNavProps = Omit<
   showButtonIfDocked?: boolean;
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/navigation/collapsible-nav/|EuiCollapsibleNav documentation}
+ */
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   id,
   children,

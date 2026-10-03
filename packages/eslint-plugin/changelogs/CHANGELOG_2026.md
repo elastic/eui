@@ -1,3 +1,101 @@
+## [`v3.2.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.2.0)
+
+- Updated `button-group-no-invalid-children` rule to support `additionalWrappers` option ([#10024](https://github.com/elastic/eui/pull/10024))
+
+**Dependency updates**
+
+- Replaced `micromatch` with `picomatch` in `@elastic/eui/no-restricted-eui-imports` ([#10094](https://github.com/elastic/eui/pull/10094))
+
+## [`v3.1.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.1.0)
+
+- Added new `@elastic/eui/no-nested-interactive-element` rule ([#10035](https://github.com/elastic/eui/pull/10035))
+
+**Bug fixes**
+
+- Fixed `@elastic/eui/tooltip-no-interactive-content` to also report `EuiBadge`, `EuiBetaBadge` and `EuiCard` with `onClick` or `href` inside tooltip content ([#10035](https://github.com/elastic/eui/pull/10035))
+
+## [`v3.0.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.0.0)
+
+- Updated `button-group-no-invalid-children` rule to support checking button groups with `variant="selection"` ([#9950](https://github.com/elastic/eui/pull/9950))
+- Added new `button-group-selection-require-id` rule to enforce a required `id` prop on each child button of `EuiButtonGroup` with `variant="selection"` ([#9950](https://github.com/elastic/eui/pull/9950))
+- Updated `@elastic/eui/no-deprecated-icon-aliases` with the newly deprecated `cloudDrizzle`, `cloudStormy`, `cloudSunny`, `kqlFunction`, `menuDown`, `menuUp`, `namespace`, `visTimelion`, and `visVisualBuilder` icon aliases ([#9923](https://github.com/elastic/eui/pull/9923))
+- Updated `button-group-no-invalid-children` rule to support segmented variant checks ([#9890](https://github.com/elastic/eui/pull/9890))
+- Updated `no-deprecated-icon-aliases` with icons that have no replacement: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `article`
+    - `dotInCircle`
+    - `kubernetesNode`
+    - `scale`
+    - `securitySignalDetected`
+- Updated `no-deprecated-icon-aliases` with icons that have a contextual replacement (warn only, no autofix): ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `folderExclamation` - `linkSlash` (unlink) or `hourglass` (Kibana Cases status)
+    - `stopFill` / `stopSlash` - `EuiColorPickerSwatch` for color chips or `stop` otherwise
+- Updated `no-deprecated-icon-aliases` with new icon aliases: ([#9884](https://github.com/elastic/eui/pull/9884))
+    - `analyzeEvent` → `cube`
+    - `annotation` → `flag`
+    - `anomalySwimLane` → `chartHeatmap`
+    - `apps` → `grid`
+    - `container` → `package`
+    - `continuityAbove` → `upload`
+    - `continuityWithin` → `maximize`
+    - `esqlVis` → `query`
+    - `fold` → `minimize`
+    - `frameNext` → `chevronSingleRight`
+    - `framePrevious` → `chevronSingleLeft`
+    - `help` → `question`
+    - `index` → `table`
+    - `ip` → `tokenIP`
+    - `logstashFilter` → `filter`
+    - `logstashInput` → `download`
+    - `logstashOutput` → `upload`
+    - `payment` → `money`
+    - `sessionViewer` → `commandLine`
+    - `singleMetricViewer` → `chartArea`
+    - `spaces` → `grid`
+    - `starEmptySpace` → `star`
+    - `starFillSpace` → `starFill`
+    - `starMinusEmpty` → `star`
+    - `starMinusFill` → `starFill`
+    - `starPlusEmpty` → `star`
+    - `starPlusFill` → `starFill`
+    - `stats` → `chartLine`
+    - `string` → `tokenString`
+    - `tableOfContents` → `listBullet`
+    - `unfold` → `maximize`
+    - `visGoal` → `chartGauge`
+    - `wordWrap` → `lineBreak`
+    - `wordWrapDisabled` → `lineBreakSlash`
+- Updated `starFilledSpace`, `starMinusFilled` and `starPlusFilled` mappings to `starFill` ([#9884](https://github.com/elastic/eui/pull/9884))
+
+**Deprecations**
+
+- Updated deprecated icon alias mappings: ([#9974](https://github.com/elastic/eui/pull/9974))
+    - `folderClosed` and `folderClose` → `folder`
+
+**Breaking changes**
+
+- Removed the `push` icon alias from `@elastic/eui/no-deprecated-icon-aliases`. `push` is now a supported `EuiIcon` glyph again and is no longer autofixed to `send` ([#9923](https://github.com/elastic/eui/pull/9923))
+
+## [`v2.16.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.16.0)
+
+- Added new `@elastic/eui/no-nested-copy-tooltip` rule to improve `EuiCopy` usage ([#9852](https://github.com/elastic/eui/pull/9852))
+- Updated `@elastic/eui/tooltip-button-icon-wrap` with an exception for `EuiCopy` usage covered by `@elastic/eui/no-nested-copy-tooltip` ([#9852](https://github.com/elastic/eui/pull/9852))
+- Added `button-group-no-invalid-children` rule ([#9849](https://github.com/elastic/eui/pull/9849))
+- Added `no-deprecated-icon-aliases` rule ([#9815](https://github.com/elastic/eui/pull/9815))
+
+## [`v2.15.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.15.0)
+
+- Added `callout-prefer-props-for-content` rule ([#9821](https://github.com/elastic/eui/pull/9821))
+
+## [`v2.14.1`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%402.14.1)
+
+**Bug fixes**
+
+- Fixed ESLint failing to load `@elastic/eslint-plugin-eui` by moving its runtime dependencies (`cssstyle`, `micromatch`, `@typescript-eslint/utils` and `@typescript-eslint/typescript-estree`) from `devDependencies` to `dependencies` ([#9804](https://github.com/elastic/eui/pull/9804))
+
+**Dependency updates**
+
+- Updated `@typescript-eslint/*` packages from `8.31.1` to `8.64.0` ([#9804](https://github.com/elastic/eui/pull/9804))
+
 ## [`v2.14.0`](https://github.com/elastic/eui/releases/v2.14.0)
 
 - Removed auto-fix from `tooltip-button-icon-wrap` rule ([#9695](https://github.com/elastic/eui/pull/9695))

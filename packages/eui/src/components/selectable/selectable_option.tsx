@@ -70,7 +70,7 @@ export type EuiSelectableOptionBase = CommonProps & {
   textWrap?: 'truncate' | 'wrap';
   /**
    * If textWrap is set to `truncate`, you can pass a custom truncation configuration
-   * that accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop except for
+   * that accepts any [EuiTextTruncate](https://eui.elastic.co/docs/utilities/text-truncation/) prop except for
    * `text` and `children`.
    *
    * Note: when searching, custom truncation props are ignored. The highlighted search
@@ -82,7 +82,7 @@ export type EuiSelectableOptionBase = CommonProps & {
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   * Optional props to pass to the underlying **[EuiToolTip](https://eui.elastic.co/docs/components/display/tooltip/)**
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 };

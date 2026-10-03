@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiButton } from '../../button';

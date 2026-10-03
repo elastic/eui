@@ -17,6 +17,9 @@ import { EuiImageFullScreenWrapper } from './image_fullscreen_wrapper';
 import type { EuiImageProps, EuiImageSize } from './image_types';
 import { SIZES } from './image_types';
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/display/image/|EuiImage documentation}
+ */
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
   alt,

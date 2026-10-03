@@ -35,7 +35,6 @@ export * from './card';
 export * from './code';
 
 export * from './collapsible_nav';
-export * from './collapsible_nav_beta';
 
 export * from './color_picker';
 
@@ -89,6 +88,8 @@ export * from './horizontal_rule';
 export * from './icon';
 
 export * from './image';
+
+export * from './illustration';
 
 export * from './inner_text';
 

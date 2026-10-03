@@ -11,7 +11,7 @@ buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 # When a PR's diff is contained entirely within these paths,
 # the heavy EUI jobs (lint, unit:*, cypress:*) exit early below.
 # The lightweight per-package jobs always run.
-NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin)/)'
+NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin|illustrations)/)'
 
 is_eui_test_type() {
   case "$1" in
@@ -55,6 +55,7 @@ DOCKER_OPTIONS=(
   --env BUILDKITE_MESSAGE
   --env CI=true
   --env PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
+  --env NODE_OPTIONS=--dns-result-order=ipv4first
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app

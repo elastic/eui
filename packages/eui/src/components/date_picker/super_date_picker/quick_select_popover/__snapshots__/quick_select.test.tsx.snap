@@ -3,7 +3,7 @@
 exports[`EuiQuickSelect is rendered 1`] = `
 <fieldset
   aria-describedby="generated-id"
-  class="emotion-euiQuickSelectPanel-render"
+  class="emotion-euiQuickSelectPanel-EuiQuickSelect"
 >
   <legend
     class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
@@ -15,7 +15,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
     class="emotion-euiQuickSelectPanel__section"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-render"
+      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-EuiQuickSelect"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero"
@@ -222,7 +222,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
 exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <fieldset
   aria-describedby="generated-id"
-  class="emotion-euiQuickSelectPanel-render"
+  class="emotion-euiQuickSelectPanel-EuiQuickSelect"
 >
   <legend
     class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
@@ -234,7 +234,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     class="emotion-euiQuickSelectPanel__section"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-render"
+      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row-EuiQuickSelect"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero"

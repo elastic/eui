@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
@@ -81,7 +81,7 @@ export const HighContrast: Story = {
     },
   },
   render: (_args) => (
-    <>
+    <div>
       <EuiSplitPanel.Outer direction="row">
         <EuiSplitPanel.Inner>
           <EuiSplitPanel.Outer direction="column">
@@ -124,6 +124,6 @@ export const HighContrast: Story = {
           </EuiSplitPanel.Outer>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
-    </>
+    </div>
   ),
 };

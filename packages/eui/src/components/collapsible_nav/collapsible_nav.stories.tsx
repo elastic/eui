@@ -7,8 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 import { css } from '@emotion/react';
 import { find, findIndex } from 'lodash';
 
@@ -89,6 +89,9 @@ const StatefulCollapsibleNav = (props: Partial<EuiCollapsibleNavProps>) => {
 };
 
 export const Playground: Story = {
+  parameters: {
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
   render: ({ ...args }) => <StatefulCollapsibleNav {...args} />,
   args: {
     children: 'Collapsible nav content',
@@ -379,7 +382,7 @@ const FullHeaderPatternExample = () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+    <EuiHeaderLogo logoType="horizontal" />,
   ];
 
   return (

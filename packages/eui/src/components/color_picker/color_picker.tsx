@@ -185,6 +185,9 @@ const getHsv = (hsv?: number[], fallback: number = 0) => {
   return [hue, hsv[1], hsv[2]] as ColorSpaces['hsv'];
 };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/forms/other/color-picker/|EuiColorPicker documentation}
+ */
 export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   button,
   className,

@@ -8,7 +8,8 @@
 
 import React, { createRef, StrictMode, useRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
+
 import {
   render,
   focusEuiToolTipTrigger,
@@ -19,8 +20,13 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
 import type { EuiToolTipRef } from './tool_tip';
+import { toolTipManager } from './tool_tip_manager';
 
 describe('EuiToolTip', () => {
+  afterEach(() => {
+    toolTipManager.reset();
+  });
+
   shouldRenderCustomStyles(
     <EuiToolTip content="test">
       <button data-test-subj="trigger" />
@@ -90,7 +96,7 @@ describe('EuiToolTip', () => {
       }
     });
 
-    it('shows on keyboard focus and hides on blur', () => {
+    it('shows on keyboard focus and hides on blur', async () => {
       const { getByTestSubject, queryByRole } = render(
         <StrictMode>
           <EuiToolTip content="Tooltip content">
@@ -104,8 +110,8 @@ describe('EuiToolTip', () => {
       const trigger = getByTestSubject('trigger');
       const cleanup = simulateFocusVisible(trigger);
 
-      act(() => {
-        userEvent.tab();
+      await act(async () => {
+        await userEvent.tab();
       });
       expect(queryByRole('tooltip')).toBeInTheDocument();
 
@@ -175,6 +181,29 @@ describe('EuiToolTip', () => {
       expect(getByRole('tooltip')).toHaveTextContent('Tooltip title');
     });
 
+    it('skips the entry animation when a tooltip opens right after another closes', () => {
+      const { getByTestSubject, getByRole } = render(
+        <>
+          <EuiToolTip content="First">
+            <button data-test-subj="first">First</button>
+          </EuiToolTip>
+          <EuiToolTip content="Second">
+            <button data-test-subj="second">Second</button>
+          </EuiToolTip>
+        </>
+      );
+
+      // First tooltip shows with entry animation
+      fireEvent.mouseEnter(getByTestSubject('first'));
+      expect(getByRole('tooltip').style.animation).toBe('');
+
+      fireEvent.mouseLeave(getByTestSubject('first'));
+
+      // Second tooltip should have inline `animation: none` to suppress entry animation
+      fireEvent.mouseEnter(getByTestSubject('second'));
+      expect(getByRole('tooltip')).toHaveStyle({ animation: 'none' });
+    });
+
     it('does not block clicks on the trigger while the tooltip is visible', () => {
       const onClick = jest.fn();
       const { getByTestSubject, getByRole } = render(
@@ -185,7 +214,7 @@ describe('EuiToolTip', () => {
         </EuiToolTip>
       );
 
-      fireEvent.mouseOver(getByTestSubject('trigger'));
+      fireEvent.mouseEnter(getByTestSubject('trigger'));
       expect(getByRole('tooltip')).toBeInTheDocument();
 
       fireEvent.click(getByTestSubject('trigger'));

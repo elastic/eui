@@ -33,6 +33,9 @@ export type EuiMarkdownFormatProps = CommonProps &
     textSize?: EuiTextProps['size'];
   };
 
+/**
+ * @see {@link https://eui.elastic.co/docs/components/editors-and-syntax/markdown/format/|EuiMarkdownFormat documentation}
+ */
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
   className,

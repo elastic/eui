@@ -38,7 +38,7 @@ const tickStyles = (
         `${range.tickWidth} solid ${range.tickColor}`
       ),
     })}
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.inline};
   `;
 };
 

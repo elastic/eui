@@ -38,7 +38,7 @@ export const euiSkeletonTextStyles = (euiThemeContext: UseEuiTheme) => {
     euiSkeletonText: css`
       display: block;
       ${logicalCSS('width', '100%')}
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.inline};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
       ${preventForcedColors(euiThemeContext)}
 

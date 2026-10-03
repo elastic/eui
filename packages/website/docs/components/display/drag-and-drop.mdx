@@ -604,6 +604,7 @@ The EUI `copy` method is available and demonstrated in the example below. Note t
 import React, { useState } from 'react';
 import {
   EuiButtonIcon,
+  EuiToolTip,
   EuiDragDropContext,
   EuiFlexGroup,
   EuiFlexItem,
@@ -683,6 +684,8 @@ export default () => {
     }
   };
 
+  const removeLabel = 'Remove';
+
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
@@ -718,11 +721,13 @@ export default () => {
                         {isItemRemovable ? (
                           <EuiIcon type="trash" color="danger" />
                         ) : (
-                          <EuiButtonIcon
-                            iconType="cross"
-                            aria-label="Remove"
-                            onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
-                          />
+                          <EuiToolTip content={removeLabel} disableScreenReaderOutput>
+                            <EuiButtonIcon
+                              iconType="cross"
+                              aria-label={removeLabel}
+                              onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
+                            />
+                          </EuiToolTip>
                         )}
                       </EuiFlexItem>
                     </EuiFlexGroup>
@@ -945,6 +950,7 @@ import {
   EuiDraggable,
   EuiDroppable,
   EuiButtonIcon,
+  EuiToolTip,
   EuiPanel,
   euiDragDropMove,
   euiDragDropReorder,
@@ -1004,6 +1010,8 @@ export default () => {
     }
   };
 
+  const dragHandleLabel = 'Drag Handle';
+
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiDroppable
@@ -1026,11 +1034,13 @@ export default () => {
           >
             {(provided) => (
               <EuiPanel color="subdued" paddingSize="s">
-                <EuiButtonIcon
-                  iconType="dragVertical"
-                  aria-label="Drag Handle"
-                  {...provided.dragHandleProps}
-                />
+                <EuiToolTip content={dragHandleLabel} disableScreenReaderOutput>
+                  <EuiButtonIcon
+                    iconType="dragVertical"
+                    aria-label={dragHandleLabel}
+                    {...provided.dragHandleProps}
+                  />
+                </EuiToolTip>
                 <EuiDroppable
                   droppableId={`COMPLEX_DROPPABLE_AREA_${did}`}
                   type="MICRO"

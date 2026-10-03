@@ -23,10 +23,7 @@ import {
   EuiButtonDisplayCommonProps,
 } from '../button_display/_button_display';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
-import {
-  euiButtonGroupButtonStyles,
-  _compressedButtonFocusColors,
-} from './button_group_button.styles';
+import { euiButtonGroupButtonStyles } from './button_group_button.styles';
 import { EuiToolTip } from '../../../components/tool_tip';
 
 type Props = EuiButtonGroupOptionProps & {
@@ -61,46 +58,29 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   isSelected,
   label,
   value, // Prevent prop from being spread
-  size,
+  size: _size,
   color: _color = 'primary',
   toolTipContent,
   toolTipProps,
   contentProps,
   ...rest
 }) => {
-  const isCompressed = size === 'compressed';
+  const size = _size === 'compressed' ? 's' : _size;
   const color = isDisabled ? 'disabled' : _color;
-  const hasBorder = color !== 'text' && !isCompressed;
-  const display = isSelected
-    ? 'fill'
-    : isCompressed || hasBorder
-    ? 'empty'
-    : 'base';
-  const hasToolTip = !!toolTipContent;
+  const display = isSelected && color !== 'text' ? 'fill' : 'empty';
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonStyles);
-  const focusColorStyles = useEuiMemoizedStyles(_compressedButtonFocusColors);
   const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
 
   const cssStyles = [
     styles.euiButtonGroupButton,
     isIconOnly && styles.iconOnly.iconOnly,
     isIconOnly && styles.iconOnly[size],
-    !isCompressed &&
-      (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
-    isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
+    styles[size],
+    isSelected && color === 'text' && styles.isSelected,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
-    !isDisabled && isCompressed && focusColorStyles[color],
-    hasBorder && styles.hasBorder,
   ];
-  const tooltipWrapperStyles = [
-    styles.tooltipWrapper,
-    !isCompressed && styles.uncompressed[size],
-  ];
-  const contentStyles = [
-    styles.content.euiButtonGroupButton__content,
-    isCompressed && styles.content.compressed,
-  ];
+  const tooltipWrapperStyles = [styles.tooltipWrapper];
   const textStyles = [
     isIconOnly
       ? styles.text.euiButtonGroupButton__iconOnly
@@ -134,11 +114,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         css={cssStyles}
         className={buttonClasses}
         isDisabled={isDisabled}
-        size={size === 'compressed' ? 's' : size}
-        contentProps={{
-          ...contentProps,
-          css: [contentStyles, contentProps?.css],
-        }}
+        size={size}
+        contentProps={contentProps}
         textProps={{
           css: textStyles,
           ref: buttonTextRef,

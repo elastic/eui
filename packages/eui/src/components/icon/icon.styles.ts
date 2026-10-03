@@ -122,7 +122,7 @@ export const euiIconStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   isLoading: css`
     opacity: ${iconLoadingOpacity};
     background-color: currentColor;
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.inline};
   `,
   isLoaded: css`
     ${euiCanAnimate} {

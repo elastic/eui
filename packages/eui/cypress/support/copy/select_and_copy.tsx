@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-const selectAndCopy = (selectorToCopy: string) => {
+const grantClipboardPermissions = () => {
   // Force Chrome devtools to allow reading from the clipboard
   cy.wrap(
     Cypress.automation('remote:debugger:protocol', {
@@ -30,20 +30,47 @@ const selectAndCopy = (selectorToCopy: string) => {
       return false;
     }
   });
+};
 
-  cy.get(selectorToCopy).then(($el) => {
-    const el = $el[0];
-    const document = el.ownerDocument;
-    const range = document.createRange();
-    range.selectNodeContents(el);
-    document.getSelection()!.removeAllRanges();
-    document.getSelection()!.addRange(range);
-  });
+const copyToClipboard = () => {
+  grantClipboardPermissions();
 
   return cy.window().then((window) => {
-    document.execCommand('copy');
+    window.document.execCommand('copy');
     return window.navigator.clipboard.readText();
   });
 };
 
+const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
+  cy.get(selectorToCopy).then(($el) => {
+    const el = $el[0];
+    const document = el.ownerDocument;
+    const range = document.createRange();
+    if (startSelector) {
+      const start = el.querySelector(startSelector);
+      if (!start) {
+        throw new Error(`Could not find start selector: ${startSelector}`);
+      }
+      range.selectNodeContents(el);
+      range.setStartBefore(start);
+    } else {
+      range.selectNodeContents(el);
+    }
+    document.getSelection()!.removeAllRanges();
+    document.getSelection()!.addRange(range);
+  });
+
+  return copyToClipboard();
+};
+
+const copyWithoutSelecting = () => {
+  cy.window().then((window) => {
+    window.getSelection()?.removeAllRanges();
+  });
+
+  return copyToClipboard();
+};
+
 Cypress.Commands.add('selectAndCopy', selectAndCopy);
+Cypress.Commands.add('copyToClipboard', copyToClipboard);
+Cypress.Commands.add('copyWithoutSelecting', copyWithoutSelecting);
