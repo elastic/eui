@@ -12,7 +12,9 @@ import React, {
   HTMLAttributes,
   ReactNode,
   ContextType,
+  useMemo,
 } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -25,11 +27,14 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   SortDirection,
-  RenderWithEuiTheme,
+  RenderWithEuiStylesMemoizer,
+  useEuiTheme,
+  useEuiMemoizedStyles,
   OverrideCopiedTabularContent,
   tabularCopyMarkers,
 } from '../../services';
 import { CommonProps } from '../common';
+import { euiMinBreakpoint } from '../../global_styling';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
 import { EuiCheckbox } from '../form';
@@ -84,6 +89,30 @@ import {
   safariLoadingWorkaround,
 } from './basic_table.styles';
 import { EuiToolTip } from '../tool_tip';
+
+const EuiBasicTablePanelledWrapper = ({
+  responsiveBreakpoint,
+  children,
+}: Pick<EuiTableProps, 'responsiveBreakpoint' | 'children'>) => {
+  const theme = useEuiTheme();
+  const styles = useEuiMemoizedStyles(euiBasicTableWrapperPanelledStyles);
+  const wrapperStyles = useMemo(() => {
+    if (responsiveBreakpoint === true) return null;
+    if (!responsiveBreakpoint) return styles;
+
+    return css`
+      ${euiMinBreakpoint(theme, responsiveBreakpoint)} {
+        ${styles}
+      }
+    `;
+  }, [theme, responsiveBreakpoint, styles]);
+
+  return (
+    <div css={wrapperStyles} data-test-subj="euiBasicTablePanelledWrapper">
+      {children}
+    </div>
+  );
+};
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -602,14 +631,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
     if (panelled) {
       return (
-        <div
-          css={
-            panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
-          }
-          data-test-subj="euiBasicTablePanelledWrapper"
+        <EuiBasicTablePanelledWrapper
+          responsiveBreakpoint={responsiveBreakpoint}
         >
           {content}
-        </div>
+        </EuiBasicTablePanelledWrapper>
       );
     }
 
@@ -1017,13 +1043,15 @@ export class EuiBasicTable<T extends object = any> extends Component<
     }
 
     return (
-      <RenderWithEuiTheme>
-        {(theme) => (
-          <EuiTableBody css={loading && euiBasicTableBodyLoading(theme)}>
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => (
+          <EuiTableBody
+            css={loading && stylesMemoizer(euiBasicTableBodyLoading)}
+          >
             {content}
           </EuiTableBody>
         )}
-      </RenderWithEuiTheme>
+      </RenderWithEuiStylesMemoizer>
     );
   }
 

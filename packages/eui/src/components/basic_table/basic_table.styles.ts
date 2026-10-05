@@ -13,10 +13,8 @@ import {
   euiCantAnimate,
   highContrastModeStyles,
   preventForcedColors,
-  euiMinBreakpoint,
 } from '../../global_styling';
 import type { UseEuiTheme } from '../../services';
-import type { EuiTableProps } from '../table';
 import { EUI_BASIC_TABLE_PANEL_CLASS_NAME } from './use_panel_props';
 
 const tableLoadingLine = keyframes`
@@ -79,123 +77,109 @@ export const euiBasicTableBodyLoading = (euiThemeContext: UseEuiTheme) => {
 /**
  * @internal
  */
-export const euiBasicTableWrapperPanelledStyles =
-  (responsiveBreakpoint: EuiTableProps['responsiveBreakpoint']) =>
-  (theme: UseEuiTheme) => {
-    const { euiTheme } = theme;
+export const euiBasicTableWrapperPanelledStyles = (theme: UseEuiTheme) => {
+  const { euiTheme } = theme;
 
-    const styles = css`
-      border: ${euiTheme.border.thin};
-      /* Offset for the wrapper border to be rendered without being obstructed
+  const styles = css`
+    border: ${euiTheme.border.thin};
+    /* Offset for the wrapper border to be rendered without being obstructed
        * by the child EuiTable's border */
-      padding-block-start: ${euiTheme.border.width.thin};
+    padding-block-start: ${euiTheme.border.width.thin};
+    border-radius: ${euiTheme.border.radius.panel};
+
+    &:not(:last-child) {
+      border-block-end-width: 0;
+    }
+
+    .euiTable {
       border-radius: ${euiTheme.border.radius.panel};
+    }
 
-      &:not(:last-child) {
-        border-block-end-width: 0;
-      }
+    /* Reset top border radius when there are panels above. */
+    .${EUI_BASIC_TABLE_PANEL_CLASS_NAME} + .euiBasicTable & {
+      border-start-start-radius: 0;
+      border-start-end-radius: 0;
 
-      .euiTable {
-        border-radius: ${euiTheme.border.radius.panel};
-      }
-
-      /* Reset top border radius when there are panels above. */
-      .${EUI_BASIC_TABLE_PANEL_CLASS_NAME} + .euiBasicTable & {
-        border-start-start-radius: 0;
-        border-start-end-radius: 0;
-
-        .euiTable,
-        .euiTable__wrapper,
-        .euiTableStickyHeader__container {
-          border-start-start-radius: 0;
-          border-start-end-radius: 0;
-        }
-
-        .euiTableHeaderCell[data-sticky='start'] {
-          border-start-start-radius: 0;
-        }
-
-        .euiTableHeaderCell[data-sticky='end'] {
-          border-start-end-radius: 0;
-        }
-      }
-
-      /* Reset bottom border radius when there are panels below.
-       * &:not(:last-child) detects whether the pagination bar is displayed */
-      &:not(:last-child),
-      &:has(+ .${EUI_BASIC_TABLE_PANEL_CLASS_NAME}) {
-        border-end-start-radius: 0;
-        border-end-end-radius: 0;
-
-        .euiTable {
-          border-end-start-radius: 0;
-          border-end-end-radius: 0;
-        }
-
-        .euiTableFooterCell {
-          &[data-sticky='start'],
-          &:first-child {
-            border-end-start-radius: 0;
-          }
-
-          &[data-sticky='end'],
-          &:last-child {
-            border-end-end-radius: 0;
-          }
-        }
-      }
-
+      .euiTable,
       .euiTable__wrapper,
       .euiTableStickyHeader__container {
-        border-start-start-radius: ${euiTheme.border.radius.panel};
-        border-start-end-radius: ${euiTheme.border.radius.panel};
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
       }
 
-      .euiTableHeaderCell {
-        &[data-sticky='start'] {
-          border-start-start-radius: ${euiTheme.border.radius.panel};
-        }
+      .euiTableHeaderCell[data-sticky='start'] {
+        border-start-start-radius: 0;
+      }
 
-        &[data-sticky='end'] {
-          border-start-end-radius: ${euiTheme.border.radius.panel};
-        }
+      .euiTableHeaderCell[data-sticky='end'] {
+        border-start-end-radius: 0;
+      }
+    }
 
-        .euiTableCellContent {
-          border-radius: inherit;
-        }
+    /* Reset bottom border radius when there are panels below.
+       * &:not(:last-child) detects whether the pagination bar is displayed */
+    &:not(:last-child),
+    &:has(+ .${EUI_BASIC_TABLE_PANEL_CLASS_NAME}) {
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+
+      .euiTable {
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
       }
 
       .euiTableFooterCell {
         &[data-sticky='start'],
         &:first-child {
-          border-end-start-radius: ${euiTheme.border.radius.panel};
+          border-end-start-radius: 0;
         }
 
         &[data-sticky='end'],
         &:last-child {
-          border-end-end-radius: ${euiTheme.border.radius.panel};
-        }
-
-        .euiTableCellContent {
-          border-radius: inherit;
+          border-end-end-radius: 0;
         }
       }
-    `;
-
-    if (responsiveBreakpoint === true) {
-      return null;
     }
 
-    if (!responsiveBreakpoint) {
-      return styles;
+    .euiTable__wrapper,
+    .euiTableStickyHeader__container {
+      border-start-start-radius: ${euiTheme.border.radius.panel};
+      border-start-end-radius: ${euiTheme.border.radius.panel};
     }
 
-    return css`
-      ${euiMinBreakpoint(theme, responsiveBreakpoint)} {
-        ${styles}
+    .euiTableHeaderCell {
+      &[data-sticky='start'] {
+        border-start-start-radius: ${euiTheme.border.radius.panel};
       }
-    `;
-  };
+
+      &[data-sticky='end'] {
+        border-start-end-radius: ${euiTheme.border.radius.panel};
+      }
+
+      .euiTableCellContent {
+        border-radius: inherit;
+      }
+    }
+
+    .euiTableFooterCell {
+      &[data-sticky='start'],
+      &:first-child {
+        border-end-start-radius: ${euiTheme.border.radius.panel};
+      }
+
+      &[data-sticky='end'],
+      &:last-child {
+        border-end-end-radius: ${euiTheme.border.radius.panel};
+      }
+
+      .euiTableCellContent {
+        border-radius: inherit;
+      }
+    }
+  `;
+
+  return styles;
+};
 
 // Fix to make the loading indicator position correctly in Safari
 // For whatever annoying reason, Safari doesn't respect `position: relative;`

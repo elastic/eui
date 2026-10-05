@@ -20,6 +20,8 @@ import {
 } from './basic_table';
 
 import { SortDirection, useEuiTheme } from '../../services';
+import * as basicTableStyles from './basic_table.styles';
+import { EuiTableProps } from '../table';
 import {
   EuiTableFieldDataColumnType,
   EuiTableActionsColumnType,
@@ -1022,6 +1024,75 @@ describe('EuiBasicTable', () => {
         'border-radius',
         euiTheme.border.radius.panel
       );
+    });
+
+    it('updates panel styles when the responsive breakpoint changes', () => {
+      const props = {
+        items: basicItems,
+        columns: basicColumns,
+        panelled: true,
+      };
+      const { getByTestSubject, rerender } = render(
+        <EuiBasicTable {...props} responsiveBreakpoint="m" />
+      );
+      const { euiTheme } = renderHook(useEuiTheme).result.current;
+      const wrapper = getByTestSubject('euiBasicTablePanelledWrapper');
+
+      for (const breakpoint of ['m', 's'] as const) {
+        rerender(
+          <EuiBasicTable {...props} responsiveBreakpoint={breakpoint} />
+        );
+        expect(wrapper).toHaveStyleRule('border', euiTheme.border.thin, {
+          media: `only screen and (min-width: ${euiTheme.breakpoint[breakpoint]}px)`,
+        });
+        expect(wrapper).not.toHaveStyleRule('border', euiTheme.border.thin);
+      }
+
+      for (const breakpoint of [false, undefined, true] as const) {
+        rerender(
+          <EuiBasicTable {...props} responsiveBreakpoint={breakpoint} />
+        );
+        if (breakpoint === true) {
+          expect(wrapper).not.toHaveStyleRule('border', euiTheme.border.thin);
+        } else {
+          expect(wrapper).toHaveStyleRule('border', euiTheme.border.thin);
+        }
+      }
+    });
+
+    it('shares theme styles across tables and breakpoint updates', () => {
+      const panelStyles = jest.spyOn(
+        basicTableStyles,
+        'euiBasicTableWrapperPanelledStyles'
+      );
+      const loadingStyles = jest.spyOn(
+        basicTableStyles,
+        'euiBasicTableBodyLoading'
+      );
+      const props = {
+        items: basicItems,
+        columns: basicColumns,
+        panelled: true,
+        loading: true,
+      };
+      const tables = (
+        responsiveBreakpoint: EuiTableProps['responsiveBreakpoint']
+      ) => (
+        <>
+          <EuiBasicTable
+            {...props}
+            responsiveBreakpoint={responsiveBreakpoint}
+          />
+          <EuiBasicTable {...props} responsiveBreakpoint="m" />
+        </>
+      );
+      const { rerender } = render(tables('s'));
+      rerender(tables('l'));
+
+      expect(panelStyles).toHaveBeenCalledTimes(1);
+      expect(loadingStyles).toHaveBeenCalledTimes(1);
+      panelStyles.mockRestore();
+      loadingStyles.mockRestore();
     });
 
     it('defaults to `panelled = false`', () => {
