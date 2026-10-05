@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { highContrastModeStyles } from '../../../global_styling';
+import { highContrastModeStyles, logicalCSS } from '../../../global_styling';
 import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
@@ -22,6 +22,10 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       padding-inline: ${euiTheme.size.s};
       border-block-end: ${euiTheme.border.width.thin} solid
         ${euiTheme.border.color};
+
+      .euiFlyout__closeButton {
+        ${logicalCSS('top', `${euiTheme.base - 3}px`)}
+      }
 
       .euiTitle {
         padding-inline: ${euiTheme.size.s};
