@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 
 import { EuiAccordionProps } from '../accordion';
 import { euiAccordionButtonStyles } from './accordion_button.styles';
@@ -55,8 +55,7 @@ export const EuiAccordionButton: FunctionComponent<
     buttonContentClassName
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiAccordionButtonStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiAccordionButtonStyles);
   const cssStyles = [
     styles.euiAccordion__button,
     isDisabled && styles.disabled,
