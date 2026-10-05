@@ -27,7 +27,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', euiTheme.size.s)}
       ${logicalCSS('top', euiTheme.size.s)}
        .euiFlyoutMenu & {
-        ${logicalCSS('top', euiTheme.size.m)}
+        ${logicalCSS('top', `${euiTheme.base - 3}px`)}
       }
       z-index: 3;
     `,
