@@ -453,6 +453,7 @@ export const EuiDataGrid = memo(
       styles.cellPadding[gridStyles.cellPadding!],
       styles.fontSize[gridStyles.fontSize!],
       styles.borders[gridStyles.border!],
+      gridStyles.border !== 'none' && styles.borderedPanelRadius,
     ];
 
     return (
