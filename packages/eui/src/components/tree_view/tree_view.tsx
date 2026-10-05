@@ -19,6 +19,7 @@ import {
   WithEuiThemeProps,
   keys,
   htmlIdGenerator,
+  withEuiStylesMemoizer,
 } from '../../services';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -280,7 +281,7 @@ export class EuiTreeViewClass extends Component<
       ...rest
     } = this.props;
 
-    const styles = euiTreeViewStyles(theme);
+    const styles = (this.props as any).stylesMemoizer(euiTreeViewStyles);
     const cssStyles = [styles.euiTreeView, styles[display]];
 
     // Computed classNames
