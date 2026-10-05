@@ -63,8 +63,8 @@ In American English, nouns that end with 'og' usually end with 'ogue' in British
 
 ## Case and capitalization
 
-<EuiCallOut title="Default case" color="primary">
-  Use **sentence case** for UI copy by default
+<EuiCallOut title="Use sentence case by default" color="primary">
+  This goes for navigation menus, titles and headers, buttons, and so on.
 </EuiCallOut>
 
 Use **sentence case** by default for UI copy, including actions, views, settings, section headers, and dialog titles. Sentence case is easier to read, even in headings, and helps branded names stand out. It also makes those names easier to recognize and preserve when localizing an interface. Title Case can feel more formal, so don't use it just to make a label look prominent.
@@ -80,7 +80,7 @@ Note that some names don't need to be capitalized when they're used as common na
 
 | UI text | Casing | Why |
 | --- | --- | --- |
-| Entity Analytics | Title Case | Capability name |
+| Entity Analytics | Title Case | Feature name |
 | Add data | Sentence case | Action, not a name |
 | Open in Entity Analytics | Sentence case, with the name unchanged | Sentence-case action containing a capability name |
 | Create Entity Analytics dashboard | Sentence case, with the name unchanged | "Entity Analytics" is a name; "dashboard" is generic |
@@ -117,6 +117,7 @@ Note that some names don't need to be capitalized when they're used as common na
 <EuiFlexGroup>
 <Guideline type="do" text="Use Title Case for the app name and sentence case for navigation labels.">
   <EuiSideNav
+    mobileBreakpoints={[]}
     aria-label="Entity Analytics navigation"
     style={{ width: 220 }}
     items={[
@@ -136,6 +137,7 @@ Note that some names don't need to be capitalized when they're used as common na
 
 <Guideline type="dont" text="Don't change the app name's capitalization or capitalize generic navigation labels as titles.">
   <EuiSideNav
+    mobileBreakpoints={[]}
     aria-label="Entity analytics navigation"
     style={{ width: 220 }}
     items={[
@@ -160,7 +162,7 @@ Note that some names don't need to be capitalized when they're used as common na
 
 Only use ellipsis for truncated text or situations that require the user to wait.
 
-- **Do:** Page loading... **not** Elastic offers many capabilities such as dashboards, machine learning, synthetics monitoring...
+- **Do:** Page loading... **not** Elastic offers many features such as Dashboards, Machine Learning, Synthetics...
 
 ### Exclamation mark
 
