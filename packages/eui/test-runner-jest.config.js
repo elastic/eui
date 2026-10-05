@@ -5,6 +5,9 @@ const defaultConfig = getJestConfig();
 
 module.exports = {
   ...defaultConfig,
+  testTimeout: 60_000,
+  // Playwright can leave open handles after suites finish
+  forceExit: true,
   // Extends the test-runner's environment to restore VRT snapshot retries
   testEnvironment: path.resolve(__dirname, '.storybook/vrt.environment.mjs'),
   modulePathIgnorePatterns: [

@@ -134,6 +134,72 @@ describe('EuiDescribedFormGroup', () => {
     });
   });
 
+  describe('accessible name', () => {
+    const getGroup = (container: HTMLElement) =>
+      container.querySelector('[role="group"]')!;
+
+    test('the group is named by its title', () => {
+      const { container } = render(
+        <EuiDescribedFormGroup {...props}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      const titleId = container.querySelector('h3')!.id;
+      expect(titleId).toBeTruthy();
+      expect(getGroup(container)).toHaveAttribute('aria-labelledby', titleId);
+    });
+
+    test('an `id` already set on the title is reused', () => {
+      const { container } = render(
+        <EuiDescribedFormGroup
+          {...props}
+          title={<h3 id="customTitleId">Title</h3>}
+        >
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(container.querySelector('h3')!.id).toEqual('customTitleId');
+      expect(getGroup(container)).toHaveAttribute(
+        'aria-labelledby',
+        'customTitleId'
+      );
+    });
+
+    test('a custom `aria-labelledby` takes precedence over the title', () => {
+      const { container } = render(
+        <EuiDescribedFormGroup {...props} aria-labelledby="customLabelId">
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(getGroup(container)).toHaveAttribute(
+        'aria-labelledby',
+        'customLabelId'
+      );
+    });
+
+    test('a custom `aria-label` is not overridden by the title', () => {
+      const { container } = render(
+        <EuiDescribedFormGroup {...props} aria-label="Custom label">
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(getGroup(container)).toHaveAttribute('aria-label', 'Custom label');
+      expect(getGroup(container)).not.toHaveAttribute('aria-labelledby');
+    });
+  });
+
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
       const { container } = render(

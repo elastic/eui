@@ -39,6 +39,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      */
     isFocused?: boolean;
     disabled?: boolean;
+    hasAriaDisabled?: EuiSelectableOption['hasAriaDisabled'];
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     allowExclusions?: boolean;
@@ -85,6 +86,7 @@ export const EuiSelectableListItem: FunctionComponent<
   checked,
   isFocused,
   showIcons = true,
+  hasAriaDisabled,
   prepend,
   append,
   allowExclusions,
@@ -232,20 +234,23 @@ export const EuiSelectableListItem: FunctionComponent<
         break;
     }
 
-    return state || instructions ? (
+    const enabledInstructions = disabled ? undefined : instructions;
+
+    return state || enabledInstructions ? (
       <EuiScreenReaderOnly>
         <div>
-          {state || instructions ? '. ' : null}
+          {state || enabledInstructions ? '. ' : null}
           {state}
-          {state && instructions ? ' ' : null}
-          {instructions}
+          {state && enabledInstructions ? ' ' : null}
+          {enabledInstructions}
         </div>
       </EuiScreenReaderOnly>
     ) : null;
-  }, [checked, searchable, allowExclusions]);
+  }, [checked, disabled, searchable, allowExclusions]);
 
-  const hasToolTip = !!toolTipContent && !disabled;
-  const showOnFocusBadge = isFocused && !disabled && !!onFocusBadgeNode;
+  const hasToolTip = !!toolTipContent && (!disabled || hasAriaDisabled);
+  const showOnFocusBadge =
+    isFocused && (!disabled || hasAriaDisabled) && !!onFocusBadgeNode;
 
   const listItemLayoutProps: Omit<EuiListItemLayoutAsLi, 'children'> = {
     element: 'li',
@@ -253,7 +258,8 @@ export const EuiSelectableListItem: FunctionComponent<
     className: classes,
     checked: checked,
     isDisabled: disabled,
-    isFocused: !disabled && isFocused,
+    hasAriaDisabled,
+    isFocused: (!disabled || hasAriaDisabled) && isFocused,
     isSelected: checked !== undefined,
     isSingleSelection: singleSelection,
     selectionMode:

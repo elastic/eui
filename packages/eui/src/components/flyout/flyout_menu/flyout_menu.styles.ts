@@ -8,14 +8,27 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { highContrastModeStyles } from '../../../global_styling';
+import {
+  highContrastModeStyles,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const topOffset = mathWithUnits(
+    [euiTheme.size.m, euiTheme.border.width.thin],
+    (x, y) => x + y
+  );
+  const containerHeight = mathWithUnits(
+    [euiTheme.size.base, euiTheme.border.width.thin],
+    (x, y) => x * 3 + y * 2
+  );
+
   return {
     euiFlyoutMenu__container: css`
-      block-size: calc(${euiTheme.size.m} * 3.5);
+      block-size: ${containerHeight};
       flex-shrink: 0;
       /* Symmetric padding aligns the control row with the absolutely-positioned close button. */
       padding-block: ${euiTheme.size.s};
@@ -23,15 +36,17 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
       border-block-end: ${euiTheme.border.width.thin} solid
         ${euiTheme.border.color};
 
+      .euiFlyout__closeButton {
+        ${logicalCSS('top', topOffset)}
+      }
+
       .euiTitle {
         padding-inline: ${euiTheme.size.s};
       }
     `,
     // Full height in high contrast mode so dividers can bleed to the container edges.
     euiFlyoutMenu__controls: css`
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: 'block-size: 100%;',
-      })}
+      block-size: 100%;
     `,
     euiFlyoutMenu__spacer: css`
       padding-inline: ${euiTheme.size.m};

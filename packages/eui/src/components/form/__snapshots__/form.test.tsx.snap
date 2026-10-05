@@ -27,7 +27,6 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
     class="euiPanel euiPanel--danger euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-danger-euiCallOut-danger"
     data-size="m"
     role="alert"
-    style="--euiCallOutTypeColor: #C61E25;"
     tabindex="-1"
   >
     <div
@@ -69,7 +68,6 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     class="euiPanel euiPanel--danger euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-danger-euiCallOut-danger"
     data-size="m"
     role="alert"
-    style="--euiCallOutTypeColor: #C61E25;"
     tabindex="-1"
   >
     <div
@@ -131,7 +129,6 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     class="euiPanel euiPanel--danger euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-danger-euiCallOut-danger"
     data-size="m"
     role="alert"
-    style="--euiCallOutTypeColor: #C61E25;"
     tabindex="-1"
   >
     <div

@@ -66,12 +66,20 @@ their own version at runtime.
 
 ### Selectors
 
-Each Component Object's stable selectors are exported too (`EuiComboBoxSelectors`,
-`EuiDataGridSelectors`, and so on). `*_SELECTOR` values are CSS class selectors,
-`*_TEST_SUBJ` values are `data-test-subj` names EUI sets itself. Prefer the
-Component Objects. The selectors exist for tooling, such as lint rules that flag
-hand-written EUI selectors in consumer tests, and for the rare scoping need an
-object does not cover yet.
+Each Component Object's stable selectors are exported under one `selectors`
+object, keyed by component (`selectors.comboBox`, `selectors.dataGrid`, and so
+on). `*_SELECTOR` values are CSS class selectors, `*_TEST_SUBJ` values are
+`data-test-subj` names EUI sets itself.
+
+```ts
+import { selectors } from '@elastic/eui-test-helpers';
+
+page.locator(selectors.basicTable.ROW_SELECTOR);
+```
+
+Prefer the Component Objects. The selectors exist for tooling, such as lint
+rules that flag hand-written EUI selectors in consumer tests, and for the rare
+scoping need an object does not cover yet.
 
 ## Contributing
 

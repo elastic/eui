@@ -44,7 +44,7 @@ on:
         description: Published @elastic/eui snapshot version
         type: string
 concurrency:
-  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', github.run_id) }}
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', inputs.source_pr_number && format('pr-{0}', inputs.source_pr_number) || github.run_id) }}
   cancel-in-progress: false
   queue: max
 permissions:
@@ -55,7 +55,7 @@ permissions:
 jobs:
   update:
     name: Prepare changes
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Verify dependencies input
         env:
@@ -108,11 +108,15 @@ jobs:
         id: git_branch
         env:
           NIGHTLY: ${{ inputs.nightly }}
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
-          # Nightly runs reuse a fixed branch; all other runs remain unique.
+          # Nightly reuses a fixed branch. Regression runs reuse a branch keyed
+          # by the source PR number. Manual runs stay unique.
           if [[ "$NIGHTLY" == "true" ]]; then
             branch_name="nightly/update-dependencies"
+          elif [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
+            branch_name="update-dependencies/pr-${SOURCE_PR_NUMBER}"
           else
             branch_name="update-dependencies/$(date +%s)"
           fi
@@ -313,9 +317,12 @@ jobs:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
           NIGHTLY: ${{ inputs.nightly }}
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
-          if [[ "$NIGHTLY" == "true" ]]; then
+          # Reused branches are recreated from latest Kibana main, so the
+          # remote history is replaced.
+          if [[ "$NIGHTLY" == "true" || -n "${SOURCE_PR_NUMBER:-}" ]]; then
             git push -u --force fork "$BRANCH_NAME"
           else
             git push -u fork "$BRANCH_NAME"

@@ -39,8 +39,10 @@ on:
         description: Published @elastic/eui snapshot version
         type: string
 concurrency:
-  group: ${{ inputs.nightly && 'kibana-nightly' || format('open-kibana-pr-{0}', github.run_id) }}
-  cancel-in-progress: false
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('open-kibana-{0}', inputs.source_pr_number && format('pr-{0}', inputs.source_pr_number) || github.run_id) }}
+  # A newer run for the same source PR supersedes the older run and reports
+  # status for the latest commits.
+  cancel-in-progress: ${{ !!inputs.source_pr_number }}
   queue: max
 permissions:
   contents: read
@@ -50,7 +52,7 @@ permissions:
 jobs:
   open_pr:
     name: Open PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       pr_url: ${{ steps.open_pr.outputs.pr_url }}
     steps:
@@ -112,45 +114,48 @@ jobs:
                 '' \
                 '</details>'
             )"
+          fi
 
-            # Reuse the open PR for the fixed nightly branch.
-            # The REST `head=owner:branch` filter cannot distinguish the base
-            # repository from a fork when both belong to the same organization.
-            existing_pr_url="$(
-              gh api graphql \
-                -f query='
-                  query ($owner: String!, $name: String!, $headRefName: String!) {
-                    repository(owner: $owner, name: $name) {
-                      pullRequests(first: 100, states: OPEN, headRefName: $headRefName) {
-                        nodes {
-                          url
-                          headRepository {
-                            nameWithOwner
-                          }
+          # Reuse the open PR for this head branch.
+          # Nightly uses a fixed branch. Regression runs use a branch keyed by
+          # the source PR number. Manual runs use a unique branch, so this
+          # lookup finds nothing and a new PR is created below.
+          # The REST `head=owner:branch` filter cannot distinguish the base
+          # repository from a fork when both belong to the same organization.
+          existing_pr_url="$(
+            gh api graphql \
+              -f query='
+                query ($owner: String!, $name: String!, $headRefName: String!) {
+                  repository(owner: $owner, name: $name) {
+                    pullRequests(first: 100, states: OPEN, headRefName: $headRefName) {
+                      nodes {
+                        url
+                        headRepository {
+                          nameWithOwner
                         }
                       }
                     }
-                  }' \
-                -f "owner=${base_repo%/*}" \
-                -f "name=${base_repo#*/}" \
-                -f "headRefName=$PR_HEAD" |
-                jq -r --arg head_repo "$head_repo" \
-                  '[.data.repository.pullRequests.nodes[] | select(.headRepository.nameWithOwner == $head_repo)] | first | .url // ""'
-            )"
-            if [[ -n "$existing_pr_url" ]]; then
-              gh pr edit "$existing_pr_url" --title "$PR_TITLE" --body "${PR_BODY:-}"
-              if [[ "$(gh pr view "$existing_pr_url" --json isDraft --jq .isDraft)" != "true" ]]; then
-                gh pr ready "$existing_pr_url" --undo
-              fi
-
-              echo "pr_url=$existing_pr_url" >> "$GITHUB_OUTPUT"
-              {
-                echo "### Pull request updated"
-                echo ""
-                echo "$existing_pr_url"
-              } >> "$GITHUB_STEP_SUMMARY"
-              exit 0
+                  }
+                }' \
+              -f "owner=${base_repo%/*}" \
+              -f "name=${base_repo#*/}" \
+              -f "headRefName=$PR_HEAD" |
+              jq -r --arg head_repo "$head_repo" \
+                '[.data.repository.pullRequests.nodes[] | select(.headRepository.nameWithOwner == $head_repo)] | first | .url // ""'
+          )"
+          if [[ -n "$existing_pr_url" ]]; then
+            gh pr edit "$existing_pr_url" --title "$PR_TITLE" --body "${PR_BODY:-}"
+            if [[ "$(gh pr view "$existing_pr_url" --json isDraft --jq .isDraft)" != "true" ]]; then
+              gh pr ready "$existing_pr_url" --undo
             fi
+
+            echo "pr_url=$existing_pr_url" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Pull request updated"
+              echo ""
+              echo "$existing_pr_url"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
 
           base_repo_id="$(gh api "repos/$base_repo" --jq .node_id)"
@@ -300,7 +305,7 @@ jobs:
     runs-on: ubuntu-slim
     needs: [open_pr, check_ci_status_1, check_ci_status_2]
     if: |
-      always() &&
+      !cancelled() &&
       (inputs.source_pr_number || inputs.nightly) &&
       (
         (needs.check_ci_status_1.result == 'success' && needs.check_ci_status_2.result == 'skipped') ||

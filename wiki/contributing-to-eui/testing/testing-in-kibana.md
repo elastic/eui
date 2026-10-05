@@ -77,16 +77,19 @@ yarn build-pack
 
 This will create the required `.tgz` file(s) with the changes in your `eui` (and `eui-theme-common`/ `eui-theme-borealis`) directory. At this point you can move it anywhere.
 
+> [!IMPORTANT]
+> If the `.tgz` is going to be committed to Kibana, rename it to snake_case (e.g. `elastic_eui_xx.x.x.tgz`). Kibana's `file_casing` quick check fails the PR on hyphenated names like the `elastic-eui-xx.x.x.tgz` that `yarn pack` produces.
+
 ### In Kibana:
 
-Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
+Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic_eui_xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
 
 ```bash
 pnpm kbn bootstrap --no-validate && pnpm start
 ```
 
 * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-  * Change the name of the `.tgz` after subsequent `yarn build-pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for the package manager to recognize new changes to the package.
+  * Change the name of the `.tgz` after subsequent `yarn build-pack` steps (e.g., `elastic_eui_xx.x.x_1.tgz`, `elastic_eui_xx.x.x_2.tgz`). This is required for the package manager to recognize new changes to the package.
 * Running Kibana with `pnpm start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
 
 ### Deploying local EUI in Kibana
@@ -96,8 +99,8 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 #### Generate and link a local EUI package
 
 - Follow the steps above to create a local package of EUI using `yarn build-pack`
-- Copy the generated `.tgz` package file(s) to the Kibana root
-- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "file:./elastic-eui-xx.x.x.tgz"`.
+- Copy the generated `.tgz` package file(s) to the Kibana root and rename them to snake_case (see the note above)
+- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "file:./elastic_eui_xx.x.x.tgz"`.
 - Add `"@elastic/eui-theme-common"` to the `package.json` and point it either to the local package you copied, or add the published version that matches the version listed as a dependency in your local `@elastic/eui` package
 
 ```bash

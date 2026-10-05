@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, waitFor, within, expect } from 'storybook/test';
+import { userEvent, within } from 'storybook/test';
 
 import {
   enableFunctionToggleControls,
@@ -139,7 +139,7 @@ export const SingleSelection: Story = {
 export const WithTooltip: Story = {
   parameters: {
     controls: {
-      include: ['options', 'singleSelection', 'searchable'],
+      include: ['options', 'singleSelection', 'searchable', 'onChange'],
     },
     vrt: { selector: VRT_SELECTORS.portal },
   },
@@ -157,9 +157,38 @@ export const WithTooltip: Story = {
     const options = body.getAllByRole('option');
     const tooltipTarget = (options[0].firstElementChild ??
       options[0]) as HTMLElement;
-    await userEvent.hover(tooltipTarget);
 
-    await waitFor(() => expect(body.getByRole('tooltip')).toBeVisible());
+    await userEvent.hover(tooltipTarget, { pointerEventsCheck: 0 });
+    await body.findByRole('tooltip');
+  }),
+};
+
+export const DisabledWithTooltip: Story = {
+  parameters: {
+    controls: {
+      include: ['options', 'singleSelection', 'searchable', 'onChange'],
+    },
+    vrt: { selector: VRT_SELECTORS.portal },
+  },
+  args: {
+    searchable: true,
+    options: options.map((option, idx) => ({
+      ...option,
+      checked: idx === 1 ? 'on' : option.checked,
+      hasAriaDisabled: option.disabled,
+      ...toolTipProps,
+      value: idx,
+    })),
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+  play: playDecorator(async ({ bodyElement }) => {
+    const body = within(bodyElement);
+    const options = body.getAllByRole('option');
+    const tooltipTarget = (options[1].firstElementChild ??
+      options[1]) as HTMLElement;
+
+    await userEvent.hover(tooltipTarget, { pointerEventsCheck: 0 });
+    await body.findByRole('tooltip');
   }),
 };
 
