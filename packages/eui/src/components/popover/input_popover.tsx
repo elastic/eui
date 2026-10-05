@@ -35,7 +35,10 @@ import {
 } from './popover';
 
 export interface _EuiInputPopoverProps
-  extends Omit<EuiPopoverProps, 'button' | 'buttonRef' | 'anchorPosition'> {
+  extends Omit<
+    EuiPopoverProps,
+    'button' | 'buttonRef' | 'anchorPosition' | 'closePopover'
+  > {
   /**
    * Alignment of the popover relative to the input
    */
@@ -45,6 +48,7 @@ export interface _EuiInputPopoverProps
    * Allows automatically closing the input popover on page scroll
    */
   closeOnScroll?: boolean;
+  closePopover: NonNullable<EuiPopoverProps['closePopover']>;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['popoverRef'];

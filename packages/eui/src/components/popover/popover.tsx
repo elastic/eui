@@ -86,7 +86,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Callback to handle hiding of the popover
    */
-  closePopover: NoArgCallback<void>;
+  closePopover?: NoArgCallback<void>;
   /**
    * Restrict the popover's position within this element
    */
@@ -307,7 +307,7 @@ export const EuiPopover = forwardRef<EuiPopoverRef, Props>(
 
     const closePopover = useCallback(() => {
       if (isOpen) {
-        closePopoverProp();
+        closePopoverProp?.();
       }
     }, [closePopoverProp, isOpen]);
 

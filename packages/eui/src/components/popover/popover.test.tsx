@@ -265,6 +265,18 @@ describe('EuiPopover', () => {
 
         expect(closePopoverHandler).not.toHaveBeenCalled();
       });
+
+      it('is optional', () => {
+        const { container } = render(
+          <EuiPopover {...requiredProps} button={<button />} isOpen />
+        );
+
+        expect(() =>
+          fireEvent.keyDown(container, {
+            key: keys.ESCAPE,
+          })
+        ).not.toThrow();
+      });
     });
 
     describe('anchorPosition', () => {
