@@ -2,7 +2,7 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-hasBetaBadge"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-hasBetaBadge-betaBadgePadding"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -30,7 +30,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       </div>
     </div>
     <span
-      class="emotion-euiCard__betaBadgeAnchor"
+      class="emotion-euiCard__betaBadgeAnchor-betaBadgeAnchorPadding"
     >
       <a
         class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline-euiCard__betaBadge"
@@ -908,7 +908,7 @@ exports[`EuiCard props image 1`] = `
       class="euiCard__top emotion-euiCard__top-vertical"
     >
       <div
-        class="euiCard__image emotion-euiCard__image"
+        class="euiCard__image emotion-euiCard__image-imagePadding"
       >
         <div>
           <img

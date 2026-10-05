@@ -18,6 +18,7 @@ import { EuiI18n } from '../i18n';
 import { COLORS, SIZES } from '../panel/panel';
 
 import { EuiCard, ALIGNMENTS } from './card';
+import * as cardStyles from './card.styles';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
@@ -30,6 +31,36 @@ describe('EuiCard', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('style memoization', () => {
+    afterEach(() => jest.restoreAllMocks());
+
+    test('reuses theme styles across cards and rerenders', () => {
+      const styleGenerators = [
+        jest.spyOn(cardStyles, 'euiCardStyles'),
+        jest.spyOn(cardStyles, 'euiCardTextStyles'),
+        jest.spyOn(cardStyles, 'euiCardBetaBadgeStyles'),
+      ];
+      const cards = (paddingSize: 's' | 'l') => (
+        <>
+          <EuiCard title="First card" paddingSize={paddingSize} />
+          <EuiCard
+            title="Second card"
+            betaBadgeProps={{ label: 'Beta' }}
+            paddingSize={paddingSize}
+          />
+        </>
+      );
+      const { rerender } = render(cards('s'));
+      styleGenerators.forEach((generator) => {
+        expect(generator).toHaveBeenCalledTimes(1);
+      });
+      rerender(cards('l'));
+      styleGenerators.forEach((generator) => {
+        expect(generator).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 
   shouldRenderCustomStyles(
@@ -274,6 +305,97 @@ describe('EuiCard', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
+    });
+
+    test('keeps image, icon, and badge padding independent between cards and rerenders', () => {
+      const paddingSizes = [
+        ['xs', '4px'],
+        ['s', '8px'],
+        ['m', '16px'],
+        ['l', '24px'],
+        ['xl', '32px'],
+      ] as const;
+      const cards = (reverse: boolean) => (
+        <>
+          {paddingSizes.map(([size], index) => (
+            <EuiCard
+              key={size}
+              title="Card title"
+              data-test-subj={`card-${size}`}
+              paddingSize={
+                reverse
+                  ? paddingSizes[paddingSizes.length - index - 1][0]
+                  : size
+              }
+              image={
+                <img src="image.jpg" alt="" data-test-subj={`image-${size}`} />
+              }
+              icon={<EuiAvatar name="Icon" data-test-subj={`icon-${size}`} />}
+              betaBadgeProps={{
+                label: 'Beta',
+                anchorProps: { 'data-test-subj': `badge-${size}` },
+              }}
+            />
+          ))}
+        </>
+      );
+      const { getByTestSubject, rerender } = render(cards(false));
+      const assertPadding = (reverse: boolean) => {
+        paddingSizes.forEach(([size, padding], index) => {
+          const amount = reverse
+            ? paddingSizes[paddingSizes.length - index - 1][1]
+            : padding;
+          const image = getByTestSubject(`image-${size}`).parentElement!;
+          expect(image).toHaveStyleRule(
+            'inline-size',
+            `calc(100% + (${amount} * 2))`
+          );
+          expect(image).toHaveStyleRule('inset-inline-start', `-${amount}`);
+          expect(image).toHaveStyleRule('inset-block-start', `-${amount}`);
+          expect(image).toHaveStyleRule('margin-block-end', `-${amount}`);
+          expect(getByTestSubject(`icon-${size}`)).toHaveStyleRule(
+            'transform',
+            new RegExp(
+              `translate\\(\\s*-50%,\\s*calc\\(-50% \\+ -${amount}\\)\\s*\\)!important`
+            )
+          );
+          expect(getByTestSubject(`card-${size}`)).toHaveStyleRule(
+            'padding-block-start',
+            `calc(${amount} + 8px)`
+          );
+          expect(getByTestSubject(`badge-${size}`)).toHaveStyleRule(
+            'max-inline-size',
+            `calc(100% - (${amount} * 2))`
+          );
+        });
+      };
+      assertPadding(false);
+      rerender(cards(true));
+      assertPadding(true);
+    });
+
+    test('supports adding and removing a beta badge on rerender', () => {
+      const { getByTestSubject, queryByText, rerender } = render(
+        <EuiCard title="Card title" data-test-subj="card" />
+      );
+      expect(queryByText('Beta')).not.toBeInTheDocument();
+      rerender(
+        <EuiCard
+          title="Card title"
+          data-test-subj="card"
+          betaBadgeProps={{ label: 'Beta' }}
+        />
+      );
+      expect(queryByText('Beta')).toBeInTheDocument();
+      expect(getByTestSubject('card')).toHaveStyleRule(
+        'padding-block-start',
+        'calc(16px + 8px)'
+      );
+      rerender(<EuiCard title="Card title" data-test-subj="card" />);
+      expect(queryByText('Beta')).not.toBeInTheDocument();
+      expect(getByTestSubject('card')).not.toHaveStyleRule(
+        'padding-block-start'
+      );
     });
 
     describe('display', () => {
