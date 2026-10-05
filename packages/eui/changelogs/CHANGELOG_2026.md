@@ -1,3 +1,18 @@
+## [`v123.1.0`](https://github.com/elastic/eui/releases/v123.1.0)
+
+- Removed the left color highlight from `EuiCallOut` ([#10109](https://github.com/elastic/eui/pull/10109))
+- Updated Flyout menu height to 50px ([#10103](https://github.com/elastic/eui/pull/10103))
+- Added new icons: `chartMix`, `chartWaffle`, `clipboardWarning`, `clockUp`, `emergencyLight`, `productCanvas`, `productElasticAgent`, `productFleet`, `productLens`, `puzzlePiece`, `shield` ([#10111](https://github.com/elastic/eui/pull/10111))
+- Added `hasAriaDisabled` prop on `EuiSelectableListItem` and `type EuiSelectableOption` ([#10090](https://github.com/elastic/eui/pull/10090))
+- Added refs for `EuiFlyoutHeader`, `EuiFlyoutFooter`, and the outer `EuiFlyout` scroll container. ([#10105](https://github.com/elastic/eui/pull/10105))
+- Corrected `EuiFlyoutHeaderProps`, `EuiFlyoutFooterProps`, and `EuiFlyoutBodyProps` to describe component props instead of component types. ([#10105](https://github.com/elastic/eui/pull/10105))
+- Updated `EuiFormRow`'s `labelAppend` to render string content with an extra-small, subdued text style. ([#10067](https://github.com/elastic/eui/pull/10067))
+
+**Bug fixes**
+
+- Fixed a bug on `EuiSelectable` with `searchable={true}` that could result in an infinite loop if all search results are disabled ([#10090](https://github.com/elastic/eui/pull/10090))
+- Fixed `EuiSuperSelect` omitting the currently selected value from its accessible name when an `aria-label` or `aria-labelledby` was passed. External labels are now combined with the selected value instead of overriding it ([#10039](https://github.com/elastic/eui/pull/10039))
+
 ## [`v123.0.0`](https://github.com/elastic/eui/releases/v123.0.0)
 
 - Added `toolTipProps` to `EuiTextTruncate` to control where the full text tooltip opens, e.g. its `position` ([#10086](https://github.com/elastic/eui/pull/10086))
