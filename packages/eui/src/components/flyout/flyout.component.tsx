@@ -21,6 +21,7 @@ import React, {
   ElementType,
   FunctionComponent,
   MutableRefObject,
+  Ref,
   JSX,
 } from 'react';
 import classnames from 'classnames';
@@ -83,6 +84,11 @@ import { EuiFlyoutParentProvider } from './flyout_parent_context';
 import { useEuiFlyoutMenu } from './use_flyout_menu';
 
 interface _EuiFlyoutComponentProps {
+  /**
+   * Access the outer flyout content container. This is distinct from
+   * `EuiFlyoutBody`'s internal `scrollContainerRef`.
+   */
+  scrollContainerRef?: Ref<HTMLDivElement>;
   /**
    * A required callback function fired when the flyout is closed.
    *
@@ -404,6 +410,7 @@ export const EuiFlyoutComponent = forwardRef(
       minWidth,
       onResize,
       onAnimationEnd,
+      scrollContainerRef,
       container: containerProp,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
@@ -1240,6 +1247,7 @@ export const EuiFlyoutComponent = forwardRef(
               className="euiFlyout__content"
               css={styles.content}
               data-test-subj="euiFlyoutContent"
+              ref={scrollContainerRef}
             >
               <EuiFlyoutParentProvider>{children}</EuiFlyoutParentProvider>
             </div>
