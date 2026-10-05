@@ -80,7 +80,7 @@ type EuiFormRowCommonProps = CommonProps & {
    * being contained inside the form label. Good for things
    * like required fields or documentation links.
    */
-  labelAppend?: String | ReactNode;
+  labelAppend?: ReactNode;
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];

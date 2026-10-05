@@ -28,7 +28,11 @@ export const EuiFormLabelAppend: FunctionComponent<EuiFormLabelAppendProps> = ({
   const styles = useEuiMemoizedStyles(euiFormLabelAppendStyles);
 
   if (typeof children !== 'string') {
-    return <>{<EuiText size="xs">{children}</EuiText>}</>;
+    return (
+      <EuiText size="xs" className={className} {...rest}>
+        {children}
+      </EuiText>
+    );
   }
 
   const classes = classNames('euiFormLabelAppend', className);
