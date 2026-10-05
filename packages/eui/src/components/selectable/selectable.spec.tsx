@@ -442,6 +442,77 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('hasAriaDisabled', () => {
+    const ariaDisabledOptions: EuiSelectableProps['options'] = [
+      { label: 'Normal option' },
+      { label: 'Plain disabled', disabled: true },
+      {
+        label: 'Aria disabled',
+        disabled: true,
+        hasAriaDisabled: true,
+        toolTipContent: 'This option is disabled',
+      },
+    ];
+
+    it('navigates hasAriaDisabled options but skips native disabled options', () => {
+      cy.realMount(
+        <EuiSelectableWithSearchInput options={ariaDisabledOptions}>
+          {(list) => <>{list}</>}
+        </EuiSelectableWithSearchInput>
+      );
+
+      cy.get('input').realClick();
+      cy.realPress('ArrowDown');
+      cy.get('li[role=option]')
+        .eq(0)
+        .should('have.class', 'euiSelectableListItem-isFocused');
+
+      cy.realPress('ArrowDown');
+      cy.get('li[role=option]')
+        .eq(1)
+        .should('not.have.class', 'euiSelectableListItem-isFocused');
+      cy.get('li[role=option]')
+        .eq(2)
+        .should('have.class', 'euiSelectableListItem-isFocused');
+    });
+
+    it('does not select a hasAriaDisabled option on Enter', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectableWithSearchInput
+          options={ariaDisabledOptions}
+          onChange={onChange}
+        >
+          {(list) => <>{list}</>}
+        </EuiSelectableWithSearchInput>
+      );
+
+      cy.get('input').realClick();
+      cy.realPress('ArrowDown');
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter').then(() => {
+        expect(onChange).not.to.have.been.called;
+      });
+    });
+
+    it('shows a tooltip when focusing a hasAriaDisabled option', () => {
+      cy.realMount(
+        <EuiSelectableWithSearchInput options={ariaDisabledOptions}>
+          {(list) => <>{list}</>}
+        </EuiSelectableWithSearchInput>
+      );
+
+      cy.get('input').realClick();
+      cy.realPress('ArrowDown');
+      cy.realPress('ArrowDown');
+
+      cy.get('[role="tooltip"]').should(
+        'contain.text',
+        'This option is disabled'
+      );
+    });
+  });
+
   describe('nested in `EuiPopover` component', () => {
     const EuiSelectableNested = () => {
       const [isPopoverOpen, setIsPopoverOpen] = useState(false);
