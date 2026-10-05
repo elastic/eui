@@ -8,11 +8,20 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { highContrastModeStyles, logicalCSS } from '../../../global_styling';
+import {
+  highContrastModeStyles,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const topOffset = mathWithUnits(
+    [euiTheme.size.m, euiTheme.border.width.thin],
+    (x, y) => x + y
+  );
+
   return {
     euiFlyoutMenu__container: css`
       block-size: calc(${euiTheme.base * 3 + 2}px);
@@ -24,7 +33,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTheme.border.color};
 
       .euiFlyout__closeButton {
-        ${logicalCSS('top', `${euiTheme.base - 3}px`)}
+        ${logicalCSS('top', topOffset)}
       }
 
       .euiTitle {
