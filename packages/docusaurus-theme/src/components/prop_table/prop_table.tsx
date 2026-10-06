@@ -53,6 +53,10 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   table: css`
     vertical-align: top;
+
+    tbody tr:last-child td {
+      border-block-end: none;
+    }
   `,
   propName: css`
     font-family: ${euiTheme.font.familyCode};
