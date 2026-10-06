@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { PropsWithChildren, useContext, useState } from 'react';
 import { css } from '@emotion/react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -20,26 +20,10 @@ import {
   useGeneratedHtmlId,
 } from '@elastic/eui';
 
-interface StorybookItem {
-  id: string;
-  label: string;
-}
+import { DocStorybookContext } from './context';
+import { getStorybookUrl } from '../../utils/storybook';
 
-function isStorybookItem(value: unknown): value is StorybookItem {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'id' in value &&
-    typeof value.id === 'string' &&
-    value.id.trim().length > 0 &&
-    'label' in value &&
-    typeof value.label === 'string' &&
-    value.label.trim().length > 0
-  );
-}
-
-// Only document pages provide this context; other MDX headings remain unchanged.
-export const DocStorybookContext = createContext<unknown>(undefined);
+const openInStorybookLabel = 'Open in Storybook';
 
 const titleStyles = css`
   margin-block: var(--eui-theme-content-vertical-spacing);
@@ -56,26 +40,20 @@ export const DocTitle = ({ children }: PropsWithChildren) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverId = useGeneratedHtmlId({ prefix: 'docStorybook' });
 
-  const storyId = typeof storybook === 'string' ? storybook.trim() : undefined;
-  const stories = Array.isArray(storybook)
-    ? storybook.filter(isStorybookItem)
-    : [];
+  const storyId = typeof storybook === 'string' ? storybook : undefined;
+  const stories = Array.isArray(storybook) ? storybook : [];
 
   if ((!storyId && stories.length === 0) || typeof baseUrl !== 'string') {
     return <>{children}</>;
   }
 
-  const href = (id: string) =>
-    `${baseUrl.replace(/\/$/, '')}/index.html?path=/story/${encodeURIComponent(
-      id
-    )}`;
   const popoverButton = (
     <EuiButtonEmpty
       iconType="chevronSingleDown"
       iconSide="right"
       onClick={() => setIsOpen(!isOpen)}
     >
-      Open in Storybook
+      {openInStorybookLabel}
     </EuiButtonEmpty>
   );
 
@@ -91,10 +69,10 @@ export const DocTitle = ({ children }: PropsWithChildren) => {
         {storyId ? (
           <EuiButtonEmpty
             iconType="external"
-            href={href(storyId)}
+            href={getStorybookUrl(baseUrl, storyId)}
             target="_blank"
           >
-            Open in Storybook
+            {openInStorybookLabel}
           </EuiButtonEmpty>
         ) : (
           <BrowserOnly fallback={popoverButton}>
@@ -112,7 +90,7 @@ export const DocTitle = ({ children }: PropsWithChildren) => {
                   items={stories.map(({ id, label }) => (
                     <EuiContextMenuItem
                       key={id}
-                      href={href(id)}
+                      href={getStorybookUrl(baseUrl, id)}
                       target="_blank"
                       onClick={() => setIsOpen(false)}
                     >

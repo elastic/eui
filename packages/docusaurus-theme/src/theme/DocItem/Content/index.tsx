@@ -20,7 +20,10 @@ import {
 import { Props } from '@theme-original/DocItem/Content';
 
 import Heading from '../../MDXComponents/Heading';
-import { DocStorybookContext } from '../../../components/doc_title';
+import {
+  DocStorybookContext,
+  getDocStorybook,
+} from '../../../components/doc_title/context';
 
 /**
  Title can be declared inside md content or declared through
@@ -59,7 +62,9 @@ const getContentStyles = ({ euiTheme }: UseEuiTheme) => {
 export default function DocItemContent({ children }: Props): JSX.Element {
   const { frontMatter } = useDoc();
   const storybook =
-    'storybook' in frontMatter ? frontMatter.storybook : undefined;
+    'storybook' in frontMatter
+      ? getDocStorybook(frontMatter.storybook)
+      : undefined;
   const syntheticTitle = useSyntheticTitle();
   const styles = useEuiMemoizedStyles(getContentStyles);
 
