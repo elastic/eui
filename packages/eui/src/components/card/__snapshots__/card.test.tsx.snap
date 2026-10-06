@@ -908,7 +908,7 @@ exports[`EuiCard props image 1`] = `
       class="euiCard__top emotion-euiCard__top-vertical"
     >
       <div
-        class="euiCard__image emotion-euiCard__image"
+        class="euiCard__image emotion-euiCard__image-image"
       >
         <div>
           <img

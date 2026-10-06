@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import {
   getSecureRelForTarget,
   useEuiTheme,
+  useEuiMemoizedStyles,
   cloneElementWithCss,
 } from '../../services';
 import { useGeneratedHtmlId } from '../../services/accessibility';
@@ -34,6 +35,7 @@ import { EuiSpacer } from '../spacer';
 import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import {
   euiCardBetaBadgeStyles,
+  euiCardImagePaddingStyles,
   euiCardStyles,
   euiCardTextStyles,
 } from './card.styles';
@@ -170,7 +172,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   const euiThemeContext = useEuiTheme();
-  const styles = euiCardStyles(euiThemeContext, paddingSize);
+  const styles = useEuiMemoizedStyles(euiCardStyles);
   const cardStyles = [
     styles.card.euiCard,
     // Text alignment should always be left when horizontal
@@ -185,7 +187,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const mainStyles = [styles.main.euiCard__main, styles.main.layout[layout]];
 
-  const textStyles = euiCardTextStyles(euiThemeContext);
+  const textStyles = useEuiMemoizedStyles(euiCardTextStyles);
   const textCSS = [
     textStyles.euiCard__text,
     // Text alignment should always be left when horizontal
@@ -224,10 +226,16 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let imageNode;
+  let imagePaddingStyles;
   if (image && layout === 'vertical') {
     if (isValidElement(image) || typeof image === 'string') {
+      imagePaddingStyles = euiCardImagePaddingStyles(
+        euiThemeContext,
+        paddingSize
+      );
       const imageStyles = [
         styles.image.euiCard__image,
+        imagePaddingStyles.image,
         display === 'transparent' && styles.image.transparent,
       ];
       imageNode = (
@@ -246,6 +254,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       styles.icon.euiCard__icon,
       styles.icon.layout[layout],
       imageNode && styles.icon.withImage,
+      imagePaddingStyles?.iconWithImage,
     ];
     iconNode = cloneElementWithCss(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),

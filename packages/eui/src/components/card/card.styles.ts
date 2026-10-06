@@ -26,12 +26,8 @@ const halfPaddingKey = 's';
  * 4. Ensures the contents always stretch no matter the flex layout
  */
 
-export const euiCardStyles = (
-  euiThemeContext: UseEuiTheme,
-  paddingSize: EuiCardProps['paddingSize']
-) => {
+export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
   const spacing = euiPaddingSize(euiThemeContext, paddingKey);
   const halfSpacing = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
@@ -147,13 +143,6 @@ export const euiCardStyles = (
         position: relative;
         overflow: hidden;
 
-        /* Padding based sizing & negative margins */
-        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
-        ${logicalCSS('left', `-${paddingAmount}`)}
-        ${logicalCSS('top', `-${paddingAmount}`)}
-        /* Ensure the parent is only as tall as the image */
-        ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
-
         /* Match border radius */
         ${logicalCSS(
           'border-top-left-radius',
@@ -180,11 +169,6 @@ export const euiCardStyles = (
         position: absolute;
         ${logicalCSS('top', '50%')}
         ${logicalCSS('left', '50%')}
-        /* Important needed to override current Sass styles on .euiIcon */
-        transform: translate(
-          -50%,
-          calc(-50% + -${paddingAmount})
-        ) !important; /* stylelint-disable-line declaration-no-important */
       `,
 
       layout: {
@@ -196,6 +180,32 @@ export const euiCardStyles = (
         `,
       },
     },
+  };
+};
+
+// Kept out of `euiCardStyles` so the rest can be memoized independently of `paddingSize`
+export const euiCardImagePaddingStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiCardProps['paddingSize']
+) => {
+  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
+
+  return {
+    image: css`
+      /* Padding based sizing & negative margins */
+      ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
+      ${logicalCSS('left', `-${paddingAmount}`)}
+      ${logicalCSS('top', `-${paddingAmount}`)}
+      /* Ensure the parent is only as tall as the image */
+      ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
+    `,
+    iconWithImage: css`
+      /* Important needed to override current Sass styles on .euiIcon */
+      transform: translate(
+        -50%,
+        calc(-50% + -${paddingAmount})
+      ) !important; /* stylelint-disable-line declaration-no-important */
+    `,
   };
 };
 
