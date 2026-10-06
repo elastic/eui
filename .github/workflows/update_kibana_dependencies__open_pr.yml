@@ -20,7 +20,7 @@ on:
       pr_labels:
         description: Comma-separated list of labels to add to the PR
         type: string
-        default: 'EUI,backport:skip,release_note:skip,ci:all-ui-test-suites,ci:prevent-selective-testing'
+        default: 'EUI,backport:skip,release_note:skip,ci:all-ui-test-suites,ci:prevent-selective-testing,ci:build-draft'
       source_pr_number:
         description: Source PR number that triggered this workflow
         type: number
@@ -220,22 +220,26 @@ jobs:
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
-      - name: Add labels
+      - name: Add labels and trigger CI
         env:
           GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
           PR_LABELS: ${{ inputs.pr_labels }}
           PR_URL: ${{ needs.open_pr.outputs.pr_url }}
         # language=bash
         run: |
+          set -euo pipefail
+
+          had_build_draft_label=$(gh pr view "$PR_URL" --json labels \
+            --jq 'any(.labels[]; .name == "ci:build-draft")')
+
           if [[ -n "${PR_LABELS:-}" ]]; then
             gh pr edit "$PR_URL" --add-label "$PR_LABELS"
           fi
-      - name: Trigger CI
-        env:
-          GH_TOKEN: ${{ steps.ephemeral_token.outputs.token }}
-          PR_URL: ${{ needs.open_pr.outputs.pr_url }}
-        # language=bash
-        run: gh pr comment "$PR_URL" --body "/ci"
+
+          # The first run needs `/ci` comment to trigger a build.
+          if [[ "$had_build_draft_label" != "true" ]]; then
+            gh pr comment "$PR_URL" --body "/ci"
+          fi
       - name: Add a comment
         if: ${{ inputs.source_pr_number }}
         uses: ./.github/actions/pr_bot_comment
