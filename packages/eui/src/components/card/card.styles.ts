@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import {
+  EuiPaddingSize,
   euiPaddingSize,
   logicalCSS,
   logicalTextAlignCSS,
@@ -26,8 +27,12 @@ const halfPaddingKey = 's';
  * 4. Ensures the contents always stretch no matter the flex layout
  */
 
-export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCardStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiCardProps['paddingSize']
+) => {
   const { euiTheme } = euiThemeContext;
+  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
   const spacing = euiPaddingSize(euiThemeContext, paddingKey);
   const halfSpacing = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
@@ -143,6 +148,13 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
         position: relative;
         overflow: hidden;
 
+        /* Padding based sizing & negative margins */
+        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
+        ${logicalCSS('left', `-${paddingAmount}`)}
+        ${logicalCSS('top', `-${paddingAmount}`)}
+        /* Ensure the parent is only as tall as the image */
+        ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
+
         /* Match border radius */
         ${logicalCSS(
           'border-top-left-radius',
@@ -169,6 +181,11 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         ${logicalCSS('top', '50%')}
         ${logicalCSS('left', '50%')}
+        /* Important needed to override current Sass styles on .euiIcon */
+        transform: translate(
+          -50%,
+          calc(-50% + -${paddingAmount})
+        ) !important; /* stylelint-disable-line declaration-no-important */
       `,
 
       layout: {
@@ -183,30 +200,17 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-// Kept out of `euiCardStyles` so the rest can be memoized independently of `paddingSize`
-export const euiCardImagePaddingStyles = (
-  euiThemeContext: UseEuiTheme,
-  paddingSize: EuiCardProps['paddingSize']
-) => {
-  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
-
-  return {
-    image: css`
-      /* Padding based sizing & negative margins */
-      ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
-      ${logicalCSS('left', `-${paddingAmount}`)}
-      ${logicalCSS('top', `-${paddingAmount}`)}
-      /* Ensure the parent is only as tall as the image */
-      ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
-    `,
-    iconWithImage: css`
-      /* Important needed to override current Sass styles on .euiIcon */
-      transform: translate(
-        -50%,
-        calc(-50% + -${paddingAmount})
-      ) !important; /* stylelint-disable-line declaration-no-important */
-    `,
-  };
+// Static per-size generators so `useEuiMemoizedStyles` can share them across instances
+export const euiCardStylesByPadding: Record<
+  EuiPaddingSize,
+  (euiThemeContext: UseEuiTheme) => ReturnType<typeof euiCardStyles>
+> = {
+  none: (euiThemeContext) => euiCardStyles(euiThemeContext, 'none'),
+  xs: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xs'),
+  s: (euiThemeContext) => euiCardStyles(euiThemeContext, 's'),
+  m: (euiThemeContext) => euiCardStyles(euiThemeContext, 'm'),
+  l: (euiThemeContext) => euiCardStyles(euiThemeContext, 'l'),
+  xl: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xl'),
 };
 
 export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
