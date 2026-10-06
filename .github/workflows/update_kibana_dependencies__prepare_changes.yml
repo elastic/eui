@@ -153,15 +153,15 @@ jobs:
           notes=""
 
           while IFS= read -r url; do
-            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url")
-            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url")
+            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url" || true)
+            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url" || true)
 
-            if [[ -z "$pr_number" || -z "$sha" ]]; then
+            if [[ -z "$sha" ]]; then
               echo "::warning::Could not parse URL: $url"
               continue
             fi
 
-            echo "Cherry-picking $sha from PR #$pr_number"
+            echo "Cherry-picking $sha"
             if ! git fetch --depth=2 origin "$sha"; then
               echo "::warning::Skipping $sha: could not fetch commit"
               continue
@@ -170,12 +170,12 @@ jobs:
             # Incoming commit wins
             if git cherry-pick -X theirs "$sha"; then
               short_sha="${sha:0:8}"
-              notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
+              notes+="- [\`$short_sha\`]($url)${pr_number:+ from elastic/kibana#$pr_number}"$'\n'
             elif git diff --quiet && git diff --cached --quiet; then
               echo "Skipping $sha: already applied on this branch"
               git cherry-pick --skip
             else
-              echo "::error::Cherry-pick of $sha from PR #$pr_number failed"
+              echo "::error::Cherry-pick of $sha failed"
               echo "conflict_sha=$sha" >> "$GITHUB_OUTPUT"
               git cherry-pick --abort || true
               exit 1
