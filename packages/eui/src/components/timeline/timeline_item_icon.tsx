@@ -9,7 +9,7 @@
 import React, { FunctionComponent, isValidElement, ReactNode } from 'react';
 import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
 import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
@@ -29,8 +29,7 @@ export interface EuiTimelineItemIconProps {
 export const EuiTimelineItemIcon: FunctionComponent<
   EuiTimelineItemIconProps
 > = ({ icon, verticalAlign = 'center', iconAriaLabel }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiTimelineItemIconStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTimelineItemIconStyles);
 
   const cssStyles = [styles.euiTimelineItemIcon, styles[verticalAlign]];
   const cssContentStyles = styles.euiTimelineItemIcon__content;

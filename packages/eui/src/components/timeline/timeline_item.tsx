@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import { useEuiMemoizedStyles } from '../../services';
 
 import {
   EuiTimelineItemEvent,
@@ -39,7 +40,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   iconAriaLabel,
   ...rest
 }) => {
-  const styles = euiTimelineItemStyles();
+  const styles = useEuiMemoizedStyles(euiTimelineItemStyles);
   const cssStyles = [styles.euiTimelineItem, styles[verticalAlign]];
 
   return (
