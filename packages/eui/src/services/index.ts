@@ -13,11 +13,13 @@ export { CENTER_ALIGNMENT, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from './alignment';
 export type { HorizontalAlignment } from './alignment';
 export {
   CurrentEuiBreakpointContext,
+  EuiBreakpointContainerContext,
   CurrentEuiBreakpointProvider,
   useCurrentEuiBreakpoint,
   useIsWithinBreakpoints,
   useIsWithinMaxBreakpoint,
   useIsWithinMinBreakpoint,
+  setEuiSurfaceConfig,
 } from './breakpoint';
 export type { EuiBreakpointSize } from './breakpoint';
 export { CanvasTextUtils, type CanvasTextParams } from './canvas';

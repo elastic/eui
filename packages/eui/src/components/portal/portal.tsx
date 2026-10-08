@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
+import React, {
   FunctionComponent,
   ReactNode,
   memo,
@@ -20,6 +20,11 @@ import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+import {
+  CurrentEuiBreakpointProvider,
+  EuiBreakpointContainerContext,
+} from '../../services/breakpoint/current_breakpoint';
+import { getEuiSurfaceConfig } from '../../services/breakpoint/surface_config';
 
 const usePortalEffect =
   typeof document === 'undefined' ? useEffect : useLayoutEffect;
@@ -113,6 +118,16 @@ export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
 
   if (!portalNode) {
     return null;
+  }
+
+  // POC: portaled content leaves its React root's DOM position, so breakpoints re-resolve from the portal node.
+  if (getEuiSurfaceConfig()) {
+    return createPortal(
+      <EuiBreakpointContainerContext.Provider value={portalNode}>
+        <CurrentEuiBreakpointProvider>{children}</CurrentEuiBreakpointProvider>
+      </EuiBreakpointContainerContext.Provider>,
+      portalNode
+    );
   }
 
   return createPortal(children, portalNode);
