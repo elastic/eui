@@ -23,9 +23,10 @@ export const EUI_BREAKPOINT_CONTAINER_ATTRIBUTE =
 /**
  * Nearest breakpoint container of the current React root or portal.
  * `undefined` when `EuiProvider` `breakpointContainer` isn't set, in which case breakpoints follow the viewport.
+ * `null` when only CSS follows containers, in which case the JS hooks follow the viewport.
  */
 export const EuiBreakpointContainerContext = createContext<
-  HTMLElement | undefined
+  HTMLElement | null | undefined
 >(undefined);
 
 // `body` is always a container when the option is on, so every element resolves to one.

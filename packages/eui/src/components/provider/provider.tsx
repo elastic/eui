@@ -105,9 +105,11 @@ export interface EuiProviderProps<T>
    * Resolves breakpoints against the nearest breakpoint container instead of the viewport.
    * Mark containers with `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE`; `body` is the fallback.
    *
-   * - `mountElement` is where this React root is mounted. JS breakpoint hooks measure its nearest container.
+   * - `true` switches only the CSS breakpoint mixins. JS breakpoint hooks keep the viewport.
+   * - `{ mountElement }` also switches the JS hooks. `mountElement` is where this React root is mounted,
+   *   and the hooks measure its nearest container.
    */
-  breakpointContainer?: { mountElement?: HTMLElement | null };
+  breakpointContainer?: boolean | { mountElement?: HTMLElement | null };
 }
 
 export const EuiProvider = <T extends {} = {}>({
@@ -154,10 +156,11 @@ export const EuiProvider = <T extends {} = {}>({
     }
   }
 
-  const container =
-    breakpointContainer && typeof document !== 'undefined'
-      ? getEuiBreakpointContainer(breakpointContainer.mountElement)
-      : undefined;
+  const container = !breakpointContainer
+    ? undefined
+    : breakpointContainer === true || typeof document === 'undefined'
+    ? null
+    : getEuiBreakpointContainer(breakpointContainer.mountElement);
 
   return (
     <EuiProviderNestedCheck>
