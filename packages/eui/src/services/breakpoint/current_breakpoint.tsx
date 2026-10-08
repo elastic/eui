@@ -12,6 +12,7 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
+  useContext,
   FunctionComponent,
   PropsWithChildren,
 } from 'react';
@@ -24,11 +25,19 @@ import {
 import { useEuiTheme } from '../theme/hooks';
 import { throttle } from '../throttle';
 import { sortMapByLargeToSmallValues } from './_sorting';
+import { getEuiSurfaceConfig } from './surface_config';
 
 type CurrentEuiBreakpoint = _EuiThemeBreakpoint | undefined;
 
 export const CurrentEuiBreakpointContext =
   createContext<CurrentEuiBreakpoint>(undefined);
+
+/**
+ * POC: element the current React root or portal is mounted in, passed to the surface config's `getRoot`.
+ */
+export const EuiBreakpointContainerContext = createContext<
+  HTMLElement | undefined
+>(undefined);
 
 /**
  * Returns the current breakpoint based on window width.
@@ -64,7 +73,18 @@ export const CurrentEuiBreakpointProvider: FunctionComponent<
         : undefined
     );
 
+  const container = useContext(EuiBreakpointContainerContext);
+
   useEffect(() => {
+    const root = getEuiSurfaceConfig()?.getRoot(container);
+    if (root) {
+      const resizeObserver = new ResizeObserver(([entry]) => {
+        setCurrentBreakpoint(getBreakpoint(entry.borderBoxSize[0].inlineSize));
+      });
+      resizeObserver.observe(root);
+      return () => resizeObserver.disconnect();
+    }
+
     const onWindowResize = throttle(() => {
       setCurrentBreakpoint(getBreakpoint(window.innerWidth));
     }, 50);
@@ -72,7 +92,7 @@ export const CurrentEuiBreakpointProvider: FunctionComponent<
     window.addEventListener('resize', onWindowResize);
 
     return () => window.removeEventListener('resize', onWindowResize);
-  }, [getBreakpoint]);
+  }, [getBreakpoint, container]);
 
   return (
     <CurrentEuiBreakpointContext.Provider value={currentBreakpoint}>
