@@ -34,6 +34,10 @@ import {
   EuiComponentDefaultsProvider,
 } from './component_defaults';
 import { EuiFlyoutManager } from '../flyout/manager';
+import {
+  EuiBreakpointContainerContext,
+  getEuiBreakpointContainer,
+} from '../../services/breakpoint/breakpoint_container';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -97,6 +101,13 @@ export interface EuiProviderProps<T>
    * Individual component prop usages will always override these defaults.
    */
   componentDefaults?: EuiComponentDefaults;
+  /**
+   * Resolves breakpoints against the nearest breakpoint container instead of the viewport.
+   * Mark containers with `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE`; `body` is the fallback.
+   *
+   * - `mountElement` is where this React root is mounted. JS breakpoint hooks measure its nearest container.
+   */
+  breakpointContainer?: { mountElement?: HTMLElement | null };
 }
 
 export const EuiProvider = <T extends {} = {}>({
@@ -108,6 +119,7 @@ export const EuiProvider = <T extends {} = {}>({
   highContrastMode,
   modify,
   componentDefaults,
+  breakpointContainer,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
   const isNested = useIsNestedEuiProvider();
@@ -142,32 +154,41 @@ export const EuiProvider = <T extends {} = {}>({
     }
   }
 
+  const container =
+    breakpointContainer && typeof document !== 'undefined'
+      ? getEuiBreakpointContainer(breakpointContainer.mountElement)
+      : undefined;
+
   return (
     <EuiProviderNestedCheck>
       <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
         <EuiSystemDefaultsProvider>
-          <EuiThemeProvider
-            theme={theme ?? undefined}
-            colorMode={colorMode}
-            highContrastMode={highContrastMode}
-            modify={modify}
-          >
-            {theme && (
-              <>
-                <EuiCacheProvider
-                  cache={globalCache}
-                  children={Globals && <Globals />}
-                />
-                <EuiCacheProvider
-                  cache={utilityCache}
-                  children={Utilities && <Utilities />}
-                />
-              </>
-            )}
-            <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
-              <EuiFlyoutManager>{children}</EuiFlyoutManager>
-            </EuiComponentDefaultsProvider>
-          </EuiThemeProvider>
+          <EuiBreakpointContainerContext.Provider value={container}>
+            <EuiThemeProvider
+              theme={theme ?? undefined}
+              colorMode={colorMode}
+              highContrastMode={highContrastMode}
+              modify={modify}
+            >
+              {theme && (
+                <>
+                  <EuiCacheProvider
+                    cache={globalCache}
+                    children={Globals && <Globals />}
+                  />
+                  <EuiCacheProvider
+                    cache={utilityCache}
+                    children={Utilities && <Utilities />}
+                  />
+                </>
+              )}
+              <EuiComponentDefaultsProvider
+                componentDefaults={componentDefaults}
+              >
+                <EuiFlyoutManager>{children}</EuiFlyoutManager>
+              </EuiComponentDefaultsProvider>
+            </EuiThemeProvider>
+          </EuiBreakpointContainerContext.Provider>
         </EuiSystemDefaultsProvider>
       </EuiCacheProvider>
     </EuiProviderNestedCheck>

@@ -19,7 +19,8 @@ export {
   useIsWithinBreakpoints,
   useIsWithinMaxBreakpoint,
   useIsWithinMinBreakpoint,
-  setEuiSurfaceConfig,
+  EUI_BREAKPOINT_CONTAINER,
+  EUI_BREAKPOINT_CONTAINER_ATTRIBUTE,
 } from './breakpoint';
 export type { EuiBreakpointSize } from './breakpoint';
 export { CanvasTextUtils, type CanvasTextParams } from './canvas';

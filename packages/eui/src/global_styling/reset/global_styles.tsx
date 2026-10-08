@@ -13,12 +13,16 @@ import { logicalCSS } from '../functions';
 import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
+import {
+  EUI_BREAKPOINT_CONTAINER,
+  EUI_BREAKPOINT_CONTAINER_ATTRIBUTE,
+} from '../../services/breakpoint/breakpoint_container';
 
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
   const euiThemeContext = useEuiTheme();
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, breakpointContainer } = euiThemeContext;
   const { base, colors, font } = euiTheme;
 
   /**
@@ -120,6 +124,13 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     .euiBody-hasPortalContent {
       position: relative;
     }
+
+    // A container query with no matching ancestor never matches, so body is the fallback container.
+    ${breakpointContainer
+      ? `body, [${EUI_BREAKPOINT_CONTAINER_ATTRIBUTE}] {
+          container: ${EUI_BREAKPOINT_CONTAINER} / inline-size;
+        }`
+      : ''}
   `;
 
   return <Global styles={styles} />;

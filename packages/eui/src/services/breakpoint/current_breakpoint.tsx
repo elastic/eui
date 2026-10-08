@@ -25,19 +25,16 @@ import {
 import { useEuiTheme } from '../theme/hooks';
 import { throttle } from '../throttle';
 import { sortMapByLargeToSmallValues } from './_sorting';
-import { getEuiSurfaceConfig } from './surface_config';
+import {
+  EuiBreakpointContainerContext,
+  getContentInlineSize,
+  observeInlineSize,
+} from './breakpoint_container';
 
 type CurrentEuiBreakpoint = _EuiThemeBreakpoint | undefined;
 
 export const CurrentEuiBreakpointContext =
   createContext<CurrentEuiBreakpoint>(undefined);
-
-/**
- * POC: element the current React root or portal is mounted in, passed to the surface config's `getRoot`.
- */
-export const EuiBreakpointContainerContext = createContext<
-  HTMLElement | undefined
->(undefined);
 
 /**
  * Returns the current breakpoint based on window width.
@@ -66,23 +63,22 @@ export const CurrentEuiBreakpointProvider: FunctionComponent<
     [sortedBreakpoints]
   );
 
-  const [currentBreakpoint, setCurrentBreakpoint] =
-    useState<CurrentEuiBreakpoint>(
-      typeof window !== 'undefined'
-        ? getBreakpoint(window.innerWidth)
-        : undefined
-    );
-
   const container = useContext(EuiBreakpointContainerContext);
 
+  const [currentBreakpoint, setCurrentBreakpoint] =
+    useState<CurrentEuiBreakpoint>(() => {
+      if (typeof window === 'undefined') return undefined;
+      return getBreakpoint(
+        container ? getContentInlineSize(container) : window.innerWidth
+      );
+    });
+
   useEffect(() => {
-    const root = getEuiSurfaceConfig()?.getRoot(container);
-    if (root) {
-      const resizeObserver = new ResizeObserver(([entry]) => {
-        setCurrentBreakpoint(getBreakpoint(entry.borderBoxSize[0].inlineSize));
-      });
-      resizeObserver.observe(root);
-      return () => resizeObserver.disconnect();
+    if (container) {
+      setCurrentBreakpoint(getBreakpoint(getContentInlineSize(container)));
+      return observeInlineSize(container, (inlineSize) =>
+        setCurrentBreakpoint(getBreakpoint(inlineSize))
+      );
     }
 
     const onWindowResize = throttle(() => {
