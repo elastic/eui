@@ -12,6 +12,6 @@
     "outDir": "lib",
     "tsBuildInfoFile": "lib/.tsbuildinfo-client"
   },
-  "include": ["src/client", "src/components", "src/theme", "src/*.d.ts"],
+  "include": ["src/client", "src/components", "src/theme", "src/utils", "src/*.d.ts"],
   "exclude": ["**/__tests__/**"]
 }
