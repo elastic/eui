@@ -7,6 +7,8 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
 import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
@@ -21,7 +23,7 @@ export interface EuiTimelineItemEventProps {
 export const EuiTimelineItemEvent: FunctionComponent<
   EuiTimelineItemEventProps
 > = ({ children, verticalAlign = 'center' }) => {
-  const styles = euiTimelineItemEventStyles();
+  const styles = useEuiMemoizedStyles(euiTimelineItemEventStyles);
   const cssStyles = [styles.euiTimelineItemEvent, styles[verticalAlign]];
 
   return <div css={cssStyles}>{children}</div>;
