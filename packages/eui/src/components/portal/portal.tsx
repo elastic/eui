@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
+import React, {
   FunctionComponent,
   ReactNode,
   memo,
@@ -20,6 +20,11 @@ import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+import { CurrentEuiBreakpointProvider } from '../../services/breakpoint/current_breakpoint';
+import {
+  EuiBreakpointContainerContext,
+  getEuiBreakpointContainer,
+} from '../../services/breakpoint/breakpoint_container';
 
 const usePortalEffect =
   typeof document === 'undefined' ? useEffect : useLayoutEffect;
@@ -56,6 +61,8 @@ export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
   const { hasDifferentColorFromGlobalTheme, colorClassName } = useContext(
     EuiNestedThemeContext
   );
+
+  const breakpointContainer = useContext(EuiBreakpointContainerContext);
 
   const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
 
@@ -113,6 +120,22 @@ export const EuiPortal: FunctionComponent<EuiPortalProps> = memo((_props) => {
 
   if (!portalNode) {
     return null;
+  }
+
+  // Portaled content can land in a different breakpoint container than its React parent.
+  // Only then does it need its own breakpoint provider.
+  if (breakpointContainer) {
+    const portalContainer = getEuiBreakpointContainer(portalNode);
+    if (portalContainer !== breakpointContainer) {
+      return createPortal(
+        <EuiBreakpointContainerContext.Provider value={portalContainer}>
+          <CurrentEuiBreakpointProvider>
+            {children}
+          </CurrentEuiBreakpointProvider>
+        </EuiBreakpointContainerContext.Provider>,
+        portalNode
+      );
+    }
   }
 
   return createPortal(children, portalNode);

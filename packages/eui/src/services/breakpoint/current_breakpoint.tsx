@@ -12,6 +12,7 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
+  useContext,
   FunctionComponent,
   PropsWithChildren,
 } from 'react';
@@ -24,6 +25,11 @@ import {
 import { useEuiTheme } from '../theme/hooks';
 import { throttle } from '../throttle';
 import { sortMapByLargeToSmallValues } from './_sorting';
+import {
+  EuiBreakpointContainerContext,
+  getContentInlineSize,
+  observeInlineSize,
+} from './breakpoint_container';
 
 type CurrentEuiBreakpoint = _EuiThemeBreakpoint | undefined;
 
@@ -57,14 +63,24 @@ export const CurrentEuiBreakpointProvider: FunctionComponent<
     [sortedBreakpoints]
   );
 
+  const container = useContext(EuiBreakpointContainerContext);
+
   const [currentBreakpoint, setCurrentBreakpoint] =
-    useState<CurrentEuiBreakpoint>(
-      typeof window !== 'undefined'
-        ? getBreakpoint(window.innerWidth)
-        : undefined
-    );
+    useState<CurrentEuiBreakpoint>(() => {
+      if (typeof window === 'undefined') return undefined;
+      return getBreakpoint(
+        container ? getContentInlineSize(container) : window.innerWidth
+      );
+    });
 
   useEffect(() => {
+    if (container) {
+      setCurrentBreakpoint(getBreakpoint(getContentInlineSize(container)));
+      return observeInlineSize(container, (inlineSize) =>
+        setCurrentBreakpoint(getBreakpoint(inlineSize))
+      );
+    }
+
     const onWindowResize = throttle(() => {
       setCurrentBreakpoint(getBreakpoint(window.innerWidth));
     }, 50);
@@ -72,7 +88,7 @@ export const CurrentEuiBreakpointProvider: FunctionComponent<
     window.addEventListener('resize', onWindowResize);
 
     return () => window.removeEventListener('resize', onWindowResize);
-  }, [getBreakpoint]);
+  }, [getBreakpoint, container]);
 
   return (
     <CurrentEuiBreakpointContext.Provider value={currentBreakpoint}>
