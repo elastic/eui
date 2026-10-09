@@ -21,6 +21,7 @@ import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 import {
   EuiDisabledProps,
   useEuiTheme,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
 } from '../../../services';
 import {
@@ -109,19 +110,7 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
       : (getTokenName('borderBase', color) as keyof _EuiThemeBorderColors);
 
   const classes = classNames('euiSplitButton', className);
-  const styles = useMemo(
-    () =>
-      euiSplitButtonStyles(
-        euiThemeContext,
-        fill ? buttonFilledColors.backgroundColor : buttonColors.backgroundColor
-      ),
-    [
-      euiThemeContext,
-      fill,
-      buttonFilledColors.backgroundColor,
-      buttonColors.backgroundColor,
-    ]
-  );
+  const styles = useEuiMemoizedStyles(euiSplitButtonStyles);
   const cssStyles = [
     styles.euiSplitButton,
     (color === 'text' || highContrastMode) && styles.hasBorder,
@@ -132,24 +121,20 @@ export const _EuiSplitButton: FunctionComponent<EuiSplitButtonProps> = ({
       ? buttonFilledColors.color
       : euiTheme.colors[borderToken];
 
-  const dividerStyles = useMemo(
-    () =>
-      euiSplitButtonDividerStyles(
-        euiThemeContext,
-        highContrastMode && fill ? buttonFilledColors.color : dividerColor
-      ),
-    [
-      euiThemeContext,
-      highContrastMode,
-      fill,
-      buttonFilledColors.color,
-      dividerColor,
-    ]
-  );
+  const dividerStyles = useEuiMemoizedStyles(euiSplitButtonDividerStyles);
 
+  const backgroundColor = fill
+    ? buttonFilledColors.backgroundColor
+    : buttonColors.backgroundColor;
+  const dividerBorderColor =
+    highContrastMode && fill ? buttonFilledColors.color : dividerColor;
   const cssVariables = useMemo(
-    () => ({ '--euiSplitButtonBorderColor': dividerColor }),
-    [dividerColor]
+    () => ({
+      '--euiSplitButtonBackgroundColor': backgroundColor,
+      '--euiSplitButtonBorderColor': dividerColor,
+      '--euiSplitButtonDividerColor': dividerBorderColor,
+    }),
+    [backgroundColor, dividerColor, dividerBorderColor]
   ) as React.CSSProperties;
 
   // NOTE: dev-mode-only runtime check to evaluate if correct child components are passed
