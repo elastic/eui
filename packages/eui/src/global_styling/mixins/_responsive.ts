@@ -21,6 +21,17 @@ const atRule = ({ breakpointContainer }: UseEuiTheme, conditions: string[]) => {
 };
 
 /**
+ * Makes the element a breakpoint container when `EuiProvider` `breakpointContainer` is set.
+ * Also set `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE` on it, so the JS breakpoint hooks measure the same element.
+ * Like any CSS container, it becomes the containing block for its `position: fixed` descendants
+ * and starts a stacking context.
+ */
+export const euiBreakpointContainer = ({ breakpointContainer }: UseEuiTheme) =>
+  breakpointContainer
+    ? `container: ${EUI_BREAKPOINT_CONTAINER} / inline-size;`
+    : '';
+
+/**
  * Generates a CSS media query rule string based on the input breakpoint *ranges*.
  * Examples with default theme breakpoints:
  *

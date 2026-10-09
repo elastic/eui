@@ -14,8 +14,8 @@ import { createContext } from 'react';
 export const EUI_BREAKPOINT_CONTAINER = 'euiBreakpointContainer';
 
 /**
- * Marks an element as a breakpoint container. EUI global styles make it a CSS container,
- * and the JS breakpoint hooks measure it for content rendered inside it.
+ * Marks an element as a breakpoint container for the JS breakpoint hooks, which measure it for content rendered inside it.
+ * Pair it with the `euiBreakpointContainer` style mixin, which makes the element a CSS container.
  */
 export const EUI_BREAKPOINT_CONTAINER_ATTRIBUTE =
   'data-eui-breakpoint-container';
