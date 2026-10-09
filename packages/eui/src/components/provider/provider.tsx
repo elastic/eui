@@ -103,7 +103,8 @@ export interface EuiProviderProps<T>
   componentDefaults?: EuiComponentDefaults;
   /**
    * Resolves breakpoints against the nearest breakpoint container instead of the viewport.
-   * Mark containers with `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE`; `body` is the fallback.
+   * Mark containers with the `euiBreakpointContainer` style mixin and `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE`;
+   * `body` is the fallback.
    *
    * - `true` switches only the CSS breakpoint mixins. JS breakpoint hooks keep the viewport.
    * - `{ mountElement }` also switches the JS hooks. `mountElement` is where this React root is mounted,

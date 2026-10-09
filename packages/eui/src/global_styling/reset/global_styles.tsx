@@ -8,21 +8,21 @@
 
 import React from 'react';
 import { Global, css } from '@emotion/react';
-import { euiFocusRing, euiScrollBarStyles } from '../mixins';
+import {
+  euiBreakpointContainer,
+  euiFocusRing,
+  euiScrollBarStyles,
+} from '../mixins';
 import { logicalCSS } from '../functions';
 import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
-import {
-  EUI_BREAKPOINT_CONTAINER,
-  EUI_BREAKPOINT_CONTAINER_ATTRIBUTE,
-} from '../../services/breakpoint/breakpoint_container';
 
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
   const euiThemeContext = useEuiTheme();
-  const { euiTheme, colorMode, breakpointContainer } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
   const { base, colors, font } = euiTheme;
 
   /**
@@ -126,11 +126,9 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     // A container query with no matching ancestor never matches, so body is the fallback container.
-    ${breakpointContainer
-      ? `body, [${EUI_BREAKPOINT_CONTAINER_ATTRIBUTE}] {
-          container: ${EUI_BREAKPOINT_CONTAINER} / inline-size;
-        }`
-      : ''}
+    body {
+      ${euiBreakpointContainer(euiThemeContext)}
+    }
   `;
 
   return <Global styles={styles} />;
