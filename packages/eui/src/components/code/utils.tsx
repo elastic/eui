@@ -227,10 +227,10 @@ function wrapLines(
     }
   });
   const wrapped: RefractorNode[] = [];
+  const styles = euiCodeBlockLineStyles(euiTheme);
   grouped.forEach((node, i) => {
     let children: RefractorNode[] = node;
 
-    const styles = euiCodeBlockLineStyles(euiTheme);
     const lineStyles = cx([
       styles.euiCodeBlock__line,
       options.showLineNumbers && styles.hasLineNumbers,

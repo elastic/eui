@@ -11,6 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
 import { euiPaletteColorBlind } from '../../services';
+import { EuiButton } from '../button';
 import { EuiFormRow } from '../form';
 import { EuiColorPicker, EuiColorPickerProps } from './color_picker';
 
@@ -86,6 +87,25 @@ export const HighContrastDarkMode: Story = {
   play: async ({ canvasElement }) => {
     canvasElement.querySelector<HTMLInputElement>('.euiHue__range')?.focus?.();
   },
+};
+
+export const WithCustomButton: Story = {
+  name: 'With custom button',
+  parameters: {
+    vrt: {
+      // Interaction only, the custom button renders nothing EUI owns
+      skip: true,
+    },
+  },
+  args: {
+    secondaryInputDisplay: 'bottom',
+  },
+  render: (args) => (
+    <StatefulColorPicker
+      {...args}
+      button={<EuiButton iconType="stopFill">Pick a color</EuiButton>}
+    />
+  ),
 };
 
 const StatefulColorPicker: FunctionComponent<EuiColorPickerProps> = ({

@@ -356,6 +356,12 @@ export const euiProgressStyles = (
 /**
  * Data styles
  */
+// Static per-variant generators so `useEuiMemoizedStyles` can share them across instances
+export const euiProgressNativeStyles = (euiThemeContext: UseEuiTheme) =>
+  euiProgressStyles(euiThemeContext, true);
+export const euiProgressIndeterminateStyles = (euiThemeContext: UseEuiTheme) =>
+  euiProgressStyles(euiThemeContext, false);
+
 export const euiProgressDataStyles = (euiThemeContext: UseEuiTheme) => ({
   euiProgress__data: css`
     display: flex;
