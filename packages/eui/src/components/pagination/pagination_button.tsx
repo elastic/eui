@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { ExclusiveUnion, PropsForAnchor, PropsForButton } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
@@ -39,8 +39,7 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   totalPages,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiPaginationButtonStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPaginationButtonStyles);
   const paginationButtonCss = [
     styles.euiPaginationButton,
     isActive && styles.isActive,
