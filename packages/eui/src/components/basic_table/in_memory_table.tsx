@@ -758,6 +758,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
       executeQueryOptions,
       allowNeutralSort,
       childrenBetween,
+      tableCaption,
       ...rest
     } = this.props;
 
@@ -818,6 +819,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         tableLayout={tableLayout}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+        tableCaption={tableCaption}
         {...rest}
       />
     );
