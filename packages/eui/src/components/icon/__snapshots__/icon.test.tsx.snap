@@ -9822,6 +9822,25 @@ exports[`EuiIcon props type routeSplit is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type ruler is rendered 1`] = `
+<svg
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="ruler"
+  data-is-loaded="true"
+  height="16"
+  role="presentation"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M1.293 11.707a1 1 0 0 1 0-1.414l9-9a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0ZM2 11l3 3 1.146-1.146-1.5-1.5.708-.708 1.5 1.5 1.292-1.292-1-1 .708-.708 1 1 1.292-1.292-1.5-1.5.708-.708 1.5 1.5 1.292-1.292-1-1 .708-.708 1 1L14 5l-3-3Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type save is rendered 1`] = `
 <svg
   class="euiIcon emotion-euiIcon-m-isLoaded"

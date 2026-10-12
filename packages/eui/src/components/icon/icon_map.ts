@@ -1739,6 +1739,9 @@ export const typeToPathMap = {
   routeSplit: withMetadata(() => import('./assets/route_split'), {
     synonyms: ['tree', 'parent'],
   }),
+  ruler: withMetadata(() => import('./assets/ruler'), {
+    synonyms: ['ruler', 'measure', 'measurement', 'length', 'scale', 'size'],
+  }),
   save: withMetadata(() => import('./assets/save'), {
     synonyms: ['save', 'store', 'disk', 'persist', 'keep'],
   }),
