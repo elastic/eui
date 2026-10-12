@@ -603,7 +603,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-borderedPanelRadius-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -1048,7 +1048,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-borderedPanelRadius-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -1749,7 +1749,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-borderedPanelRadius-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -2192,7 +2192,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-borderedPanelRadius-euiTestCss"
       data-test-subj="test subject string"
     >
       <div

@@ -325,6 +325,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       const rowManager = useRowManager({
         innerGridRef,
         rowClasses: gridStyles.rowClasses,
+        visibleRowCount,
       });
 
       /**

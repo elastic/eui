@@ -11,12 +11,28 @@ import { useUpdateEffect } from '../../../services';
 
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
+const setEdgeRowClasses = (
+  rowElement: HTMLElement,
+  visibleRowIndex: number,
+  visibleRowCount?: number
+) => {
+  if (visibleRowCount == null) return;
+
+  rowElement.classList.toggle('euiDataGridRow--first', visibleRowIndex === 0);
+  rowElement.classList.toggle(
+    'euiDataGridRow--last',
+    visibleRowIndex === visibleRowCount - 1
+  );
+};
+
 export const useRowManager = ({
   innerGridRef,
   rowClasses,
+  visibleRowCount,
 }: {
   innerGridRef: RefObject<HTMLDivElement>;
   rowClasses?: EuiDataGridStyle['rowClasses'];
+  visibleRowCount?: number;
 }): EuiDataGridRowManager => {
   const rowIdToElements = useRef(new Map<number, HTMLDivElement>());
 
@@ -71,11 +87,21 @@ export const useRowManager = ({
       // Ensure that the row's dimensions are always correct by having each cell update position styles
       rowElement.style.top = top;
       rowElement.style.height = `${height}px`;
+      setEdgeRowClasses(rowElement, visibleRowIndex, visibleRowCount);
 
       return rowElement;
     },
-    [rowClasses, innerGridRef]
+    [rowClasses, innerGridRef, visibleRowCount]
   );
+
+  // Rows that are not re-rendered still need their edge classes when the
+  // visible count changes (pagination, filtering).
+  useUpdateEffect(() => {
+    rowIdToElements.current.forEach((rowElement) => {
+      const visibleRowIndex = Number(rowElement.dataset.gridVisibleRowIndex);
+      setEdgeRowClasses(rowElement, visibleRowIndex, visibleRowCount);
+    });
+  }, [visibleRowCount]);
 
   // Update row classes dynamically whenever a new prop is passed in
   useUpdateEffect(() => {
@@ -83,7 +109,12 @@ export const useRowManager = ({
       rowIdToElements.current.forEach((rowElement, rowIndex) => {
         const euiClasses = Array.from(rowElement.classList)
           .filter((className) =>
-            ['euiDataGridRow', 'euiDataGridRow--striped'].includes(className)
+            [
+              'euiDataGridRow',
+              'euiDataGridRow--striped',
+              'euiDataGridRow--first',
+              'euiDataGridRow--last',
+            ].includes(className)
           )
           .join(' ');
 
