@@ -6,7 +6,7 @@ exports[`EuiFlyout is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -68,7 +68,7 @@ exports[`EuiFlyout props accepts div props 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -129,7 +129,7 @@ exports[`EuiFlyout props closeButtonPosition can be outside 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -189,7 +189,7 @@ exports[`EuiFlyout props closeButtonProps 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -249,7 +249,7 @@ exports[`EuiFlyout props hideCloseButton 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -297,7 +297,7 @@ exports[`EuiFlyout props is rendered as nav 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -358,7 +358,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom number 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -419,7 +419,7 @@ exports[`EuiFlyout props maxWidth can be set to a custom value and measurement 1
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -480,7 +480,7 @@ exports[`EuiFlyout props maxWidth can be set to a default 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -541,7 +541,7 @@ exports[`EuiFlyout props outsideClickCloses 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -602,7 +602,7 @@ exports[`EuiFlyout props ownFocus can alter mask props with maskProps without th
 >
   <div>
     <div
-      class="css-15xuqqa-getEuiFlyoutOverlayStyles"
+      class="css-11mkjz4-overlay"
     />
     <div
       data-focus-guard="true"
@@ -721,7 +721,7 @@ exports[`EuiFlyout props paddingSize l is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -782,7 +782,7 @@ exports[`EuiFlyout props paddingSize m is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -843,7 +843,7 @@ exports[`EuiFlyout props paddingSize none is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -904,7 +904,7 @@ exports[`EuiFlyout props paddingSize s is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -990,7 +990,7 @@ exports[`EuiFlyout props sides left is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1050,7 +1050,7 @@ exports[`EuiFlyout props sides right is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1111,7 +1111,7 @@ exports[`EuiFlyout props size accepts custom number 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1172,7 +1172,7 @@ exports[`EuiFlyout props size fill is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1233,7 +1233,7 @@ exports[`EuiFlyout props size l is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1294,7 +1294,7 @@ exports[`EuiFlyout props size m is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1355,7 +1355,7 @@ exports[`EuiFlyout props size s is rendered 1`] = `
 >
   <div>
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"
@@ -1420,7 +1420,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
       style="inset-block-start: 0px;"
     />
     <div
-      class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+      class="css-1xgs6nx-overlay"
     />
     <div
       data-focus-guard="true"

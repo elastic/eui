@@ -25,6 +25,10 @@ jest.mock('./_flyout_overlay', () => ({
   },
 }));
 
+jest.mock('react-remove-scroll-bar', () => ({
+  RemoveScrollBar: () => <div data-test-subj="mockScrollLock" />,
+}));
+
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
 }));
@@ -135,6 +139,35 @@ describe('EuiFlyout container prop', () => {
     it('uses min-inline-size of 0 for fill size', async () => {
       const minSize = await getMinInlineSize('fill', 900);
       expect(parseInt(minSize, 10)).toBe(0);
+    });
+  });
+
+  describe('scroll lock', () => {
+    it('does not lock body scroll when a container is provided', async () => {
+      render(
+        <EuiFlyout
+          aria-label="Flyout"
+          onClose={() => {}}
+          container={containerEl}
+        />
+      );
+
+      await waitFor(() => {
+        expect(document.querySelector('.euiFlyout')).not.toBeNull();
+      });
+      expect(
+        document.querySelector('[data-test-subj="mockScrollLock"]')
+      ).toBeNull();
+    });
+
+    it('locks body scroll when no container is provided', async () => {
+      render(<EuiFlyout aria-label="Flyout" onClose={() => {}} />);
+
+      await waitFor(() => {
+        expect(
+          document.querySelector('[data-test-subj="mockScrollLock"]')
+        ).not.toBeNull();
+      });
     });
   });
 });
