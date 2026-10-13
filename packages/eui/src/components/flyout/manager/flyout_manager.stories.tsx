@@ -18,15 +18,19 @@ import { FLYOUT_TYPES, EuiFlyout } from '../flyout';
 import type { EuiFlyoutCloseMeta } from '../types';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
-import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
-import { useFlyoutLayoutMode } from './hooks';
-import { EuiFlyoutHeader } from '../flyout_header';
 import {
   DEFAULT_MENU_DISPLAY_MODE,
   EuiFlyoutMenuDisplayMode,
   FLYOUT_MENU_DISPLAY_MODES,
 } from '../const';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
+import { EuiFlyoutHeader } from '../flyout_header';
+import {
+  FlyoutContainerGlobalStyles,
+  FlyoutBorderRadiusStyle,
+} from '../__storybook__/_flyout_container_global_styles';
+import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
+import { useFlyoutLayoutMode } from './hooks';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -194,7 +198,9 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
  * A shared helper component used to demo management of internal state. It keeps internal state of
  * the selected flyout type (overlay/push) and the open/closed state of child flyout.
  */
-const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
+const StatefulFlyout: React.FC<
+  FlyoutChildStoryArgs & { initialIsChildOpen?: boolean }
+> = ({
   mainSize,
   childSize,
   hasChildBackground,
@@ -209,10 +215,11 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   showMainTrailingActions,
   childFlyoutMenuDisplayMode,
   showChildTrailingActions,
+  initialIsChildOpen = false,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
-  const [isChildOpen, setIsChildOpen] = useState(false);
+  const [isChildOpen, setIsChildOpen] = useState(initialIsChildOpen);
 
   const openMain = () => {
     setIsMainOpen(true);
@@ -381,4 +388,25 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 export const FlyoutChildDemo: Story = {
   name: 'Playground',
   render: (args) => <StatefulFlyout {...args} />,
+};
+
+export const ContainerAndBorderRadius: StoryObj<
+  FlyoutChildStoryArgs & { container: string }
+> = {
+  tags: ['vrt-only'],
+  name: 'Container and border radius',
+  args: {
+    container: '#story-wrapper',
+    hasAnimation: false,
+    mainFlyoutResizable: true,
+  },
+  render: function Render({ ...args }) {
+    return (
+      <>
+        <FlyoutContainerGlobalStyles />
+        <FlyoutBorderRadiusStyle />
+        <StatefulFlyout {...args} initialIsChildOpen />
+      </>
+    );
+  },
 };
