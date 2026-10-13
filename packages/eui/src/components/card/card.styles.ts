@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import {
+  EuiPaddingSize,
   euiPaddingSize,
   logicalCSS,
   logicalTextAlignCSS,
@@ -197,6 +198,19 @@ export const euiCardStyles = (
       },
     },
   };
+};
+
+// Static per-size generators so `useEuiMemoizedStyles` can share them across instances
+export const euiCardStylesByPadding: Record<
+  EuiPaddingSize,
+  (euiThemeContext: UseEuiTheme) => ReturnType<typeof euiCardStyles>
+> = {
+  none: (euiThemeContext) => euiCardStyles(euiThemeContext, 'none'),
+  xs: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xs'),
+  s: (euiThemeContext) => euiCardStyles(euiThemeContext, 's'),
+  m: (euiThemeContext) => euiCardStyles(euiThemeContext, 'm'),
+  l: (euiThemeContext) => euiCardStyles(euiThemeContext, 'l'),
+  xl: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xl'),
 };
 
 export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {

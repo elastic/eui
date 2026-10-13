@@ -338,7 +338,11 @@ exports[`EuiFormRow props label append is rendered 1`] = `
       label
     </label>
      
-    append
+    <span
+      class="euiFormLabelAppend euiFormRow__labelAppend emotion-euiFormLabelAppend"
+    >
+      append
+    </span>
   </div>
   <div
     class="euiFormRow__fieldWrapper"

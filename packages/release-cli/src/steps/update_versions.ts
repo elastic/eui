@@ -38,6 +38,8 @@ const KIBANA_PREP_COMMITS_FILE = 'packages/release-cli/kibana-prep-commits';
 const KIBANA_PREP_COMMITS_HEADER = `# List Kibana prep commits to cherry-pick during the nightly Kibana integration run.
 # Add URLs under @next, one per line:
 # https://github.com/elastic/kibana/pull/NNNN/commits/COMMIT_SHA
+# or
+# https://github.com/elastic/kibana/commit/COMMIT_SHA
 #
 # On release, @next moves to @previous and @previous is cleared.
 # Nightly cherry-picks both sections, skipping commits that are missing or already applied.
