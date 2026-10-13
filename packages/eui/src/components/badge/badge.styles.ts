@@ -84,6 +84,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
   const getClickableStyles = (interactionStyles: string) => `
     &:not(:disabled) {
+      cursor: pointer;
       ${interactionStyles}
 
       &:hover,
@@ -92,10 +93,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${focusStyles}
-    }
-
-    &:disabled {
-      cursor: not-allowed;
     }
   `;
 
@@ -217,6 +214,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         `,
         custom: css`
           &:not(:disabled) {
+            cursor: pointer;
+
             &:hover,
             &:focus {
               ${highContrastStyles}
@@ -318,6 +317,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${setBadgeColorVars(badgeColors.disabled)}
       border-color: ${badgeColors.disabled.borderColor};
 
+      &:disabled {
+        cursor: not-allowed;
+      }
+
       /* Override selection color, since disabled badges have rgba backgrounds with opacity */
       *::selection {
         color: ${euiTheme.colors.backgroundBasePlain};
@@ -345,9 +348,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTextTruncate()}
         padding-inline: ${euiTheme.size.xxs};
         cursor: inherit;
-      `,
-      clickable: css`
-        cursor: pointer;
       `,
     },
 
