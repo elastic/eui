@@ -758,7 +758,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
       executeQueryOptions,
       allowNeutralSort,
       childrenBetween,
-      tableCaption,
+      tableCaption, // passed explicitly to satisfy `@elastic/eui/require-table-caption`
       ...rest
     } = this.props;
 
