@@ -8,6 +8,7 @@
 
 import React, { forwardRef } from 'react';
 import { useEuiTheme } from '../../../services';
+import { euiFlyoutChildStyles } from './flyout_child.styles';
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import { useFlyoutManager } from './hooks';
 import {
@@ -54,6 +55,12 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
     const mainWidth = mainFlyout?.width;
     const layoutMode = state?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
 
+    const styles = euiFlyoutChildStyles;
+    const cssStyles = [
+      layoutMode === LAYOUT_MODE_SIDE_BY_SIDE && styles.sideBySideChild,
+      customCss,
+    ];
+
     // Runtime validation: prevent orphan child flyouts
     if (!mainFlyout) {
       const errorMessage =
@@ -91,7 +98,7 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
         type="overlay"
         ownFocus={false}
         side={side}
-        css={customCss}
+        css={cssStyles}
       />
     );
   }

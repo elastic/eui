@@ -72,6 +72,15 @@ export const euiFlyoutSlideOutLeft = keyframes`
   }
 `;
 
+const euiFlyoutClipRight = `clip-path: inset(
+  0 0 0 -50% round 0px var(--euiFlyoutBorderRadius, 0px) var(--euiFlyoutBorderRadius, 0px) 0px
+);
+`;
+
+const euiFlyoutClipLeft = `clip-path: inset(
+  0 -50% 0 0 round var(--euiFlyoutBorderRadius, 0px) 0px 0px var(--euiFlyoutBorderRadius, 0px)
+);`;
+
 /**
  * When a `container` reference element is provided, the flyout's position
  * and dimensions are constrained to the container's bounding rect via
@@ -124,7 +133,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Side
     right: css`
-      clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
+      ${euiFlyoutClipRight}
       ${logicalCSS('right', 0)}
 
       /*
@@ -144,8 +153,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Left-side flyouts should only be used for navigation
     left: css`
+      ${euiFlyoutClipLeft}
       ${logicalCSS('left', 0)}
-      clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
       /*
         Jump animation states immediately unless
