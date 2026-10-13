@@ -141,6 +141,19 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           min-inline-size: 15rem;
         }
       }
+
+      // the search plugin hardcodes light backgrounds for the results dropdown
+      .algolia-autocomplete .ds-dropdown-menu [class^='ds-dataset-'] {
+        background: ${euiTheme.colors.backgroundBasePlain};
+      }
+
+      html[data-theme='dark']
+        .algolia-autocomplete
+        .ds-cursor
+        .algolia-docsearch-suggestion--wrapper {
+        background: ${euiTheme.colors
+          .backgroundBaseInteractiveHover} !important;
+      }
     `,
     versionSwitcher: css`
       ${mobileMediaQuery} {
