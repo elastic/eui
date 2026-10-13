@@ -94,10 +94,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${focusStyles}
     }
-
-    &:disabled {
-      cursor: not-allowed;
-    }
   `;
 
   const customInteractiveStyles = `
@@ -320,6 +316,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     disabled: css`
       ${setBadgeColorVars(badgeColors.disabled)}
       border-color: ${badgeColors.disabled.borderColor};
+
+      &:disabled {
+        cursor: not-allowed;
+      }
 
       /* Override selection color, since disabled badges have rgba backgrounds with opacity */
       *::selection {
