@@ -1041,6 +1041,16 @@ Resize clamping and responsive breakpoints use the container's width as the refe
 
 Child flyouts automatically inherit the `container` from the parent flyout's context. There is no need to pass the prop explicitly to child flyouts. To use the document body as the reference container for a child (overriding an inherited container), pass `container={null}`.
 
+#### Rounded corners
+
+If your `container` or app has rounded corners, you can match them with the flyout by using the provided global CSS `var(--euiFlyoutBorderRadius)` variable for this. Set it to the radius of your container on a common ancestor such as `:root`. It defaults to `0px`, so flyouts remain square unless you set it.
+
+```css
+:root {
+  --euiFlyoutBorderRadius: 16px;
+}
+```
+
 ```mdx-code-block
 import { EuiBetaBadge } from '@elastic/eui';
 ```
