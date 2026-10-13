@@ -69,7 +69,16 @@ export const useEuiFlyoutResizable = ({
     [minWidth, maxWidth, siblingFlyoutWidth, _referenceWidth]
   );
 
-  const [flyoutWidth, setFlyoutWidth] = useState(0);
+  const [flyoutWidth, _setFlyoutWidth] = useState(0);
+
+  // The last width set, even before it renders. Handlers read it instead of
+  // `flyoutWidth`, which is stale until then (e.g. a key press right after
+  // mount, before the width from `size` has rendered).
+  const flyoutWidthRef = useRef(0);
+  const setFlyoutWidth = useCallback((width: number) => {
+    flyoutWidthRef.current = width;
+    _setFlyoutWidth(width);
+  }, []);
 
   // Must use state for the flyout ref in order for the useEffect to be correctly called after render
   const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
@@ -79,7 +88,7 @@ export const useEuiFlyoutResizable = ({
     if (!flyoutWidth && flyoutRef) {
       setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
     }
-  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled]);
+  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled, setFlyoutWidth]);
 
   // Track the previous `_size` prop to distinguish between a consumer size
   // change (which should reset the width) and a reference-width / constraint
@@ -123,20 +132,17 @@ export const useEuiFlyoutResizable = ({
       const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
       prevReferenceWidthRef.current = _referenceWidth;
 
-      setFlyoutWidth((currentWidth) => {
-        if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
-          const scaleFactor = _referenceWidth / prevRefWidth;
-          return getFlyoutMinMaxWidth(currentWidth * scaleFactor);
-        }
+      const currentWidth = flyoutWidthRef.current;
+      if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
+        const scaleFactor = _referenceWidth / prevRefWidth;
+        setFlyoutWidth(getFlyoutMinMaxWidth(currentWidth * scaleFactor));
+      } else if (_referenceWidth > 0) {
         // When reference width was 0 (e.g. container not yet measured), now
         // that we have a real width, reset from the size prop instead of scaling.
-        if (_referenceWidth > 0) {
-          return 0;
-        }
-        return currentWidth;
-      });
+        setFlyoutWidth(0);
+      }
     }
-  }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth]);
+  }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth, setFlyoutWidth]);
 
   // `onResize` is only called from user interactions, never for width changes
   // caused by the consumer or by layout constraints
@@ -176,7 +182,7 @@ export const useEuiFlyoutResizable = ({
       drag.current.width = getFlyoutMinMaxWidth(changedFlyoutWidth);
       setFlyoutWidth(drag.current.width);
     },
-    [getFlyoutMinMaxWidth, direction, enabled]
+    [getFlyoutMinMaxWidth, direction, enabled, setFlyoutWidth]
   );
 
   const onMouseUp = useCallback(() => {
@@ -204,7 +210,8 @@ export const useEuiFlyoutResizable = ({
 
       initialMouseX.current = getPosition(e, true);
       initialWidth.current = flyoutRef?.offsetWidth ?? 0;
-      drag.current = { startWidth: flyoutWidth, width: flyoutWidth };
+      const startWidth = flyoutWidthRef.current;
+      drag.current = { startWidth, width: startWidth };
 
       // Window event listeners instead of React events are used
       // in case the user's mouse leaves the component
@@ -213,7 +220,7 @@ export const useEuiFlyoutResizable = ({
       window.addEventListener('touchmove', onMouseMove);
       window.addEventListener('touchend', onMouseUp);
     },
-    [flyoutRef, flyoutWidth, onMouseMove, onMouseUp, enabled]
+    [flyoutRef, onMouseMove, onMouseUp, enabled]
   );
 
   const onKeyDown = useCallback(
@@ -237,12 +244,13 @@ export const useEuiFlyoutResizable = ({
       }
       e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
 
-      const newWidth = getFlyoutMinMaxWidth(flyoutWidth + offset);
-      if (newWidth === flyoutWidth) return; // Already at the clamp
+      const currentWidth = flyoutWidthRef.current;
+      const newWidth = getFlyoutMinMaxWidth(currentWidth + offset);
+      if (newWidth === currentWidth) return; // Already at the clamp
       setFlyoutWidth(newWidth);
       onUserResize(newWidth);
     },
-    [getFlyoutMinMaxWidth, direction, enabled, flyoutWidth, onUserResize]
+    [getFlyoutMinMaxWidth, direction, enabled, onUserResize, setFlyoutWidth]
   );
 
   const size = useMemo(() => {
