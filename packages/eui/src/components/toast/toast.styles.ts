@@ -26,23 +26,12 @@ const TEXT_MAX_WIDTH = 1200;
 const CONTAINER_NAME = 'euiToast';
 const CQC_BREAKPOINT_NARROWEST = '(max-width: 320px)';
 
-// Shrinks the highlight from the inline-end. The decor's radius clips the bar,
-// so these insets only change its length.
 const euiToastAnimation = keyframes`
   from {
-    clip-path: inset(0 0 0 0);
+    transform: scaleX(1);
   }
   to {
-    clip-path: inset(0 100% 0 0);
-  }
-`;
-
-const euiToastAnimationRTL = keyframes`
-  from {
-    clip-path: inset(0 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 100%);
+    transform: scaleX(0);
   }
 `;
 
@@ -65,8 +54,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x + y
   );
 
-  // Straight bar. The decor clips it to the toast radius so the ends follow
-  // the corner curve instead of a border stroke finishing in a sharp point.
+  // Straight bar that doesn't follow the border radius of the toast.
   const decorCommonStyles = `
     content: '';
     position: absolute;
@@ -124,6 +112,11 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
         /* ensure highlight is on top of panel border */
         z-index: ${decorLevel + 1};
         background-color: var(--euiToastTypeColor);
+        transform-origin: left center;
+
+        [dir='rtl'] & {
+          transform-origin: right center;
+        }
       }
     `,
     // handles content + actions layout
@@ -189,14 +182,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     hasAnimation: css`
       &::after {
         ${euiCanAnimate} {
-          will-change: clip-path;
           animation: ${euiToastAnimation} var(--euiToastAnimationMs) linear
             forwards;
-
-          [dir='rtl'] & {
-            animation: ${euiToastAnimationRTL} var(--euiToastAnimationMs) linear
-              forwards;
-          }
         }
       }
     `,
