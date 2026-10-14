@@ -2,8 +2,8 @@
 
 EUI is a React/Emotion component library consumed by Kibana and other Elastic
 products. Small changes can have a large downstream impact, so weigh
-consumer-facing regressions most heavily. Repository-wide guidance lives in
-`AGENTS.md` and the `wiki/` directory; follow the wiki when it conflicts.
+consumer-facing regressions most heavily. Follow the `wiki/` directory where it
+conflicts with other guidance.
 
 ## What to prioritize
 
@@ -11,7 +11,8 @@ consumer-facing regressions most heavily. Repository-wide guidance lives in
   default values, DOM structure and class names relied on by consumers) that are
   not called out in the PR's "API Changes" table or changelog.
 - Accessibility regressions: keyboard support, focus management, ARIA
-  roles/labels, and color contrast, in light and dark modes and in all themes.
+  roles/labels, and color contrast, in light and dark modes and in high
+  contrast mode (`highContrastMode`).
 - Behavior bugs in shared components (overlays, popovers, flyouts, data grid,
   form controls) including SSR safety and `ref` / `...rest` prop forwarding.
 - Missing unit tests for changed behavior.
@@ -25,10 +26,8 @@ consumer-facing regressions most heavily. Repository-wide guidance lives in
 
 ## Conventions to enforce
 
-- Component files use `snake_case`, components use `EuiPascalCase`.
 - Styles use Emotion `*.styles.ts` files with theme tokens (`useEuiTheme`),
   not hard-coded colors, sizes or SCSS.
-- Changes under `packages/eui/src/` need a `packages/eui/changelogs/upcoming/<PR number>.md`
-  entry (past tense, consumer-focused), unless the PR has the `skip-changelog` label.
-- New or changed public props need docs in `packages/website` and a Storybook story.
-- PR titles use `[Component] Short description`.
+- Changelog entries under `packages/*/changelogs/upcoming/` must describe the
+  consumer-visible change accurately. CI already checks that an entry exists,
+  so do not flag a missing one.

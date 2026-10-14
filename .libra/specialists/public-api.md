@@ -10,10 +10,14 @@ apply_to:
   - "packages/eui/src/index.ts"
   - "packages/eui-theme-common/src/**"
   - "packages/eui-theme-borealis/src/**"
+  - "packages/eui/package.json"
+  - "packages/test-helpers/src/**"
+  - "packages/eslint-plugin/src/**"
 can_block: true
 ---
 Review for breaking changes to what Kibana and other consumers depend on:
-removed or renamed props, exports, tokens or CSS variables; changed defaults;
+removed or renamed props, exports, tokens, CSS variables, ESLint rules or
+test-helper methods; changed `package.json` exports or peer dependencies; changed defaults;
 narrowed or broadened TypeScript types; changed DOM output or class names;
 props not forwarded (`...rest`, `ref`, `data-test-subj`, `className`).
 A breaking change is acceptable only when the PR documents it and ships a
