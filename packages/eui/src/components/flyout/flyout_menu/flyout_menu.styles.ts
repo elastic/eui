@@ -17,13 +17,9 @@ import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const topOffset = mathWithUnits(
-    [euiTheme.size.m, euiTheme.border.width.thin],
-    (x, y) => x + y
-  );
   const containerHeight = mathWithUnits(
     [euiTheme.size.base, euiTheme.border.width.thin],
-    (x, y) => x * 3 + y * 2
+    (x, y) => x * 3 + y
   );
 
   return {
@@ -37,7 +33,7 @@ export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTheme.border.color};
 
       .euiFlyout__closeButton {
-        ${logicalCSS('top', topOffset)}
+        ${logicalCSS('top', euiTheme.size.m)}
       }
 
       .euiTitle {
