@@ -8,6 +8,12 @@
 
 export { calculatePopoverPosition } from './calculate_popover_position';
 export { findPopoverPosition, getElementZIndex } from './popover_positioning';
+export {
+  getPopoverAlignFromAnchorPosition,
+  getPopoverPositionFromAnchorPosition,
+  popoverAnchorPosition,
+} from './anchor_position';
+export type { PopoverAnchorPosition } from './anchor_position';
 
 // Not exported as public APIs
 export { _popoverArrowStyles } from './popover_arrow.styles';
