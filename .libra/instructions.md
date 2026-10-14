@@ -5,6 +5,10 @@ products. Small changes can have a large downstream impact, so weigh
 consumer-facing regressions most heavily. Follow the `wiki/` directory where it
 conflicts with other guidance.
 
+Some guidance in `AGENTS.md` (for example, which contributors may open PRs)
+addresses agents that author changes, not reviewers. Do not flag a PR because of
+who opened it or which issue it references.
+
 ## What to prioritize
 
 - Breaking changes to the public API (props, exports, CSS variables, tokens,
@@ -19,7 +23,8 @@ conflicts with other guidance.
 
 ## What to skip
 
-- Formatting and import order; Prettier and ESLint enforce these.
+- Formatting; Prettier enforces it. Import order is not enforced anywhere, so do
+  not flag it either.
 - Stylistic preferences not backed by the wiki.
 - Documentation-only wording nits in `packages/website/` and `wiki/` unless
   the text is factually wrong.
