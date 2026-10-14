@@ -2,9 +2,11 @@
 id: public-api
 description: Reviews changes to EUI's public API surface and consumer compatibility
 apply_to:
-  - "packages/eui/src/components/**/index.ts"
+  - "packages/eui/src/components/**/*.ts"
   - "packages/eui/src/components/**/*.tsx"
   - "packages/eui/src/services/**"
+  - "packages/eui/src/utils/**"
+  - "packages/eui/src/global_styling/**"
   - "packages/eui/src/index.ts"
   - "packages/eui-theme-common/src/**"
   - "packages/eui-theme-borealis/src/**"

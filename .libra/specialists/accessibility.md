@@ -2,6 +2,7 @@
 id: accessibility
 description: Reviews keyboard, focus, screen reader and contrast behavior
 apply_to:
+  - "packages/eui/src/components/**/*.ts"
   - "packages/eui/src/components/**/*.tsx"
   - "packages/eui/src/services/accessibility/**"
   - "packages/eui/src/services/focus_trap/**"
