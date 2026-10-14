@@ -12,6 +12,7 @@ apply_to:
   - "packages/eui-theme-borealis/src/**"
   - "packages/eui/package.json"
   - "packages/test-helpers/src/**"
+  - "packages/illustrations/src/**"
   - "packages/eslint-plugin/src/**"
 can_block: true
 ---
