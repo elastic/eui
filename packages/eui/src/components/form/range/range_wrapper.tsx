@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { useFormContext } from '../eui_form_context';
 
@@ -34,8 +34,7 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
 
     const classes = classNames('euiRangeWrapper', className);
 
-    const euiTheme = useEuiTheme();
-    const styles = euiRangeWrapperStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiRangeWrapperStyles);
     const cssStyles = [
       styles.euiRangeWrapper,
       compressed ? styles.compressed : styles.uncompressed,
