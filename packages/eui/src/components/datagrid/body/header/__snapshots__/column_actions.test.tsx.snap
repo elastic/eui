@@ -4,7 +4,7 @@ exports[`ColumnActions renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+      class="euiPopover euiPopover-isOpen euiDataGridHeaderCell__columnActionsPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
     >
       <button
         aria-controls="euiPopover_generated-id_panelId"
