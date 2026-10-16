@@ -8,7 +8,8 @@
 
 import type { Locator } from '@playwright/test';
 
-import { BaseObject, type ObjectScope } from '../../base_object';
+import type { ObjectScope } from '../../base_object';
+import { EuiTableObject } from '../table/object';
 import { EuiBasicTableSelectors } from '../../../components/basic_table/selectors';
 
 /**
@@ -19,28 +20,12 @@ import { EuiBasicTableSelectors } from '../../../components/basic_table/selector
  *
  * `testSubj` must match the `data-test-subj` set by the consumer on the
  * `<EuiBasicTable>`/`<EuiInMemoryTable>` (EUI spreads it onto the `.euiBasicTable`
- * root). See the package README for what's deliberately excluded from v1.
+ * root). Extends `EuiTableObject`, so `rows`, `headerCells`, `column` and `cell`
+ * are available too. See the package README for what's deliberately excluded.
  */
-export class EuiBasicTableObject extends BaseObject {
+export class EuiBasicTableObject extends EuiTableObject {
   constructor(scope: ObjectScope, testSubj: string) {
     super(scope, testSubj, EuiBasicTableSelectors.ROOT_SELECTOR);
-  }
-
-  /**
-   * The table's data rows, as a `Locator` so callers keep Playwright auto-retry
-   * for count and content assertions (e.g. `expect(table.rows).toHaveCount(3)`).
-   *
-   * Excludes EUI's own "no items found" (and error-message) row: when the table
-   * is empty, EUI still renders a single `.euiTableRow` whose one cell spans
-   * every column (`colSpan` on `EuiTableRowCell`, the `td[colspan]` HTML
-   * attribute). Real data rows don't set `colspan` on their cells, so filtering
-   * it out is what keeps `toHaveCount(0)` correct on an empty table instead of
-   * reading `1`.
-   */
-  public get rows(): Locator {
-    return this.root
-      .locator(EuiBasicTableSelectors.ROW_SELECTOR)
-      .filter({ hasNot: this.root.page().locator('td[colspan]') });
   }
 
   /**
