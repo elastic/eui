@@ -27,8 +27,8 @@ export class EuiPaginationObject extends BaseObject {
   /** The 0-based index of the active page. */
   async getActivePage(): Promise<number> {
     if (await this.isCompressed()) {
-      const text = await this.compressedNumbers().first().innerText();
-      return Number(text) - 1;
+      const [page] = await this.compressedNumbers();
+      return page - 1;
     }
     const text = await this.root
       .locator(EuiPaginationSelectors.ACTIVE_PAGE_BUTTON_SELECTOR)
@@ -39,7 +39,8 @@ export class EuiPaginationObject extends BaseObject {
   /** The total number of pages. */
   async getPageCount(): Promise<number> {
     if (await this.isCompressed()) {
-      return Number(await this.compressedNumbers().last().innerText());
+      const [, total] = await this.compressedNumbers();
+      return total;
     }
     // EUI always renders the last page's button, so its label is the count.
     return Number(
@@ -53,11 +54,12 @@ export class EuiPaginationObject extends BaseObject {
   /**
    * Go to the page at the 0-based `index` and wait for it to become active.
    * Clicks the page button when EUI renders it, otherwise steps through
-   * next or previous until it does. A no-op if already active.
+   * next or previous until it does. A no-op if already active. Throws if
+   * `index` is not a page, or the page never becomes active.
    */
   async goToPage(index: number): Promise<void> {
     const pageCount = await this.getPageCount();
-    if (index < 0 || index >= pageCount) {
+    if (!Number.isInteger(index) || index < 0 || index >= pageCount) {
       throw new Error(
         `EuiPagination "${this.testSubj}" has ${pageCount} pages, page index ${index} is out of range.`
       );
@@ -79,6 +81,12 @@ export class EuiPaginationObject extends BaseObject {
         ).click();
       }
       await expect.poll(() => this.getActivePage()).not.toBe(active);
+    }
+
+    if ((await this.getActivePage()) !== index) {
+      throw new Error(
+        `EuiPagination "${this.testSubj}" did not reach page index ${index} after ${pageCount} steps.`
+      );
     }
   }
 
@@ -107,6 +115,8 @@ export class EuiPaginationObject extends BaseObject {
   }
 
   private async isCompressed(): Promise<boolean> {
+    // count() does not wait, so make sure the nav has rendered first.
+    await this.root.waitFor({ state: 'visible' });
     return (
       (await this.root
         .locator(EuiPaginationSelectors.COMPRESSED_TEXT_SELECTOR)
@@ -114,9 +124,17 @@ export class EuiPaginationObject extends BaseObject {
     );
   }
 
-  private compressedNumbers(): Locator {
-    return this.root
+  /**
+   * The compressed "page of total" numbers as [page, total]. Translations may
+   * order the two the other way round, and the page is never above the total,
+   * so the smaller one is the page.
+   */
+  private async compressedNumbers(): Promise<[number, number]> {
+    const texts = await this.root
       .locator(EuiPaginationSelectors.COMPRESSED_TEXT_SELECTOR)
-      .locator('span');
+      .locator('span')
+      .allInnerTexts();
+    const numbers = texts.map(Number);
+    return [Math.min(...numbers), Math.max(...numbers)];
   }
 }
