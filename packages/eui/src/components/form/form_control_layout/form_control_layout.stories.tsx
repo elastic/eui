@@ -778,7 +778,9 @@ export const AppendPrependAPIKitchenSink: Story = {
             prepend={<EuiIcon type="vectorSquare" />}
             append={
               <EuiToolTip content="content">
-                <EuiText size="s">Tooltip</EuiText>
+                <EuiText size="s" tabIndex={0}>
+                  Tooltip
+                </EuiText>
               </EuiToolTip>
             }
           />

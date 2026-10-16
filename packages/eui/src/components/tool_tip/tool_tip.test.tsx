@@ -427,6 +427,7 @@ describe('EuiToolTip', () => {
           return (
             <>
               <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+                {/* eslint-disable-next-line @elastic/eui/tooltip-focusable-anchor -- intentionally not focusable */}
                 <span>Not focusable</span>
               </EuiToolTip>
               <button data-test-subj="trigger" onClick={showToolTip}>
