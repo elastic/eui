@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import type { KeyboardEvent, MouseEvent as ReactMouseEvent } from 'react';
 import { waitFor } from '@testing-library/react';
 import { renderHook, renderHookAct as act } from '../../test/rtl/render_hook';
 import { useEuiFlyoutResizable } from './use_flyout_resizable';
@@ -242,6 +243,136 @@ describe('useEuiFlyoutResizable', () => {
       await waitFor(() => {
         expect(result.current.size).toBe('50%');
       });
+    });
+  });
+
+  describe('constraint changes', () => {
+    const props = {
+      ...mockProps,
+      enabled: true,
+      minWidth: 0,
+      maxWidth: undefined,
+      referenceWidth: 1200,
+      size: 800,
+    };
+
+    it('keeps the pixel width of a numeric `size` and restores it after a clamp', async () => {
+      const onResize = jest.fn();
+      const { result, rerender } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, onResize },
+      });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      // 800 / 1600 * 100 = 50%, not scaled up to 1067px
+      rerender({ ...props, onResize, referenceWidth: 1600 });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      // Clamped to 90% of 600 = 540px
+      rerender({ ...props, onResize, referenceWidth: 600 });
+      await waitFor(() => expect(result.current.size).toBe('90%'));
+
+      rerender({ ...props, onResize, referenceWidth: 1200 });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      expect(onResize).not.toHaveBeenCalled();
+    });
+
+    it('re-clamps on window resize when `referenceWidth` is not provided', async () => {
+      const { result } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, referenceWidth: undefined },
+      });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      // Clamped to 90% of 800 = 720px
+      act(() => {
+        window.innerWidth = 800;
+        window.dispatchEvent(new Event('resize'));
+      });
+      await waitFor(() => expect(result.current.size).toBe('90%'));
+
+      // 800 / 1600 * 100 = 50%
+      act(() => {
+        window.innerWidth = 1600;
+        window.dispatchEvent(new Event('resize'));
+      });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+    });
+
+    it('restores the user-resized width after a clamp and only reports the user resize', async () => {
+      const onResize = jest.fn();
+      const { result, rerender } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, onResize },
+      });
+      act(() => result.current.setFlyoutRef(createMockElement(800)));
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      // Right-side flyout: dragging 100px left grows it to 900px
+      act(() => {
+        result.current.onMouseDown({ clientX: 400 } as ReactMouseEvent);
+        window.dispatchEvent(new MouseEvent('mousemove', { clientX: 300 }));
+        window.dispatchEvent(new MouseEvent('mouseup'));
+      });
+      expect(onResize).toHaveBeenCalledTimes(1);
+      expect(onResize).toHaveBeenCalledWith(900);
+
+      rerender({ ...props, onResize, referenceWidth: 600 });
+      await waitFor(() => expect(result.current.size).toBe('90%'));
+
+      rerender({ ...props, onResize, referenceWidth: 1200 });
+      await waitFor(() => expect(result.current.size).toBe('75%'));
+
+      expect(onResize).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not call `onResize` or lose the requested width when an interaction does not change the width', async () => {
+      const onResize = jest.fn();
+      const { result, rerender } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, onResize, referenceWidth: 600 },
+      });
+      act(() => result.current.setFlyoutRef(createMockElement(540)));
+      await waitFor(() => expect(result.current.size).toBe('90%'));
+
+      // Click without dragging
+      act(() => {
+        result.current.onMouseDown({ clientX: 400 } as ReactMouseEvent);
+        window.dispatchEvent(new MouseEvent('mouseup'));
+      });
+      // Non-resize key, and a grow step that the clamp turns into a no-op
+      act(() => {
+        result.current.onKeyDown({ key: 'Tab' } as KeyboardEvent);
+      });
+      act(() => {
+        result.current.onKeyDown({
+          key: 'ArrowLeft',
+          preventDefault: () => {},
+        } as KeyboardEvent);
+      });
+      expect(result.current.size).toBe('90%');
+      expect(onResize).not.toHaveBeenCalled();
+
+      rerender({ ...props, onResize, referenceWidth: 1200 });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+    });
+
+    it('keeps scaling a named `size` proportionally', async () => {
+      const { result, rerender } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, size: 'm' },
+      });
+      act(() => result.current.setFlyoutRef(createMockElement(600)));
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      rerender({ ...props, size: 'm', referenceWidth: 800 });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
     });
   });
 });
