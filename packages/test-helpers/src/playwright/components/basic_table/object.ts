@@ -29,6 +29,14 @@ export class EuiBasicTableObject extends EuiTableObject {
   }
 
   /**
+   * The data rows. Excludes EUI's own "no items found" row, whose single cell
+   * spans every column with `colspan`. Basic table data rows never set it.
+   */
+  public override get rows(): Locator {
+    return super.rows.filter({ hasNot: this.root.page().locator('td[colspan]') });
+  }
+
+  /**
    * The cells of the given field-data column, one per row, as a `Locator` for
    * retrying content/count assertions (e.g.
    * `expect(await table.cells('status')).toHaveText(['Running'])`).

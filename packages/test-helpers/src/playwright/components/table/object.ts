@@ -31,14 +31,9 @@ export class EuiTableObject extends BaseObject {
     super(scope, testSubj, componentSelector);
   }
 
-  /**
-   * The body rows. Excludes EUI's own "no items found" row, whose single cell
-   * spans every column with `colspan`. Real data rows never set it.
-   */
+  /** The body rows. */
   public get rows(): Locator {
-    return this.root
-      .locator(EuiTableSelectors.ROW_SELECTOR)
-      .filter({ hasNot: this.root.page().locator('td[colspan]') });
+    return this.root.locator(EuiTableSelectors.ROW_SELECTOR);
   }
 
   /** The header cells, in column order. */
@@ -48,15 +43,15 @@ export class EuiTableObject extends BaseObject {
 
   /**
    * The cells of one column across all body rows, by 0-based position.
-   * Matches both `<td>` and `<th>`, EUI renders a row header cell as
-   * `<th scope="row">`.
+   * Direct children only, so a table nested in a cell is not matched. Matches
+   * both `<td>` and `<th>`, EUI renders a row header cell as `<th scope="row">`.
    */
   public column(index: number): Locator {
-    return this.rows.locator(`:is(td, th):nth-child(${index + 1})`);
+    return this.rows.locator(`> :is(td, th):nth-child(${index + 1})`);
   }
 
   /** One body cell by 0-based row and column position. */
   public cell(row: number, column: number): Locator {
-    return this.rows.nth(row).locator(`:is(td, th):nth-child(${column + 1})`);
+    return this.rows.nth(row).locator(`> :is(td, th):nth-child(${column + 1})`);
   }
 }

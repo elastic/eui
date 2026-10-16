@@ -21,6 +21,6 @@ export const EuiTableSelectors = {
   /** A body cell. */
   ROW_CELL_SELECTOR: '.euiTableRowCell',
 
-  /** A header cell. */
-  HEADER_CELL_SELECTOR: '.euiTableHeaderCell',
+  /** A header cell, including the selection checkbox cell which has its own class. */
+  HEADER_CELL_SELECTOR: 'thead > tr > :is(th, td)',
 };
