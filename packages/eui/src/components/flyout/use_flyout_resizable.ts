@@ -42,16 +42,35 @@ export const useEuiFlyoutResizable = ({
   side,
   size: _size,
 }: UseEuiFlyoutResizable) => {
+  // Without a `referenceWidth` (standalone flyouts), nothing else re-renders
+  // the flyout on window resize, so track the viewport width here
+  const [windowWidth, setWindowWidth] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : Infinity
+  );
+  const tracksWindow = enabled && referenceWidth === undefined;
+  useEffect(() => {
+    if (!tracksWindow) return;
+
+    let rafId = 0;
+    const onWindowResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setWindowWidth(window.innerWidth));
+    };
+    // Catch up on resizes that happened while the window was not tracked
+    setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', onWindowResize);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', onWindowResize);
+    };
+  }, [tracksWindow]);
+
   // Use container width when provided. When referenceWidth is 0 (e.g. container
   // not yet measured by ResizeObserver), do not fall back to viewport — that
   // would allow resizing beyond the container (e.g. over a sidebar). Use 0 so
   // the clamp keeps the flyout at minWidth until the real width is available.
   const _referenceWidth =
-    referenceWidth !== undefined
-      ? referenceWidth
-      : typeof window !== 'undefined'
-      ? window.innerWidth
-      : Infinity;
+    referenceWidth !== undefined ? referenceWidth : windowWidth;
 
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {

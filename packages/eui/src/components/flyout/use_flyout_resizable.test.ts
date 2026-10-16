@@ -281,6 +281,29 @@ describe('useEuiFlyoutResizable', () => {
       expect(onResize).not.toHaveBeenCalled();
     });
 
+    it('re-clamps on window resize when `referenceWidth` is not provided', async () => {
+      const { result } = renderHook(useEuiFlyoutResizable, {
+        initialProps: { ...props, referenceWidth: undefined },
+      });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      // Clamped to 90% of 800 = 720px
+      act(() => {
+        window.innerWidth = 800;
+        window.dispatchEvent(new Event('resize'));
+      });
+      await waitFor(() => expect(result.current.size).toBe('90%'));
+
+      // 800 / 1600 * 100 = 50%
+      act(() => {
+        window.innerWidth = 1600;
+        window.dispatchEvent(new Event('resize'));
+      });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+    });
+
     it('restores the user-resized width after a clamp and only reports the user resize', async () => {
       const onResize = jest.fn();
       const { result, rerender } = renderHook(useEuiFlyoutResizable, {
