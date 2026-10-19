@@ -1,3 +1,8 @@
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+
+- Added `setColor()` and `getColor()` to `EuiColorPickerObject`, and support for pickers that use a custom `button` anchor ([#10182](https://github.com/elastic/eui/pull/10182))
+- Updated Component Object roots to match a `testSubj` with spaces by requiring every token ([#10182](https://github.com/elastic/eui/pull/10182))
+
 ## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
 
 - Added a `selectors` object that holds every Component Object's selectors keyed by component (`selectors.comboBox.PILL_SELECTOR`) ([#10076](https://github.com/elastic/eui/pull/10076))

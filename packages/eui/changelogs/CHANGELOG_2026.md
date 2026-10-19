@@ -1,3 +1,17 @@
+## [`v123.2.0`](https://github.com/elastic/eui/releases/v123.2.0)
+
+- Updated `EuiFlyoutMenu` height to 49px to align with Kibana compact AppHeader ([#10211](https://github.com/elastic/eui/pull/10211))
+- Added new icon: `ruler`. ([#10194](https://github.com/elastic/eui/pull/10194))
+- Updated `productAgent` icon glyph ([#10179](https://github.com/elastic/eui/pull/10179))
+- Updated `EuiToast`'s highlight to a straight bar instead of a curved one ([#10197](https://github.com/elastic/eui/pull/10197))
+
+**Bug fixes**
+
+- Fixed clickable `EuiBadge` to show the pointer cursor over its icon and padding, not only over its text ([#10205](https://github.com/elastic/eui/pull/10205))
+- Fixed disabled clickable `EuiBadge` to show the `not-allowed` cursor ([#10205](https://github.com/elastic/eui/pull/10205))
+- Fixed resizable `EuiFlyout` with a numeric `size` scaling proportionally on container or window resize; it now keeps its pixel width and is only clamped while there is not enough room ([#10199](https://github.com/elastic/eui/pull/10199))
+- Fixed resizable `EuiFlyout` calling `onResize` for width changes not made by the user, such as container or sibling clamps, or clicking the resize handle without dragging ([#10199](https://github.com/elastic/eui/pull/10199))
+
 ## [`v123.1.0`](https://github.com/elastic/eui/releases/v123.1.0)
 
 - Removed the left color highlight from `EuiCallOut` ([#10109](https://github.com/elastic/eui/pull/10109))
