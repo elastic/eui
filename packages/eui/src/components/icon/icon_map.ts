@@ -1611,6 +1611,9 @@ export const typeToPathMap = {
   productAgent: withMetadata(() => import('./assets/product_agent'), {
     synonyms: ['agent', 'product', 'elastic agent', 'fleet', 'monitoring'],
   }),
+  productAlertZero: withMetadata(() => import('./assets/product_alert_zero'), {
+    synonyms: ['alertzero', 'alert', 'zero', 'attack', 'security'],
+  }),
   productCanvas: withMetadata(() => import('./assets/product_canvas'), {
     synonyms: [
       'product',
