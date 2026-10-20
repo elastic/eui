@@ -13,12 +13,14 @@ import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
 import { EuiDataGridSelectors } from './components/datagrid/selectors';
 import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
+import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
 import { EuiModalSelectors } from './components/modal/selectors';
 import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
 import { EuiRangeSelectors } from './components/form/range/selectors';
+import { EuiSearchBarSelectors } from './components/search_bar/selectors';
 import { EuiSelectableSelectors } from './components/selectable/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
 import { EuiTableSelectors } from './components/table/selectors';
@@ -40,12 +42,14 @@ export const selectors = {
   contextMenu: EuiContextMenuSelectors,
   dataGrid: EuiDataGridSelectors,
   draggable: EuiDraggableSelectors,
+  fieldSearch: EuiFieldSearchSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,
   popover: EuiPopoverSelectors,
   range: EuiRangeSelectors,
+  searchBar: EuiSearchBarSelectors,
   selectable: EuiSelectableSelectors,
   superSelect: EuiSuperSelectSelectors,
   table: EuiTableSelectors,
