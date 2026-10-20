@@ -26,6 +26,7 @@ const PLAYGROUND_URL = storyUrl(
 /**
  * EUI calls `onSearch` from the native `search` event the input fires on
  * Enter, so recording that event is the observable proof of a submission.
+ * Chromium dispatches it asynchronously, so assertions on it must poll.
  */
 const recordSearchEvents = (fieldSearch: EuiFieldSearchObject) =>
   fieldSearch.locator.evaluate((input) => {
@@ -53,9 +54,12 @@ test.describe('EuiFieldSearchObject', () => {
 
   test('setQuery and clear each submit a search', async () => {
     await fieldSearch.setQuery('logs');
-    await fieldSearch.clear();
+    await expect.poll(() => submittedQueries(fieldSearch)).toEqual(['logs']);
 
-    expect(await submittedQueries(fieldSearch)).toEqual(['logs', '']);
+    await fieldSearch.clear();
+    await expect
+      .poll(() => submittedQueries(fieldSearch))
+      .toEqual(['logs', '']);
   });
 
   test.describe('setQuery', () => {
@@ -86,6 +90,6 @@ test.describe('EuiFieldSearchObject (incremental)', () => {
 
     await fieldSearch.setQuery('logs');
 
-    expect(await submittedQueries(fieldSearch)).toEqual(['logs']);
+    await expect.poll(() => submittedQueries(fieldSearch)).toEqual(['logs']);
   });
 });
