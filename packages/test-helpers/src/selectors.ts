@@ -21,6 +21,7 @@ import { EuiPopoverSelectors } from './components/popover/selectors';
 import { EuiRangeSelectors } from './components/form/range/selectors';
 import { EuiSelectableSelectors } from './components/selectable/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
+import { EuiTableSelectors } from './components/table/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
 import { EuiToolTipSelectors } from './components/tool_tip/selectors';
 import { EuiTreeViewSelectors } from './components/tree_view/selectors';
@@ -47,6 +48,7 @@ export const selectors = {
   range: EuiRangeSelectors,
   selectable: EuiSelectableSelectors,
   superSelect: EuiSuperSelectSelectors,
+  table: EuiTableSelectors,
   globalToastList: EuiGlobalToastListSelectors,
   toolTip: EuiToolTipSelectors,
   treeView: EuiTreeViewSelectors,
