@@ -187,3 +187,13 @@ export const euiTokenStyles = (
     none: css``,
   };
 };
+
+// Static per-fill generators so `useEuiMemoizedStyles` can share them across instances
+export const euiTokenFillStyles: Record<
+  TokenFill,
+  (euiThemeContext: UseEuiTheme) => ReturnType<typeof euiTokenStyles>
+> = {
+  light: (euiThemeContext) => euiTokenStyles(euiThemeContext, 'light'),
+  dark: (euiThemeContext) => euiTokenStyles(euiThemeContext, 'dark'),
+  none: (euiThemeContext) => euiTokenStyles(euiThemeContext, 'none'),
+};

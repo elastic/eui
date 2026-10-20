@@ -7,6 +7,8 @@
  */
 
 import React, { HTMLAttributes } from 'react';
+
+import { EuiDisabledProps } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import type { EuiTextTruncateProps } from '../text_truncate';
 import { EuiToolTipProps } from '../tool_tip';
@@ -38,6 +40,7 @@ export type EuiSelectableOptionBase = CommonProps & {
    */
   checked?: EuiSelectableOptionCheckedType;
   disabled?: boolean;
+  hasAriaDisabled?: EuiDisabledProps['hasAriaDisabled'];
   /**
    * Optional `boolean`.
    * Set to `true` to indicate object is just a grouping label, not a selectable item

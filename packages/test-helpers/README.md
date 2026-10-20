@@ -59,6 +59,7 @@ their own version at runtime.
 | `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
 | `EuiContextMenuObject` | [src/components/context_menu/README.md](src/components/context_menu/README.md) |
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
+| `EuiPaginationObject` | [src/components/pagination/README.md](src/components/pagination/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |

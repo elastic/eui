@@ -32,69 +32,33 @@ This guide explains how to develop EUI library locally while seeing changes refl
 
 ## Usage
 
-### In Kibana
+### Start Kibana from EUI
 
-In the [Kibana](https://github.com/elastic/kibana) repository root, open terminal and start Elasticsearch:
+In the **EUI** repository root, run the Kibana processes in one terminal:
 
 ```bash
-pnpm es snapshot --license trial
+yarn watch:kibana
 ```
 
-Then, run the `@kbn/ui-shared-deps-npm` watcher:
+This starts the EUI watcher, then starts Elasticsearch and Kibana after the initial EUI build. Kibana's Rspack MultiCompiler watches the synced EUI output and rebuilds the affected shared and Kibana bundles. Press `Ctrl+C` to stop all managed processes.
+
+If Elasticsearch already uses port `9200`, or Kibana uses port `5601`, the corresponding process is not started.
+
+If your Kibana directory is located elsewhere:
 
 ```bash
-npx moon run @kbn/ui-shared-deps-npm:watch-webpack
-```
-
-Finally, run the Kibana server:
-
-```bash
-pnpm start --no-cache
-```
-
-### In EUI
-
-In the **EUI** repository root, run:
-
-```bash
-# Watch all packages and sync to Kibana
-yarn watch --kibana
+yarn watch:kibana --kibana-dir=/path/to/kibana
 # Shortcut:
-yarn watch -k
+yarn watch:kibana -d /path/to/kibana
 ```
 
-or if you want to watch a specific EUI package run:
+To watch only one EUI package:
 
 ```bash
-# Watch only @elastic/eui
-yarn watch --kibana --package @elastic/eui
-# Shortcuts:
-yarn watch -k -p @elastic/eui
-
-# Watch only @elastic/eui-theme-borealis
-yarn watch --kibana --package @elastic/eui-theme-borealis
-# Shortcuts:
-yarn watch -k -p @elastic/eui-theme-borealis
-
-# Watch only @elastic/eui-theme-common
-yarn watch --kibana --package @elastic/eui-theme-common
-# Shortcuts:
-yarn watch -k -p @elastic/eui-theme-common
-```
-
-If your Kibana directory is located elsewhere, you can configure the directory path:
-
-```bash
-yarn watch --kibana-dir=/path/to/kibana
+yarn watch:kibana --package @elastic/eui
 # Shortcut:
-yarn watch -d /path/to/kibana
+yarn watch:kibana -p @elastic/eui
 ```
-
-These commands will:
-
-1. Watch for changes in the selected package(s).
-2. Compile the changed package(s). With `--kibana`, `@elastic/eui` initially compiles `optimize/es` only (Kibana's alias), then incrementally compiles changed files.
-3. Sync the build artifacts into the Kibana directory, by default: `../kibana/node_modules`.
 
 ## How it works
 
@@ -105,9 +69,8 @@ The integration relies on a chain of file watchers and build triggers to propaga
 1. The script watches `src` directories using `chokidar`.
 2. With `--kibana`, `@elastic/eui` runs one complete `build:optimize-es`, then Babel-compiles only changed source files. Changed JSON and SVG files are copied directly.
 3. `@elastic/eui` syncs only changed `optimize/es` files into Kibana's `node_modules` and touches `package.json` once per batch. Theme packages still rebuild and copy their full `files` list.
-4. Webpack detects the change and rebuilds `@kbn/ui-shared-deps-npm.dll.js`.
-5. The `@kbn/cli-dev-mode` detects the new DLL and restarts the **Optimizer**.
-6. When the optimizer has rebuilt all plugins, the browser window can be refreshed.
+4. Kibana's Rspack MultiCompiler detects the change and rebuilds shared dependencies before rebuilding Kibana.
+5. When Rspack has rebuilt, the browser reloads.
 
 ### Architecture diagram
 
@@ -123,27 +86,18 @@ flowchart TD
 
     %% Kibana
     subgraph Kibana [Kibana repository]
-        NodeModules --> |Detect| Webpack(Shared deps DLL)
-        Webpack --> |Update| Manifest(DLL Manifest)
-        Manifest --> |Watch| CLI(Dev Mode CLI)
-        CLI --> |Restart| Optimizer(Optimizer)
+        NodeModules --> |Detect| Rspack(Rspack MultiCompiler)
     end
 
-    Optimizer --> Browser((Update in the browser))
+    Rspack --> |Build shared deps and Kibana| Browser((Update in the browser))
 ```
 
 ## Troubleshooting
 
 - **Change not showing up?**
 
-Check the terminal output of the EUI watcher. If the `node_modules` propagation succeeded, check the Kibana terminal for "restarting optimizer". Ensure the `--kibana` (or `-k`) flag is present.
+Check the terminal output of the EUI watcher. If the `node_modules` propagation succeeded, check the Kibana terminal for Rspack rebuild output. Ensure you started the workflow with `yarn watch:kibana`.
 
 - **Slow feedback loop?**
 
-With `--kibana`, `@elastic/eui` skips `lib/`, `es/`, types, and the rest of the package build. After the initial `optimize/es` build, only changed files are compiled. Most of the remaining feedback time is Kibana's DLL and optimizer.
-
-`yarn watch` without `--kibana`, and theme packages, still run a full build. For those, you can omit generating type declaration files:
-
-```bash
-yarn watch --no-declarations
-```
+For `@elastic/eui`, the watcher skips `lib/`, `es/`, types and the rest of the package build. After the initial `optimize/es` build, only changed files are compiled. Theme packages still run a full build. Most of the remaining feedback time is Kibana's Rspack rebuild.

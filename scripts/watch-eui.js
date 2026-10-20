@@ -90,7 +90,7 @@ const activePackages = selection.map((name) => {
     pendingChanges: new Map(),
     status: {
       activeProcess: null,
-      abortPending: false,
+      rebuildPending: false,
       resolvePromise: null,
       building: false,
       isInitial: kibanaEui,
@@ -227,8 +227,7 @@ function runBuild(pkg) {
   }
 
   if (pkg.status.activeProcess) {
-    pkg.status.abortPending = true;
-    pkg.status.activeProcess.kill('SIGTERM');
+    pkg.status.rebuildPending = true;
     return;
   }
 
@@ -243,21 +242,11 @@ function runBuild(pkg) {
   });
 
   pkg.status.activeProcess.on('close', async (code) => {
-    const wasAborted = pkg.status.abortPending;
+    const rebuildPending = pkg.status.rebuildPending;
     const resolveInitial = pkg.status.resolvePromise;
 
     pkg.status.activeProcess = null;
-    pkg.status.abortPending = false;
-    pkg.status.resolvePromise = null;
-
-    if (wasAborted) {
-      console.log(
-        chalk.yellow(`⚡ Build for ${pkg.name} cancelled. Restarting...`)
-      );
-
-      setTimeout(() => runBuild(pkg), RESTART_DELAY);
-      return;
-    }
+    pkg.status.rebuildPending = false;
 
     if (code === 0) {
       console.log(chalk.green(`✔ Built ${pkg.name} (${Date.now() - start}ms)`));
@@ -266,6 +255,15 @@ function runBuild(pkg) {
       console.log(chalk.red(`✘ Build failed [${pkg.name}]`));
     }
 
+    if (rebuildPending) {
+      console.log(
+        chalk.yellow(`⚡ Rebuilding ${pkg.name} with new changes...`)
+      );
+      setTimeout(() => runBuild(pkg), RESTART_DELAY);
+      return;
+    }
+
+    pkg.status.resolvePromise = null;
     if (resolveInitial) resolveInitial();
   });
 }
@@ -327,4 +325,5 @@ const IGNORED_FILES = [
   console.log(
     chalk.bold.green('\nWatcher is ready and listening for changes...')
   );
+  if (process.send) process.send('ready');
 })();

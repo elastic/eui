@@ -16,6 +16,10 @@ import {
   logicalCSS,
 } from '../../global_styling';
 
+// uses `aria-disabled` only as not all variants can have a native `:disabled` state
+const notDisabledSelector = `&:not([aria-disabled="true"])`;
+const ariaDisabledSelector = `&[aria-disabled="true"]`;
+
 export const euiListItemVariables = ({ euiTheme }: UseEuiTheme) => {
   const spacing = {
     horizontal: euiTheme.size.s,
@@ -56,29 +60,25 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 
   const { spacing, textPadding } = euiListItemVariables(euiThemeContext);
 
-  // uses `aria-disabled` only as not all variants can have a native `:disabled` state
-  const notDisabledSelector = `&:not([aria-disabled="true"])`;
   const sharedFlexStyles = `
     display: flex;
     align-items: center;
     flex-shrink: 0;
   `;
   const highlightedStyles = `
-    ${notDisabledSelector} {
-      background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+    background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
 
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: `
-          text-decoration: underline;
+    ${highContrastModeStyles(euiThemeContext, {
+      preferred: `
+        text-decoration: underline;
 
-          &:not(:focus, :focus-visible) {
-            /* uses outline to prevent layout jumps between navigated items */
-            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
-            outline-offset: -${euiTheme.border.width.thin};
-          }
-        `,
-      })}
-    }
+        &:not(:focus, :focus-visible) {
+          /* uses outline to prevent layout jumps between navigated items */
+          outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
+          outline-offset: -${euiTheme.border.width.thin};
+        }
+      `,
+    })}
   `;
 
   return {
@@ -142,7 +142,10 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     isDisabled: css`
       color: ${euiTheme.colors.textDisabled};
       cursor: not-allowed;
-      background-color: transparent;
+
+      ${notDisabledSelector} {
+        background-color: transparent;
+      }
     `,
     buttonIsDisabled: css`
       /* prevent user (mouse) interactions for custom disabled buttons.
@@ -160,21 +163,28 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isSelected: css`
       color: ${euiTheme.colors.textPrimary};
-      background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
 
       ${notDisabledSelector} {
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
+
         &:hover {
           background-color: ${euiTheme.colors
             .backgroundBaseInteractiveSelectHover};
         }
-      }
 
-      ${highContrastModeStyles(euiThemeContext, {
-        preferred: `
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `
           outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderStrongPrimary};
           outline-offset: -${euiTheme.border.width.thin};
         `,
-      })}
+        })}
+      }
+
+      &${ariaDisabledSelector} {
+        &:hover {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+        }
+      }
 
       .euiIcon,
       .euiButtonIcon {
@@ -192,6 +202,10 @@ export const euiListItemLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${notDisabledSelector} {
         background-color: ${euiTheme.colors
           .backgroundBaseInteractiveSelectHover};
+      }
+
+      &${ariaDisabledSelector} {
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
       }
     `,
     tooltip: {

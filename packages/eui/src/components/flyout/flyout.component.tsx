@@ -243,7 +243,7 @@ interface _EuiFlyoutComponentProps {
   resizable?: boolean;
 
   /**
-   * Optional callback that fires when the flyout is resized.
+   * Optional callback that fires when the user resizes the flyout.
    */
   onResize?: (width: number) => void;
 
