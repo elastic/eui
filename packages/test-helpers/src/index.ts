@@ -21,6 +21,7 @@ export { EuiAccordionObject } from './playwright/components/accordion/object';
 export { EuiContextMenuObject } from './playwright/components/context_menu/object';
 export { EuiModalObject } from './playwright/components/modal/object';
 export { EuiTableObject } from './playwright/components/table/object';
+export { EuiPaginationObject } from './playwright/components/pagination/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
