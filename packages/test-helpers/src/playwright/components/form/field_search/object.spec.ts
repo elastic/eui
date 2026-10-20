@@ -23,6 +23,24 @@ const PLAYGROUND_URL = storyUrl(
   `data-test-subj:${TEST_SUBJ}`
 );
 
+/**
+ * EUI calls `onSearch` from the native `search` event the input fires on
+ * Enter, so recording that event is the observable proof of a submission.
+ */
+const recordSearchEvents = (fieldSearch: EuiFieldSearchObject) =>
+  fieldSearch.locator.evaluate((input) => {
+    const submitted: string[] = [];
+    input.addEventListener('search', () =>
+      submitted.push((input as HTMLInputElement).value)
+    );
+    (window as unknown as { submitted: string[] }).submitted = submitted;
+  });
+
+const submittedQueries = (fieldSearch: EuiFieldSearchObject) =>
+  fieldSearch.locator.evaluate(
+    () => (window as unknown as { submitted: string[] }).submitted
+  );
+
 test.describe('EuiFieldSearchObject', () => {
   let fieldSearch: EuiFieldSearchObject;
 
@@ -30,6 +48,14 @@ test.describe('EuiFieldSearchObject', () => {
     await page.goto(PLAYGROUND_URL);
     fieldSearch = new EuiFieldSearchObject(page, TEST_SUBJ);
     await fieldSearch.locator.waitFor({ state: 'visible' });
+    await recordSearchEvents(fieldSearch);
+  });
+
+  test('setQuery and clear each submit a search', async () => {
+    await fieldSearch.setQuery('logs');
+    await fieldSearch.clear();
+
+    expect(await submittedQueries(fieldSearch)).toEqual(['logs', '']);
   });
 
   test.describe('setQuery', () => {
@@ -48,5 +74,18 @@ test.describe('EuiFieldSearchObject', () => {
 
       expect(await fieldSearch.getQuery()).toBe('');
     });
+  });
+});
+
+test.describe('EuiFieldSearchObject (incremental)', () => {
+  test('setQuery still submits a search', async ({ page }) => {
+    await page.goto(`${PLAYGROUND_URL};incremental:!true`);
+    const fieldSearch = new EuiFieldSearchObject(page, TEST_SUBJ);
+    await fieldSearch.locator.waitFor({ state: 'visible' });
+    await recordSearchEvents(fieldSearch);
+
+    await fieldSearch.setQuery('logs');
+
+    expect(await submittedQueries(fieldSearch)).toEqual(['logs']);
   });
 });
