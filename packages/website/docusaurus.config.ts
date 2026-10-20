@@ -193,15 +193,12 @@ const config: Config = {
           position: 'right',
           component: 'github',
         },
-        // Figma nav link disabled: community Figma file is outdated; will re-enable when updated.
-        /*
         {
-          href: 'https://www.figma.com/community/file/964536385682658129',
+          href: 'https://www.figma.com/community/file/1656321711577585144/elastic-ui-borealis',
           label: 'Figma',
           position: 'right',
           component: 'figma',
         },
-        */
       ],
     },
     footer: {
