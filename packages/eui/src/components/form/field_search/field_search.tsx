@@ -17,11 +17,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  keys,
-  withEuiStylesMemoizer,
-  WithEuiStylesMemoizerProps,
-} from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
+import { keys } from '../../../services';
 import { Browser } from '../../../services/browser';
 import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
@@ -82,10 +79,7 @@ export interface EuiFieldSearchProps
   append?: EuiFormControlLayoutProps['append'];
 }
 
-export const EuiFieldSearchUI: React.FC<
-  EuiFieldSearchProps & WithEuiStylesMemoizerProps
-> = ({
-  stylesMemoizer,
+export const EuiFieldSearchUI: React.FC<EuiFieldSearchProps> = ({
   className,
   id,
   name,
@@ -114,6 +108,8 @@ export const EuiFieldSearchUI: React.FC<
   );
 
   const inputRefInternal = useRef<HTMLInputElement | null>(null);
+  const onSearchRef = useRef(onSearch);
+  onSearchRef.current = onSearch;
 
   const setRef = useCallback(
     (node: HTMLInputElement | null) => {
@@ -139,21 +135,20 @@ export const EuiFieldSearchUI: React.FC<
     const isSearchSupported = Browser.isEventSupported('search', inputElement);
 
     const handleSearch = (event?: Event) => {
-      if (onSearch) {
+      if (onSearchRef.current) {
         if (!event || !event.target || event.defaultPrevented) return;
-        onSearch((event.target as HTMLInputElement).value);
+        onSearchRef.current((event.target as HTMLInputElement).value);
       }
     };
 
     const handleChange = (event: Event) => {
-      if (
-        event.target &&
-        (event.target as HTMLInputElement).value !== valueState
-      ) {
+      if (event.target) {
         const newValue = (event.target as HTMLInputElement).value;
         setValueState(newValue);
-        if (onSearch) {
-          onSearch(newValue);
+        // Only fire onSearch if the event is NOT a native search event
+        // to prevent firing twice
+        if (onSearchRef.current && event.type !== 'search') {
+          onSearchRef.current(newValue);
         }
       }
     };
@@ -169,7 +164,7 @@ export const EuiFieldSearchUI: React.FC<
       }
       inputElement.removeEventListener('change', handleChange);
     };
-  }, [onSearch, valueState]);
+  }, []);
 
   const onClear = () => {
     const inputElement = inputRefInternal.current;
@@ -236,7 +231,7 @@ export const EuiFieldSearchUI: React.FC<
     className
   );
 
-  const styles = stylesMemoizer(euiFieldSearchStyles);
+  const styles = useEuiMemoizedStyles(euiFieldSearchStyles);
   const cssStyles = [
     styles.euiFieldSearch,
     compressed ? styles.compressed : styles.uncompressed,
@@ -292,6 +287,4 @@ export const EuiFieldSearchUI: React.FC<
 /**
  * @see {@link https://eui.elastic.co/docs/components/forms/search-and-filter/search/|EuiFieldSearch documentation}
  */
-export const EuiFieldSearch = withEuiStylesMemoizer<EuiFieldSearchProps>(
-  EuiFieldSearchUI
-);
+export const EuiFieldSearch = EuiFieldSearchUI;
