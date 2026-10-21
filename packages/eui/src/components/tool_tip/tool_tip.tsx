@@ -443,7 +443,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
         {hasHiddenDescription && (
           <EuiPortal>
             <div id={descriptionId} hidden>
-              {rest['aria-label'] ?? (
+              {rest['aria-label']?.trim() ? (
+                rest['aria-label']
+              ) : (
                 <>
                   {title} {content}
                 </>

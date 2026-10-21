@@ -404,6 +404,21 @@ describe('EuiToolTip', () => {
         expect(anchor).toHaveAccessibleDescription('Spoken label');
       });
 
+      it.each(['', '   '])(
+        'ignores a blank `aria-label` (%j) and uses the tooltip content',
+        (ariaLabel) => {
+          const { getByTestSubject } = render(
+            <EuiToolTip aria-label={ariaLabel} content="Tooltip content">
+              <button data-test-subj="anchor">Trigger</button>
+            </EuiToolTip>
+          );
+          const anchor = getByTestSubject('anchor');
+
+          act(() => anchor.focus());
+          expect(anchor).toHaveAccessibleDescription('Tooltip content');
+        }
+      );
+
       it('is described by the visible tooltip on hover, and keeps the description on mouseout', () => {
         const { getByTestSubject, queryByRole } = render(
           <EuiToolTip content="Tooltip content" id="toolTipId">
