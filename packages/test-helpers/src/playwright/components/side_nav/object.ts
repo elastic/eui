@@ -32,13 +32,15 @@ export class EuiSideNavObject extends BaseObject {
   }
 
   /**
-   * The clickable element of the item with exactly this label. Child items
-   * are siblings of the button, not inside it, so its text is the label alone.
+   * The clickable element of the item with exactly this label. Matches the
+   * label span, so icon text does not interfere, then climbs to its button.
+   * Chained from `root`, so it stays in the root's frame.
    */
   item(label: string): Locator {
     return this.root
-      .locator(EuiSideNavSelectors.ITEM_BUTTON_SELECTOR)
-      .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) });
+      .locator(EuiSideNavSelectors.ITEM_LABEL_SELECTOR)
+      .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) })
+      .locator(ITEM_BUTTON_ANCESTOR_XPATH);
   }
 
   /**
@@ -80,6 +82,10 @@ export class EuiSideNavObject extends BaseObject {
     );
   }
 }
+
+/** Nearest ancestor carrying the exact `euiSideNavItemButton` class token. */
+const ITEM_BUTTON_ANCESTOR_XPATH =
+  "xpath=ancestor::*[contains(concat(' ', normalize-space(@class), ' '), ' euiSideNavItemButton ')][1]";
 
 const escapeRegExp = (text: string): string =>
   text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
