@@ -28,7 +28,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
-import { FormContext, FormContextValue } from '../eui_form_context';
+import { FormContext } from '../eui_form_context';
 
 import { euiFieldSearchStyles } from './field_search.styles';
 
@@ -100,7 +100,7 @@ export const EuiFieldSearchUI: React.FC<EuiFieldSearchProps> = ({
   onKeyUp: onKeyUpProp,
   ...rest
 }) => {
-  const { defaultFullWidth } = useContext(FormContext) as FormContextValue;
+  const { defaultFullWidth } = useContext(FormContext);
   const fullWidth = fullWidthProp ?? defaultFullWidth;
 
   const [valueState, setValueState] = useState(
@@ -166,6 +166,14 @@ export const EuiFieldSearchUI: React.FC<EuiFieldSearchProps> = ({
     };
   }, []);
 
+  // 1. React doesn't listen for `change` events, instead it maps `input` events to `change`
+  // 2. React only fires the mapped `change` event if the element's value has changed
+  // 3. An input's value is, in addition to other methods, tracked by intercepting element.value
+  //
+  // So we have to go below the element's value setter to avoid React intercepting it,
+  // only then will React treat the value as different and fire its `change` event
+  //
+  // https://stackoverflow.com/questions/23892547/what-is-the-best-way-to-trigger-onchange-event-
   const onClear = () => {
     const inputElement = inputRefInternal.current;
     const nativeInputValue = Object.getOwnPropertyDescriptor(
