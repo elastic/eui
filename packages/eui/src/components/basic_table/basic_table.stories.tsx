@@ -511,6 +511,7 @@ const StatefulPlayground = ({
   items,
   pagination,
   sorting,
+  tableCaption,
   ...rest
 }: EuiBasicTableProps<User>) => {
   const [_items, setItems] = useState<User[]>([]);
@@ -544,6 +545,7 @@ const StatefulPlayground = ({
       items={_items}
       pagination={pagination!}
       sorting={sorting}
+      tableCaption={tableCaption}
       {...rest}
     />
   );
