@@ -31,11 +31,14 @@ export class EuiSideNavObject extends BaseObject {
       .allInnerTexts();
   }
 
-  /** The clickable element of the item with exactly this label. */
+  /**
+   * The clickable element of the item with exactly this label. Child items
+   * are siblings of the button, not inside it, so its text is the label alone.
+   */
   item(label: string): Locator {
     return this.root
       .locator(EuiSideNavSelectors.ITEM_BUTTON_SELECTOR)
-      .filter({ has: this.label(label) });
+      .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) });
   }
 
   /**
@@ -68,13 +71,6 @@ export class EuiSideNavObject extends BaseObject {
     }
     await button.click();
     await expect.poll(() => this.isOpen(button)).toBe(true);
-  }
-
-  /** Built from `root`, not the page, so it stays in the root's frame. */
-  private label(label: string): Locator {
-    return this.root
-      .locator(EuiSideNavSelectors.ITEM_LABEL_SELECTOR)
-      .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) });
   }
 
   private isOpen(button: Locator): Promise<boolean> {
