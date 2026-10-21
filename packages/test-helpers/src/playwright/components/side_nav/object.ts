@@ -70,9 +70,9 @@ export class EuiSideNavObject extends BaseObject {
     await expect.poll(() => this.isOpen(button)).toBe(true);
   }
 
+  /** Built from `root`, not the page, so it stays in the root's frame. */
   private label(label: string): Locator {
     return this.root
-      .page()
       .locator(EuiSideNavSelectors.ITEM_LABEL_SELECTOR)
       .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) });
   }
