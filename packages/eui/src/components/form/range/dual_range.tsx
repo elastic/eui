@@ -14,6 +14,8 @@ import {
   htmlIdGenerator,
   withEuiTheme,
   WithEuiThemeProps,
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
 } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { logicalStyles } from '../../../global_styling';
@@ -40,7 +42,7 @@ import { EuiI18n } from '../../i18n';
 type ValueMember = _SingleRangeValue['value'];
 
 export class EuiDualRangeClass extends Component<
-  EuiDualRangeProps & WithEuiThemeProps
+  EuiDualRangeProps & WithEuiThemeProps & WithEuiStylesMemoizerProps
 > {
   static contextType = FormContext;
 
@@ -432,6 +434,7 @@ export class EuiDualRangeClass extends Component<
       inputPopoverProps,
       isDraggable,
       theme,
+      stylesMemoizer,
       ...rest
     } = this.props;
     const min = minProps!;
@@ -442,7 +445,7 @@ export class EuiDualRangeClass extends Component<
     const showInputOnly = this.isInPopover;
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
-    const rangeStyles = euiRangeStyles(theme);
+    const rangeStyles = stylesMemoizer(euiRangeStyles);
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -557,7 +560,7 @@ export class EuiDualRangeClass extends Component<
     ) : undefined;
 
     const classes = classNames('euiDualRange', className);
-    const dualRangeStyles = euiDualRangeStyles();
+    const dualRangeStyles = stylesMemoizer(euiDualRangeStyles);
     const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
     const leftThumbPosition = this.state.rangeWidth
@@ -783,4 +786,8 @@ export class EuiDualRangeClass extends Component<
   }
 }
 
-export const EuiDualRange = withEuiTheme<EuiDualRangeProps>(EuiDualRangeClass);
+export const EuiDualRange = withEuiStylesMemoizer<EuiDualRangeProps>(
+  withEuiTheme<EuiDualRangeProps & WithEuiStylesMemoizerProps>(
+    EuiDualRangeClass
+  )
+);
