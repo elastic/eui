@@ -99,7 +99,7 @@ describe('EuiFieldSearch', () => {
       expect(input?.className).toContain('fullWidth');
     });
   });
-    describe('behavioral tests', () => {
+  describe('behavioral tests', () => {
     test('incremental onSearch fires once per value', () => {
       const onSearch = jest.fn();
       const { getByRole } = render(
