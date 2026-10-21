@@ -20,6 +20,7 @@ import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
 import { EuiRangeSelectors } from './components/form/range/selectors';
 import { EuiSelectableSelectors } from './components/selectable/selectors';
+import { EuiSideNavSelectors } from './components/side_nav/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
 import { EuiTableSelectors } from './components/table/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
@@ -47,6 +48,7 @@ export const selectors = {
   popover: EuiPopoverSelectors,
   range: EuiRangeSelectors,
   selectable: EuiSelectableSelectors,
+  sideNav: EuiSideNavSelectors,
   superSelect: EuiSuperSelectSelectors,
   table: EuiTableSelectors,
   globalToastList: EuiGlobalToastListSelectors,
