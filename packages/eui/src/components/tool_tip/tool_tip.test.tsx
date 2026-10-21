@@ -392,6 +392,18 @@ describe('EuiToolTip', () => {
         );
       });
 
+      it('uses the tooltip `aria-label` as the accessible description', () => {
+        const { getByTestSubject } = render(
+          <EuiToolTip aria-label="Spoken label" content={<img src="" alt="" />}>
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).toHaveAccessibleDescription('Spoken label');
+      });
+
       it('is described by the visible tooltip on hover, and keeps the description on mouseout', () => {
         const { getByTestSubject, queryByRole } = render(
           <EuiToolTip content="Tooltip content" id="toolTipId">
