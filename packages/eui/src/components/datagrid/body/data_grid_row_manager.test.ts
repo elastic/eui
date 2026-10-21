@@ -7,8 +7,12 @@
  */
 
 import { useRowManager } from './data_grid_row_manager';
+import { sleep } from '../../../test';
 import { renderHook } from '../../../test/rtl';
 import { EuiDataGridRowManager } from '../data_grid_types';
+
+// 30ms is the delay used by the MutationObserver polyfill
+const waitForMutationObserver = () => sleep(30);
 
 describe('row manager', () => {
   const mockGridRef = { current: document.createElement('div') } as any;
@@ -118,10 +122,111 @@ describe('row manager', () => {
     });
 
     describe("when the row's child cells are all removed", () => {
-      it('deletes the row element node and its mapping', () => {
-        // TODO: Write a Cypress test for this
-        // or upgrade Jest/jsdom to v14+ which supports Mutation Observers
+      it('deletes the row element node and its mapping', async () => {
+        const gridRef = { current: document.createElement('div') };
+        const { result } = renderHook(() =>
+          useRowManager({ innerGridRef: gridRef })
+        );
+        const getRowArgs = {
+          rowIndex: 0,
+          visibleRowIndex: 0,
+          top: '0px',
+          height: 30,
+        };
+
+        const row = result.current.getRow(getRowArgs);
+        row.appendChild(document.createElement('div'));
+        await waitForMutationObserver();
+        row.removeChild(row.firstChild!);
+        await waitForMutationObserver();
+
+        expect(gridRef.current.children).toHaveLength(0);
+        expect(result.current.getRow(getRowArgs)).not.toBe(row);
       });
+    });
+  });
+
+  describe('row DOM order', () => {
+    const setup = () => {
+      const gridRef = { current: document.createElement('div') };
+      // Mimic the header row, which is rendered as the first child of the inner grid
+      const headerRow = document.createElement('div');
+      gridRef.current.appendChild(headerRow);
+
+      const { result } = renderHook(() =>
+        useRowManager({ innerGridRef: gridRef })
+      );
+      const getRow = (rowIndex: number, visibleRowIndex = rowIndex) => {
+        const row = result.current.getRow({
+          rowIndex,
+          visibleRowIndex,
+          top: `${visibleRowIndex * 30}px`,
+          height: 30,
+        });
+        // Mimic cells being portaled into the row
+        if (!row.childElementCount) {
+          row.appendChild(document.createElement('div'));
+        }
+        return row;
+      };
+      // Mimic all of a row's cells unmounting, e.g. when it's virtualized out of view
+      const unmountRow = (row: HTMLElement) => row.removeChild(row.firstChild!);
+      const getDomOrder = () =>
+        Array.from(
+          gridRef.current.querySelectorAll<HTMLElement>('.euiDataGridRow')
+        ).map((row) => Number(row.dataset.gridVisibleRowIndex));
+
+      return { gridRef, headerRow, getRow, unmountRow, getDomOrder };
+    };
+
+    it('keeps rows in visible order when rows are re-created after scrolling', async () => {
+      const { gridRef, headerRow, getRow, unmountRow, getDomOrder } = setup();
+
+      const rows = [0, 1, 2, 3, 4, 5].map((index) => getRow(index));
+      expect(getDomOrder()).toEqual([0, 1, 2, 3, 4, 5]);
+      await waitForMutationObserver();
+
+      // Scroll down: the first rows are removed
+      rows.slice(0, 4).forEach(unmountRow);
+      await waitForMutationObserver();
+      expect(getDomOrder()).toEqual([4, 5]);
+
+      // Scroll back up: the first rows are re-created in batches
+      [2, 3].forEach((index) => getRow(index));
+      [0, 1].forEach((index) => getRow(index));
+      expect(getDomOrder()).toEqual([0, 1, 2, 3, 4, 5]);
+      expect(gridRef.current.firstChild).toBe(headerRow);
+    });
+
+    it('moves rows when their visible row index changes', () => {
+      const { gridRef, headerRow, getRow, getDomOrder } = setup();
+
+      [0, 1, 2, 3].forEach((index) => getRow(index));
+
+      // Reverse the sort order
+      [0, 1, 2, 3].forEach((index) => getRow(index, 3 - index));
+      expect(getDomOrder()).toEqual([0, 1, 2, 3]);
+      expect(
+        Array.from(
+          gridRef.current.querySelectorAll<HTMLElement>('.euiDataGridRow')
+        ).map((row) => Number(row.dataset.gridRowIndex))
+      ).toEqual([3, 2, 1, 0]);
+      expect(gridRef.current.firstChild).toBe(headerRow);
+    });
+
+    it('does not move rows that are already in place', () => {
+      const { gridRef, getRow } = setup();
+
+      [0, 1, 2].forEach((index) => getRow(index));
+      const insertBefore = jest.spyOn(gridRef.current, 'insertBefore');
+
+      [0, 1, 2].forEach((index) => getRow(index));
+      // Same visible row index on every render
+      expect(insertBefore).not.toHaveBeenCalled();
+
+      // Visible row index changes but the row stays in the same place
+      getRow(2, 5);
+      expect(insertBefore).not.toHaveBeenCalled();
     });
   });
 

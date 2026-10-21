@@ -11,6 +11,40 @@ import { useUpdateEffect } from '../../../services';
 
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
+/**
+ * Rows are absolutely positioned, so their DOM order doesn't affect layout.
+ * It does affect text selection however, which follows DOM order - so rows
+ * must be kept in visible order, not in the order they were (re-)created in
+ */
+const insertRowInOrder = (
+  container: HTMLElement,
+  rowElement: HTMLElement,
+  visibleRowIndex: number
+) => {
+  let nextRow: Element | null = null;
+  for (let i = 0; i < container.children.length; i++) {
+    const child = container.children[i] as HTMLElement;
+    if (
+      child !== rowElement &&
+      child.classList.contains('euiDataGridRow') &&
+      child.dataset.gridVisibleRowIndex != null &&
+      Number(child.dataset.gridVisibleRowIndex) > visibleRowIndex
+    ) {
+      nextRow = child;
+      break;
+    }
+  }
+
+  // Avoid moving rows that are already in place, which can drop focus or selection
+  if (
+    rowElement.parentNode === container &&
+    rowElement.nextElementSibling === nextRow
+  ) {
+    return;
+  }
+  container.insertBefore(rowElement, nextRow);
+};
+
 export const useRowManager = ({
   innerGridRef,
   rowClasses,
@@ -40,9 +74,6 @@ export const useRowManager = ({
         // from the innerGrid width, we need to make its position relative
         innerGridRef.current!.style.position = 'relative';
 
-        // add the element to the grid
-        innerGridRef.current!.appendChild(rowElement);
-
         // add the element to the row map
         rowIdToElements.current.set(rowIndex, rowElement);
 
@@ -57,9 +88,11 @@ export const useRowManager = ({
         observer.observe(rowElement, { childList: true });
       }
 
-      // Ensure the row's visible row index & striping update correctly on sort & pagination
+      // Ensure the row's visible row index, DOM position & striping update correctly
+      // on creation, sort & pagination
       if (rowElement.dataset.gridVisibleRowIndex !== String(visibleRowIndex)) {
         rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex);
+        insertRowInOrder(innerGridRef.current!, rowElement, visibleRowIndex);
         const isOddRow = visibleRowIndex % 2 !== 0;
         if (isOddRow) {
           rowElement.classList.add('euiDataGridRow--striped');
