@@ -1002,6 +1002,9 @@ export const EuiFlyoutComponent = forwardRef(
       euiTheme.breakpoint.m,
     ]);
 
+    const isSideBySideChild =
+      isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
+
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
 
     const cssStyles = [
@@ -1024,8 +1027,6 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
-    const isSideBySideChild =
-      isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
     // Side-by-side: main + child form a single modal unit; only main has aria-modal
     // to avoid competing dialog semantics. Stacked children are independent modals.
     const announcesAsModal = useMemo(() => {
@@ -1181,7 +1182,8 @@ export const EuiFlyoutComponent = forwardRef(
       pushPadding.left > 0 || pushPadding.right > 0;
     const shouldDeferScrollLock =
       !isPushed && isInManagedContext && hasPushPaddingInManager;
-    const shouldUseScrollLock = hasOverlayMask && !shouldDeferScrollLock;
+    const shouldUseScrollLock =
+      hasOverlayMask && !shouldDeferScrollLock && !container;
 
     return (
       <EuiFlyoutOverlay

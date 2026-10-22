@@ -20,6 +20,10 @@ import {
   EuiFlyoutFooter,
 } from './index';
 import { VRT_SELECTORS } from '../../../.storybook/vrt';
+import {
+  FlyoutContainerGlobalStyles,
+  FlyoutBorderRadiusStyle,
+} from './__storybook__/_flyout_container_global_styles';
 import { DEFAULT_MENU_DISPLAY_MODE, FLYOUT_MENU_DISPLAY_MODES } from './const';
 
 interface FlyoutStoryArgs extends EuiFlyoutProps {
@@ -336,5 +340,34 @@ export const HighContrast: Story = {
         </EuiFlyoutFooter>
       </>
     ),
+  },
+};
+
+export const WithContainerAndBorderRadius: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+    container: '#story-wrapper',
+  },
+  render: function Render({ ...args }) {
+    return (
+      <>
+        <FlyoutContainerGlobalStyles />
+        <FlyoutBorderRadiusStyle />
+        <StatefulFlyout {...args} />
+      </>
+    );
   },
 };

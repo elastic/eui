@@ -36,9 +36,12 @@ const getEuiFlyoutOverlayStyles = (zIndex: number) => {
   z-index based on the headerZindexLocation prop. Using the style attribute
   doesn't work since EuiOverlayMask requires the styles to be provided via className
   */
-  return css`
-    z-index: ${zIndex} !important;
-  `;
+  return {
+    overlay: css`
+      --euiOverlayMaskBorderRadius: var(--euiFlyoutBorderRadius, 0px);
+      z-index: ${zIndex} !important;
+    `,
+  };
 };
 
 /**
@@ -100,7 +103,7 @@ export const EuiFlyoutOverlay = ({
     content = <EuiPortal>{content}</EuiPortal>;
   }
 
-  const classes = cx(maskProps?.className, styles);
+  const classes = cx(maskProps?.className, styles.overlay);
 
   return (
     <>

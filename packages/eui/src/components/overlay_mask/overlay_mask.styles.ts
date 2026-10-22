@@ -28,6 +28,7 @@ export const euiOverlayMaskStyles = ({
     background: ${highContrastMode
       ? euiTheme.components.overlayMaskBackgroundHighContrast
       : euiTheme.components.overlayMaskBackground};
+    border-radius: var(--euiOverlayMaskBorderRadius, 0);
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};

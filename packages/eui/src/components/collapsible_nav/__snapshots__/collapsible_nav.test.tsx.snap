@@ -3,7 +3,7 @@
 exports[`EuiCollapsibleNav close button can be hidden 1`] = `
 <div>
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
@@ -62,7 +62,7 @@ exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `<div />`;
 exports[`EuiCollapsibleNav is rendered 1`] = `
 <div>
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
@@ -180,7 +180,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
     aria-pressed="true"
   />
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
@@ -237,7 +237,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
 exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
 <div>
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
@@ -323,7 +323,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
 exports[`EuiCollapsibleNav props onClose 1`] = `
 <div>
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
@@ -414,7 +414,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
 exports[`EuiCollapsibleNav props size 1`] = `
 <div>
   <div
-    class="css-16bcmd3-getEuiFlyoutOverlayStyles"
+    class="css-1xgs6nx-overlay"
   />
   <div
     data-focus-guard="true"
