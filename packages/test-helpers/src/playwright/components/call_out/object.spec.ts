@@ -34,6 +34,18 @@ test.describe('EuiCallOutObject', () => {
     await expect(callOut.locator).toHaveAttribute('data-test-subj', TEST_SUBJ);
   });
 
+  test('reads the panel when a shared token also matches a derived block', async ({
+    page,
+  }) => {
+    // `notice shared__message` still carries the `notice` token.
+    await page.goto(storyUrl(STORY_ID, 'data-test-subj:notice%20shared'));
+    const shared = new EuiCallOutObject(page, 'notice');
+    await shared.locator.first().waitFor({ state: 'visible' });
+
+    expect(await shared.getColor()).toBe('primary');
+    expect(await shared.getTitle()).toBe('Callout title');
+  });
+
   test.describe('getTitle and getText', () => {
     test('read the title and the text block', async () => {
       expect(await callOut.getTitle()).toBe('Callout title');
