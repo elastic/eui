@@ -19,6 +19,7 @@ import React, {
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
+  FocusEvent,
   FunctionComponent,
   MutableRefObject,
   Ref,
@@ -411,6 +412,8 @@ export const EuiFlyoutComponent = forwardRef(
       minWidth,
       onResize,
       onAnimationEnd,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
       scrollContainerRef,
       container: containerProp,
       ...rest
@@ -1025,11 +1028,26 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
-    usePushedFlyoutReturnFocus({
-      isPushed,
-      returnFocus: _focusTrapProps?.returnFocus,
-      triggerRef: flyoutToggle,
-    });
+    const { onFocus: trackFocus, onBlur: trackBlur } =
+      usePushedFlyoutReturnFocus({
+        isPushed,
+        returnFocus: _focusTrapProps?.returnFocus,
+        triggerRef: flyoutToggle,
+      });
+    const onFocus = useCallback(
+      (event: FocusEvent<HTMLElement>) => {
+        trackFocus();
+        _onFocus?.(event);
+      },
+      [trackFocus, _onFocus]
+    );
+    const onBlur = useCallback(
+      (event: FocusEvent<HTMLElement>) => {
+        trackBlur();
+        _onBlur?.(event);
+      },
+      [trackBlur, _onBlur]
+    );
 
     const isSideBySideChild =
       isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
@@ -1225,6 +1243,8 @@ export const EuiFlyoutComponent = forwardRef(
             aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
             onAnimationEnd={onAnimationEnd}
+            onFocus={onFocus}
+            onBlur={onBlur}
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (

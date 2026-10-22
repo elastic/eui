@@ -1225,6 +1225,33 @@ describe('EuiFlyout', () => {
       expect(elsewhere).toHaveFocus();
     });
 
+    it('does not return focus when focus moved to an element removed along with the flyout', async () => {
+      const Route = ({ isOpen }: { isOpen: boolean }) => (
+        <>
+          <button data-test-subj="trigger">Trigger</button>
+          {isOpen && (
+            <div>
+              <button data-test-subj="routeLink">Navigate</button>
+              <EuiFlyout type="push" pushMinBreakpoint="xs" onClose={() => {}}>
+                <button data-test-subj="inside">Inside</button>
+              </EuiFlyout>
+            </div>
+          )}
+        </>
+      );
+      const { getByTestSubject, rerender } = render(<Route isOpen={false} />);
+      const trigger = getByTestSubject('trigger');
+      trigger.focus();
+      rerender(<Route isOpen={true} />);
+
+      getByTestSubject('inside').focus();
+      getByTestSubject('routeLink').focus();
+      rerender(<Route isOpen={false} />);
+      await flushReturnFocus();
+
+      expect(trigger).not.toHaveFocus();
+    });
+
     it('does not move focus that moved elsewhere after the flyout closed', async () => {
       const { getByTestSubject, rerender, trigger } = openFromTrigger();
 
