@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { euiPopoverFooterStyles } from './popover_footer.styles';
 import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
@@ -32,8 +32,7 @@ export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   ...rest
 }) => {
   const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
-  const euiTheme = useEuiTheme();
-  const styles = euiPopoverFooterStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPopoverFooterStyles);
   const paddingStyles = useEuiPaddingCSS();
   const cssStyles = [
     styles.euiPopoverFooter,

@@ -18,15 +18,18 @@ import { EuiSpacer } from '../../spacer';
 import type { EuiSelectableTemplateSitewideProps } from './selectable_template_sitewide';
 import { euiSelectableTemplateSitewidePopoverStyles } from './selectable_template_sitewide.styles';
 
-type EuiSelectableTemplateSitewidePopoverProps = Partial<EuiPopoverProps> & {
-  search: ReactNode;
-  list: ReactNode;
-  trigger?: ReactNode;
-  title?: EuiSelectableTemplateSitewideProps['popoverTitle'];
-  footer?: EuiSelectableTemplateSitewideProps['popoverFooter'];
-  width: CSSProperties['width'];
-  isOpen: boolean;
-};
+type EuiSelectableTemplateSitewidePopoverProps = Partial<
+  Omit<EuiPopoverProps, 'closePopover'>
+> &
+  Pick<EuiPopoverProps, 'closePopover'> & {
+    search: ReactNode;
+    list: ReactNode;
+    trigger?: ReactNode;
+    title?: EuiSelectableTemplateSitewideProps['popoverTitle'];
+    footer?: EuiSelectableTemplateSitewideProps['popoverFooter'];
+    width: CSSProperties['width'];
+    isOpen: boolean;
+  };
 
 export const EuiSelectableTemplateSitewidePopover: FunctionComponent<
   EuiSelectableTemplateSitewidePopoverProps
