@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
-import type { PlayFunctionContext } from 'storybook/internal/csf';
+import type { StoryContext } from 'storybook/internal/csf';
 import { css } from '@emotion/react';
 
 import { within } from '../../../.storybook/test';
@@ -94,7 +94,7 @@ export const Annotations: Story = {
   parameters: {
     vrt: { selector: VRT_SELECTORS.portal },
   },
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
     const annotationButton = await canvas.findByRole('button', {
       name: 'Click to view a code annotation for line 2',
