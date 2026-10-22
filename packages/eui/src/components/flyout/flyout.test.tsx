@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -15,6 +15,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiHeader } from '../header';
 import {
   EuiFlyout,
+  EuiFlyoutProps,
   FLYOUT_PADDING_SIZES,
   FLYOUT_SIDES,
   FLYOUT_SIZES,
@@ -1153,6 +1154,149 @@ describe('EuiFlyout', () => {
       expect(onClose).toHaveBeenCalledWith(expect.anything(), {
         reason: 'escape',
       });
+    });
+  });
+
+  describe('push flyout return focus', () => {
+    const FlyoutWithTrigger = ({
+      isOpen,
+      hasTrigger = true,
+      ...props
+    }: Partial<EuiFlyoutProps> & { isOpen: boolean; hasTrigger?: boolean }) => (
+      <>
+        {hasTrigger && <button data-test-subj="trigger">Trigger</button>}
+        <button data-test-subj="elsewhere">Elsewhere</button>
+        {isOpen && (
+          <EuiFlyout
+            data-test-subj="flyout"
+            type="push"
+            pushMinBreakpoint="xs"
+            onClose={() => {}}
+            {...props}
+          >
+            <button data-test-subj="inside">Inside</button>
+          </EuiFlyout>
+        )}
+      </>
+    );
+
+    const openFromTrigger = (props: Partial<EuiFlyoutProps> = {}) => {
+      const result = render(<FlyoutWithTrigger isOpen={false} {...props} />);
+      const trigger = result.getByTestSubject('trigger');
+      trigger.focus();
+      result.rerender(<FlyoutWithTrigger isOpen={true} {...props} />);
+      return { ...result, trigger };
+    };
+
+    // Focus is returned after a timeout
+    const flushReturnFocus = () =>
+      act(() => new Promise((resolve) => setTimeout(resolve)));
+
+    it('returns focus to the trigger when the flyout closes with focus inside it', async () => {
+      const { getByTestSubject, rerender, trigger } = openFromTrigger();
+
+      getByTestSubject('inside').focus();
+      rerender(<FlyoutWithTrigger isOpen={false} />);
+      await flushReturnFocus();
+
+      expect(trigger).toHaveFocus();
+    });
+
+    it('returns focus to the trigger when focus was left on the body', async () => {
+      const { rerender, trigger } = openFromTrigger();
+
+      (document.activeElement as HTMLElement).blur();
+      rerender(<FlyoutWithTrigger isOpen={false} />);
+      await flushReturnFocus();
+
+      expect(trigger).toHaveFocus();
+    });
+
+    it('does not move focus that the user moved out of the flyout', async () => {
+      const { getByTestSubject, rerender } = openFromTrigger();
+
+      const elsewhere = getByTestSubject('elsewhere');
+      elsewhere.focus();
+      rerender(<FlyoutWithTrigger isOpen={false} />);
+      await flushReturnFocus();
+
+      expect(elsewhere).toHaveFocus();
+    });
+
+    it('does not move focus that moved elsewhere after the flyout closed', async () => {
+      const { getByTestSubject, rerender, trigger } = openFromTrigger();
+
+      getByTestSubject('inside').focus();
+      rerender(<FlyoutWithTrigger isOpen={false} />);
+      const elsewhere = getByTestSubject('elsewhere');
+      elsewhere.focus();
+      await flushReturnFocus();
+
+      expect(elsewhere).toHaveFocus();
+      expect(trigger).not.toHaveFocus();
+    });
+
+    it('does not return focus when `focusTrapProps.returnFocus` is `false`', async () => {
+      const props = { focusTrapProps: { returnFocus: false } };
+      const { getByTestSubject, rerender, trigger } = openFromTrigger(props);
+
+      getByTestSubject('inside').focus();
+      rerender(<FlyoutWithTrigger isOpen={false} {...props} />);
+      await flushReturnFocus();
+
+      expect(trigger).not.toHaveFocus();
+    });
+
+    it('passes `FocusOptions` from `focusTrapProps.returnFocus` to `focus()`', async () => {
+      const props = {
+        focusTrapProps: { returnFocus: { preventScroll: true } },
+      };
+      const { getByTestSubject, rerender, trigger } = openFromTrigger(props);
+      const focusSpy = jest.spyOn(trigger, 'focus');
+
+      getByTestSubject('inside').focus();
+      rerender(<FlyoutWithTrigger isOpen={false} {...props} />);
+      await flushReturnFocus();
+
+      expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
+    });
+
+    it.each([
+      [true, true, undefined],
+      [{ preventScroll: true }, true, { preventScroll: true }],
+      [false, false, undefined],
+      [undefined, false, undefined],
+    ])(
+      'when a `focusTrapProps.returnFocus` function returns %p, focuses the trigger: %p',
+      async (returnValue, shouldFocus, expectedOptions) => {
+        const returnFocus = jest.fn(() => returnValue as any);
+        const props = { focusTrapProps: { returnFocus } };
+        const { getByTestSubject, rerender, trigger } = openFromTrigger(props);
+        const focusSpy = jest.spyOn(trigger, 'focus');
+
+        getByTestSubject('inside').focus();
+        rerender(<FlyoutWithTrigger isOpen={false} {...props} />);
+        await flushReturnFocus();
+
+        expect(returnFocus).toHaveBeenCalledWith(trigger);
+        if (shouldFocus) {
+          expect(focusSpy).toHaveBeenCalledWith(expectedOptions);
+        } else {
+          expect(focusSpy).not.toHaveBeenCalled();
+        }
+      }
+    );
+
+    it('does not return focus when the trigger was removed from the DOM', async () => {
+      const { getByTestSubject, rerender, trigger } = openFromTrigger();
+      const focusSpy = jest.spyOn(trigger, 'focus');
+
+      getByTestSubject('inside').focus();
+      rerender(<FlyoutWithTrigger isOpen={true} hasTrigger={false} />);
+      rerender(<FlyoutWithTrigger isOpen={false} hasTrigger={false} />);
+      await flushReturnFocus();
+
+      expect(focusSpy).not.toHaveBeenCalled();
     });
   });
 });

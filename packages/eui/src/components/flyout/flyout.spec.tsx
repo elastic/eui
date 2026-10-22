@@ -32,7 +32,7 @@ import { EuiPopover } from '../popover';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { useEuiTheme } from '../../services';
-import { EuiFlyoutManager } from './manager';
+import { EuiFlyoutManager, useFlyoutManager } from './manager';
 
 const childrenDefault = (
   <>
@@ -282,6 +282,193 @@ describe('EuiFlyout', () => {
       cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
       cy.get('[data-test-subj="flyoutSpecTrigger"]').should('not.be.focused');
       cy.get('[data-test-subj="flyoutSpecCustomTrigger"]').should('be.focused');
+    });
+
+    describe('push flyouts', () => {
+      it('returns focus to the trigger on close', () => {
+        cy.mount(<Flyout hasTrigger type="push" pushMinBreakpoint="xs" />);
+
+        cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+        cy.get('[data-test-subj="flyoutSpec"]').should('exist');
+        cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+        cy.get('[data-test-subj="flyoutSpecTrigger"]').should('be.focused');
+      });
+
+      it('returns focus to the trigger after switching from overlay to push while open', () => {
+        cy.viewport(800, 600);
+        cy.mount(<Flyout hasTrigger type="push" pushMinBreakpoint="l" />);
+
+        cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+        cy.get('.euiOverlayMask').should('exist');
+        cy.viewport(1400, 800);
+        cy.get('.euiOverlayMask').should('not.exist');
+
+        cy.get('[data-test-subj="itemA"]').click();
+        cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+        cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
+        cy.get('[data-test-subj="flyoutSpecTrigger"]').should('be.focused');
+      });
+    });
+
+    describe('managed flyouts', () => {
+      const ManagedFlyouts = () => {
+        const [isMainOpen, setIsMainOpen] = useState(false);
+        const [isChildOpen, setIsChildOpen] = useState(false);
+
+        const CloseAllButton = () => {
+          const { closeAllFlyouts } = useFlyoutManager()!;
+          return (
+            <button
+              data-test-subj="closeAllFromManager"
+              onClick={closeAllFlyouts}
+            >
+              Close all from the manager
+            </button>
+          );
+        };
+
+        return (
+          <EuiFlyoutManager>
+            <EuiButton
+              onClick={() => setIsMainOpen(true)}
+              data-test-subj="mainTrigger"
+            >
+              Open main
+            </EuiButton>
+            {isMainOpen && (
+              <EuiFlyout
+                session="start"
+                aria-label="Main flyout"
+                type="push"
+                pushMinBreakpoint="xs"
+                onClose={() => {
+                  setIsMainOpen(false);
+                  setIsChildOpen(false);
+                }}
+                data-test-subj="mainFlyout"
+              >
+                <EuiFlyoutBody>
+                  <button
+                    data-test-subj="childTrigger"
+                    onClick={() => setIsChildOpen(true)}
+                  >
+                    Open child
+                  </button>
+                </EuiFlyoutBody>
+                {isChildOpen && (
+                  <EuiFlyout
+                    session="inherit"
+                    aria-label="Child flyout"
+                    onClose={() => setIsChildOpen(false)}
+                    data-test-subj="childFlyout"
+                  >
+                    <EuiFlyoutBody>
+                      <button
+                        data-test-subj="closeAllFromConsumer"
+                        onClick={() => {
+                          setIsMainOpen(false);
+                          setIsChildOpen(false);
+                        }}
+                      >
+                        Close all from the consumer
+                      </button>
+                      <CloseAllButton />
+                    </EuiFlyoutBody>
+                  </EuiFlyout>
+                )}
+              </EuiFlyout>
+            )}
+          </EuiFlyoutManager>
+        );
+      };
+
+      const openMainAndChild = () => {
+        cy.viewport(1400, 800);
+        cy.mount(<ManagedFlyouts />);
+        cy.get('[data-test-subj="mainTrigger"]').click();
+        cy.get('[data-test-subj="childTrigger"]').click();
+        cy.get('[data-test-subj="childFlyout"]').should('exist');
+      };
+
+      it('returns focus to the main trigger when the session closes with focus in the child', () => {
+        openMainAndChild();
+
+        cy.get('[data-test-subj="closeAllFromConsumer"]').click();
+        cy.get('[data-test-subj="mainFlyout"]').should('not.exist');
+        cy.focused().should('have.attr', 'data-test-subj', 'mainTrigger');
+      });
+
+      it('returns focus to the main trigger when the manager closes the session with focus in the child', () => {
+        openMainAndChild();
+
+        cy.get('[data-test-subj="closeAllFromManager"]').click();
+        cy.get('[data-test-subj="mainFlyout"]').should('not.exist');
+        cy.focused().should('have.attr', 'data-test-subj', 'mainTrigger');
+      });
+
+      it('returns focus into the previous session when navigating back', () => {
+        const historyKey = Symbol('history');
+
+        const SessionHistory = () => {
+          const [isFirstOpen, setIsFirstOpen] = useState(false);
+          const [isSecondOpen, setIsSecondOpen] = useState(false);
+
+          return (
+            <EuiFlyoutManager>
+              <EuiButton
+                onClick={() => setIsFirstOpen(true)}
+                data-test-subj="firstTrigger"
+              >
+                Open first
+              </EuiButton>
+              {isFirstOpen && (
+                <EuiFlyout
+                  session="start"
+                  historyKey={historyKey}
+                  aria-label="First flyout"
+                  type="push"
+                  pushMinBreakpoint="xs"
+                  onClose={() => setIsFirstOpen(false)}
+                  data-test-subj="firstFlyout"
+                >
+                  <EuiFlyoutBody>
+                    <button
+                      data-test-subj="secondTrigger"
+                      onClick={() => setIsSecondOpen(true)}
+                    >
+                      Open second
+                    </button>
+                  </EuiFlyoutBody>
+                </EuiFlyout>
+              )}
+              {isSecondOpen && (
+                <EuiFlyout
+                  session="start"
+                  historyKey={historyKey}
+                  aria-label="Second flyout"
+                  type="push"
+                  pushMinBreakpoint="xs"
+                  onClose={() => setIsSecondOpen(false)}
+                  data-test-subj="secondFlyout"
+                >
+                  <EuiFlyoutBody>Second flyout</EuiFlyoutBody>
+                </EuiFlyout>
+              )}
+            </EuiFlyoutManager>
+          );
+        };
+
+        cy.viewport(1400, 800);
+        cy.mount(<SessionHistory />);
+
+        cy.get('[data-test-subj="firstTrigger"]').click();
+        cy.get('[data-test-subj="secondTrigger"]').click();
+        cy.get('[data-test-subj="secondFlyout"]')
+          .find('[data-test-subj="euiFlyoutMenuBackButton"]')
+          .click();
+        cy.get('[data-test-subj="secondFlyout"]').should('not.exist');
+        cy.focused().should('have.attr', 'data-test-subj', 'secondTrigger');
+      });
     });
   });
 
