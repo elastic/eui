@@ -214,6 +214,45 @@ describe('row manager', () => {
       expect(gridRef.current.firstChild).toBe(headerRow);
     });
 
+    it('appends rows without scanning when they belong at the end', () => {
+      const { gridRef, getRow } = setup();
+      [0, 1, 2].forEach((index) => getRow(index));
+
+      // Only the last row should need to be inspected (2 reads), not all 3 rows
+      const datasetReads = jest.fn();
+      Array.from(gridRef.current.children).forEach((child) => {
+        const dataset = (child as HTMLElement).dataset;
+        Object.defineProperty(child, 'dataset', {
+          get: () => {
+            datasetReads();
+            return dataset;
+          },
+        });
+      });
+
+      getRow(3);
+      expect(datasetReads.mock.calls.length).toBeLessThanOrEqual(2);
+    });
+
+    it('retains focus on a focused cell inside a row that is moved', () => {
+      const { gridRef, getRow } = setup();
+      document.body.appendChild(gridRef.current);
+
+      const rows = [0, 1, 2].map((index) => getRow(index));
+      const button = document.createElement('button');
+      rows[0].appendChild(button);
+      button.focus();
+      expect(document.activeElement).toBe(button);
+
+      getRow(0, 5); // Moves row 0 after the other rows
+      expect(
+        Array.from(gridRef.current.querySelectorAll('.euiDataGridRow'))[2]
+      ).toBe(rows[0]);
+      expect(document.activeElement).toBe(button);
+
+      document.body.removeChild(gridRef.current);
+    });
+
     it('does not move rows that are already in place', () => {
       const { gridRef, getRow } = setup();
 

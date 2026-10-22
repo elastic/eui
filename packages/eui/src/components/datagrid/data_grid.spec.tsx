@@ -99,7 +99,7 @@ describe('EuiDataGrid', () => {
       const scrollDownAndBackUp = () => {
         scrollTo(50);
         // Scroll back up a few rows at a time, so rows are re-created in several batches
-        for (let rowIndex = 47; rowIndex >= 0; rowIndex -= 3) {
+        for (let rowIndex = 48; rowIndex >= 0; rowIndex -= 3) {
           scrollTo(rowIndex);
         }
       };

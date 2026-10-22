@@ -21,17 +21,26 @@ const insertRowInOrder = (
   rowElement: HTMLElement,
   visibleRowIndex: number
 ) => {
+  const isRowAfter = (child: Element) =>
+    child !== rowElement &&
+    child.classList.contains('euiDataGridRow') &&
+    (child as HTMLElement).dataset.gridVisibleRowIndex != null &&
+    Number((child as HTMLElement).dataset.gridVisibleRowIndex) >
+      visibleRowIndex;
+
+  // Fast path: rows are usually created in ascending order (e.g. scrolling down),
+  // so avoid scanning every rendered row when the new row belongs at the end
+  const lastChild = container.lastElementChild;
+  const belongsAtEnd =
+    lastChild != null && lastChild !== rowElement && !isRowAfter(lastChild);
+
   let nextRow: Element | null = null;
-  for (let i = 0; i < container.children.length; i++) {
-    const child = container.children[i] as HTMLElement;
-    if (
-      child !== rowElement &&
-      child.classList.contains('euiDataGridRow') &&
-      child.dataset.gridVisibleRowIndex != null &&
-      Number(child.dataset.gridVisibleRowIndex) > visibleRowIndex
-    ) {
-      nextRow = child;
-      break;
+  if (!belongsAtEnd) {
+    for (let i = 0; i < container.children.length; i++) {
+      if (isRowAfter(container.children[i])) {
+        nextRow = container.children[i];
+        break;
+      }
     }
   }
 
@@ -42,7 +51,15 @@ const insertRowInOrder = (
   ) {
     return;
   }
+
+  // Moving a connected node blurs any focused descendant, so restore it afterwards
+  const focusedElement =
+    rowElement.parentNode === container &&
+    rowElement.contains(document.activeElement)
+      ? (document.activeElement as HTMLElement)
+      : null;
   container.insertBefore(rowElement, nextRow);
+  focusedElement?.focus({ preventScroll: true });
 };
 
 export const useRowManager = ({
