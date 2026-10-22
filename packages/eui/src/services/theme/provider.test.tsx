@@ -86,6 +86,42 @@ describe('EuiThemeProvider', () => {
 
       expect(getByText('Forced dark mode')).toHaveStyleRule('color', '#FFFFFF');
     });
+
+    it('updates `colorMode` and the computed theme within the same render', () => {
+      const renders: Array<[string, string]> = [];
+      const Probe = () => {
+        const { colorMode, euiTheme } = useEuiTheme();
+        renders.push([colorMode, euiTheme.colors.backgroundBasePlain]);
+        return null;
+      };
+
+      const { rerender } = render(
+        <EuiThemeProvider colorMode="light">
+          <Probe />
+        </EuiThemeProvider>
+      );
+      const [[, lightBackground]] = renders;
+      renders.length = 0;
+
+      rerender(
+        <EuiThemeProvider colorMode="dark">
+          <Probe />
+        </EuiThemeProvider>
+      );
+
+      const [darkColorMode, darkBackground] = renders[renders.length - 1];
+      expect(darkColorMode).toEqual('DARK');
+      expect(darkBackground).not.toEqual(lightBackground);
+
+      // Consumers should never see the new color mode paired with the old palette
+      renders.forEach(([colorMode, background]) => {
+        expect(background).toEqual(
+          colorMode === 'DARK' ? darkBackground : lightBackground
+        );
+      });
+      // ...and a single prop change should only cost a single render
+      expect(renders).toHaveLength(1);
+    });
   });
 
   describe('highContrastMode', () => {
@@ -170,6 +206,32 @@ describe('EuiThemeProvider', () => {
       );
 
       expect(getByText('Modified')).toHaveStyleRule('color', 'hotpink');
+    });
+
+    it('does not recompute the theme when passed a new but deeply equal object', () => {
+      const themes: Array<ReturnType<typeof useEuiTheme>['euiTheme']> = [];
+      const Probe = () => {
+        themes.push(useEuiTheme().euiTheme);
+        return null;
+      };
+
+      const { rerender } = render(
+        <EuiThemeProvider
+          modify={{ colors: { LIGHT: { primary: 'hotpink' } } }}
+        >
+          <Probe />
+        </EuiThemeProvider>
+      );
+      rerender(
+        <EuiThemeProvider
+          modify={{ colors: { LIGHT: { primary: 'hotpink' } } }}
+        >
+          <Probe />
+        </EuiThemeProvider>
+      );
+
+      expect(themes.length).toBeGreaterThan(1);
+      themes.forEach((theme) => expect(theme).toBe(themes[0]));
     });
   });
 

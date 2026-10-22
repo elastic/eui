@@ -40,7 +40,6 @@ import { useHighContrastModifications } from './high_contrast_overrides';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
-  EuiThemeColorModeStandard,
   EuiThemeHighContrastModeProp,
   EuiThemeHighContrastMode,
   EuiThemeSystem,
@@ -48,6 +47,29 @@ import {
   EuiThemeComputed,
 } from './types';
 import { EUI_VIS_COLOR_STORE } from '../color';
+
+/**
+ * Caches `value` during render, only swapping in a new one once `isSame`
+ * reports that it actually differs from the cached one.
+ *
+ * This keeps derived objects referentially stable (so that the - comparatively
+ * expensive - theme computation isn't rerun on every render) without deferring
+ * them to a `useEffect`/`setState` pair. Effect-synchronised state costs an
+ * extra commit, in which consumers would see e.g. an updated `colorMode`
+ * alongside a theme that is still computed from the previous one.
+ */
+const useStableValue = <T,>(
+  value: T,
+  isSame: (previous: T, next: T) => boolean
+): T => {
+  const ref = useRef(value);
+
+  if (ref.current !== value && !isSame(ref.current, value)) {
+    ref.current = value;
+  }
+
+  return ref.current;
+};
 
 export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
@@ -102,18 +124,27 @@ export const EuiThemeProvider = <T extends {} = {}>({
       : Fragment;
   }, [isGlobalTheme, _modifications]);
 
-  const [system, setSystem] = useState(_system || parentSystem);
-  const prevSystemKey = useRef(system.key);
-
-  const [modifications, setModifications] = useState<EuiThemeModifications>(
-    mergeDeep(parentModifications, _modifications)
+  // Every value below is derived from props/parent context during render, so
+  // that all context values this provider exposes - most notably `colorMode`
+  // and the computed `theme` - always change within the same commit
+  const system = useStableValue(
+    _system || parentSystem,
+    (previous, next) => previous.key === next.key
   );
-  const prevModifications = useRef(modifications);
 
-  const [colorMode, setColorMode] = useState<EuiThemeColorModeStandard>(
-    getColorMode(_colorMode, parentColorMode, isForced)
+  const mergedModifications = useMemo(
+    () => mergeDeep(parentModifications, _modifications),
+    [parentModifications, _modifications]
   );
-  const prevColorMode = useRef(colorMode);
+  const modifications = useStableValue<EuiThemeModifications>(
+    mergedModifications,
+    isEqual
+  );
+
+  const colorMode = useMemo(
+    () => getColorMode(_colorMode, parentColorMode, isForced),
+    [_colorMode, parentColorMode, isForced]
+  );
 
   const highContrastMode: EuiThemeHighContrastMode = useMemo(() => {
     if (isForced) return 'forced'; // System forced high contrast mode will always supercede application settings
@@ -121,7 +152,6 @@ export const EuiThemeProvider = <T extends {} = {}>({
     if (_highContrastMode === false) return false; // Allow `false` prop to override user/system preference
     return parentHighContrastMode; // Fall back to the parent/system setting
   }, [_highContrastMode, parentHighContrastMode, isForced]);
-  const prevHighContrastMode = useRef(highContrastMode);
 
   const modificationsWithHighContrast = useHighContrastModifications({
     highContrastMode,
@@ -130,143 +160,94 @@ export const EuiThemeProvider = <T extends {} = {}>({
     modifications,
   });
 
-  const isParentTheme = useRef(
-    isGlobalTheme
-      ? prevSystemKey.current === DEFAULTS.system.key &&
+  // If this provider resolves to the exact same theme as its parent, the
+  // already computed parent theme can be reused instead of recomputing it
+  const isParentTheme = useMemo(
+    () =>
+      isGlobalTheme
+        ? system.key === DEFAULTS.system.key &&
           colorMode === DEFAULTS.colorMode &&
           highContrastMode === DEFAULTS.highContrastMode &&
           !_modifications
-      : prevSystemKey.current === parentSystem.key &&
+        : system.key === parentSystem.key &&
           colorMode === parentColorMode &&
           highContrastMode === parentHighContrastMode &&
-          isEqual(parentModifications, modifications)
-  );
-
-  const updateVisColorStore = useCallback(
-    (theme: EuiThemeComputed, isGlobalTheme: boolean) => {
-      if (isGlobalTheme) {
-        EUI_VIS_COLOR_STORE.setVisColors(theme.colors.vis);
-      }
-    },
-    []
-  );
-
-  const getInitialTheme = () => {
-    const theme = getComputed(
+          isEqual(parentModifications, modifications),
+    [
+      isGlobalTheme,
       system,
-      buildTheme(
-        modificationsWithHighContrast,
-        `_${system.key}`
-      ) as typeof system,
+      colorMode,
+      highContrastMode,
+      _modifications,
+      parentSystem,
+      parentColorMode,
+      parentHighContrastMode,
+      parentModifications,
+      modifications,
+    ]
+  );
+
+  const theme = useMemo<EuiThemeComputed>(() => {
+    if (isParentTheme && Object.keys(parentTheme).length) {
+      return { ...parentTheme }; // Intentionally create a new object to break referential equality
+    }
+
+    /* Enables recomputation of component colors when flags are overridden on the provider
+    by adding the respective key to modifications to trigger a recomputation. */
+    // NOTE: Keeping this as placeholder for potential future usage during Borealis changes
+    // TODO: remove once visual refresh is completed and flags are obsolete
+    const flagsToRecompute: Array<{ flag: string; componentKey: string }> | [] =
+      [];
+
+    const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
+
+    const forceRecomputeComponents = flagsToRecompute.some((item) => {
+      if (!item) return false;
+
+      if (
+        Object.keys(modifications.flags ?? {}).includes(item.flag) &&
+        !Object.keys(modifications.components ?? {}).includes(item.componentKey)
+      ) {
+        keys[item.componentKey] = { LIGHT: {}, DARK: {} };
+
+        return true;
+      }
+
+      return false;
+    });
+
+    const componentModifications = forceRecomputeComponents
+      ? { components: keys }
+      : {};
+
+    // force recomputing of color & component tokens based on flag changes
+    const enhancedModifications = {
+      ...modificationsWithHighContrast,
+      ...componentModifications,
+    };
+
+    return getComputed(
+      system,
+      buildTheme<any>(enhancedModifications, `_${system.key}`),
       colorMode,
       highContrastMode
     );
-
-    setTimeout(() => {
-      updateVisColorStore(theme, isGlobalTheme);
-    });
-
-    return theme;
-  };
-
-  const [theme, setTheme] = useState(
-    isParentTheme.current && Object.keys(parentTheme).length
-      ? { ...parentTheme } // Intentionally create a new object to break referential equality
-      : getInitialTheme()
-  );
-
-  useEffect(() => {
-    const newSystem = _system || parentSystem;
-    if (prevSystemKey.current !== newSystem.key) {
-      setSystem(newSystem);
-      prevSystemKey.current = newSystem.key;
-      isParentTheme.current = false;
-    }
-  }, [_system, parentSystem, theme, updateVisColorStore]);
-
-  useEffect(() => {
-    updateVisColorStore(theme, isGlobalTheme);
-  }, [theme, colorMode, isGlobalTheme, updateVisColorStore]);
-
-  useEffect(() => {
-    const newModifications = mergeDeep(parentModifications, _modifications);
-    if (!isEqual(prevModifications.current, newModifications)) {
-      setModifications(newModifications);
-      prevModifications.current = newModifications;
-      isParentTheme.current = false;
-    }
-  }, [_modifications, parentModifications]);
-
-  useEffect(() => {
-    const newColorMode = getColorMode(_colorMode, parentColorMode, isForced);
-    if (!isEqual(newColorMode, prevColorMode.current)) {
-      setColorMode(newColorMode);
-      prevColorMode.current = newColorMode;
-      isParentTheme.current = false;
-    }
-  }, [_colorMode, parentColorMode, isForced]);
-
-  useEffect(() => {
-    if (prevHighContrastMode.current !== highContrastMode) {
-      isParentTheme.current = false;
-    }
-  }, [highContrastMode]);
-
-  useEffect(() => {
-    if (!isParentTheme.current) {
-      /* Enables recomputation of component colors when flags are overridden on the provider
-      by adding the respective key to modifications to trigger a recomputation. */
-      // NOTE: Keeping this as placeholder for potential future usage during Borealis changes
-      // TODO: remove once visual refresh is completed and flags are obsolete
-      const flagsToRecompute:
-        | Array<{ flag: string; componentKey: string }>
-        | [] = [];
-
-      const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
-
-      const forceRecomputeComponents = flagsToRecompute.some((item) => {
-        if (!item) return false;
-
-        if (
-          Object.keys(modifications.flags ?? {}).includes(item.flag) &&
-          !Object.keys(modifications.components ?? {}).includes(
-            item.componentKey
-          )
-        ) {
-          keys[item.componentKey] = { LIGHT: {}, DARK: {} };
-
-          return true;
-        }
-
-        return false;
-      });
-
-      const componentModifications = forceRecomputeComponents
-        ? { components: keys }
-        : {};
-
-      // force recomputing of color & component tokens based on flag changes
-      const enhancedModifications = {
-        ...modificationsWithHighContrast,
-        ...componentModifications,
-      };
-
-      const rebuiltTheme = getComputed(
-        system,
-        buildTheme<any>(enhancedModifications, `_${system.key}`),
-        colorMode,
-        highContrastMode
-      );
-
-      setTheme(rebuiltTheme);
-    }
   }, [
+    isParentTheme,
+    parentTheme,
+    system,
     colorMode,
     highContrastMode,
-    system,
-    modificationsWithHighContrast,
     modifications,
+    modificationsWithHighContrast,
   ]);
+
+  // Genuine side effect - the vis color store is consumed outside of React
+  useEffect(() => {
+    if (isGlobalTheme) {
+      EUI_VIS_COLOR_STORE.setVisColors(theme.colors.vis);
+    }
+  }, [theme, isGlobalTheme]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
