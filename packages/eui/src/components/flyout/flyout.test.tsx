@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -1161,6 +1162,7 @@ describe('EuiFlyout', () => {
     const FlyoutWithTrigger = ({
       isOpen,
       hasTrigger = true,
+      children = <button data-test-subj="inside">Inside</button>,
       ...props
     }: Partial<EuiFlyoutProps> & { isOpen: boolean; hasTrigger?: boolean }) => (
       <>
@@ -1174,7 +1176,7 @@ describe('EuiFlyout', () => {
             onClose={() => {}}
             {...props}
           >
-            <button data-test-subj="inside">Inside</button>
+            {children}
           </EuiFlyout>
         )}
       </>
@@ -1297,6 +1299,45 @@ describe('EuiFlyout', () => {
       await flushReturnFocus();
 
       expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    it('calls a `focusTrapProps.returnFocus` function when the trigger was removed from the DOM', async () => {
+      const returnFocus = jest.fn(() => {
+        document
+          .querySelector<HTMLElement>('[data-test-subj="elsewhere"]')
+          ?.focus();
+        return false;
+      });
+      const props = { focusTrapProps: { returnFocus } };
+      const { getByTestSubject, rerender, trigger } = openFromTrigger(props);
+
+      getByTestSubject('inside').focus();
+      rerender(
+        <FlyoutWithTrigger isOpen={true} hasTrigger={false} {...props} />
+      );
+      rerender(
+        <FlyoutWithTrigger isOpen={false} hasTrigger={false} {...props} />
+      );
+      await flushReturnFocus();
+
+      expect(returnFocus).toHaveBeenCalledWith(trigger);
+      expect(getByTestSubject('elsewhere')).toHaveFocus();
+    });
+
+    it('returns focus to the trigger when focus was in portalled content of the flyout', async () => {
+      const portalledContent = createPortal(
+        <button data-test-subj="portalled">Portalled</button>,
+        document.body
+      );
+      const { getByTestSubject, rerender, trigger } = openFromTrigger({
+        children: portalledContent,
+      });
+
+      getByTestSubject('portalled').focus();
+      rerender(<FlyoutWithTrigger isOpen={false} />);
+      await flushReturnFocus();
+
+      expect(trigger).toHaveFocus();
     });
   });
 });

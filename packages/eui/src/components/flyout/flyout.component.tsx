@@ -1029,8 +1029,6 @@ export const EuiFlyoutComponent = forwardRef(
       isPushed,
       returnFocus: _focusTrapProps?.returnFocus,
       triggerRef: flyoutToggle,
-      flyoutRef: internalParentFlyoutRef,
-      childFlyoutId: isMainFlyout ? siblingFlyoutId : null,
     });
 
     const isSideBySideChild =

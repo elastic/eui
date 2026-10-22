@@ -406,68 +406,91 @@ describe('EuiFlyout', () => {
         cy.focused().should('have.attr', 'data-test-subj', 'mainTrigger');
       });
 
-      it('returns focus into the previous session when navigating back', () => {
-        const historyKey = Symbol('history');
+      const historyKey = Symbol('history');
 
-        const SessionHistory = () => {
-          const [isFirstOpen, setIsFirstOpen] = useState(false);
-          const [isSecondOpen, setIsSecondOpen] = useState(false);
+      const SessionHistory = () => {
+        const [isFirstOpen, setIsFirstOpen] = useState(false);
+        const [isSecondOpen, setIsSecondOpen] = useState(false);
 
-          return (
-            <EuiFlyoutManager>
-              <EuiButton
-                onClick={() => setIsFirstOpen(true)}
-                data-test-subj="firstTrigger"
+        return (
+          <EuiFlyoutManager>
+            <EuiButton
+              onClick={() => setIsFirstOpen(true)}
+              data-test-subj="firstTrigger"
+            >
+              Open first
+            </EuiButton>
+            {isFirstOpen && (
+              <EuiFlyout
+                session="start"
+                historyKey={historyKey}
+                aria-label="First flyout"
+                type="push"
+                pushMinBreakpoint="xs"
+                onClose={() => setIsFirstOpen(false)}
+                data-test-subj="firstFlyout"
               >
-                Open first
-              </EuiButton>
-              {isFirstOpen && (
-                <EuiFlyout
-                  session="start"
-                  historyKey={historyKey}
-                  aria-label="First flyout"
-                  type="push"
-                  pushMinBreakpoint="xs"
-                  onClose={() => setIsFirstOpen(false)}
-                  data-test-subj="firstFlyout"
-                >
-                  <EuiFlyoutBody>
-                    <button
-                      data-test-subj="secondTrigger"
-                      onClick={() => setIsSecondOpen(true)}
-                    >
-                      Open second
-                    </button>
-                  </EuiFlyoutBody>
-                </EuiFlyout>
-              )}
-              {isSecondOpen && (
-                <EuiFlyout
-                  session="start"
-                  historyKey={historyKey}
-                  aria-label="Second flyout"
-                  type="push"
-                  pushMinBreakpoint="xs"
-                  onClose={() => setIsSecondOpen(false)}
-                  data-test-subj="secondFlyout"
-                >
-                  <EuiFlyoutBody>Second flyout</EuiFlyoutBody>
-                </EuiFlyout>
-              )}
-            </EuiFlyoutManager>
-          );
-        };
+                <EuiFlyoutBody>
+                  <button
+                    data-test-subj="secondTrigger"
+                    onClick={() => setIsSecondOpen(true)}
+                  >
+                    Open second
+                  </button>
+                </EuiFlyoutBody>
+              </EuiFlyout>
+            )}
+            {isSecondOpen && (
+              <EuiFlyout
+                session="start"
+                historyKey={historyKey}
+                aria-label="Second flyout"
+                type="push"
+                pushMinBreakpoint="xs"
+                onClose={() => setIsSecondOpen(false)}
+                data-test-subj="secondFlyout"
+              >
+                <EuiFlyoutBody>
+                  <button
+                    data-test-subj="closeHistoryGroup"
+                    onClick={() => {
+                      setIsFirstOpen(false);
+                      setIsSecondOpen(false);
+                    }}
+                  >
+                    Close both
+                  </button>
+                </EuiFlyoutBody>
+              </EuiFlyout>
+            )}
+          </EuiFlyoutManager>
+        );
+      };
 
+      const openBothSessions = () => {
         cy.viewport(1400, 800);
         cy.mount(<SessionHistory />);
-
         cy.get('[data-test-subj="firstTrigger"]').click();
         cy.get('[data-test-subj="secondTrigger"]').click();
+        cy.get('[data-test-subj="secondFlyout"]').should('exist');
+      };
+
+      it('returns focus into the previous session when navigating back', () => {
+        openBothSessions();
+
         cy.get('[data-test-subj="secondFlyout"]')
           .find('[data-test-subj="euiFlyoutMenuBackButton"]')
           .click();
         cy.get('[data-test-subj="secondFlyout"]').should('not.exist');
         cy.focused().should('have.attr', 'data-test-subj', 'secondTrigger');
+      });
+
+      it('returns focus to the page trigger when the history group closes at once', () => {
+        openBothSessions();
+
+        cy.get('[data-test-subj="closeHistoryGroup"]').click();
+        cy.get('[data-test-subj="firstFlyout"]').should('not.exist');
+        cy.focused().should('have.attr', 'data-test-subj', 'firstTrigger');
       });
     });
   });

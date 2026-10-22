@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { RefObject, useLayoutEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { useIsWithinMinBreakpoint, useEuiTheme } from '../../services';
 import type { EuiFocusTrapProps } from '../focus_trap';
 import { EuiFlyoutProps } from './flyout';
@@ -50,9 +50,6 @@ export interface UsePushedFlyoutReturnFocusParams {
   returnFocus: EuiFocusTrapProps['returnFocus'];
   /** The element that was focused when the flyout mounted. */
   triggerRef: RefObject<Element | null>;
-  flyoutRef: RefObject<HTMLElement | null>;
-  /** The `id` of the managed child flyout in this flyout's session, if any. */
-  childFlyoutId?: string | null;
 }
 
 /**
@@ -66,63 +63,46 @@ export const usePushedFlyoutReturnFocus = ({
   isPushed,
   returnFocus = true,
   triggerRef,
-  flyoutRef,
-  childFlyoutId,
 }: UsePushedFlyoutReturnFocusParams) => {
-  const latest = useRef({ isPushed, returnFocus, childFlyoutId });
+  const latest = useRef({ isPushed, returnFocus });
   latest.current.isPushed = isPushed;
   latest.current.returnFocus = returnFocus;
-  // Closing a session removes it from the manager before the flyouts
-  // unmount, so keep the last known child to recognize focus left inside it.
-  if (childFlyoutId) {
-    latest.current.childFlyoutId = childFlyoutId;
-  }
 
-  // Layout cleanup runs before the flyout's DOM nodes are removed, while
-  // focus can still be found inside them.
-  useLayoutEffect(
+  useEffect(
     () => () => {
-      const { isPushed, returnFocus, childFlyoutId } = latest.current;
+      const { isPushed, returnFocus } = latest.current;
       const trigger = triggerRef.current;
 
-      if (!isPushed || !returnFocus) return;
-      if (
-        !(trigger instanceof HTMLElement) ||
-        !trigger.isConnected ||
-        trigger === document.body
-      ) {
-        return;
-      }
+      if (!isPushed || !returnFocus || !trigger) return;
 
-      // Pushed flyouts don't trap focus, so leave it alone if the user moved
-      // it elsewhere on the page.
-      const active = document.activeElement;
-      const isFocusStranded = !active || active === document.body;
-      const isFocusInFlyout =
-        !!active &&
-        (!!flyoutRef.current?.contains(active) ||
-          (!!childFlyoutId &&
-            !!document.getElementById(childFlyoutId)?.contains(active)));
-      if (!isFocusStranded && !isFocusInFlyout) return;
-
-      const howToReturnFocus =
-        typeof returnFocus === 'function' ? returnFocus(trigger) : returnFocus;
-      if (!howToReturnFocus) return;
-
-      // A child flyout's focus trap unmounting in the same commit would pull
-      // focus back into itself, then asynchronously return it to an element
-      // that has been removed. Wait until both have settled.
+      // Decide once everything closing alongside the flyout has unmounted:
+      // sibling flyouts in the same history group, portalled content such as
+      // popovers, and child flyout focus traps that pull focus back to
+      // themselves before releasing it.
       setTimeout(() => {
+        // Pushed flyouts don't trap focus, so leave it alone if it is on an
+        // element the user moved to.
         const active = document.activeElement;
-        const isStillStranded =
-          !active || active === document.body || !active.isConnected;
-        if (!isStillStranded || !trigger.isConnected) return;
+        if (active && active !== document.body && active.isConnected) return;
+
+        const howToReturnFocus =
+          typeof returnFocus === 'function'
+            ? returnFocus(trigger)
+            : returnFocus;
+        if (
+          !howToReturnFocus ||
+          !(trigger instanceof HTMLElement) ||
+          !trigger.isConnected ||
+          trigger === document.body
+        ) {
+          return;
+        }
 
         trigger.focus(
           typeof howToReturnFocus === 'object' ? howToReturnFocus : undefined
         );
       });
     },
-    [triggerRef, flyoutRef]
+    [triggerRef]
   );
 };
