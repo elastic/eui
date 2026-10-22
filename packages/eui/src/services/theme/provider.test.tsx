@@ -233,6 +233,35 @@ describe('EuiThemeProvider', () => {
       expect(themes.length).toBeGreaterThan(1);
       themes.forEach((theme) => expect(theme).toBe(themes[0]));
     });
+
+    it('does not recompute a nested theme when the parent changes a token the child overrides', () => {
+      const themes: Array<ReturnType<typeof useEuiTheme>['euiTheme']> = [];
+      const Probe = () => {
+        themes.push(useEuiTheme().euiTheme);
+        return null;
+      };
+      const tree = (parentPrimary: string) => (
+        <EuiThemeProvider
+          modify={{ colors: { LIGHT: { primary: parentPrimary } } }}
+        >
+          <EuiThemeProvider
+            modify={{ colors: { LIGHT: { primary: 'hotpink' } } }}
+          >
+            <Probe />
+          </EuiThemeProvider>
+        </EuiThemeProvider>
+      );
+
+      const { rerender } = render(tree('red'));
+      const before = themes[themes.length - 1];
+      rerender(tree('blue'));
+      const after = themes[themes.length - 1];
+
+      // The child's own override wins, so its computed theme is unchanged -
+      // it should not be rebuilt just because the parent's theme object did
+      expect(after.colors.primary).toEqual('hotpink');
+      expect(after).toBe(before);
+    });
   });
 
   describe('conditional CurrentEuiBreakpointProvider', () => {

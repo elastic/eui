@@ -187,9 +187,15 @@ export const EuiThemeProvider = <T extends {} = {}>({
     ]
   );
 
+  // Depending on `parentTheme` itself would recompute this provider's theme every
+  // time the parent's did, even where the parent's theme is not an input to it -
+  // `parentModifications` already reaches `getComputed` through `modifications`
+  const reusableParentTheme =
+    isParentTheme && Object.keys(parentTheme).length ? parentTheme : null;
+
   const theme = useMemo<EuiThemeComputed>(() => {
-    if (isParentTheme && Object.keys(parentTheme).length) {
-      return { ...parentTheme }; // Intentionally create a new object to break referential equality
+    if (reusableParentTheme) {
+      return { ...reusableParentTheme }; // Intentionally create a new object to break referential equality
     }
 
     /* Enables recomputation of component colors when flags are overridden on the provider
@@ -233,8 +239,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
       highContrastMode
     );
   }, [
-    isParentTheme,
-    parentTheme,
+    reusableParentTheme,
     system,
     colorMode,
     highContrastMode,
