@@ -20,8 +20,8 @@ Set `data-test-subj` on `<EuiCallOut>`. EUI puts it on the panel root and derive
 |---|---|
 | `getTitle()` | The title text, or an empty string without a `title`. |
 | `getText()` | The `text` block, or an empty string without a `text`. |
-| `getColor()` | The color variant read from the root class: `primary`, `success`, `warning`, `danger` or `accent`. |
-| `dismissButton` | `Locator` for the dismiss button. Zero elements without `onDismiss`. |
+| `getColor()` | The color variant read from the root class: `primary`, `success`, `warning` or `danger`. |
+| `dismissButton` | `Locator` for the dismiss button, found by its test subj or its cross icon so a `dismissButtonProps` test subj override still works. Zero elements without `onDismiss`. |
 | `dismiss()` | Click the dismiss button. What follows is the consumer's `onDismiss`, nothing is asserted. |
 
 ## Deliberately excluded

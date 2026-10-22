@@ -36,9 +36,21 @@ test.describe('EuiCallOutObject', () => {
 
   test.describe('getTitle and getText', () => {
     test('read the title and the text block', async () => {
-      expect(await callOut.getTitle()).not.toBe('');
-      expect(await callOut.getText()).not.toBe('');
-      expect(await callOut.getTitle()).not.toBe(await callOut.getText());
+      expect(await callOut.getTitle()).toBe('Callout title');
+      expect(await callOut.getText()).toBe('A short callout text');
+    });
+
+    test('return an empty string when the text prop is absent', async ({
+      page,
+    }) => {
+      await page.goto(
+        storyUrl(STORY_ID, `data-test-subj:${TEST_SUBJ};text:!undefined`)
+      );
+      const titleOnly = new EuiCallOutObject(page, TEST_SUBJ);
+      await titleOnly.locator.waitFor({ state: 'visible' });
+
+      expect(await titleOnly.getTitle()).toBe('Callout title');
+      expect(await titleOnly.getText()).toBe('');
     });
   });
 
@@ -52,6 +64,7 @@ test.describe('EuiCallOutObject', () => {
         storyUrl(STORY_ID, `data-test-subj:${TEST_SUBJ};color:warning`)
       );
       const warning = new EuiCallOutObject(page, TEST_SUBJ);
+      await warning.locator.waitFor({ state: 'visible' });
 
       expect(await warning.getColor()).toBe('warning');
     });

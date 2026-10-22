@@ -26,4 +26,11 @@ export const EuiCallOutSelectors = {
 
   /** The dismiss button, rendered only with `onDismiss`. */
   DISMISS_BUTTON_TEST_SUBJ: 'euiDismissCalloutButton',
+
+  /**
+   * The dismiss button by its test subj, or by its cross icon when
+   * `dismissButtonProps` replaced the test subj.
+   */
+  DISMISS_BUTTON_SELECTOR:
+    '[data-test-subj="euiDismissCalloutButton"], button:has([data-euiicon-type="cross"])',
 };

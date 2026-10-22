@@ -27,17 +27,17 @@ export class EuiCallOutObject extends BaseObject {
 
   /** The title text, or an empty string when the call out has no title. */
   async getTitle(): Promise<string> {
-    return this.textOf(this.root.locator(EuiCallOutSelectors.TITLE_SELECTOR));
+    return this.textOf(this.panel.locator(EuiCallOutSelectors.TITLE_SELECTOR));
   }
 
   /** The `text` block, or an empty string when the call out has none. */
   async getText(): Promise<string> {
-    return this.textOf(this.root.locator(EuiCallOutSelectors.TEXT_SELECTOR));
+    return this.textOf(this.panel.locator(EuiCallOutSelectors.TEXT_SELECTOR));
   }
 
-  /** The color variant: `primary`, `success`, `warning`, `danger` or `accent`. */
+  /** The color variant: `primary`, `success`, `warning` or `danger`. */
   async getColor(): Promise<string> {
-    const className = (await this.root.getAttribute('class')) ?? '';
+    const className = (await this.panel.getAttribute('class')) ?? '';
     const match = className.match(
       new RegExp(`\\b${EuiCallOutSelectors.COLOR_CLASS_PREFIX}([a-z]+)`)
     );
@@ -51,7 +51,18 @@ export class EuiCallOutObject extends BaseObject {
 
   /** The dismiss button. Resolves to zero elements without `onDismiss`. */
   get dismissButton(): Locator {
-    return this.root.getByTestId(EuiCallOutSelectors.DISMISS_BUTTON_TEST_SUBJ);
+    return this.panel
+      .locator(EuiCallOutSelectors.DISMISS_BUTTON_SELECTOR)
+      .first();
+  }
+
+  /**
+   * The root narrowed to the call out element. A multi token subj such as
+   * `notice shared` also matches the derived `notice shared__message` block
+   * by token, so the class keeps lookups on the panel itself.
+   */
+  private get panel(): Locator {
+    return this.root.and(this.scope.locator(EuiCallOutSelectors.ROOT_SELECTOR));
   }
 
   /**
