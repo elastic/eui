@@ -100,7 +100,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   iconType,
   iconSide = 'right',
   color = 'text',
-  badgeColor = 'accent',
+  badgeColor = 'primary',
   hasActiveFilters,
   numFilters,
   numActiveFilters,
