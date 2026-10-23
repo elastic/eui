@@ -31,6 +31,10 @@ import {
 import { Props as EuiButtonProps } from '../button/button';
 import { EuiText } from '../text';
 import { EuiLiveAnnouncer } from '../accessibility';
+import {
+  getAnnouncementText,
+  getAnnouncementTextFromNodes,
+} from '../accessibility/announcement_text';
 
 import { EuiBannerSize, euiBannerStyles } from './banner.styles';
 
@@ -264,30 +268,28 @@ function bannerAnnouncementText(root: HTMLElement, dataTestSubj: string) {
   const content = root.querySelector('.euiBanner__content');
   if (!content) return '';
 
-  const title = content.querySelector(
-    `[data-test-subj="${CSS.escape(dataTestSubj)}-title"]`
-  );
-  const text = content.querySelector(
-    `[data-test-subj="${CSS.escape(dataTestSubj)}-text"]`
-  );
-  const dismiss = content.querySelector(
-    `[data-test-subj="${CSS.escape(dataTestSubj)}-dismiss"]`
-  );
+  const title = elementByTestSubj(content, `${dataTestSubj}-title`);
+  const text = elementByTestSubj(content, `${dataTestSubj}-text`);
+  const dismiss = elementByTestSubj(content, `${dataTestSubj}-dismiss`);
   const excluded = new Set(
     [slotChild(content, title), slotChild(content, text), dismiss].filter(
       (node): node is Node => node != null
     )
   );
-  const childrenText = Array.from(content.childNodes)
-    .filter((node) => !excluded.has(node))
-    .map((node) => node.textContent?.trim() ?? '')
-    .filter(Boolean)
-    .join(' ');
+  const childrenText = getAnnouncementTextFromNodes(
+    Array.from(content.childNodes).filter((node) => !excluded.has(node))
+  );
 
-  return [title?.textContent, text?.textContent, childrenText]
-    .map((value) => value?.trim() ?? '')
+  return [getAnnouncementText(title), getAnnouncementText(text), childrenText]
     .filter(Boolean)
     .join(',\u00A0');
+}
+
+function elementByTestSubj(root: ParentNode, testSubj: string) {
+  for (const element of root.querySelectorAll('[data-test-subj]')) {
+    if (element.getAttribute('data-test-subj') === testSubj) return element;
+  }
+  return null;
 }
 
 function slotChild(content: Element, node: Element | null) {

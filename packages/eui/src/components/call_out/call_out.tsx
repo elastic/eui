@@ -33,6 +33,7 @@ import { EuiPanel } from '../panel';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
 import { EuiLiveAnnouncer } from '../accessibility/live_announcer';
+import { getAnnouncementText } from '../accessibility/announcement_text';
 import {
   EuiNotificationIcon,
   type EuiNotificationIconType,
@@ -323,9 +324,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         '.euiCallOut__text',
         '.euiCallOut__additionalContent',
       ]
-        .map(
-          (selector) => root.querySelector(selector)?.textContent?.trim() ?? ''
-        )
+        .map((selector) => getAnnouncementText(root.querySelector(selector)))
         .filter(Boolean);
 
       setAnnouncement(parts.join(',\u00A0'));

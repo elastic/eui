@@ -275,16 +275,42 @@ describe('EuiBanner', () => {
         </EuiBanner>
       );
 
-      expect(getAllByTestSubject('retry')).toHaveLength(1);
-      expect(document.querySelectorAll('#retry')).toHaveLength(1);
-      expect(getAllByRole('button', { name: 'Retry' })).toHaveLength(1);
-
       await waitFor(() => {
         const liveRegion = getByRole('status');
         expect(liveRegion).toHaveTextContent('Hello, World, Retry');
+        expect(getAllByTestSubject('retry')).toHaveLength(1);
+        expect(document.querySelectorAll('#retry')).toHaveLength(1);
+        expect(getAllByRole('button', { name: 'Retry' })).toHaveLength(1);
         expect(liveRegion).not.toHaveTextContent('Dismiss this banner');
         expect(liveRegion).not.toHaveTextContent('Primary action');
       });
+    });
+
+    it('announces inline wording and accessible names', async () => {
+      const { getByRole } = render(
+        <EuiBanner
+          {...requiredProps}
+          title="Hello"
+          text={
+            <span>
+              Read <a href="#more">more</a>.
+            </span>
+          }
+          announceOnMount
+        >
+          <span>
+            <strong>un</strong>available
+          </span>
+          <button aria-label="Retry" />
+          <img alt="Status" />
+        </EuiBanner>
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          'Hello, Read more., unavailable Retry Status'
+        )
+      );
     });
   });
 });
