@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, ReactNode } from 'react';
+import React, {
+  forwardRef,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -127,6 +133,37 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     const hasActions =
       Boolean(primaryActionProps) || Boolean(secondaryActionProps);
 
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [announcement, setAnnouncement] = useState('');
+
+    useEffect(() => {
+      const content = contentRef.current;
+      if (!announceOnMount || !content) {
+        setAnnouncement('');
+        return;
+      }
+
+      // `EuiText` does not forward refs. The text slot is the first direct
+      // `.euiText` child, since `children` render after it.
+      const textNode = text
+        ? Array.from(content.children).find((node) =>
+            node.classList.contains('euiText')
+          )
+        : undefined;
+      const childrenText = Array.from(content.childNodes)
+        .filter((node) => node !== titleRef.current && node !== textNode)
+        .map(readText)
+        .filter(Boolean)
+        .join(' ');
+
+      setAnnouncement(
+        [readText(titleRef.current), readText(textNode), childrenText]
+          .filter(Boolean)
+          .join(',\u00A0')
+      );
+    }, [announceOnMount, title, text, children]);
+
     const componentClass = 'euiBanner';
     const classes = classNames(componentClass, className);
 
@@ -162,9 +199,14 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
           ) : null}
 
           <div className={`${componentClass}__body`} css={styles.body}>
-            <div className={`${componentClass}__content`} css={styles.content}>
+            <div
+              ref={contentRef}
+              className={`${componentClass}__content`}
+              css={styles.content}
+            >
               <EuiTitle size={headingSize}>
                 <Heading
+                  ref={titleRef}
                   css={styles.title}
                   data-test-subj={`${dataTestSubj}-title`}
                 >
@@ -227,18 +269,16 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
           </div>
         </div>
 
-        {announceOnMount && (
-          <EuiLiveAnnouncer>
-            {title && title}
-            {title && text && ',\u00A0'}
-            {text && text}
-            {(title || text) && children && ',\u00A0'}
-            {children && children}
-          </EuiLiveAnnouncer>
-        )}
+        {announcement && <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>}
       </div>
     );
   }
 );
 
 EuiBanner.displayName = 'EuiBanner';
+
+// jsdom has no `innerText`, so tests read `textContent`
+const readText = (node: Node | null | undefined) =>
+  (
+    (node as HTMLElement | null | undefined)?.innerText ?? node?.textContent
+  )?.trim();
