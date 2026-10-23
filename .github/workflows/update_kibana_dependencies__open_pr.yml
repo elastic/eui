@@ -43,7 +43,6 @@ concurrency:
   # A newer run for the same source PR supersedes the older run and reports
   # status for the latest commits.
   cancel-in-progress: ${{ !!inputs.source_pr_number }}
-  queue: max
 permissions:
   contents: read
   id-token: write
