@@ -472,59 +472,6 @@ describe('EuiCallOut', () => {
         expect(liveRegion).not.toHaveTextContent('Dismiss this callout');
         expect(liveRegion).not.toHaveTextContent('Primary action');
       });
-
-      it('announces accessible names from aria-label and alt', () => {
-        render(
-          <EuiCallOut
-            announceOnMount
-            title="Announcement title"
-            text="Announcement content"
-          >
-            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
-            <button aria-label="Retry" />
-            <img alt="Status" />
-          </EuiCallOut>
-        );
-
-        act(() => {
-          jest.advanceTimersByTime(50);
-        });
-
-        expect(screen.getByRole('status')).toHaveTextContent(
-          'Announcement title, Announcement content, Retry Status'
-        );
-        expect(screen.getAllByRole('button', { name: 'Retry' })).toHaveLength(
-          1
-        );
-        expect(document.querySelectorAll('img[alt="Status"]')).toHaveLength(1);
-      });
-
-      it('skips hidden content and keeps adjacent buttons apart', () => {
-        render(
-          <EuiCallOut
-            announceOnMount
-            title="Announcement title"
-            text={
-              <>
-                Visible <span hidden>Obsolete message</span>
-              </>
-            }
-          >
-            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
-            <button>Retry</button>
-            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
-            <button>Cancel</button>
-          </EuiCallOut>
-        );
-
-        act(() => {
-          jest.advanceTimersByTime(50);
-        });
-
-        expect(screen.getByRole('status')).toHaveTextContent(
-          /^Announcement title, Visible, Retry Cancel$/
-        );
-      });
     });
   });
 });

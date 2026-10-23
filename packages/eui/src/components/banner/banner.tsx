@@ -10,13 +10,12 @@ import React, {
   forwardRef,
   ReactNode,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
 
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { useEuiBackgroundColorCSS } from '../../global_styling';
 import { CommonProps, DistributiveOmit } from '../common';
 import { useEuiI18n } from '../i18n';
@@ -31,10 +30,6 @@ import {
 import { Props as EuiButtonProps } from '../button/button';
 import { EuiText } from '../text';
 import { EuiLiveAnnouncer } from '../accessibility';
-import {
-  getAnnouncementText,
-  getAnnouncementTextFromNodes,
-} from '../accessibility/announcement_text';
 
 import { EuiBannerSize, euiBannerStyles } from './banner.styles';
 
@@ -138,23 +133,36 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     const hasActions =
       Boolean(primaryActionProps) || Boolean(secondaryActionProps);
 
-    const announcementRootRef = useRef<HTMLDivElement | null>(null);
-    const announcementRefs = useMemo(() => [announcementRootRef, ref], [ref]);
-    const rootRef = useCombinedRefs(announcementRefs);
-    const dismissRef = useRef<HTMLButtonElement | null>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
     const [announcement, setAnnouncement] = useState('');
 
     useEffect(() => {
-      const root = announcementRootRef.current;
-      if (!announceOnMount || !root) {
+      const content = contentRef.current;
+      if (!announceOnMount || !content) {
         setAnnouncement('');
         return;
       }
 
+      // `EuiText` does not forward refs. The text slot is the first direct
+      // `.euiText` child, since `children` render after it.
+      const textNode = text
+        ? Array.from(content.children).find((node) =>
+            node.classList.contains('euiText')
+          )
+        : undefined;
+      const childrenText = Array.from(content.childNodes)
+        .filter((node) => node !== titleRef.current && node !== textNode)
+        .map(readText)
+        .filter(Boolean)
+        .join(' ');
+
       setAnnouncement(
-        bannerAnnouncementText(root, dataTestSubj, dismissRef.current, size)
+        [readText(titleRef.current), readText(textNode), childrenText]
+          .filter(Boolean)
+          .join(',\u00A0')
       );
-    }, [announceOnMount, dataTestSubj, size, title, text, children]);
+    }, [announceOnMount, title, text, children]);
 
     const componentClass = 'euiBanner';
     const classes = classNames(componentClass, className);
@@ -168,7 +176,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
 
     return (
       <div
-        ref={rootRef}
+        ref={ref}
         className={classes}
         css={cssStyles}
         data-size={size}
@@ -191,9 +199,14 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
           ) : null}
 
           <div className={`${componentClass}__body`} css={styles.body}>
-            <div className={`${componentClass}__content`} css={styles.content}>
+            <div
+              ref={contentRef}
+              className={`${componentClass}__content`}
+              css={styles.content}
+            >
               <EuiTitle size={headingSize}>
                 <Heading
+                  ref={titleRef}
                   css={styles.title}
                   data-test-subj={`${dataTestSubj}-title`}
                 >
@@ -210,7 +223,6 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
                   aria-label={dismissAriaLabel}
                   data-test-subj={`${dataTestSubj}-dismiss`}
                   {...dismissButtonProps}
-                  buttonRef={dismissRef}
                   css={[styles.dismiss, dismissButtonProps?.css]}
                   onClick={onDismiss}
                 />
@@ -265,75 +277,8 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
 
 EuiBanner.displayName = 'EuiBanner';
 
-// The content slot's direct children include the title, text, and dismiss
-// control. Read everything else as the children part so no extra wrapper
-// is added around `children`.
-function bannerAnnouncementText(
-  root: HTMLElement,
-  dataTestSubj: string,
-  dismiss: Element | null,
-  size: EuiBannerSize
-) {
-  const content = root.querySelector('.euiBanner__content');
-  if (!content) return '';
-
-  const title = elementByTestSubj(content, `${dataTestSubj}-title`);
-  const text = elementByTestSubj(content, `${dataTestSubj}-text`);
-  const excluded = new Set(
-    [title, text, dismiss]
-      .map((node) => slotChild(content, node))
-      .filter((node): node is Node => node != null)
-  );
-  const childNodes = Array.from(content.childNodes).filter(
-    (node) => !excluded.has(node)
-  );
-  // At size `m` the content slot is a flex column, so every element child is
-  // its own row and a run of text nodes shares one row. At size `s` it is a
-  // block and children flow inline.
-  const childrenText =
-    size === 'm'
-      ? flexItems(childNodes)
-          .map(getAnnouncementTextFromNodes)
-          .filter(Boolean)
-          .join(' ')
-      : getAnnouncementTextFromNodes(childNodes);
-
-  return [getAnnouncementText(title), getAnnouncementText(text), childrenText]
-    .filter(Boolean)
-    .join(',\u00A0');
-}
-
-function flexItems(nodes: Node[]) {
-  const items: Node[][] = [];
-  let textRun: Node[] | null = null;
-
-  for (const node of nodes) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      if (!textRun) {
-        textRun = [];
-        items.push(textRun);
-      }
-      textRun.push(node);
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      textRun = null;
-      items.push([node]);
-    }
-  }
-
-  return items;
-}
-
-function elementByTestSubj(root: ParentNode, testSubj: string) {
-  for (const element of root.querySelectorAll('[data-test-subj]')) {
-    if (element.getAttribute('data-test-subj') === testSubj) return element;
-  }
-  return null;
-}
-
-function slotChild(content: Element, node: Element | null) {
-  let current: Node | null = node;
-  while (current && current.parentNode !== content) {
-    current = current.parentNode;
-  }
-  return current;
-}
+// jsdom has no `innerText`, so tests read `textContent`
+const readText = (node: Node | null | undefined) =>
+  (
+    (node as HTMLElement | null | undefined)?.innerText ?? node?.textContent
+  )?.trim();
