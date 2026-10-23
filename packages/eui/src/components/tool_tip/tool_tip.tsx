@@ -311,16 +311,26 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       };
     }, [hideToolTip]);
 
-    // When the tooltip is visible, this checks if the anchor is still part of document.
-    // This fixes when the react root is removed from the DOM without unmounting
+    // While the trigger has focus but the tooltip isn't visible, expose its
+    // content to assistive technology via a hidden `aria-describedby` target
+    const hasHiddenDescription =
+      isTriggerFocused &&
+      !visible &&
+      !disableScreenReaderOutput &&
+      !!(content || title);
+
+    // When the tooltip or the hidden description is rendered, this checks if the
+    // anchor is still part of document. This fixes when the react root is removed
+    // from the DOM without unmounting, in which case the focused trigger never blurs
     // See: https://github.com/elastic/eui/issues/1105
     useEffect(() => {
-      if (!visible) return;
+      if (!visible && !hasHiddenDescription) return;
 
       let rafId: number;
       const testAnchor = () => {
         if (document.body.contains(anchorRef.current) === false) {
           // the anchor is no longer part of `document`
+          setIsTriggerFocused(false);
           hideToolTip();
         } else {
           rafId = requestAnimationFrame(testAnchor);
@@ -331,7 +341,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       return () => {
         cancelAnimationFrame(rafId);
       };
-    }, [visible, hideToolTip]);
+    }, [visible, hasHiddenDescription, hideToolTip]);
 
     // update scroll listener
     useEffect(() => {
@@ -411,14 +421,6 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
-
-    // While the trigger has focus but the tooltip isn't visible, expose its
-    // content to assistive technology via a hidden `aria-describedby` target
-    const hasHiddenDescription =
-      isTriggerFocused &&
-      !visible &&
-      !disableScreenReaderOutput &&
-      !!(content || title);
 
     return (
       <>

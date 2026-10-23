@@ -472,6 +472,60 @@ describe('EuiToolTip', () => {
         expect(anchor).not.toHaveAttribute('aria-describedby');
       });
     });
+
+    // The React root can be removed from the DOM without unmounting, in which
+    // case the focused trigger never blurs.
+    // @see https://github.com/elastic/eui/issues/1105
+    describe('when the anchor is removed from the DOM without unmounting', () => {
+      beforeEach(() => jest.useFakeTimers());
+      afterEach(() => jest.useRealTimers());
+
+      it('removes the hidden description of a trigger focused without `:focus-visible`', () => {
+        const { container, getByTestSubject } = render(
+          <EuiToolTip content="Tooltip content" id="toolTipId">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(
+          document.getElementById('toolTipId-description')
+        ).toBeInTheDocument();
+
+        act(() => {
+          container.remove();
+          jest.advanceTimersByTime(100);
+        });
+        expect(
+          document.getElementById('toolTipId-description')
+        ).not.toBeInTheDocument();
+      });
+
+      it('removes the tooltip and does not leave a hidden description when the trigger was focused with `:focus-visible`', () => {
+        const { container, getByTestSubject, queryByRole } = render(
+          <EuiToolTip content="Tooltip content" id="toolTipId">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+        const cleanup = simulateFocusVisible(anchor);
+
+        act(() => anchor.focus());
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+
+        act(() => {
+          container.remove();
+          jest.advanceTimersByTime(100);
+        });
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+        expect(
+          document.getElementById('toolTipId-description')
+        ).not.toBeInTheDocument();
+
+        cleanup();
+      });
+    });
   });
 
   describe('disableScreenReaderOutput', () => {
