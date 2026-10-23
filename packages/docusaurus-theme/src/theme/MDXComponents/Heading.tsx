@@ -8,9 +8,15 @@
 
 import { JSX } from 'react';
 import Heading, { Props as HeadingProps } from '@theme/Heading';
+import { DocTitle } from '../../components/doc_title';
 
-const MDXHeading = (props: HeadingProps): JSX.Element => (
-  <Heading {...props} />
-);
+const MDXHeading = (props: HeadingProps): JSX.Element =>
+  props.as === 'h1' ? (
+    <DocTitle>
+      <Heading {...props} />
+    </DocTitle>
+  ) : (
+    <Heading {...props} />
+  );
 
 export default MDXHeading;
