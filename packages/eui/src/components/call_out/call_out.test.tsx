@@ -472,6 +472,23 @@ describe('EuiCallOut', () => {
         expect(liveRegion).not.toHaveTextContent('Dismiss this callout');
         expect(liveRegion).not.toHaveTextContent('Primary action');
       });
+
+      it('does not read the slots of a callout nested in children', () => {
+        render(
+          <EuiCallOut announceOnMount title="Outer title">
+            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
+            <EuiCallOut text="Inner text" />
+          </EuiCallOut>
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(50);
+        });
+
+        expect(screen.getByRole('status')).toHaveTextContent(
+          /^Outer title, Inner text$/
+        );
+      });
     });
   });
 });

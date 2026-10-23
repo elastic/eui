@@ -316,18 +316,20 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       // Read the nodes already on screen. The live region gets that text,
       // not a second copy of the React tree. Only direct slots are read, so a
       // callout nested in `children` is not picked up as this one's slots.
-      const parts = [
-        '.euiCallOutHeader__title',
-        '.euiCallOut__text',
-        '.euiCallOut__additionalContent',
-      ]
-        .map((selector) => {
-          const node = content.querySelector<HTMLElement>(
-            `:scope > ${selector}`
-          );
-          // jsdom has no `innerText`, so tests read `textContent`
-          return (node?.innerText ?? node?.textContent)?.trim();
-        })
+      // Not `:scope >`: jsdom resolves `:scope` by tag and class, which the
+      // nested callout's content shares.
+      const parts = Array.from(
+        content.children as HTMLCollectionOf<HTMLElement>
+      )
+        .filter(({ classList }) =>
+          [
+            'euiCallOutHeader__title',
+            'euiCallOut__text',
+            'euiCallOut__additionalContent',
+          ].some((className) => classList.contains(className))
+        )
+        // jsdom has no `innerText`, so tests read `textContent`
+        .map((node) => (node.innerText ?? node.textContent)?.trim())
         .filter(Boolean);
 
       setAnnouncement(parts.join(',\u00A0'));
