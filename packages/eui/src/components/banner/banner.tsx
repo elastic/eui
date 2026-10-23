@@ -6,10 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, ReactNode } from 'react';
+import React, {
+  forwardRef,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { useEuiBackgroundColorCSS } from '../../global_styling';
 import { CommonProps, DistributiveOmit } from '../common';
 import { useEuiI18n } from '../i18n';
@@ -127,6 +134,21 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     const hasActions =
       Boolean(primaryActionProps) || Boolean(secondaryActionProps);
 
+    const announcementRootRef = useRef<HTMLDivElement | null>(null);
+    const announcementRefs = useMemo(() => [announcementRootRef, ref], [ref]);
+    const rootRef = useCombinedRefs(announcementRefs);
+    const [announcement, setAnnouncement] = useState('');
+
+    useEffect(() => {
+      const root = announcementRootRef.current;
+      if (!announceOnMount || !root) {
+        setAnnouncement('');
+        return;
+      }
+
+      setAnnouncement(bannerAnnouncementText(root, dataTestSubj));
+    }, [announceOnMount, dataTestSubj, title, text, children]);
+
     const componentClass = 'euiBanner';
     const classes = classNames(componentClass, className);
 
@@ -139,7 +161,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
 
     return (
       <div
-        ref={ref}
+        ref={rootRef}
         className={classes}
         css={cssStyles}
         data-size={size}
@@ -227,18 +249,51 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
           </div>
         </div>
 
-        {announceOnMount && (
-          <EuiLiveAnnouncer>
-            {title && title}
-            {title && text && ',\u00A0'}
-            {text && text}
-            {(title || text) && children && ',\u00A0'}
-            {children && children}
-          </EuiLiveAnnouncer>
-        )}
+        {announcement && <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>}
       </div>
     );
   }
 );
 
 EuiBanner.displayName = 'EuiBanner';
+
+// The content slot's direct children include the title, text, and dismiss
+// control. Read everything else as the children part so no extra wrapper
+// is added around `children`.
+function bannerAnnouncementText(root: HTMLElement, dataTestSubj: string) {
+  const content = root.querySelector('.euiBanner__content');
+  if (!content) return '';
+
+  const title = content.querySelector(
+    `[data-test-subj="${CSS.escape(dataTestSubj)}-title"]`
+  );
+  const text = content.querySelector(
+    `[data-test-subj="${CSS.escape(dataTestSubj)}-text"]`
+  );
+  const dismiss = content.querySelector(
+    `[data-test-subj="${CSS.escape(dataTestSubj)}-dismiss"]`
+  );
+  const excluded = new Set(
+    [slotChild(content, title), slotChild(content, text), dismiss].filter(
+      (node): node is Node => node != null
+    )
+  );
+  const childrenText = Array.from(content.childNodes)
+    .filter((node) => !excluded.has(node))
+    .map((node) => node.textContent?.trim() ?? '')
+    .filter(Boolean)
+    .join(' ');
+
+  return [title?.textContent, text?.textContent, childrenText]
+    .map((value) => value?.trim() ?? '')
+    .filter(Boolean)
+    .join(',\u00A0');
+}
+
+function slotChild(content: Element, node: Element | null) {
+  let current: Node | null = node;
+  while (current && current.parentNode !== content) {
+    current = current.parentNode;
+  }
+  return current;
+}

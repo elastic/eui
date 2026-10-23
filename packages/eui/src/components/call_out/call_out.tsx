@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
@@ -147,7 +155,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     where container queries would collapse by design instead of adjusting to the content dimensions. */
     const layoutRef = useLayoutObserver(size);
     // Memoize the refs array so `useCombinedRefs` returns a stable callback-ref across renders
-    const combinedRefs = useMemo(() => [layoutRef, ref], [layoutRef, ref]);
+    const announcementRootRef = useRef<HTMLDivElement | null>(null);
+    const combinedRefs = useMemo(
+      () => [layoutRef, announcementRootRef, ref],
+      [layoutRef, ref]
+    );
     const panelRef = useCombinedRefs(combinedRefs);
 
     const borderColors = useEuiBorderColorCSS();
@@ -295,18 +307,28 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }, [actionProps, color, styles, dataTestSubj]);
 
-    const announcement = useMemo(() => {
-      if (!announceOnMount || !(title || text || children)) return null;
+    const [announcement, setAnnouncement] = useState('');
 
-      return (
-        <EuiLiveAnnouncer>
-          {title}
-          {title && text && ',\u00A0'}
-          {text}
-          {(title || text) && children && ',\u00A0'}
-          {children}
-        </EuiLiveAnnouncer>
-      );
+    useEffect(() => {
+      const root = announcementRootRef.current;
+      if (!announceOnMount || !root) {
+        setAnnouncement('');
+        return;
+      }
+
+      // Read the nodes already on screen. The live region gets that text,
+      // not a second copy of the React tree.
+      const parts = [
+        '.euiCallOutHeader__title',
+        '.euiCallOut__text',
+        '.euiCallOut__additionalContent',
+      ]
+        .map(
+          (selector) => root.querySelector(selector)?.textContent?.trim() ?? ''
+        )
+        .filter(Boolean);
+
+      setAnnouncement(parts.join(',\u00A0'));
     }, [announceOnMount, title, text, children]);
 
     return (
@@ -349,7 +371,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           </div>
 
           {actionControls}
-          {announcement}
+          {announcement && <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>}
         </div>
       </EuiPanel>
     );
