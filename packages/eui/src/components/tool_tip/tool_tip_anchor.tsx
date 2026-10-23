@@ -26,6 +26,11 @@ export type EuiToolTipAnchorProps = Omit<
     onBlur: () => void;
     onFocus: (e: ReactFocusEvent) => void;
     isVisible: boolean;
+    /**
+     * `id` of the hidden tooltip description, linked via `aria-describedby`
+     * while the trigger has focus but the tooltip is not visible
+     */
+    descriptionId?: string;
   };
 
 export const EuiToolTipAnchor = forwardRef<
@@ -43,6 +48,7 @@ export const EuiToolTipAnchor = forwardRef<
       children,
       display,
       isVisible,
+      descriptionId,
       ...rest
     },
     ref
@@ -56,6 +62,8 @@ export const EuiToolTipAnchor = forwardRef<
       suffix: 'euiToolTipAnchor',
       conditionalId: id ? `${id}-wrapper` : undefined,
     });
+
+    const describedById = isVisible && id ? id : descriptionId;
 
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -87,10 +95,9 @@ export const EuiToolTipAnchor = forwardRef<
             onBlur();
             children.props.onBlur && children.props.onBlur(e);
           },
-          'aria-describedby':
-            isVisible && id
-              ? classNames(id, children.props['aria-describedby'])
-              : children.props['aria-describedby'],
+          'aria-describedby': describedById
+            ? classNames(describedById, children.props['aria-describedby'])
+            : children.props['aria-describedby'],
         })}
       </span>
     );
