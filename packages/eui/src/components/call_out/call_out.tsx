@@ -155,11 +155,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     where container queries would collapse by design instead of adjusting to the content dimensions. */
     const layoutRef = useLayoutObserver(size);
     // Memoize the refs array so `useCombinedRefs` returns a stable callback-ref across renders
-    const announcementRootRef = useRef<HTMLDivElement | null>(null);
-    const combinedRefs = useMemo(
-      () => [layoutRef, announcementRootRef, ref],
-      [layoutRef, ref]
-    );
+    const combinedRefs = useMemo(() => [layoutRef, ref], [layoutRef, ref]);
     const panelRef = useCombinedRefs(combinedRefs);
 
     const borderColors = useEuiBorderColorCSS();
@@ -307,24 +303,28 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }, [actionProps, color, styles, dataTestSubj]);
 
+    const contentRef = useRef<HTMLDivElement>(null);
     const [announcement, setAnnouncement] = useState('');
 
     useEffect(() => {
-      const root = announcementRootRef.current;
-      if (!announceOnMount || !root) {
+      const content = contentRef.current;
+      if (!announceOnMount || !content) {
         setAnnouncement('');
         return;
       }
 
       // Read the nodes already on screen. The live region gets that text,
-      // not a second copy of the React tree.
+      // not a second copy of the React tree. Only direct slots are read, so a
+      // callout nested in `children` is not picked up as this one's slots.
       const parts = [
         '.euiCallOutHeader__title',
         '.euiCallOut__text',
         '.euiCallOut__additionalContent',
       ]
         .map((selector) => {
-          const node = root.querySelector<HTMLElement>(selector);
+          const node = content.querySelector<HTMLElement>(
+            `:scope > ${selector}`
+          );
           // jsdom has no `innerText`, so tests read `textContent`
           return (node?.innerText ?? node?.textContent)?.trim();
         })
@@ -351,7 +351,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         <div css={styles.wrapper}>
           <div css={styles.body}>
             {icon}
-            <div css={styles.content}>
+            <div ref={contentRef} css={styles.content}>
               {
                 // Note: the DOM position of the dismiss button matters to screen reader users.
                 // We generally want them to have some context of _what_ they're dismissing,
