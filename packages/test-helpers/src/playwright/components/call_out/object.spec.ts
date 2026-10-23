@@ -40,8 +40,9 @@ test.describe('EuiCallOutObject', () => {
     // `notice shared__message` still carries the `notice` token.
     await page.goto(storyUrl(STORY_ID, 'data-test-subj:notice%20shared'));
     const shared = new EuiCallOutObject(page, 'notice');
-    await shared.locator.first().waitFor({ state: 'visible' });
+    await shared.locator.waitFor({ state: 'visible' });
 
+    await expect(shared.locator).toHaveCount(1);
     expect(await shared.getColor()).toBe('primary');
     expect(await shared.getTitle()).toBe('Callout title');
   });

@@ -25,6 +25,11 @@ export class EuiCallOutObject extends BaseObject {
     super(scope, testSubj, EuiCallOutSelectors.ROOT_SELECTOR);
   }
 
+  /** The call out element itself, see {@link panel}. */
+  override get locator(): Locator {
+    return this.panel;
+  }
+
   /** The title text, or an empty string when the call out has no title. */
   async getTitle(): Promise<string> {
     return this.textOf(this.panel.locator(EuiCallOutSelectors.TITLE_SELECTOR));

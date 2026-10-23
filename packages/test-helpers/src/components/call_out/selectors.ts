@@ -32,5 +32,5 @@ export const EuiCallOutSelectors = {
    * `dismissButtonProps` replaced the test subj.
    */
   DISMISS_BUTTON_SELECTOR:
-    '[data-test-subj="euiDismissCalloutButton"], button:has([data-euiicon-type="cross"])',
+    '[data-test-subj="euiDismissCalloutButton"], button:has([data-icon-type="cross"])',
 };
