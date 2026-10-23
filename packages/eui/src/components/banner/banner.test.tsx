@@ -13,6 +13,8 @@ import { useEuiTheme } from '../../services';
 import { render, renderHook } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
+import { EuiLoadingSpinner } from '../loading';
+
 import { EuiBanner } from './banner';
 
 const illustration = <img src="" alt="'" />;
@@ -324,6 +326,36 @@ describe('EuiBanner', () => {
       await waitFor(() =>
         expect(getByRole('status')).toHaveTextContent(
           /^Hello, Service unavailable$/
+        )
+      );
+    });
+
+    it('keeps adjacent text nodes together at size m', async () => {
+      const { getByRole } = render(
+        <EuiBanner {...requiredProps} title="Hello" announceOnMount>
+          {'un'}
+          {'available'}
+        </EuiBanner>
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(/^Hello, unavailable$/)
+      );
+    });
+
+    it('announces a labelled progressbar', async () => {
+      const { getByRole } = render(
+        <EuiBanner
+          {...requiredProps}
+          title="Hello"
+          text={<EuiLoadingSpinner aria-label="Preparing export" />}
+          announceOnMount
+        />
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          /^Hello, Preparing export$/
         )
       );
     });

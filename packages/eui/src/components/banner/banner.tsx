@@ -287,16 +287,40 @@ function bannerAnnouncementText(
   const childNodes = Array.from(content.childNodes).filter(
     (node) => !excluded.has(node)
   );
-  // At size `m` the content slot is a flex column, so every direct child is
-  // its own row. At size `s` it is a block and children flow inline.
+  // At size `m` the content slot is a flex column, so every element child is
+  // its own row and a run of text nodes shares one row. At size `s` it is a
+  // block and children flow inline.
   const childrenText =
     size === 'm'
-      ? childNodes.map(getAnnouncementText).filter(Boolean).join(' ')
+      ? flexItems(childNodes)
+          .map(getAnnouncementTextFromNodes)
+          .filter(Boolean)
+          .join(' ')
       : getAnnouncementTextFromNodes(childNodes);
 
   return [getAnnouncementText(title), getAnnouncementText(text), childrenText]
     .filter(Boolean)
     .join(',\u00A0');
+}
+
+function flexItems(nodes: Node[]) {
+  const items: Node[][] = [];
+  let textRun: Node[] | null = null;
+
+  for (const node of nodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!textRun) {
+        textRun = [];
+        items.push(textRun);
+      }
+      textRun.push(node);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      textRun = null;
+      items.push([node]);
+    }
+  }
+
+  return items;
 }
 
 function elementByTestSubj(root: ParentNode, testSubj: string) {
