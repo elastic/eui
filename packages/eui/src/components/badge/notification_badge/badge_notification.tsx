@@ -14,7 +14,7 @@ import { CommonProps } from '../../common';
 
 import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
-export const COLORS = ['accent', 'subdued', 'success'] as const;
+export const COLORS = ['primary', 'subdued', 'success'] as const;
 export type BadgeNotificationColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
@@ -33,7 +33,7 @@ export interface EuiNotificationBadgeProps
 
 export const EuiNotificationBadge: FunctionComponent<
   EuiNotificationBadgeProps
-> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
+> = ({ children, className, size = 's', color = 'primary', ...rest }) => {
   const classes = classNames('euiNotificationBadge', className);
 
   const styles = useEuiMemoizedStyles(euiNotificationBadgeStyles);
