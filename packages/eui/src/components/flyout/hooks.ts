@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
+import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
 import { useIsWithinMinBreakpoint, useEuiTheme } from '../../services';
+import type { EuiFocusTrapProps } from '../focus_trap';
 import { EuiFlyoutProps } from './flyout';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
@@ -41,4 +43,92 @@ export const useIsPushed = (
       : windowIsLargeEnoughToPush;
 
   return type === 'push' && isLargeEnoughToPush;
+};
+
+export interface UsePushedFlyoutReturnFocusParams {
+  isPushed: boolean;
+  returnFocus: EuiFocusTrapProps['returnFocus'];
+  /** The element that was focused when the flyout mounted. */
+  triggerRef: RefObject<Element | null>;
+}
+
+/**
+ * Returns focus to the trigger element when a pushed flyout unmounts.
+ *
+ * Pushed flyouts disable their `EuiFocusTrap`, so nothing else returns focus
+ * for them. Overlay flyouts are skipped because their active trap already
+ * does, and `returnFocus` is interpreted the same way the trap does.
+ *
+ * Returns focus handlers to put on the flyout element.
+ */
+export const usePushedFlyoutReturnFocus = ({
+  isPushed,
+  returnFocus = true,
+  triggerRef,
+}: UsePushedFlyoutReturnFocusParams) => {
+  const latest = useRef({ isPushed, returnFocus });
+  latest.current.isPushed = isPushed;
+  latest.current.returnFocus = returnFocus;
+
+  // React focus events bubble through portals, so this also covers focus in
+  // content the flyout renders elsewhere in the DOM, such as popovers and
+  // child flyouts.
+  const isFocusOwnedRef = useRef(false);
+  const onFocus = useCallback(() => {
+    isFocusOwnedRef.current = true;
+  }, []);
+  const onBlur = useCallback(() => {
+    isFocusOwnedRef.current = false;
+  }, []);
+
+  // Layout cleanup runs before the DOM is removed, while focus still shows
+  // where the user left it.
+  useLayoutEffect(
+    () => () => {
+      const { isPushed, returnFocus } = latest.current;
+      const trigger = triggerRef.current;
+
+      if (!isPushed || !returnFocus || !trigger) return;
+
+      // Pushed flyouts don't trap focus, so leave it alone if the user moved
+      // it elsewhere on the page. Focus in another flyout is allowed through:
+      // that flyout may be closing too, and the check below catches it if not.
+      const active = document.activeElement;
+      const mayReturnFocus =
+        isFocusOwnedRef.current ||
+        !active ||
+        active === document.body ||
+        !!active.closest('.euiFlyout');
+      if (!mayReturnFocus) return;
+
+      // Decide once everything closing alongside the flyout has unmounted:
+      // sibling flyouts in the same history group, portalled content, and
+      // child flyout focus traps that pull focus back to themselves before
+      // releasing it.
+      setTimeout(() => {
+        const active = document.activeElement;
+        if (active && active !== document.body && active.isConnected) return;
+
+        const howToReturnFocus =
+          typeof returnFocus === 'function'
+            ? returnFocus(trigger)
+            : returnFocus;
+        if (
+          !howToReturnFocus ||
+          !(trigger instanceof HTMLElement) ||
+          !trigger.isConnected ||
+          trigger === document.body
+        ) {
+          return;
+        }
+
+        trigger.focus(
+          typeof howToReturnFocus === 'object' ? howToReturnFocus : undefined
+        );
+      });
+    },
+    [triggerRef]
+  );
+
+  return { onFocus, onBlur };
 };
