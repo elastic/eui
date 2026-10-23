@@ -141,6 +141,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
     const announcementRootRef = useRef<HTMLDivElement | null>(null);
     const announcementRefs = useMemo(() => [announcementRootRef, ref], [ref]);
     const rootRef = useCombinedRefs(announcementRefs);
+    const dismissRef = useRef<HTMLButtonElement | null>(null);
     const [announcement, setAnnouncement] = useState('');
 
     useEffect(() => {
@@ -150,8 +151,10 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
         return;
       }
 
-      setAnnouncement(bannerAnnouncementText(root, dataTestSubj));
-    }, [announceOnMount, dataTestSubj, title, text, children]);
+      setAnnouncement(
+        bannerAnnouncementText(root, dataTestSubj, dismissRef.current, size)
+      );
+    }, [announceOnMount, dataTestSubj, size, title, text, children]);
 
     const componentClass = 'euiBanner';
     const classes = classNames(componentClass, className);
@@ -207,6 +210,7 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
                   aria-label={dismissAriaLabel}
                   data-test-subj={`${dataTestSubj}-dismiss`}
                   {...dismissButtonProps}
+                  buttonRef={dismissRef}
                   css={[styles.dismiss, dismissButtonProps?.css]}
                   onClick={onDismiss}
                 />
@@ -264,21 +268,31 @@ EuiBanner.displayName = 'EuiBanner';
 // The content slot's direct children include the title, text, and dismiss
 // control. Read everything else as the children part so no extra wrapper
 // is added around `children`.
-function bannerAnnouncementText(root: HTMLElement, dataTestSubj: string) {
+function bannerAnnouncementText(
+  root: HTMLElement,
+  dataTestSubj: string,
+  dismiss: Element | null,
+  size: EuiBannerSize
+) {
   const content = root.querySelector('.euiBanner__content');
   if (!content) return '';
 
   const title = elementByTestSubj(content, `${dataTestSubj}-title`);
   const text = elementByTestSubj(content, `${dataTestSubj}-text`);
-  const dismiss = elementByTestSubj(content, `${dataTestSubj}-dismiss`);
   const excluded = new Set(
-    [slotChild(content, title), slotChild(content, text), dismiss].filter(
-      (node): node is Node => node != null
-    )
+    [title, text, dismiss]
+      .map((node) => slotChild(content, node))
+      .filter((node): node is Node => node != null)
   );
-  const childrenText = getAnnouncementTextFromNodes(
-    Array.from(content.childNodes).filter((node) => !excluded.has(node))
+  const childNodes = Array.from(content.childNodes).filter(
+    (node) => !excluded.has(node)
   );
+  // At size `m` the content slot is a flex column, so every direct child is
+  // its own row. At size `s` it is a block and children flow inline.
+  const childrenText =
+    size === 'm'
+      ? childNodes.map(getAnnouncementText).filter(Boolean).join(' ')
+      : getAnnouncementTextFromNodes(childNodes);
 
   return [getAnnouncementText(title), getAnnouncementText(text), childrenText]
     .filter(Boolean)

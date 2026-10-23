@@ -308,8 +308,96 @@ describe('EuiBanner', () => {
 
       await waitFor(() =>
         expect(getByRole('status')).toHaveTextContent(
-          'Hello, Read more., unavailable Retry Status'
+          /^Hello, Read more\., unavailable Retry Status$/
         )
+      );
+    });
+
+    it('keeps each direct child separate at size m', async () => {
+      const { getByRole } = render(
+        <EuiBanner {...requiredProps} title="Hello" announceOnMount>
+          <span>Service</span>
+          <span>unavailable</span>
+        </EuiBanner>
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          /^Hello, Service unavailable$/
+        )
+      );
+    });
+
+    it('keeps a block boundary before inline content at size s', async () => {
+      const { getByRole } = render(
+        <EuiBanner {...requiredProps} title="Hello" size="s" announceOnMount>
+          <p>Upload failed</p>
+          <a href="#retry">Retry</a>
+        </EuiBanner>
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          /^Hello, Upload failed Retry$/
+        )
+      );
+    });
+
+    it('reads the content of a labelled container', async () => {
+      const { getByRole } = render(
+        <EuiBanner
+          {...requiredProps}
+          title="Hello"
+          text={
+            <section aria-label="Error details">
+              <p>Connection lost</p>
+            </section>
+          }
+          announceOnMount
+        />
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          /^Hello, Connection lost$/
+        )
+      );
+    });
+
+    it('prefers aria-labelledby over aria-label', async () => {
+      const { getByRole } = render(
+        <>
+          <span id="retryLabel">Retry connection</span>
+          <EuiBanner {...requiredProps} title="Hello" announceOnMount>
+            <button aria-labelledby="retryLabel" aria-label="Retry" />
+          </EuiBanner>
+        </>
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(
+          /^Hello, Retry connection$/
+        )
+      );
+    });
+
+    it('leaves out the dismiss button when its data-test-subj is overridden', async () => {
+      const { getByRole } = render(
+        <EuiBanner
+          {...requiredProps}
+          title="Hello"
+          text="World"
+          announceOnMount
+          onDismiss={() => {}}
+          dismissButtonProps={{
+            'aria-label': 'Close banner',
+            'data-test-subj': 'closeBanner',
+          }}
+        />
+      );
+
+      await waitFor(() =>
+        expect(getByRole('status')).toHaveTextContent(/^Hello, World$/)
       );
     });
   });

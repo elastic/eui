@@ -11,6 +11,7 @@ const BLOCK_TAGS = new Set([
   'ARTICLE',
   'ASIDE',
   'BLOCKQUOTE',
+  'BR',
   'DD',
   'DIV',
   'DL',
@@ -39,11 +40,33 @@ const BLOCK_TAGS = new Set([
   'UL',
 ]);
 
+// Elements whose accessible name replaces their content. A labelled region
+// or group still exposes its content, so those are read through.
+const NAMED_BY_LABEL_TAGS = new Set([
+  'BUTTON',
+  'IMG',
+  'INPUT',
+  'SELECT',
+  'TEXTAREA',
+]);
+const NAMED_BY_LABEL_ROLES = new Set([
+  'button',
+  'checkbox',
+  'img',
+  'link',
+  'menuitem',
+  'menuitemcheckbox',
+  'menuitemradio',
+  'option',
+  'radio',
+  'switch',
+  'tab',
+]);
+
 /**
- * Plain text for a live announcement. Inline nodes keep their own spacing.
- * A space is inserted only before a block, or before a node whose name comes
- * from an attribute, so `un` + `available` stays one word and an icon button
- * still contributes its `aria-label`.
+ * Plain text for a live announcement. Inline nodes keep their own spacing, so
+ * `un` + `available` stays one word. Blocks and labelled controls are kept
+ * apart from their neighbours, and a control contributes its accessible name.
  */
 export const getAnnouncementText = (node: Node | null | undefined) =>
   collapse(readNode(node));
@@ -61,51 +84,60 @@ const readNode = (node: Node | null | undefined): string => {
   const element = node as Element;
   if (element.getAttribute('aria-hidden') === 'true') return '';
 
-  const named = explicitName(element);
-  if (named) return named;
+  const name = labelName(element);
+  if (name) return name;
 
   return readNodes(element.childNodes);
 };
 
 const readNodes = (nodes: ArrayLike<Node>) => {
   let text = '';
+  let afterBoundary = false;
 
   for (const node of Array.from(nodes)) {
+    const boundary = isBoundary(node);
     const part = readNode(node);
-    if (!part) continue;
 
-    if (
-      text &&
-      needsSeparator(node) &&
-      !/\s$/.test(text) &&
-      !/^\s/.test(part)
-    ) {
-      text += ' ';
+    if (part) {
+      text += afterBoundary || boundary ? ` ${part}` : part;
     }
-    text += part;
+    if (part || boundary) afterBoundary = boundary;
   }
 
   return text;
 };
 
-const needsSeparator = (node: Node) => {
+const isBoundary = (node: Node) => {
   if (node.nodeType !== Node.ELEMENT_NODE) return false;
   const element = node as Element;
-  return BLOCK_TAGS.has(element.tagName) || explicitName(element) != null;
+  return BLOCK_TAGS.has(element.tagName) || labelName(element) != null;
 };
 
-const explicitName = (element: Element) => {
-  const ariaLabel = element.getAttribute('aria-label')?.trim();
-  if (ariaLabel) return ariaLabel;
+const isNamedByLabel = (element: Element) => {
+  const role = element.getAttribute('role');
+  if (role) return NAMED_BY_LABEL_ROLES.has(role);
+  if (element.tagName === 'A') return element.hasAttribute('href');
+  return NAMED_BY_LABEL_TAGS.has(element.tagName);
+};
+
+const labelName = (element: Element) => {
+  if (!isNamedByLabel(element)) return null;
 
   const labelledBy = element.getAttribute('aria-labelledby');
   if (labelledBy) {
-    const text = labelledBy
-      .split(/\s+/)
-      .map((id) => element.ownerDocument.getElementById(id)?.textContent ?? '')
-      .join(' ');
-    if (text.trim()) return text;
+    const text = collapse(
+      labelledBy
+        .split(/\s+/)
+        .map(
+          (id) => element.ownerDocument.getElementById(id)?.textContent ?? ''
+        )
+        .join(' ')
+    );
+    if (text) return text;
   }
+
+  const ariaLabel = element.getAttribute('aria-label')?.trim();
+  if (ariaLabel) return ariaLabel;
 
   if (element.tagName === 'IMG') {
     return element.getAttribute('alt')?.trim() || null;
