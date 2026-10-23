@@ -49,7 +49,8 @@ export const useEuiFlyoutMenu = ({
 
   // Determine if the menu has any content
   // hasBackButton or hasHistory or hasLeadingActions or hasTrailingActions
-  // or hasCustomActions (deprecated alias) or hasVisibleTitle or hasPagination
+  // or hasCustomActions (deprecated alias) or hasMaximizeButton or
+  // hasVisibleTitle or hasPagination
   const effectiveTrailingActions =
     flyoutMenuProps.trailingActions !== undefined
       ? flyoutMenuProps.trailingActions
@@ -60,6 +61,7 @@ export const useEuiFlyoutMenu = ({
       (flyoutMenuProps.historyItems?.length ?? 0) >= MIN_HISTORY_ITEMS ||
       (flyoutMenuProps.leadingActions?.length ?? 0) > 0 ||
       (effectiveTrailingActions?.length ?? 0) > 0 ||
+      !!flyoutMenuProps.showMaximizeButton ||
       // Component defaults to hiding the title, so only explicit false means the title will be visible
       !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false) ||
       !!(flyoutMenuProps.pagination && flyoutMenuProps.pagination.total >= 1));

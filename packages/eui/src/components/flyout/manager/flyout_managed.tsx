@@ -26,6 +26,7 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import { shouldPublishFlyoutWidth } from '../use_flyout_maximize';
 import type { EuiFlyoutCloseEvent, EuiFlyoutCloseMeta } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -345,12 +346,30 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     };
 
+    const isMaximized =
+      !!_flyoutMenuProps?.showMaximizeButton &&
+      !!managerState?.flyouts.find((f) => f.flyoutId === flyoutId)?.maximized;
+    const heldWidthRef = useRef<number | undefined>(undefined);
+
     // Update width in manager state when it changes
     useEffect(() => {
-      if (isActive && width) {
+      if (!isActive) return;
+      if (isMaximized) {
+        heldWidthRef.current = width;
+        return;
+      }
+      if (
+        width &&
+        shouldPublishFlyoutWidth({
+          isMaximized,
+          width,
+          heldWidth: heldWidthRef.current,
+        })
+      ) {
+        heldWidthRef.current = undefined;
         setFlyoutWidth(flyoutId, width);
       }
-    }, [flyoutId, level, isActive, width, setFlyoutWidth]);
+    }, [flyoutId, level, isActive, isMaximized, width, setFlyoutWidth]);
 
     const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
       flyoutId,

@@ -173,6 +173,19 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     showBackButton?: boolean;
     /**
+     * Shows a maximize/restore toggle in the trailing actions. A maximized
+     * flyout fills the width of its container. When a managed session has a
+     * child flyout, only the child shows the toggle, and maximizing it keeps
+     * the main flyout's width.
+     * @default false
+     */
+    showMaximizeButton?: boolean;
+    /**
+     * Called with the next state when the maximize toggle is clicked, and with
+     * `false` when a child flyout opening restores a maximized main flyout.
+     */
+    onMaximizeChange?: (isMaximized: boolean) => void;
+    /**
      * Props to pass to the back button, such as `onClick` handler
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
@@ -201,3 +214,14 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     pagination?: EuiFlyoutMenuPagination;
   };
+
+/**
+ * Maximize state that `EuiFlyout` passes to its menu. Not part of the public
+ * `flyoutMenuProps` surface.
+ * @internal
+ */
+export interface EuiFlyoutMenuMaximizeState {
+  isMaximized?: boolean;
+  canMaximize?: boolean;
+  onToggleMaximize?: () => void;
+}

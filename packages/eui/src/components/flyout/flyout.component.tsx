@@ -53,7 +53,11 @@ import { useResizeObserver } from '../observer/resize_observer';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
-import { euiFlyoutStyles, composeFlyoutInlineStyles } from './flyout.styles';
+import {
+  euiFlyoutStyles,
+  composeFlyoutInlineStyles,
+  getMaximizedFlyoutStyles,
+} from './flyout.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import {
   _EuiFlyoutPaddingSize,
@@ -81,6 +85,7 @@ import type {
 } from './types';
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
+import { useEuiFlyoutMaximize } from './use_flyout_maximize';
 import { useEuiFlyoutMenu } from './use_flyout_menu';
 
 interface _EuiFlyoutComponentProps {
@@ -577,6 +582,18 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
 
+    const { isMaximized, canMaximize, toggleMaximize } = useEuiFlyoutMaximize({
+      enabled: !!_flyoutMenuProps?.showMaximizeButton,
+      flyoutId,
+      isInManagedContext,
+      isMainFlyout,
+      ownChildFlyoutId: isMainFlyout ? siblingFlyoutId : null,
+      maximized: managerState?.flyouts.find((f) => f.flyoutId === flyoutId)
+        ?.maximized,
+      setMaximized: flyoutManager?.setFlyoutMaximized,
+      onMaximizeChange: _flyoutMenuProps?.onMaximizeChange,
+    });
+
     // Track the container's bounding rect for positioning the flyout.
     const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
 
@@ -744,7 +761,9 @@ export const EuiFlyoutComponent = forwardRef(
       // it is the active session's flyout; a backgrounded push flyout (e.g. under a new overlay
       // session) withdraws its contribution so the page is not left pushed for it.
       const shouldPush =
-        isPushed && (!isInManagedContext || isActiveManagedFlyout);
+        isPushed &&
+        !isMaximized &&
+        (!isInManagedContext || isActiveManagedFlyout);
 
       if (!shouldPush) {
         return;
@@ -766,6 +785,7 @@ export const EuiFlyoutComponent = forwardRef(
       };
     }, [
       isPushed,
+      isMaximized,
       isInManagedContext,
       isActiveManagedFlyout,
       side,
@@ -987,7 +1007,18 @@ export const EuiFlyoutComponent = forwardRef(
         }
       }
 
-      return { ...style, ...composedStyles, ...containerPositionStyles };
+      const maximizedStyles = getMaximizedFlyoutStyles({
+        isMaximized,
+        containerWidth: containerRect?.width,
+        siblingFlyoutWidth: isMainFlyout ? 0 : siblingFlyoutWidth,
+      });
+
+      return {
+        ...style,
+        ...composedStyles,
+        ...containerPositionStyles,
+        ...maximizedStyles,
+      };
     }, [
       style,
       size,
@@ -999,6 +1030,8 @@ export const EuiFlyoutComponent = forwardRef(
       containerRect,
       side,
       isChildFlyout,
+      isMainFlyout,
+      isMaximized,
       euiTheme.breakpoint.m,
     ]);
 
@@ -1009,8 +1042,9 @@ export const EuiFlyoutComponent = forwardRef(
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
       maxWidth === false && styles.noMaxWidth,
-      isPushed ? styles.push.push : styles.overlay.overlay,
-      isPushed ? styles.push[side] : styles.overlay[side],
+      // A maximized push flyout keeps push behavior but drops the push chrome
+      isPushed && !isMaximized ? styles.push.push : styles.overlay.overlay,
+      isPushed && !isMaximized ? styles.push[side] : styles.overlay[side],
       !hasAnimation && styles.noAnimation,
       styles[side],
     ];
@@ -1018,6 +1052,7 @@ export const EuiFlyoutComponent = forwardRef(
     const classes = classnames(
       'euiFlyout',
       isChildFlyout && hasChildBackground && 'euiFlyout--hasChildBackground',
+      isMaximized && 'euiFlyout--maximized',
       className
     );
 
@@ -1221,7 +1256,13 @@ export const EuiFlyoutComponent = forwardRef(
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (
-              <EuiFlyoutMenu {...flyoutMenuProps} titleId={flyoutMenuId} />
+              <EuiFlyoutMenu
+                {...flyoutMenuProps}
+                titleId={flyoutMenuId}
+                isMaximized={isMaximized}
+                canMaximize={canMaximize}
+                onToggleMaximize={toggleMaximize}
+              />
             ) : (
               !hideCloseButton && (
                 <EuiFlyoutCloseButton
@@ -1232,7 +1273,7 @@ export const EuiFlyoutComponent = forwardRef(
                 />
               )
             )}
-            {resizable && (
+            {resizable && !isMaximized && (
               <EuiFlyoutResizeButton
                 type={type}
                 side={side}
