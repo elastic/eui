@@ -40,6 +40,7 @@ export type EuiDatePickerRangeProps = CommonProps &
     | 'readOnly'
     | 'fullWidth'
     | 'compressed'
+    | 'clear'
     | 'prepend'
     | 'append'
     | 'delimiter'
@@ -81,7 +82,7 @@ export type EuiDatePickerRangeProps = CommonProps &
 
     /**
      * Displays both date picker calendars directly on the page.
-     * Will not render `iconType`, `fullWidth`, `prepend`, or `append`.
+     * Will not render `iconType`, `fullWidth`, `clear`, `prepend`, or `append`.
      *
      * Passes through to each control if `isCustom` is not set.
      */
@@ -125,6 +126,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   disabled,
   onFocus,
   onBlur,
+  clear,
   append,
   prepend,
   delimiter,
@@ -241,6 +243,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         isDisabled={disabled}
         isInvalid={isInvalid}
         isLoading={isLoading}
+        clear={inline ? undefined : clear}
         append={inline ? undefined : append}
         prepend={inline ? undefined : prepend}
         css={
