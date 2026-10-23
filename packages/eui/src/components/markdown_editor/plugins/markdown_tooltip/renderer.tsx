@@ -23,7 +23,7 @@ export const tooltipMarkdownRenderer: FunctionComponent<
   return (
     <span>
       <EuiToolTip content={content}>
-        <span>
+        <span tabIndex={0}>
           <strong>{children}</strong>
           <EuiIcon
             type="question"
