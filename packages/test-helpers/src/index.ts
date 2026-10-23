@@ -15,6 +15,8 @@ export { EuiSelectableObject } from './playwright/components/selectable/object';
 export { EuiSideNavObject } from './playwright/components/side_nav/object';
 export { EuiDraggableObject } from './playwright/components/drag_and_drop/object';
 export { EuiFilterButtonObject } from './playwright/components/filter_button/object';
+export { EuiFieldSearchObject } from './playwright/components/form/field_search/object';
+export { EuiSearchBarObject } from './playwright/components/search_bar/object';
 export { EuiRangeObject } from './playwright/components/form/range/object';
 export { EuiPopoverObject } from './playwright/components/popover/object';
 export { EuiFlyoutObject } from './playwright/components/flyout/object';
