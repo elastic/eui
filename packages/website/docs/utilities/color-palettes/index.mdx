@@ -9,7 +9,7 @@ EUI provides a base set of color palettes that return an array of hexadecimal co
 
 Qualitative palettes are best suited for communicating and comparing discrete data series. EUI recommends using the `euiPaletteColorBlind()` for qualitative and categorical data.
 
-This palette is restricted to only 10 colors. However, you can add more groups of 10 which are alternates of the original. This is better than allowing the initial set to loop.
+This palette is restricted to only 12 colors. However, you can add more groups of 12 which are alternates of the original. This is better than allowing the initial set to loop.
 
 These colors are meant to be used as graphics and contrasted against the value of `euiColorEmptyShade` for the current theme. When placing text on top of these colors, use the `euiPaletteColorBlindBehindText()` variant. It is a brightened version of the base palette to create better contrast with text.
 
@@ -35,12 +35,12 @@ These colors are meant to be used as graphics and contrasted against the value o
 
   const getCustomPalettes = () => [
     {
-      title: 'Max 10 colors',
+      title: 'Max 12 colors',
       palette: euiPaletteColorBlind(),
       code: 'euiPaletteColorBlind()',
     },
     {
-      title: 'More than 10 colors are needed',
+      title: 'More than 12 colors are needed',
       palette: euiPaletteColorBlind({ rotations: 2 }),
       code: 'euiPaletteColorBlind({rotations: 2})',
     },
@@ -92,7 +92,10 @@ These colors are meant to be used as graphics and contrasted against the value o
             </EuiTitle>
             <EuiSpacer size="s" />
             <EuiFlexGroup alignItems="center">
-              <EuiFlexItem grow={false} style={{ maxWidth: 240 }}>
+              <EuiFlexItem
+                grow={false}
+                style={{ maxWidth: `calc(${euiTheme.size.l} * 12)` }}
+              >
                 <EuiFlexGroup
                   className="guideColorPalette__swatchHolder"
                   gutterSize="none"
