@@ -86,7 +86,9 @@ import type {
 import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
 import {
-  shouldPublishFlyoutWidth,
+  type FlyoutWidthHold,
+  getIsManagedFlyoutMaximized,
+  resolveFlyoutWidth,
   useEuiFlyoutMaximize,
 } from './use_flyout_maximize';
 import { useEuiFlyoutMenu } from './use_flyout_menu';
@@ -591,8 +593,11 @@ export const EuiFlyoutComponent = forwardRef(
       isInManagedContext,
       isMainFlyout,
       ownChildFlyoutId: isMainFlyout ? siblingFlyoutId : null,
-      maximized: managerState?.flyouts.find((f) => f.flyoutId === flyoutId)
-        ?.maximized,
+      maximized: getIsManagedFlyoutMaximized(
+        _flyoutMenuProps,
+        managerState,
+        flyoutId
+      ),
       setMaximized: flyoutManager?.setFlyoutMaximized,
       onMaximizeChange: _flyoutMenuProps?.onMaximizeChange,
     });
@@ -715,7 +720,7 @@ export const EuiFlyoutComponent = forwardRef(
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
     // The measurement taken while maximized is the full container width; it
     // must not become the push offset when the flyout is restored.
-    const pushWidthRef = useRef<{ restored?: number; held?: number }>({});
+    const pushWidthHoldRef = useRef<FlyoutWidthHold>({});
 
     /**
      * Effect for adding push padding so the flyout has room. Targets the
@@ -756,26 +761,19 @@ export const EuiFlyoutComponent = forwardRef(
         }
       };
 
-      const pushWidth = pushWidthRef.current;
-      if (isMaximized) {
-        pushWidth.held = width;
-      } else if (
-        shouldPublishFlyoutWidth({
-          isMaximized,
-          width,
-          heldWidth: pushWidth.held,
-        })
-      ) {
-        pushWidth.restored = width;
-        pushWidth.held = undefined;
-      }
+      const resolved = resolveFlyoutWidth(
+        pushWidthHoldRef.current,
+        isMaximized,
+        width
+      );
+      pushWidthHoldRef.current = resolved.hold;
 
       const paddingWidth =
         layoutMode === LAYOUT_MODE_STACKED &&
         isMainFlyout &&
         _siblingFlyoutWidth
           ? _siblingFlyoutWidth
-          : pushWidth.restored ?? width;
+          : resolved.width ?? width;
 
       // A standalone flyout pushes whenever it is in push mode. A managed flyout only pushes while
       // it is the active session's flyout; a backgrounded push flyout (e.g. under a new overlay
@@ -1062,7 +1060,9 @@ export const EuiFlyoutComponent = forwardRef(
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
       maxWidth === false && styles.noMaxWidth,
-      // A maximized push flyout keeps push behavior but drops the push chrome
+      // A maximized push flyout stops padding the page and swaps the push
+      // border for the overlay shadow. `isPushed` still drives Escape, the
+      // focus trap, and the mask.
       isPushed && !isMaximized ? styles.push.push : styles.overlay.overlay,
       isPushed && !isMaximized ? styles.push[side] : styles.overlay[side],
       !hasAnimation && styles.noAnimation,

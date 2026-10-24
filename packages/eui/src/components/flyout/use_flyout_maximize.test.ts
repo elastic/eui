@@ -8,8 +8,10 @@
 
 import { act } from '@testing-library/react';
 import { renderHook } from '../../test/rtl/render_hook';
+import { createMockState } from './manager/__mocks__';
 import {
-  shouldPublishFlyoutWidth,
+  getIsManagedFlyoutMaximized,
+  resolveFlyoutWidth,
   useEuiFlyoutMaximize,
   UseEuiFlyoutMaximize,
 } from './use_flyout_maximize';
@@ -133,54 +135,75 @@ describe('useEuiFlyoutMaximize', () => {
   });
 });
 
-describe('shouldPublishFlyoutWidth', () => {
-  it('holds every measurement while maximized', () => {
-    expect(
-      shouldPublishFlyoutWidth({
-        isMaximized: true,
-        width: 1200,
-        heldWidth: undefined,
-      })
-    ).toBe(false);
-  });
+describe('getIsManagedFlyoutMaximized', () => {
+  const state = {
+    ...createMockState(),
+    flyouts: [
+      { flyoutId: 'flyout-1', level: 'main' as const, maximized: true },
+    ],
+  };
 
-  it('skips the stale maximized sample on the first restored call', () => {
+  it('is true when the button is enabled and the store flag is set', () => {
     expect(
-      shouldPublishFlyoutWidth({
-        isMaximized: false,
-        width: 1200,
-        heldWidth: 1200,
-      })
-    ).toBe(false);
-  });
-
-  it('publishes the next restored measurement', () => {
-    expect(
-      shouldPublishFlyoutWidth({
-        isMaximized: false,
-        width: 480,
-        heldWidth: 1200,
-      })
+      getIsManagedFlyoutMaximized(
+        { showMaximizeButton: true },
+        state,
+        'flyout-1'
+      )
     ).toBe(true);
   });
 
-  it('publishes normally when never maximized', () => {
-    expect(
-      shouldPublishFlyoutWidth({
-        isMaximized: false,
-        width: 480,
-        heldWidth: undefined,
-      })
-    ).toBe(true);
+  it('is false when the button is not enabled', () => {
+    expect(getIsManagedFlyoutMaximized({}, state, 'flyout-1')).toBe(false);
   });
 
-  it('ignores an empty measurement', () => {
+  it('is false for a flyout without the store flag', () => {
     expect(
-      shouldPublishFlyoutWidth({
-        isMaximized: false,
-        width: 0,
-        heldWidth: undefined,
-      })
+      getIsManagedFlyoutMaximized(
+        { showMaximizeButton: true },
+        state,
+        'flyout-2'
+      )
     ).toBe(false);
+  });
+});
+
+describe('resolveFlyoutWidth', () => {
+  it('passes widths through when never maximized', () => {
+    expect(resolveFlyoutWidth({}, false, 480)).toEqual({
+      hold: { trusted: 480 },
+      width: 480,
+    });
+  });
+
+  it('stands in the last restored width while maximized', () => {
+    expect(resolveFlyoutWidth({ trusted: 480 }, true, 1200)).toEqual({
+      hold: { trusted: 480, held: 1200 },
+      width: 480,
+    });
+  });
+
+  it('treats the first restored sample as the stale maximized width', () => {
+    const hold = { trusted: 480, held: 1200 };
+
+    expect(resolveFlyoutWidth(hold, false, 1200)).toEqual({
+      hold,
+      width: 480,
+    });
+  });
+
+  it('takes the next restored measurement', () => {
+    expect(
+      resolveFlyoutWidth({ trusted: 480, held: 1200 }, false, 500)
+    ).toEqual({ hold: { trusted: 500 }, width: 500 });
+  });
+
+  it('drops the hold when the measurement is missing', () => {
+    // A push flyout falling back to overlay detaches the resize observer; the
+    // width it had before must not return when it pushes again
+    const detached = resolveFlyoutWidth({ trusted: 480 }, false, 0);
+    expect(detached).toEqual({ hold: {}, width: 0 });
+
+    expect(resolveFlyoutWidth(detached.hold, false, 0).width).toBe(0);
   });
 });

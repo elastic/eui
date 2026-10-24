@@ -658,7 +658,7 @@ describe('flyoutManagerReducer', () => {
       ).toBe(false);
     });
 
-    it('leaves a maximized child alone when another child is added', () => {
+    it('restores a maximized child that another child replaces', () => {
       let state = flyoutManagerReducer(
         initialState,
         addFlyout('main-1', 'main', LEVEL_MAIN)
@@ -674,9 +674,74 @@ describe('flyoutManagerReducer', () => {
         addFlyout('child-2', 'child', LEVEL_CHILD)
       );
 
+      // Going back must not bring child-1 back maximized
+      expect(state.sessions[0].childHistory[0].flyoutId).toBe('child-1');
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'child-1')?.maximized
+      ).toBe(false);
+    });
+
+    it('restores the main when setActiveFlyout attaches a child', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+
+      state = flyoutManagerReducer(state, setActiveFlyout('child-1'));
+
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'main-1')?.maximized
+      ).toBe(false);
+    });
+
+    it('restores the outgoing child when setActiveFlyout switches children', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('child-1', true));
+
+      state = flyoutManagerReducer(state, setActiveFlyout('child-2'));
+
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'child-1')?.maximized
+      ).toBe(false);
+    });
+
+    it('keeps a maximized child when setActiveFlyout re-selects it', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('child-1', true));
+
+      state = flyoutManagerReducer(state, setActiveFlyout('child-1'));
+
       expect(
         state.flyouts.find((f) => f.flyoutId === 'child-1')?.maximized
       ).toBe(true);
+    });
+
+    it('keeps a maximized main when setActiveFlyout clears the child', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+
+      const next = flyoutManagerReducer(state, setActiveFlyout(null));
+
+      expect(next.flyouts).toBe(state.flyouts);
     });
   });
 

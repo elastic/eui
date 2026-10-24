@@ -7,6 +7,21 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { EuiFlyoutMenuProps } from './flyout_menu';
+import type { EuiFlyoutManagerState } from './manager/types';
+
+/**
+ * Whether a managed flyout is maximized. The managed wrapper and the flyout
+ * component both read this, so they agree on the same render.
+ * @internal
+ */
+export const getIsManagedFlyoutMaximized = (
+  flyoutMenuProps: EuiFlyoutMenuProps | undefined,
+  managerState: EuiFlyoutManagerState | undefined,
+  flyoutId: string
+): boolean =>
+  !!flyoutMenuProps?.showMaximizeButton &&
+  !!managerState?.flyouts.find((f) => f.flyoutId === flyoutId)?.maximized;
 
 /**
  * @internal
@@ -19,7 +34,7 @@ export interface UseEuiFlyoutMaximize {
   isMainFlyout: boolean;
   /** The child of this flyout's own session, which is not necessarily the foreground session */
   ownChildFlyoutId: string | null;
-  /** The managed flyout's `maximized` flag from the manager store */
+  /** For managed flyouts, the result of `getIsManagedFlyoutMaximized` */
   maximized?: boolean;
   setMaximized?: (flyoutId: string, maximized: boolean) => void;
   onMaximizeChange?: (isMaximized: boolean) => void;
@@ -43,8 +58,9 @@ export const useEuiFlyoutMaximize = ({
 }: UseEuiFlyoutMaximize) => {
   const [localMaximized, setLocalMaximized] = useState(false);
 
-  const isMaximized =
-    enabled && (isInManagedContext ? !!maximized : localMaximized);
+  const isMaximized = isInManagedContext
+    ? !!maximized
+    : enabled && localMaximized;
   const canMaximize = enabled && !(isMainFlyout && ownChildFlyoutId);
 
   const toggleMaximize = useCallback(() => {
@@ -72,22 +88,36 @@ export const useEuiFlyoutMaximize = ({
 };
 
 /**
- * Decides whether a managed flyout's measured width may be written to the
- * manager store. Layout mode and sibling clamping trust the stored width, so
- * it must never hold the full-container width painted while maximized. The
- * first sample after restore is still the maximized width (`heldWidth`),
- * because the resize observer has not yet seen the restored layout.
  * @internal
  */
-export const shouldPublishFlyoutWidth = ({
-  isMaximized,
-  width,
-  heldWidth,
-}: {
-  isMaximized: boolean;
-  width: number | undefined;
-  heldWidth: number | undefined;
-}): boolean => {
-  if (!width || isMaximized) return false;
-  return width !== heldWidth;
+export interface FlyoutWidthHold {
+  /** The last width measured while not maximized */
+  trusted?: number;
+  /** The last width measured while maximized */
+  held?: number;
+}
+
+/**
+ * Resolves the width that the store and the push padding may use. While
+ * maximized, the measured width is the full container, so the last restored
+ * width stands in for it. The first sample after restore is still the
+ * maximized width, because the resize observer has not yet seen the restored
+ * layout, so it is treated the same way. A missing measurement (the observer
+ * is detached) drops the hold, so a stale width never outlives it.
+ * @internal
+ */
+export const resolveFlyoutWidth = (
+  hold: FlyoutWidthHold,
+  isMaximized: boolean,
+  width: number | undefined
+): { hold: FlyoutWidthHold; width: number | undefined } => {
+  if (!width) return { hold: {}, width };
+  if (isMaximized) {
+    return {
+      hold: { trusted: hold.trusted, held: width },
+      width: hold.trusted,
+    };
+  }
+  if (width === hold.held) return { hold, width: hold.trusted ?? width };
+  return { hold: { trusted: width }, width };
 };
