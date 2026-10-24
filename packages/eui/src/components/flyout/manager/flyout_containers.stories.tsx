@@ -62,6 +62,7 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   showFooter?: boolean;
   mainResizable?: boolean;
   childResizable?: boolean;
+  showMaximizeButton?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -121,6 +122,11 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether the child flyout should be resizable.',
     },
+    showMaximizeButton: {
+      control: { type: 'boolean' },
+      description:
+        'Passes `flyoutMenuProps.showMaximizeButton` to the app flyout and its child. While the child is open, only the child shows the button.',
+    },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -150,6 +156,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
     mainResizable: true,
     childResizable: false,
+    showMaximizeButton: true,
     mainMinWidth: undefined,
     childMinWidth: undefined,
     mainMaxWidth: undefined,
@@ -186,6 +193,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   mainMinWidth,
   childResizable,
   childMinWidth,
+  showMaximizeButton,
   ...args
 }) => {
   const { euiTheme } = useEuiTheme();
@@ -313,6 +321,11 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       minWidth={childMinWidth}
       ownFocus={false}
       resizable={childResizable}
+      flyoutMenuProps={{
+        showMaximizeButton,
+        onMaximizeChange: (isMaximized) =>
+          playgroundActions.log(`Child flyout maximized: ${isMaximized}`),
+      }}
       {...args}
       aria-label={`Child Flyout (${childSize})`}
       onClose={closeChild}
@@ -377,6 +390,11 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       minWidth={mainMinWidth}
       ownFocus={false}
       resizable={mainResizable}
+      flyoutMenuProps={{
+        showMaximizeButton,
+        onMaximizeChange: (isMaximized) =>
+          playgroundActions.log(`App flyout maximized: ${isMaximized}`),
+      }}
       aria-label={`App Flyout (${mainSize})`}
       {...args}
       onClose={closeAppFlyout}

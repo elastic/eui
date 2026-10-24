@@ -77,11 +77,13 @@ const meta: Meta<Args> = {
     pagination: { table: { disable: true } },
     hideCloseButton: { table: { disable: true } },
     hideTitle: { table: { disable: true } },
+    onMaximizeChange: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
     trailingActionCount: 2,
     historyItemCount: 3,
+    showMaximizeButton: false,
   },
 };
 
@@ -133,7 +135,12 @@ const buildActions = (
   }));
 
 const MenuBarFlyout = (args: Args) => {
-  const { leadingActionCount, trailingActionCount, historyItemCount } = args;
+  const {
+    leadingActionCount,
+    trailingActionCount,
+    historyItemCount,
+    showMaximizeButton,
+  } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -189,6 +196,8 @@ const MenuBarFlyout = (args: Args) => {
             historyItems,
             leadingActions,
             trailingActions,
+            showMaximizeButton,
+            onMaximizeChange: action('onMaximizeChange'),
           }}
         >
           <EuiFlyoutHeader hasBorder>
@@ -335,6 +344,7 @@ export const PaginationExample: StoryObj<Args> = {
   argTypes: {
     // Not applicable outside the "Playground" story
     historyItemCount: { table: { disable: true } },
+    showMaximizeButton: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
@@ -440,6 +450,7 @@ export const ActionStates: StoryObj<Args> = {
     historyItemCount: { table: { disable: true } },
     paginationTotal: { table: { disable: true } },
     paginationVariant: { table: { disable: true } },
+    showMaximizeButton: { table: { disable: true } },
   },
   render: () => <ActionStatesFlyout />,
 };

@@ -20,6 +20,7 @@ import {
   closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
+  setFlyoutMaximized,
   setPagination,
   setLayoutMode,
   setActivityStage,
@@ -574,6 +575,108 @@ describe('flyoutManagerReducer', () => {
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
+    });
+  });
+
+  describe('ACTION_SET_MAXIMIZED', () => {
+    it('sets the flag without touching size or width', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN, 'm')
+      );
+      state = flyoutManagerReducer(state, setFlyoutWidth('main-1', 400));
+
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+
+      expect(state.flyouts[0]).toMatchObject({
+        maximized: true,
+        size: 'm',
+        width: 400,
+      });
+
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', false));
+      expect(state.flyouts[0].maximized).toBe(false);
+    });
+
+    it('returns the same state when the value is unchanged', () => {
+      const state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      expect(
+        flyoutManagerReducer(state, setFlyoutMaximized('main-1', false))
+      ).toBe(state);
+    });
+
+    it('ignores a non-existent flyout ID', () => {
+      expect(
+        flyoutManagerReducer(
+          initialState,
+          setFlyoutMaximized('non-existent', true)
+        )
+      ).toBe(initialState);
+    });
+
+    it('restores the main in the same update that adds its first child', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+
+      expect(state.sessions[0].childFlyoutId).toBe('child-1');
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'main-1')?.maximized
+      ).toBe(false);
+    });
+
+    it('restores the main when a child replaces an existing child', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'child', LEVEL_CHILD)
+      );
+
+      expect(state.sessions[0].childFlyoutId).toBe('child-2');
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'main-1')?.maximized
+      ).toBe(false);
+    });
+
+    it('leaves a maximized child alone when another child is added', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+      state = flyoutManagerReducer(state, setFlyoutMaximized('child-1', true));
+
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-2', 'child', LEVEL_CHILD)
+      );
+
+      expect(
+        state.flyouts.find((f) => f.flyoutId === 'child-1')?.maximized
+      ).toBe(true);
     });
   });
 
