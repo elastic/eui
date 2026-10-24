@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiShadowFlat } from '@elastic/eui-theme-common';
+import { euiShadowXSmall } from '@elastic/eui-theme-common';
 
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
@@ -35,7 +35,7 @@ export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${euiTheme.components.bottomBarBackground};
       ${logicalCSS('border-top', euiTheme.border.thin)}
       ${highContrastModeStyles(euiThemeContext, {
-        none: euiShadowFlat(euiThemeContext, { border: 'none' }),
+        none: euiShadowXSmall(euiThemeContext, { border: 'none' }),
       })}
       /* prevent shadow from overlapping content in compositions */
       clip-path: polygon(0 -100vh, 100% -100vh, 100% 100%, 0 100%);

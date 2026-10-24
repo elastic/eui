@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 import {
   euiShadow,
-  euiShadowFlat,
+  euiShadowXSmall,
   euiShadowMedium,
 } from '@elastic/eui-theme-common';
 
@@ -116,7 +116,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       top: css`
-        ${hasShadow ? euiShadowFlat(euiThemeContext) : ''}
+        ${hasShadow ? euiShadowXSmall(euiThemeContext) : ''}
       `,
       bottom: css`
         ${hasShadow ? euiShadow(euiThemeContext, 'm') : ''}
