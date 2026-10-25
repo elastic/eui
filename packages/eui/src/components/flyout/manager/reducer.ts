@@ -91,8 +91,8 @@ const clearMaximized = (
 
 /**
  * Flyouts to restore when `session` gets `nextChildFlyoutId` as its child: the
- * main, which keeps its width beside a child, and the outgoing child, which
- * should not come back maximized from history.
+ * main flyout, which keeps its width beside a child, and the outgoing child,
+ * which should not return maximized from history.
  */
 const getFlyoutsToRestore = (
   session: FlyoutSession,

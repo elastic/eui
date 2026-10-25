@@ -11,8 +11,8 @@ import type { EuiFlyoutMenuProps } from './flyout_menu';
 import type { EuiFlyoutManagerState } from './manager/types';
 
 /**
- * Whether a managed flyout is maximized. The managed wrapper and the flyout
- * component both read this, so they agree on the same render.
+ * Whether a managed flyout is maximized. Both the managed wrapper and the
+ * flyout component read this so they agree on the same render.
  * @internal
  */
 export const getIsManagedFlyoutMaximized = (
@@ -32,17 +32,17 @@ export interface UseEuiFlyoutMaximize {
   flyoutId: string;
   isInManagedContext: boolean;
   isMainFlyout: boolean;
-  /** The child of this flyout's own session, which is not necessarily the foreground session */
+  /** The child of this flyout's session, which is not necessarily the foreground session. */
   ownChildFlyoutId: string | null;
-  /** For managed flyouts, the result of `getIsManagedFlyoutMaximized` */
+  /** For managed flyouts, the result of `getIsManagedFlyoutMaximized`. */
   maximized?: boolean;
   setMaximized?: (flyoutId: string, maximized: boolean) => void;
   onMaximizeChange?: (isMaximized: boolean) => void;
 }
 
 /**
- * Owns the maximized flag for a flyout. Unmanaged flyouts keep it in local
- * state; managed flyouts keep it on their manager store entry so the managed
+ * Holds the maximized state for a flyout. Unmanaged flyouts keep it in local
+ * state; managed flyouts keep it in their manager store entry so the managed
  * wrapper and the reducer see the same value.
  * @internal
  */
@@ -91,19 +91,19 @@ export const useEuiFlyoutMaximize = ({
  * @internal
  */
 export interface FlyoutWidthHold {
-  /** The last width measured while not maximized */
+  /** The last width measured while not maximized. */
   trusted?: number;
-  /** The last width measured while maximized */
+  /** The last width measured while maximized. */
   held?: number;
 }
 
 /**
- * Resolves the width that the store and the push padding may use. While
- * maximized, the measured width is the full container, so the last restored
- * width stands in for it. The first sample after restore is still the
- * maximized width, because the resize observer has not yet seen the restored
- * layout, so it is treated the same way. A missing measurement (the observer
- * is detached) drops the hold, so a stale width never outlives it.
+ * Resolves the width used by the store and push padding. While maximized, the
+ * measured width is the full container, so the last restored width stands in
+ * for it. The first measurement after restoring is treated the same way
+ * because the resize observer has not yet seen the restored layout. A missing
+ * measurement (the observer is detached) drops the hold so a stale width
+ * never persists.
  * @internal
  */
 export const resolveFlyoutWidth = (

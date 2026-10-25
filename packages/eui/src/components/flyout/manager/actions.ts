@@ -95,7 +95,7 @@ export interface SetWidthAction extends BaseAction {
   width: number;
 }
 
-/** Set whether a flyout is maximized to fill its container. */
+/** Sets whether a flyout is maximized to fill its container. */
 export interface SetMaximizedAction extends BaseAction {
   type: typeof ACTION_SET_MAXIMIZED;
   flyoutId: string;
@@ -240,8 +240,8 @@ export const setFlyoutWidth = (
 });
 
 /**
- * Maximize a flyout to fill its container, or restore it. The declared `size`
- * and the measured `width` are left untouched.
+ * Maximizes a flyout to fill its container, or restores it. The declared
+ * `size` and measured `width` are left untouched.
  */
 export const setFlyoutMaximized = (
   flyoutId: string,

@@ -48,8 +48,8 @@ export interface EuiManagedFlyoutState {
   size?: string;
   minWidth?: number;
   /**
-   * Whether the flyout is painted at the full width of its container. `width`
-   * keeps the pre-maximize measurement so layout mode and sibling clamping are
+   * Whether the flyout fills the width of its container. `width` keeps the
+   * pre-maximize measurement so layout mode and sibling clamping are
    * unaffected.
    */
   maximized?: boolean;

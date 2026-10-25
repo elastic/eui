@@ -482,9 +482,9 @@ export const composeFlyoutInlineStyles = (
 
 /**
  * Size overrides for a maximized flyout, or `null` when not maximized. A
- * maximized flyout fills its container (or the viewport, without one), less
- * the width of a side-by-side sibling. The consumer's `size` and `maxWidth`
- * are ignored while maximized.
+ * maximized flyout fills its container (or the viewport without one), minus
+ * the width of a side-by-side sibling. `size` and `maxWidth` are ignored
+ * while maximized.
  */
 export const getMaximizedFlyoutStyles = ({
   isMaximized,
@@ -493,7 +493,7 @@ export const getMaximizedFlyoutStyles = ({
 }: {
   isMaximized: boolean;
   containerWidth: number | undefined;
-  /** Pass 0 or null in stacked mode */
+  /** Pass 0 or null in stacked mode. */
   siblingFlyoutWidth: number | null | undefined;
 }): React.CSSProperties | null => {
   if (!isMaximized) return null;
