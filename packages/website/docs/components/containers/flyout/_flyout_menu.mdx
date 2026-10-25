@@ -66,13 +66,13 @@ import FlyoutMenuPagination from './_flyout_menu_pagination.mdx';
 
 #### Maximize
 
-Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore toggle after the `trailingActions`. A maximized flyout fills the full width of its `container`, or the viewport when there is no container, so a container-scoped flyout never covers navigation or sidebars outside the container. The flyout's `size`, `type`, and `resizable` props are not changed: the resize handle is hidden while maximized, and restoring returns the flyout to the width it had before, including a width set by dragging.
+Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore button after the `trailingActions`. A maximized flyout fills the full width of its `container` (or the viewport if there is no container), so it never covers navigation or sidebars outside the container. The resize handle is hidden while maximized, and restoring returns the flyout to its previous width, including a width set by dragging.
 
-In a [managed session](#flyout-session-management) with a child flyout open, only the child shows the toggle. Maximizing the child keeps the main flyout's width and fills the rest of the container. Opening a child restores a maximized main flyout.
+In a [managed session](#flyout-session-management) with a child flyout open, only the child has the button. Maximizing the child keeps the main flyout's width and fills the rest of the container. Opening a child restores a maximized main flyout.
 
-A maximized `type="push"` flyout stops pushing the page content, but otherwise keeps push behavior, such as not closing on Escape.
+A maximized `type="push"` flyout stops pushing the page content, but still does not close on Escape.
 
-Use `onMaximizeChange` to react to the change, for example to persist the user's preference. It is called with the new state after every toggle, and with `false` when opening a child restores a maximized main flyout.
+Use `onMaximizeChange` to persist the user's preference or respond to changes. It is called with the new state after every toggle, and with `false` when opening a child restores a maximized main flyout.
 
 ```tsx interactive
 import React, { useState } from 'react';
