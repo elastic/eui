@@ -14,7 +14,7 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { useInnerText } from '../../inner_text';
 
@@ -119,7 +119,7 @@ const EuiTickValue: FunctionComponent<
     });
   }, [labelShiftVal, isMaxTick, euiTheme.euiTheme.size.xs]);
 
-  const styles = euiRangeTickStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeTickStyles);
   const cssTickStyles = [
     styles.euiRangeTick,
     value === String(tickValue) && styles.selected,
@@ -167,8 +167,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
     [tickInterval, min, max]
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeTicksStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeTicksStyles);
   const cssStyles = [
     styles.euiRangeTicks,
     compressed ? styles.compressed : styles.regular,
