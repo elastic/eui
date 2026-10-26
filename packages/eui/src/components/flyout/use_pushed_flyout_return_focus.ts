@@ -61,6 +61,13 @@ const isInInactiveSession = (element: Element) => {
   );
 };
 
+/**
+ * A flyout opened while nothing was focused captures `<body>`, which isn't
+ * a trigger worth returning to.
+ */
+const isUsableTrigger = (element: Element | null): element is Element =>
+  !!element && element.isConnected && element !== document.body;
+
 /** Step 3: apply `returnFocus` the way `react-focus-lock` does. */
 const returnFocusToTrigger = (trigger: Element, returnFocus: ReturnFocus) => {
   const howToReturnFocus =
@@ -68,8 +75,7 @@ const returnFocusToTrigger = (trigger: Element, returnFocus: ReturnFocus) => {
   if (
     !howToReturnFocus ||
     !(trigger instanceof HTMLElement) ||
-    !trigger.isConnected ||
-    trigger === document.body ||
+    !isUsableTrigger(trigger) ||
     isInInactiveSession(trigger)
   ) {
     return;
@@ -136,11 +142,15 @@ export const usePushedFlyoutReturnFocus = ({
   );
 
   useLayoutEffect(() => {
-    // A flyout replacing one that just closed captured its trigger from the
-    // closing flyout's DOM, so take over the closing flyout's trigger.
+    // A flyout replacing one that just closed captured its trigger after the
+    // closing flyout's DOM was removed, which is `<body>` or a removed
+    // element, so take over the closing flyout's trigger.
     pendingReturnFocus.forEach((pendingTrigger, timeout) => {
       clearTimeout(timeout);
-      if (!triggerRef.current?.isConnected && pendingTrigger.isConnected) {
+      if (
+        !isUsableTrigger(triggerRef.current) &&
+        isUsableTrigger(pendingTrigger)
+      ) {
         triggerRef.current = pendingTrigger;
       }
     });
