@@ -492,6 +492,87 @@ describe('EuiFlyout', () => {
         cy.get('[data-test-subj="firstFlyout"]').should('not.exist');
         cy.focused().should('have.attr', 'data-test-subj', 'firstTrigger');
       });
+
+      it('does not return focus into an inactive session', () => {
+        const sharedHistoryKey = Symbol('shared');
+        const FLYOUTS = ['a', 'b', 'c', 'd'] as const;
+        const nextFlyout = { a: 'b', b: 'c', c: 'd' } as Record<string, string>;
+
+        const SiblingSessions = () => {
+          const [isOpen, setIsOpen] = useState({
+            a: false,
+            b: false,
+            c: false,
+            d: false,
+          });
+          const open = (id: string) =>
+            setIsOpen((state) => ({ ...state, [id]: true }));
+
+          return (
+            <EuiFlyoutManager>
+              <EuiButton onClick={() => open('a')} data-test-subj="triggerA">
+                Open A
+              </EuiButton>
+              {FLYOUTS.map(
+                (id) =>
+                  isOpen[id] && (
+                    <EuiFlyout
+                      key={id}
+                      session="start"
+                      historyKey={
+                        id === 'b' || id === 'd' ? sharedHistoryKey : undefined
+                      }
+                      aria-label={`Flyout ${id}`}
+                      type="push"
+                      pushMinBreakpoint="xs"
+                      onClose={() =>
+                        setIsOpen((state) => ({ ...state, [id]: false }))
+                      }
+                      data-test-subj={`flyout-${id}`}
+                    >
+                      <EuiFlyoutBody>
+                        {nextFlyout[id] ? (
+                          <button
+                            data-test-subj={`trigger-${nextFlyout[id]}`}
+                            onClick={() => open(nextFlyout[id])}
+                          >
+                            Open {nextFlyout[id]}
+                          </button>
+                        ) : (
+                          <button
+                            data-test-subj="closeBAndD"
+                            onClick={() =>
+                              setIsOpen((state) => ({
+                                ...state,
+                                b: false,
+                                d: false,
+                              }))
+                            }
+                          >
+                            Close B and D
+                          </button>
+                        )}
+                      </EuiFlyoutBody>
+                    </EuiFlyout>
+                  )
+              )}
+            </EuiFlyoutManager>
+          );
+        };
+
+        cy.viewport(1400, 800);
+        cy.mount(<SiblingSessions />);
+        cy.get('[data-test-subj="triggerA"]').click();
+        cy.get('[data-test-subj="trigger-b"]').click();
+        cy.get('[data-test-subj="trigger-c"]').click();
+        cy.get('[data-test-subj="trigger-d"]').click();
+        cy.get('[data-test-subj="flyout-d"]').should('exist');
+
+        cy.get('[data-test-subj="closeBAndD"]').click();
+        cy.get('[data-test-subj="flyout-d"]').should('not.exist');
+        cy.get('[data-test-subj="flyout-b"]').should('not.exist');
+        cy.focused().should('have.attr', 'data-test-subj', 'trigger-d');
+      });
     });
   });
 

@@ -12,6 +12,8 @@ import type { EuiFocusTrapProps } from '../focus_trap';
 import { EuiFlyoutProps } from './flyout';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
+import { PROPERTY_FLYOUT } from './manager/const';
+import { getFlyoutManagerStore } from './manager/store';
 
 /**
  * Determines if a flyout should be rendered in a "pushed" state based on its
@@ -43,6 +45,23 @@ export const useIsPushed = (
       : windowIsLargeEnoughToPush;
 
   return type === 'push' && isLargeEnoughToPush;
+};
+
+/**
+ * Whether the element is inside a managed flyout that isn't part of the
+ * current session. Those flyouts stay mounted but are moved off-screen, so
+ * focusing inside one leaves keyboard focus invisible.
+ */
+const isInInactiveSession = (element: Element) => {
+  const owner = element.closest(`[${PROPERTY_FLYOUT}]`);
+  if (!owner) return false;
+
+  const { sessions } = getFlyoutManagerStore().getState();
+  const currentSession = sessions[sessions.length - 1];
+  return (
+    currentSession?.mainFlyoutId !== owner.id &&
+    currentSession?.childFlyoutId !== owner.id
+  );
 };
 
 export interface UsePushedFlyoutReturnFocusParams {
@@ -117,7 +136,8 @@ export const usePushedFlyoutReturnFocus = ({
           !howToReturnFocus ||
           !(trigger instanceof HTMLElement) ||
           !trigger.isConnected ||
-          trigger === document.body
+          trigger === document.body ||
+          isInInactiveSession(trigger)
         ) {
           return;
         }
