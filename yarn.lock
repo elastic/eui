@@ -7357,8 +7357,8 @@ __metadata:
     "@fontsource-variable/roboto-mono": "npm:^5.3.0"
     "@hello-pangea/dnd": "npm:^16.6.0"
     "@playwright/test": "npm:^1.44.0"
-    "@storybook/react": "npm:^10.5.7"
-    "@storybook/react-vite": "npm:^10.5.7"
+    "@storybook/react": "npm:^10.6.3"
+    "@storybook/react-vite": "npm:^10.6.3"
     "@storybook/test-runner": "npm:^0.24.4"
     "@svgr/core": "npm:8.0.0"
     "@svgr/plugin-jsx": "npm:^8.0.1"
@@ -7426,7 +7426,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^4.2.1"
     eslint-plugin-react: "npm:^7.32.2"
     eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-storybook: "npm:^10.5.7"
+    eslint-plugin-storybook: "npm:^10.6.3"
     expose-gc: "npm:^1.0.0"
     findup: "npm:^0.1.5"
     glob: "npm:^11.0.3"
@@ -7474,7 +7474,7 @@ __metadata:
     rimraf: "npm:^3.0.2"
     sass: "npm:^1.56.1"
     shelljs: "npm:^0.8.4"
-    storybook: "npm:^10.5.7"
+    storybook: "npm:^10.6.3"
     stylelint: "npm:^15.7.0"
     stylelint-config-prettier-scss: "npm:^1.0.0"
     stylelint-config-standard: "npm:^33.0.0"
@@ -10463,7 +10463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react-vite@npm:^10.5.7":
+"@storybook/react-vite@npm:^10.6.3":
   version: 10.6.3
   resolution: "@storybook/react-vite@npm:10.6.3"
   dependencies:
@@ -10489,7 +10489,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:10.6.3, @storybook/react@npm:^10.5.7":
+"@storybook/react@npm:10.6.3, @storybook/react@npm:^10.6.3":
   version: 10.6.3
   resolution: "@storybook/react@npm:10.6.3"
   dependencies:
@@ -21434,16 +21434,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:^10.5.7":
-  version: 10.5.7
-  resolution: "eslint-plugin-storybook@npm:10.5.7"
+"eslint-plugin-storybook@npm:^10.6.3":
+  version: 10.6.3
+  resolution: "eslint-plugin-storybook@npm:10.6.3"
   dependencies:
     "@typescript-eslint/types": "npm:^8.60.0"
     "@typescript-eslint/utils": "npm:^8.60.0"
   peerDependencies:
     eslint: ">=8"
-    storybook: ^10.5.7
-  checksum: 10c0/c4e3b624c7af821a336293549ebbcef8663528fc61aaee87e4678562a01cae86c950537ae63f36882bd142bd1b17717a610ddd5b32b5ccc393bf1b85ad5a4f96
+  checksum: 10c0/75a697b963b5906dbb0c0fb7bbb103180680aebe2e817f7e488a96afef14393d7d2d2fa1ac7a4d9b86c5fea9dc94a845c854aa1d4b0c520ab6719fb783381857
   languageName: node
   linkType: hard
 
@@ -38046,7 +38045,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:^10.5.7":
+"storybook@npm:^10.6.3":
   version: 10.6.3
   resolution: "storybook@npm:10.6.3"
   dependencies:
