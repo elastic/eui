@@ -19,7 +19,6 @@ import React, {
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
-  FocusEvent,
   FunctionComponent,
   MutableRefObject,
   Ref,
@@ -70,7 +69,8 @@ import {
   EuiFlyoutSize,
   isEuiFlyoutSizeNamed,
 } from './const';
-import { useIsPushed, usePushedFlyoutReturnFocus } from './hooks';
+import { useIsPushed } from './hooks';
+import { usePushedFlyoutReturnFocus } from './use_pushed_flyout_return_focus';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
@@ -1028,26 +1028,13 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
-    const { onFocus: trackFocus, onBlur: trackBlur } =
-      usePushedFlyoutReturnFocus({
-        isPushed,
-        returnFocus: _focusTrapProps?.returnFocus,
-        triggerRef: flyoutToggle,
-      });
-    const onFocus = useCallback(
-      (event: FocusEvent<HTMLElement>) => {
-        trackFocus();
-        _onFocus?.(event);
-      },
-      [trackFocus, _onFocus]
-    );
-    const onBlur = useCallback(
-      (event: FocusEvent<HTMLElement>) => {
-        trackBlur();
-        _onBlur?.(event);
-      },
-      [trackBlur, _onBlur]
-    );
+    const { onFocus, onBlur } = usePushedFlyoutReturnFocus({
+      isPushed,
+      returnFocus: _focusTrapProps?.returnFocus,
+      triggerRef: flyoutToggle,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
+    });
 
     const isSideBySideChild =
       isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;

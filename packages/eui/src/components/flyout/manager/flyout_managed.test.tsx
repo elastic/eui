@@ -88,6 +88,8 @@ jest.mock('./hooks', () => ({
 }));
 
 jest.mock('./selectors', () => ({
+  isFlyoutInCurrentSession:
+    jest.requireActual('./selectors').isFlyoutInCurrentSession,
   useIsFlyoutRegistered: jest.fn(() => false),
   useIsFlyoutActive: () => true,
   useHasChildFlyout: () => false,
