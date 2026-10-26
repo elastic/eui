@@ -375,7 +375,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           </div>
 
           {actionControls}
-          {announcement && <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>}
+          {announcement ? (
+            <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>
+          ) : null}
         </div>
       </EuiPanel>
     );

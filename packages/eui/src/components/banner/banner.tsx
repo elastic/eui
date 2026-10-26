@@ -269,7 +269,9 @@ export const EuiBanner = forwardRef<HTMLDivElement, EuiBannerProps>(
           </div>
         </div>
 
-        {announcement && <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>}
+        {announcement ? (
+          <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>
+        ) : null}
       </div>
     );
   }
