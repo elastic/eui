@@ -51,8 +51,11 @@ their own version at runtime.
 | `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
 | `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
 | `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
+| `EuiSideNavObject` | [src/components/side_nav/README.md](src/components/side_nav/README.md) |
 | `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
 | `EuiFilterButtonObject` | [src/components/filter_button/README.md](src/components/filter_button/README.md) |
+| `EuiFieldSearchObject` | [src/components/form/field_search/README.md](src/components/form/field_search/README.md) |
+| `EuiSearchBarObject` | [src/components/search_bar/README.md](src/components/search_bar/README.md) |
 | `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
@@ -62,6 +65,7 @@ their own version at runtime.
 | `EuiTableObject` | [src/components/table/README.md](src/components/table/README.md) |
 | `EuiPaginationObject` | [src/components/pagination/README.md](src/components/pagination/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
+| `EuiCallOutObject` | [src/components/call_out/README.md](src/components/call_out/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |

@@ -8,18 +8,22 @@
 
 import { EuiAccordionSelectors } from './components/accordion/selectors';
 import { EuiBasicTableSelectors } from './components/basic_table/selectors';
+import { EuiCallOutSelectors } from './components/call_out/selectors';
 import { EuiColorPickerSelectors } from './components/color_picker/selectors';
 import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
 import { EuiDataGridSelectors } from './components/datagrid/selectors';
 import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
+import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
 import { EuiModalSelectors } from './components/modal/selectors';
 import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
 import { EuiRangeSelectors } from './components/form/range/selectors';
+import { EuiSearchBarSelectors } from './components/search_bar/selectors';
 import { EuiSelectableSelectors } from './components/selectable/selectors';
+import { EuiSideNavSelectors } from './components/side_nav/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
 import { EuiTableSelectors } from './components/table/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
@@ -35,18 +39,22 @@ import { EuiTreeViewSelectors } from './components/tree_view/selectors';
 export const selectors = {
   accordion: EuiAccordionSelectors,
   basicTable: EuiBasicTableSelectors,
+  callOut: EuiCallOutSelectors,
   colorPicker: EuiColorPickerSelectors,
   comboBox: EuiComboBoxSelectors,
   contextMenu: EuiContextMenuSelectors,
   dataGrid: EuiDataGridSelectors,
   draggable: EuiDraggableSelectors,
+  fieldSearch: EuiFieldSearchSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,
   popover: EuiPopoverSelectors,
   range: EuiRangeSelectors,
+  searchBar: EuiSearchBarSelectors,
   selectable: EuiSelectableSelectors,
+  sideNav: EuiSideNavSelectors,
   superSelect: EuiSuperSelectSelectors,
   table: EuiTableSelectors,
   globalToastList: EuiGlobalToastListSelectors,
