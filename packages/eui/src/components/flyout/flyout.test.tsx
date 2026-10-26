@@ -1252,6 +1252,39 @@ describe('EuiFlyout', () => {
       expect(trigger).not.toHaveFocus();
     });
 
+    it('does not return focus while a remounted flyout is open, and returns it when that flyout closes', async () => {
+      const Items = ({ item }: { item: number | null }) => (
+        <>
+          <button data-test-subj="trigger">Trigger</button>
+          {item !== null && (
+            <EuiFlyout
+              key={item}
+              type="push"
+              pushMinBreakpoint="xs"
+              onClose={() => {}}
+            >
+              <button data-test-subj={`next-${item}`}>Next item</button>
+            </EuiFlyout>
+          )}
+        </>
+      );
+      const { getByTestSubject, rerender } = render(<Items item={null} />);
+      const trigger = getByTestSubject('trigger');
+      trigger.focus();
+      rerender(<Items item={1} />);
+
+      getByTestSubject('next-1').focus();
+      rerender(<Items item={2} />);
+      await flushReturnFocus();
+
+      expect(trigger).not.toHaveFocus();
+
+      rerender(<Items item={null} />);
+      await flushReturnFocus();
+
+      expect(trigger).toHaveFocus();
+    });
+
     it('does not move focus that moved elsewhere after the flyout closed', async () => {
       const { getByTestSubject, rerender, trigger } = openFromTrigger();
 

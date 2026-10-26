@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
+import { MutableRefObject, useCallback, useLayoutEffect, useRef } from 'react';
 import { useIsWithinMinBreakpoint, useEuiTheme } from '../../services';
 import type { EuiFocusTrapProps } from '../focus_trap';
 import { EuiFlyoutProps } from './flyout';
@@ -64,11 +64,18 @@ const isInInactiveSession = (element: Element) => {
   );
 };
 
+/**
+ * Focus returns scheduled by pushed flyouts that just unmounted, keyed by
+ * timeout. A flyout mounting before they run (e.g. one remounted by a changed
+ * `key`) cancels them, so focus isn't pulled away from a flyout that is open.
+ */
+const pendingReturnFocus = new Map<ReturnType<typeof setTimeout>, Element>();
+
 export interface UsePushedFlyoutReturnFocusParams {
   isPushed: boolean;
   returnFocus: EuiFocusTrapProps['returnFocus'];
   /** The element that was focused when the flyout mounted. */
-  triggerRef: RefObject<Element | null>;
+  triggerRef: MutableRefObject<Element | null>;
 }
 
 /**
@@ -100,6 +107,18 @@ export const usePushedFlyoutReturnFocus = ({
     isFocusOwnedRef.current = false;
   }, []);
 
+  useLayoutEffect(() => {
+    // A flyout replacing one that just closed captured its trigger from the
+    // closing flyout's DOM, so take over the closing flyout's trigger.
+    pendingReturnFocus.forEach((pendingTrigger, timeout) => {
+      clearTimeout(timeout);
+      if (!triggerRef.current?.isConnected && pendingTrigger.isConnected) {
+        triggerRef.current = pendingTrigger;
+      }
+    });
+    pendingReturnFocus.clear();
+  }, [triggerRef]);
+
   // Layout cleanup runs before the DOM is removed, while focus still shows
   // where the user left it.
   useLayoutEffect(
@@ -124,7 +143,9 @@ export const usePushedFlyoutReturnFocus = ({
       // sibling flyouts in the same history group, portalled content, and
       // child flyout focus traps that pull focus back to themselves before
       // releasing it.
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
+        pendingReturnFocus.delete(timeout);
+
         const active = document.activeElement;
         if (active && active !== document.body && active.isConnected) return;
 
@@ -146,6 +167,7 @@ export const usePushedFlyoutReturnFocus = ({
           typeof howToReturnFocus === 'object' ? howToReturnFocus : undefined
         );
       });
+      pendingReturnFocus.set(timeout, trigger);
     },
     [triggerRef]
   );
