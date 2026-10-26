@@ -33,7 +33,7 @@ export interface EuiNotificationBadgeProps
 
 export const EuiNotificationBadge: FunctionComponent<
   EuiNotificationBadgeProps
-> = ({ children, className, size = 's', color = 'primary', ...rest }) => {
+> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
   const classes = classNames('euiNotificationBadge', className);
 
   const styles = useEuiMemoizedStyles(euiNotificationBadgeStyles);
