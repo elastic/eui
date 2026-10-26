@@ -54,7 +54,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
       children,
       className,
       notification,
-      notificationColor = 'primary',
+      notificationColor = 'accent',
       ...rest
     },
     /**

@@ -10,6 +10,14 @@ exports[`EuiNotificationBadge is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiNotificationBadge props color accent is rendered 1`] = `
+<span
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-accent"
+>
+  5
+</span>
+`;
+
 exports[`EuiNotificationBadge props color primary is rendered 1`] = `
 <span
   class="euiNotificationBadge emotion-euiNotificationBadge-s-primary"

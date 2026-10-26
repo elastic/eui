@@ -106,7 +106,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
           {...disabledStyles}
           className="euiFacetButton__quantity"
           size="m"
-          color={!isSelected || isDisabled ? 'subdued' : 'primary'}
+          color={!isSelected || isDisabled ? 'subdued' : 'accent'}
         >
           {quantity}
         </EuiNotificationBadge>

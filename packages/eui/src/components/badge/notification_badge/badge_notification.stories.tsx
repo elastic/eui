@@ -18,7 +18,7 @@ const meta: Meta<EuiNotificationBadgeProps> = {
   component: EuiNotificationBadge,
   args: {
     // Component defaults
-    color: 'primary',
+    color: 'accent',
     size: 's',
   },
 };

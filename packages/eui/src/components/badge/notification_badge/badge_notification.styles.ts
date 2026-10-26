@@ -63,6 +63,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.control};
     `,
     // Colors
+    accent: css(badgeColors.fill.accent),
     primary: css(badgeColors.fill.primary),
     success: css(badgeColors.fill.success),
     subdued: css(badgeColors.subdued),

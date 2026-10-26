@@ -62,7 +62,7 @@ export const Notification: Story = {
   render,
   args: {
     notification: '5',
-    notificationColor: 'primary',
+    notificationColor: 'accent',
   },
   argTypes: {
     notificationColor: { control: 'select', options: COLORS },
