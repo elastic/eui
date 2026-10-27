@@ -446,24 +446,38 @@ describe('useEuiFlyoutResizable', () => {
       expect(onResize).toHaveBeenLastCalledWith(800);
     });
 
-    it('does not call `onResize` when the width was not dragged', async () => {
+    it('keeps a width dragged narrower than `size`', async () => {
+      const { result, rerender, initialProps, onResize, onWidthReset } =
+        await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      dragBy(result, -200);
+      expect(result.current.size).toBe(`${(400 / 1200) * 100}%`);
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe(`${(400 / 1200) * 100}%`);
+      expect(onWidthReset).not.toHaveBeenCalled();
+      expect(onResize).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not reset a width that was not dragged', async () => {
       const { result, rerender, initialProps, onResize, onWidthReset } =
         await setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
       expect(result.current.size).toBe('50%');
-      expect(onWidthReset).toHaveBeenCalledWith(600);
+      expect(onWidthReset).not.toHaveBeenCalled();
       expect(onResize).not.toHaveBeenCalled();
     });
 
-    it('does not call `onResize` when a child is open on the first render', async () => {
+    it('does not reset when a child is open on the first render', async () => {
       const { result, onResize, onWidthReset } = await setup({
         childFlyoutId: 'child-a',
       });
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
-      expect(onWidthReset).toHaveBeenCalledWith(600);
+      expect(onWidthReset).not.toHaveBeenCalled();
       expect(onResize).not.toHaveBeenCalled();
     });
 
@@ -492,7 +506,7 @@ describe('useEuiFlyoutResizable', () => {
 
       rerender({ ...initialProps, childFlyoutId: null });
       expect(result.current.size).toBe('75%');
-      expect(onWidthReset).toHaveBeenCalledTimes(1);
+      expect(onWidthReset).not.toHaveBeenCalled();
     });
 
     it('does not reset when the container resizes while a child is open', async () => {
@@ -508,7 +522,7 @@ describe('useEuiFlyoutResizable', () => {
         referenceWidth: 1600,
       });
       await waitFor(() => expect(result.current.size).toBe('75%'));
-      expect(onWidthReset).toHaveBeenCalledTimes(1);
+      expect(onWidthReset).not.toHaveBeenCalled();
     });
 
     it('renders at `size` when the reference width is not measured yet', async () => {

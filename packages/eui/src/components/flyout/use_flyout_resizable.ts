@@ -31,7 +31,7 @@ type UseEuiFlyoutResizable = Pick<
   size: string | number;
   /**
    * The ID of the child flyout open beside this main flyout. When it changes
-   * to a new child, the width resets to `size`.
+   * to a new child, a width wider than `size` resets to `size`.
    */
   childFlyoutId?: string | null;
   /**
@@ -117,33 +117,12 @@ export const useEuiFlyoutResizable = ({
 
   const onResizeRef = useLatest(onResize);
 
-  // The width before a reset to `size` that has to be measured from the DOM,
-  // so `onResize` can be called once the new width is known
-  const widthBeforeMeasuredResetRef = useRef<number | null>(null);
-
   useEffect(() => {
     if (!enabled) return; // Don't measure when resizing is disabled
     if (!flyoutWidth && flyoutRef) {
-      const width = getFlyoutMinMaxWidth(flyoutRef.offsetWidth);
-      setFlyoutWidth(width);
-
-      const widthBeforeReset = widthBeforeMeasuredResetRef.current;
-      widthBeforeMeasuredResetRef.current = null;
-      if (
-        widthBeforeReset &&
-        Math.round(widthBeforeReset) !== Math.round(width)
-      ) {
-        onResizeRef.current?.(width);
-      }
+      setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
     }
-  }, [
-    flyoutWidth,
-    flyoutRef,
-    getFlyoutMinMaxWidth,
-    enabled,
-    setFlyoutWidth,
-    onResizeRef,
-  ]);
+  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled, setFlyoutWidth]);
 
   // Track the previous `_size` prop to distinguish between a consumer size
   // change (which should reset the width) and a reference-width / constraint
@@ -199,8 +178,9 @@ export const useEuiFlyoutResizable = ({
     }
   }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth, setFlyoutWidth]);
 
-  // Reset to `size` when a new child opens, so a main flyout dragged wide
-  // doesn't push the pair into stacked layout mode. This runs before paint and
+  // When a new child opens, a main flyout dragged wider than its `size` resets
+  // to `size`, so the pair doesn't get pushed into stacked layout mode. A main
+  // flyout at or below its `size` keeps its width. This runs before paint and
   // reports the width through `onWidthReset`, because the manager decides the
   // layout mode from the width it has stored, and the `ResizeObserver` that
   // normally updates it only fires after paint.
@@ -217,35 +197,24 @@ export const useEuiFlyoutResizable = ({
 
     const { _size, _referenceWidth, getFlyoutMinMaxWidth, onWidthReset } =
       resetInputsRef.current!;
-    const widthBeforeReset = flyoutWidthRef.current;
-
-    requestedWidthRef.current = typeof _size === 'number' ? _size : null;
-    prevReferenceWidthRef.current = _referenceWidth;
-
-    if (typeof _size !== 'number' && !_referenceWidth) {
-      // A named size can't be converted to pixels before the reference width
-      // is measured, so measure the flyout after it renders at `size`
-      widthBeforeMeasuredResetRef.current = widthBeforeReset;
-      setFlyoutWidth(0);
-      return;
-    }
+    // Until the reference width is measured the flyout renders at `size`, and
+    // the width is reset from `size` once it is measured
+    if (!_referenceWidth) return;
 
     const width = getFlyoutMinMaxWidth(
       getWidthFromSize(_size, _referenceWidth)
     );
+    if (Math.round(flyoutWidthRef.current) <= Math.round(width)) return;
+
+    requestedWidthRef.current = typeof _size === 'number' ? _size : null;
+    prevReferenceWidthRef.current = _referenceWidth;
     setFlyoutWidth(width);
     onWidthReset?.(width);
-
-    if (
-      widthBeforeReset &&
-      Math.round(widthBeforeReset) !== Math.round(width)
-    ) {
-      onResizeRef.current?.(width);
-    }
+    onResizeRef.current?.(width);
   }, [childFlyoutId, enabled, resetInputsRef, setFlyoutWidth, onResizeRef]);
 
-  // `onResize` is called for user interactions and for a reset to `size` when
-  // a new child flyout opens, never for other width changes caused by the
+  // `onResize` is called for user interactions and for the reset to `size`
+  // when a new child flyout opens, never for other width changes caused by the
   // consumer or by layout constraints
   const onUserResize = useCallback(
     (width: number) => {
