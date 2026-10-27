@@ -9,6 +9,7 @@
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -16,6 +17,7 @@ import React, {
 import { keys, useLatest } from '../../services';
 import { getPosition } from '../resizable_container/helpers';
 import type { EuiFlyoutResizableProps } from './flyout_resizable';
+import { getWidthFromSize } from './manager/layout_mode';
 
 type UseEuiFlyoutResizable = Pick<
   EuiFlyoutResizableProps,
@@ -27,6 +29,15 @@ type UseEuiFlyoutResizable = Pick<
   siblingFlyoutWidth?: number | null;
   referenceWidth?: number;
   size: string | number;
+  /**
+   * The ID of the child flyout open beside this main flyout. When it changes
+   * to a new child, the width resets to `size`.
+   */
+  childFlyoutId?: string | null;
+  /**
+   * Called with the pixel width applied by a reset to `size`, before paint.
+   */
+  onWidthReset?: (width: number) => void;
 };
 
 /**
@@ -41,6 +52,8 @@ export const useEuiFlyoutResizable = ({
   onResize,
   side,
   size: _size,
+  childFlyoutId,
+  onWidthReset,
 }: UseEuiFlyoutResizable) => {
   // Without a `referenceWidth` (standalone flyouts), nothing else re-renders
   // the flyout on window resize, so track the viewport width here
@@ -102,12 +115,35 @@ export const useEuiFlyoutResizable = ({
   // Must use state for the flyout ref in order for the useEffect to be correctly called after render
   const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
 
+  const onResizeRef = useLatest(onResize);
+
+  // The width before a reset to `size` that has to be measured from the DOM,
+  // so `onResize` can be called once the new width is known
+  const widthBeforeMeasuredResetRef = useRef<number | null>(null);
+
   useEffect(() => {
     if (!enabled) return; // Don't measure when resizing is disabled
     if (!flyoutWidth && flyoutRef) {
-      setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
+      const width = getFlyoutMinMaxWidth(flyoutRef.offsetWidth);
+      setFlyoutWidth(width);
+
+      const widthBeforeReset = widthBeforeMeasuredResetRef.current;
+      widthBeforeMeasuredResetRef.current = null;
+      if (
+        widthBeforeReset &&
+        Math.round(widthBeforeReset) !== Math.round(width)
+      ) {
+        onResizeRef.current?.(width);
+      }
     }
-  }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth, enabled, setFlyoutWidth]);
+  }, [
+    flyoutWidth,
+    flyoutRef,
+    getFlyoutMinMaxWidth,
+    enabled,
+    setFlyoutWidth,
+    onResizeRef,
+  ]);
 
   // Track the previous `_size` prop to distinguish between a consumer size
   // change (which should reset the width) and a reference-width / constraint
@@ -163,9 +199,54 @@ export const useEuiFlyoutResizable = ({
     }
   }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth, setFlyoutWidth]);
 
-  // `onResize` is only called from user interactions, never for width changes
-  // caused by the consumer or by layout constraints
-  const onResizeRef = useLatest(onResize);
+  // Reset to `size` when a new child opens, so a main flyout dragged wide
+  // doesn't push the pair into stacked layout mode. This runs before paint and
+  // reports the width through `onWidthReset`, because the manager decides the
+  // layout mode from the width it has stored, and the `ResizeObserver` that
+  // normally updates it only fires after paint.
+  // Only `childFlyoutId` and `enabled` are dependencies: running on every
+  // reference or sibling width change would discard the user's width.
+  const resetInputsRef = useLatest({
+    _size,
+    _referenceWidth,
+    getFlyoutMinMaxWidth,
+    onWidthReset,
+  });
+  useLayoutEffect(() => {
+    if (!enabled || !childFlyoutId) return;
+
+    const { _size, _referenceWidth, getFlyoutMinMaxWidth, onWidthReset } =
+      resetInputsRef.current!;
+    const widthBeforeReset = flyoutWidthRef.current;
+
+    requestedWidthRef.current = typeof _size === 'number' ? _size : null;
+    prevReferenceWidthRef.current = _referenceWidth;
+
+    if (typeof _size !== 'number' && !_referenceWidth) {
+      // A named size can't be converted to pixels before the reference width
+      // is measured, so measure the flyout after it renders at `size`
+      widthBeforeMeasuredResetRef.current = widthBeforeReset;
+      setFlyoutWidth(0);
+      return;
+    }
+
+    const width = getFlyoutMinMaxWidth(
+      getWidthFromSize(_size, _referenceWidth)
+    );
+    setFlyoutWidth(width);
+    onWidthReset?.(width);
+
+    if (
+      widthBeforeReset &&
+      Math.round(widthBeforeReset) !== Math.round(width)
+    ) {
+      onResizeRef.current?.(width);
+    }
+  }, [childFlyoutId, enabled, resetInputsRef, setFlyoutWidth, onResizeRef]);
+
+  // `onResize` is called for user interactions and for a reset to `size` when
+  // a new child flyout opens, never for other width changes caused by the
+  // consumer or by layout constraints
   const onUserResize = useCallback(
     (width: number) => {
       requestedWidthRef.current = width;

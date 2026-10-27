@@ -375,4 +375,160 @@ describe('useEuiFlyoutResizable', () => {
       await waitFor(() => expect(result.current.size).toBe('50%'));
     });
   });
+
+  describe('reset when a child flyout opens', () => {
+    const props = {
+      ...mockProps,
+      enabled: true,
+      minWidth: 0,
+      maxWidth: undefined,
+      referenceWidth: 1200,
+      size: 'm' as string | number,
+      childFlyoutId: null as string | null,
+    };
+
+    // Right-side flyout: dragging left grows it
+    const dragBy = (
+      result: { current: ReturnType<typeof useEuiFlyoutResizable> },
+      pixels: number
+    ) => {
+      act(() => {
+        result.current.onMouseDown({ clientX: 400 } as ReactMouseEvent);
+        window.dispatchEvent(
+          new MouseEvent('mousemove', { clientX: 400 - pixels })
+        );
+        window.dispatchEvent(new MouseEvent('mouseup'));
+      });
+    };
+
+    const setup = async (overrides: Partial<typeof props> = {}) => {
+      const onResize = jest.fn();
+      const onWidthReset = jest.fn();
+      const initialProps = { ...props, onResize, onWidthReset, ...overrides };
+      const element = createMockElement(
+        typeof initialProps.size === 'number' ? initialProps.size : 600
+      );
+      const hook = renderHook(useEuiFlyoutResizable, { initialProps });
+      act(() => hook.result.current.setFlyoutRef(element));
+      return { ...hook, element, initialProps, onResize, onWidthReset };
+    };
+
+    it('resets a dragged named `size` and reports the new width', async () => {
+      const { result, rerender, initialProps, onResize, onWidthReset } =
+        await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      dragBy(result, 300);
+      expect(result.current.size).toBe('75%');
+      expect(onResize).toHaveBeenLastCalledWith(900);
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('50%');
+      expect(onWidthReset).toHaveBeenCalledTimes(1);
+      expect(onWidthReset).toHaveBeenCalledWith(600);
+      expect(onResize).toHaveBeenCalledTimes(2);
+      expect(onResize).toHaveBeenLastCalledWith(600);
+    });
+
+    it('resets a dragged numeric `size` to the clamped number', async () => {
+      const { result, rerender, initialProps, onResize } = await setup({
+        size: 800,
+      });
+      await waitFor(() => {
+        expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      });
+
+      dragBy(result, 100);
+      expect(result.current.size).toBe('75%');
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
+      expect(onResize).toHaveBeenLastCalledWith(800);
+    });
+
+    it('does not call `onResize` when the width was not dragged', async () => {
+      const { result, rerender, initialProps, onResize, onWidthReset } =
+        await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('50%');
+      expect(onWidthReset).toHaveBeenCalledWith(600);
+      expect(onResize).not.toHaveBeenCalled();
+    });
+
+    it('does not call `onResize` when a child is open on the first render', async () => {
+      const { result, onResize, onWidthReset } = await setup({
+        childFlyoutId: 'child-a',
+      });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      expect(onWidthReset).toHaveBeenCalledWith(600);
+      expect(onResize).not.toHaveBeenCalled();
+    });
+
+    it('resets again when a different child replaces the first', async () => {
+      const { result, rerender, initialProps, onResize } = await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      dragBy(result, 300);
+      expect(result.current.size).toBe('75%');
+
+      rerender({ ...initialProps, childFlyoutId: 'child-b' });
+      expect(result.current.size).toBe('50%');
+      expect(onResize).toHaveBeenLastCalledWith(600);
+    });
+
+    it('does not reset when the child closes or the same child re-renders', async () => {
+      const { result, rerender, initialProps, onWidthReset } = await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      dragBy(result, 300);
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('75%');
+
+      rerender({ ...initialProps, childFlyoutId: null });
+      expect(result.current.size).toBe('75%');
+      expect(onWidthReset).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not reset when the container resizes while a child is open', async () => {
+      const { result, rerender, initialProps, onWidthReset } = await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      dragBy(result, 300);
+
+      rerender({
+        ...initialProps,
+        childFlyoutId: 'child-a',
+        referenceWidth: 1600,
+      });
+      await waitFor(() => expect(result.current.size).toBe('75%'));
+      expect(onWidthReset).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders at `size` when the reference width is not measured yet', async () => {
+      const { result, rerender, initialProps, onResize, onWidthReset } =
+        await setup({ referenceWidth: 0 });
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('m');
+      expect(onWidthReset).not.toHaveBeenCalled();
+      expect(onResize).not.toHaveBeenCalled();
+    });
+
+    it('does nothing when resizing is disabled', async () => {
+      const { result, rerender, initialProps, onWidthReset } = await setup({
+        enabled: false,
+      });
+
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('m');
+      expect(onWidthReset).not.toHaveBeenCalled();
+    });
+  });
 });
