@@ -34,3 +34,7 @@ These are handled in the Kibana PR, not here: login form, loading screen, main b
 
 ## When finishing a task
 Summarize what changed, list any `POC:` shortcuts or open design questions, and note anything that might affect the Kibana test build.
+
+## Commits
+- Prefacing commit messages with the component name(s) in brackets, e.g. `[EuiFilterButton][EuiNotificationBadge] …`
+- Keep messages succinct.
