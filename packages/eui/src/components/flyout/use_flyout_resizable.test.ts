@@ -404,21 +404,24 @@ describe('useEuiFlyoutResizable', () => {
       });
     };
 
-    const setup = async (overrides: Partial<typeof props> = {}) => {
+    const setup = (overrides: Partial<typeof props> = {}) => {
       const onResize = jest.fn();
       const onWidthReset = jest.fn();
       const initialProps = { ...props, onResize, onWidthReset, ...overrides };
-      const element = createMockElement(
-        typeof initialProps.size === 'number' ? initialProps.size : 600
-      );
       const hook = renderHook(useEuiFlyoutResizable, { initialProps });
-      act(() => hook.result.current.setFlyoutRef(element));
-      return { ...hook, element, initialProps, onResize, onWidthReset };
+      act(() =>
+        hook.result.current.setFlyoutRef(
+          createMockElement(
+            typeof initialProps.size === 'number' ? initialProps.size : 600
+          )
+        )
+      );
+      return { ...hook, initialProps, onResize, onWidthReset };
     };
 
     it('resets a dragged named `size` and reports the new width', async () => {
       const { result, rerender, initialProps, onResize, onWidthReset } =
-        await setup();
+        setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       dragBy(result, 300);
@@ -433,8 +436,8 @@ describe('useEuiFlyoutResizable', () => {
       expect(onResize).toHaveBeenLastCalledWith(600);
     });
 
-    it('resets a dragged numeric `size` to the clamped number', async () => {
-      const { result, rerender, initialProps, onResize } = await setup({
+    it('resets a dragged numeric `size` to that number', async () => {
+      const { result, rerender, initialProps, onResize } = setup({
         size: 800,
       });
       await waitFor(() => {
@@ -451,7 +454,7 @@ describe('useEuiFlyoutResizable', () => {
 
     it('keeps a dragged width that still fits beside the child', async () => {
       const { result, rerender, initialProps, onResize, onWidthReset } =
-        await setup();
+        setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       // 700 + 300 = 1000px, within 90% of 1200px
@@ -463,7 +466,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does not reset beside a `fill` child', async () => {
-      const { result, rerender, initialProps, onWidthReset } = await setup({
+      const { result, rerender, initialProps, onWidthReset } = setup({
         childFlyoutSize: 'fill',
       });
       await waitFor(() => expect(result.current.size).toBe('50%'));
@@ -475,7 +478,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does not reset when the layout is already stacked', async () => {
-      const { result, rerender, initialProps, onWidthReset } = await setup({
+      const { result, rerender, initialProps, onWidthReset } = setup({
         isStacked: true,
       });
       await waitFor(() => expect(result.current.size).toBe('50%'));
@@ -488,7 +491,7 @@ describe('useEuiFlyoutResizable', () => {
 
     it('keeps a width dragged narrower than `size`', async () => {
       const { result, rerender, initialProps, onResize, onWidthReset } =
-        await setup();
+        setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       dragBy(result, -200);
@@ -502,7 +505,7 @@ describe('useEuiFlyoutResizable', () => {
 
     it('does not reset a width that was not dragged', async () => {
       const { result, rerender, initialProps, onResize, onWidthReset } =
-        await setup();
+        setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
@@ -512,7 +515,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does not reset when a child is open on the first render', async () => {
-      const { result, onResize, onWidthReset } = await setup({
+      const { result, onResize, onWidthReset } = setup({
         childFlyoutId: 'child-a',
       });
       await waitFor(() => expect(result.current.size).toBe('50%'));
@@ -521,8 +524,8 @@ describe('useEuiFlyoutResizable', () => {
       expect(onResize).not.toHaveBeenCalled();
     });
 
-    it('resets again when a different child replaces the first', async () => {
-      const { result, rerender, initialProps, onResize } = await setup();
+    it('resets when a different child replaces the open one', async () => {
+      const { result, rerender, initialProps, onResize } = setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
@@ -535,7 +538,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does not reset when the child closes or the same child re-renders', async () => {
-      const { result, rerender, initialProps, onWidthReset } = await setup();
+      const { result, rerender, initialProps, onWidthReset } = setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
@@ -550,7 +553,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does not reset when the container resizes while a child is open', async () => {
-      const { result, rerender, initialProps, onWidthReset } = await setup();
+      const { result, rerender, initialProps, onWidthReset } = setup();
       await waitFor(() => expect(result.current.size).toBe('50%'));
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
@@ -566,8 +569,9 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('renders at `size` when the reference width is not measured yet', async () => {
-      const { result, rerender, initialProps, onResize, onWidthReset } =
-        await setup({ referenceWidth: 0 });
+      const { result, rerender, initialProps, onResize, onWidthReset } = setup({
+        referenceWidth: 0,
+      });
 
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
       expect(result.current.size).toBe('m');
@@ -576,7 +580,7 @@ describe('useEuiFlyoutResizable', () => {
     });
 
     it('does nothing when resizing is disabled', async () => {
-      const { result, rerender, initialProps, onWidthReset } = await setup({
+      const { result, rerender, initialProps, onWidthReset } = setup({
         enabled: false,
       });
 

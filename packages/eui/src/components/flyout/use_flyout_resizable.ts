@@ -33,9 +33,8 @@ type UseEuiFlyoutResizable = Pick<
   referenceWidth?: number;
   size: string | number;
   /**
-   * The ID of the child flyout open beside this main flyout. When it changes
-   * to a new child that doesn't fit beside a width wider than `size`, the
-   * width resets to `size`.
+   * The ID of the child flyout open beside this main flyout. When a new child
+   * doesn't fit beside a width wider than `size`, the width resets to `size`.
    */
   childFlyoutId?: string | null;
   /** The `size` of the child flyout open beside this main flyout. */
@@ -215,8 +214,8 @@ export const useEuiFlyoutResizable = ({
       isStacked,
       onWidthReset,
     } = resetInputsRef.current!;
-    // Until the reference width is measured the flyout renders at `size`, and
-    // the width is reset from `size` once it is measured
+    // Without a measured reference width, there is no way to tell whether the
+    // child fits
     if (!_referenceWidth) return;
     // Layout mode doesn't depend on the widths of a `fill` pair, or of a pair
     // that is already stacked
@@ -245,8 +244,8 @@ export const useEuiFlyoutResizable = ({
   }, [childFlyoutId, enabled, resetInputsRef, setFlyoutWidth, onResizeRef]);
 
   // `onResize` is called for user interactions and for the reset to `size`
-  // when a new child flyout opens, never for other width changes caused by the
-  // consumer or by layout constraints
+  // when a new child flyout doesn't fit, never for other width changes caused
+  // by the consumer or by layout constraints
   const onUserResize = useCallback(
     (width: number) => {
       requestedWidthRef.current = width;
