@@ -31,9 +31,11 @@ export interface UseEuiFlyoutMaximize {
   enabled: boolean;
   flyoutId: string;
   isInManagedContext: boolean;
-  isMainFlyout: boolean;
-  /** The child of this flyout's session, which is not necessarily the foreground session. */
-  ownChildFlyoutId: string | null;
+  /**
+   * When this is a main flyout, the child of its own session, which is not
+   * necessarily the foreground session. `null` for any other flyout.
+   */
+  childFlyoutId: string | null;
   /** For managed flyouts, the result of `getIsManagedFlyoutMaximized`. */
   maximized?: boolean;
   setMaximized?: (flyoutId: string, maximized: boolean) => void;
@@ -50,8 +52,7 @@ export const useEuiFlyoutMaximize = ({
   enabled,
   flyoutId,
   isInManagedContext,
-  isMainFlyout,
-  ownChildFlyoutId,
+  childFlyoutId,
   maximized,
   setMaximized,
   onMaximizeChange,
@@ -61,7 +62,7 @@ export const useEuiFlyoutMaximize = ({
   const isMaximized = isInManagedContext
     ? !!maximized
     : enabled && localMaximized;
-  const canMaximize = enabled && !(isMainFlyout && ownChildFlyoutId);
+  const canMaximize = enabled && !childFlyoutId;
 
   const toggleMaximize = useCallback(() => {
     if (isInManagedContext) {

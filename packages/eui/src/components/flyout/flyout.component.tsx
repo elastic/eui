@@ -590,13 +590,13 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
+    const childFlyoutId = isMainFlyout ? siblingFlyoutId : null;
 
     const { isMaximized, canMaximize, toggleMaximize } = useEuiFlyoutMaximize({
       enabled: !!_flyoutMenuProps?.showMaximizeButton,
       flyoutId,
       isInManagedContext,
-      isMainFlyout,
-      ownChildFlyoutId: isMainFlyout ? siblingFlyoutId : null,
+      childFlyoutId,
       maximized: getIsManagedFlyoutMaximized(
         _flyoutMenuProps,
         managerState,
@@ -683,7 +683,7 @@ export const EuiFlyoutComponent = forwardRef(
       onResize,
       side,
       size: _size,
-      childFlyoutId: isMainFlyout ? siblingFlyoutId : null,
+      childFlyoutId,
       childFlyoutSize: isMainFlyout ? siblingFlyout?.size : undefined,
       isStacked: layoutMode === LAYOUT_MODE_STACKED,
       onWidthReset: (width) =>

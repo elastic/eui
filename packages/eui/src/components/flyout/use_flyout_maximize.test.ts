@@ -20,8 +20,7 @@ const defaultProps: UseEuiFlyoutMaximize = {
   enabled: true,
   flyoutId: 'flyout-1',
   isInManagedContext: false,
-  isMainFlyout: false,
-  ownChildFlyoutId: null,
+  childFlyoutId: null,
 };
 
 describe('useEuiFlyoutMaximize', () => {
@@ -85,7 +84,6 @@ describe('useEuiFlyoutMaximize', () => {
       const onMaximizeChange = jest.fn();
       const { result, rerender } = render({
         isInManagedContext: true,
-        isMainFlyout: true,
         maximized: true,
         onMaximizeChange,
       });
@@ -95,8 +93,7 @@ describe('useEuiFlyoutMaximize', () => {
       rerender({
         ...defaultProps,
         isInManagedContext: true,
-        isMainFlyout: true,
-        ownChildFlyoutId: 'child-1',
+        childFlyoutId: 'child-1',
         maximized: false,
         onMaximizeChange,
       });
@@ -111,23 +108,13 @@ describe('useEuiFlyoutMaximize', () => {
     it('is false for a main flyout with its own child', () => {
       const { result } = render({
         isInManagedContext: true,
-        isMainFlyout: true,
-        ownChildFlyoutId: 'child-1',
+        childFlyoutId: 'child-1',
       });
 
       expect(result.current.canMaximize).toBe(false);
     });
 
-    it('is true for a main flyout without a child', () => {
-      const { result } = render({
-        isInManagedContext: true,
-        isMainFlyout: true,
-      });
-
-      expect(result.current.canMaximize).toBe(true);
-    });
-
-    it('is true for a child flyout', () => {
+    it('is true for a main flyout without a child, and for a child flyout', () => {
       const { result } = render({ isInManagedContext: true });
 
       expect(result.current.canMaximize).toBe(true);
