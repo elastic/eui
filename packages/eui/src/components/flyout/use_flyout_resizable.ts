@@ -19,6 +19,9 @@ import { getPosition } from '../resizable_container/helpers';
 import type { EuiFlyoutResizableProps } from './flyout_resizable';
 import { getWidthFromSize } from './manager/layout_mode';
 
+// The share of the reference width a flyout and its sibling may fill together
+const MAX_COMBINED_WIDTH_RATIO = 0.9;
+
 type UseEuiFlyoutResizable = Pick<
   EuiFlyoutResizableProps,
   'onResize' | 'side'
@@ -31,9 +34,14 @@ type UseEuiFlyoutResizable = Pick<
   size: string | number;
   /**
    * The ID of the child flyout open beside this main flyout. When it changes
-   * to a new child, a width wider than `size` resets to `size`.
+   * to a new child that doesn't fit beside a width wider than `size`, the
+   * width resets to `size`.
    */
   childFlyoutId?: string | null;
+  /** The `size` of the child flyout open beside this main flyout. */
+  childFlyoutSize?: string;
+  /** Whether the flyouts are in stacked layout mode. */
+  isStacked?: boolean;
   /**
    * Called with the pixel width applied by a reset to `size`, before paint.
    */
@@ -53,6 +61,8 @@ export const useEuiFlyoutResizable = ({
   side,
   size: _size,
   childFlyoutId,
+  childFlyoutSize,
+  isStacked = false,
   onWidthReset,
 }: UseEuiFlyoutResizable) => {
   // Without a `referenceWidth` (standalone flyouts), nothing else re-renders
@@ -88,8 +98,8 @@ export const useEuiFlyoutResizable = ({
   const getFlyoutMinMaxWidth = useCallback(
     (width: number) => {
       const maxResizeWidth = siblingFlyoutWidth
-        ? _referenceWidth * 0.9 - siblingFlyoutWidth
-        : _referenceWidth * 0.9;
+        ? _referenceWidth * MAX_COMBINED_WIDTH_RATIO - siblingFlyoutWidth
+        : _referenceWidth * MAX_COMBINED_WIDTH_RATIO;
 
       // Clamp between minWidth and the maximum allowed width.
       // minWidth always takes precedence — if the available space
@@ -178,33 +188,54 @@ export const useEuiFlyoutResizable = ({
     }
   }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth, setFlyoutWidth]);
 
-  // When a new child opens, a main flyout dragged wider than its `size` resets
-  // to `size`, so the pair doesn't get pushed into stacked layout mode. A main
-  // flyout at or below its `size` keeps its width. This runs before paint and
-  // reports the width through `onWidthReset`, because the manager decides the
-  // layout mode from the width it has stored, and the `ResizeObserver` that
-  // normally updates it only fires after paint.
+  // When a new child opens beside a main flyout dragged wider than its `size`,
+  // and the pair doesn't fit, the main flyout resets to `size`. Otherwise the
+  // pair would be pushed into stacked layout mode, or the main flyout clamped.
+  // This runs before paint and reports the width through `onWidthReset`,
+  // because the manager decides the layout mode from the width it has stored,
+  // and the `ResizeObserver` that normally updates it only fires after paint.
   // Only `childFlyoutId` and `enabled` are dependencies: running on every
   // reference or sibling width change would discard the user's width.
   const resetInputsRef = useLatest({
     _size,
     _referenceWidth,
     getFlyoutMinMaxWidth,
+    childFlyoutSize,
+    isStacked,
     onWidthReset,
   });
   useLayoutEffect(() => {
     if (!enabled || !childFlyoutId) return;
 
-    const { _size, _referenceWidth, getFlyoutMinMaxWidth, onWidthReset } =
-      resetInputsRef.current!;
+    const {
+      _size,
+      _referenceWidth,
+      getFlyoutMinMaxWidth,
+      childFlyoutSize,
+      isStacked,
+      onWidthReset,
+    } = resetInputsRef.current!;
     // Until the reference width is measured the flyout renders at `size`, and
     // the width is reset from `size` once it is measured
     if (!_referenceWidth) return;
+    // Layout mode doesn't depend on the widths of a `fill` pair, or of a pair
+    // that is already stacked
+    if (isStacked || !childFlyoutSize || childFlyoutSize === 'fill') return;
+
+    // The child isn't measured yet, so estimate it the way layout mode does
+    const childWidth = getWidthFromSize(childFlyoutSize, _referenceWidth);
+    const currentWidth = flyoutWidthRef.current;
+    if (
+      Math.round(currentWidth + childWidth) <=
+      Math.round(_referenceWidth * MAX_COMBINED_WIDTH_RATIO)
+    ) {
+      return;
+    }
 
     const width = getFlyoutMinMaxWidth(
       getWidthFromSize(_size, _referenceWidth)
     );
-    if (Math.round(flyoutWidthRef.current) <= Math.round(width)) return;
+    if (Math.round(currentWidth) <= Math.round(width)) return;
 
     requestedWidthRef.current = typeof _size === 'number' ? _size : null;
     prevReferenceWidthRef.current = _referenceWidth;

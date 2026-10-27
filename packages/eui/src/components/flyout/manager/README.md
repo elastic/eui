@@ -39,7 +39,7 @@ All child flyouts are of type `overlay`, and have `ownFocus` set to false, since
 Child flyouts are positioned absolutely and moved to the side by the width of the main flyout, which is stored
 in the state and extracted with the [`useFlyoutWidth`](./selectors.ts) hook.
 
-When a new child flyout opens, a resizable main flyout that the user dragged wider than its `size` resets to `size`, so it doesn't push the pair into `stacked` layout mode. A main flyout at or below its `size` keeps its width. The reset runs in a layout effect and writes the new width to the manager state before paint, because layout mode is decided from the stored width and the `ResizeObserver` that normally updates it fires after paint. `onResize` is called with the new width. The dragged width is not restored when the child closes.
+When a new child flyout opens, a resizable main flyout that the user dragged wider than its `size` resets to `size` if the pair would fill more than 90% of the reference width, so it doesn't push the pair into `stacked` layout mode. The child's width is estimated from its `size`, since it isn't measured yet. A main flyout that still fits beside the child, or that is at or below its `size`, keeps its width, and so does one beside a `fill` child or in an already stacked layout. The reset runs in a layout effect and writes the new width to the manager state before paint, because layout mode is decided from the stored width and the `ResizeObserver` that normally updates it fires after paint. `onResize` is called with the new width. The dragged width is not restored when the child closes.
 
 ### EuiManagedFlyout
 

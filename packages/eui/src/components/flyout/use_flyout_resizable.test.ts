@@ -385,6 +385,9 @@ describe('useEuiFlyoutResizable', () => {
       referenceWidth: 1200,
       size: 'm' as string | number,
       childFlyoutId: null as string | null,
+      // 300px at the 1200px reference width
+      childFlyoutSize: 's',
+      isStacked: false,
     };
 
     // Right-side flyout: dragging left grows it
@@ -444,6 +447,43 @@ describe('useEuiFlyoutResizable', () => {
       rerender({ ...initialProps, childFlyoutId: 'child-a' });
       expect(result.current.size).toBe(`${(800 / 1200) * 100}%`);
       expect(onResize).toHaveBeenLastCalledWith(800);
+    });
+
+    it('keeps a dragged width that still fits beside the child', async () => {
+      const { result, rerender, initialProps, onResize, onWidthReset } =
+        await setup();
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      // 700 + 300 = 1000px, within 90% of 1200px
+      dragBy(result, 100);
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe(`${(700 / 1200) * 100}%`);
+      expect(onWidthReset).not.toHaveBeenCalled();
+      expect(onResize).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not reset beside a `fill` child', async () => {
+      const { result, rerender, initialProps, onWidthReset } = await setup({
+        childFlyoutSize: 'fill',
+      });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      dragBy(result, 300);
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('75%');
+      expect(onWidthReset).not.toHaveBeenCalled();
+    });
+
+    it('does not reset when the layout is already stacked', async () => {
+      const { result, rerender, initialProps, onWidthReset } = await setup({
+        isStacked: true,
+      });
+      await waitFor(() => expect(result.current.size).toBe('50%'));
+
+      dragBy(result, 300);
+      rerender({ ...initialProps, childFlyoutId: 'child-a' });
+      expect(result.current.size).toBe('75%');
+      expect(onWidthReset).not.toHaveBeenCalled();
     });
 
     it('keeps a width dragged narrower than `size`', async () => {
