@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { buildTheme, EuiThemeShape } from '@elastic/eui-theme-common';
+import {
+  buildTheme,
+  EuiThemeShape,
+  EuiVisColorStore,
+} from '@elastic/eui-theme-common';
 
 import { colors } from './variables/colors';
 import { animation } from './variables/_animation';
@@ -24,6 +28,12 @@ import { colorVisLight } from './variables/colors/_colors_vis_light';
 import { colorVisDark } from './variables/colors/_colors_vis_dark';
 
 export { colorVisLight as colorVis, colorVisLight, colorVisDark };
+
+// Initialize the global vis color store with this theme's default colors so the
+// palette functions exported by @elastic/eui-theme-common work without loading
+// @elastic/eui. getInstance is idempotent: if the store already exists this is
+// a no-op.
+EuiVisColorStore.getInstance(colorVisLight);
 
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
