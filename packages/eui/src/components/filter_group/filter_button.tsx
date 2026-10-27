@@ -100,7 +100,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   iconType,
   iconSide = 'right',
   color = 'text',
-  badgeColor = 'accent',
+  // POC: design refresh — default accent → primary (blue)
+  badgeColor = 'primary',
   hasActiveFilters,
   numFilters,
   numActiveFilters,

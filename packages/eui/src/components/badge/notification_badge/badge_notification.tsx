@@ -14,7 +14,9 @@ import { CommonProps } from '../../common';
 
 import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
-export const COLORS = ['accent', 'subdued', 'success'] as const;
+// POC: added 'primary' so the default can move off accent (design refresh)
+// POC: 'accent' should be deprecated as a color option here
+export const COLORS = ['primary', 'accent', 'subdued', 'success'] as const;
 export type BadgeNotificationColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
@@ -33,7 +35,14 @@ export interface EuiNotificationBadgeProps
 
 export const EuiNotificationBadge: FunctionComponent<
   EuiNotificationBadgeProps
-> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
+> = ({
+  children,
+  className,
+  size = 's',
+  // POC: design refresh — default accent → primary (blue)
+  color = 'primary',
+  ...rest
+}) => {
   const classes = classNames('euiNotificationBadge', className);
 
   const styles = useEuiMemoizedStyles(euiNotificationBadgeStyles);

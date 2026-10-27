@@ -18,7 +18,8 @@ const meta: Meta<EuiNotificationBadgeProps> = {
   component: EuiNotificationBadge,
   args: {
     // Component defaults
-    color: 'accent',
+    // POC: mirrors design refresh default (accent → primary)
+    color: 'primary',
     size: 's',
   },
 };

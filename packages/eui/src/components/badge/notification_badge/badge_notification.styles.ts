@@ -63,6 +63,8 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.control};
     `,
     // Colors
+    // POC: primary added for design refresh default (blue)
+    primary: css(badgeColors.fill.primary),
     accent: css(badgeColors.accentText),
     success: css(badgeColors.fill.success),
     subdued: css(badgeColors.subdued),
