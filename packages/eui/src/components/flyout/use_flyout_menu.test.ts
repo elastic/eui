@@ -123,6 +123,14 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
+      it('returns true when menu only has the maximize button', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: { showMaximizeButton: true },
+        });
+        expect(result.current.shouldRenderMenu).toBe(true);
+      });
+
       it('returns true when menu has pagination with a single item', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,

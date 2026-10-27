@@ -64,9 +64,54 @@ import FlyoutMenuPagination from './_flyout_menu_pagination.mdx';
 
 <FlyoutMenuPagination />
 
+#### Maximize
+
+Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore button after the `trailingActions`. A maximized flyout fills the full width of its `container` (or the viewport if there is no container), so it never covers navigation or sidebars outside the container. The resize handle is hidden while maximized, and restoring returns the flyout to its previous width, including a width set by dragging.
+
+In a [managed session](#flyout-session-management) with a child flyout open, only the child has the button. Maximizing the child keeps the main flyout's width and fills the rest of the container. Opening a child restores a maximized main flyout.
+
+A maximized `type="push"` flyout stops pushing the page content, but still does not close on Escape.
+
+Use `onMaximizeChange` to persist the user's preference or respond to changes. It is called with the new state after every toggle, and with `false` when opening a child restores a maximized main flyout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFlyout, EuiFlyoutBody, EuiButton, EuiText } from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Show maximizable flyout
+      </EuiButton>
+      {isFlyoutVisible && (
+        <EuiFlyout
+          size="s"
+          aria-label="Maximizable flyout"
+          onClose={() => setIsFlyoutVisible(false)}
+          flyoutMenuProps={{
+            showMaximizeButton: true,
+            onMaximizeChange: setIsMaximized,
+          }}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{isMaximized ? 'Maximized' : 'Not maximized'}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
 #### Menu display mode
 
 By default, the flyout menu is rendered when `flyoutMenuProps` is provided and menu has meaningful content. You can control this behavior with the `flyoutMenuDisplayMode` prop on `EuiFlyout`:
 
-- **`'auto'`** (default): Only render the menu when it has navigation content (back button, history or custom actions) or a visible title. Otherwise, use a standalone close button.
+- **`'auto'`** (default): Only render the menu when it has navigation content (back button, history, custom actions, or `showMaximizeButton`) or a visible title. Otherwise, use a standalone close button.
 - **`'always'`**: Always render the menu, even if it only contains a close button.

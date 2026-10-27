@@ -26,6 +26,11 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
+import {
+  type FlyoutWidthHold,
+  getIsManagedFlyoutMaximized,
+  resolveFlyoutWidth,
+} from '../use_flyout_maximize';
 import type { EuiFlyoutCloseEvent, EuiFlyoutCloseMeta } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -345,12 +350,31 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     };
 
+    const isMaximized = getIsManagedFlyoutMaximized(
+      _flyoutMenuProps,
+      managerState,
+      flyoutId
+    );
+    const widthHoldRef = useRef<FlyoutWidthHold>({});
+
     // Update width in manager state when it changes
     useEffect(() => {
-      if (isActive && width) {
-        setFlyoutWidth(flyoutId, width);
+      if (!isActive) return;
+      const previouslyTrusted = widthHoldRef.current.trusted;
+      const resolved = resolveFlyoutWidth(
+        widthHoldRef.current,
+        isMaximized,
+        width
+      );
+      widthHoldRef.current = resolved.hold;
+      if (
+        !isMaximized &&
+        resolved.width &&
+        resolved.width !== previouslyTrusted
+      ) {
+        setFlyoutWidth(flyoutId, resolved.width);
       }
-    }, [flyoutId, level, isActive, width, setFlyoutWidth]);
+    }, [flyoutId, level, isActive, isMaximized, width, setFlyoutWidth]);
 
     const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
       flyoutId,

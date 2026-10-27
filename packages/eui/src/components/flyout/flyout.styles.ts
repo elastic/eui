@@ -101,6 +101,11 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${maxedFlyoutWidth(euiThemeContext)}
+
+      /* Two classes outrank the single-class !important in maxedFlyoutWidth */
+      &.euiFlyout--maximized {
+        ${logicalCSS('max-width', 'none !important')}
+      }
     `,
 
     content: css`
@@ -473,4 +478,36 @@ export const composeFlyoutInlineStyles = (
     ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : {}),
     zIndex,
   });
+};
+
+/**
+ * Size overrides for a maximized flyout, or `null` when not maximized. A
+ * maximized flyout fills its container (or the viewport without one), minus
+ * the width of a side-by-side sibling. `size` and `maxWidth` are ignored
+ * while maximized.
+ */
+export const getMaximizedFlyoutStyles = ({
+  isMaximized,
+  containerWidth,
+  siblingFlyoutWidth,
+}: {
+  isMaximized: boolean;
+  containerWidth: number | undefined;
+  /** Pass 0 or null in stacked mode. */
+  siblingFlyoutWidth: number | null | undefined;
+}): React.CSSProperties | null => {
+  if (!isMaximized) return null;
+
+  const siblingPx = siblingFlyoutWidth || 0;
+  let width: number | string;
+  if (containerWidth !== undefined) {
+    width = Math.max(0, containerWidth - siblingPx);
+  } else if (siblingPx) {
+    width = `calc(100% - var(--euiFlyoutMainWidth, ${siblingPx}px))`;
+  } else {
+    width = '100%';
+  }
+
+  // The named-size classes set a min-width that can exceed a small container
+  return logicalStyles({ width, minWidth: width, maxWidth: 'none' });
 };

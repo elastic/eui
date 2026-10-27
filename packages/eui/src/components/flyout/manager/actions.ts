@@ -31,6 +31,8 @@ export const ACTION_CLOSE_ALL = `${PREFIX}/closeAll` as const;
 export const ACTION_SET_ACTIVE = `${PREFIX}/setActive` as const;
 /** Dispatched when an active flyout's pixel width changes (for responsive layout). */
 export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
+/** Dispatched when a flyout is maximized to fill its container, or restored. */
+export const ACTION_SET_MAXIMIZED = `${PREFIX}/setMaximized` as const;
 /** Dispatched to set a flyout's menu pagination. */
 export const ACTION_SET_PAGINATION = `${PREFIX}/setPagination` as const;
 /** Dispatched to switch layout mode between `side-by-side` and `stacked`. */
@@ -91,6 +93,13 @@ export interface SetWidthAction extends BaseAction {
   type: typeof ACTION_SET_WIDTH;
   flyoutId: string;
   width: number;
+}
+
+/** Sets whether a flyout is maximized to fill its container. */
+export interface SetMaximizedAction extends BaseAction {
+  type: typeof ACTION_SET_MAXIMIZED;
+  flyoutId: string;
+  maximized: boolean;
 }
 
 /** Set the manager pagination value for a flyout. */
@@ -162,6 +171,7 @@ export type Action =
   | CloseAllFlyoutsAction
   | SetActiveFlyoutAction
   | SetWidthAction
+  | SetMaximizedAction
   | SetPaginationAction
   | SetLayoutModeAction
   | SetActivityStageAction
@@ -227,6 +237,19 @@ export const setFlyoutWidth = (
   type: ACTION_SET_WIDTH,
   flyoutId,
   width,
+});
+
+/**
+ * Maximizes a flyout to fill its container, or restores it. The declared
+ * `size` and measured `width` are left untouched.
+ */
+export const setFlyoutMaximized = (
+  flyoutId: string,
+  maximized: boolean
+): SetMaximizedAction => ({
+  type: ACTION_SET_MAXIMIZED,
+  flyoutId,
+  maximized,
 });
 
 /**

@@ -47,6 +47,12 @@ export interface EuiManagedFlyoutState {
   width?: number;
   size?: string;
   minWidth?: number;
+  /**
+   * Whether the flyout fills the width of its container. `width` keeps the
+   * pre-maximize measurement so layout mode and sibling clamping are
+   * unaffected.
+   */
+  maximized?: boolean;
   activityStage?: EuiFlyoutActivityStage;
   pagination?: EuiFlyoutMenuPagination;
 }
@@ -123,6 +129,7 @@ export interface FlyoutManagerApi {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setFlyoutMaximized: (flyoutId: string, maximized: boolean) => void;
   setPagination: (
     flyoutId: string,
     pagination: EuiFlyoutMenuPagination | undefined

@@ -19,6 +19,7 @@ import {
   closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
+  setFlyoutMaximized,
   setLayoutMode,
   setActivityStage,
   ACTION_ADD,
@@ -26,6 +27,7 @@ import {
   ACTION_CLOSE_ALL,
   ACTION_SET_ACTIVE,
   ACTION_SET_WIDTH,
+  ACTION_SET_MAXIMIZED,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_ACTIVITY_STAGE,
 } from './actions';
@@ -264,6 +266,16 @@ describe('flyout manager actions', () => {
 
       expect(action1.flyoutId).toBe('main-1');
       expect(action2.flyoutId).toBe('child-1');
+    });
+  });
+
+  describe('setFlyoutMaximized', () => {
+    it('should create set maximized action', () => {
+      expect(setFlyoutMaximized('flyout-1', true)).toEqual({
+        type: ACTION_SET_MAXIMIZED,
+        flyoutId: 'flyout-1',
+        maximized: true,
+      });
     });
   });
 
