@@ -14,6 +14,7 @@ import {
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
   ACTION_SET_MAXIMIZED,
+  ACTION_SET_RESTORED_WIDTH,
   ACTION_SET_PAGINATION,
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
@@ -77,30 +78,6 @@ const moveHistoryGroupToTop = (
 
   return [...otherSessions, ...groupSessions];
 };
-
-const clearMaximized = (
-  flyouts: EuiManagedFlyoutState[],
-  flyoutIds: Array<string | null | undefined>
-): EuiManagedFlyoutState[] => {
-  const shouldClear = (f: EuiManagedFlyoutState) =>
-    !!f.maximized && flyoutIds.includes(f.flyoutId);
-  return flyouts.some(shouldClear)
-    ? flyouts.map((f) => (shouldClear(f) ? { ...f, maximized: false } : f))
-    : flyouts;
-};
-
-/**
- * Flyouts to restore when `session` gets `nextChildFlyoutId` as its child: the
- * main flyout, which keeps its width beside a child, and the outgoing child,
- * which should not return maximized from history.
- */
-const getFlyoutsToRestore = (
-  session: FlyoutSession,
-  nextChildFlyoutId: string
-) => [
-  session.mainFlyoutId,
-  session.childFlyoutId !== nextChildFlyoutId ? session.childFlyoutId : null,
-];
 
 /**
  * Reducer handling all flyout manager actions and state transitions.
@@ -203,12 +180,6 @@ export function flyoutManagerReducer(
       const currentSessionIndex = updatedSessions.length - 1;
       const currentSession = updatedSessions[currentSessionIndex];
       const childHistory = currentSession.childHistory ?? [];
-      // Restoring in the same update that adds the child means no render ever
-      // shows a maximized main beside its child.
-      const childFlyouts = clearMaximized(
-        newFlyouts,
-        getFlyoutsToRestore(currentSession, flyoutId)
-      );
 
       // Idempotent re-registration (e.g. after goBack): flyout already in flyouts and session already points to it
       if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
@@ -238,7 +209,7 @@ export function flyoutManagerReducer(
           childTitle: title,
           childIconType: iconType,
         };
-        return { ...state, sessions: updatedSessions, flyouts: childFlyouts };
+        return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
       }
 
       // First child in session
@@ -250,7 +221,7 @@ export function flyoutManagerReducer(
         childHistory,
       };
 
-      return { ...state, sessions: updatedSessions, flyouts: childFlyouts };
+      return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
     }
 
     // Unregister a flyout and update sessions accordingly.
@@ -399,21 +370,13 @@ export function flyoutManagerReducer(
 
       const updatedSessions = [...state.sessions];
       const currentSessionIndex = updatedSessions.length - 1;
-      const currentSession = updatedSessions[currentSessionIndex];
 
       updatedSessions[currentSessionIndex] = {
-        ...currentSession,
+        ...updatedSessions[currentSessionIndex],
         childFlyoutId: action.flyoutId,
       };
 
-      const flyouts = action.flyoutId
-        ? clearMaximized(
-            state.flyouts,
-            getFlyoutsToRestore(currentSession, action.flyoutId)
-          )
-        : state.flyouts;
-
-      return { ...state, sessions: updatedSessions, flyouts };
+      return { ...state, sessions: updatedSessions };
     }
 
     // Persist a flyout's measured width (px). Used for responsive layout
@@ -427,7 +390,7 @@ export function flyoutManagerReducer(
     }
 
     // Toggle whether a flyout paints at the full width of its container.
-    // `size` and `width` are left alone so restore is lossless.
+    // `size` is left alone: changing it would re-register the flyout.
     case ACTION_SET_MAXIMIZED: {
       const { flyoutId, maximized } = action;
       const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
@@ -435,7 +398,30 @@ export function flyoutManagerReducer(
         return state;
       }
       const updatedFlyouts = state.flyouts.map((flyout) =>
-        flyout.flyoutId === flyoutId ? { ...flyout, maximized } : flyout
+        flyout.flyoutId === flyoutId
+          ? {
+              ...flyout,
+              maximized,
+              restoredWidth: maximized ? flyout.restoredWidth : undefined,
+            }
+          : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Record the width a maximized flyout restores to. Ignored once restored.
+    case ACTION_SET_RESTORED_WIDTH: {
+      const { flyoutId, restoredWidth } = action;
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (
+        !target ||
+        !target.maximized ||
+        target.restoredWidth === restoredWidth
+      ) {
+        return state;
+      }
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? { ...flyout, restoredWidth } : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
     }

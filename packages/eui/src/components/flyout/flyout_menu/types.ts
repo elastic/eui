@@ -174,15 +174,13 @@ export type EuiFlyoutMenuProps = CommonProps &
     showBackButton?: boolean;
     /**
      * Shows a maximize/restore button in the trailing actions. A maximized
-     * flyout fills the width of its container. When a managed session has a
-     * child flyout, only the child shows the button, and maximizing it keeps
-     * the main flyout's width.
+     * flyout fills the width of its container, leaving room for an open child
+     * flyout. Child flyouts never show the button.
      * @default false
      */
     showMaximizeButton?: boolean;
     /**
-     * Called with the next state when the maximize button is clicked, and with
-     * `false` when opening a child flyout restores a maximized main flyout.
+     * Called with the new state each time the flyout is maximized or restored.
      */
     onMaximizeChange?: (isMaximized: boolean) => void;
     /**

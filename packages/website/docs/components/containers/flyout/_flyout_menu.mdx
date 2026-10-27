@@ -68,11 +68,11 @@ import FlyoutMenuPagination from './_flyout_menu_pagination.mdx';
 
 Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore button after the `trailingActions`. A maximized flyout fills the full width of its `container` (or the viewport if there is no container), so it never covers navigation or sidebars outside the container. The resize handle is hidden while maximized, and restoring returns the flyout to its previous width, including a width set by dragging.
 
-In a [managed session](#flyout-session-management) with a child flyout open, only the child has the button. Maximizing the child keeps the main flyout's width and fills the rest of the container. Opening a child restores a maximized main flyout.
+In a [managed session](#flyout-session-management), only the main flyout has the button. A maximized main flyout stays maximized when a child opens: the child keeps its own width, and the main flyout fills the rest of the container.
 
 A maximized `type="push"` flyout stops pushing the page content, but still does not close on Escape.
 
-Use `onMaximizeChange` to persist the user's preference or respond to changes. It is called with the new state after every toggle, and with `false` when opening a child restores a maximized main flyout.
+Use `onMaximizeChange` to persist the user's preference or respond to changes. It is called with the new state each time the flyout is maximized or restored.
 
 ```tsx interactive
 import React, { useState } from 'react';

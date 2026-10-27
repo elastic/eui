@@ -48,11 +48,16 @@ export interface EuiManagedFlyoutState {
   size?: string;
   minWidth?: number;
   /**
-   * Whether the flyout fills the width of its container. `width` keeps the
-   * pre-maximize measurement so layout mode and sibling clamping are
-   * unaffected.
+   * Whether a main flyout fills the width of its container, less the width of
+   * a side-by-side child. Layout mode and the child's resize clamp treat it
+   * like a `fill` flyout. `width` is its painted width.
    */
   maximized?: boolean;
+  /**
+   * While maximized, the width the flyout restores to. A `fill` child sizes
+   * itself against this, because its usual width depends on the main's.
+   */
+  restoredWidth?: number;
   activityStage?: EuiFlyoutActivityStage;
   pagination?: EuiFlyoutMenuPagination;
 }

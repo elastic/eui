@@ -34,9 +34,11 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
+  useLatest,
   focusTrapPubSub,
 } from '../../services';
 import { useIsInManagedFlyout, useFlyoutId, useFlyoutManager } from './manager';
+import { setFlyoutRestoredWidth } from './manager/actions';
 import {
   LAYOUT_MODE_SIDE_BY_SIDE,
   LAYOUT_MODE_STACKED,
@@ -87,6 +89,8 @@ import { useEuiFlyoutZIndex } from './use_flyout_z_index';
 import { EuiFlyoutParentProvider } from './flyout_parent_context';
 import {
   type FlyoutWidthHold,
+  getFlyoutPixelWidth,
+  getIsManagedChildFlyout,
   getIsManagedFlyoutMaximized,
   resolveFlyoutWidth,
   useEuiFlyoutMaximize,
@@ -504,12 +508,14 @@ export const EuiFlyoutComponent = forwardRef(
       currentSession?.mainFlyoutId === flyoutId ||
       currentSession?.childFlyoutId === flyoutId;
     const currentZIndexRef = useRef(managerState?.currentZIndex ?? 0);
+    const isChildLevel = getIsManagedChildFlyout(managerState, flyoutId);
 
     const { flyoutMenuId, flyoutMenuProps, shouldRenderMenu, ariaLabelledBy } =
       useEuiFlyoutMenu({
         flyoutMenuProps: _flyoutMenuProps,
         flyoutMenuDisplayMode,
         ariaLabelledBy: _ariaLabelledBy,
+        isChildFlyout: isChildLevel,
       });
 
     useEffect(() => {
@@ -586,7 +592,9 @@ export const EuiFlyoutComponent = forwardRef(
         null
       : null;
     const _siblingFlyoutWidth = siblingFlyout?.width;
-    const isSiblingFill = siblingFlyout?.size === 'fill';
+    // A maximized main makes room for its child the way a `fill` main does
+    const isSiblingFill =
+      siblingFlyout?.size === 'fill' || !!siblingFlyout?.maximized;
     const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
@@ -596,7 +604,7 @@ export const EuiFlyoutComponent = forwardRef(
       enabled: !!_flyoutMenuProps?.showMaximizeButton,
       flyoutId,
       isInManagedContext,
-      childFlyoutId,
+      isChildFlyout: isChildLevel,
       maximized: getIsManagedFlyoutMaximized(
         _flyoutMenuProps,
         managerState,
@@ -686,8 +694,13 @@ export const EuiFlyoutComponent = forwardRef(
       childFlyoutId,
       childFlyoutSize: isMainFlyout ? siblingFlyout?.size : undefined,
       isStacked: layoutMode === LAYOUT_MODE_STACKED,
-      onWidthReset: (width) =>
-        flyoutManagerRef.current?.setFlyoutWidth(flyoutId, width),
+      // While maximized, the reset only changes the width restore returns to;
+      // the store keeps the painted width
+      onWidthReset: (width) => {
+        if (!isMaximized) {
+          flyoutManagerRef.current?.setFlyoutWidth(flyoutId, width);
+        }
+      },
     });
 
     // Publish the main flyout's resolved width as a CSS custom property on
@@ -697,8 +710,10 @@ export const EuiFlyoutComponent = forwardRef(
     // Only the active session's main publishes: a backgrounded main keeps its
     // `isMainFlyout` role but must not leave its width behind for the new
     // session's child to read.
+    // A maximized main doesn't publish: its dragged width isn't what it paints,
+    // so the child falls back to the stored width.
     useLayoutEffect(() => {
-      if (!isMainFlyout || !isActiveManagedFlyout) return;
+      if (!isMainFlyout || !isActiveManagedFlyout || isMaximized) return;
 
       // Only set when we have a computed percentage (during active resize)
       if (typeof size !== 'string' || !size.endsWith('%')) return;
@@ -713,7 +728,59 @@ export const EuiFlyoutComponent = forwardRef(
           style.removeProperty('--euiFlyoutMainWidth');
         }
       };
-    }, [isMainFlyout, isActiveManagedFlyout, size]);
+    }, [isMainFlyout, isActiveManagedFlyout, isMaximized, size]);
+
+    const isManagedMain = isInManagedContext && !isChildLevel;
+    const fullWidth =
+      containerRect?.width ??
+      effectiveReferenceWidth ??
+      document.documentElement.clientWidth;
+    const maximizedPixelWidth = Math.max(
+      0,
+      fullWidth - (siblingFlyoutWidth || 0)
+    );
+    const restoredPixelWidth = getFlyoutPixelWidth(
+      size,
+      fullWidth,
+      siblingFlyoutWidth || 0
+    );
+
+    // The child positions itself with this flyout's stored width, and layout
+    // mode reads it too, but the resize observer only reports after paint.
+    // Write the width each toggle paints before paint, so the child never
+    // overlaps the main for a frame.
+    const toggleWidthsRef = useLatest({
+      maximizedPixelWidth,
+      restoredPixelWidth,
+    });
+    const prevIsMaximizedRef = useRef(isMaximized);
+    useLayoutEffect(() => {
+      if (prevIsMaximizedRef.current === isMaximized) return;
+      prevIsMaximizedRef.current = isMaximized;
+      if (!isManagedMain) return;
+
+      const { maximizedPixelWidth, restoredPixelWidth } =
+        toggleWidthsRef.current!;
+      flyoutManagerRef.current?.setFlyoutWidth(
+        flyoutId,
+        isMaximized ? maximizedPixelWidth : restoredPixelWidth
+      );
+    }, [isMaximized, isManagedMain, flyoutId, toggleWidthsRef]);
+
+    // A `fill` child's usual width depends on the main's width, which a
+    // maximized main takes from the child. Record the width this flyout
+    // restores to, so a `fill` child can size itself against that instead.
+    useLayoutEffect(() => {
+      if (!isMaximized || !isManagedMain) return;
+      flyoutManagerRef.current?.dispatch(
+        setFlyoutRestoredWidth(flyoutId, restoredPixelWidth)
+      );
+    }, [isMaximized, isManagedMain, flyoutId, restoredPixelWidth]);
+
+    // The sibling width a `fill` flyout subtracts from its own
+    const fillSiblingFlyoutWidth = siblingFlyout?.maximized
+      ? siblingFlyout.restoredWidth ?? siblingFlyoutWidth
+      : siblingFlyoutWidth;
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -904,7 +971,7 @@ export const EuiFlyoutComponent = forwardRef(
         size,
         layoutMode,
         siblingFlyoutId,
-        siblingFlyoutWidth || null,
+        fillSiblingFlyoutWidth || null,
         maxWidth,
         flyoutZIndex
       );
@@ -997,8 +1064,8 @@ export const EuiFlyoutComponent = forwardRef(
             const fillDeduction =
               size === 'fill' &&
               layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
-              siblingFlyoutWidth
-                ? siblingFlyoutWidth
+              fillSiblingFlyoutWidth
+                ? fillSiblingFlyoutWidth
                 : 0;
             containerPositionStyles.inlineSize = Math.min(
               Math.max(0, containerRelativeWidth - fillDeduction),
@@ -1037,7 +1104,7 @@ export const EuiFlyoutComponent = forwardRef(
       const maximizedStyles = getMaximizedFlyoutStyles({
         isMaximized,
         containerWidth: containerRect?.width,
-        siblingFlyoutWidth: isMainFlyout ? 0 : siblingFlyoutWidth,
+        siblingFlyoutWidth,
       });
 
       return {
@@ -1052,12 +1119,12 @@ export const EuiFlyoutComponent = forwardRef(
       layoutMode,
       siblingFlyoutId,
       siblingFlyoutWidth,
+      fillSiblingFlyoutWidth,
       maxWidth,
       flyoutZIndex,
       containerRect,
       side,
       isChildFlyout,
-      isMainFlyout,
       isMaximized,
       euiTheme.breakpoint.m,
     ]);

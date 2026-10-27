@@ -24,6 +24,8 @@ export interface UseEuiFlyoutMenu {
   flyoutMenuProps?: EuiFlyoutMenuProps;
   flyoutMenuDisplayMode: EuiFlyoutMenuDisplayMode;
   ariaLabelledBy?: string;
+  /** Child flyouts never show the maximize button. */
+  isChildFlyout?: boolean;
 }
 
 /**
@@ -37,6 +39,7 @@ export const useEuiFlyoutMenu = ({
   flyoutMenuProps: _flyoutMenuProps,
   flyoutMenuDisplayMode,
   ariaLabelledBy: _ariaLabelledBy,
+  isChildFlyout = false,
 }: UseEuiFlyoutMenu) => {
   const generatedMenuId = useGeneratedHtmlId();
   const { titleId: _titleId, ...flyoutMenuProps } = _flyoutMenuProps || {};
@@ -61,7 +64,7 @@ export const useEuiFlyoutMenu = ({
       (flyoutMenuProps.historyItems?.length ?? 0) >= MIN_HISTORY_ITEMS ||
       (flyoutMenuProps.leadingActions?.length ?? 0) > 0 ||
       (effectiveTrailingActions?.length ?? 0) > 0 ||
-      !!flyoutMenuProps.showMaximizeButton ||
+      (!!flyoutMenuProps.showMaximizeButton && !isChildFlyout) ||
       // Component defaults to hiding the title, so only explicit false means the title will be visible
       !!(flyoutMenuProps.title && flyoutMenuProps.hideTitle === false) ||
       !!(flyoutMenuProps.pagination && flyoutMenuProps.pagination.total >= 1));

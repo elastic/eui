@@ -26,11 +26,6 @@ import {
 } from '../flyout.component';
 import { EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
-import {
-  type FlyoutWidthHold,
-  getIsManagedFlyoutMaximized,
-  resolveFlyoutWidth,
-} from '../use_flyout_maximize';
 import type { EuiFlyoutCloseEvent, EuiFlyoutCloseMeta } from '../types';
 import { useFlyoutActivityStage } from './activity_stage';
 import {
@@ -350,31 +345,14 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     };
 
-    const isMaximized = getIsManagedFlyoutMaximized(
-      _flyoutMenuProps,
-      managerState,
-      flyoutId
-    );
-    const widthHoldRef = useRef<FlyoutWidthHold>({});
-
-    // Update width in manager state when it changes
+    // Update width in manager state when it changes. Maximize and restore
+    // write the new width before paint (see `EuiFlyoutComponent`), so this
+    // only runs on measurements, never on the toggle itself.
     useEffect(() => {
-      if (!isActive) return;
-      const previouslyTrusted = widthHoldRef.current.trusted;
-      const resolved = resolveFlyoutWidth(
-        widthHoldRef.current,
-        isMaximized,
-        width
-      );
-      widthHoldRef.current = resolved.hold;
-      if (
-        !isMaximized &&
-        resolved.width &&
-        resolved.width !== previouslyTrusted
-      ) {
-        setFlyoutWidth(flyoutId, resolved.width);
+      if (isActive && width) {
+        setFlyoutWidth(flyoutId, width);
       }
-    }, [flyoutId, level, isActive, isMaximized, width, setFlyoutWidth]);
+    }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
     const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
       flyoutId,

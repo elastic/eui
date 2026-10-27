@@ -10,6 +10,8 @@ import { act } from '@testing-library/react';
 import { renderHook } from '../../test/rtl/render_hook';
 import { createMockState } from './manager/__mocks__';
 import {
+  getFlyoutPixelWidth,
+  getIsManagedChildFlyout,
   getIsManagedFlyoutMaximized,
   resolveFlyoutWidth,
   useEuiFlyoutMaximize,
@@ -20,7 +22,7 @@ const defaultProps: UseEuiFlyoutMaximize = {
   enabled: true,
   flyoutId: 'flyout-1',
   isInManagedContext: false,
-  childFlyoutId: null,
+  isChildFlyout: false,
 };
 
 describe('useEuiFlyoutMaximize', () => {
@@ -80,7 +82,7 @@ describe('useEuiFlyoutMaximize', () => {
       expect(onMaximizeChange).not.toHaveBeenCalled();
     });
 
-    it('reports a store-driven restore', () => {
+    it('reports a change that comes from the store', () => {
       const onMaximizeChange = jest.fn();
       const { result, rerender } = render({
         isInManagedContext: true,
@@ -89,11 +91,9 @@ describe('useEuiFlyoutMaximize', () => {
       });
       expect(result.current.isMaximized).toBe(true);
 
-      // A child opening clears the main's flag in the reducer
       rerender({
         ...defaultProps,
         isInManagedContext: true,
-        childFlyoutId: 'child-1',
         maximized: false,
         onMaximizeChange,
       });
@@ -105,20 +105,40 @@ describe('useEuiFlyoutMaximize', () => {
   });
 
   describe('canMaximize', () => {
-    it('is false for a main flyout with its own child', () => {
+    it('is false for a child flyout', () => {
       const { result } = render({
         isInManagedContext: true,
-        childFlyoutId: 'child-1',
+        isChildFlyout: true,
       });
 
       expect(result.current.canMaximize).toBe(false);
     });
 
-    it('is true for a main flyout without a child, and for a child flyout', () => {
+    it('is true for a main flyout', () => {
       const { result } = render({ isInManagedContext: true });
 
       expect(result.current.canMaximize).toBe(true);
     });
+  });
+});
+
+describe('getIsManagedChildFlyout', () => {
+  const state = {
+    ...createMockState(),
+    flyouts: [
+      { flyoutId: 'main-1', level: 'main' as const },
+      { flyoutId: 'child-1', level: 'child' as const },
+    ],
+  };
+
+  it('reads the level from the store entry', () => {
+    expect(getIsManagedChildFlyout(state, 'child-1')).toBe(true);
+    expect(getIsManagedChildFlyout(state, 'main-1')).toBe(false);
+  });
+
+  it('is false for a flyout that is not registered', () => {
+    expect(getIsManagedChildFlyout(state, 'unknown')).toBe(false);
+    expect(getIsManagedChildFlyout(undefined, 'child-1')).toBe(false);
   });
 });
 
@@ -152,6 +172,42 @@ describe('getIsManagedFlyoutMaximized', () => {
         'flyout-2'
       )
     ).toBe(false);
+  });
+
+  it('is false for a child flyout, even with the store flag set', () => {
+    const childState = {
+      ...createMockState(),
+      flyouts: [
+        { flyoutId: 'child-1', level: 'child' as const, maximized: true },
+      ],
+    };
+
+    expect(
+      getIsManagedFlyoutMaximized(
+        { showMaximizeButton: true },
+        childState,
+        'child-1'
+      )
+    ).toBe(false);
+  });
+});
+
+describe('getFlyoutPixelWidth', () => {
+  it('returns a number of pixels as is', () => {
+    expect(getFlyoutPixelWidth(400, 1000)).toBe(400);
+  });
+
+  it('resolves a percentage against the reference width', () => {
+    expect(getFlyoutPixelWidth('42.5%', 1000)).toBe(425);
+  });
+
+  it('resolves a named size against the reference width', () => {
+    expect(getFlyoutPixelWidth('m', 1000)).toBe(500);
+  });
+
+  it('leaves room for a side-by-side sibling of a fill flyout', () => {
+    expect(getFlyoutPixelWidth('fill', 1000, 300)).toBe(600);
+    expect(getFlyoutPixelWidth('m', 1000, 300)).toBe(500);
   });
 });
 

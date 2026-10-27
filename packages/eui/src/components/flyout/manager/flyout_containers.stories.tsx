@@ -125,7 +125,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showMaximizeButton: {
       control: { type: 'boolean' },
       description:
-        'Passes `flyoutMenuProps.showMaximizeButton` to the app flyout and its child. While the child is open, only the child shows the button.',
+        'Passes `flyoutMenuProps.showMaximizeButton` to the app flyout. Only main flyouts have the button: a maximized app flyout makes room for its child.',
     },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
@@ -321,11 +321,6 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       minWidth={childMinWidth}
       ownFocus={false}
       resizable={childResizable}
-      flyoutMenuProps={{
-        showMaximizeButton,
-        onMaximizeChange: (isMaximized) =>
-          playgroundActions.log(`Child flyout maximized: ${isMaximized}`),
-      }}
       {...args}
       aria-label={`Child Flyout (${childSize})`}
       onClose={closeChild}

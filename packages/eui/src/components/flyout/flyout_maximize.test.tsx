@@ -148,10 +148,14 @@ describe('EuiFlyout maximize', () => {
   });
 
   describe('managed main and child', () => {
+    const CHILD_WIDTH = CONTAINER_WIDTH * 0.25;
+
     const MainWithChild = ({
       onMaximizeChange,
+      childSize = 's',
     }: {
       onMaximizeChange?: (isMaximized: boolean) => void;
+      childSize?: 's' | 'fill';
     }) => {
       const [isChildOpen, setIsChildOpen] = useState(false);
       return (
@@ -166,14 +170,16 @@ describe('EuiFlyout maximize', () => {
             flyoutMenuProps={{ showMaximizeButton: true, onMaximizeChange }}
           >
             <button onClick={() => setIsChildOpen(true)}>Open child</button>
+            <button onClick={() => setIsChildOpen(false)}>Close child</button>
             {isChildOpen && (
               <EuiFlyout
                 id="child"
                 aria-label="Child"
                 session="inherit"
-                size="s"
+                size={childSize}
                 container={containerEl}
                 onClose={() => setIsChildOpen(false)}
+                // Ignored: only main flyouts have the button
                 flyoutMenuProps={{ showMaximizeButton: true }}
               />
             )}
@@ -182,61 +188,92 @@ describe('EuiFlyout maximize', () => {
       );
     };
 
-    it('restores a maximized main when its child opens', () => {
-      const onMaximizeChange = jest.fn();
-      render(<MainWithChild onMaximizeChange={onMaximizeChange} />);
-
-      fireEvent.click(maximizeButton());
-      expect(storedFlyout('main')?.maximized).toBe(true);
-      expect(screen.getByLabelText('Main')).toHaveClass('euiFlyout--maximized');
-
-      fireEvent.click(screen.getByText('Open child'));
-
-      expect(storedFlyout('main')?.maximized).toBe(false);
-      expect(screen.getByLabelText('Main')).not.toHaveClass(
-        'euiFlyout--maximized'
-      );
-      expect(onMaximizeChange).toHaveBeenLastCalledWith(false);
-    });
-
-    it('shows the button only on the child while the child is open', () => {
+    it('shows the button only on the main flyout', () => {
       render(<MainWithChild />);
       fireEvent.click(screen.getByText('Open child'));
 
       const buttons = screen.getAllByTestSubject('euiFlyoutMenuMaximizeButton');
       expect(buttons).toHaveLength(1);
-      expect(screen.getByLabelText('Child')).toContainElement(buttons[0]);
+      expect(screen.getByLabelText('Main')).toContainElement(buttons[0]);
     });
 
-    it('fills the space beside the main without storing the maximized width', () => {
-      render(<MainWithChild />);
-      fireEvent.click(screen.getByText('Open child'));
-
+    it('keeps a maximized main maximized and makes room for a child that opens', () => {
+      const onMaximizeChange = jest.fn();
+      render(<MainWithChild onMaximizeChange={onMaximizeChange} />);
       const main = screen.getByLabelText('Main');
-      const child = screen.getByLabelText('Child');
-      const mainInlineSize = main.style.inlineSize;
-      const mainStoredWidth = storedFlyout('main')?.width;
-      const childStoredWidth = storedFlyout('child')?.width;
-      expect(mainStoredWidth).toBeGreaterThan(0);
 
       fireEvent.click(maximizeButton());
+      expect(main.style.inlineSize).toBe(`${CONTAINER_WIDTH}px`);
 
-      expect(storedFlyout('child')?.maximized).toBe(true);
-      expect(child.style.inlineSize).toBe(
-        `${CONTAINER_WIDTH - mainStoredWidth!}px`
+      fireEvent.click(screen.getByText('Open child'));
+
+      expect(storedFlyout('main')?.maximized).toBe(true);
+      expect(main).toHaveClass('euiFlyout--maximized');
+      expect(screen.getByLabelText('Child').style.inlineSize).toBe(
+        `${CHILD_WIDTH}px`
       );
-      expect(main.style.inlineSize).toBe(mainInlineSize);
-      expect(storedFlyout('child')?.width).toBe(childStoredWidth);
-      expect(storedFlyout('main')?.width).toBe(mainStoredWidth);
+      expect(main.style.inlineSize).toBe(
+        `${CONTAINER_WIDTH - storedFlyout('child')!.width!}px`
+      );
       expect(getFlyoutManagerStore().getState().layoutMode).toBe(
         'side-by-side'
       );
+      expect(onMaximizeChange).toHaveBeenCalledTimes(1);
+
+      fireEvent.click(screen.getByText('Close child'));
+
+      expect(main.style.inlineSize).toBe(`${CONTAINER_WIDTH}px`);
+    });
+
+    it('makes room for an open child when the main is maximized', () => {
+      render(<MainWithChild />);
+      fireEvent.click(screen.getByText('Open child'));
+      const main = screen.getByLabelText('Main');
+      const child = screen.getByLabelText('Child');
 
       fireEvent.click(maximizeButton());
 
-      expect(child).not.toHaveClass('euiFlyout--maximized');
-      expect(main.style.inlineSize).toBe(mainInlineSize);
-      expect(storedFlyout('child')?.width).toBe(childStoredWidth);
+      expect(child.style.inlineSize).toBe(`${CHILD_WIDTH}px`);
+      expect(main.style.inlineSize).toBe(
+        `${CONTAINER_WIDTH - storedFlyout('child')!.width!}px`
+      );
+      expect(getFlyoutManagerStore().getState().layoutMode).toBe(
+        'side-by-side'
+      );
+    });
+
+    it('keeps the width of a fill child, which depends on the main width', () => {
+      render(<MainWithChild childSize="fill" />);
+      fireEvent.click(screen.getByText('Open child'));
+      const main = screen.getByLabelText('Main');
+      const child = screen.getByLabelText('Child');
+      const childInlineSize = child.style.inlineSize;
+      expect(parseFloat(childInlineSize)).toBeGreaterThan(0);
+
+      fireEvent.click(maximizeButton());
+
+      expect(child.style.inlineSize).toBe(childInlineSize);
+      expect(main.style.inlineSize).toBe(
+        `${CONTAINER_WIDTH - parseFloat(childInlineSize)}px`
+      );
+
+      fireEvent.click(maximizeButton());
+
+      expect(child.style.inlineSize).toBe(childInlineSize);
+    });
+
+    it('stores the painted width on maximize and on restore', () => {
+      render(<MainWithChild />);
+      fireEvent.click(screen.getByText('Open child'));
+      const main = screen.getByLabelText('Main');
+      const restoredInlineSize = main.style.inlineSize;
+
+      fireEvent.click(maximizeButton());
+      expect(`${storedFlyout('main')?.width}px`).toBe(main.style.inlineSize);
+
+      fireEvent.click(maximizeButton());
+      expect(main.style.inlineSize).toBe(restoredInlineSize);
+      expect(`${storedFlyout('main')?.width}px`).toBe(restoredInlineSize);
     });
 
     it('keeps the session and both registrations while toggling', () => {
@@ -288,6 +325,40 @@ describe('EuiFlyout maximize', () => {
       mockMeasuredWidth = 320;
       rerender(flyout('restored'));
       expect(document.body.style.paddingInlineEnd).toBe('320px');
+    });
+
+    it('draws the border beside the child while a push main is maximized', () => {
+      render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            id="main"
+            aria-label="Main"
+            session="start"
+            size="s"
+            type="push"
+            pushMinBreakpoint="xs"
+            container={containerEl}
+            onClose={() => {}}
+            flyoutMenuProps={{ showMaximizeButton: true }}
+          >
+            <EuiFlyout
+              id="child"
+              aria-label="Child"
+              session="inherit"
+              size="s"
+              container={containerEl}
+              onClose={() => {}}
+            />
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+      const main = screen.getByLabelText('Main');
+
+      fireEvent.click(maximizeButton());
+
+      // The overlay chrome's shadow gives way to the border beside the child
+      expect(main).toHaveStyleRule('box-shadow', 'none');
+      expect(main).toHaveStyleRule('border-inline-start', expect.anything());
     });
   });
 });

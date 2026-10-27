@@ -131,6 +131,15 @@ describe('useEuiFlyoutMenu', () => {
         expect(result.current.shouldRenderMenu).toBe(true);
       });
 
+      it('returns false for a child flyout whose only content is the maximize button', () => {
+        const { result } = render({
+          flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
+          flyoutMenuProps: { showMaximizeButton: true },
+          isChildFlyout: true,
+        });
+        expect(result.current.shouldRenderMenu).toBe(false);
+      });
+
       it('returns true when menu has pagination with a single item', () => {
         const { result } = render({
           flyoutMenuDisplayMode: MENU_DISPLAY_AUTO,
