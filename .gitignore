@@ -7,7 +7,10 @@ npm-debug.log
 # IDE-specific files
 .idea
 .vscode
-.cursor
+.cursor/*
+# POC: track shared Cursor rules for the design refresh branch
+!.cursor/rules/
+!.cursor/rules/**
 
 # OS-specific files
 Thumbs.db

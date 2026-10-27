@@ -2,6 +2,10 @@
 
 This is a Yarn v4 monorepo; packages live in [`packages/`](./packages/).
 
+## Design refresh POC
+
+This branch is a **reference-only POC** for the design refresh (never merge to `main`). Follow [`.cursor/rules/design-refresh-poc.mdc`](./.cursor/rules/design-refresh-poc.mdc): optimize for speed and visual fidelity; skip tests, docs, changelogs, and backwards-compat work; keep build and types green.
+
 ## Wiki
 
 All contributor knowledge lives in the [wiki](./wiki/):

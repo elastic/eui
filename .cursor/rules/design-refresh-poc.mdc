@@ -1,0 +1,36 @@
+---
+description: Context and constraints for the design refresh POC branch
+alwaysApply: true
+---
+
+# Design refresh POC branch
+
+This is a proof-of-concept branch for the design refresh. It is a reference only and will never be merged. The goal is a test build that Kibana can consume, so we can review a working design candidate. Optimize for speed and visual fidelity, not production readiness.
+
+## Skip these
+- Writing or updating tests (unit, visual regression, Cypress)
+- Updating or fixing existing tests or snapshots that break
+- Changelogs / upcoming changelog files
+- Documentation site updates, Storybook polish, and prop docs
+- Deprecation paths, migration notes, and backwards compatibility
+- Exhaustive accessibility audits (see "Still do" below)
+- Refactoring or cleaning up code unrelated to the task
+
+## Still do
+- Keep the package building and type-checking cleanly. Kibana needs to consume the output, so broken types or build errors are blockers.
+- Use existing EUI patterns: Emotion styles in `*.styles.ts` files, theme tokens via `useEuiTheme`, and existing component conventions.
+- Prefer design tokens over hardcoded values. If a new token is needed (for example, selected text), add it to the theme rather than inlining a color.
+- Respect `prefers-reduced-motion` for any new animation. It's cheap to do and avoids rework.
+- Keep keyboard focus and basic semantics intact when changing interactive components.
+- Mark POC-specific shortcuts with a `// POC:` comment so they're easy to find later.
+
+## Scope discipline
+- Only change the component(s) named in the task. Don't touch neighboring components "while you're in there."
+- Follow the design spec in the task or issue. If a value (color, duration, easing, spacing) isn't specified, don't invent it silently. Pick a reasonable default, flag it with `// POC: needs design input`, and mention it in your summary.
+- If a change would require new public API, keep it minimal and additive.
+
+## Out of scope for this branch
+These are handled in the Kibana PR, not here: login form, loading screen, main background (dot pattern + motion), and recessed chrome (glass).
+
+## When finishing a task
+Summarize what changed, list any `POC:` shortcuts or open design questions, and note anything that might affect the Kibana test build.
