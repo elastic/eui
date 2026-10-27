@@ -4,6 +4,8 @@ Alternatively, you can also use the `EuiFlyoutResizable` component which is a th
 
 We strongly recommend setting reasonable numerical `minWidth` and `maxWidth` props based on the flyout content and page content that you _can_ predict.
 
+When a resizable main flyout in a flyout session opens a new child flyout, and the user dragged the main flyout so wide that the child no longer fits beside it, the main flyout resets to its `size`, so that it does not push the pair into the stacked layout. A main flyout that still fits beside the child keeps its width. The dragged width is not restored when the child closes. `onResize` is called with the reset width, and it does not say whether a width came from a drag or from a reset, so if you save the width from `onResize` and pass it back as a numeric `size`, you save the reset width too. A main flyout whose numeric `size` is large enough to leave no room for the child can still switch to the stacked layout.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {
