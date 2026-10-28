@@ -47,7 +47,8 @@ export type EuiBeaconProps = Omit<
 export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   className,
   size = 12,
-  color = 'success',
+  // POC: design refresh — default success → accent (teal)
+  color = 'accent',
   style,
   ...rest
 }) => {

@@ -15,7 +15,8 @@ const meta: Meta<EuiBeaconProps> = {
   component: EuiBeacon,
   args: {
     // Component defaults
-    color: 'success',
+    // POC: mirrors design refresh default (success → accent)
+    color: 'accent',
     size: 12,
   },
 };
