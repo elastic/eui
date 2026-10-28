@@ -437,6 +437,69 @@ describe('useEuiFlyoutResizable', () => {
 
         expect(onResize).toHaveBeenCalledTimes(1);
       });
+
+      it('settles when a dragged main and a dragged child are clamped against each other', async () => {
+        const toPixels = (size: string | number) =>
+          Math.round((parseFloat(String(size)) / 100) * 1200);
+        const renderDragged = async (
+          size: string,
+          isChildFlyout: boolean,
+          offsetWidth: number,
+          dragBy: number
+        ) => {
+          const initialProps = { ...namedProps, size, isChildFlyout };
+          const hook = renderHook(useEuiFlyoutResizable, { initialProps });
+          act(() =>
+            hook.result.current.setFlyoutRef(createMockElement(offsetWidth))
+          );
+          await waitFor(() =>
+            expect(toPixels(hook.result.current.size)).toBe(offsetWidth)
+          );
+          act(() => {
+            hook.result.current.onMouseDown({
+              clientX: 400,
+            } as ReactMouseEvent);
+            window.dispatchEvent(
+              new MouseEvent('mousemove', { clientX: 400 - dragBy })
+            );
+            window.dispatchEvent(new MouseEvent('mouseup'));
+          });
+          return { ...hook, initialProps };
+        };
+
+        // 720 + 400 = 1120px, over 90% of 1200px once they are side by side
+        const main = await renderDragged('m', false, 600, 120);
+        const child = await renderDragged('s', true, 300, 100);
+
+        // Each round, both re-clamp against the width the other had before
+        const widths: Array<[number, number]> = [
+          [
+            toPixels(main.result.current.size),
+            toPixels(child.result.current.size),
+          ],
+        ];
+        for (let round = 0; round < 4; round++) {
+          const [mainWidth, childWidth] = widths[widths.length - 1];
+          main.rerender({
+            ...main.initialProps,
+            siblingFlyoutWidth: childWidth,
+          });
+          child.rerender({
+            ...child.initialProps,
+            siblingFlyoutWidth: mainWidth,
+          });
+          widths.push([
+            toPixels(main.result.current.size),
+            toPixels(child.result.current.size),
+          ]);
+        }
+
+        // The main flyout keeps its dragged width, and the child absorbs the clamp
+        expect(widths.slice(-2)).toEqual([
+          [720, 360],
+          [720, 360],
+        ]);
+      });
     });
   });
 });

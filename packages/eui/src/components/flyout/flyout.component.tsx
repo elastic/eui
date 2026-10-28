@@ -690,6 +690,7 @@ export const EuiFlyoutComponent = forwardRef(
       onResize,
       side,
       size: _size,
+      isChildFlyout: flyoutIdentity.hasValidSession && !isMainFlyout,
     });
 
     // Publish the main flyout's resolved width as a CSS custom property on
