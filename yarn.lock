@@ -35304,15 +35304,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:~6.14.1":
-  version: 6.14.3
-  resolution: "qs@npm:6.14.3"
-  dependencies:
-    side-channel: "npm:^1.1.1"
-  checksum: 10c0/5d302b97d9f53f82e634c59b9f7c94dcb52a0a6e8a7ddae90d5365bf295a5aca4ea6d66ce3d664cf125bf5eef81567777825dc2eae01a6b10e67c0c88d2e4e70
-  languageName: node
-  linkType: hard
-
 "qs@npm:~6.5.2":
   version: 6.5.5
   resolution: "qs@npm:6.5.5"
