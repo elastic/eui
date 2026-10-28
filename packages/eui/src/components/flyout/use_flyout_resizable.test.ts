@@ -374,5 +374,69 @@ describe('useEuiFlyoutResizable', () => {
       rerender({ ...props, size: 'm', referenceWidth: 800 });
       await waitFor(() => expect(result.current.size).toBe('50%'));
     });
+
+    describe('a user-resized named `size`', () => {
+      const namedProps = {
+        ...props,
+        size: 'm',
+        siblingFlyoutWidth: undefined as number | undefined,
+      };
+
+      const renderDraggedTo900 = async (onResize: jest.Mock) => {
+        const hook = renderHook(useEuiFlyoutResizable, {
+          initialProps: { ...namedProps, onResize },
+        });
+        act(() => hook.result.current.setFlyoutRef(createMockElement(600)));
+        await waitFor(() => expect(hook.result.current.size).toBe('50%'));
+
+        // Right-side flyout: dragging 300px left grows it to 900px
+        act(() => {
+          hook.result.current.onMouseDown({ clientX: 400 } as ReactMouseEvent);
+          window.dispatchEvent(new MouseEvent('mousemove', { clientX: 100 }));
+          window.dispatchEvent(new MouseEvent('mouseup'));
+        });
+        expect(hook.result.current.size).toBe('75%');
+        return hook;
+      };
+
+      it('returns to the dragged width after a sibling clamp', async () => {
+        const onResize = jest.fn();
+        const { result, rerender } = await renderDraggedTo900(onResize);
+
+        // Clamped to 90% of 1200px − 400px = 680px
+        rerender({ ...namedProps, onResize, siblingFlyoutWidth: 400 });
+        await waitFor(() => {
+          expect(result.current.size).toBe(`${(680 / 1200) * 100}%`);
+        });
+
+        rerender({ ...namedProps, onResize });
+        await waitFor(() => expect(result.current.size).toBe('75%'));
+
+        expect(onResize).toHaveBeenCalledTimes(1);
+        expect(onResize).toHaveBeenCalledWith(900);
+      });
+
+      it('keeps the dragged share of the container through a resize while clamped', async () => {
+        const onResize = jest.fn();
+        const { result, rerender } = await renderDraggedTo900(onResize);
+
+        rerender({ ...namedProps, onResize, siblingFlyoutWidth: 400 });
+        // The dragged 75% becomes 1200px, clamped to 90% of 1600px − 400px
+        rerender({
+          ...namedProps,
+          onResize,
+          siblingFlyoutWidth: 400,
+          referenceWidth: 1600,
+        });
+        await waitFor(() => {
+          expect(result.current.size).toBe(`${(1040 / 1600) * 100}%`);
+        });
+
+        rerender({ ...namedProps, onResize, referenceWidth: 1600 });
+        await waitFor(() => expect(result.current.size).toBe('75%'));
+
+        expect(onResize).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 });
