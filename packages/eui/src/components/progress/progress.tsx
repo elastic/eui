@@ -39,14 +39,13 @@ import {
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiProgressSize = (typeof SIZES)[number];
 
+// POC: 'accent' / 'accentSecondary' removed (contrast; accentSecondary to be deprecated)
 export const COLORS = [
   'primary',
   'success',
   'warning',
   'danger',
   'subdued',
-  'accent',
-  'accentSecondary',
   'vis0',
   'vis1',
   'vis2',
@@ -101,7 +100,8 @@ export const EuiProgress: FunctionComponent<
   ExclusiveUnion<Determinate, Indeterminate>
 > = ({
   className,
-  color = 'success',
+  // POC: design refresh — default success → primary (blue; accent lacks contrast)
+  color = 'primary',
   size = 'm',
   position = 'static',
   max,

@@ -302,7 +302,8 @@ export const EuiFilePicker = forwardRef<EuiFilePickerRef, EuiFilePickerProps>(
     }
 
     const loader = !normalFormControl && isLoading && (
-      <EuiProgress size="xs" color="accent" position="absolute" />
+      // POC: drop accent — Progress default is primary (accent lacks contrast)
+      <EuiProgress size="xs" position="absolute" />
     );
 
     const iconColor = isInvalid ? 'danger' : disabled ? 'disabled' : 'text';

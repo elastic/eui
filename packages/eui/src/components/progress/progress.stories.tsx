@@ -40,7 +40,8 @@ const meta: Meta<typeof EuiProgress> = {
     },
   },
   args: {
-    color: 'success',
+    // POC: mirrors design refresh default (success → primary)
+    color: 'primary',
     size: 'm',
     position: 'static',
     valueText: false,

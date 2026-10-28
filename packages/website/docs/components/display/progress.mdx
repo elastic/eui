@@ -12,7 +12,7 @@ import { EuiProgress } from '@elastic/eui';
 
 export default () => (
   <div>
-    <EuiProgress size="xs" color="accent" />
+    <EuiProgress size="xs" />
   </div>
 );
 ```
@@ -187,7 +187,7 @@ export default () => {
         </EuiHeader>
         <div style={{ position: 'absolute', zIndex: '5' }}>
           <EuiPortal>
-            <EuiProgress size="xs" color="accent" position="fixed" />
+            <EuiProgress size="xs" position="fixed" />
           </EuiPortal>
         </div>
       </div>
@@ -197,7 +197,7 @@ export default () => {
   return (
     <div>
       <EuiPanel style={{ width: 300, position: 'relative', overflow: 'hidden' }}>
-        <EuiProgress size="xs" color="accent" position="absolute" />
+        <EuiProgress size="xs" position="absolute" />
         <EuiText>
           <h2>Absolutely!</h2>
           <p>
@@ -273,7 +273,6 @@ const mainColors = [
   'warning',
   'danger',
   'subdued',
-  'accent',
 ];
 
 const vizBars = [];
@@ -365,7 +364,6 @@ export default () => (
           <EuiProgress
             valueText={true}
             max={100}
-            color="success"
             size="s"
             {...item}
           />
@@ -380,7 +378,6 @@ export default () => (
           <EuiProgress
             valueText={true}
             max={100}
-            color="primary"
             size="m"
             {...item}
           />

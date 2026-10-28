@@ -263,20 +263,7 @@ export const euiProgressStyles = (
         highContrastMode
       )}
     `,
-    accent: css`
-      ${nativeVsIndeterminateColor(
-        euiTheme.colors.accent,
-        isNative,
-        highContrastMode
-      )}
-    `,
-    accentSecondary: css`
-      ${nativeVsIndeterminateColor(
-        euiTheme.colors.accentSecondary,
-        isNative,
-        highContrastMode
-      )}
-    `,
+    // POC: accent / accentSecondary color options removed
     vis0: css`
       ${nativeVsIndeterminateColor(
         euiTheme.colors.vis.euiColorVis0,
@@ -407,12 +394,7 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   subdued: css`
     color: ${euiTheme.colors.textSubdued};
   `,
-  accent: css`
-    color: ${euiTheme.colors.textAccent};
-  `,
-  accentSecondary: css`
-    color: ${euiTheme.colors.textAccentSecondary};
-  `,
+  // POC: accent / accentSecondary color options removed
   vis0: css`
     color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis0)(euiTheme)};
   `,
