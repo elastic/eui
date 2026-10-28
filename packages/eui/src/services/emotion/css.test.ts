@@ -23,6 +23,7 @@ describe('custom EUI Emotion instance', () => {
   // NOTE: Currently, custom Emotion instances do *not* merge css auto labels
   // @see https://github.com/emotion-js/emotion/issues/3113
   it('correctly merges css with labels', () => {
+    // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
     const test1 = css`
       label: hello;
       color: red;

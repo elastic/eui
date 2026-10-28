@@ -19,6 +19,7 @@ describe('cloneElementWithCss', () => {
 
   it('correctly renders css on elements that do not already have a `css` property', () => {
     const { container } = render(
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       <CloningParent css={{ color: 'red' }}>
         <div>hello world</div>
       </CloningParent>
@@ -36,6 +37,7 @@ describe('cloneElementWithCss', () => {
 
   it('combines css properties on cloned elements that already have a `css` property', () => {
     const { container } = render(
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       <CloningParent css={{ color: 'red' }}>
         <div
           css={[
@@ -62,13 +64,16 @@ describe('cloneElementWithCss', () => {
 
   it('handles components', () => {
     const TestComponent: React.FC = (props) => (
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       <div css={{ backgroundColor: 'blue' }} {...props}>
         hello world
       </div>
     );
 
     const { container } = render(
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       <CloningParent css={{ color: 'red' }}>
+        {/* eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color */}
         <TestComponent css={{ border: '1px solid black' }} />
       </CloningParent>
     );

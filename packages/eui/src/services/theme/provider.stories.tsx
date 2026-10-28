@@ -102,6 +102,7 @@ const MockComponent: FunctionComponent<{
   }, [global, color, setGlobalCSSVariables, setNearestThemeCSSVariables]);
 
   return (
+    // eslint-disable-next-line @elastic/eui/no-css-color -- the story demonstrates a CSS variable
     <p style={{ color: 'var(--testColor)', marginBlockEnd: '1em' }}>
       {children}
     </p>

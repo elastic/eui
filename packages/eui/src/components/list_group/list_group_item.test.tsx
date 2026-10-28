@@ -258,6 +258,7 @@ describe('EuiListGroupItem', () => {
     describe('style', () => {
       test('is rendered', () => {
         const { container } = render(
+          // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
           <EuiListGroupItem label="Label" style={{ color: 'red' }} />
         );
 

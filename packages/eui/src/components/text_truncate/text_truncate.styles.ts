@@ -37,7 +37,7 @@ export const euiTextTruncateStyles = (euiThemeContext: UseEuiTheme) => ({
     position: absolute;
     inset: 0;
     overflow: hidden;
-    color: rgba(0, 0, 0, 0);
+    color: transparent;
 
     /* Safari-only CSS hack
        Adding text-overflow: ellipsis makes VoiceOver's screen reader outline obey the container width,

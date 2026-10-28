@@ -301,7 +301,12 @@ describe('EuiFocusTrap', () => {
         const [isFocusTrapOpen, setIsFocusTrapOpen] = useState(false);
 
         return (
-          <div style={{ height: 2000, backgroundColor: '#555' }}>
+          <div
+            style={{ height: 2000 }}
+            css={({ euiTheme }) => ({
+              backgroundColor: euiTheme.colors.backgroundBaseSubdued,
+            })}
+          >
             <button
               data-test-subj="openFocusTrap"
               onClick={() => setIsFocusTrapOpen(true)}

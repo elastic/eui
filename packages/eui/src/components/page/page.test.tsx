@@ -64,6 +64,7 @@ describe('EuiPage', () => {
 
     test('can be set to a custom value and does not override custom style', () => {
       const { container } = render(
+        // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
         <EuiPage restrictWidth="24rem" style={{ color: 'red ' }} />
       );
 
