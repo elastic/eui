@@ -15,6 +15,9 @@ export const EuiTabsSelectors = {
   /** The tab list. `EuiTabbedContent` puts the consumer's subj on a wrapper whose first child is the list. */
   ROOT_SELECTOR: '.euiTabs, :has(> .euiTabs)',
 
+  /** The tab list element itself. */
+  LIST_SELECTOR: '.euiTabs',
+
   /** A tab, an `<a>` or `<button>` with `role="tab"`. */
   TAB_SELECTOR: '.euiTab',
 

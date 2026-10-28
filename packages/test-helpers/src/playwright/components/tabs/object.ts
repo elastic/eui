@@ -25,12 +25,12 @@ export class EuiTabsObject extends BaseObject {
 
   /** All tabs, in order. */
   get tabs(): Locator {
-    return this.root.locator(EuiTabsSelectors.TAB_SELECTOR);
+    return this.list.locator(EuiTabsSelectors.TAB_SELECTOR);
   }
 
   /** The labels of all tabs, in order. */
   async getTabs(): Promise<string[]> {
-    return this.root
+    return this.list
       .locator(EuiTabsSelectors.TAB_CONTENT_SELECTOR)
       .allInnerTexts();
   }
@@ -40,7 +40,7 @@ export class EuiTabsObject extends BaseObject {
    * and `append` content does not interfere, then climbs to the tab.
    */
   tab(label: string): Locator {
-    return this.root
+    return this.list
       .locator(EuiTabsSelectors.TAB_CONTENT_SELECTOR)
       .filter({ hasText: new RegExp(`^${escapeRegExp(label)}$`) })
       .locator('..');
@@ -55,13 +55,24 @@ export class EuiTabsObject extends BaseObject {
 
   /** The label of the selected tab, or null when none is selected. */
   async getSelected(): Promise<string | null> {
-    const selected = this.root
+    const selected = this.list
       .locator(EuiTabsSelectors.SELECTED_TAB_SELECTOR)
       .locator(EuiTabsSelectors.TAB_CONTENT_SELECTOR);
     if ((await selected.count()) === 0) {
       return null;
     }
     return selected.first().innerText();
+  }
+
+  /**
+   * The owning tab list: the root itself for `EuiTabs`, or the wrapper's
+   * direct `.euiTabs` child for `EuiTabbedContent`. Queries never reach into
+   * the tabbed content panel, which may hold its own tabs.
+   */
+  private get list(): Locator {
+    return this.root
+      .and(this.scope.locator(EuiTabsSelectors.LIST_SELECTOR))
+      .or(this.root.locator(`> ${EuiTabsSelectors.LIST_SELECTOR}`));
   }
 }
 
