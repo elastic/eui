@@ -142,8 +142,9 @@ export const useEuiFlyoutResizable = ({
   const prevReferenceWidthRef = useRef(_referenceWidth);
 
   // The width last set by a numeric `size` or by the user, before clamping.
-  // Clamping always starts from it, so a flyout squeezed by a narrow container
-  // returns to this width once there is room again.
+  // Clamping always starts from it, so a squeezed flyout returns to this width
+  // once there is room again. With a named `size`, it scales with the
+  // reference width.
   const requestedWidthRef = useRef<number | null>(null);
 
   // Update flyout width when consumers pass in a new `size`, or re-clamp
@@ -170,16 +171,24 @@ export const useEuiFlyoutResizable = ({
       // Named sizes are percentages — scale the pixel width proportionally to
       // the reference width change and then clamp. This preserves the flyout's
       // percentage position in both directions (viewport shrink AND grow).
+      // A user-dragged width is scaled and clamped from the requested width,
+      // so it survives a clamp just as it does for a numeric `size`.
       const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
       prevReferenceWidthRef.current = _referenceWidth;
 
       const currentWidth = flyoutWidthRef.current;
       if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
         const scaleFactor = _referenceWidth / prevRefWidth;
-        setFlyoutWidth(getFlyoutMinMaxWidth(currentWidth * scaleFactor));
+        const scaledWidth =
+          (requestedWidthRef.current ?? currentWidth) * scaleFactor;
+        if (requestedWidthRef.current !== null) {
+          requestedWidthRef.current = scaledWidth;
+        }
+        setFlyoutWidth(getFlyoutMinMaxWidth(scaledWidth));
       } else if (_referenceWidth > 0) {
         // When reference width was 0 (e.g. container not yet measured), now
         // that we have a real width, reset from the size prop instead of scaling.
+        requestedWidthRef.current = null;
         setFlyoutWidth(0);
       }
     }
