@@ -2,12 +2,13 @@
 
 @import './colors_vis';
 
-$euiColorVisText0: #035749 !default;
-$euiColorVisText1: #006A59 !default;
+// POC: visText0/1 = accentSecondary (Pink); visText4/5 = accent (Teal)
+$euiColorVisText0: #831652 !default;
+$euiColorVisText1: #A11262 !default;
 $euiColorVisText2: #154399 !default;
 $euiColorVisText3: #0B64DD !default;
-$euiColorVisText4: #A11262 !default;
-$euiColorVisText5: #D13680 !default;
+$euiColorVisText4: #006A59 !default;
+$euiColorVisText5: #00927B !default;
 $euiColorVisText6: #A71627 !default;
 $euiColorVisText7: #DA3737 !default;
 $euiColorVisText8: #6A4906 !default;
