@@ -1,10 +1,21 @@
 ---
-keywords: [EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner]
+keywords: [EuiLoadingElasticRing, EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner]
 ---
 
 # Loading
 
 Use loading indicators sparingly and opt for showing actual [progress](./progress.mdx#progress-with-values) over infinite spinners. It is ok to use multiple loaders on a page if each section is progressively loaded. However, if the entire page is loaded at once, use a single, larger loading indicator.
+
+## Elastic ring
+
+**EuiLoadingElasticRing** is the branded ring indicator for product and full-page loading. Prefer it for Elastic-branded loading screens. Set `loading={false}` to settle into the static design before unmounting.
+
+```tsx interactive
+import React from 'react';
+import { EuiLoadingElasticRing } from '@elastic/eui';
+
+export default () => <EuiLoadingElasticRing />;
+```
 
 ## Elastic
 
@@ -92,6 +103,7 @@ export default () => (
 
 import docgen from '@elastic/eui-docgen/dist/components/loading';
 
+<PropTable definition={docgen.EuiLoadingElasticRing} />
 <PropTable definition={docgen.EuiLoadingChart} />
 <PropTable definition={docgen.EuiLoadingLogo} />
 <PropTable definition={docgen.EuiLoadingSpinner} />
