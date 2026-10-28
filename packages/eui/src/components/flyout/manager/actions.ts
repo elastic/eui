@@ -35,6 +35,8 @@ export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
 export const ACTION_SET_MAXIMIZED = `${PREFIX}/setMaximized` as const;
 /** Dispatched by a maximized flyout to record the width it restores to. */
 export const ACTION_SET_RESTORED_WIDTH = `${PREFIX}/setRestoredWidth` as const;
+/** Dispatched when a flyout's `resizable` prop changes. */
+export const ACTION_SET_RESIZABLE = `${PREFIX}/setResizable` as const;
 /** Dispatched to set a flyout's menu pagination. */
 export const ACTION_SET_PAGINATION = `${PREFIX}/setPagination` as const;
 /** Dispatched to switch layout mode between `side-by-side` and `stacked`. */
@@ -71,6 +73,7 @@ export interface AddFlyoutAction extends BaseAction {
   historyKey?: symbol;
   iconType?: IconType;
   minWidth?: number;
+  resizable?: boolean;
 }
 
 /** Remove a flyout from manager state. Also updates the active session. */
@@ -109,6 +112,13 @@ export interface SetRestoredWidthAction extends BaseAction {
   type: typeof ACTION_SET_RESTORED_WIDTH;
   flyoutId: string;
   restoredWidth: number;
+}
+
+/** Update whether a flyout is resizable. */
+export interface SetResizableAction extends BaseAction {
+  type: typeof ACTION_SET_RESIZABLE;
+  flyoutId: string;
+  resizable: boolean;
 }
 
 /** Set the manager pagination value for a flyout. */
@@ -182,6 +192,7 @@ export type Action =
   | SetWidthAction
   | SetMaximizedAction
   | SetRestoredWidthAction
+  | SetResizableAction
   | SetPaginationAction
   | SetLayoutModeAction
   | SetActivityStageAction
@@ -200,6 +211,7 @@ export type Action =
  * - Optional `size` is the named EUI size (e.g. `s`, `m`, `l`).
  * - Optional `historyKey` (Symbol) scopes history; only flyouts with the same reference share Back/history. Omit for a unique group per session.
  * - Optional `iconType` is shown next to the session title in the history menu.
+ * - Optional `resizable` lets layout mode account for the resize clamp.
  */
 export const addFlyout = (
   flyoutId: string,
@@ -208,7 +220,8 @@ export const addFlyout = (
   size?: string,
   historyKey?: symbol,
   iconType?: IconType,
-  minWidth?: number
+  minWidth?: number,
+  resizable?: boolean
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
   flyoutId,
@@ -218,6 +231,7 @@ export const addFlyout = (
   historyKey,
   iconType,
   minWidth,
+  resizable,
 });
 
 /** Unregister a flyout and update the session accordingly. */
@@ -247,6 +261,16 @@ export const setFlyoutWidth = (
   type: ACTION_SET_WIDTH,
   flyoutId,
   width,
+});
+
+/** Record whether a flyout is resizable. */
+export const setFlyoutResizable = (
+  flyoutId: string,
+  resizable: boolean
+): SetResizableAction => ({
+  type: ACTION_SET_RESIZABLE,
+  flyoutId,
+  resizable,
 });
 
 /**

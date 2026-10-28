@@ -76,6 +76,7 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
+import { usePushedFlyoutReturnFocus } from './use_pushed_flyout_return_focus';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
@@ -208,7 +209,8 @@ interface _EuiFlyoutComponentProps {
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
-   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
+   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus.
+   * It also applies to push flyouts, which return focus on close unless the user has moved focus out of the flyout.
    */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
@@ -258,10 +260,6 @@ interface _EuiFlyoutComponentProps {
 
   /**
    * Optional callback that fires when the user resizes the flyout.
-   *
-   * In the flyout system, it also fires when a main flyout resized wider than
-   * its `size` resets to `size` because a new child flyout doesn't fit beside
-   * it. The width doesn't say which of the two caused the change.
    */
   onResize?: (width: number) => void;
 
@@ -428,6 +426,8 @@ export const EuiFlyoutComponent = forwardRef(
       minWidth,
       onResize,
       onAnimationEnd,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
       scrollContainerRef,
       container: containerProp,
       ...rest
@@ -598,7 +598,6 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
-    const childFlyoutId = isMainFlyout ? siblingFlyoutId : null;
 
     const { isMaximized, canMaximize, toggleMaximize } = useEuiFlyoutMaximize({
       enabled: !!_flyoutMenuProps?.showMaximizeButton,
@@ -691,16 +690,6 @@ export const EuiFlyoutComponent = forwardRef(
       onResize,
       side,
       size: _size,
-      childFlyoutId,
-      childFlyoutSize: isMainFlyout ? siblingFlyout?.size : undefined,
-      isStacked: layoutMode === LAYOUT_MODE_STACKED,
-      // While maximized, the reset only changes the width restore returns to;
-      // the store keeps the painted width
-      onWidthReset: (width) => {
-        if (!isMaximized) {
-          flyoutManagerRef.current?.setFlyoutWidth(flyoutId, width);
-        }
-      },
     });
 
     // Publish the main flyout's resolved width as a CSS custom property on
@@ -1155,6 +1144,14 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
+    const { onFocus, onBlur } = usePushedFlyoutReturnFocus({
+      isPushed,
+      returnFocus: _focusTrapProps?.returnFocus,
+      triggerRef: flyoutToggle,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
+    });
+
     const isSideBySideChild =
       isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
     // Side-by-side: main + child form a single modal unit; only main has aria-modal
@@ -1349,6 +1346,8 @@ export const EuiFlyoutComponent = forwardRef(
             aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
             onAnimationEnd={onAnimationEnd}
+            onFocus={onFocus}
+            onBlur={onBlur}
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (

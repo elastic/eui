@@ -153,9 +153,11 @@ describe('EuiFlyout maximize', () => {
     const MainWithChild = ({
       onMaximizeChange,
       childSize = 's',
+      mainProps,
     }: {
       onMaximizeChange?: (isMaximized: boolean) => void;
       childSize?: 's' | 'fill';
+      mainProps?: { size?: number; resizable?: boolean; onResize?: () => void };
     }) => {
       const [isChildOpen, setIsChildOpen] = useState(false);
       return (
@@ -168,6 +170,7 @@ describe('EuiFlyout maximize', () => {
             container={containerEl}
             onClose={() => {}}
             flyoutMenuProps={{ showMaximizeButton: true, onMaximizeChange }}
+            {...mainProps}
           >
             <button onClick={() => setIsChildOpen(true)}>Open child</button>
             <button onClick={() => setIsChildOpen(false)}>Close child</button>
@@ -274,6 +277,26 @@ describe('EuiFlyout maximize', () => {
       fireEvent.click(maximizeButton());
       expect(main.style.inlineSize).toBe(restoredInlineSize);
       expect(`${storedFlyout('main')?.width}px`).toBe(restoredInlineSize);
+    });
+
+    it('restores a wide resizable main to the width that fits beside the child', () => {
+      const onResize = jest.fn();
+      render(
+        <MainWithChild mainProps={{ size: 700, resizable: true, onResize }} />
+      );
+      const main = screen.getByLabelText('Main');
+
+      fireEvent.click(maximizeButton());
+      fireEvent.click(screen.getByText('Open child'));
+      fireEvent.click(maximizeButton());
+
+      expect(main.style.inlineSize).toBe(
+        `${CONTAINER_WIDTH * 0.9 - CHILD_WIDTH}px`
+      );
+      expect(getFlyoutManagerStore().getState().layoutMode).toBe(
+        'side-by-side'
+      );
+      expect(onResize).not.toHaveBeenCalled();
     });
 
     it('keeps the session and both registrations while toggling', () => {
