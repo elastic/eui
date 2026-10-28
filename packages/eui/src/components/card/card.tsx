@@ -381,9 +381,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     optionalChildren = <div css={childrenStyles}>{children}</div>;
   }
 
+  const hasTitleDivider = layout === 'horizontal' && !!description;
+
   let optionalDescription;
   if (description) {
-    const descriptionStyles = [styles.euiCard__description];
+    const descriptionStyles = [
+      styles.euiCard__description,
+      hasTitleDivider && styles.descriptionWithTitleDivider,
+    ];
     optionalDescription = (
       <EuiText id={ariaDesc} size="s" css={descriptionStyles}>
         <p>{description}</p>
@@ -423,6 +428,15 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           >
             <TitleElement>{theTitle}</TitleElement>
           </EuiTitle>
+
+          {hasTitleDivider && (
+            // POC: design refresh — accent divider between title and description
+            <hr
+              aria-hidden
+              className="euiCard__titleDivider"
+              css={styles.titleDivider}
+            />
+          )}
 
           {optionalDescription}
 
