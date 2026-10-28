@@ -14,7 +14,7 @@ import { EuiCode } from '../code';
 import { EuiFlexGroup } from '../flex';
 import { EuiSpacer } from '../spacer';
 
-import { EuiBadge, EuiBadgeProps, COLORS } from './badge';
+import { EuiBadge, EuiBadgeProps, RECOMMENDED_COLORS } from './badge';
 import { EuiBadgeGroup } from './badge_group';
 
 const meta: Meta<EuiBadgeProps> = {
@@ -41,7 +41,8 @@ export const Playground: Story = {
   argTypes: {
     color: {
       control: 'select',
-      options: COLORS,
+      // POC: accent soft-deprecated — omit from controls; still valid via COLORS
+      options: RECOMMENDED_COLORS,
     },
   },
 };
@@ -99,12 +100,12 @@ export const KitchenSink: Story = {
     return (
       <EuiFlexGroup gutterSize="m" direction="column">
         <EuiCode transparentBackground>fill = true</EuiCode>
-        {COLORS.map((color, index) => (
+        {RECOMMENDED_COLORS.map((color, index) => (
           <KitchenSinkVariantRow fill color={color} key={index} />
         ))}
         <EuiSpacer size="l" />
         <EuiCode transparentBackground>fill = false</EuiCode>
-        {COLORS.map((color, index) => (
+        {RECOMMENDED_COLORS.map((color, index) => (
           <KitchenSinkVariantRow color={color} key={index} />
         ))}
         <EuiSpacer size="l" />

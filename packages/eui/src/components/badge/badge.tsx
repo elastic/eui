@@ -45,6 +45,7 @@ export const COLORS = [
   'default',
   'hollow',
   'primary',
+  // POC: soft-deprecated — kept for compatibility; prefer primary / status colors
   'accent',
   'neutral',
   'success',
@@ -53,6 +54,11 @@ export const COLORS = [
   'danger',
 ] as const;
 export type BadgeColor = (typeof COLORS)[number];
+
+/** Recommended Badge colors for new usage (excludes soft-deprecated `accent`) */
+export const RECOMMENDED_COLORS = COLORS.filter(
+  (color): color is Exclude<BadgeColor, 'accent'> => color !== 'accent'
+);
 
 type WithButtonProps = {
   /**
@@ -99,6 +105,9 @@ export type EuiBadgeProps = {
 
   /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
+   *
+   * The `accent` option is soft-deprecated for Badge and will be removed in a future release.
+   * Prefer `primary` or a semantic status color. Accent is reserved for non-interactive decoration.
    */
   color?: BadgeColor | string;
 

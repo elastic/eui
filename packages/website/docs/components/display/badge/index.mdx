@@ -41,6 +41,10 @@ When a named color like `primary` is passed to the `color` prop, the `fill` prop
 determines whether the badge will use filled (more intense) or non-filled
 (less intense) colors. By default, all badges use non-filled colors.
 
+:::note Soft-deprecated: `accent`
+The `accent` color option still works for compatibility, but is soft-deprecated for **EuiBadge**. Prefer `primary` or a semantic status color. Accent is reserved for non-interactive decoration.
+:::
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {
@@ -58,7 +62,6 @@ const badges = [
   'hollow',
   'primary',
   'success',
-  'accent',
   'warning',
   'danger',
 ];
@@ -278,7 +281,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge
-        color="accent"
+        color="primary"
         href="#/display/badge"
         iconType="bolt"
         iconSide="right"
