@@ -85,7 +85,7 @@ export const EuiOutsideClickDetector = forwardRef<
       document.removeEventListener('mouseup', onClickOutside);
       document.removeEventListener('touchend', onClickOutside);
     };
-  }, [isDisabled, onOutsideClick]);
+  }, [id, isDisabled, onOutsideClick]);
 
   function onChildClick(
     event: ReactMouseEvent,
