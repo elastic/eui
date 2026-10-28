@@ -66,7 +66,7 @@ import FlyoutMenuPagination from './_flyout_menu_pagination.mdx';
 
 #### Maximize
 
-Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore button after the `trailingActions`. A maximized flyout fills the full width of its `container` (or the viewport if there is no container), so it never covers navigation or sidebars outside the container. The resize handle is hidden while maximized, and restoring returns the flyout to its previous width, including a width set by dragging.
+Set `showMaximizeButton` in `flyoutMenuProps` to add a maximize/restore button after the `trailingActions`. A maximized flyout fills the full width of its `container` (or the viewport if there is no container), so it never covers navigation or sidebars outside the container. Resize handles are hidden while maximized, including the handle of an open child flyout, and restoring returns the flyout to its previous width, including a width set by dragging.
 
 In a [managed session](#flyout-session-management), only the main flyout has the button. A maximized main flyout stays maximized when a child opens: the child keeps its own width, and the main flyout fills the rest of the container.
 

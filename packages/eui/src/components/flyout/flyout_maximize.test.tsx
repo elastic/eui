@@ -153,10 +153,12 @@ describe('EuiFlyout maximize', () => {
     const MainWithChild = ({
       onMaximizeChange,
       childSize = 's',
+      childResizable = false,
       mainProps,
     }: {
       onMaximizeChange?: (isMaximized: boolean) => void;
       childSize?: 's' | 'fill';
+      childResizable?: boolean;
       mainProps?: { size?: number; resizable?: boolean; onResize?: () => void };
     }) => {
       const [isChildOpen, setIsChildOpen] = useState(false);
@@ -180,6 +182,7 @@ describe('EuiFlyout maximize', () => {
                 aria-label="Child"
                 session="inherit"
                 size={childSize}
+                resizable={childResizable}
                 container={containerEl}
                 onClose={() => setIsChildOpen(false)}
                 // Ignored: only main flyouts have the button
@@ -326,6 +329,20 @@ describe('EuiFlyout maximize', () => {
         maximized: false,
         width: maximizedWidth,
       });
+    });
+
+    it("hides the child's resize handle while the main is maximized", () => {
+      render(<MainWithChild childResizable />);
+      fireEvent.click(screen.getByText('Open child'));
+      const childHandle = () =>
+        screen.getByLabelText('Child').querySelector('.euiResizableButton');
+      expect(childHandle()).not.toBeNull();
+
+      fireEvent.click(maximizeButton());
+      expect(childHandle()).toBeNull();
+
+      fireEvent.click(maximizeButton());
+      expect(childHandle()).not.toBeNull();
     });
 
     it('keeps the session and both registrations while toggling', () => {

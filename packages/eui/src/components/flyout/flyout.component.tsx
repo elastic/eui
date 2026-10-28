@@ -1371,7 +1371,7 @@ export const EuiFlyoutComponent = forwardRef(
                 />
               )
             )}
-            {resizable && !isMaximized && (
+            {resizable && !isMaximized && !siblingFlyout?.maximized && (
               <EuiFlyoutResizeButton
                 type={type}
                 side={side}
