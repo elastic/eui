@@ -244,10 +244,6 @@ interface _EuiFlyoutComponentProps {
 
   /**
    * Optional callback that fires when the user resizes the flyout.
-   *
-   * In the flyout system, it also fires when a main flyout resized wider than
-   * its `size` resets to `size` because a new child flyout doesn't fit beside
-   * it. The width doesn't say which of the two caused the change.
    */
   onResize?: (width: number) => void;
 
@@ -658,11 +654,6 @@ export const EuiFlyoutComponent = forwardRef(
       onResize,
       side,
       size: _size,
-      childFlyoutId: isMainFlyout ? siblingFlyoutId : null,
-      childFlyoutSize: isMainFlyout ? siblingFlyout?.size : undefined,
-      isStacked: layoutMode === LAYOUT_MODE_STACKED,
-      onWidthReset: (width) =>
-        flyoutManagerRef.current?.setFlyoutWidth(flyoutId, width),
     });
 
     // Publish the main flyout's resolved width as a CSS custom property on

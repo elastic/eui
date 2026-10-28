@@ -97,7 +97,14 @@ const buildMockManagerState = ({
     level: 'main' as const,
     size: 'm',
     width: 600,
-  } as { flyoutId: string; level: string; size: string; width?: number } | null,
+  } as {
+    flyoutId: string;
+    level: string;
+    size: string;
+    width?: number;
+    minWidth?: number;
+    resizable?: boolean;
+  } | null,
   childFlyout = {
     flyoutId: 'child-1',
     level: 'child' as const,
@@ -476,6 +483,47 @@ describe('layout_mode', () => {
       expect(mockDispatch).toHaveBeenCalledWith(
         mockSetLayoutMode(LAYOUT_MODE_STACKED)
       );
+    });
+
+    describe('resizable main flyout', () => {
+      // 800 + 400 = 100% of 1200px, but a resizable main is clamped to
+      // 90% of 1200px − 400 = 680px
+      const renderWithMain = (main: { minWidth?: number }) => {
+        Object.defineProperty(window, 'innerWidth', {
+          writable: true,
+          value: 1200,
+        });
+        mockUseFlyoutManager.mockReturnValue({
+          state: buildMockManagerState({
+            mainFlyout: {
+              flyoutId: 'main-1',
+              level: 'main',
+              size: 'm',
+              width: 800,
+              resizable: true,
+              ...main,
+            },
+            childFlyout: {
+              flyoutId: 'child-1',
+              level: 'child',
+              size: 's',
+              width: 400,
+            },
+          }),
+          dispatch: jest.fn(),
+        });
+        render(<TestComponent />);
+      };
+
+      it('stays SIDE_BY_SIDE when the clamp makes the pair fit', () => {
+        renderWithMain({});
+        expect(mockSetLayoutMode).not.toHaveBeenCalledWith(LAYOUT_MODE_STACKED);
+      });
+
+      it('switches to STACKED when its minWidth leaves no room for the child', () => {
+        renderWithMain({ minWidth: 800 });
+        expect(mockSetLayoutMode).toHaveBeenCalledWith(LAYOUT_MODE_STACKED);
+      });
     });
 
     it('switches to SIDE_BY_SIDE when using size-based width calculation and currently in STACKED mode', () => {

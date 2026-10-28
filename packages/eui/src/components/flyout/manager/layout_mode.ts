@@ -11,6 +11,7 @@ import { useEuiTheme } from '../../../services';
 import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { setLayoutMode, setReferenceWidth } from './actions';
+import { FLYOUT_MAX_COMBINED_WIDTH_RATIO } from '../const';
 import { useFlyoutManager } from './hooks';
 import { LAYOUT_MODE_SIDE_BY_SIDE, LAYOUT_MODE_STACKED } from './const';
 import { EuiFlyoutLayoutMode } from './types';
@@ -185,6 +186,19 @@ export const useApplyFlyoutLayoutMode = () => {
       return LAYOUT_MODE_SIDE_BY_SIDE;
     }
 
+    // A resizable main flyout is clamped to fit beside its child, so decide
+    // from the clamped width. Deciding from the wider width would stack the
+    // pair before the clamp applies, and the clamp is off in stacked mode.
+    if (parentFlyout?.resizable) {
+      parentWidthValue = Math.min(
+        parentWidthValue,
+        Math.max(
+          parentFlyout.minWidth ?? 0,
+          referenceWidth * FLYOUT_MAX_COMBINED_WIDTH_RATIO - childWidthValue
+        )
+      );
+    }
+
     const combinedWidth = parentWidthValue + childWidthValue;
     const combinedWidthPercentage = (combinedWidth / referenceWidth) * 100;
 
@@ -213,6 +227,8 @@ export const useApplyFlyoutLayoutMode = () => {
     parentWidth,
     childWidth,
     parentFlyout?.size,
+    parentFlyout?.resizable,
+    parentFlyout?.minWidth,
     childFlyout?.size,
     currentLayoutMode,
   ]);

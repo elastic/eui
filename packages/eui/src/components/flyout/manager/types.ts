@@ -47,6 +47,8 @@ export interface EuiManagedFlyoutState {
   width?: number;
   size?: string;
   minWidth?: number;
+  /** Whether the flyout's width is clamped to fit beside its sibling. */
+  resizable?: boolean;
   activityStage?: EuiFlyoutActivityStage;
   pagination?: EuiFlyoutMenuPagination;
 }
@@ -117,12 +119,14 @@ export interface FlyoutManagerApi {
     size?: string,
     historyKey?: symbol,
     iconType?: IconType,
-    minWidth?: number
+    minWidth?: number,
+    resizable?: boolean
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,
     pagination: EuiFlyoutMenuPagination | undefined

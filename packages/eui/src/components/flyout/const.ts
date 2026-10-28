@@ -18,6 +18,12 @@ export const FLYOUT_SIDES = ['left', 'right'] as const;
 /** Type representing a supported flyout side. */
 export type _EuiFlyoutSide = (typeof FLYOUT_SIDES)[number];
 
+/**
+ * The share of the reference width that a resizable flyout and its sibling may
+ * fill together. The resize clamp and the layout mode both depend on it.
+ */
+export const FLYOUT_MAX_COMBINED_WIDTH_RATIO = 0.9;
+
 /** Allowed named flyout sizes used by the manager. */
 export const FLYOUT_SIZES = ['s', 'm', 'l', 'fill'] as const;
 /** Type representing a supported named flyout size. */
