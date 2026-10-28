@@ -189,12 +189,18 @@ export const useApplyFlyoutLayoutMode = () => {
     // A resizable main flyout is clamped to fit beside its child, so decide
     // from the clamped width. Deciding from the wider width would stack the
     // pair before the clamp applies, and the clamp is off in stacked mode.
+    let isClampedToFit = false;
     if (parentFlyout?.resizable && !hasFill) {
-      parentWidthValue = clampFlyoutWidth(parentWidthValue, {
+      const clampedWidth = clampFlyoutWidth(parentWidthValue, {
         minWidth: parentFlyout.minWidth,
         referenceWidth,
         siblingWidth: childWidthValue,
       });
+      // The resize hook keeps the flyout at `size` when the clamp leaves no width
+      if (clampedWidth > 0) {
+        isClampedToFit = clampedWidth < parentWidthValue;
+        parentWidthValue = clampedWidth;
+      }
     }
 
     const combinedWidth = parentWidthValue + childWidthValue;
@@ -208,7 +214,9 @@ export const useApplyFlyoutLayoutMode = () => {
         : LAYOUT_MODE_STACKED;
     }
 
-    if (currentLayoutMode === LAYOUT_MODE_STACKED) {
+    // The clamp holds a clamped pair at a fixed width, so it can't thrash near
+    // the threshold, and the stricter return threshold would keep it stacked
+    if (currentLayoutMode === LAYOUT_MODE_STACKED && !isClampedToFit) {
       return combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
         ? LAYOUT_MODE_SIDE_BY_SIDE
         : LAYOUT_MODE_STACKED;

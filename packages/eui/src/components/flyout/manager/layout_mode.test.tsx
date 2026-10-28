@@ -488,26 +488,37 @@ describe('layout_mode', () => {
     describe('resizable main flyout', () => {
       // 800 + 400 = 100% of 1200px, but a resizable main is clamped to
       // 90% of 1200px − 400 = 680px
-      const renderWithMain = (main: { minWidth?: number }) => {
+      const renderWithMain = ({
+        minWidth,
+        childWidth = 400,
+        layoutMode = LAYOUT_MODE_SIDE_BY_SIDE,
+      }: {
+        minWidth?: number;
+        childWidth?: number;
+        layoutMode?:
+          | typeof LAYOUT_MODE_SIDE_BY_SIDE
+          | typeof LAYOUT_MODE_STACKED;
+      } = {}) => {
         Object.defineProperty(window, 'innerWidth', {
           writable: true,
           value: 1200,
         });
         mockUseFlyoutManager.mockReturnValue({
           state: buildMockManagerState({
+            layoutMode,
             mainFlyout: {
               flyoutId: 'main-1',
               level: 'main',
               size: 'm',
               width: 800,
               resizable: true,
-              ...main,
+              minWidth,
             },
             childFlyout: {
               flyoutId: 'child-1',
               level: 'child',
               size: 's',
-              width: 400,
+              width: childWidth,
             },
           }),
           dispatch: jest.fn(),
@@ -516,12 +527,26 @@ describe('layout_mode', () => {
       };
 
       it('stays SIDE_BY_SIDE when the clamp makes the pair fit', () => {
-        renderWithMain({});
+        renderWithMain();
         expect(mockSetLayoutMode).not.toHaveBeenCalledWith(LAYOUT_MODE_STACKED);
+      });
+
+      it('returns to SIDE_BY_SIDE from STACKED when the clamp makes the pair fit', () => {
+        // The clamped pair is 90%, above the 85% return threshold
+        renderWithMain({ layoutMode: LAYOUT_MODE_STACKED });
+        expect(mockSetLayoutMode).toHaveBeenCalledWith(
+          LAYOUT_MODE_SIDE_BY_SIDE
+        );
       });
 
       it('switches to STACKED when its minWidth leaves no room for the child', () => {
         renderWithMain({ minWidth: 800 });
+        expect(mockSetLayoutMode).toHaveBeenCalledWith(LAYOUT_MODE_STACKED);
+      });
+
+      it('switches to STACKED when the clamp leaves the main flyout no width', () => {
+        // 90% of 1200px − 1100px is below 0, so the main flyout keeps its width
+        renderWithMain({ childWidth: 1100 });
         expect(mockSetLayoutMode).toHaveBeenCalledWith(LAYOUT_MODE_STACKED);
       });
     });
