@@ -1659,6 +1659,9 @@ export const typeToPathMap = {
   productML: withMetadata(() => import('./assets/product_ml'), {
     synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
   }),
+  productNightshift: withMetadata(() => import('./assets/product_nightshift'), {
+    synonyms: ['nightshift', 'night', 'shift', 'moon'],
+  }),
   productStreamsClassic: withMetadata(
     () => import('./assets/product_streams_classic'),
     { synonyms: ['streams', 'classic', 'product', 'data', 'pipeline'] }
