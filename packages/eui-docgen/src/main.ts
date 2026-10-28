@@ -21,24 +21,20 @@ const getFiles = (euiPath: string): Array<string> => (
   glob.sync(path.join(euiPath, 'src/!(test)/**/!(*.spec|*.test|*.stories|*.styles|*.a11y).{ts,tsx}'), { absolute: true })
 );
 
-interface ProcessPackageOptions {
-  name: string;
-  packagePath: string;
-  distPath: string;
-}
+const main = async () => {
+  const distPath = path.resolve(__dirname, '../dist');
+  const euiPackagePath = path.resolve(__dirname, '../../eui');
+  const euiSrcPath = path.join(euiPackagePath, 'src');
 
-const processPackage = async ({ name, packagePath, distPath }: ProcessPackageOptions) => {
-  const srcPath = path.join(packagePath, 'src');
-
-  const files = getFiles(packagePath);
+  const files = getFiles(euiPackagePath);
   const program = buildProgram(files);
   const programProvider = () => program;
 
-  console.log(`Generating docgen data for ${name}`);
+  console.log('Generating docgen data for @elastic/eui');
 
   let componentExtends: Record<string, string[]> = {};
   const parser = docgen.withCustomConfig(
-    path.join(packagePath, 'tsconfig.json'),
+    path.join(euiPackagePath, 'tsconfig.json'),
     {
       propFilter: (prop, component) =>
         filterProp(prop, component, componentExtends),
@@ -51,7 +47,7 @@ const processPackage = async ({ name, packagePath, distPath }: ProcessPackageOpt
 
   let i = 0;
   for (const file of files) {
-    const fileRelativePath = path.relative(srcPath, file);
+    const fileRelativePath = path.relative(euiSrcPath, file);
 
     componentExtends = {};
 
@@ -79,27 +75,6 @@ const processPackage = async ({ name, packagePath, distPath }: ProcessPackageOpt
     process.stdout.write(`\x1b[2KProcessed ${i}/${files.length} files - ${fileRelativePath}\r`);
     i++;
   }
-
-  console.log(`\nProcessed ${name}`);
-};
-
-const main = async () => {
-  const distPath = path.resolve(__dirname, '../dist');
-
-  await processPackage({
-    name: '@elastic/eui',
-    packagePath: path.resolve(__dirname, '../../eui'),
-    distPath,
-  });
-
-  // The color palette implementations live in @elastic/eui-theme-common (they
-  // are importable without @elastic/eui) but are documented on the website, so
-  // emit their docgen data as well.
-  await processPackage({
-    name: '@elastic/eui-theme-common',
-    packagePath: path.resolve(__dirname, '../../eui-theme-common'),
-    distPath: path.join(distPath, 'eui-theme-common'),
-  });
 
   console.log('\n🎉 Docgen generation done')
 }
