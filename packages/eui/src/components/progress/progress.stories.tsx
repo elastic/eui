@@ -124,9 +124,9 @@ export const DeterminateLoading: Story = {
 
     useEffect(() => {
       return () => {
-        cleanInterval(intervalId);
+        clearInterval(intervalId);
       };
-    }, []);
+    }, [intervalId]);
 
     const increment = () => {
       setLoading((prev: number) => {
