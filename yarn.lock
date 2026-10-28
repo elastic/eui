@@ -6585,7 +6585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/core@npm:3.10.2, @docusaurus/core@npm:^3.7.0":
+"@docusaurus/core@npm:3.10.2, @docusaurus/core@npm:^3.10.2, @docusaurus/core@npm:^3.7.0":
   version: 3.10.2
   resolution: "@docusaurus/core@npm:3.10.2"
   dependencies:
@@ -6657,7 +6657,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/faster@npm:^3.7.0":
+"@docusaurus/faster@npm:^3.10.2":
   version: 3.10.2
   resolution: "@docusaurus/faster@npm:3.10.2"
   dependencies:
@@ -6722,7 +6722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/module-type-aliases@npm:3.10.2, @docusaurus/module-type-aliases@npm:^3.7.0":
+"@docusaurus/module-type-aliases@npm:3.10.2, @docusaurus/module-type-aliases@npm:^3.10.2, @docusaurus/module-type-aliases@npm:^3.7.0":
   version: 3.10.2
   resolution: "@docusaurus/module-type-aliases@npm:3.10.2"
   dependencies:
@@ -6933,7 +6933,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/preset-classic@npm:^3.7.0":
+"@docusaurus/preset-classic@npm:^3.10.2":
   version: 3.10.2
   resolution: "@docusaurus/preset-classic@npm:3.10.2"
   dependencies:
@@ -7058,14 +7058,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/tsconfig@npm:^3.7.0":
+"@docusaurus/tsconfig@npm:^3.10.2":
   version: 3.10.2
   resolution: "@docusaurus/tsconfig@npm:3.10.2"
   checksum: 10c0/f73d11ce6440d8ad3d8a87a87661e39d1d16451db0f16cd15a1856b331608b429e4b35ab1e8d1fae4c4e2b5bb4b8c238bac3900a8f024a68ba942c633c228361
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.10.2, @docusaurus/types@npm:^3.7.0":
+"@docusaurus/types@npm:3.10.2, @docusaurus/types@npm:^3.10.2, @docusaurus/types@npm:^3.7.0":
   version: 3.10.2
   resolution: "@docusaurus/types@npm:3.10.2"
   dependencies:
@@ -7460,12 +7460,12 @@ __metadata:
     "@atlaskit/pragmatic-drag-and-drop": "npm:^1.7.7"
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "npm:^1.1.0"
     "@babel/preset-react": "npm:^7.24.7"
-    "@docusaurus/core": "npm:^3.7.0"
-    "@docusaurus/faster": "npm:^3.7.0"
-    "@docusaurus/module-type-aliases": "npm:^3.7.0"
-    "@docusaurus/preset-classic": "npm:^3.7.0"
-    "@docusaurus/tsconfig": "npm:^3.7.0"
-    "@docusaurus/types": "npm:^3.7.0"
+    "@docusaurus/core": "npm:^3.10.2"
+    "@docusaurus/faster": "npm:^3.10.2"
+    "@docusaurus/module-type-aliases": "npm:^3.10.2"
+    "@docusaurus/preset-classic": "npm:^3.10.2"
+    "@docusaurus/tsconfig": "npm:^3.10.2"
+    "@docusaurus/types": "npm:^3.10.2"
     "@elastic/charts": "npm:^70.0.1"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui": "workspace:^"
@@ -7588,7 +7588,7 @@ __metadata:
     core-js: "npm:^3.6.5"
     cross-env: "npm:^7.0.2"
     cssnano: "npm:^4.1.10"
-    cypress: "npm:^13.3.1"
+    cypress: "npm:^13.17.0"
     cypress-axe: "npm:^1.0.0"
     cypress-plugin-tab: "npm:^1.0.5"
     cypress-real-events: "npm:^1.7.0"
@@ -19927,7 +19927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^13.3.1":
+"cypress@npm:^13.17.0":
   version: 13.17.0
   resolution: "cypress@npm:13.17.0"
   dependencies:

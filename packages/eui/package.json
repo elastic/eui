@@ -166,7 +166,7 @@
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
-    "cypress": "^13.3.1",
+    "cypress": "^13.17.0",
     "cypress-axe": "^1.0.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.7.0",
