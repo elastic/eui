@@ -30,6 +30,7 @@ $euiCodeFontWeightBold: 600;
   @return convertToRem(($euiSize / 2) * $multiplier);
 }
 
+// POC: xxxs/xxs/xs → weight 600 + -0.2px; s/m/l → weight 700 + -0.6px
 $euiTitles: (
   'xxxs': (
     'font-size': $euiFontSizeXS,
@@ -52,19 +53,19 @@ $euiTitles: (
   's': (
     'font-size': $euiFontSizeL,
     'line-height': lineHeightFromBaseline(4),
-    'font-weight': $euiFontWeightBold,
-    'letter-spacing': -0.2px,
+    'font-weight': 700,
+    'letter-spacing': -0.6px,
   ),
   'm': (
     'font-size': $euiFontSizeXL,
     'line-height': lineHeightFromBaseline(4),
-    'font-weight': $euiFontWeightBold,
-    'letter-spacing': -0.2px,
+    'font-weight': 700,
+    'letter-spacing': -0.6px,
   ),
   'l': (
     'font-size': $euiFontSizeXXL,
     'line-height': lineHeightFromBaseline(5),
-    'font-weight': $euiFontWeightBold,
-    'letter-spacing': -0.2px,
+    'font-weight': 700,
+    'letter-spacing': -0.6px,
   ),
 );

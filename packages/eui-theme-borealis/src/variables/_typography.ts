@@ -57,7 +57,9 @@ export const font: _EuiThemeFont = {
     weight: 'regular',
   },
   title: {
+    // POC: still used for xxxs/xxs/xs (600); s/m/l use 700 in euiTitle()
     weight: 'bold',
-    letterSpacing: '-0.2px',
+    // POC: used for s/m/l titles; xxxs/xxs/xs keep -0.2px in euiTitle()
+    letterSpacing: '-0.6px',
   },
 };

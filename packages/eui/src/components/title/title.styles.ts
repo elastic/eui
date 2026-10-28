@@ -46,15 +46,18 @@ export const euiTitle = (
     l: 'xxl',
   };
 
+  // POC: s/m/l get 700 + -0.6px; xxxs/xxs/xs stay at bold (600) + -0.2px
+  const isLargeTitle = (['s', 'm', 'l'] as EuiTitleSize[]).includes(scale);
+
   return {
     ...euiFontSize(
       euiThemeContext,
       titleScaleToFontSizeScaleMap[scale],
       options
     ),
-    fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
+    fontWeight: isLargeTitle ? 700 : euiTheme.font.weight.bold,
     color: euiTheme.colors.textHeading,
-    letterSpacing: euiTheme.font.title.letterSpacing,
+    letterSpacing: isLargeTitle ? '-0.6px' : '-0.2px',
   };
 };
 
