@@ -174,13 +174,14 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.backgroundBaseInteractiveSelectHover']
   ),
 
+  // POC: design refresh — drop area success → accent (teal)
   dragDropDraggingBackground: computed(
-    ([backgroundBaseSuccess]) => backgroundBaseSuccess,
-    ['colors.backgroundBaseSuccess']
+    ([backgroundBaseAccent]) => backgroundBaseAccent,
+    ['colors.backgroundBaseAccent']
   ),
   dragDropDraggingOverBackground: computed(
-    ([backgroundLightSuccess]) => backgroundLightSuccess,
-    ['colors.backgroundLightSuccess']
+    ([backgroundLightAccent]) => backgroundLightAccent,
+    ['colors.backgroundLightAccent']
   ),
 
   filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade25,
