@@ -44,7 +44,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('bottom', 0)}
         ${logicalCSS('horizontal', 0)}
         ${logicalCSS('border-bottom-style', 'solid')}
-        ${logicalCSS('border-bottom-width', selectedUnderlineSize)}
+        ${logicalCSS('border-bottom-width', '2px')}
         pointer-events: none;
       }
     `,
@@ -59,7 +59,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::after {
         content: '';
-        border-color: ${euiTheme.colors.accent};
+        border-color: ${euiTheme.colors.borderStrongAccent};
         border-radius: 2px;
       }
     `,
