@@ -8,6 +8,19 @@
 
 import { useFlyoutManager } from './provider';
 import { useRef } from 'react';
+import type { EuiFlyoutManagerState } from './types';
+
+/** True if the given `flyoutId` is the main or child flyout in the latest session. */
+export const isFlyoutInCurrentSession = (
+  state: EuiFlyoutManagerState,
+  flyoutId: string
+) => {
+  const currentSession = state.sessions[state.sessions.length - 1];
+  return (
+    currentSession?.mainFlyoutId === flyoutId ||
+    currentSession?.childFlyoutId === flyoutId
+  );
+};
 
 export const useSession = (flyoutId?: string | null) => {
   const context = useFlyoutManager();
@@ -28,11 +41,8 @@ export const useHasActiveSession = () => !!useCurrentSession();
 
 /** True if the given `flyoutId` is the main or child flyout in the latest session. */
 export const useIsFlyoutActive = (flyoutId: string) => {
-  const currentSession = useCurrentSession();
-  return (
-    currentSession?.mainFlyoutId === flyoutId ||
-    currentSession?.childFlyoutId === flyoutId
-  );
+  const context = useFlyoutManager();
+  return !!context && isFlyoutInCurrentSession(context.state, flyoutId);
 };
 
 export const useFlyout = (flyoutId?: string | null) => {

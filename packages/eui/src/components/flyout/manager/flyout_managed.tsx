@@ -47,7 +47,7 @@ import {
   useFlyoutId,
   useFlyoutPagination,
 } from './hooks';
-import { useIsFlyoutRegistered } from './selectors';
+import { isFlyoutInCurrentSession, useIsFlyoutRegistered } from './selectors';
 import { getFlyoutManagerStore } from './store';
 import type { EuiFlyoutLevel } from './types';
 import {
@@ -124,8 +124,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       : null;
     const layoutMode = managerState?.layoutMode ?? LAYOUT_MODE_SIDE_BY_SIDE;
     const isActive =
-      currentSession?.mainFlyoutId === flyoutId ||
-      currentSession?.childFlyoutId === flyoutId;
+      !!managerState && isFlyoutInCurrentSession(managerState, flyoutId);
 
     // Derive parentFlyout and parentSize from single state read
     const parentFlyoutId = currentSession?.mainFlyoutId;

@@ -70,6 +70,7 @@ import {
   isEuiFlyoutSizeNamed,
 } from './const';
 import { useIsPushed } from './hooks';
+import { usePushedFlyoutReturnFocus } from './use_pushed_flyout_return_focus';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
 import { EuiFlyoutOverlay } from './_flyout_overlay';
 import { EuiFlyoutResizeButton } from './_flyout_resize_button';
@@ -194,7 +195,8 @@ interface _EuiFlyoutComponentProps {
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
-   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
+   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus.
+   * It also applies to push flyouts, which return focus on close unless the user has moved focus out of the flyout.
    */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
@@ -410,6 +412,8 @@ export const EuiFlyoutComponent = forwardRef(
       minWidth,
       onResize,
       onAnimationEnd,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
       scrollContainerRef,
       container: containerProp,
       ...rest
@@ -1024,6 +1028,14 @@ export const EuiFlyoutComponent = forwardRef(
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
 
+    const { onFocus, onBlur } = usePushedFlyoutReturnFocus({
+      isPushed,
+      returnFocus: _focusTrapProps?.returnFocus,
+      triggerRef: flyoutToggle,
+      onFocus: _onFocus,
+      onBlur: _onBlur,
+    });
+
     const isSideBySideChild =
       isChildFlyout && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
     // Side-by-side: main + child form a single modal unit; only main has aria-modal
@@ -1218,6 +1230,8 @@ export const EuiFlyoutComponent = forwardRef(
             aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
             onAnimationEnd={onAnimationEnd}
+            onFocus={onFocus}
+            onBlur={onBlur}
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (

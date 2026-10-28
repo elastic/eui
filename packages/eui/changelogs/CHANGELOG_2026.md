@@ -1,3 +1,14 @@
+## [`v123.3.0`](https://github.com/elastic/eui/releases/v123.3.0)
+
+- Updated the `addToChat` glyph icon. ([#10221](https://github.com/elastic/eui/pull/10221))
+- Added `productAlertZero` icon. ([#10217](https://github.com/elastic/eui/pull/10217))
+
+**Bug fixes**
+
+- Fixed `EuiCallOut` and `EuiBanner` `announceOnMount` duplicating nested content in the live region. ([#10240](https://github.com/elastic/eui/pull/10240))
+- Fixed `EuiProvider`/`EuiThemeProvider` rendering an intermediate state in which `useEuiTheme()` returned an updated `colorMode` alongside a theme still computed from the previous one ([#10233](https://github.com/elastic/eui/pull/10233))
+- Fixed `EuiToken` and `EuiSelectableTemplateSitewide` rendering the default visualization colors on first render when the theme overrides them, such as under `modify.colors` or high contrast mode ([#10233](https://github.com/elastic/eui/pull/10233))
+
 ## [`v123.2.0`](https://github.com/elastic/eui/releases/v123.2.0)
 
 - Updated `EuiFlyoutMenu` height to 49px to align with Kibana compact AppHeader ([#10211](https://github.com/elastic/eui/pull/10211))
