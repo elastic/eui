@@ -16,7 +16,33 @@ import React, {
 import { keys, useLatest } from '../../services';
 import { getPosition } from '../resizable_container/helpers';
 import type { EuiFlyoutResizableProps } from './flyout_resizable';
-import { FLYOUT_MAX_COMBINED_WIDTH_RATIO } from './const';
+
+/**
+ * Clamps a resizable flyout's width between `minWidth` and the space left
+ * beside its sibling, within 90% of the reference width. `minWidth` takes
+ * precedence: if the available space is smaller, the flyout stays at
+ * `minWidth`, and a fill sibling's CSS adjusts accordingly.
+ * Layout mode also uses this to decide from the width the clamp will apply.
+ * @internal
+ */
+export const clampFlyoutWidth = (
+  width: number,
+  {
+    minWidth = 0,
+    maxWidth,
+    referenceWidth,
+    siblingWidth,
+  }: {
+    minWidth?: number;
+    maxWidth?: number;
+    referenceWidth: number;
+    siblingWidth?: number | null;
+  }
+) => {
+  const maxResizeWidth = referenceWidth * 0.9 - (siblingWidth || 0);
+  const upperBound = Math.min(maxWidth || Infinity, maxResizeWidth);
+  return Math.max(minWidth, Math.min(width, upperBound));
+};
 
 type UseEuiFlyoutResizable = Pick<
   EuiFlyoutResizableProps,
@@ -74,18 +100,13 @@ export const useEuiFlyoutResizable = ({
     referenceWidth !== undefined ? referenceWidth : windowWidth;
 
   const getFlyoutMinMaxWidth = useCallback(
-    (width: number) => {
-      const maxResizeWidth =
-        _referenceWidth * FLYOUT_MAX_COMBINED_WIDTH_RATIO -
-        (siblingFlyoutWidth || 0);
-
-      // Clamp between minWidth and the maximum allowed width.
-      // minWidth always takes precedence — if the available space
-      // (maxResizeWidth) is smaller than minWidth, the flyout stays
-      // at minWidth. The fill sibling's CSS will adjust accordingly.
-      const upperBound = Math.min(maxWidth || Infinity, maxResizeWidth);
-      return Math.max(minWidth, Math.min(width, upperBound));
-    },
+    (width: number) =>
+      clampFlyoutWidth(width, {
+        minWidth,
+        maxWidth,
+        referenceWidth: _referenceWidth,
+        siblingWidth: siblingFlyoutWidth,
+      }),
     [minWidth, maxWidth, siblingFlyoutWidth, _referenceWidth]
   );
 
