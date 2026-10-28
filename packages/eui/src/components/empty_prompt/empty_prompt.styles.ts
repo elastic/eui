@@ -93,13 +93,30 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+    // POC: accent title divider for horizontal layout (64×4, 24px gaps)
+    titleDivider: css`
+      display: block;
+      ${logicalCSS('width', euiTheme.size.xxxxl)}
+      ${logicalCSS('height', euiTheme.size.xs)}
+      margin-block: ${euiTheme.size.l};
+      margin-inline: auto; /* center when text is centered (narrow viewports) */
+      background-color: ${euiTheme.colors.accent};
+      border: none;
+    `,
+    titleDividerHorizontal: css`
+      ${euiMinBreakpoint(euiThemeContext, 'l')} {
+        margin-inline: 0; /* align start with horizontal text */
+      }
+    `,
     icon: {
       euiEmptyPrompt__icon: css`
         ${logicalCSS('max-width', iconMaxWidth)}
         margin: auto;
+        /* POC: center fixed-width illustrations (e.g. EuiIllustration) in the icon column */
+        display: flex;
+        justify-content: center;
 
-        /* Consumers should use an EuiImage (recommended) with the horizontal layout
-         * But they can use for example an img or other react node */
+        /* Consumers can pass EuiIllustration, EuiImage, or other react nodes */
         & > * {
           flex-shrink: 1;
           ${logicalCSS('max-width', '100%')}

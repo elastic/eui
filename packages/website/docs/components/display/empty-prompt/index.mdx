@@ -4,8 +4,7 @@ keywords: [EuiEmptyPrompt]
 
 # Empty prompt
 
-import illustrationUrl from '!url-loader!../../../../static/images/empty_prompt/illustration.svg';
-import illustrationSource from '!raw-loader!../../../../static/images/empty_prompt/illustration.svg';
+import { target } from '@elastic/eui-illustrations';
 
 The **EuiEmptyPrompt** is the building block to create an empty state. You can use it as a placeholder for any type of empty content. They are especially helpful for replacing entire pages or parts of a product that contain no content.
 
@@ -172,9 +171,9 @@ export default () => (
 
 You can supply a `layout` of either `"horizontal"` or `"vertical"` with the default being `vertical`. When creating empty states we want the content to be short and straight to the point. So most of the time, the `vertical` layout is enough. All the content will be center aligned and this type of text alignment only works with small content.
 
-When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using a [EuiImage](../image.mdx) with `size="fullWidth"`.
+When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using [EuiIllustration](../illustrations/index.mdx).
 
-<Demo scope={{ illustration: illustrationUrl }} extraFiles={{ 'illustration.svg': illustrationSource }}>
+<Demo scope={{ target }}>
   ```tsx
   import React from 'react';
   import {
@@ -182,16 +181,20 @@ When you have longer body text with multiple calls to action, you can use the `h
     EuiButton,
     EuiTitle,
     EuiLink,
-    EuiImage,
+    EuiIllustration,
   } from '@elastic/eui';
-  import illustration from './illustration.svg';
+  import { target } from '@elastic/eui-illustrations';
 
   export default () => {
     return (
       <>
         <EuiEmptyPrompt
-          icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
-          title={<h2>Create your first visualization</h2>}
+          icon={
+            <div style={{ width: 240, margin: '0 auto' }}>
+              <EuiIllustration type={target} alt="" />
+            </div>
+          }
+          title={<h2>Let's get started</h2>}
           layout="horizontal"
           color="plain"
           body={
@@ -199,10 +202,6 @@ When you have longer body text with multiple calls to action, you can use the `h
               <p>
                 There are no visualizations to display. This tool allows you to
                 create a wide range of charts, graphs, maps, and other graphics.
-              </p>
-              <p>
-                The visualizations you create can be easily shared with your
-                peers.
               </p>
             </>
           }
@@ -242,7 +241,7 @@ When using a **EuiEmptyPrompt** in a [EuiPageTemplate](../../templates/page-temp
 
 The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../../templates/page-template/index.mdx#empty-pages-or-content) namespaced component.
 
-<Demo scope={{ illustration: illustrationUrl }} extraFiles={{ 'illustration.svg': illustrationSource }}>
+<Demo scope={{ target }}>
   ```tsx
   import React from 'react';
   import {
@@ -250,15 +249,19 @@ The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../..
     EuiButton,
     EuiTitle,
     EuiLink,
-    EuiImage,
+    EuiIllustration,
   } from '@elastic/eui';
-  import illustration from './illustration.svg';
+  import { target } from '@elastic/eui-illustrations';
 
   export default () => (
     <EuiPageTemplate minHeight="0">
       <EuiPageTemplate.EmptyPrompt
-        title={<h2>Create your first visualization</h2>}
-        icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
+        title={<h2>Let's get started</h2>}
+        icon={
+          <div style={{ width: 240, margin: '0 auto' }}>
+            <EuiIllustration type={target} alt="" />
+          </div>
+        }
         color="plain"
         layout="horizontal"
         body={
@@ -266,9 +269,6 @@ The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../..
             <p>
               There are no visualizations to display. This tool allows you to
               create a wide range of charts, graphs, maps, and other graphics.
-            </p>
-            <p>
-              The visualizations you create can be easily shared with your peers.
             </p>
           </>
         }

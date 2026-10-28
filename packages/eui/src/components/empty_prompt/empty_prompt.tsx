@@ -88,7 +88,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   iconType,
   iconColor: _iconColor,
   title,
-  titleSize = 'm',
+  titleSize,
   paddingSize = 'l',
   body,
   actions,
@@ -99,6 +99,9 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   footer,
   ...rest
 }) => {
+  // POC: horizontal defaults to l (30px); vertical stays m (24px)
+  const resolvedTitleSize =
+    titleSize ?? (layout === 'horizontal' ? 'l' : 'm');
   const hasBorder = _hasBorder ?? color === 'plain';
 
   const classes = classNames('euiEmptyPrompt', className);
@@ -190,8 +193,24 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       <div className="euiEmptyPrompt__main" css={mainStyles}>
         {iconNode}
         <div className="euiEmptyPrompt__content" css={contentStyles}>
-          {title && <EuiTitle size={titleSize}>{title}</EuiTitle>}
-          {title && body && <EuiSpacer size="s" />}
+          {title && (
+            <EuiTitle size={resolvedTitleSize}>{title}</EuiTitle>
+          )}
+          {title &&
+            body &&
+            (layout === 'horizontal' ? (
+              // POC: design refresh — accent divider between title and body
+              <hr
+                aria-hidden
+                className="euiEmptyPrompt__titleDivider"
+                css={[
+                  styles.titleDivider,
+                  styles.titleDividerHorizontal,
+                ]}
+              />
+            ) : (
+              <EuiSpacer size="s" />
+            ))}
           {body && <EuiText color="subdued">{body}</EuiText>}
           {actionsNode && (body || title) && <EuiSpacer size="l" />}
           {actionsNode}

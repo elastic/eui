@@ -8,12 +8,12 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { target } from '@elastic/eui-illustrations';
 
-import illustration from './images/illustration.svg';
 import { EuiButton, EuiButtonEmpty } from '../button';
 import { EuiTitle } from '../title';
 import { EuiLink } from '../link';
-import { EuiImage } from '../image';
+import { EuiIllustration } from '../illustration';
 import { EuiPageTemplate } from '../page_template';
 
 import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
@@ -22,8 +22,7 @@ const meta: Meta<EuiEmptyPromptProps> = {
   title: 'Display/EuiEmptyPrompt',
   component: EuiEmptyPrompt,
   args: {
-    // Component defaults
-    titleSize: 'm',
+    // Component defaults (titleSize omitted — vertical→m, horizontal→l)
     paddingSize: 'l',
     // Default is actually 'transparent'; plain + bordered is easier to review in Storybook
     color: 'plain',
@@ -68,15 +67,16 @@ export const PageTemplate: Story = {
   args: {
     title: <h2>Create your first visualization</h2>,
     layout: 'horizontal',
-    icon: <EuiImage size="fullWidth" src={illustration} alt="" />,
+    icon: (
+      <div style={{ width: 240, margin: '0 auto' }}>
+        <EuiIllustration type={target} alt="" />
+      </div>
+    ),
     body: (
       <>
         <p>
           There are no visualizations to display. This tool allows you to create
           a wide range of charts, graphs, maps, and other graphics.
-        </p>
-        <p>
-          The visualizations you create can be easily shared with your peers.
         </p>
       </>
     ),
