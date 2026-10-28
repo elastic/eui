@@ -16,6 +16,8 @@ import { _EuiThemeForm, _EuiThemeFormColors } from './forms';
 export type _EuiThemeComponentColors = {
   badgeBackground: ColorModeSwitch;
   badgeBackgroundSubdued: ColorModeSwitch;
+  // POC: NotificationBadge accent fill — Accent/Teal step 40
+  badgeBackgroundAccent: ColorModeSwitch;
   badgeBorderColorHollow: ColorModeSwitch;
   badgeIconButtonBackgroundHover: ColorModeSwitch;
 

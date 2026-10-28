@@ -18,9 +18,10 @@ import { chromaValid, parseColor } from '../color_picker/utils';
 export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
+  // POC: NotificationBadge accent bg uses Accent/Teal 40 (not textAccent)
   const badgeColorsAccentText = getBadgeColors(
     euiThemeContext,
-    euiTheme.colors.textAccent
+    euiTheme.components.badgeBackgroundAccent
   );
 
   const fill = {

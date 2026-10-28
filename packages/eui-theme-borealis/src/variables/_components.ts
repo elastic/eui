@@ -30,6 +30,8 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundLightText]) => backgroundLightText,
     ['colors.backgroundLightText']
   ),
+  // POC: EuiNotificationBadge accent background → Accent/Teal 40
+  badgeBackgroundAccent: SEMANTIC_COLORS.accent40,
   badgeBorderColorHollow: computed(
     ([borderBasePlain]) => borderBasePlain,
     ['colors.borderBasePlain']
