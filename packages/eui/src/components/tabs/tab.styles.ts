@@ -59,7 +59,8 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::after {
         content: '';
-        border-color: ${euiTheme.colors.primary};
+        border-color: ${euiTheme.colors.accent};
+        border-radius: 2px;
       }
     `,
     disabled: {

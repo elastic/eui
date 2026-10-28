@@ -122,7 +122,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightText: SEMANTIC_COLORS.shade120,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
-  backgroundFilledAccent: SEMANTIC_COLORS.accent60,
+  backgroundFilledAccent: SEMANTIC_COLORS.accent40,
   backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
   backgroundFilledNeutral: SEMANTIC_COLORS.neutral50,
   backgroundFilledSuccess: SEMANTIC_COLORS.success60,

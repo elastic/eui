@@ -27,7 +27,7 @@ import { SEMANTIC_COLORS } from './_semantic_colors';
 
 export const brand_colors: _EuiThemeBrandColors = {
   primary: SEMANTIC_COLORS.primary90,
-  accent: SEMANTIC_COLORS.accent90,
+  accent: SEMANTIC_COLORS.accent40,
   accentSecondary: SEMANTIC_COLORS.accentSecondary90,
   success: SEMANTIC_COLORS.success90,
   warning: SEMANTIC_COLORS.warning40,
@@ -122,7 +122,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundLightText: SEMANTIC_COLORS.shade20,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary90,
-  backgroundFilledAccent: SEMANTIC_COLORS.accent90,
+  backgroundFilledAccent: SEMANTIC_COLORS.accent40,
   backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary90,
   backgroundFilledNeutral: SEMANTIC_COLORS.neutral80,
   backgroundFilledSuccess: SEMANTIC_COLORS.success90,
