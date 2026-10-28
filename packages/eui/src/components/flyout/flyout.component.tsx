@@ -34,7 +34,6 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
-  useLatest,
   focusTrapPubSub,
 } from '../../services';
 import { useIsInManagedFlyout, useFlyoutId, useFlyoutManager } from './manager';
@@ -599,6 +598,30 @@ export const EuiFlyoutComponent = forwardRef(
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
 
+    // Set during render, once the resize hook's output is known
+    const toggleWidthsRef = useRef({
+      maximizedPixelWidth: 0,
+      restoredPixelWidth: 0,
+    });
+
+    // The child clamps against this flyout's stored width, so the flag and the
+    // width it paints must change in one store update
+    const setManagedMaximized = useCallback(
+      (id: string, maximized: boolean) => {
+        const { maximizedPixelWidth, restoredPixelWidth } =
+          toggleWidthsRef.current;
+        let width = restoredPixelWidth;
+        if (maximized) width = maximizedPixelWidth;
+        flyoutManagerRef.current?.setFlyoutMaximized(
+          id,
+          maximized,
+          width,
+          restoredPixelWidth
+        );
+      },
+      []
+    );
+
     const { isMaximized, canMaximize, toggleMaximize } = useEuiFlyoutMaximize({
       enabled: !!_flyoutMenuProps?.showMaximizeButton,
       flyoutId,
@@ -609,7 +632,7 @@ export const EuiFlyoutComponent = forwardRef(
         managerState,
         flyoutId
       ),
-      setMaximized: flyoutManager?.setFlyoutMaximized,
+      setMaximized: setManagedMaximized,
       onMaximizeChange: _flyoutMenuProps?.onMaximizeChange,
     });
 
@@ -734,28 +757,7 @@ export const EuiFlyoutComponent = forwardRef(
       fullWidth,
       siblingFlyoutWidth || 0
     );
-
-    // The child positions itself with this flyout's stored width, and layout
-    // mode reads it too, but the resize observer only reports after paint.
-    // Write the width each toggle paints before paint, so the child never
-    // overlaps the main for a frame.
-    const toggleWidthsRef = useLatest({
-      maximizedPixelWidth,
-      restoredPixelWidth,
-    });
-    const prevIsMaximizedRef = useRef(isMaximized);
-    useLayoutEffect(() => {
-      if (prevIsMaximizedRef.current === isMaximized) return;
-      prevIsMaximizedRef.current = isMaximized;
-      if (!isManagedMain) return;
-
-      const { maximizedPixelWidth, restoredPixelWidth } =
-        toggleWidthsRef.current!;
-      flyoutManagerRef.current?.setFlyoutWidth(
-        flyoutId,
-        isMaximized ? maximizedPixelWidth : restoredPixelWidth
-      );
-    }, [isMaximized, isManagedMain, flyoutId, toggleWidthsRef]);
+    toggleWidthsRef.current = { maximizedPixelWidth, restoredPixelWidth };
 
     // A `fill` child's usual width depends on the main's width, which a
     // maximized main takes from the child. Record the width this flyout

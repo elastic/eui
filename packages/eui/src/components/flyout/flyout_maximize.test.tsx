@@ -299,6 +299,35 @@ describe('EuiFlyout maximize', () => {
       expect(onResize).not.toHaveBeenCalled();
     });
 
+    it('changes the maximized flag and the stored width in one update', () => {
+      render(<MainWithChild />);
+      fireEvent.click(screen.getByText('Open child'));
+      const restoredWidth = storedFlyout('main')!.width;
+      const maximizedWidth = CONTAINER_WIDTH - storedFlyout('child')!.width!;
+
+      const updates: Array<{ maximized?: boolean; width?: number }> = [];
+      const unsubscribe = getFlyoutManagerStore().subscribe(() => {
+        const { maximized, width } = storedFlyout('main')!;
+        updates.push({ maximized, width });
+      });
+      fireEvent.click(maximizeButton());
+      fireEvent.click(maximizeButton());
+      unsubscribe();
+
+      expect(updates).toContainEqual({
+        maximized: true,
+        width: maximizedWidth,
+      });
+      expect(updates).not.toContainEqual({
+        maximized: true,
+        width: restoredWidth,
+      });
+      expect(updates).not.toContainEqual({
+        maximized: false,
+        width: maximizedWidth,
+      });
+    });
+
     it('keeps the session and both registrations while toggling', () => {
       render(<MainWithChild />);
       fireEvent.click(screen.getByText('Open child'));

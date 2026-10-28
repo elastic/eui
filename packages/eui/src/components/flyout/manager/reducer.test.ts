@@ -600,6 +600,31 @@ describe('flyoutManagerReducer', () => {
       expect(state.flyouts[0].maximized).toBe(false);
     });
 
+    it('sets the painted width and the restored width with the flag', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN, 'm')
+      );
+      state = flyoutManagerReducer(state, setFlyoutWidth('main-1', 400));
+
+      state = flyoutManagerReducer(
+        state,
+        setFlyoutMaximized('main-1', true, 900, 400)
+      );
+      expect(state.flyouts[0]).toMatchObject({
+        maximized: true,
+        width: 900,
+        restoredWidth: 400,
+      });
+
+      state = flyoutManagerReducer(
+        state,
+        setFlyoutMaximized('main-1', false, 400, 400)
+      );
+      expect(state.flyouts[0]).toMatchObject({ maximized: false, width: 400 });
+      expect(state.flyouts[0].restoredWidth).toBeUndefined();
+    });
+
     it('returns the same state when the value is unchanged', () => {
       const state = flyoutManagerReducer(
         initialState,

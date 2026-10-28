@@ -402,7 +402,7 @@ export function flyoutManagerReducer(
     // Toggle whether a flyout paints at the full width of its container.
     // `size` is left alone: changing it would re-register the flyout.
     case ACTION_SET_MAXIMIZED: {
-      const { flyoutId, maximized } = action;
+      const { flyoutId, maximized, width, restoredWidth } = action;
       const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
       if (!target || !!target.maximized === maximized) {
         return state;
@@ -412,7 +412,10 @@ export function flyoutManagerReducer(
           ? {
               ...flyout,
               maximized,
-              restoredWidth: maximized ? flyout.restoredWidth : undefined,
+              width: width ?? flyout.width,
+              restoredWidth: maximized
+                ? restoredWidth ?? flyout.restoredWidth
+                : undefined,
             }
           : flyout
       );

@@ -105,6 +105,8 @@ export interface SetMaximizedAction extends BaseAction {
   type: typeof ACTION_SET_MAXIMIZED;
   flyoutId: string;
   maximized: boolean;
+  width?: number;
+  restoredWidth?: number;
 }
 
 /** Record the width a maximized flyout restores to. */
@@ -275,15 +277,23 @@ export const setFlyoutResizable = (
 
 /**
  * Maximizes a flyout to fill its container, or restores it. The declared
- * `size` and measured `width` are left untouched.
+ * `size` is left untouched.
+ * - Optional `width` is the width the flyout paints after the toggle. A
+ *   sibling clamps against the stored width, so the flag and the width must
+ *   change in the same update.
+ * - Optional `restoredWidth` is the width a maximized flyout restores to.
  */
 export const setFlyoutMaximized = (
   flyoutId: string,
-  maximized: boolean
+  maximized: boolean,
+  width?: number,
+  restoredWidth?: number
 ): SetMaximizedAction => ({
   type: ACTION_SET_MAXIMIZED,
   flyoutId,
   maximized,
+  width,
+  restoredWidth,
 });
 
 /** Records the width a maximized flyout restores to. */

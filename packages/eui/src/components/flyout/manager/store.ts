@@ -65,7 +65,12 @@ export interface FlyoutManagerStore {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
-  setFlyoutMaximized: (flyoutId: string, maximized: boolean) => void;
+  setFlyoutMaximized: (
+    flyoutId: string,
+    maximized: boolean,
+    width?: number,
+    restoredWidth?: number
+  ) => void;
   setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,
@@ -278,8 +283,10 @@ function createStore(
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
-    setFlyoutMaximized: (flyoutId, maximized) =>
-      dispatch(setFlyoutMaximizedAction(flyoutId, maximized)),
+    setFlyoutMaximized: (flyoutId, maximized, width, restoredWidth) =>
+      dispatch(
+        setFlyoutMaximizedAction(flyoutId, maximized, width, restoredWidth)
+      ),
     setFlyoutResizable: (flyoutId, resizable) =>
       dispatch(setFlyoutResizableAction(flyoutId, resizable)),
     setPagination: (flyoutId, pagination) =>
