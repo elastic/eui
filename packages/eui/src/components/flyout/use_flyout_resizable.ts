@@ -54,6 +54,8 @@ type UseEuiFlyoutResizable = Pick<
   siblingFlyoutWidth?: number | null;
   referenceWidth?: number;
   size: string | number;
+  /** Whether this is the child flyout of a flyout session. */
+  isChildFlyout?: boolean;
 };
 
 /**
@@ -68,6 +70,7 @@ export const useEuiFlyoutResizable = ({
   onResize,
   side,
   size: _size,
+  isChildFlyout = false,
 }: UseEuiFlyoutResizable) => {
   // Without a `referenceWidth` (standalone flyouts), nothing else re-renders
   // the flyout on window resize, so track the viewport width here
@@ -172,16 +175,19 @@ export const useEuiFlyoutResizable = ({
       // the reference width change and then clamp. This preserves the flyout's
       // percentage position in both directions (viewport shrink AND grow).
       // A user-dragged width is scaled and clamped from the requested width,
-      // so it survives a clamp just as it does for a numeric `size`.
+      // so it survives a clamp just as it does for a numeric `size`. A child
+      // flyout keeps its clamped width: the main flyout and the child each
+      // clamp against the other's measured width, so if both grew back toward
+      // their requested widths, they would shrink and grow in turn forever.
       const prevRefWidth = prevReferenceWidthRef.current ?? _referenceWidth;
       prevReferenceWidthRef.current = _referenceWidth;
 
       const currentWidth = flyoutWidthRef.current;
       if (currentWidth && prevRefWidth > 0 && _referenceWidth > 0) {
         const scaleFactor = _referenceWidth / prevRefWidth;
-        const scaledWidth =
-          (requestedWidthRef.current ?? currentWidth) * scaleFactor;
-        if (requestedWidthRef.current !== null) {
+        const requestedWidth = isChildFlyout ? null : requestedWidthRef.current;
+        const scaledWidth = (requestedWidth ?? currentWidth) * scaleFactor;
+        if (requestedWidth !== null) {
           requestedWidthRef.current = scaledWidth;
         }
         setFlyoutWidth(getFlyoutMinMaxWidth(scaledWidth));
@@ -192,7 +198,14 @@ export const useEuiFlyoutResizable = ({
         setFlyoutWidth(0);
       }
     }
-  }, [_size, getFlyoutMinMaxWidth, enabled, _referenceWidth, setFlyoutWidth]);
+  }, [
+    _size,
+    getFlyoutMinMaxWidth,
+    enabled,
+    _referenceWidth,
+    setFlyoutWidth,
+    isChildFlyout,
+  ]);
 
   // `onResize` is only called from user interactions, never for width changes
   // caused by the consumer or by layout constraints
