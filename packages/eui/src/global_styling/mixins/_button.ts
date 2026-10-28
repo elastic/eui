@@ -26,7 +26,7 @@ export const SEVERITY_COLORS = ['neutral', 'risk'] as const;
 
 export const BUTTON_COLORS = [
   'text',
-  'accent',
+  // POC: accent removed — buttons no longer expose Accent as a color option
   'accentSecondary',
   'primary',
   'success',
@@ -40,6 +40,11 @@ export const EXTENDED_BUTTON_COLORS = [
 ] as const;
 export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
 export type _EuiExtendedButtonColor = (typeof EXTENDED_BUTTON_COLORS)[number];
+// POC: accent kept only as an internal token for non-button consumers (e.g. badges)
+export type _EuiButtonColorToken =
+  | _EuiExtendedButtonColor
+  | 'accent'
+  | 'disabled';
 
 export const BUTTON_DISPLAYS = ['base', 'fill', 'empty'] as const;
 export type _EuiButtonDisplay = (typeof BUTTON_DISPLAYS)[number];
@@ -57,7 +62,7 @@ type ButtonVariantColors = {
 
 const getButtonVariantTokenValues = (
   { euiTheme, highContrastMode }: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled',
+  color: _EuiButtonColorToken,
   variant: 'base' | 'filled' | 'empty'
 ): ButtonVariantColors => {
   const backgroundTokenBase =
@@ -116,7 +121,7 @@ const getButtonVariantTokenValues = (
 
 export const getEuiButtonColorValues = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled'
+  color: _EuiButtonColorToken
 ) => {
   const buttonColors = getButtonVariantTokenValues(
     euiThemeContext,
@@ -147,7 +152,7 @@ export const getEuiButtonColorValues = (
  */
 export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled'
+  color: _EuiButtonColorToken
 ) => {
   const buttonColors = getEuiButtonColorValues(euiThemeContext, color);
 
@@ -160,7 +165,7 @@ export const euiButtonColor = (
 
 export const getEuiFilledButtonColorValues = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled'
+  color: _EuiButtonColorToken
 ) => {
   const buttonColors = getButtonVariantTokenValues(
     euiThemeContext,
@@ -188,7 +193,7 @@ export const getEuiFilledButtonColorValues = (
  */
 export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled'
+  color: _EuiButtonColorToken
 ) => {
   const buttonColors = getEuiFilledButtonColorValues(euiThemeContext, color);
 
@@ -213,7 +218,7 @@ export const euiButtonFillColor = (
  */
 export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiExtendedButtonColor | 'disabled'
+  color: _EuiButtonColorToken
 ) => {
   let foreground;
   let background;

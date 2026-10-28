@@ -114,8 +114,9 @@ export type EuiButtonGroupProps = CommonProps &
      *
      * Do not use the following colors for standalone buttons directly,
      * they exist to serve other components:
-     *  - accent
      *  - warning
+     *
+     * POC: `accent` is no longer a button color option.
      */
     color?: _EuiButtonColor;
     /**

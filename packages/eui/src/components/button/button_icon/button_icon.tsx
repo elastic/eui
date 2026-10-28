@@ -52,10 +52,11 @@ export interface EuiButtonIconProps extends CommonProps, EuiDisabledProps {
    *
    * Do not use the following colors for standalone buttons directly,
    * they exist to serve other components:
-   *  - accent
    *  - warning
    *  - neutral
    *  - risk
+   *
+   * POC: `accent` is no longer a button color option.
    */
   color?: _EuiExtendedButtonColor;
   'aria-label'?: string;
