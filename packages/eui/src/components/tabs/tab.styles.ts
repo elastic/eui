@@ -16,12 +16,9 @@ import {
 import { UseEuiTheme } from '../../services';
 
 export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
-  const selectedUnderlineSize = highContrastMode
-    ? mathWithUnits(euiTheme.border.thick, (x) => x * 2)
-    : euiTheme.border.width.thick;
-
+  // POC: underline width fixed at 2px (was selectedUnderlineSize / high-contrast aware)
   return {
     euiTab: css`
       position: relative;
