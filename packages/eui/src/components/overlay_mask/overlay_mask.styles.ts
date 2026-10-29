@@ -26,8 +26,11 @@ export const euiOverlayMaskStyles = ({
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in forwards;
     animation-iteration-count: 1;
     background: ${highContrastMode
-      ? euiTheme.components.overlayMaskBackgroundHighContrast
-      : euiTheme.components.overlayMaskBackground};
+      ? `rgba(155, 166, 184, 0.9)`
+      : `rgba(155, 166, 184, 0.6)`};
+    /* POC: glass blur effect; needs design input for blur/saturation values */
+    backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(4px) saturate(180%);
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};
