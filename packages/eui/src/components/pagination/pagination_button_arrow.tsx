@@ -15,7 +15,7 @@ import {
 } from '../button/button_icon';
 import { keysOf } from '../common';
 import { useEuiI18n } from '../i18n';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiToolTip } from '../tool_tip';
 import { euiPaginationButtonStyles } from './pagination_button.styles';
 
@@ -42,8 +42,7 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   ariaControls,
   onClick,
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiPaginationButtonStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPaginationButtonStyles);
 
   const labels = {
     first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First page'),

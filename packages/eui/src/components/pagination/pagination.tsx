@@ -17,7 +17,7 @@ import { EuiPaginationButtonArrow } from './pagination_button_arrow';
 import {
   EuiBreakpointSize,
   useIsWithinBreakpoints,
-  useEuiTheme,
+  useEuiMemoizedStyles,
 } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { euiPaginationStyles } from './pagination.styles';
@@ -83,8 +83,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
     !!responsive
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiPaginationStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPaginationStyles);
 
   // Force to `compressed` version if specified or within the responsive breakpoints
   const compressed = _compressed || isResponsive;
