@@ -46,7 +46,7 @@ export const euiTitle = (
     l: 'xxl',
   };
 
-  // POC: s/m/l get 700 + -0.6px; xxxs/xxs/xs stay at bold (600) + -0.2px
+  // POC: s/m/l get 700; xxxs/xxs/xs stay at bold (600)
   const isLargeTitle = (['s', 'm', 'l'] as EuiTitleSize[]).includes(scale);
 
   return {
@@ -57,7 +57,7 @@ export const euiTitle = (
     ),
     fontWeight: isLargeTitle ? 700 : euiTheme.font.weight.bold,
     color: euiTheme.colors.textHeading,
-    letterSpacing: isLargeTitle ? '-0.6px' : '-0.2px',
+    letterSpacing: '-0.2px',
   };
 };
 
