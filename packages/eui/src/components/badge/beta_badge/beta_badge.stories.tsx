@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiTitle } from '../../title';
 
-import { EuiBetaBadge, EuiBetaBadgeProps } from './beta_badge';
+import { EuiBetaBadge, EuiBetaBadgeProps, COLORS } from './beta_badge';
 
 const meta: Meta<EuiBetaBadgeProps> = {
   title: 'Display/EuiBetaBadge',
@@ -19,6 +19,7 @@ const meta: Meta<EuiBetaBadgeProps> = {
   argTypes: {
     iconType: { control: 'text' },
     tooltipContent: { control: 'text' },
+    color: { control: 'select', options: [...COLORS] },
   },
   args: {
     // Component defaults

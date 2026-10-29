@@ -23,7 +23,14 @@ import { EuiIcon, IconType } from '../../icon';
 
 import { euiBetaBadgeStyles } from './beta_badge.styles';
 
-export const COLORS = ['accent', 'subdued', 'hollow', 'warning'] as const;
+// POC: added 'primary' as an accent alternative
+export const COLORS = [
+  'primary',
+  'accent',
+  'subdued',
+  'hollow',
+  'warning',
+] as const;
 export type BetaBadgeColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
@@ -110,7 +117,7 @@ type BadgeProps = {
    */
   title?: string;
   /**
-   * Accepts accent, subdued, hollow and warning.
+   * Accepts primary, accent, subdued, hollow and warning.
    */
   color?: BetaBadgeColor;
   size?: BetaBadgeSize;
