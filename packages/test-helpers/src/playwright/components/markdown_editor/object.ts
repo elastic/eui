@@ -53,6 +53,7 @@ export class EuiMarkdownEditorObject extends BaseObject {
 
   /** Whether the rendered preview is shown instead of the textarea. */
   async isPreviewing(): Promise<boolean> {
+    await this.root.waitFor({ state: 'attached' });
     return (await this.preview.count()) > 0;
   }
 
