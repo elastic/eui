@@ -6,6 +6,10 @@
  * Side Public License, v 1.
  */
 
+// Initializes the vis color store with theme defaults, as importing this
+// module always has; without it a standalone deep import of this module (or
+// evaluating VISUALIZATION_COLORS before a theme loads) would throw.
+import './vis_color_store';
 // The functions are wrapped with their original docblocks so the docgen data
 // is generated from this package.
 import {
