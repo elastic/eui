@@ -36,7 +36,9 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
       // Maintain the initial color to enforce that clicks are not doing anything
       readOnly: css`
         &:has(input:focus-visible) {
+          /* POC: intentional exception — readonly keeps subdued single ring */
           outline: ${euiTheme.focus.width} solid ${unselectedBorder};
+          outline-offset: ${euiTheme.focus.width};
         }
 
         &:has(input:focus) {

@@ -18,6 +18,7 @@ import {
   preventForcedColors,
   euiButtonSizeMap,
   euiDisabledSelector,
+  euiOutline,
 } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
@@ -68,8 +69,8 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* use increased specificity over base button */
       &&:focus-visible {
-        outline-style: auto;
-        outline-offset: 0;
+        /* POC: dual focus ring — don't force outline-style:auto */
+        ${euiOutline(euiThemeContext, 'outset')}
       }
     `,
     buttonType: {

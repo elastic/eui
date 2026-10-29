@@ -91,10 +91,10 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
 
         .euiStepHorizontal__number {
+          /* POC: dual focus ring (inner Teal / outer primary) */
           ${euiOutline(
             euiThemeContext,
-            highContrastMode ? 0 : 'center', // Account for border in high contrast mode
-            euiTheme.colors.fullShade
+            highContrastMode ? 'outset' : 'center'
           )}
         }
       }

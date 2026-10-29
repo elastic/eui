@@ -35,6 +35,7 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
       /* Remove outline as we're handling it manually. Needed to override global styles */
       &:focus-visible {
         outline: none;
+        box-shadow: none;
       }
 
       &::after {
@@ -44,14 +45,17 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
         pointer-events: none;
         position: absolute;
         inset: 0;
-        border: ${outlineWidth} solid ${focusColor};
+        /* POC: dual focus ring — outer primary border, inner Teal inset */
+        border: ${outlineWidth} solid ${euiTheme.colors.primary};
         border-radius: ${borderRadius};
+        box-shadow: inset 0 0 0 ${outlineWidth} ${euiTheme.colors.accent};
       }
     `,
     hoverColor,
     hoverStyles: `
       &::after {
         border-color: ${hoverColor};
+        box-shadow: none;
       }
     `,
     markedColor,
@@ -59,6 +63,7 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
     markedStyles: `
       &::after {
         border-color: ${markedColor};
+        box-shadow: none;
       }
 
       .euiDataGridRowCell__actions {

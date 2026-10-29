@@ -43,8 +43,8 @@ const _forms = {
     ['colors.borderBaseDisabled']
   ),
   borderFocused: computed(
-    ([borderStrongPrimary]) => borderStrongPrimary,
-    ['colors.borderStrongPrimary']
+    ([borderStrongAccent]) => borderStrongAccent,
+    ['colors.borderStrongAccent']
   ),
   borderInvalid: computed(
     ([borderStrongDanger]) => borderStrongDanger,

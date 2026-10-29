@@ -94,7 +94,8 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     *:focus {
-      ${euiFocusRing(euiThemeContext)}
+      /* POC: dual focus ring defaults (inner Teal / outer primary) via euiFocusRing */
+      ${euiFocusRing(euiThemeContext, 'outset')}
     }
 
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background

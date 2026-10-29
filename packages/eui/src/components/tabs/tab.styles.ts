@@ -7,7 +7,12 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiFontSize,
+  euiFocusRing,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
@@ -34,7 +39,8 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textSubdued};
 
       &:focus {
-        outline-offset: -${euiTheme.focus.width};
+        /* POC: dual focus ring (don't clobber global outline-offset) */
+        ${euiFocusRing(euiThemeContext, 'outset')}
       }
 
       /* Selected underline - use a pseudo element instead of box-shadow for easier
