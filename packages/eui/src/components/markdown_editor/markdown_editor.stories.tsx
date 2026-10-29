@@ -52,6 +52,9 @@ export const Playground: Story = {
   args: {
     value: initialContent,
   },
+  render: (args: EuiMarkdownEditorProps) => (
+    <StatefulMarkdownEditor {...args} />
+  ),
 };
 
 export const ViewMode: Story = {

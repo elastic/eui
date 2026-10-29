@@ -17,6 +17,7 @@ import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
 import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
+import { EuiMarkdownEditorSelectors } from './components/markdown_editor/selectors';
 import { EuiModalSelectors } from './components/modal/selectors';
 import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
@@ -49,6 +50,7 @@ export const selectors = {
   fieldSearch: EuiFieldSearchSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
+  markdownEditor: EuiMarkdownEditorSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,
   popover: EuiPopoverSelectors,
