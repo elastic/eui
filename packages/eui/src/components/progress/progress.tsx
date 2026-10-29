@@ -39,9 +39,11 @@ import {
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiProgressSize = (typeof SIZES)[number];
 
-// POC: 'accent' / 'accentSecondary' removed (contrast; accentSecondary to be deprecated)
 export const COLORS = [
   'primary',
+  // POC: soft-deprecated — kept for Kibana compatibility; prefer primary
+  'accent',
+  'accentSecondary',
   'success',
   'warning',
   'danger',
@@ -58,6 +60,14 @@ export const COLORS = [
   'vis9',
 ] as const;
 export type EuiProgressColor = (typeof COLORS)[number];
+
+/** Recommended Progress colors for new usage (excludes soft-deprecated accents) */
+export const RECOMMENDED_COLORS = COLORS.filter(
+  (
+    color
+  ): color is Exclude<EuiProgressColor, 'accent' | 'accentSecondary'> =>
+    color !== 'accent' && color !== 'accentSecondary'
+);
 
 export const POSITIONS = ['fixed', 'absolute', 'static'] as const;
 export type EuiProgressPosition = (typeof POSITIONS)[number];

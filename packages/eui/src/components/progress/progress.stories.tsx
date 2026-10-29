@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { EuiProgress, COLORS } from './progress';
+import { EuiProgress, RECOMMENDED_COLORS } from './progress';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
@@ -25,7 +25,8 @@ const meta: Meta<typeof EuiProgress> = {
     ),
   ],
   argTypes: {
-    color: { control: 'select', options: [...COLORS] },
+    // POC: accent soft-deprecated — omit from controls; still valid via COLORS
+    color: { control: 'select', options: [...RECOMMENDED_COLORS] },
     // for quicker/easier QA
     label: { control: 'text' },
     value: { control: 'number' },

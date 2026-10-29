@@ -263,7 +263,21 @@ export const euiProgressStyles = (
         highContrastMode
       )}
     `,
-    // POC: accent / accentSecondary color options removed
+    // POC: soft-deprecated accent options (Kibana still passes color="accent")
+    accent: css`
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.accent,
+        isNative,
+        highContrastMode
+      )}
+    `,
+    accentSecondary: css`
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.accentSecondary,
+        isNative,
+        highContrastMode
+      )}
+    `,
     vis0: css`
       ${nativeVsIndeterminateColor(
         euiTheme.colors.vis.euiColorVis0,
@@ -394,7 +408,13 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   subdued: css`
     color: ${euiTheme.colors.textSubdued};
   `,
-  // POC: accent / accentSecondary color options removed
+  // POC: soft-deprecated accent options
+  accent: css`
+    color: ${euiTheme.colors.textAccent};
+  `,
+  accentSecondary: css`
+    color: ${euiTheme.colors.textAccentSecondary};
+  `,
   vis0: css`
     color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis0)(euiTheme)};
   `,

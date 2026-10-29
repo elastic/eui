@@ -112,21 +112,6 @@ export const euiCardStyles = (
     euiCard__description: css`
       ${logicalCSS('margin-top', halfSpacing)}
     `,
-    // POC: description top margin removed when accent title divider is present
-    descriptionWithTitleDivider: css`
-      ${logicalCSS('margin-top', 0)}
-    `,
-
-    // POC: accent title divider for horizontal layout (40×4, 12px gaps)
-    titleDivider: css`
-      display: block;
-      ${logicalCSS('width', euiTheme.size.xxxl)}
-      ${logicalCSS('height', euiTheme.size.xs)}
-      margin-block: ${euiTheme.size.m};
-      margin-inline: 0;
-      background-color: ${euiTheme.colors.accent};
-      border: none;
-    `,
 
     euiCard__footer: css`
       flex-grow: 0; /* 1 */
