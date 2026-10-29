@@ -6,10 +6,8 @@
  * Side Public License, v 1.
  */
 
-// The implementations live in @elastic/eui-theme-common so that color palettes
-// are usable without importing @elastic/eui. The functions are wrapped (rather
-// than re-exported) with their original docblocks so the website's docgen data
-// keeps being generated from this package.
+// The functions are wrapped with their original docblocks so the docgen data
+// is generated from this package.
 import {
   euiPaletteColorBlind as _euiPaletteColorBlind,
   euiPaletteColorBlindBehindText as _euiPaletteColorBlindBehindText,
