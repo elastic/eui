@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
@@ -50,21 +50,28 @@ export default meta;
 type Story = StoryObj<EuiTabsProps>;
 
 export const Playground: Story = {
-  args: {
-    children: (
-      <>
-        {tabs.map((tab, index) => (
-          <EuiTab
-            key={index}
-            onClick={() => onTabClick(tab.id)}
-            isSelected={index === 0}
-          >
-            {tab.name}
-          </EuiTab>
-        ))}
-      </>
-    ),
-  },
+  render: (args) => <StatefulTabs {...args} />,
+};
+
+const StatefulTabs: FunctionComponent<EuiTabsProps> = (args) => {
+  const [selectedId, setSelectedId] = useState(tabs[0].id);
+
+  return (
+    <EuiTabs {...args}>
+      {tabs.map((tab) => (
+        <EuiTab
+          key={tab.id}
+          onClick={() => {
+            setSelectedId(tab.id);
+            onTabClick(tab.id);
+          }}
+          isSelected={tab.id === selectedId}
+        >
+          {tab.name}
+        </EuiTab>
+      ))}
+    </EuiTabs>
+  );
 };
 
 export const LongTabContent: Story = {
