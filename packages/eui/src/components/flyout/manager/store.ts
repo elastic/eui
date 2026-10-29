@@ -21,6 +21,7 @@ import {
   closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setFlyoutResizable as setFlyoutResizableAction,
   setPagination as setPaginationAction,
   setPushPadding as setPushPaddingAction,
   goBack as goBackAction,
@@ -56,12 +57,14 @@ export interface FlyoutManagerStore {
     size?: string,
     historyKey?: symbol,
     iconType?: IconType,
-    minWidth?: number
+    minWidth?: number,
+    resizable?: boolean
   ) => void;
   closeFlyout: (flyoutId: string) => void;
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,
     pagination: EuiFlyoutMenuPagination | undefined
@@ -246,7 +249,16 @@ function createStore(
     subscribe,
     subscribeToEvents,
     dispatch,
-    addFlyout: (flyoutId, title, level, size, historyKey, iconType, minWidth) =>
+    addFlyout: (
+      flyoutId,
+      title,
+      level,
+      size,
+      historyKey,
+      iconType,
+      minWidth,
+      resizable
+    ) =>
       dispatch(
         addFlyoutAction(
           flyoutId,
@@ -255,7 +267,8 @@ function createStore(
           size,
           historyKey,
           iconType,
-          minWidth
+          minWidth,
+          resizable
         )
       ),
     closeFlyout: (flyoutId) => dispatch(closeFlyoutAction(flyoutId)),
@@ -263,6 +276,8 @@ function createStore(
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
+    setFlyoutResizable: (flyoutId, resizable) =>
+      dispatch(setFlyoutResizableAction(flyoutId, resizable)),
     setPagination: (flyoutId, pagination) =>
       dispatch(setPaginationAction(flyoutId, pagination)),
     setPushPadding: (side, width) =>

@@ -39,6 +39,8 @@ All child flyouts are of type `overlay`, and have `ownFocus` set to false, since
 Child flyouts are positioned absolutely and moved to the side by the width of the main flyout, which is stored
 in the state and extracted with the [`useFlyoutWidth`](./selectors.ts) hook.
 
+In `side-by-side` mode, the resize clamp keeps a resizable main flyout and its child within 90% of the reference width, so a main flyout that the user dragged wide shrinks to the largest width that fits when a child opens or the container narrows. When there is room again, the main flyout returns to the dragged width, which scales with the reference width for a named `size`. A child flyout keeps its clamped width, because the main flyout and the child each clamp against the other's measured width, and if both grew back they would shrink and grow in turn. Layout mode decides from the width the clamp will apply (`clampFlyoutWidth`), not from the stored width: deciding from the stored width would switch to `stacked` before the clamp applies, and the clamp is off in `stacked` mode. A clamped pair is held at a fixed width and can't thrash, so it returns from `stacked` as soon as it is under the 95% threshold, skipping the 85% hysteresis. A clamp that leaves the main flyout no width is ignored, because the resize hook then keeps the flyout at its `size`. Layout mode learns that a flyout is resizable from the manager state. The `resizable` flag is set at registration and updated with `setFlyoutResizable`, because toggling it must not re-register the flyout and close its session.
+
 ### EuiManagedFlyout
 
 [EuiManagedFlyout](./flyout_managed.tsx) is the primary logical piece of the flyout session management system.
