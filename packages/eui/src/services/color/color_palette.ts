@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-// The implementation lives in @elastic/eui-theme-common so that color palettes
-// are usable without importing @elastic/eui; re-exported here for backwards
-// compatibility.
+// Re-exported here for backwards compatibility.
 export { MID_COLOR_STOP, colorPalette } from '@elastic/eui-theme-common';
