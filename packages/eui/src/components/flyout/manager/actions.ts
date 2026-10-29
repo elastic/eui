@@ -279,9 +279,12 @@ export const setFlyoutResizable = (
  * Maximizes a flyout to fill its container, or restores it. The declared
  * `size` is left untouched.
  * - Optional `width` is the width the flyout paints after the toggle. A
- *   sibling clamps against the stored width, so the flag and the width must
- *   change in the same update.
+ *   sibling clamps against the stored width, so the flag and the width change
+ *   in the same update. When restoring without it, the width recorded while
+ *   maximized is used.
  * - Optional `restoredWidth` is the width a maximized flyout restores to.
+ *   When maximizing without it, the current width is used.
+ * - Child flyouts can't be maximized; the action is ignored for them.
  */
 export const setFlyoutMaximized = (
   flyoutId: string,

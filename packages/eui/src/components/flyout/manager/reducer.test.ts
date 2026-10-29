@@ -625,6 +625,36 @@ describe('flyoutManagerReducer', () => {
       expect(state.flyouts[0].restoredWidth).toBeUndefined();
     });
 
+    it('falls back to the widths it has when the caller omits them', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN, 'm')
+      );
+      state = flyoutManagerReducer(state, setFlyoutWidth('main-1', 400));
+
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', true));
+      expect(state.flyouts[0].restoredWidth).toBe(400);
+
+      state = flyoutManagerReducer(state, setFlyoutWidth('main-1', 900));
+      state = flyoutManagerReducer(state, setFlyoutMaximized('main-1', false));
+      expect(state.flyouts[0].width).toBe(400);
+    });
+
+    it('ignores a child flyout', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(
+        state,
+        addFlyout('child-1', 'child', LEVEL_CHILD)
+      );
+
+      expect(
+        flyoutManagerReducer(state, setFlyoutMaximized('child-1', true))
+      ).toBe(state);
+    });
+
     it('returns the same state when the value is unchanged', () => {
       const state = flyoutManagerReducer(
         initialState,

@@ -399,25 +399,42 @@ export function flyoutManagerReducer(
       return { ...state, flyouts: updatedFlyouts };
     }
 
-    // Toggle whether a flyout paints at the full width of its container.
+    // Toggle whether a main flyout paints at the full width of its container.
     // `size` is left alone: changing it would re-register the flyout.
+    // A child is never maximized: its main would treat it as a `fill` sibling.
     case ACTION_SET_MAXIMIZED: {
       const { flyoutId, maximized, width, restoredWidth } = action;
       const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
-      if (!target || !!target.maximized === maximized) {
+      if (
+        !target ||
+        target.level === LEVEL_CHILD ||
+        !!target.maximized === maximized
+      ) {
         return state;
       }
+
+      // The sibling clamps against the stored width, so it must match the
+      // flag. Without widths from the caller, fall back to the ones the store
+      // already has: the width painted now is the one to restore to, and
+      // restoring paints the width recorded while maximized.
+      let updatedFlyout: EuiManagedFlyoutState;
+      if (maximized) {
+        updatedFlyout = {
+          ...target,
+          maximized,
+          width: width ?? target.width,
+          restoredWidth: restoredWidth ?? target.width,
+        };
+      } else {
+        updatedFlyout = {
+          ...target,
+          maximized,
+          width: width ?? target.restoredWidth ?? target.width,
+          restoredWidth: undefined,
+        };
+      }
       const updatedFlyouts = state.flyouts.map((flyout) =>
-        flyout.flyoutId === flyoutId
-          ? {
-              ...flyout,
-              maximized,
-              width: width ?? flyout.width,
-              restoredWidth: maximized
-                ? restoredWidth ?? flyout.restoredWidth
-                : undefined,
-            }
-          : flyout
+        flyout.flyoutId === flyoutId ? updatedFlyout : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
     }

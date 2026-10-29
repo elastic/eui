@@ -49,6 +49,19 @@ describe('useEuiFlyoutMaximize', () => {
       expect(onMaximizeChange).toHaveBeenCalledTimes(2);
     });
 
+    it('starts restored when the button is turned back on', () => {
+      const onMaximizeChange = jest.fn();
+      const { result, rerender } = render({ onMaximizeChange });
+      act(() => result.current.toggleMaximize());
+
+      rerender({ ...defaultProps, onMaximizeChange, enabled: false });
+      expect(result.current.isMaximized).toBe(false);
+      rerender({ ...defaultProps, onMaximizeChange, enabled: true });
+
+      expect(result.current.isMaximized).toBe(false);
+      expect(onMaximizeChange.mock.calls).toEqual([[true], [false]]);
+    });
+
     it('is never maximized when disabled', () => {
       const { result } = render({ enabled: false });
 

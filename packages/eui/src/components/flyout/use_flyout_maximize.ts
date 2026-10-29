@@ -78,6 +78,11 @@ export const useEuiFlyoutMaximize = ({
     : enabled && localMaximized;
   const canMaximize = enabled && !isChildFlyout;
 
+  // Turning the button back on starts from the restored state
+  useEffect(() => {
+    if (!enabled) setLocalMaximized(false);
+  }, [enabled]);
+
   const toggleMaximize = useCallback(() => {
     if (isInManagedContext) {
       setMaximized?.(flyoutId, !isMaximized);

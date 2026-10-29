@@ -502,10 +502,8 @@ export const getMaximizedFlyoutStyles = ({
   let width: number | string;
   if (containerWidth !== undefined) {
     width = Math.max(0, containerWidth - siblingPx);
-  } else if (siblingPx) {
-    width = `calc(100% - var(--euiFlyoutMainWidth, ${siblingPx}px))`;
   } else {
-    width = '100%';
+    width = `calc(100% - ${siblingPx}px)`;
   }
 
   // The named-size classes set a min-width that can exceed a small container

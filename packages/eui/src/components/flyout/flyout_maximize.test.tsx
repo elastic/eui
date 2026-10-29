@@ -11,6 +11,7 @@ import { fireEvent } from '@testing-library/react';
 
 import { render, screen } from '../../test/rtl';
 import { EuiFlyout } from './flyout';
+import { getMaximizedFlyoutStyles } from './flyout.styles';
 import { EuiFlyoutManager } from './manager';
 import {
   _resetFlyoutManagerStore,
@@ -154,11 +155,13 @@ describe('EuiFlyout maximize', () => {
       onMaximizeChange,
       childSize = 's',
       childResizable = false,
+      showMaximizeButton = true,
       mainProps,
     }: {
       onMaximizeChange?: (isMaximized: boolean) => void;
       childSize?: 's' | 'fill';
       childResizable?: boolean;
+      showMaximizeButton?: boolean;
       mainProps?: { size?: number; resizable?: boolean; onResize?: () => void };
     }) => {
       const [isChildOpen, setIsChildOpen] = useState(false);
@@ -171,7 +174,7 @@ describe('EuiFlyout maximize', () => {
             size="s"
             container={containerEl}
             onClose={() => {}}
-            flyoutMenuProps={{ showMaximizeButton: true, onMaximizeChange }}
+            flyoutMenuProps={{ showMaximizeButton, onMaximizeChange }}
             {...mainProps}
           >
             <button onClick={() => setIsChildOpen(true)}>Open child</button>
@@ -345,6 +348,23 @@ describe('EuiFlyout maximize', () => {
       expect(childHandle()).not.toBeNull();
     });
 
+    it('clears the store flag when the button is turned off while maximized', () => {
+      const { rerender } = render(<MainWithChild childResizable />);
+      fireEvent.click(screen.getByText('Open child'));
+      const restoredWidth = storedFlyout('main')!.width;
+      fireEvent.click(maximizeButton());
+
+      rerender(<MainWithChild childResizable showMaximizeButton={false} />);
+
+      expect(storedFlyout('main')).toMatchObject({
+        maximized: false,
+        width: restoredWidth,
+      });
+      expect(
+        screen.getByLabelText('Child').querySelector('.euiResizableButton')
+      ).not.toBeNull();
+    });
+
     it('keeps the session and both registrations while toggling', () => {
       render(<MainWithChild />);
       fireEvent.click(screen.getByText('Open child'));
@@ -429,5 +449,17 @@ describe('EuiFlyout maximize', () => {
       expect(main).toHaveStyleRule('box-shadow', 'none');
       expect(main).toHaveStyleRule('border-inline-start', expect.anything());
     });
+  });
+});
+
+describe('getMaximizedFlyoutStyles', () => {
+  it('leaves room for the sibling without a container', () => {
+    expect(
+      getMaximizedFlyoutStyles({
+        isMaximized: true,
+        containerWidth: undefined,
+        siblingFlyoutWidth: 300,
+      })
+    ).toMatchObject({ inlineSize: 'calc(100% - 300px)' });
   });
 });

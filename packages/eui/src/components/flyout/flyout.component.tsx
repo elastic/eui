@@ -759,6 +759,23 @@ export const EuiFlyoutComponent = forwardRef(
     );
     toggleWidthsRef.current = { maximizedPixelWidth, restoredPixelWidth };
 
+    // Turning `showMaximizeButton` off restores the flyout, but the store keeps
+    // its flag, which layout mode and the child still read
+    const isStoreMaximized = !!managerState?.flyouts.find(
+      (f) => f.flyoutId === flyoutId
+    )?.maximized;
+    useLayoutEffect(() => {
+      if (isManagedMain && isStoreMaximized && !isMaximized) {
+        setManagedMaximized(flyoutId, false);
+      }
+    }, [
+      isManagedMain,
+      isStoreMaximized,
+      isMaximized,
+      flyoutId,
+      setManagedMaximized,
+    ]);
+
     // A `fill` child's usual width depends on the main's width, which a
     // maximized main takes from the child. Record the width this flyout
     // restores to, so a `fill` child can size itself against that instead.
@@ -770,9 +787,11 @@ export const EuiFlyoutComponent = forwardRef(
     }, [isMaximized, isManagedMain, flyoutId, restoredPixelWidth]);
 
     // The sibling width a `fill` flyout subtracts from its own
-    const fillSiblingFlyoutWidth = siblingFlyout?.maximized
-      ? siblingFlyout.restoredWidth ?? siblingFlyoutWidth
-      : siblingFlyoutWidth;
+    let fillSiblingFlyoutWidth = siblingFlyoutWidth;
+    if (siblingFlyout?.maximized) {
+      fillSiblingFlyoutWidth =
+        siblingFlyout.restoredWidth ?? siblingFlyoutWidth;
+    }
 
     /**
      * Setting up the refs on the actual flyout element in order to
