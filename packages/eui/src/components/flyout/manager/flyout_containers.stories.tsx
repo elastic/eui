@@ -325,6 +325,11 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       aria-label={`Child Flyout (${childSize})`}
       onClose={closeChild}
     >
+      <EuiFlyoutHeader>
+        <EuiText>
+          <h2>Child Flyout ({childSize})</h2>
+        </EuiText>
+      </EuiFlyoutHeader>
       <EuiFlyoutBody>
         <EuiText>
           <p>
