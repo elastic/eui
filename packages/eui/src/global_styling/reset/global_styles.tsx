@@ -100,8 +100,8 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
     ::selection {
       background: ${transparentize(
-        colors.primary,
-        colorMode === 'LIGHT' ? 0.1 : 0.2
+        colors.accent,
+        colorMode === 'LIGHT' ? 0.5 : 0.5
       )};
     }
 
