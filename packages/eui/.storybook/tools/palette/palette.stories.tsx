@@ -21,9 +21,11 @@ import { ContrastMatrix } from './contrast_matrix';
 import { PaletteList } from './palette_list';
 import { normalizePaletteOrder, togglePaletteColor } from './palette';
 
+const COLOR_BLIND_EXTENDED = { extended: true };
+
 const PaletteTools = ({ cellSize }: { cellSize: number }) => {
   const { colorMode, highContrastMode } = useEuiTheme();
-  const colorBlind = useEuiPaletteColorBlind();
+  const colorBlind = useEuiPaletteColorBlind(COLOR_BLIND_EXTENDED);
   const [palette, setPalette] = useState(() =>
     normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS)
   );

@@ -9,7 +9,9 @@ EUI provides a base set of color palettes that return an array of hexadecimal co
 
 Qualitative palettes are best suited for communicating and comparing discrete data series. EUI recommends using the `euiPaletteColorBlind()` for qualitative and categorical data.
 
-This palette is restricted to only 12 colors. However, you can add more groups of 12 which are alternates of the original. This is better than allowing the initial set to loop.
+This palette is restricted to only 10 colors. However, you can add more groups of 10 which are alternates of the original. This is better than allowing the initial set to loop.
+
+If you need more distinct hues, pass `extended: true` to append two purple colors (`euiColorVis10` and `euiColorVis11`), extending the base palette to 12 colors. Rotations then add groups of 12. Note that the added colors can be hard to distinguish from the blue colors for people with protanopia or deuteranopia. When using the extended palette, pair colors with other cues such as labels, legends or patterns.
 
 These colors are meant to be used as graphics and contrasted against the value of `euiColorEmptyShade` for the current theme. When placing text on top of these colors, use the `euiPaletteColorBlindBehindText()` variant. It is a brightened version of the base palette to create better contrast with text.
 
@@ -35,14 +37,20 @@ These colors are meant to be used as graphics and contrasted against the value o
 
   const getCustomPalettes = () => [
     {
-      title: 'Max 12 colors',
+      title: 'Max 10 colors',
       palette: euiPaletteColorBlind(),
       code: 'euiPaletteColorBlind()',
     },
     {
-      title: 'More than 12 colors are needed',
+      title: 'More than 10 colors are needed',
       palette: euiPaletteColorBlind({ rotations: 2 }),
       code: 'euiPaletteColorBlind({rotations: 2})',
+    },
+    {
+      title: 'Extended palette with 12 colors',
+      palette: euiPaletteColorBlind({ extended: true }),
+      code: 'euiPaletteColorBlind({extended: true})',
+      columns: 12,
     },
     {
       title:
@@ -94,7 +102,9 @@ These colors are meant to be used as graphics and contrasted against the value o
             <EuiFlexGroup alignItems="center">
               <EuiFlexItem
                 grow={false}
-                style={{ maxWidth: `calc(${euiTheme.size.l} * 12)` }}
+                style={{
+                  maxWidth: `calc(${euiTheme.size.l} * ${palette.columns ?? 10})`,
+                }}
               >
                 <EuiFlexGroup
                   className="guideColorPalette__swatchHolder"

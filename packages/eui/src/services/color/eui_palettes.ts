@@ -62,6 +62,13 @@ export type EuiPaletteRotationProps = {
    * Defaults to a number close to green.
    */
   sortShift?: string;
+  /**
+   * Appends `euiColorVis10` and `euiColorVis11` (purple shades) to the base palette, extending it from 10 to 12 colors.
+   *
+   * These two colors are not reliably distinguishable from `euiColorVis2` and `euiColorVis3` (blue shades)
+   * for people with deuteranopia. Only use when more than 10 categories are needed, and pair them with non-color cues.
+   */
+  extended?: boolean;
 };
 
 export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
@@ -83,6 +90,7 @@ export const euiPaletteColorBlind = ({
   direction = 'lighter',
   sortBy = 'default',
   sortShift = '-100',
+  extended = false,
   colors,
 }: EuiPaletteColorBlindProps = {}): EuiPalette => {
   let _colors: string[] = [];
@@ -100,8 +108,7 @@ export const euiPaletteColorBlind = ({
     visColors.euiColorVis7,
     visColors.euiColorVis8,
     visColors.euiColorVis9,
-    visColors.euiColorVis10,
-    visColors.euiColorVis11,
+    ...(extended ? [visColors.euiColorVis10, visColors.euiColorVis11] : []),
   ];
 
   if (sortBy === 'natural') {
