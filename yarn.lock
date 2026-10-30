@@ -7395,7 +7395,7 @@ __metadata:
     eslint-plugin-local: "npm:^1.0.0"
     eslint-plugin-prettier: "npm:^4.2.1"
     jest: "npm:^29.7.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     prettier: "npm:^2.8.8"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -7589,7 +7589,7 @@ __metadata:
     jest-cli: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     jest-image-snapshot: "npm:^6.4.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     mdast-util-to-hast: "npm:^10.2.0"
     moment: "npm:^2.27.0"
     moment-timezone: "npm:^0.5.31"
@@ -29207,7 +29207,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.15.0, lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.3.0":
+"lodash@npm:^4.15.0, lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.18.1, lodash@npm:^4.3.0":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
