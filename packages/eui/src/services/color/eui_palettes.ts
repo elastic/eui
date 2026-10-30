@@ -63,10 +63,10 @@ export type EuiPaletteRotationProps = {
    */
   sortShift?: string;
   /**
-   * Appends `euiColorVis10` and `euiColorVis11` (purple shades) to the base palette, extending it from 10 to 12 colors.
+   * Appends two colors (purple shades) to the base palette, extending it from 10 to 12 colors.
    *
-   * These two colors are not reliably distinguishable from `euiColorVis2` and `euiColorVis3` (blue shades)
-   * for people with deuteranopia. Only use when more than 10 categories are needed, and pair them with non-color cues.
+   * These additional colors are not reliably distinguishable from the blue shades for people with deuteranopia.
+   * In those cases, consider pairing them with non-color cues to support readers with color blindness.
    */
   extended?: boolean;
 };
