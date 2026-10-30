@@ -25,6 +25,7 @@ export { EuiContextMenuObject } from './playwright/components/context_menu/objec
 export { EuiModalObject } from './playwright/components/modal/object';
 export { EuiTableObject } from './playwright/components/table/object';
 export { EuiTabsObject } from './playwright/components/tabs/object';
+export { EuiMarkdownEditorObject } from './playwright/components/markdown_editor/object';
 export { EuiPaginationObject } from './playwright/components/pagination/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
 export { EuiCallOutObject } from './playwright/components/call_out/object';

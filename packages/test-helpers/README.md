@@ -64,6 +64,7 @@ their own version at runtime.
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiTableObject` | [src/components/table/README.md](src/components/table/README.md) |
 | `EuiTabsObject` | [src/components/tabs/README.md](src/components/tabs/README.md) |
+| `EuiMarkdownEditorObject` | [src/components/markdown_editor/README.md](src/components/markdown_editor/README.md) |
 | `EuiPaginationObject` | [src/components/pagination/README.md](src/components/pagination/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiCallOutObject` | [src/components/call_out/README.md](src/components/call_out/README.md) |
