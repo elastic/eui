@@ -197,9 +197,10 @@ const _buttons = {
     ([textInverse]) => textInverse,
     ['colors.textInverse']
   ),
+  // POC: filled Accent uses Accent/Teal 40 (pale) — dark label, not textInverse
   textColorFilledAccent: computed(
-    ([textInverse]) => textInverse,
-    ['colors.textInverse']
+    ([textInk]) => textInk,
+    ['colors.textInk']
   ),
   textColorFilledAccentSecondary: computed(
     ([textInverse]) => textInverse,

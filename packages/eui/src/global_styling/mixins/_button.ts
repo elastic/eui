@@ -93,7 +93,13 @@ const getButtonVariantTokenValues = (
     'active'
   ) as keyof _EuiThemeButtonColors;
 
-  const highContrastForeground = ['warning', 'neutral', 'risk'].includes(color)
+  // POC: accent filled uses pale Teal 40 — dark label in high-contrast too
+  const highContrastForeground = [
+    'warning',
+    'neutral',
+    'risk',
+    'accent',
+  ].includes(color)
     ? euiTheme.colors.textInk
     : color === 'disabled'
     ? euiTheme.components.buttons[textTokenName]

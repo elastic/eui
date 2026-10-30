@@ -32,7 +32,11 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     warning: getEuiFilledButtonColorValues(euiThemeContext, 'warning'),
     risk: getEuiFilledButtonColorValues(euiThemeContext, 'risk'),
     danger: getEuiFilledButtonColorValues(euiThemeContext, 'danger'),
-    accent: getEuiFilledButtonColorValues(euiThemeContext, 'accent'),
+    // POC: filled accent must keep dark text even if button token lags
+    accent: {
+      ...getEuiFilledButtonColorValues(euiThemeContext, 'accent'),
+      color: euiTheme.colors.textInk,
+    },
     // Colors unique to badges
     default: {
       ...getBadgeColors(euiThemeContext, euiTheme.components.badgeBackground),

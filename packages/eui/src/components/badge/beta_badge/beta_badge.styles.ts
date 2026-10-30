@@ -52,10 +52,8 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     primary: css(badgeColors.fill.primary),
     accent: css`
       ${badgeColors.fill.accent}
-      /* POC: filled accent uses textInverse; force dark label on light teal fill */
-      ${colorMode === 'LIGHT'
-        ? `color: ${euiTheme.colors.textInk};`
-        : ''}
+      /* POC: pale Teal accent fill — always dark label text (light + dark mode) */
+      color: ${euiTheme.colors.textInk};
     `,
     subdued: css(badgeColors.subdued),
     hollow: css`

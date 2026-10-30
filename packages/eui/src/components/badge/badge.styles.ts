@@ -287,7 +287,12 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
           border-color: ${badgeColors.hollow.borderColor};
         `,
         primary: css(setBadgeColorVars(badgeColors.fill.primary)),
-        accent: css(setBadgeColorVars(badgeColors.fill.accent)),
+        accent: css`
+          ${setBadgeColorVars(badgeColors.fill.accent)}
+          /* POC: pale Teal accent fill — always dark label text (light + dark mode) */
+          --euiBadgeTextColor: ${euiTheme.colors.textInk};
+          color: ${euiTheme.colors.textInk};
+        `,
         neutral: css(setBadgeColorVars(badgeColors.fill.neutral)),
         success: css(setBadgeColorVars(badgeColors.fill.success)),
         warning: css(setBadgeColorVars(badgeColors.fill.warning)),
