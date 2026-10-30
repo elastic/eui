@@ -16,6 +16,7 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
   EuiDataGridProps,
+  EuiDataGridSorting,
 } from './index';
 import { EuiLink } from '../link';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -60,6 +61,112 @@ describe('EuiDataGrid', () => {
           return role === 'row' || role === 'columnheader' ? false : true;
         })
         .should('have.lengthOf', 0);
+    });
+
+    // Rows are absolutely positioned, but text selection follows DOM order
+    describe('row DOM order', () => {
+      const getRowDomOrder = () =>
+        cy
+          .get('.euiDataGridRow')
+          .then(($rows) =>
+            $rows
+              .toArray()
+              .map((row) => Number(row.dataset.gridVisibleRowIndex))
+          );
+
+      const expectAscendingRowDomOrder = () =>
+        getRowDomOrder().then((order) => {
+          expect(order).to.deep.equal([...order].sort((a, b) => a - b));
+        });
+
+      const rowHeight = 30;
+      const virtualizedGrid = (
+        <EuiDataGrid
+          {...baseProps}
+          rowCount={100}
+          height={300}
+          rowHeightsOptions={{ defaultHeight: rowHeight }}
+        />
+      );
+
+      const scrollTo = (rowIndex: number) => {
+        cy.get('.euiDataGrid__virtualized').scrollTo(0, rowIndex * rowHeight);
+        cy.get(`[data-gridcell-visible-row-index="${rowIndex}"]`).should(
+          'exist'
+        );
+      };
+
+      const scrollDownAndBackUp = () => {
+        scrollTo(50);
+        // Scroll back up a few rows at a time, so rows are re-created in several batches
+        for (let rowIndex = 48; rowIndex >= 0; rowIndex -= 3) {
+          scrollTo(rowIndex);
+        }
+      };
+
+      it('keeps rows in visible order after scrolling down and back up', () => {
+        cy.mount(virtualizedGrid);
+        scrollDownAndBackUp();
+
+        getRowDomOrder().its(0).should('equal', 0);
+        expectAscendingRowDomOrder();
+      });
+
+      it('selects only the rows between the start and end of a text selection', () => {
+        cy.mount(virtualizedGrid);
+        scrollDownAndBackUp();
+
+        cy.window().then((win) => {
+          const getCellText = (visibleRowIndex: number) =>
+            win.document.querySelector(
+              `[data-gridcell-visible-row-index="${visibleRowIndex}"][data-gridcell-column-index="0"] .euiDataGridRowCell__content`
+            )!.firstChild!;
+
+          const selection = win.getSelection()!;
+          selection.setBaseAndExtent(getCellText(0), 0, getCellText(3), 1);
+
+          const selectedRows = Array.from(
+            win.document.querySelectorAll<HTMLElement>('.euiDataGridRow')
+          )
+            .filter((row) => selection.containsNode(row, true))
+            .map((row) => Number(row.dataset.gridVisibleRowIndex))
+            .sort((a, b) => a - b);
+          expect(selectedRows).to.deep.equal([0, 1, 2, 3]);
+        });
+      });
+
+      it('reorders rows on sort', () => {
+        let setSortingColumns: EuiDataGridSorting['onSort'];
+
+        const SortableDataGrid = () => {
+          const [sortingColumns, _setSortingColumns] = useState<
+            EuiDataGridSorting['columns']
+          >([]);
+          setSortingColumns = _setSortingColumns;
+          return (
+            <EuiDataGrid
+              {...baseProps}
+              rowCount={10}
+              inMemory={{ level: 'sorting' }}
+              sorting={{ columns: sortingColumns, onSort: _setSortingColumns }}
+            />
+          );
+        };
+        cy.realMount(<SortableDataGrid />);
+
+        // Without a focused cell, rows already end up in visible order after sorting
+        cy.get(
+          '[data-gridcell-visible-row-index="1"][data-gridcell-column-index="1"]'
+        ).realClick();
+        cy.focused().should('have.attr', 'data-gridcell-row-index', '1');
+
+        cy.then(() => setSortingColumns([{ id: 'a', direction: 'desc' }]));
+        cy.get(
+          '[data-gridcell-visible-row-index="0"][data-gridcell-column-index="0"]'
+        ).should('contain.text', 'a, 9');
+
+        expectAscendingRowDomOrder();
+      });
     });
   });
 
