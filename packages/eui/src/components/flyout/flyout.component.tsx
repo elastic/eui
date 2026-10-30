@@ -271,6 +271,18 @@ interface _EuiFlyoutComponentProps {
    * (e.g. `'#app-main'`) can also be passed.
    */
   container?: HTMLElement | null | (() => HTMLElement | null) | string;
+
+  /**
+   * Insets an overlay flyout from its containing edges (viewport or
+   * `container`) by the given number of pixels. Useful for floating the
+   * panel inside a recessed application workspace.
+   *
+   * Has no effect when the flyout is in push mode. Defaults to `0`
+   * (flush). Can be set globally via `EuiProvider` component defaults.
+   *
+   * @default 0
+   */
+  offset?: number;
 }
 
 /**
@@ -412,6 +424,7 @@ export const EuiFlyoutComponent = forwardRef(
       onAnimationEnd,
       scrollContainerRef,
       container: containerProp,
+      offset = 0,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
@@ -862,6 +875,9 @@ export const EuiFlyoutComponent = forwardRef(
         flyoutZIndex
       );
 
+      // POC: overlay-only edge inset; push flyouts stay flush
+      const edgeOffset = !isPushed && offset > 0 ? offset : 0;
+
       // Constrain the flyout to the reference container's bounding rect.
       let containerPositionStyles: React.CSSProperties = {};
       if (containerRect) {
@@ -920,8 +936,8 @@ export const EuiFlyoutComponent = forwardRef(
             : 0;
 
         containerPositionStyles = {
-          top: containerRect.top,
-          height: containerRect.height,
+          top: containerRect.top + edgeOffset,
+          height: Math.max(0, containerRect.height - edgeOffset * 2),
           minInlineSize: containerMinInlineSize,
         };
 
@@ -931,9 +947,11 @@ export const EuiFlyoutComponent = forwardRef(
           // pixel width; in stacked mode it's 0 (child sits on top).
           const siblingPx = siblingFlyoutWidth || 0;
           if (side === 'left') {
-            containerPositionStyles.left = containerRect.left + siblingPx;
+            containerPositionStyles.left =
+              containerRect.left + siblingPx + edgeOffset;
           } else {
-            containerPositionStyles.right = containerRightOffset + siblingPx;
+            containerPositionStyles.right =
+              containerRightOffset + siblingPx + edgeOffset;
           }
 
           if (containerRelativeWidth !== undefined) {
@@ -963,9 +981,10 @@ export const EuiFlyoutComponent = forwardRef(
         } else {
           // Main/standalone flyouts align to the container's edge.
           if (side === 'left') {
-            containerPositionStyles.left = containerRect.left;
+            containerPositionStyles.left = containerRect.left + edgeOffset;
           } else {
-            containerPositionStyles.right = containerRightOffset;
+            containerPositionStyles.right =
+              containerRightOffset + edgeOffset;
           }
 
           if (containerRelativeWidth !== undefined) {
@@ -985,6 +1004,17 @@ export const EuiFlyoutComponent = forwardRef(
             containerPositionStyles.maxInlineSize = containerMaxWidth;
           }
         }
+      } else if (edgeOffset > 0) {
+        // Viewport-scoped overlay: inset from fixed edges via inline styles
+        // so we don't fight the side/type CSS class cascade.
+        containerPositionStyles = {
+          top: `calc(var(--euiFixedHeadersOffset, 0) + ${edgeOffset}px)`,
+          bottom: edgeOffset,
+          height: 'auto',
+          ...(side === 'left'
+            ? { left: edgeOffset }
+            : { right: edgeOffset }),
+        };
       }
 
       return { ...style, ...composedStyles, ...containerPositionStyles };
@@ -1000,9 +1030,14 @@ export const EuiFlyoutComponent = forwardRef(
       side,
       isChildFlyout,
       euiTheme.breakpoint.m,
+      isPushed,
+      offset,
     ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
+
+    // POC: offset = floating inset (::after shadow); classic uses side clip-path
+    const hasOffset = !isPushed && offset > 0;
 
     const cssStyles = [
       styles.euiFlyout,
@@ -1013,7 +1048,22 @@ export const EuiFlyoutComponent = forwardRef(
       isPushed ? styles.push[side] : styles.overlay[side],
       !hasAnimation && styles.noAnimation,
       styles[side],
+      // After `styles[side]` so offset's clip-path: none wins over flush clip
+      hasOffset && styles.overlay.offset,
     ];
+
+    // POC: after slide-in, drop residual transform (see overlay.offset for
+    // ::after shadow — host box-shadow is suppressed there).
+    const handleAnimationEnd = useCallback(
+      (event: React.AnimationEvent<HTMLElement>) => {
+        if (hasOffset && event.target === event.currentTarget) {
+          event.currentTarget.style.animation = 'none';
+          event.currentTarget.style.transform = 'none';
+        }
+        onAnimationEnd?.(event);
+      },
+      [hasOffset, onAnimationEnd]
+    );
 
     const classes = classnames(
       'euiFlyout',
@@ -1217,7 +1267,7 @@ export const EuiFlyoutComponent = forwardRef(
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             aria-labelledby={ariaLabelledBy}
             data-autofocus={!isPushed || undefined}
-            onAnimationEnd={onAnimationEnd}
+            onAnimationEnd={handleAnimationEnd}
           >
             {!isPushed && screenReaderDescription}
             {shouldRenderMenu ? (

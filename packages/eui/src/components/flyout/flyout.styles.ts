@@ -161,22 +161,55 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Type
     overlay: {
+      // POC: host box-shadow on the animated flyout fails to paint until a
+      // later repaint (Chromium). Put the shadow on ::after for all overlays;
+      // flush side clip-path still masks classic to the open edge only.
       overlay: css`
+        isolation: isolate;
+
         &:has(.euiResizableButton) {
           border-inline: none;
         }
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          pointer-events: none;
+          border-radius: inherit;
+        }
       `,
       left: css`
-        ${euiShadowXLarge(euiThemeContext, {
-          borderAllInHighContrastMode: true,
-          border: 'right',
-        })}
+        &::after {
+          ${euiShadowXLarge(euiThemeContext, {
+            borderAllInHighContrastMode: true,
+            border: 'right',
+          })}
+        }
       `,
       right: css`
-        ${euiShadowXLarge(euiThemeContext, {
-          borderAllInHighContrastMode: true,
-          border: 'left',
-        })}
+        &::after {
+          ${euiShadowXLarge(euiThemeContext, {
+            borderAllInHighContrastMode: true,
+            border: 'left',
+          })}
+        }
+      `,
+      // POC: floating inset — full shadow (no flush clip) + control radius
+      offset: css`
+        clip-path: none;
+        border-radius: ${euiTheme.border.radius.control};
+
+        .euiFlyoutHeader {
+          border-start-start-radius: ${euiTheme.border.radius.control};
+          border-start-end-radius: ${euiTheme.border.radius.control};
+        }
+
+        .euiFlyoutFooter {
+          border-end-start-radius: ${euiTheme.border.radius.control};
+          border-end-end-radius: ${euiTheme.border.radius.control};
+        }
       `,
     },
     push: {

@@ -179,7 +179,7 @@ const MenuBarFlyout = (args: Args) => {
           id="menu-bar-example-main"
           type="overlay"
           outsideClickCloses={false}
-          ownFocus
+          ownFocus={false}
           aria-labelledby={titleId}
           flyoutMenuProps={{
             title: 'Flyout title',
@@ -295,6 +295,7 @@ const PaginationFlyout = ({
           onClose={() => setIsFlyoutOpen(false)}
           size="m"
           type="overlay"
+          ownFocus={false}
           aria-label="Item details"
           flyoutMenuProps={{
             pagination: {
@@ -379,6 +380,7 @@ const ActionStatesFlyout = () => {
           onClose={() => setIsFlyoutOpen(false)}
           size="m"
           type="overlay"
+          ownFocus={false}
           aria-labelledby={titleId}
           flyoutMenuProps={{
             titleId,

@@ -37,7 +37,7 @@ export const Playground: Story = {
     children: <EuiButton>Flyout footer actions</EuiButton>,
   },
   render: ({ ...args }) => (
-    <EuiFlyout onClose={() => {}}>
+    <EuiFlyout onClose={() => {}} ownFocus={false}>
       <EuiFlyoutBody />
       <EuiFlyoutFooter {...args} />
     </EuiFlyout>

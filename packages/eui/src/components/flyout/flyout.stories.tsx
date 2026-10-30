@@ -9,8 +9,16 @@
 import React, { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
+import { css } from '@emotion/react';
 
-import { EuiButton, EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../index';
+import {
+  EuiButton,
+  EuiCallOut,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
+} from '../index';
+import { useEuiTheme } from '../../services';
 
 import {
   EuiFlyout,
@@ -39,6 +47,11 @@ const meta: Meta<FlyoutStoryArgs> = {
       description: 'The display mode of the flyout menu.',
     },
     showTrailingActions: { control: 'boolean' },
+    offset: {
+      control: { type: 'number', min: 0, max: 48, step: 4 },
+      description:
+        'Insets an overlay flyout from its containing edges. Ignored in push mode.',
+    },
   },
   args: {
     // Component defaults
@@ -51,7 +64,8 @@ const meta: Meta<FlyoutStoryArgs> = {
     pushMinBreakpoint: 'l',
     closeButtonPosition: 'inside',
     hideCloseButton: false,
-    ownFocus: true,
+    ownFocus: false,
+    offset: 0,
     flyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
     showTrailingActions: true,
   },
@@ -199,6 +213,102 @@ export const PushFlyouts: Story = {
         </StatefulFlyout>
         {fillerText}
       </>
+    );
+  },
+};
+
+/**
+ * Demonstrates the overlay `offset` prop: the flyout is inset from a
+ * recessed application workspace (via `container`) rather than flush to
+ * the edges. Push flyouts ignore `offset`.
+ */
+export const Offset: Story = {
+  parameters: {
+    controls: {
+      include: ['offset', 'size', 'side', 'ownFocus', 'hasAnimation'],
+    },
+    layout: 'fullscreen',
+  },
+  args: {
+    offset: 8,
+    size: 'm',
+    side: 'right',
+    type: 'overlay',
+    ownFocus: false,
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Offset flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This overlay flyout is inset from the application workspace edges
+              via <code>offset</code>. Push flyouts ignore this prop and stay
+              flush.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+  },
+  render: function Render({ ...args }) {
+    const { euiTheme } = useEuiTheme();
+    const [containerEl, setContainerEl] = useState<HTMLElement | null>(null);
+    const [isOpen, setIsOpen] = useState(true);
+
+    return (
+      <div
+        css={css`
+          display: flex;
+          flex-direction: column;
+          block-size: 100vh;
+          padding: ${euiTheme.size.base};
+          background: ${euiTheme.colors.backgroundBaseSubdued};
+          box-sizing: border-box;
+        `}
+      >
+        <div
+          ref={setContainerEl}
+          css={css`
+            flex: 1;
+            min-block-size: 0;
+            position: relative;
+            background: ${euiTheme.colors.backgroundBasePlain};
+            border-radius: ${euiTheme.border.radius.frame};
+            border: ${euiTheme.border.thin};
+            overflow: auto;
+            padding: ${euiTheme.size.l};
+          `}
+        >
+          <EuiText>
+            <h2>App workspace</h2>
+            <p>
+              Flyout is scoped to this recessed panel via <code>container</code>{' '}
+              and inset with <code>offset={args.offset}</code>.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiButton size="s" onClick={() => setIsOpen((open) => !open)}>
+            Toggle flyout
+          </EuiButton>
+          {isOpen && containerEl && (
+            <EuiFlyout
+              {...args}
+              container={containerEl}
+              onClose={() => {
+                setIsOpen(false);
+                onClose();
+              }}
+            />
+          )}
+        </div>
+      </div>
     );
   },
 };

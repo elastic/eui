@@ -63,6 +63,7 @@ export type EuiComponentDefaults = {
     | 'includeSelectorInFocusTrap'
     | 'includeFixedHeadersInFocusTrap'
     | 'container'
+    | 'offset'
   >;
   /**
    * Provide a global configuration for `EuiPopover`s.

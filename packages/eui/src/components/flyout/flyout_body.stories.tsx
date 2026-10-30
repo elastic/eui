@@ -44,7 +44,7 @@ export const Playground: Story = {
     banner: <EuiCallOut title="Banner" size="s" />,
   },
   render: ({ ...args }) => (
-    <EuiFlyout onClose={() => {}}>
+    <EuiFlyout onClose={() => {}} ownFocus={false}>
       <EuiFlyoutBody {...args} />
     </EuiFlyout>
   ),

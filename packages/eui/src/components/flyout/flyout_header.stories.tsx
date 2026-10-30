@@ -44,7 +44,7 @@ export const Playground: Story = {
     ),
   },
   render: ({ ...args }) => (
-    <EuiFlyout onClose={() => {}}>
+    <EuiFlyout onClose={() => {}} ownFocus={false}>
       <EuiFlyoutHeader {...args} />
     </EuiFlyout>
   ),

@@ -170,7 +170,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
  *    Uses `type="push"` and supports a child flyout. Does not overlap the sidebars.
  *
  * 2. **Global flyout** — positioned relative to the document body (no `container`).
- *    Uses `type="overlay"` with `ownFocus={true}` and no child flyout.
+ *    Uses `type="overlay"` with no overlay mask and no child flyout.
  *    Overlaps the entire viewport, including sidebars.
  */
 const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
@@ -206,7 +206,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   const [isAppFlyoutOpen, setIsAppFlyoutOpen] = useState(false);
   const [isChildOpen, setIsChildOpen] = useState(false);
 
-  // Global flyout state (body-scoped, overlay type, ownFocus)
+  // Global flyout state (body-scoped, overlay type)
   const [isGlobalFlyoutOpen, setIsGlobalFlyoutOpen] = useState(false);
 
   const openAppFlyout = () => {
@@ -245,7 +245,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
 
   // Global flyout configuration (fixed — not configurable via story args)
   const globalFlyoutType = 'overlay' as const;
-  const globalFlyoutOwnFocus = true;
+  const globalFlyoutOwnFocus = false;
   const globalFlyoutSize = 's' as const;
   const globalFlyoutResizable = false;
 
@@ -710,7 +710,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
 
         <div style={{ gridArea: 'footer' }} />
 
-        {/* Global flyout: body-scoped, overlay type, ownFocus, no child */}
+        {/* Global flyout: body-scoped, overlay type, no child */}
         {isGlobalFlyoutOpen && renderGlobalFlyout()}
       </div>
     </EuiComponentDefaultsProvider>
