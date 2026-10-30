@@ -160,12 +160,14 @@ describe('EuiFlyout maximize', () => {
       onMaximizeChange,
       childSize = 's',
       childResizable = false,
+      childOnResize,
       showMaximizeButton = true,
       mainProps,
     }: {
       onMaximizeChange?: (isMaximized: boolean) => void;
       childSize?: 's' | 'fill';
       childResizable?: boolean;
+      childOnResize?: (width: number) => void;
       showMaximizeButton?: boolean;
       mainProps?: {
         size?: number;
@@ -196,6 +198,7 @@ describe('EuiFlyout maximize', () => {
                 session="inherit"
                 size={childSize}
                 resizable={childResizable}
+                onResize={childOnResize}
                 container={containerEl}
                 onClose={() => setIsChildOpen(false)}
                 // Ignored: only main flyouts have the button
@@ -409,18 +412,85 @@ describe('EuiFlyout maximize', () => {
       });
     });
 
-    it("hides the child's resize handle while the main is maximized", () => {
-      render(<MainWithChild childResizable />);
+    it('resizes the child from the edge it shares with a maximized main', () => {
+      // The resize hook only resizes once it has measured a width
+      const offsetWidth = jest
+        .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+        .mockImplementation(function (this: HTMLElement) {
+          return parseFloat(this.style.inlineSize) || 0;
+        });
+      const childOnResize = jest.fn();
+      const mainOnResize = jest.fn();
+      render(
+        <MainWithChild
+          childResizable
+          childOnResize={childOnResize}
+          mainProps={{ resizable: true, onResize: mainOnResize }}
+        />
+      );
       fireEvent.click(screen.getByText('Open child'));
-      const childHandle = () =>
-        screen.getByLabelText('Child').querySelector('.euiResizableButton');
-      expect(childHandle()).not.toBeNull();
+      fireEvent.click(maximizeButton());
+      const main = screen.getByLabelText('Main');
+      const child = screen.getByLabelText('Child');
+
+      // Pinned to the container's far edge. jsdom ignores `right: auto`, so
+      // only `left` can be checked.
+      expect(child.style.left).toBe('100px');
+      // Only the child's handle shows
+      const handles = screen.getAllByTestSubject('euiResizableButton');
+      expect(handles).toHaveLength(1);
+      expect(child).toContainElement(handles[0]);
+
+      // The handle is on the shared edge, so moving it right widens the child
+      fireEvent.keyDown(child.querySelector('.euiResizableButton')!, {
+        key: 'ArrowRight',
+      });
+
+      // The resize hook stores a percentage, so allow for rounding
+      const resizedWidth = CHILD_WIDTH + 10;
+      const childWidth = () => parseFloat(child.style.inlineSize);
+      expect(childWidth()).toBeCloseTo(resizedWidth);
+      expect(storedFlyout('child')?.width).toBe(childWidth());
+      expect(main.style.inlineSize).toBe(`${CONTAINER_WIDTH - childWidth()}px`);
+      expect(childOnResize).toHaveBeenCalledTimes(1);
+      expect(childOnResize).toHaveBeenCalledWith(resizedWidth);
 
       fireEvent.click(maximizeButton());
-      expect(childHandle()).toBeNull();
+
+      expect(childWidth()).toBeCloseTo(resizedWidth);
+      expect(child.style.left).not.toBe('100px');
+      expect(childOnResize).toHaveBeenCalledTimes(1);
+      expect(mainOnResize).not.toHaveBeenCalled();
+      offsetWidth.mockRestore();
+    });
+
+    it('pins the child to the far edge of the viewport without a container', () => {
+      render(
+        <EuiFlyoutManager>
+          <EuiFlyout
+            id="main"
+            aria-label="Main"
+            session="start"
+            size="s"
+            onClose={() => {}}
+            flyoutMenuProps={{ showMaximizeButton: true }}
+          >
+            <EuiFlyout
+              id="child"
+              aria-label="Child"
+              session="inherit"
+              size="s"
+              onClose={() => {}}
+            />
+          </EuiFlyout>
+        </EuiFlyoutManager>
+      );
+      const child = screen.getByLabelText('Child');
+      expect(child.style.left).toBe('');
 
       fireEvent.click(maximizeButton());
-      expect(childHandle()).not.toBeNull();
+
+      expect(child.style.left).toBe('0px');
     });
 
     it('clears the store flag when the button is turned off while maximized', () => {

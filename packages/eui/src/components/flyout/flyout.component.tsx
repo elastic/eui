@@ -691,6 +691,15 @@ export const EuiFlyoutComponent = forwardRef(
           : containerReferenceWidth
         : managerRefWidth ?? containerReferenceWidth;
 
+    // The child of a maximized main sits against the container's far edge, so
+    // it resizes from the edge it shares with the main
+    const isBesideMaximizedMain =
+      !!siblingFlyout?.maximized && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE;
+    let resizeSide = side;
+    if (isBesideMaximizedMain) {
+      resizeSide = side === 'left' ? 'right' : 'left';
+    }
+
     const {
       onMouseDown: onMouseDownResizableButton,
       onKeyDown: onKeyDownResizableButton,
@@ -712,7 +721,7 @@ export const EuiFlyoutComponent = forwardRef(
         : siblingFlyoutWidth ?? undefined,
       referenceWidth: effectiveReferenceWidth,
       onResize,
-      side,
+      side: resizeSide,
       size: _size,
       isChildFlyout: flyoutIdentity.hasValidSession && !isMainFlyout,
     });
@@ -812,6 +821,26 @@ export const EuiFlyoutComponent = forwardRef(
       internalParentFlyoutRef,
       setFlyoutRef,
     ]);
+
+    // A maximized main paints `container - child` from the child's stored
+    // width. The resize observer only reports after paint, so a dragged child
+    // would overlap the main, or leave a gap, for a frame.
+    const ownStoredWidth = ownFlyout?.width;
+    useLayoutEffect(() => {
+      if (!isBesideMaximizedMain || !resizeRef) return;
+      const paintedWidth = resizeRef.offsetWidth;
+      if (paintedWidth && paintedWidth !== ownStoredWidth) {
+        flyoutManagerRef.current?.setFlyoutWidth(flyoutId, paintedWidth);
+      }
+    }, [
+      isBesideMaximizedMain,
+      resizeRef,
+      size,
+      containerRect,
+      ownStoredWidth,
+      flyoutId,
+    ]);
+
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
     // The measurement taken while maximized is the full container width; it
     // must not become the push offset when the flyout is restored.
@@ -1063,12 +1092,17 @@ export const EuiFlyoutComponent = forwardRef(
           // In side-by-side mode, `siblingFlyoutWidth` is the main flyout's
           // pixel width; in stacked mode it's 0 (child sits on top).
           const siblingPx = siblingFlyoutWidth || 0;
-          if (side === 'left') {
+          if (isBesideMaximizedMain && side === 'left') {
+            containerPositionStyles.left = 'auto';
+            containerPositionStyles.right = containerRightOffset;
+          } else if (isBesideMaximizedMain) {
+            containerPositionStyles.left = containerRect.left;
+            containerPositionStyles.right = 'auto';
+          } else if (side === 'left') {
             containerPositionStyles.left = containerRect.left + siblingPx;
           } else {
             containerPositionStyles.right = containerRightOffset + siblingPx;
           }
-
           if (containerRelativeWidth !== undefined) {
             // Set `inlineSize` (logical property) so it properly overrides
             // `inlineSize` from composedStyles. We intentionally do NOT set
@@ -1145,6 +1179,7 @@ export const EuiFlyoutComponent = forwardRef(
       side,
       isChildFlyout,
       isMaximized,
+      isBesideMaximizedMain,
       euiTheme.breakpoint.m,
     ]);
 
@@ -1398,10 +1433,10 @@ export const EuiFlyoutComponent = forwardRef(
                 />
               )
             )}
-            {resizable && !isMaximized && !siblingFlyout?.maximized && (
+            {resizable && !isMaximized && (
               <EuiFlyoutResizeButton
                 type={type}
-                side={side}
+                side={resizeSide}
                 ownFocus={ownFocus}
                 isPushed={isPushed}
                 onMouseDown={onMouseDownResizableButton}
