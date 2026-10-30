@@ -72,7 +72,7 @@ In a [managed session](#flyout-session-management), only the main flyout has the
 
 A maximized `type="push"` flyout stops pushing the page content, but still does not close on Escape.
 
-Use `onMaximizeChange` to persist the user's preference or respond to changes. It is called with the new state each time the flyout is maximized or restored.
+Use `onMaximizeChange` to respond to changes. It is called with the new state each time the flyout is maximized or restored. A flyout always opens restored, so reset any state you keep when it closes. In a managed session, `getFlyoutManagerStore().setFlyoutMaximized()` also maximizes or restores the main flyout, as long as it sets `showMaximizeButton`.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -91,7 +91,10 @@ export default () => {
         <EuiFlyout
           size="s"
           aria-label="Maximizable flyout"
-          onClose={() => setIsFlyoutVisible(false)}
+          onClose={() => {
+            setIsFlyoutVisible(false);
+            setIsMaximized(false);
+          }}
           flyoutMenuProps={{
             showMaximizeButton: true,
             onMaximizeChange: setIsMaximized,

@@ -591,33 +591,37 @@ export const EuiFlyoutComponent = forwardRef(
         null
       : null;
     const _siblingFlyoutWidth = siblingFlyout?.width;
-    // A maximized main makes room for its child the way a `fill` main does
-    const isSiblingFill =
-      siblingFlyout?.size === 'fill' || !!siblingFlyout?.maximized;
+    const isSiblingFill = siblingFlyout?.size === 'fill';
     const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
 
-    // Set during render, once the resize hook's output is known
-    const toggleWidthsRef = useRef({
-      maximizedPixelWidth: 0,
-      restoredPixelWidth: 0,
-    });
+    // The width a maximized main takes from its child doesn't count: the child
+    // sizes and clamps itself against the width the main restores to
+    let fillSiblingFlyoutWidth = siblingFlyoutWidth;
+    if (siblingFlyout?.maximized && layoutMode !== LAYOUT_MODE_STACKED) {
+      fillSiblingFlyoutWidth =
+        siblingFlyout.restoredWidth ?? siblingFlyoutWidth;
+    }
+
+    // Set during render, once the sibling's width is known
+    const maximizedPixelWidthRef = useRef(0);
 
     // The child clamps against this flyout's stored width, so the flag and the
-    // width it paints must change in one store update
+    // width it paints must change in one store update. The store already holds
+    // the width to restore to: the measured width when maximizing, kept
+    // current while maximized.
     const setManagedMaximized = useCallback(
       (id: string, maximized: boolean) => {
-        const { maximizedPixelWidth, restoredPixelWidth } =
-          toggleWidthsRef.current;
-        let width = restoredPixelWidth;
-        if (maximized) width = maximizedPixelWidth;
-        flyoutManagerRef.current?.setFlyoutMaximized(
-          id,
-          maximized,
-          width,
-          restoredPixelWidth
-        );
+        if (maximized) {
+          flyoutManagerRef.current?.setFlyoutMaximized(
+            id,
+            true,
+            maximizedPixelWidthRef.current
+          );
+        } else {
+          flyoutManagerRef.current?.setFlyoutMaximized(id, false);
+        }
       },
       []
     );
@@ -708,7 +712,7 @@ export const EuiFlyoutComponent = forwardRef(
       // below its configured minimum.
       siblingFlyoutWidth: isSiblingFill
         ? siblingFlyoutMinWidth
-        : siblingFlyoutWidth ?? undefined,
+        : fillSiblingFlyoutWidth ?? undefined,
       referenceWidth: effectiveReferenceWidth,
       onResize,
       side,
@@ -752,18 +756,16 @@ export const EuiFlyoutComponent = forwardRef(
       0,
       fullWidth - (siblingFlyoutWidth || 0)
     );
-    const restoredPixelWidth = getFlyoutPixelWidth(
-      size,
-      fullWidth,
-      siblingFlyoutWidth || 0
+    maximizedPixelWidthRef.current = maximizedPixelWidth;
+
+    const ownFlyout = managerState?.flyouts.find(
+      (f) => f.flyoutId === flyoutId
     );
-    toggleWidthsRef.current = { maximizedPixelWidth, restoredPixelWidth };
+    const storedRestoredWidth = ownFlyout?.restoredWidth;
 
     // Turning `showMaximizeButton` off restores the flyout, but the store keeps
     // its flag, which layout mode and the child still read
-    const isStoreMaximized = !!managerState?.flyouts.find(
-      (f) => f.flyoutId === flyoutId
-    )?.maximized;
+    const isStoreMaximized = !!ownFlyout?.maximized;
     useLayoutEffect(() => {
       if (isManagedMain && isStoreMaximized && !isMaximized) {
         setManagedMaximized(flyoutId, false);
@@ -776,22 +778,71 @@ export const EuiFlyoutComponent = forwardRef(
       setManagedMaximized,
     ]);
 
-    // A `fill` child's usual width depends on the main's width, which a
-    // maximized main takes from the child. Record the width this flyout
-    // restores to, so a `fill` child can size itself against that instead.
+    // Keep the width this flyout restores to current while maximized. The
+    // store records the measured width on maximize, since CSS limits such as
+    // `maxWidth` or a named size's minimum can't be read back from `size`.
+    // A resizable flyout restores to the resize hook's width, which keeps
+    // clamping (e.g. beside a child that opens). A `fill` flyout's CSS width
+    // follows the child, so it is computed the same way. Otherwise, only a
+    // named or percentage `size` changes, scaling with the container.
+    const restoredBaseRef = useRef<{ width: number; fullWidth: number } | null>(
+      null
+    );
     useLayoutEffect(() => {
-      if (!isMaximized || !isManagedMain) return;
+      if (!isMaximized || !isManagedMain) {
+        restoredBaseRef.current = null;
+        return;
+      }
+      let restoredWidth: number;
+      if (resizable) {
+        restoredWidth = getFlyoutPixelWidth(
+          size,
+          fullWidth,
+          siblingFlyoutWidth || 0
+        );
+      } else if (_size === 'fill') {
+        restoredWidth = getFlyoutPixelWidth(
+          _size,
+          fullWidth,
+          siblingFlyoutWidth || 0
+        );
+        if (typeof maxWidth === 'number') {
+          restoredWidth = Math.min(restoredWidth, maxWidth);
+        }
+      } else {
+        if (!restoredBaseRef.current) {
+          restoredBaseRef.current = {
+            width:
+              storedRestoredWidth ??
+              getFlyoutPixelWidth(_size, fullWidth, siblingFlyoutWidth || 0),
+            fullWidth,
+          };
+        }
+        const base = restoredBaseRef.current;
+        const scalesWithContainer =
+          isEuiFlyoutSizeNamed(_size) ||
+          (typeof _size === 'string' && _size.endsWith('%'));
+        restoredWidth = base.width;
+        if (scalesWithContainer && base.fullWidth > 0) {
+          restoredWidth = Math.round((base.width * fullWidth) / base.fullWidth);
+        }
+      }
+      if (restoredWidth === storedRestoredWidth) return;
       flyoutManagerRef.current?.dispatch(
-        setFlyoutRestoredWidth(flyoutId, restoredPixelWidth)
+        setFlyoutRestoredWidth(flyoutId, restoredWidth)
       );
-    }, [isMaximized, isManagedMain, flyoutId, restoredPixelWidth]);
-
-    // The sibling width a `fill` flyout subtracts from its own
-    let fillSiblingFlyoutWidth = siblingFlyoutWidth;
-    if (siblingFlyout?.maximized) {
-      fillSiblingFlyoutWidth =
-        siblingFlyout.restoredWidth ?? siblingFlyoutWidth;
-    }
+    }, [
+      isMaximized,
+      isManagedMain,
+      resizable,
+      size,
+      _size,
+      maxWidth,
+      fullWidth,
+      siblingFlyoutWidth,
+      storedRestoredWidth,
+      flyoutId,
+    ]);
 
     /**
      * Setting up the refs on the actual flyout element in order to

@@ -23,15 +23,20 @@ const FLYOUT_WIDTH = 300;
 
 // jsdom doesn't lay out. The container reports its mocked width. A flyout
 // reports `mockMeasuredWidth` when a test sets it, otherwise its painted
-// inline size, so a maximized paint is what the resize observer would see.
+// inline size capped by its max inline size, so a maximized paint is what the
+// resize observer would see.
 let mockContainer: HTMLElement | null = null;
 let mockMeasuredWidth: number | undefined;
 jest.mock('../observer/resize_observer', () => ({
   useResizeObserver: (element: HTMLElement | null) => {
     if (!element) return { width: 0, height: 0 };
     if (element === mockContainer) return { width: 900, height: 0 };
+    const inlineSize = parseFloat(element.style.inlineSize) || 300;
+    const maxInlineSize = parseFloat(element.style.maxInlineSize);
     return {
-      width: mockMeasuredWidth ?? (parseFloat(element.style.inlineSize) || 300),
+      width:
+        mockMeasuredWidth ??
+        (maxInlineSize < inlineSize ? maxInlineSize : inlineSize),
       height: 0,
     };
   },
@@ -162,7 +167,12 @@ describe('EuiFlyout maximize', () => {
       childSize?: 's' | 'fill';
       childResizable?: boolean;
       showMaximizeButton?: boolean;
-      mainProps?: { size?: number; resizable?: boolean; onResize?: () => void };
+      mainProps?: {
+        size?: number;
+        maxWidth?: number;
+        resizable?: boolean;
+        onResize?: () => void;
+      };
     }) => {
       const [isChildOpen, setIsChildOpen] = useState(false);
       return (
@@ -269,6 +279,26 @@ describe('EuiFlyout maximize', () => {
       fireEvent.click(maximizeButton());
 
       expect(child.style.inlineSize).toBe(childInlineSize);
+    });
+
+    it('keeps the width of a fill child beside a main capped by maxWidth', () => {
+      render(
+        <MainWithChild
+          childSize="fill"
+          mainProps={{ size: 600, maxWidth: 400 }}
+        />
+      );
+      fireEvent.click(screen.getByText('Open child'));
+      const child = screen.getByLabelText('Child');
+      const childInlineSize = child.style.inlineSize;
+      expect(childInlineSize).toBe(`${CONTAINER_WIDTH * 0.9 - 400}px`);
+
+      fireEvent.click(maximizeButton());
+      expect(child.style.inlineSize).toBe(childInlineSize);
+
+      fireEvent.click(maximizeButton());
+      expect(child.style.inlineSize).toBe(childInlineSize);
+      expect(storedFlyout('main')?.width).toBe(400);
     });
 
     it('stores the painted width on maximize and on restore', () => {

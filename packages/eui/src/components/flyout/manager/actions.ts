@@ -285,6 +285,8 @@ export const setFlyoutResizable = (
  * - Optional `restoredWidth` is the width a maximized flyout restores to.
  *   When maximizing without it, the current width is used.
  * - Child flyouts can't be maximized; the action is ignored for them.
+ * - A flyout that doesn't set `flyoutMenuProps.showMaximizeButton` restores
+ *   itself right away.
  */
 export const setFlyoutMaximized = (
   flyoutId: string,
