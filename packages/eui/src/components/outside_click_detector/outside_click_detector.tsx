@@ -56,11 +56,10 @@ export const EuiOutsideClickDetector = forwardRef<
   // this component's reified DOM tree.
   const id = useGeneratedHtmlId();
   const capturedDownIds = useRef<string[]>([]);
+  const { isDisabled, onOutsideClick } = props;
 
   useEffect(() => {
     function onClickOutside(e: Event) {
-      const { isDisabled, onOutsideClick } = props;
-
       if (isDisabled) {
         capturedDownIds.current = [];
         return;
@@ -86,7 +85,7 @@ export const EuiOutsideClickDetector = forwardRef<
       document.removeEventListener('mouseup', onClickOutside);
       document.removeEventListener('touchend', onClickOutside);
     };
-  }, [props.isDisabled, props.onOutsideClick]);
+  }, [id, isDisabled, onOutsideClick]);
 
   function onChildClick(
     event: ReactMouseEvent,
