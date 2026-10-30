@@ -10,9 +10,13 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { createRef, useState } from 'react';
 import { EuiFormRow } from '../form_row';
-import { EuiSuperSelect, EuiSuperSelectProps } from './super_select';
+import {
+  EuiSuperSelect,
+  EuiSuperSelectProps,
+  EuiSuperSelectRef,
+} from './super_select';
 
 const options = [
   { value: '1', inputDisplay: <strong>Option #1</strong> },
@@ -160,5 +164,93 @@ describe('EuiSuperSelect', () => {
     dropdownIsOpen();
     cy.realPress('ArrowDown');
     cy.get('.euiFormLabel').should('have.class', 'euiFormLabel-isFocused');
+  });
+
+  it('preserves the page and inner scroll position when switching between selects', () => {
+    cy.realMount(
+      <>
+        <style>{'html { overflow: hidden; }'}</style>
+        <div
+          data-test-subj="scroller"
+          style={{ height: 350, overflow: 'auto' }}
+        >
+          <div style={{ height: 1400, padding: 16 }}>
+            <EuiSuperSelect
+              options={options}
+              data-test-subj="firstSelect"
+              aria-label="First select"
+            />
+            <div style={{ height: 600 }} />
+            <EuiSuperSelect
+              options={options}
+              data-test-subj="secondSelect"
+              aria-label="Second select"
+            />
+          </div>
+        </div>
+      </>
+    );
+
+    cy.get('[data-test-subj="firstSelect"]').click();
+    dropdownIsOpen();
+    cy.get('[data-test-subj="scroller"]').scrollTo(0, 500);
+    cy.get('[data-test-subj="secondSelect"]').click({ scrollBehavior: false });
+    cy.get('[data-test-subj="secondSelect"]').should(
+      'have.attr',
+      'aria-expanded',
+      'true'
+    );
+    cy.focused().should('have.attr', 'role', 'option');
+    cy.get('[data-test-subj="scroller"]').should('have.prop', 'scrollTop', 500);
+    cy.window().its('scrollY').should('eq', 0);
+  });
+
+  it('does not scroll the page when opening a select below the viewport', () => {
+    const ref = createRef<EuiSuperSelectRef>();
+    cy.realMount(
+      <>
+        <style>{'html { overflow: hidden; }'}</style>
+        <button onClick={() => ref.current?.openPopover()}>Open select</button>
+        <div style={{ height: 1200 }} />
+        <EuiSuperSelect
+          ref={ref}
+          options={options}
+          aria-label="Offscreen select"
+        />
+      </>
+    );
+
+    cy.window().its('scrollY').should('eq', 0);
+    cy.contains('button', 'Open select').click({ scrollBehavior: false });
+    cy.focused().should('have.attr', 'role', 'option');
+    cy.window().its('scrollY').should('eq', 0);
+  });
+
+  it('keeps the selected option and keyboard navigation visible in a long list', () => {
+    const longOptions = Array.from({ length: 30 }, (_, index) => ({
+      value: String(index),
+      inputDisplay: `Option ${index}`,
+    }));
+    cy.realMount(
+      <EuiSuperSelect
+        options={longOptions}
+        valueOfSelected="29"
+        aria-label="Long select"
+      />
+    );
+
+    cy.realPress('Tab');
+    cy.realPress('Enter');
+    dropdownIsOpen();
+    cy.focused().should('have.text', 'Option 29').and('be.visible');
+    cy.get('[role="listbox"]').should(($list) => {
+      expect($list[0].scrollTop).to.be.greaterThan(0);
+    });
+
+    for (let index = 0; index < 29; index++) {
+      cy.realPress('ArrowUp');
+    }
+    cy.focused().should('have.text', 'Option 0').and('be.visible');
+    cy.get('[role="listbox"]').should('have.prop', 'scrollTop', 0);
   });
 });
