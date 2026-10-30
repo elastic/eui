@@ -9,6 +9,7 @@
 import { EuiAccordionSelectors } from './components/accordion/selectors';
 import { EuiBasicTableSelectors } from './components/basic_table/selectors';
 import { EuiCallOutSelectors } from './components/call_out/selectors';
+import { EuiCardSelectors } from './components/card/selectors';
 import { EuiColorPickerSelectors } from './components/color_picker/selectors';
 import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
@@ -41,6 +42,7 @@ export const selectors = {
   accordion: EuiAccordionSelectors,
   basicTable: EuiBasicTableSelectors,
   callOut: EuiCallOutSelectors,
+  card: EuiCardSelectors,
   colorPicker: EuiColorPickerSelectors,
   comboBox: EuiComboBoxSelectors,
   contextMenu: EuiContextMenuSelectors,
