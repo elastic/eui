@@ -77,6 +77,7 @@ describe('EuiPageSidebar', () => {
         <EuiPageSidebar
           sticky
           data-test-subj="sidebar"
+          // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
           style={{ color: 'red' }}
         />
       );

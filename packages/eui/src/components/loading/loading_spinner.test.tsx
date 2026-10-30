@@ -36,6 +36,7 @@ describe('EuiLoadingSpinner', () => {
         <EuiLoadingSpinner color={{ highlight: 'black' }} />
         <EuiLoadingSpinner
           color={{ border: 'white', highlight: 'black' }}
+          // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
           style={{ color: 'red' }} // Should merge together
         />
       </>

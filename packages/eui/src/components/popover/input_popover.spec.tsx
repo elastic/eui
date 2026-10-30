@@ -261,7 +261,12 @@ describe('EuiPopover', () => {
             style={{ height: 100, overflow: 'auto', width: 100, margin: 10 }}
             data-test-subj="scrollingSibling"
           >
-            <div style={{ height: 200, backgroundColor: 'pink' }} />
+            <div
+              style={{ height: 200 }}
+              css={({ euiTheme }) => ({
+                backgroundColor: euiTheme.colors.backgroundLightPrimary,
+              })}
+            />
           </div>
         </div>
       );

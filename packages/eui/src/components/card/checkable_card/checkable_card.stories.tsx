@@ -81,11 +81,13 @@ export const WithInteractiveChildren: Story = {
             e.stopPropagation();
             alert('Button clicked!');
           }}
+          css={({ euiTheme }) => ({
+            backgroundColor: euiTheme.colors.backgroundFilledPrimary,
+            color: euiTheme.colors.textInverse,
+          })}
           style={{
             margin: '8px 0',
             padding: '4px 8px',
-            backgroundColor: '#0066CC',
-            color: 'white',
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',

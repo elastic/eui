@@ -19,6 +19,7 @@ const panel3 = {
   title: '3',
   items: [
     {
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       name: <span style={{ color: 'tomato' }}>foo</span>,
       key: 'foo',
     },

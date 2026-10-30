@@ -33,7 +33,9 @@ describe('EuiAspectRatio', () => {
 
   it('merges all styles', () => {
     const { getByTestSubject } = render(
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
       <EuiAspectRatio height={4} width={9} style={{ color: 'sienna' }}>
+        {/* eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color */}
         <div data-test-subj="child" style={{ backgroundColor: 'salmon' }} />
       </EuiAspectRatio>
     );
