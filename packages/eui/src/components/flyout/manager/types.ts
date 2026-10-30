@@ -137,12 +137,7 @@ export interface FlyoutManagerApi {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
-  setFlyoutMaximized: (
-    flyoutId: string,
-    maximized: boolean,
-    width?: number,
-    restoredWidth?: number
-  ) => void;
+  setFlyoutMaximized: (flyoutId: string, maximized: boolean) => void;
   setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,

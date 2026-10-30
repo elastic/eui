@@ -301,6 +301,51 @@ describe('EuiFlyout maximize', () => {
       expect(storedFlyout('main')?.width).toBe(400);
     });
 
+    it('keeps the width of a resizable child that was stacked before maximizing', () => {
+      // The resize hook only clamps once it has measured a width
+      const offsetWidth = jest
+        .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+        .mockImplementation(function (this: HTMLElement) {
+          return parseFloat(this.style.inlineSize) || 0;
+        });
+      render(<MainWithChild childResizable mainProps={{ size: 800 }} />);
+      fireEvent.click(screen.getByText('Open child'));
+      const child = screen.getByLabelText('Child');
+      const childInlineSize = child.style.inlineSize;
+      expect(getFlyoutManagerStore().getState().layoutMode).toBe('stacked');
+
+      fireEvent.click(maximizeButton());
+
+      expect(getFlyoutManagerStore().getState().layoutMode).toBe(
+        'side-by-side'
+      );
+      expect(child.style.inlineSize).toBe(childInlineSize);
+      offsetWidth.mockRestore();
+    });
+
+    it('keeps the width of a resizable child when a wide resizable main restores beside it', () => {
+      const offsetWidth = jest
+        .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+        .mockImplementation(function (this: HTMLElement) {
+          return parseFloat(this.style.inlineSize) || 0;
+        });
+      render(
+        <MainWithChild
+          childResizable
+          mainProps={{ size: 700, resizable: true }}
+        />
+      );
+
+      fireEvent.click(maximizeButton());
+      fireEvent.click(screen.getByText('Open child'));
+      const child = screen.getByLabelText('Child');
+      const childInlineSize = child.style.inlineSize;
+      fireEvent.click(maximizeButton());
+
+      expect(child.style.inlineSize).toBe(childInlineSize);
+      offsetWidth.mockRestore();
+    });
+
     it('stores the painted width on maximize and on restore', () => {
       render(<MainWithChild />);
       fireEvent.click(screen.getByText('Open child'));
