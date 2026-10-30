@@ -87,3 +87,63 @@ describe('EuiVisColorStore', () => {
     });
   });
 });
+
+describe('getInstance() initialization contract', () => {
+  // Each test gets a fresh module registry so the singleton starts
+  // uninitialized, as it would for a consumer that imports this package
+  // standalone (e.g. without @elastic/eui).
+  it('throws when accessed before being initialized with default colors', () => {
+    jest.isolateModules(() => {
+      const { EuiVisColorStore: FreshStore } =
+        jest.requireActual<typeof import('./vis_color_store')>(
+          './vis_color_store'
+        );
+
+      expect(() => FreshStore.getInstance()).toThrow(
+        'EuiVisColorStore was accessed before it was initialized'
+      );
+    });
+  });
+
+  it('returns the existing instance when called without arguments after initialization', () => {
+    jest.isolateModules(() => {
+      const { EuiVisColorStore: FreshStore } =
+        jest.requireActual<typeof import('./vis_color_store')>(
+          './vis_color_store'
+        );
+
+      const initialized = FreshStore.getInstance(visColors);
+
+      expect(FreshStore.getInstance()).toBe(initialized);
+      expect(FreshStore.getInstance().visColors).toEqual(visColors);
+    });
+  });
+
+  it('provides palette defaults once a theme package has initialized the store', () => {
+    jest.isolateModules(() => {
+      const { EuiVisColorStore: FreshStore } =
+        jest.requireActual<typeof import('./vis_color_store')>(
+          './vis_color_store'
+        );
+      const { euiPaletteColorBlind } =
+        jest.requireActual<typeof import('./eui_palettes')>('./eui_palettes');
+
+      // simulates what a theme package (e.g. @elastic/eui-theme-borealis)
+      // does on import
+      FreshStore.getInstance(visColors);
+
+      expect(euiPaletteColorBlind()[0]).toBe(visColors.euiColorVis0);
+    });
+  });
+
+  it('palette functions throw a descriptive error when no theme initialized the store', () => {
+    jest.isolateModules(() => {
+      const { euiPaletteColorBlind } =
+        jest.requireActual<typeof import('./eui_palettes')>('./eui_palettes');
+
+      expect(() => euiPaletteColorBlind()).toThrow(
+        'EuiVisColorStore was accessed before it was initialized'
+      );
+    });
+  });
+});

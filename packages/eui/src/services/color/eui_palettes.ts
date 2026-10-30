@@ -6,66 +6,40 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
-import { colorPalette } from './color_palette';
-import { EUI_VIS_COLOR_STORE } from './vis_color_store';
-import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
+// Initializes the vis color store with theme defaults, as importing this
+// module always has; without it a standalone deep import of this module (or
+// evaluating VISUALIZATION_COLORS before a theme loads) would throw.
+import './vis_color_store';
+// The functions are wrapped with their original docblocks so the docgen data
+// is generated from this package.
+import {
+  euiPaletteColorBlind as _euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText as _euiPaletteColorBlindBehindText,
+  euiPaletteForStatus as _euiPaletteForStatus,
+  euiPaletteForTemperature as _euiPaletteForTemperature,
+  euiPaletteComplementary as _euiPaletteComplementary,
+  euiPaletteRed as _euiPaletteRed,
+  euiPaletteGreen as _euiPaletteGreen,
+  euiPaletteSkyBlue as _euiPaletteSkyBlue,
+  euiPaletteYellow as _euiPaletteYellow,
+  euiPaletteOrange as _euiPaletteOrange,
+  euiPaletteCool as _euiPaletteCool,
+  euiPaletteWarm as _euiPaletteWarm,
+  euiPaletteGray as _euiPaletteGray,
+} from '@elastic/eui-theme-common';
 
-export type EuiPalette = string[];
+export type {
+  EuiPalette,
+  EuiPaletteColorBlindProps,
+  EuiPaletteRotationProps,
+  EuiPaletteCommonProps,
+} from '@elastic/eui-theme-common';
 
-const flatten = (arr: any[]) => [].concat(...arr);
-
-const euiPalette = function (
-  colors: string[],
-  steps: number,
-  diverge: boolean = false,
-  categorical: boolean = true
-): EuiPalette {
-  // This function also trims the first color so white/black is never a color
-  if (!diverge && steps > 1) {
-    const palette = colorPalette(colors, steps + 1);
-    palette.shift();
-    return palette;
-  }
-
-  return colorPalette(colors, steps, diverge, categorical);
-};
-
-export type EuiPaletteCommonProps = {
-  /**
-   * Defines the default set of colors the palette uses.
-   * Defaults to vis colors from `EUI_VIS_COLOR_STORE`.
-   * Use this to specify colors when you can't rely on the EuiProvider updates.
-   */
-  colors?: _EuiThemeVisColors;
-};
-
-export type EuiPaletteRotationProps = {
-  /**
-   * How many variations of the series is needed
-   */
-  rotations?: number;
-  /**
-   * Order similar colors as `group`s or just `append` each variation
-   */
-  order?: 'append' | 'group';
-  /**
-   * Specifies if the direction of the color variations
-   */
-  direction?: 'lighter' | 'darker' | 'both';
-  /**
-   * Use the default sort order, or re-sort them based on the color wheel (natural)
-   */
-  sortBy?: 'default' | 'natural';
-  /**
-   * Shift the sorting order by a certain number when used in conjunction with `'natural'` `sortBy`.
-   * Defaults to a number close to green.
-   */
-  sortShift?: string;
-};
-
-export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
-  EuiPaletteRotationProps;
+import type {
+  EuiPalette,
+  EuiPaletteColorBlindProps,
+  EuiPaletteCommonProps,
+} from '@elastic/eui-theme-common';
 
 /**
  * For usage in React use the `useEuiPaletteColorBlind` hook instead.
@@ -77,73 +51,9 @@ export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
  * Outside of a react component you can use the `subscibe()` method on the `EUI_VIS_COLOR_STORE`
  * to subscribe to updates and update your usages to ensure latest colors are loaded.
  */
-export const euiPaletteColorBlind = ({
-  rotations = 1,
-  order = 'append',
-  direction = 'lighter',
-  sortBy = 'default',
-  sortShift = '-100',
-  colors,
-}: EuiPaletteColorBlindProps = {}): EuiPalette => {
-  let _colors: string[] = [];
-
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  let base = [
-    visColors.euiColorVis0,
-    visColors.euiColorVis1,
-    visColors.euiColorVis2,
-    visColors.euiColorVis3,
-    visColors.euiColorVis4,
-    visColors.euiColorVis5,
-    visColors.euiColorVis6,
-    visColors.euiColorVis7,
-    visColors.euiColorVis8,
-    visColors.euiColorVis9,
-  ];
-
-  if (sortBy === 'natural') {
-    // Sort the colors based on the color wheel, but shifting the values based on sortShift
-    base = [...base].sort(function (a, b) {
-      return (
-        chroma(a).set('hsl.h', sortShift).hsl()[0] -
-        chroma(b).set('hsl.h', sortShift).hsl()[0]
-      );
-    });
-  }
-
-  if (rotations > 1) {
-    const palettes = base.map((color) => {
-      // Create the darkest and lightest versions of each color using black and white
-      const palette = colorPalette(['black', color, 'white'], 5, false, true);
-      // Then removing the extremes
-      palette.pop();
-      palette.shift();
-
-      switch (direction) {
-        case 'lighter':
-          return colorPalette([palette[1], palette[2]], rotations, false, true);
-        case 'darker':
-          return colorPalette([palette[1], palette[0]], rotations, false, true);
-        case 'both':
-          return colorPalette(palette, rotations, false, true);
-      }
-    });
-
-    if (order === 'group') {
-      _colors = flatten(palettes);
-    } else {
-      for (let i = 0; i < rotations; i++) {
-        const rotation = palettes.map((palette) => palette[i]);
-        _colors.push(...rotation);
-      }
-    }
-  } else {
-    _colors = base;
-  }
-
-  return _colors;
-};
+export const euiPaletteColorBlind = (
+  props: EuiPaletteColorBlindProps = {}
+): EuiPalette => _euiPaletteColorBlind(props);
 
 /**
  * For usage in React use the `useEuiPaletteColorBlindBehindText` hook instead.
@@ -156,11 +66,7 @@ export const euiPaletteColorBlind = ({
  */
 export const euiPaletteColorBlindBehindText = (
   paletteProps: EuiPaletteColorBlindProps = {}
-) => {
-  const originalPalette = euiPaletteColorBlind(paletteProps);
-
-  return originalPalette;
-};
+): EuiPalette => _euiPaletteColorBlindBehindText(paletteProps);
 
 /**
  * For usage in React use the `useEuiPaletteForStatus` hook instead.
@@ -168,38 +74,10 @@ export const euiPaletteColorBlindBehindText = (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForStatus = function (
+export const euiPaletteForStatus = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisSuccess0];
-  }
-  if (steps <= 3) {
-    return euiPalette(
-      [
-        visColors.euiColorVisSuccess0,
-        visColors.euiColorVisWarning1,
-        visColors.euiColorVisDanger0,
-      ],
-      steps,
-      true
-    );
-  }
-  return euiPalette(
-    [
-      visColors.euiColorVisSuccess0,
-      visColors.euiColorVisSuccess1,
-      visColors.euiColorVisWarning1,
-      visColors.euiColorVisDanger1,
-      visColors.euiColorVisDanger0,
-    ],
-    steps,
-    true
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteForStatus(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteForTemperature` hook instead.
@@ -207,43 +85,10 @@ export const euiPaletteForStatus = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForTemperature = function (
+export const euiPaletteForTemperature = (
   steps: any,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisCool2];
-  } else if (steps <= 3) {
-    return euiPalette(
-      [visColors.euiColorVisCool2, visColors.euiColorVisWarm2],
-      steps,
-      true
-    );
-  }
-
-  const cools = colorPalette(
-    [
-      visColors.euiColorVisCool2,
-      visColors.euiColorVisCool1,
-      visColors.euiColorVisCool0,
-    ],
-    3
-  );
-  const warms = colorPalette(
-    [
-      visColors.euiColorVisWarm0,
-      visColors.euiColorVisWarm1,
-      visColors.euiColorVisWarm2,
-    ],
-    3
-  );
-
-  const paletteColors = [...cools, visColors.euiColorVisBase0, ...warms];
-
-  return euiPalette(paletteColors, steps, true);
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteForTemperature(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteComplementary` hook instead.
@@ -251,24 +96,10 @@ export const euiPaletteForTemperature = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteComplementary = function (
+export const euiPaletteComplementary = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisComplementary0];
-  }
-
-  const paletteColors = [
-    visColors.euiColorVisComplementary0,
-    visColors.euiColorVisBase0,
-    visColors.euiColorVisComplementary1,
-  ];
-
-  return euiPalette(paletteColors, steps, true);
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteComplementary(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteRed` hook instead.
@@ -276,21 +107,10 @@ export const euiPaletteComplementary = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteRed = function (
+export const euiPaletteRed = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisDanger1];
-  }
-
-  return euiPalette(
-    [visColors.euiColorVisBase0, visColors.euiColorVisDanger0],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteRed(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteGreen` hook instead.
@@ -298,21 +118,10 @@ export const euiPaletteRed = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteGreen = function (
+export const euiPaletteGreen = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisSuccess1];
-  }
-
-  return euiPalette(
-    [visColors.euiColorVisBase0, visColors.euiColorVisSuccess0],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteGreen(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteSkyBlue` hook instead.
@@ -320,21 +129,10 @@ export const euiPaletteGreen = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteSkyBlue = function (
+export const euiPaletteSkyBlue = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisNeutral1];
-  }
-
-  return euiPalette(
-    [visColors.euiColorVisBase0, visColors.euiColorVisNeutral0],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteSkyBlue(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteYellow` hook instead.
@@ -342,21 +140,10 @@ export const euiPaletteSkyBlue = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteYellow = function (
+export const euiPaletteYellow = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisWarning1];
-  }
-
-  return euiPalette(
-    [visColors.euiColorVisBase0, visColors.euiColorVisWarning0],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteYellow(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteOrange` hook instead.
@@ -364,21 +151,10 @@ export const euiPaletteYellow = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteOrange = function (
+export const euiPaletteOrange = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisRisk1];
-  }
-
-  return euiPalette(
-    [visColors.euiColorVisBase0, visColors.euiColorVisRisk0],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteOrange(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteCool` hook instead.
@@ -386,25 +162,10 @@ export const euiPaletteOrange = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteCool = function (
+export const euiPaletteCool = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisCool1];
-  }
-
-  return euiPalette(
-    [
-      visColors.euiColorVisCool0,
-      visColors.euiColorVisCool1,
-      visColors.euiColorVisCool2,
-    ],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteCool(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteWarm` hook instead.
@@ -412,25 +173,10 @@ export const euiPaletteCool = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteWarm = function (
+export const euiPaletteWarm = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisWarm2];
-  }
-
-  return euiPalette(
-    [
-      visColors.euiColorVisWarm0,
-      visColors.euiColorVisWarm1,
-      visColors.euiColorVisWarm2,
-    ],
-    steps
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteWarm(steps, props);
 
 /**
  * For usage in React use the `useEuiPaletteGray` hook instead.
@@ -438,25 +184,7 @@ export const euiPaletteWarm = function (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteGray = function (
+export const euiPaletteGray = (
   steps: number,
-  { colors }: EuiPaletteCommonProps = {}
-): EuiPalette {
-  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
-
-  if (steps === 1) {
-    return [visColors.euiColorVisGrey1];
-  }
-
-  return euiPalette(
-    [
-      visColors.euiColorVisBase0,
-      visColors.euiColorVisGrey0,
-      visColors.euiColorVisGrey1,
-      visColors.euiColorVisGrey2,
-      visColors.euiColorVisGrey3,
-    ],
-    steps,
-    false
-  );
-};
+  props: EuiPaletteCommonProps = {}
+): EuiPalette => _euiPaletteGray(steps, props);
