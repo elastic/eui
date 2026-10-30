@@ -56,13 +56,27 @@ describe('useEuiPaletteColorBlind', () => {
     ]);
   });
 
+  it('should append the extended colors when `extended` is true', () => {
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlind({ extended: true }),
+      { wrapper: RenderContainer }
+    );
+
+    expect(result.current).toHaveLength(12);
+    expect(result.current.slice(10)).toEqual([
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
+    ]);
+  });
+
   it('should return high contrast mode colors in LIGHT mode', () => {
     const Wrapper = (props: PropsWithChildren) => (
       <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
     );
-    const { result } = renderHook(() => useEuiPaletteColorBlind(), {
-      wrapper: Wrapper,
-    });
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlind({ extended: true }),
+      { wrapper: Wrapper }
+    );
 
     expect(result.current).toEqual([
       '#065B58',
@@ -75,6 +89,8 @@ describe('useEuiPaletteColorBlind', () => {
       '#DA3737',
       '#6A4906',
       '#AD7E00',
+      '#52357E',
+      '#925CDA',
     ]);
   });
 });
@@ -96,6 +112,19 @@ describe('useEuiPaletteColorBlindBehindText', () => {
       colorVis.euiColorVisBehindText7,
       colorVis.euiColorVisBehindText8,
       colorVis.euiColorVisBehindText9,
+    ]);
+  });
+
+  it('should append the extended colors when `extended` is true', () => {
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlindBehindText({ extended: true }),
+      { wrapper: RenderContainer }
+    );
+
+    expect(result.current).toHaveLength(12);
+    expect(result.current.slice(10)).toEqual([
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
     ]);
   });
 });
