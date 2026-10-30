@@ -21,6 +21,6 @@ export const EuiCardSelectors = {
   /** The description text, rendered only when `description` is set. */
   DESCRIPTION_SELECTOR: '.euiCard__content > .euiText',
 
-  /** The `selectable` toggle button, a `role="switch"` with `aria-checked`. */
+  /** The `selectable` toggle button, a `role="switch"` with `aria-checked`, direct child of the panel. */
   SELECT_BUTTON_SELECTOR: 'button[role="switch"]',
 };

@@ -53,10 +53,15 @@ test.describe('EuiCardObject', () => {
     expect(await card.isSelected()).toBe(false);
   });
 
-  test('click fires the card onClick', async ({ page }) => {
+  test('click forwards to the title button that carries onClick', async ({
+    page,
+  }) => {
     await page.goto(`${PLAYGROUND_URL};onClick:!true`);
     const card = new EuiCardObject(page, TEST_SUBJ);
-    await card.locator.evaluate((node) => {
+    const titleButton = card.locator.getByRole('button', {
+      name: 'Card title',
+    });
+    await titleButton.evaluate((node) => {
       (window as unknown as { clicked: boolean }).clicked = false;
       node.addEventListener(
         'click',
@@ -67,7 +72,7 @@ test.describe('EuiCardObject', () => {
     await card.click();
 
     expect(
-      await card.locator.evaluate(
+      await titleButton.evaluate(
         () => (window as unknown as { clicked: boolean }).clicked
       )
     ).toBe(true);

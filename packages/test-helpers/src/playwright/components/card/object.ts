@@ -28,7 +28,8 @@ export class EuiCardObject extends BaseObject {
 
   /** The `selectable` toggle button, absent on plain cards. */
   get selectButton(): Locator {
-    return this.root.locator(EuiCardSelectors.SELECT_BUTTON_SELECTOR);
+    // A direct child, so switches in `children` or `footer` do not match.
+    return this.root.locator(`> ${EuiCardSelectors.SELECT_BUTTON_SELECTOR}`);
   }
 
   /** The title text. */
@@ -40,6 +41,7 @@ export class EuiCardObject extends BaseObject {
 
   /** The description text, or `null` when the card has none. */
   async getDescription(): Promise<string | null> {
+    await this.root.waitFor({ state: 'attached' });
     const description = this.root.locator(
       EuiCardSelectors.DESCRIPTION_SELECTOR
     );
