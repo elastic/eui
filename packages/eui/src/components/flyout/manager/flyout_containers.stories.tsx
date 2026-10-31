@@ -62,6 +62,7 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   showFooter?: boolean;
   mainResizable?: boolean;
   childResizable?: boolean;
+  showMaximizeButton?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -121,6 +122,11 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether the child flyout should be resizable.',
     },
+    showMaximizeButton: {
+      control: { type: 'boolean' },
+      description:
+        'Passes `flyoutMenuProps.showMaximizeButton` to the app flyout. Only main flyouts have the button: a maximized app flyout makes room for its child, and a resizable child resizes from the edge it shares with the app flyout.',
+    },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -139,7 +145,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   },
   args: {
     mainSize: 'm',
-    childSize: 'fill',
+    // A resizable named-size child shows every maximize case: resizing it from
+    // the shared edge, and keeping its width when the main restores
+    childSize: 's',
     hasChildBackground: true,
     mainFlyoutType: 'overlay',
     outsideClickCloses: false,
@@ -149,7 +157,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     pushMinBreakpoint: 'xs',
     showFooter: true,
     mainResizable: true,
-    childResizable: false,
+    childResizable: true,
+    showMaximizeButton: true,
     mainMinWidth: undefined,
     childMinWidth: undefined,
     mainMaxWidth: undefined,
@@ -186,6 +195,7 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
   mainMinWidth,
   childResizable,
   childMinWidth,
+  showMaximizeButton,
   ...args
 }) => {
   const { euiTheme } = useEuiTheme();
@@ -313,10 +323,18 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       minWidth={childMinWidth}
       ownFocus={false}
       resizable={childResizable}
+      onResize={(width) =>
+        playgroundActions.log(`Child flyout resized: ${Math.round(width)}px`)
+      }
       {...args}
       aria-label={`Child Flyout (${childSize})`}
       onClose={closeChild}
     >
+      <EuiFlyoutHeader>
+        <EuiText>
+          <h2>Child Flyout ({childSize})</h2>
+        </EuiText>
+      </EuiFlyoutHeader>
       <EuiFlyoutBody>
         <EuiText>
           <p>
@@ -377,6 +395,14 @@ const ContainerDemoComponent: React.FC<FlyoutChildStoryArgs> = ({
       minWidth={mainMinWidth}
       ownFocus={false}
       resizable={mainResizable}
+      onResize={(width) =>
+        playgroundActions.log(`App flyout resized: ${Math.round(width)}px`)
+      }
+      flyoutMenuProps={{
+        showMaximizeButton,
+        onMaximizeChange: (isMaximized) =>
+          playgroundActions.log(`App flyout maximized: ${isMaximized}`),
+      }}
       aria-label={`App Flyout (${mainSize})`}
       {...args}
       onClose={closeAppFlyout}

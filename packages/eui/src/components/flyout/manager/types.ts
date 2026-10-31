@@ -47,6 +47,17 @@ export interface EuiManagedFlyoutState {
   width?: number;
   size?: string;
   minWidth?: number;
+  /**
+   * Whether a main flyout fills the width of its container, less the width of
+   * a side-by-side child. Layout mode and the child's resize clamp treat it
+   * like a `fill` flyout. `width` is its painted width.
+   */
+  maximized?: boolean;
+  /**
+   * While maximized, the width the flyout restores to. A `fill` child sizes
+   * itself against this, because its usual width depends on the main's.
+   */
+  restoredWidth?: number;
   /** Whether the flyout's width is clamped to fit beside its sibling. */
   resizable?: boolean;
   activityStage?: EuiFlyoutActivityStage;
@@ -126,6 +137,7 @@ export interface FlyoutManagerApi {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  setFlyoutMaximized: (flyoutId: string, maximized: boolean) => void;
   setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,

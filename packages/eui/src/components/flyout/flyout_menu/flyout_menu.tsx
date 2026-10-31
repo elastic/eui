@@ -25,7 +25,11 @@ import { HistoryPopover } from './history_popover';
 import { MenuActionButton } from './action_button';
 import { MenuDivider } from './divider';
 import { PaginationControls } from './pagination';
-import type { EuiFlyoutMenuProps } from './types';
+import type {
+  EuiFlyoutMenuAction,
+  EuiFlyoutMenuMaximizeState,
+  EuiFlyoutMenuProps,
+} from './types';
 
 /**
  * The component for the top menu bar inside a flyout. Since this is a private
@@ -36,7 +40,9 @@ import type { EuiFlyoutMenuProps } from './types';
  *
  * @private
  */
-export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
+export const EuiFlyoutMenu: FunctionComponent<
+  EuiFlyoutMenuProps & EuiFlyoutMenuMaximizeState
+> = ({
   className,
   title,
   titleId,
@@ -50,6 +56,12 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   customActions,
   iconType: _iconType,
   pagination,
+  showMaximizeButton,
+  // Owned by `useEuiFlyoutMaximize`; destructured so it stays off the DOM
+  onMaximizeChange: _onMaximizeChange,
+  isMaximized,
+  canMaximize,
+  onToggleMaximize,
   ...rest
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
@@ -61,9 +73,25 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const hasHistory =
     !showPaginationControls && historyItems.length >= MIN_HISTORY_ITEMS;
 
+  const maximizeLabel = useEuiI18n('euiFlyoutMenu.maximize', 'Maximize');
+  const restoreLabel = useEuiI18n('euiFlyoutMenu.restore', 'Restore');
+  const maximizeAction: EuiFlyoutMenuAction | undefined =
+    showMaximizeButton && canMaximize
+      ? {
+          iconType: isMaximized ? 'minimize' : 'maximize',
+          'aria-label': isMaximized ? restoreLabel : maximizeLabel,
+          toolTipContent: isMaximized ? restoreLabel : maximizeLabel,
+          onClick: () => onToggleMaximize?.(),
+          'data-test-subj': 'euiFlyoutMenuMaximizeButton',
+        }
+      : undefined;
+
   // `trailingActions` takes precedence over the deprecated `customActions` alias
-  const effectiveTrailingActions =
+  const consumerTrailingActions =
     trailingActions !== undefined ? trailingActions : customActions ?? [];
+  const effectiveTrailingActions = maximizeAction
+    ? [...consumerTrailingActions, maximizeAction]
+    : consumerTrailingActions;
 
   const hasBuiltInLeadingContent =
     showPaginationControls || hasBackButton || hasHistory;

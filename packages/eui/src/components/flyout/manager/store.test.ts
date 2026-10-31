@@ -574,6 +574,36 @@ describe('Flyout Manager Store', () => {
     });
   });
 
+  describe('setFlyoutMaximized', () => {
+    it('sets the flag on a registered flyout and notifies subscribers', () => {
+      const store = getFlyoutManagerStore();
+      const listener = jest.fn();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      const unsubscribe = store.subscribe(listener);
+
+      store.setFlyoutMaximized('flyout-1', true);
+
+      expect(listener).toHaveBeenCalledTimes(1);
+      expect(store.getState().flyouts[0].maximized).toBe(true);
+
+      unsubscribe();
+    });
+
+    it('does not notify when the value is unchanged', () => {
+      const store = getFlyoutManagerStore();
+
+      store.addFlyout('flyout-1', 'Flyout 1', LEVEL_MAIN);
+      const listener = jest.fn();
+      const unsubscribe = store.subscribe(listener);
+
+      store.setFlyoutMaximized('flyout-1', false);
+
+      expect(listener).not.toHaveBeenCalled();
+      unsubscribe();
+    });
+  });
+
   describe('cross-root state sharing', () => {
     it('two independent callers of getFlyoutManagerStore share the same store instance and subscribers', () => {
       const rootA = getFlyoutManagerStore();

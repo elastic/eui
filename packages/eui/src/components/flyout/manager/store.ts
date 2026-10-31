@@ -21,6 +21,7 @@ import {
   closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setFlyoutMaximized as setFlyoutMaximizedAction,
   setFlyoutResizable as setFlyoutResizableAction,
   setPagination as setPaginationAction,
   setPushPadding as setPushPaddingAction,
@@ -64,6 +65,12 @@ export interface FlyoutManagerStore {
   closeAllFlyouts: () => void;
   setActiveFlyout: (flyoutId: string | null) => void;
   setFlyoutWidth: (flyoutId: string, width: number) => void;
+  /**
+   * Maximizes a main flyout to fill its container, or restores it. Ignored
+   * for child flyouts. A flyout that doesn't set
+   * `flyoutMenuProps.showMaximizeButton` restores itself right away.
+   */
+  setFlyoutMaximized: (flyoutId: string, maximized: boolean) => void;
   setFlyoutResizable: (flyoutId: string, resizable: boolean) => void;
   setPagination: (
     flyoutId: string,
@@ -276,6 +283,8 @@ function createStore(
     setActiveFlyout: (flyoutId) => dispatch(setActiveFlyoutAction(flyoutId)),
     setFlyoutWidth: (flyoutId, width) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
+    setFlyoutMaximized: (flyoutId, maximized) =>
+      dispatch(setFlyoutMaximizedAction(flyoutId, maximized)),
     setFlyoutResizable: (flyoutId, resizable) =>
       dispatch(setFlyoutResizableAction(flyoutId, resizable)),
     setPagination: (flyoutId, pagination) =>
