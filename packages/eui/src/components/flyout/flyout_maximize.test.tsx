@@ -413,11 +413,18 @@ describe('EuiFlyout maximize', () => {
     });
 
     it('resizes the child from the edge it shares with a maximized main', () => {
-      // The resize hook only resizes once it has measured a width
+      // The resize hook only resizes once it has measured a width, and the
+      // child stores its measured width before paint
       const offsetWidth = jest
         .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
         .mockImplementation(function (this: HTMLElement) {
           return parseFloat(this.style.inlineSize) || 0;
+        });
+      const boundingRect = jest
+        .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+        .mockImplementation(function (this: HTMLElement) {
+          const width = parseFloat(this.style.inlineSize) || 0;
+          return { width } as DOMRect;
         });
       const childOnResize = jest.fn();
       const mainOnResize = jest.fn();
@@ -462,6 +469,7 @@ describe('EuiFlyout maximize', () => {
       expect(childOnResize).toHaveBeenCalledTimes(1);
       expect(mainOnResize).not.toHaveBeenCalled();
       offsetWidth.mockRestore();
+      boundingRect.mockRestore();
     });
 
     it('pins the child to the far edge of the viewport without a container', () => {

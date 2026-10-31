@@ -578,6 +578,18 @@ describe('flyoutManagerReducer', () => {
 
       expect(newState).toEqual(initialState);
     });
+
+    it('returns the same state for an unchanged width', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+      state = flyoutManagerReducer(state, setFlyoutWidth('main-1', 400));
+
+      expect(flyoutManagerReducer(state, setFlyoutWidth('main-1', 400))).toBe(
+        state
+      );
+    });
   });
 
   describe('ACTION_SET_MAXIMIZED', () => {

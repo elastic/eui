@@ -393,6 +393,11 @@ export function flyoutManagerReducer(
     // calculations, e.g., deciding stacked vs side-by-side.
     case ACTION_SET_WIDTH: {
       const { flyoutId, width } = action;
+      // The resize observer often reports a width already written before paint
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (!target || target.width === width) {
+        return state;
+      }
       const updatedFlyouts = state.flyouts.map((flyout) =>
         flyout.flyoutId === flyoutId ? { ...flyout, width } : flyout
       );

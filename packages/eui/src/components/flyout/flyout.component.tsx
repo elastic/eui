@@ -828,7 +828,8 @@ export const EuiFlyoutComponent = forwardRef(
     const ownStoredWidth = ownFlyout?.width;
     useLayoutEffect(() => {
       if (!isBesideMaximizedMain || !resizeRef) return;
-      const paintedWidth = resizeRef.offsetWidth;
+      // Unrounded, matching the resize observer
+      const paintedWidth = resizeRef.getBoundingClientRect().width;
       if (paintedWidth && paintedWidth !== ownStoredWidth) {
         flyoutManagerRef.current?.setFlyoutWidth(flyoutId, paintedWidth);
       }
