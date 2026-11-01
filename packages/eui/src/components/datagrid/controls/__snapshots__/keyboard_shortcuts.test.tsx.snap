@@ -54,7 +54,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p
@@ -319,7 +319,7 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
         data-popover-panel="true"
         id="euiPopover_generated-id_panelId"
         role="dialog"
-        style="top: 12px; left: 0px; z-index: 2000;"
+        style="top: 4px; left: 0px; z-index: 2000;"
         tabindex="0"
       >
         <p

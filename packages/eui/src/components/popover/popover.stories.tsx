@@ -18,6 +18,8 @@ import { within } from '../../../.storybook/test';
 import { playDecorator } from '../../../.storybook/vrt';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
+import { EuiFieldText, EuiFormRow, EuiSwitch } from '../form';
+import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 
 import { EuiPopoverTitle } from './popover_title';
@@ -69,32 +71,69 @@ export const Playground: Story = {
 };
 enableFunctionToggleControls(Playground, ['onPositionChange']);
 
+const InteractivePopoverContent = ({ onSave }: { onSave: () => void }) => {
+  const [isEnabled, setIsEnabled] = useState(true);
+
+  return (
+    <>
+      <EuiPopoverTitle>Settings</EuiPopoverTitle>
+      <EuiFormRow label="Name">
+        <EuiFieldText
+          id="interactivePopoverName"
+          defaultValue="Popover setting"
+        />
+      </EuiFormRow>
+      <EuiSpacer size="s" />
+      <EuiSwitch
+        label="Enable setting"
+        checked={isEnabled}
+        onChange={(event) => setIsEnabled(event.target.checked)}
+      />
+      <EuiPopoverFooter>
+        <EuiButton size="s" fill fullWidth onClick={onSave}>
+          Save changes
+        </EuiButton>
+      </EuiPopoverFooter>
+    </>
+  );
+};
+
+export const InteractiveContent: Story = {
+  args: {
+    'aria-label': 'Edit settings',
+    button: 'Edit settings',
+    initialFocus: '#interactivePopoverName',
+    isOpen: true,
+  },
+  render: (args) => (
+    <StatefulPopover
+      {...args}
+      renderContent={(closePopover) => (
+        <InteractivePopoverContent onSave={closePopover} />
+      )}
+    />
+  ),
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible('.euiPopover');
+  }),
+};
+
 const StatefulPopover = ({
   button,
+  children,
   closePopover,
   isOpen: _isOpen,
-  hasArrow,
+  renderContent,
   'data-test-subj': dataTestSubj,
   ...rest
-}: EuiPopoverProps) => {
+}: EuiPopoverProps & {
+  renderContent?: (closePopover: () => void) => React.ReactNode;
+}) => {
   const [isOpen, setOpen] = useState(_isOpen);
 
   useEffect(() => {
     setOpen(_isOpen);
   }, [_isOpen]);
-
-  // ensure hasArrow control updates are applied without manually closing the popover
-  useEffect(() => {
-    if (_isOpen) {
-      setOpen(false);
-
-      setTimeout(() => {
-        setOpen(_isOpen);
-      }, 25);
-    }
-    // we don't want to trigger this on _isOpen change
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasArrow]);
 
   const handleOnClose = () => {
     setOpen(false);
@@ -119,9 +158,10 @@ const StatefulPopover = ({
         isOpen={isOpen}
         button={trigger}
         closePopover={handleOnClose}
-        hasArrow={hasArrow}
         {...rest}
-      />
+      >
+        {renderContent?.(handleOnClose) ?? children}
+      </EuiPopover>
     </EuiFlexGroup>
   );
 };
@@ -145,6 +185,9 @@ export const PanelPaddingSize: Story = {
     isOpen: true,
   },
   render: (args) => <StatefulPopover {...args} />,
+  play: playDecorator(async ({ canvasElement }) => {
+    await within(canvasElement).waitForEuiPopoverVisible('.euiPopover');
+  }),
 };
 
 export const HighContrastMode: Story = {

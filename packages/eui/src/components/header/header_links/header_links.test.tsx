@@ -65,7 +65,7 @@ describe('EuiHeaderLinks', () => {
       expect(container.querySelector('.euiPopover')).toBeNull();
     });
 
-    it('passes a callback that closes the menu/popover to children render props', () => {
+    it('passes a callback that closes the menu/popover to children render props', async () => {
       const { getByLabelText, getByText } = render(
         <EuiHeaderLinks popoverBreakpoints="all">
           {(closePopover) => (
@@ -77,9 +77,9 @@ describe('EuiHeaderLinks', () => {
       );
 
       fireEvent.click(getByLabelText('Open menu'));
-      waitForEuiPopoverOpen();
+      await waitForEuiPopoverOpen();
       fireEvent.click(getByText('This link should close the popover'));
-      waitForEuiPopoverClose();
+      await waitForEuiPopoverClose();
     });
   });
 });

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import {
   euiShadow,
   euiShadowFlat,
@@ -14,18 +14,19 @@ import {
 } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../../services';
-import {
-  euiCanAnimate,
-  logicalCSS,
-  mathWithUnits,
-} from '../../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { euiPanelBorderStyles } from '../../panel/panel.styles';
 
-export const openAnimationTiming = 'slow';
+export const openAnimationTiming = 'extraFast';
+
+const euiPopoverPanelAnimation = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
 
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
- * 2. Animation happens on the panel. But don't animate position when using the attached mode like for inputs
+ * 2. Animation happens on the panel
  * 3. Make sure the panel stays within the window.
  * 4. Make the popover lighter on dark mode (too hard to distinguish from plain bgs otherwise), and set a CSS var for the arrow to use
  */
@@ -33,13 +34,7 @@ export const openAnimationTiming = 'slow';
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
-  const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
-
-  const opacityTransition = `opacity ${euiTheme.animation.bounce} ${animationSpeed}`;
-  const transformTransition = `transform ${
-    euiTheme.animation.bounce
-  } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
 
   const hasShadow = !highContrastMode;
 
@@ -54,11 +49,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
 
-      ${euiCanAnimate} {
-        /* 2 */
-        transition: ${opacityTransition}, ${transformTransition};
-      }
-
       ${euiPanelBorderStyles(euiThemeContext)}
 
       &:focus {
@@ -68,6 +58,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
+
+      ${euiCanAnimate} {
+        animation: ${euiPopoverPanelAnimation} ${animationSpeed} ease-out both;
+      }
     `,
 
     /* 4 */
@@ -80,41 +74,25 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         .popoverPanelBackground};
     `,
 
-    // Regular popover with an arrow, a transform animation/transition, and a
-    // drop shadow via `filter` (which automatically handles the arrow)
+    // Regular popover with an arrow and a drop shadow via `filter`
+    // (which automatically handles the arrow)
     hasTransform: {
       hasTransform: css`
-        transform: translateY(0) translateX(0) translateZ(0); /* 2 */
+        transform: translateZ(0);
         ${hasShadow
           ? euiShadowMedium(euiThemeContext, { property: 'filter' })
           : ''}
-
-        ${euiCanAnimate} {
-          transition: ${opacityTransition}, ${transformTransition}; /* 2 */
-        }
       `,
       // Positions
-      top: css`
-        transform: translateY(${translateDistance}) translateZ(0);
-      `,
-      bottom: css`
-        transform: translateY(-${translateDistance}) translateZ(0);
-      `,
-      left: css`
-        transform: translateX(${translateDistance}) translateZ(0);
-      `,
-      right: css`
-        transform: translateX(-${translateDistance}) translateZ(0);
-      `,
+      top: css``,
+      bottom: css``,
+      left: css``,
+      right: css``,
     },
 
     // No arrow, transform, or filters
     isAttached: {
-      isAttached: css`
-        ${euiCanAnimate} {
-          transition: ${opacityTransition}; /* 2 */
-        }
-      `,
+      isAttached: css``,
       top: css`
         ${hasShadow ? euiShadowFlat(euiThemeContext) : ''}
       `,
