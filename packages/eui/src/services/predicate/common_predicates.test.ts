@@ -6,7 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { always, never, isNil, isUndefined, isNull } from './common_predicates';
+import moment from 'moment';
+import {
+  always,
+  never,
+  isNil,
+  isUndefined,
+  isNull,
+  isMoment,
+  isDate,
+  isDateLike,
+} from './common_predicates';
 
 describe('common predicates', () => {
   test('always', () => {
@@ -52,5 +62,18 @@ describe('common predicates', () => {
     ['a', 1, true, false, Date.now(), {}, [], /.*/].forEach((value) => {
       expect(isNil(value)).toBe(false);
     });
+  });
+
+  test('date predicates', () => {
+    const momentValue = moment();
+    const dateValue = new Date();
+
+    expect(isMoment(momentValue)).toBe(true);
+    expect(isMoment(dateValue)).toBe(false);
+    expect(isDate(dateValue)).toBe(true);
+    expect(isDate(momentValue)).toBe(false);
+    expect(isDateLike(momentValue)).toBe(true);
+    expect(isDateLike(dateValue)).toBe(true);
+    expect(isDateLike('2026-09-10')).toBe(false);
   });
 });

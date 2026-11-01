@@ -42,6 +42,18 @@ describe('EuiVisColorStore', () => {
 
       expect(visColorStore.visColors).toEqual(customColors);
     });
+
+    it('does not publish when colors are unchanged', () => {
+      const id = visColorStore.subscribe(
+        VIS_COLOR_STORE_EVENTS.UPDATE,
+        updateFn
+      );
+      visColorStore.setVisColors({ ...visColorStore.visColors });
+      jest.runAllTimers();
+
+      expect(updateFn).not.toHaveBeenCalled();
+      visColorStore.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, id);
+    });
   });
 
   describe('subcribe and unsubscribe', () => {
