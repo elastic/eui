@@ -39,12 +39,14 @@ export const euiDataGridScrollBarStyles = (euiThemeContext: UseEuiTheme) => {
             content: '';
             position: absolute;
             inset: 0;
+            border-radius: inherit;
             ${logicalCSS('border-vertical', euiTheme.border.thin)}
           }
           &::after {
             content: '';
             position: absolute;
             inset: 0;
+            border-radius: inherit;
             ${logicalCSS('border-horizontal', euiTheme.border.thin)}
           }
         `,
