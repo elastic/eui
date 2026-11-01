@@ -26,11 +26,14 @@ const FLYOUT_WIDTH = 300;
 // inline size capped by its max inline size, so a maximized paint is what the
 // resize observer would see.
 let mockContainer: HTMLElement | null = null;
+let mockContainerWidth = CONTAINER_WIDTH;
 let mockMeasuredWidth: number | undefined;
 jest.mock('../observer/resize_observer', () => ({
   useResizeObserver: (element: HTMLElement | null) => {
     if (!element) return { width: 0, height: 0 };
-    if (element === mockContainer) return { width: 900, height: 0 };
+    if (element === mockContainer) {
+      return { width: mockContainerWidth, height: 0 };
+    }
     const inlineSize = parseFloat(element.style.inlineSize) || 300;
     const maxInlineSize = parseFloat(element.style.maxInlineSize);
     return {
@@ -66,31 +69,37 @@ const storedFlyout = (flyoutId: string) =>
 describe('EuiFlyout maximize', () => {
   let containerEl: HTMLDivElement;
 
-  beforeEach(() => {
-    _resetFlyoutManagerStore();
-    containerEl = document.createElement('div');
-    mockContainer = containerEl;
+  const setContainerWidth = (width: number) => {
+    mockContainerWidth = width;
     jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue({
       top: 50,
       left: 100,
-      width: CONTAINER_WIDTH,
+      width,
       height: 600,
-      right: 100 + CONTAINER_WIDTH,
+      right: 100 + width,
       bottom: 650,
       x: 100,
       y: 50,
       toJSON: () => ({}),
     } as DOMRect);
     Object.defineProperty(containerEl, 'clientWidth', {
-      value: CONTAINER_WIDTH,
+      value: width,
       configurable: true,
     });
+  };
+
+  beforeEach(() => {
+    _resetFlyoutManagerStore();
+    containerEl = document.createElement('div');
+    mockContainer = containerEl;
+    setContainerWidth(CONTAINER_WIDTH);
     document.body.appendChild(containerEl);
   });
 
   afterEach(() => {
     containerEl.remove();
     mockContainer = null;
+    mockContainerWidth = CONTAINER_WIDTH;
     mockMeasuredWidth = undefined;
     _resetFlyoutManagerStore();
   });
@@ -172,6 +181,7 @@ describe('EuiFlyout maximize', () => {
       mainProps?: {
         size?: number;
         maxWidth?: number;
+        minWidth?: number;
         resizable?: boolean;
         onResize?: () => void;
       };
@@ -470,6 +480,76 @@ describe('EuiFlyout maximize', () => {
       expect(mainOnResize).not.toHaveBeenCalled();
       offsetWidth.mockRestore();
       boundingRect.mockRestore();
+    });
+
+    describe('with measured widths', () => {
+      // The resize hook only clamps once it has measured a width, and the
+      // child stores its measured width before paint
+      let offsetWidth: jest.SpyInstance;
+      let boundingRect: jest.SpyInstance;
+      const paintedWidth = (element: HTMLElement) =>
+        parseFloat(element.style.inlineSize) || 0;
+
+      beforeEach(() => {
+        offsetWidth = jest
+          .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+          .mockImplementation(function (this: HTMLElement) {
+            return paintedWidth(this);
+          });
+        boundingRect = jest
+          .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+          .mockImplementation(function (this: HTMLElement) {
+            return { width: paintedWidth(this) } as DOMRect;
+          });
+      });
+
+      afterEach(() => {
+        offsetWidth.mockRestore();
+        boundingRect.mockRestore();
+      });
+
+      it('leaves a maximized main without minWidth 10% of the container to restore to', () => {
+        render(
+          <MainWithChild childResizable mainProps={{ resizable: true }} />
+        );
+        fireEvent.click(screen.getByText('Open child'));
+        fireEvent.click(maximizeButton());
+        const child = screen.getByLabelText('Child');
+        const handle = child.querySelector('.euiResizableButton')!;
+
+        // Push the child against its limit
+        for (let i = 0; i < 70; i++) {
+          fireEvent.keyDown(handle, { key: 'ArrowRight' });
+        }
+        const maxChildWidth = CONTAINER_WIDTH * 0.9 - CONTAINER_WIDTH * 0.1;
+        expect(paintedWidth(child)).toBeCloseTo(maxChildWidth);
+
+        fireEvent.click(maximizeButton());
+
+        expect(paintedWidth(child)).toBeCloseTo(maxChildWidth);
+        expect(paintedWidth(screen.getByLabelText('Main'))).toBeCloseTo(
+          CONTAINER_WIDTH * 0.9 - maxChildWidth
+        );
+      });
+
+      it('leaves a stacked child its width beside a maximized main with minWidth', () => {
+        setContainerWidth(600);
+        render(
+          <MainWithChild
+            childResizable
+            mainProps={{ resizable: true, minWidth: 500 }}
+          />
+        );
+        fireEvent.click(screen.getByText('Open child'));
+        const child = screen.getByLabelText('Child');
+        const childWidth = paintedWidth(child);
+        expect(getFlyoutManagerStore().getState().layoutMode).toBe('stacked');
+
+        fireEvent.click(maximizeButton());
+
+        expect(getFlyoutManagerStore().getState().layoutMode).toBe('stacked');
+        expect(paintedWidth(child)).toBe(childWidth);
+      });
     });
 
     it('pins the child to the far edge of the viewport without a container', () => {

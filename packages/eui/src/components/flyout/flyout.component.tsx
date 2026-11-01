@@ -591,10 +591,6 @@ export const EuiFlyoutComponent = forwardRef(
         null
       : null;
     const _siblingFlyoutWidth = siblingFlyout?.width;
-    // A maximized main makes room for its child the way a `fill` main does
-    const isSiblingFill =
-      siblingFlyout?.size === 'fill' || !!siblingFlyout?.maximized;
-    const siblingFlyoutMinWidth = siblingFlyout?.minWidth;
     const siblingFlyoutWidth =
       layoutMode === LAYOUT_MODE_STACKED ? 0 : _siblingFlyoutWidth;
 
@@ -700,6 +696,29 @@ export const EuiFlyoutComponent = forwardRef(
       resizeSide = side === 'left' ? 'right' : 'left';
     }
 
+    // The width the resize clamp leaves for the sibling. Stacked flyouts don't
+    // share space. For fill siblings, clamp based on their minWidth rather
+    // than their current measured width. Fill siblings dynamically adjust via
+    // CSS (`calc(90% - mainWidth)`), so subtracting their current width from
+    // the max creates a circular dependency where the main flyout can never
+    // grow (max = 90% - (90% - main) = main). Using minWidth breaks this cycle
+    // while ensuring the fill sibling never collapses below its configured
+    // minimum. A maximized main makes room for its child the same way, but
+    // keeps at least 10% of the container: its hidden restore width clamps
+    // beside the child, and the resize hook treats a width of 0 as unset.
+    let clampSiblingWidth = siblingFlyoutWidth ?? undefined;
+    if (layoutMode !== LAYOUT_MODE_STACKED && siblingFlyout?.maximized) {
+      clampSiblingWidth = Math.max(
+        siblingFlyout.minWidth ?? 0,
+        (effectiveReferenceWidth ?? 0) * 0.1
+      );
+    } else if (
+      layoutMode !== LAYOUT_MODE_STACKED &&
+      siblingFlyout?.size === 'fill'
+    ) {
+      clampSiblingWidth = siblingFlyout.minWidth;
+    }
+
     const {
       onMouseDown: onMouseDownResizableButton,
       onKeyDown: onKeyDownResizableButton,
@@ -709,16 +728,7 @@ export const EuiFlyoutComponent = forwardRef(
       enabled: resizable,
       minWidth,
       maxWidth: typeof maxWidth === 'number' ? maxWidth : undefined,
-      // For fill siblings, clamp based on their minWidth rather than their
-      // current measured width. Fill siblings dynamically adjust via CSS
-      // (`calc(90% - mainWidth)`), so subtracting their current width from
-      // the max creates a circular dependency where the main flyout can
-      // never grow (max = 90% - (90% - main) = main). Using minWidth
-      // breaks this cycle while ensuring the fill sibling never collapses
-      // below its configured minimum.
-      siblingFlyoutWidth: isSiblingFill
-        ? siblingFlyoutMinWidth
-        : siblingFlyoutWidth ?? undefined,
+      siblingFlyoutWidth: clampSiblingWidth,
       referenceWidth: effectiveReferenceWidth,
       onResize,
       side: resizeSide,
