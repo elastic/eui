@@ -158,7 +158,13 @@ export const SearchBar = () => {
       defaultFields: ['owner', 'tag', 'type'],
     });
 
-    return <EuiBasicTable items={queriedItems} columns={columns} />;
+    return (
+      <EuiBasicTable
+        tableCaption="Search results"
+        items={queriedItems}
+        columns={columns}
+      />
+    );
   };
 
   return (

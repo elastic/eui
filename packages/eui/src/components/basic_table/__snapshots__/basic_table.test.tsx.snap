@@ -991,7 +991,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <nav
-          aria-label="Pagination for table: "
+          aria-label="Pagination for table: Test table"
           class="euiPagination emotion-euiPagination"
         >
           <span

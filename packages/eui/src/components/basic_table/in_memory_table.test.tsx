@@ -18,6 +18,8 @@ import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
 import { Query } from '../search_bar/query';
 
+const tableCaption = 'Test table';
+
 interface BasicItem {
   id: number | string;
   name: string;
@@ -48,7 +50,9 @@ describe('EuiInMemoryTable', () => {
         },
       ],
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -66,7 +70,9 @@ describe('EuiInMemoryTable', () => {
       ],
       noItemsMessage: 'where my items at?',
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('where my items at?')).toBeTruthy();
   });
@@ -85,7 +91,9 @@ describe('EuiInMemoryTable', () => {
       noItemsMessage: 'Loading items....',
       loading: true,
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy();
   });
@@ -106,7 +114,9 @@ describe('EuiInMemoryTable', () => {
         },
       ],
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -131,7 +141,9 @@ describe('EuiInMemoryTable', () => {
         '1': <div>expanded row content</div>,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('expanded row content')).toBeTruthy();
   });
@@ -153,7 +165,9 @@ describe('EuiInMemoryTable', () => {
         },
       ],
     };
-    const { queryByText } = render(<EuiInMemoryTable {...props} />);
+    const { queryByText } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(queryByText('show me!')).toBeFalsy();
   });
@@ -177,7 +191,9 @@ describe('EuiInMemoryTable', () => {
         pageSizeOptions: [2, 4, 6],
       },
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.querySelector('.euiPagination')).toBeTruthy();
   });
@@ -204,7 +220,7 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText, getByTestSubject } = render(
-      <EuiInMemoryTable {...props} />
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByText('Rows per page: 2')).toBeTruthy();
@@ -231,7 +247,9 @@ describe('EuiInMemoryTable', () => {
         pageSizeOptions: [1, 2, 3, 0],
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('Showing all rows')).toBeTruthy();
   });
@@ -254,7 +272,7 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText, queryByTestSubject } = render(
-      <EuiInMemoryTable {...props} />
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByText('ouch!')).toBeTruthy();
@@ -280,7 +298,9 @@ describe('EuiInMemoryTable', () => {
         showPerPageOptions: false,
       },
     };
-    const { queryByTestSubject } = render(<EuiInMemoryTable {...props} />);
+    const { queryByTestSubject } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(queryByTestSubject('tablePaginationPopoverButton')).toBe(null);
   });
@@ -309,7 +329,7 @@ describe('EuiInMemoryTable', () => {
         ],
         sorting: true,
       };
-      render(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
       expect(getCellTextArray()).toEqual(['name3', 'name1', 'name2']);
     });
@@ -337,7 +357,7 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      render(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
       expect(getCellTextArray()).toEqual(['name1', 'name2', 'name3']);
     });
@@ -365,7 +385,7 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      render(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
       expect(getCellTextArray()).toEqual(['name3', 'name2', 'name1']);
     });
@@ -399,7 +419,7 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      render(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
       // name TDs should be sorted desc, id TDs should be asc,
       expect(getCellTextArray()).toEqual([
@@ -436,7 +456,7 @@ describe('EuiInMemoryTable', () => {
         },
       };
       expect(() => {
-        render(<EuiInMemoryTable {...props} />);
+        render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
       }).not.toThrow();
     });
 
@@ -469,7 +489,9 @@ describe('EuiInMemoryTable', () => {
         },
       };
 
-      const { rerender } = render(<EuiInMemoryTable {...props} />);
+      const { rerender } = render(
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+      );
 
       // initial sorting: id asc
       expect(getCellTextArray()).toEqual([
@@ -484,6 +506,7 @@ describe('EuiInMemoryTable', () => {
       // sorting: id desc
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           {...props}
           sorting={{ sort: { field: 'id', direction: SortDirection.DESC } }}
         />
@@ -500,6 +523,7 @@ describe('EuiInMemoryTable', () => {
       // sorting: name asc
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           {...props}
           sorting={{ sort: { field: 'name', direction: SortDirection.ASC } }}
         />
@@ -516,6 +540,7 @@ describe('EuiInMemoryTable', () => {
       // sorting: name desc
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           {...props}
           sorting={{ sort: { field: 'name', direction: SortDirection.DESC } }}
         />
@@ -532,6 +557,7 @@ describe('EuiInMemoryTable', () => {
       // can return to initial sorting: id asc
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           {...props}
           sorting={{ sort: { field: 'id', direction: SortDirection.ASC } }}
         />
@@ -572,7 +598,7 @@ describe('EuiInMemoryTable', () => {
             },
           },
         };
-        render(<EuiInMemoryTable {...props} />);
+        render(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
         expect(sortable).toHaveBeenCalled();
         expect(getCellTextArray()).toEqual(['Betty', 'Charlie', 'Alfred']);
@@ -608,7 +634,9 @@ describe('EuiInMemoryTable', () => {
         },
       },
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
     expect(itemsProp).toEqual(items);
 
     const cells = container.querySelectorAll('td');
@@ -638,7 +666,9 @@ describe('EuiInMemoryTable', () => {
         initialSelected: [{ id: '1', name: 'name1' }],
       },
     };
-    const { container } = render(<EuiInMemoryTable {...props} />);
+    const { container } = render(
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+    );
     const selections = container.querySelectorAll(
       '[data-test-subj^="checkboxSelect"]'
     );
@@ -672,7 +702,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -703,7 +737,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -738,7 +776,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(getByText('Page 1 of 2')).toBeTruthy();
@@ -781,7 +823,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -825,7 +871,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText, getByPlaceholderText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -866,7 +916,7 @@ describe('EuiInMemoryTable', () => {
       childrenBetween: <div>Children Between</div>,
     };
     const { getByPlaceholderText, getByText } = render(
-      <EuiInMemoryTable {...props} />
+      <EuiInMemoryTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByPlaceholderText('Search...')).toBeTruthy();
@@ -923,7 +973,11 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { container, queryByText } = render(
-      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      <EuiInMemoryTable
+        tableCaption={tableCaption}
+        responsiveBreakpoint={true}
+        {...props}
+      />
     );
 
     expect(queryByText('Page 1 of 1')).toBeTruthy();
@@ -975,7 +1029,9 @@ describe('EuiInMemoryTable', () => {
         className: 'testTable',
       };
 
-      const { container } = render(<EuiInMemoryTable {...props} />);
+      const { container } = render(
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+      );
 
       // should render with all three results visible
       expect(container.querySelectorAll('tbody tr')).toHaveLength(3);
@@ -1039,7 +1095,9 @@ describe('EuiInMemoryTable', () => {
         noItemsMessage: <span className="customMessage">No items found!</span>,
       };
 
-      const { container } = render(<EuiInMemoryTable {...props} />);
+      const { container } = render(
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+      );
       // should render with the no items found text
       expect(container.querySelector('.customMessage')).toBeInTheDocument();
 
@@ -1084,7 +1142,7 @@ describe('EuiInMemoryTable', () => {
       };
 
       const { container: container2 } = render(
-        <EuiInMemoryTable {...props2} />
+        <EuiInMemoryTable tableCaption={tableCaption} {...props2} />
       );
       expect(container2.querySelectorAll('tbody tr')).toHaveLength(1);
     });
@@ -1115,7 +1173,11 @@ describe('EuiInMemoryTable', () => {
         },
       };
       const { container } = render(
-        <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+        <EuiInMemoryTable
+          tableCaption={tableCaption}
+          responsiveBreakpoint={true}
+          {...props}
+        />
       );
 
       expect(
@@ -1144,14 +1206,14 @@ describe('EuiInMemoryTable', () => {
         },
       };
       const { getByTestSubject, rerender, container } = render(
-        <EuiInMemoryTable {...props} />
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
       );
 
       fireEvent.click(getByTestSubject('pagination-button-1'));
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
       // this is specifically testing regression against https://github.com/elastic/eui/issues/1007
-      rerender(<EuiInMemoryTable {...props} />);
+      rerender(<EuiInMemoryTable tableCaption={tableCaption} {...props} />);
 
       expect(container.querySelector('.euiPagination')).toMatchSnapshot();
     });
@@ -1173,7 +1235,11 @@ describe('EuiInMemoryTable', () => {
             },
           }}
         >
-          <EuiInMemoryTable {...props} pagination={true} />
+          <EuiInMemoryTable
+            tableCaption={tableCaption}
+            {...props}
+            pagination={true}
+          />
         </EuiProvider>,
         { wrapper: undefined }
       );
@@ -1206,7 +1272,9 @@ describe('EuiInMemoryTable', () => {
           pageSizeOptions: [2, 4, 6],
         },
       };
-      const { getByTestSubject } = render(<EuiInMemoryTable {...props} />);
+      const { getByTestSubject } = render(
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
+      );
 
       fireEvent.click(getByTestSubject('pagination-button-1'));
     });
@@ -1236,7 +1304,7 @@ describe('EuiInMemoryTable', () => {
       };
 
       const { getByTestSubject, container } = render(
-        <EuiInMemoryTable {...props} />
+        <EuiInMemoryTable tableCaption={tableCaption} {...props} />
       );
       expect(props.onTableChange).toHaveBeenCalledTimes(0);
 
@@ -1309,6 +1377,7 @@ describe('EuiInMemoryTable', () => {
       const onTableChange = jest.fn();
       const { getByTestSubject, container, rerender } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           columns={columns}
           pagination={pagination}
@@ -1340,6 +1409,7 @@ describe('EuiInMemoryTable', () => {
       // re-render with an updated `pageIndex` value
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           columns={columns}
           pagination={{ ...pagination, pageIndex: 2 }}
@@ -1376,6 +1446,7 @@ describe('EuiInMemoryTable', () => {
       const onTableChange = jest.fn();
       const { container, getByTestSubject, rerender } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           columns={columns}
           pagination={pagination}
@@ -1412,6 +1483,7 @@ describe('EuiInMemoryTable', () => {
       // update the controlled page size
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           columns={columns}
           pagination={{ ...pagination, pageSize: 4 }}
@@ -1437,6 +1509,7 @@ describe('EuiInMemoryTable', () => {
 
       const { container } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           search={{ query }}
           columns={columns}
@@ -1459,6 +1532,7 @@ describe('EuiInMemoryTable', () => {
 
       const { container } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           search={{ query }}
           columns={columns}
@@ -1489,6 +1563,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject, container } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{ box: { incremental: true, 'data-test-subj': 'searchbox' } }}
@@ -1514,6 +1589,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject, container } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1549,6 +1625,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject, container } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1577,6 +1654,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject, rerender } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1594,6 +1672,7 @@ describe('EuiInMemoryTable', () => {
       const UPDATED_QUERY = 'updated search';
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1614,6 +1693,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1642,6 +1722,7 @@ describe('EuiInMemoryTable', () => {
 
       const { getByTestSubject, rerender } = render(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1659,6 +1740,7 @@ describe('EuiInMemoryTable', () => {
 
       rerender(
         <EuiInMemoryTable
+          tableCaption={tableCaption}
           items={items}
           searchFormat="text"
           search={{
@@ -1681,14 +1763,21 @@ describe('EuiInMemoryTable', () => {
   describe('scrollableInline', () => {
     it('updates table width styles when enabled', () => {
       const { getByRole, rerender } = render(
-        <EuiInMemoryTable items={[]} columns={[]} />
+        <EuiInMemoryTable tableCaption={tableCaption} items={[]} columns={[]} />
       );
       let table = getByRole('table');
 
       expect(table).toHaveStyleRule('inline-size', '100%');
       expect(table).not.toHaveStyleRule('min-inline-size');
 
-      rerender(<EuiInMemoryTable items={[]} columns={[]} scrollableInline />);
+      rerender(
+        <EuiInMemoryTable
+          tableCaption={tableCaption}
+          items={[]}
+          columns={[]}
+          scrollableInline
+        />
+      );
       table = getByRole('table');
 
       expect(table).toHaveStyleRule('inline-size', 'auto');
