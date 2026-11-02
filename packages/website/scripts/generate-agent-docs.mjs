@@ -7,8 +7,8 @@
  */
 
 /*
- * Converts the website's component MDX pages into plain markdown that coding
- * agents can read from the installed @elastic/eui package.
+ * Converts the website's component, utility and theming MDX pages into plain
+ * markdown that coding agents can read from the installed @elastic/eui package.
  *
  * Usage: node scripts/generate-agent-docs.mjs [outDir]
  * Requires @elastic/eui-docgen to be built (its dist/ feeds the prop tables).
@@ -31,10 +31,15 @@ const websiteDir = path.resolve(
   '..'
 );
 const docsDir = path.join(websiteDir, 'docs');
-// Utilities hold documented components too (EuiProvider, EuiPortal, EuiFocusTrap...)
-const sourceDirs = ['components', 'utilities'].map((dir) =>
-  path.join(docsDir, dir)
-);
+// Utilities hold documented components too (EuiProvider, EuiPortal, EuiFocusTrap...).
+// Theming and Emotion pages document the tokens, breakpoints and style helpers.
+// The order is the index's group order.
+const sourceDirs = [
+  'components',
+  'utilities',
+  'getting-started/theming',
+  'getting-started/working-with-emotion',
+].map((dir) => path.join(docsDir, dir));
 const isSourcePage = (file) =>
   sourceDirs.some((dir) => file.startsWith(`${dir}${path.sep}`));
 const docgenDir = path.resolve(websiteDir, '../eui-docgen');
@@ -408,6 +413,15 @@ const findPages = (dir) =>
       : [];
   });
 
+// Hooks and functions a page documents: the ones it names in inline code,
+// e.g. `useEuiBreakpoint(sizes[])` in a heading
+const findUtilities = (node, names = new Set()) => {
+  const name = node.type === 'inlineCode' && node.value.match(/^[\w$]+/)?.[0];
+  if (name && isUtility.has(name)) names.add(name);
+  (node.children ?? []).forEach((child) => findUtilities(child, names));
+  return names;
+};
+
 const convertPage = (file) => {
   const frontmatter = readFrontmatter(file);
   const tree = convertTree(file);
@@ -415,6 +429,12 @@ const convertPage = (file) => {
     /^Eui[A-Z]/.test(k)
   );
   const components = [...new Set([...keywords, ...tree.ctx.components])];
+  const utilities = [
+    ...new Set([
+      ...(frontmatter.keywords ?? []).filter((k) => isUtility.has(k)),
+      ...findUtilities(tree),
+    ]),
+  ];
   const h1 = tree.children.find(
     (node) => node.type === 'heading' && node.depth === 1
   );
@@ -424,6 +444,7 @@ const convertPage = (file) => {
       (h1 && printer.stringify({ type: 'root', children: h1.children }).trim()),
     ...(frontmatter.description && { description: frontmatter.description }),
     ...(components.length && { components }),
+    ...(utilities.length && { utilities }),
     url: `${siteUrl}${pageUrlPath(file, frontmatter)}/`,
   };
   const body = printer.stringify(tree);
@@ -434,6 +455,7 @@ const convertPage = (file) => {
     file,
     outFile,
     components,
+    utilities,
     summary: header.description ?? summarize(tree),
     ...header,
   };
@@ -463,8 +485,8 @@ const summarize = (tree) => {
   return sentence.length > 200 ? `${sentence.slice(0, 200)}…` : sentence;
 };
 
-// Public component exports: `Eui*` values that can be rendered
-const findPublicComponents = () => {
+// Public callable exports: `Eui*` components and lowercase hooks and functions
+const findPublicExports = () => {
   const euiDir = path.resolve(websiteDir, '../eui');
   const entry = path.join(euiDir, 'src/index.ts');
   const { config } = ts.readConfigFile(
@@ -481,9 +503,8 @@ const findPublicComponents = () => {
   const moduleSymbol = checker.getSymbolAtLocation(
     program.getSourceFile(entry)
   );
-  return checker
+  const callable = checker
     .getExportsOfModule(moduleSymbol)
-    .filter((symbol) => /^Eui[A-Z]/.test(symbol.name))
     .filter((symbol) => {
       const target =
         symbol.flags & ts.SymbolFlags.Alias
@@ -502,6 +523,10 @@ const findPublicComponents = () => {
     })
     .map((symbol) => symbol.name)
     .sort();
+  return {
+    components: callable.filter((name) => /^Eui[A-Z]/.test(name)),
+    utilities: callable.filter((name) => /^[a-z]/.test(name)),
+  };
 };
 
 const readCategory = (dir) => {
@@ -511,13 +536,13 @@ const readCategory = (dir) => {
     : undefined;
 };
 
-// Components are grouped by their top-level category, utilities in one group.
+// Pages are grouped by category (e.g. components/forms), utilities in one group.
 // Deeper folders become title context, e.g. "Markdown › Plugins".
 const indexPlacement = (result) => {
   const dirs = path
     .relative(docsDir, path.dirname(result.file))
     .split(path.sep);
-  const depth = dirs[0] === 'components' ? 2 : 1;
+  const depth = dirs[0] === 'utilities' ? 1 : 2;
   const group = path.join(...dirs.slice(0, depth));
   const labels = dirs
     .slice(depth)
@@ -536,13 +561,17 @@ const writeIndex = (results, publicComponents) => {
   for (const result of results) {
     if (path.dirname(result.file) === sourceDirs[0]) continue;
     const { group, title } = indexPlacement(result);
-    const category = readCategory(group) ?? {
-      label: 'Utilities',
-      position: 100,
-    };
-    if (!groups.has(group)) groups.set(group, { ...category, entries: [] });
-    const components = result.components.filter((name) => isPublic.has(name));
-    groups.get(group).entries.push({ ...result, title, components });
+    const category = readCategory(group) ?? { label: 'Utilities' };
+    const rank = sourceDirs.findIndex((dir) =>
+      result.file.startsWith(`${dir}${path.sep}`)
+    );
+    if (!groups.has(group))
+      groups.set(group, { ...category, rank, entries: [] });
+    const names = [
+      ...result.components.filter((name) => isPublic.has(name)),
+      ...result.utilities,
+    ];
+    groups.get(group).entries.push({ ...result, title, names });
   }
   const documented = new Set(results.flatMap((result) => result.components));
   const undocumented = publicComponents.filter((name) => !documented.has(name));
@@ -550,20 +579,22 @@ const writeIndex = (results, publicComponents) => {
   const lines = [
     '# EUI components',
     '',
-    'Every documented EUI component and utility, grouped by category. Each entry links to a page with usage guidance, examples and props for the installed version.',
+    'Every documented EUI component, utility, theme token and style helper, grouped by category. Each entry links to a page with usage guidance, examples and props for the installed version.',
     '',
   ];
   const sorted = [...groups.values()].sort(
     (a, b) =>
-      (a.position ?? 99) - (b.position ?? 99) || a.label.localeCompare(b.label)
+      a.rank - b.rank ||
+      (a.position ?? 99) - (b.position ?? 99) ||
+      a.label.localeCompare(b.label)
   );
   for (const { label, entries } of sorted) {
     lines.push(`## ${label}`, '');
     for (const entry of entries.sort((a, b) =>
       a.title.localeCompare(b.title)
     )) {
-      const names = entry.components.length
-        ? ` (${entry.components.map((c) => `\`${c}\``).join(', ')})`
+      const names = entry.names.length
+        ? ` (${entry.names.map((name) => `\`${name}\``).join(', ')})`
         : '';
       lines.push(
         `- [${entry.title}](${path.relative(outDir, entry.outFile)})${names}: ${
@@ -587,6 +618,8 @@ const writeIndex = (results, publicComponents) => {
   return { undocumented };
 };
 
+const publicExports = findPublicExports();
+const isUtility = new Set(publicExports.utilities);
 const pages = sourceDirs.flatMap(findPages).sort();
 const results = [];
 const failures = [];
@@ -604,7 +637,7 @@ console.log(
     outDir
   )}`
 );
-const publicComponents = findPublicComponents();
+const publicComponents = publicExports.components;
 const { undocumented } = writeIndex(results, publicComponents);
 console.log(
   `Indexed ${publicComponents.length - undocumented.length}/${
