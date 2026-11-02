@@ -751,10 +751,7 @@ a, footer\tb, footer
               </EuiScreenReaderOnly>
             ),
             rowCellRender: () => (
-              <EuiButtonIcon
-                iconType="ellipsis"
-                aria-label="Open actions"
-              />
+              <EuiButtonIcon iconType="ellipsis" aria-label="Open actions" />
             ),
           },
         ]}
