@@ -31,6 +31,7 @@ import {
   euiButtonGroupStyles,
   euiButtonGroupButtonsStyles,
 } from './button_group.styles';
+import { useButtonGroupHoverHighlight } from './use_button_group_hover';
 
 // removes outer fragment wrappers only; no nested traversal of children
 // uses forEach over .toArray() to avoid mutating keys; only unwraps one Fragment level
@@ -202,10 +203,13 @@ const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
   ];
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
+  const hoverHighlightEnabled = color === 'text' && !isDisabled;
+  const hoverHighlight = useButtonGroupHoverHighlight(hoverHighlightEnabled);
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     isFullWidth && styles.fullWidth,
     styles.size[size],
+    hoverHighlightEnabled && styles.hoverHighlight,
   ];
 
   const classes = classNames(
@@ -232,7 +236,33 @@ const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
 
-      <div css={cssStyles} className="euiButtonGroup__buttons">
+      <div
+        ref={hoverHighlight.containerRef}
+        css={cssStyles}
+        className="euiButtonGroup__buttons"
+        onPointerOver={
+          hoverHighlightEnabled ? hoverHighlight.onPointerOver : undefined
+        }
+        onPointerLeave={
+          hoverHighlightEnabled ? hoverHighlight.onPointerLeave : undefined
+        }
+      >
+        {hoverHighlightEnabled && (
+          <div
+            aria-hidden
+            css={styles.hoverHighlightPill}
+            style={{
+              width: hoverHighlight.highlight.width,
+              height: hoverHighlight.highlight.height,
+              borderRadius: hoverHighlight.highlight.radius,
+              transform: `translate3d(${hoverHighlight.highlight.x}px, ${hoverHighlight.highlight.y}px, 0)`,
+              opacity: hoverHighlight.highlight.visible ? 1 : 0,
+              transitionProperty: hoverHighlight.highlight.animate
+                ? undefined
+                : 'opacity',
+            }}
+          />
+        )}
         {options.map((option) => {
           return (
             <EuiButtonGroupButton
@@ -438,10 +468,13 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   ];
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
+  const hoverHighlightEnabled = (isSelection || isSegmented) && !isDisabled;
+  const hoverHighlight = useButtonGroupHoverHighlight(hoverHighlightEnabled);
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     hasGutterSize && styles.gutterSize[gutterSize],
     hasSegmentedStyle && !wrap && styles.noWrap,
+    hoverHighlightEnabled && styles.hoverHighlight,
   ];
 
   const containerCssStyles = [
@@ -530,7 +563,33 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
       {...rest}
     >
       <div css={containerCssStyles} className="euiButtonGroup__container">
-        <div css={cssStyles} className="euiButtonGroup__buttons">
+        <div
+          ref={hoverHighlight.containerRef}
+          css={cssStyles}
+          className="euiButtonGroup__buttons"
+          onPointerOver={
+            hoverHighlightEnabled ? hoverHighlight.onPointerOver : undefined
+          }
+          onPointerLeave={
+            hoverHighlightEnabled ? hoverHighlight.onPointerLeave : undefined
+          }
+        >
+          {hoverHighlightEnabled && (
+            <div
+              aria-hidden
+              css={styles.hoverHighlightPill}
+              style={{
+                width: hoverHighlight.highlight.width,
+                height: hoverHighlight.highlight.height,
+                borderRadius: hoverHighlight.highlight.radius,
+                transform: `translate3d(${hoverHighlight.highlight.x}px, ${hoverHighlight.highlight.y}px, 0)`,
+                opacity: hoverHighlight.highlight.visible ? 1 : 0,
+                transitionProperty: hoverHighlight.highlight.animate
+                  ? undefined
+                  : 'opacity',
+              }}
+            />
+          )}
           <EuiButtonContext.Provider value={contextValue}>
             {children}
           </EuiButtonContext.Provider>

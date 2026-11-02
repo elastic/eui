@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   euiButtonSizeMap,
+  euiCanAnimate,
   euiDisabledSelector,
   euiShadowXSmall,
   logicalCSS,
@@ -427,6 +428,53 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         ${_highContrastStyles(euiThemeContext)}
       `,
     },
+    // One hover highlight. Fine pointers only; reduced motion keeps each button's own hover.
+    hoverHighlight: css`
+      @media (hover: hover) and (pointer: fine) {
+        ${euiCanAnimate} {
+          .euiButtonGroup__item,
+          .euiButtonGroup__tooltipWrapper,
+          .euiButtonGroupButton {
+            position: relative;
+            z-index: 1;
+          }
+
+          /* Clear the resting fill so the shared pill reads through the track. Pressed buttons keep theirs. */
+          .euiButton:not(${euiDisabledSelector}):not([aria-pressed='true']),
+          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']) {
+            background-color: transparent;
+          }
+
+          .euiButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
+          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
+          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover,
+          .euiButtonGroupButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
+          .euiButtonGroupButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover {
+            background-color: transparent;
+          }
+        }
+      }
+    `,
+    hoverHighlightPill: css`
+      position: absolute;
+      z-index: 0;
+      /* Physical origin: the offset is measured from the container's left edge. */
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-color: ${euiTheme.components.buttons.backgroundTextHover};
+
+      @media (hover: hover) and (pointer: fine) {
+        ${euiCanAnimate} {
+          transition: transform ${euiTheme.animation.fast}
+              ${euiTheme.animation.resistance},
+            width ${euiTheme.animation.fast} ${euiTheme.animation.resistance},
+            height ${euiTheme.animation.fast} ${euiTheme.animation.resistance},
+            opacity ${euiTheme.animation.fast}
+              ${euiTheme.animation.resistance};
+        }
+      }
+    `,
     gutterSize: {
       xs: css`
         gap: ${euiTheme.size.xs};
