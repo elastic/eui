@@ -9,7 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, euiShadow } from '@elastic/eui-theme-common';
 
-import { logicalCSS, euiFontSize } from '../../global_styling';
+import { logicalCSS, euiFontSize, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
@@ -20,11 +20,6 @@ export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBorder;
 
-const euiToolTipAnimation = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
@@ -32,6 +27,41 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 
   const arrowSize = euiTheme.size.m;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
+
+  // Same reveal as the EuiPopover panel: fade on `slow` + bounce, drift
+  // `size.s` toward the trigger for 100ms longer. Keyframes end at
+  // `transform: none` so the positioned top/left stay correct.
+  const drift = euiTheme.size.s;
+  const fadeDuration = euiTheme.animation.slow;
+  const moveDuration = mathWithUnits(fadeDuration, (value) => value + 100);
+  const ease = euiTheme.animation.bounce;
+
+  const fadeIn = keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+  `;
+  const driftFromTop = keyframes`
+    from { transform: translateY(-${drift}); }
+    to { transform: none; }
+  `;
+  const driftFromBottom = keyframes`
+    from { transform: translateY(${drift}); }
+    to { transform: none; }
+  `;
+  const driftFromLeft = keyframes`
+    from { transform: translateX(-${drift}); }
+    to { transform: none; }
+  `;
+  const driftFromRight = keyframes`
+    from { transform: translateX(${drift}); }
+    to { transform: none; }
+  `;
+
+  const reveal = (driftAnimation: ReturnType<typeof keyframes>) => css`
+    ${euiCanAnimate} {
+      animation-name: ${fadeIn}, ${driftAnimation};
+    }
+  `;
 
   return {
     // Base
@@ -56,15 +86,15 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${euiCanAnimate} {
-        animation: ${euiToolTipAnimation} ${euiTheme.animation.extraFast}
-          ease-out ${euiTheme.animation.fast} both;
+        animation-duration: ${fadeDuration}, ${moveDuration};
+        animation-timing-function: ${ease}, ${ease};
+        animation-fill-mode: both;
       }
     `,
-    // Positions - kept for component compatibility. Animation is in the base style.
-    top: css``,
-    bottom: css``,
-    left: css``,
-    right: css``,
+    top: reveal(driftFromTop),
+    bottom: reveal(driftFromBottom),
+    left: reveal(driftFromLeft),
+    right: reveal(driftFromRight),
     // Arrow
     euiToolTip__arrow: css`
       ${arrowStyles._arrowStyles}
