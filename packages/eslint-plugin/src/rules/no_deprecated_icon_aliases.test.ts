@@ -55,6 +55,10 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
       code: '<EuiIcon type="alert" />',
       languageOptions,
     },
+    {
+      code: 'import { EuiIcon } from "@elastic/eui";\n<EuiIcon type="popout" />',
+      languageOptions,
+    },
   ],
   invalid: [
     ...Object.entries(DEPRECATED_ICON_ALIASES).map(([alias, replacement]) => ({
@@ -159,6 +163,17 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
         {
           messageId: 'deprecatedIconAlias',
           data: { alias: 'mapMarker', replacement: 'waypoint' },
+        },
+      ],
+    },
+    {
+      code: "const action = { name: 'Docs', iconType: 'documents' };",
+      output: "const action = { name: 'Docs', iconType: 'document' };",
+      languageOptions,
+      errors: [
+        {
+          messageId: 'deprecatedIconAlias',
+          data: { alias: 'documents', replacement: 'document' },
         },
       ],
     },
