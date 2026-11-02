@@ -12,9 +12,16 @@ import React, {
   KeyboardEventHandler,
   PropsWithChildren,
   ReactNode,
+  useCallback,
+  useLayoutEffect,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
-import { keys, useEuiMemoizedStyles } from '../../services';
+import {
+  keys,
+  setMultipleRefs,
+  useEuiMemoizedStyles,
+} from '../../services';
 import { CommonProps } from '../common';
 import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
@@ -67,8 +74,96 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
     const cssStyles = [
       styles.euiTabs,
       styles[size],
+      styles.hideTabUnderline,
       bottomBorder && styles.bottomBorder,
     ];
+
+    const tabsRef = useRef<HTMLDivElement | null>(null);
+    const indicatorRef = useRef<HTMLSpanElement | null>(null);
+    const placementRef = useRef<{
+      tab: HTMLElement;
+      left: number;
+      width: number;
+    } | null>(null);
+
+    const setTabsRef = useCallback(
+      (node: HTMLDivElement | null) => {
+        tabsRef.current = node;
+        setMultipleRefs([ref], node);
+      },
+      [ref]
+    );
+
+    const placeIndicator = useCallback((allowAnimation: boolean) => {
+      const tabsEl = tabsRef.current;
+      const indicator = indicatorRef.current;
+      if (!tabsEl || !indicator) return;
+
+      const selected =
+        Array.from(
+          tabsEl.querySelectorAll<HTMLElement>('.euiTab-isSelected')
+        ).find((tab) => tab.closest('.euiTabs') === tabsEl) ?? null;
+
+      if (!selected) {
+        indicator.style.opacity = '0';
+        placementRef.current = null;
+        return;
+      }
+
+      const tabsRect = tabsEl.getBoundingClientRect();
+      const tabRect = selected.getBoundingClientRect();
+      const left =
+        Math.round(
+          (tabRect.left - tabsRect.left - tabsEl.clientLeft + tabsEl.scrollLeft) *
+            100
+        ) / 100;
+      const width = Math.round(tabRect.width * 100) / 100;
+      const disabled =
+        selected.hasAttribute('disabled') ||
+        selected.getAttribute('aria-disabled') === 'true';
+
+      indicator.toggleAttribute('data-disabled', disabled);
+
+      const previous = placementRef.current;
+      if (
+        previous &&
+        previous.tab === selected &&
+        previous.left === left &&
+        previous.width === width
+      ) {
+        return;
+      }
+
+      const shouldAnimate =
+        allowAnimation && previous !== null && previous.tab !== selected;
+
+      if (!shouldAnimate) indicator.style.transition = 'none';
+      indicator.style.opacity = '1';
+      indicator.style.width = `${width}px`;
+      indicator.style.transform = `translate3d(${left}px, 0, 0)`;
+      placementRef.current = { tab: selected, left, width };
+      if (!shouldAnimate) {
+        indicator.getBoundingClientRect();
+        indicator.style.removeProperty('transition');
+      }
+    }, []);
+
+    useLayoutEffect(() => {
+      placeIndicator(true);
+    }, [children, placeIndicator]);
+
+    useLayoutEffect(() => {
+      const tabsEl = tabsRef.current;
+      if (!tabsEl) return;
+
+      const observer = new ResizeObserver(() => placeIndicator(false));
+      observer.observe(tabsEl);
+      tabsEl.querySelectorAll<HTMLElement>('.euiTab').forEach((tab) => {
+        if (tab.closest('.euiTabs') === tabsEl) observer.observe(tab);
+      });
+
+      return () => observer.disconnect();
+    }, [children, placeIndicator]);
 
     const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
       const tablist = event.currentTarget;
@@ -94,7 +189,7 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
 
     return (
       <div
-        ref={ref}
+        ref={setTabsRef}
         className={classes}
         css={cssStyles}
         onKeyDown={handleKeyDown}
@@ -104,6 +199,12 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
         <EuiTabsContext.Provider value={{ expand, size }}>
           {children}
         </EuiTabsContext.Provider>
+        <span
+          ref={indicatorRef}
+          className="euiTabs__indicator"
+          css={styles.euiTabs__indicator}
+          aria-hidden="true"
+        />
       </div>
     );
   }

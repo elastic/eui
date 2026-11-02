@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalCSSWithFallback } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalCSSWithFallback,
+  euiCanAnimate,
+} from '../../global_styling';
 import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
@@ -38,6 +42,34 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     l: css`
       gap: ${euiTheme.size.l};
+    `,
+    // One underline for the whole list. Each tab's own ::after is hidden.
+    // `left` stays physical because the transform is measured from that edge.
+    euiTabs__indicator: css`
+      position: absolute;
+      left: 0;
+      ${logicalCSS('bottom', 0)}
+      ${logicalCSS('height', '2px')}
+      background-color: ${euiTheme.colors.primary};
+      border-radius: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+
+      ${euiCanAnimate} {
+        transition: transform ${euiTheme.animation.slow}
+            ${euiTheme.animation.resistance},
+          width ${euiTheme.animation.slow} ${euiTheme.animation.resistance};
+      }
+
+      &[data-disabled] {
+        background-color: ${euiTheme.colors.textDisabled};
+      }
+    `,
+    hideTabUnderline: css`
+      .euiTab::after {
+        content: none;
+      }
     `,
   };
 };

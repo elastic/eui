@@ -12,6 +12,7 @@ import {
   mathWithUnits,
   euiFontSize,
   euiFocusRing,
+  euiCanAnimate,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -34,6 +35,11 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       /* Font-weight used by the tab label and prepend/append nodes */
       font-weight: ${euiTheme.font.weight.semiBold};
       color: ${euiTheme.colors.textSubdued};
+
+      ${euiCanAnimate} {
+        transition: color ${euiTheme.animation.slow}
+          ${euiTheme.animation.resistance};
+      }
 
       &:focus {
         /* POC: dual focus ring (don't clobber global outline-offset) */
