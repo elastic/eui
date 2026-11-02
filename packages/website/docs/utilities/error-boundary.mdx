@@ -7,7 +7,7 @@ description: Catch rendering errors in a part of the tree so one failure doesn't
 
 Use **EuiErrorBoundary** to prevent errors from taking down the entire app.
 
-Ideally end-users should never see an actual error boundary rendered. If a React component can throw errors during rendering, those should be caught internally and the component should render specific error messages that help the user understand what happened and how to correct it. See the [Error messages](docs/patterns/error-messages/index.mdx) pattern for more guidance.
+Ideally end-users should never see an actual error boundary rendered. If a React component can throw errors during rendering, those should be caught internally and the component should render specific error messages that help the user understand what happened and how to correct it. See the [Error messages](../patterns/error-messages/index.mdx) pattern for more guidance.
 
 **EuiErrorBoundary** should only be used to surround components at a high level, where we don't know how lower-level code works and we don't trust it to catch all of its own errors. Wrapping lazy-loaded components in boundaries is a good practice.
 

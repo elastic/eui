@@ -302,7 +302,7 @@ export default () => {
 
 Cell popover content values can be conditionally customized using the `isDetails` flag passed to `renderCellValue`. If you need basic customization of cell popover values based on, e.g. schema or column, this is the most straightforward approach.
 
-By default, all cell popover contents are rendered with an **EuiText** wrapper, and cell actions are rendered within an **EuiPopoverFooter** as **EuiEmptyButton**s. Columns with a `json` schema will additionally have an automatic formatter that indents and displays the popover content within an **EuiCodeBlock**.
+By default, all cell popover contents are rendered with an **EuiText** wrapper, and cell actions are rendered within an **EuiPopoverFooter** as **EuiButtonEmpty**s. Columns with a `json` schema will additionally have an automatic formatter that indents and displays the popover content within an **EuiCodeBlock**.
 
 ```tsx interactive
 import React, { useState, ReactNode } from 'react';

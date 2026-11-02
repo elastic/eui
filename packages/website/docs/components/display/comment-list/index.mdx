@@ -338,7 +338,7 @@ export default () => {
 
 The timeline icon is a very important part of the comment:
 
-*   By default, each **EuiComment** shows an avatar with the `user` icon. A `timelineAvatarAriaLabel`should be provided when using this default option.
+*   By default, each **EuiComment** shows an avatar with the `user` icon. A `timelineAvatarAriaLabel` should be provided when using this default option.
 *   You can customize your avatar by passing to the `timelineAvatar` any of the icon types that [EuiIcon](../icons/index.mdx) supports. The icon will show inside a `subdued` avatar. Consider this option when showing a system update. Providing a `timelineAvatarAriaLabel` is recommended.
 *   You can further customize the timeline icon by passing to the `timelineAvatar` a [EuiAvatar](../avatar.mdx).
 
@@ -400,7 +400,7 @@ export default () => (
 
 ## Comment event actions
 
-There are scenarios where you might want to allow the user to perform `actions` related to each comment. Some common `actions` include: editing, deleting, sharing and copying. To add custom `actions` to a comment, use the `actions`prop. These will be placed to the right of the metadata in the comment's header. We recommend using a [EuiButtonIcon](../../navigation/buttons/button.mdx#icon) to trigger an action. When having multiple actions, consider grouping them in a nested menu system using a [EuiPopover](../../containers/popover.mdx) with a [EuiContextMenu](../../navigation/context-menu.mdx).
+There are scenarios where you might want to allow the user to perform `actions` related to each comment. Some common `actions` include: editing, deleting, sharing and copying. To add custom `actions` to a comment, use the `actions` prop. These will be placed to the right of the metadata in the comment's header. We recommend using a [EuiButtonIcon](../../navigation/buttons/button.mdx#icon) to trigger an action. When having multiple actions, consider grouping them in a nested menu system using a [EuiPopover](../../containers/popover.mdx) with a [EuiContextMenu](../../navigation/context-menu.mdx).
 
 ```tsx interactive
 import React, { useState } from 'react';

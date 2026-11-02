@@ -10,7 +10,7 @@ description: Table that handles selection, search, sorting and pagination of a s
 
 :::warning Column names must be referentially stable
 
-**EuiMemoryTable** relies on referential equality of a column's `name` field when sorting by that column. This particularly applies to **JSX nodes**.
+**EuiInMemoryTable** relies on referential equality of a column's `name` field when sorting by that column. This particularly applies to **JSX nodes**.
 
 If your JSX `name` is not defined outside a component `render` cycle or is not correctly memoized with `useMemo`, it will break sorting and other in-memory comparisons.
 
@@ -820,7 +820,7 @@ export default () => {
 
 ## Controlled pagination
 
-By default `EuiInMemoryTable` resets its page index when receiving a new `EuiInMemoryTable` array. To avoid this behavior the pagination object optionally takes a `pageIndex` value to control this yourself. Additionally, `pageSize` can also be controlled the same way. Both of these are provided to your app during the `onTableChange` callback.
+By default `EuiInMemoryTable` resets its page index when receiving a new `items` array. To avoid this behavior the pagination object optionally takes a `pageIndex` value to control this yourself. Additionally, `pageSize` can also be controlled the same way. Both of these are provided to your app during the `onTableChange` callback.
 
 The example below updates the array of users every second, randomly toggling their online status. Pagination state is maintained by the app, preventing it from being reset by the updates.
 

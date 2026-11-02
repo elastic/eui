@@ -171,7 +171,7 @@ export default () => (
 
 **EuiToolTip** wraps its children in a `<span>` element that is `display: inline-block`. If you are wrapping a block-level child (e.g. a `<div>`), you may need to change this by passing `display="block"` but the resulting DOM may be in violation of the HTML5 spec.
 
-It also applies `onFocus` and `onBlur` props the the cloned `children`. If you pass in a custom component, then you'll need to make sure these props are applied to the root element rendered by your component. The best way to do that is to follow [EUI’s guidelines on pass-through props](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/props.md#pass-through-props).
+It also applies `onFocus` and `onBlur` props to the cloned `children`. If you pass in a custom component, then you'll need to make sure these props are applied to the root element rendered by your component. The best way to do that is to follow [EUI’s guidelines on pass-through props](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/props.md#pass-through-props).
 
 ```tsx interactive
 import React from 'react';

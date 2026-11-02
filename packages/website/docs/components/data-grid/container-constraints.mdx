@@ -7,7 +7,7 @@ description: Make EuiDataGrid fit a constrained container such as a dashboard pa
 
 ## Data grid adapts to its container
 
-When wrapped inside a container, like a dashboard panel, the grid will start hiding controls and adopt a more strict flex layout. Use the `minSizeForControls` prop to control the min width to enables/disables grid controls based on available width.
+When wrapped inside a container, like a dashboard panel, the grid will start hiding controls and adopt a more strict flex layout. Use the `minSizeForControls` prop to set the minimum width at which grid controls are shown.
 
 ```tsx interactive
 import React, { useState, useCallback } from 'react';
@@ -204,7 +204,7 @@ Creating a lot of DOM nodes is computationally expensive, and **EuiDataGrid** us
 
 :::warning Never toggle the height between a value and `undefined`.
 
-Similar to React's rule of not switching between a controlled and uncontrolled input, `EuiDataGrid` does not accommodate for its height switching to or from `undefined`. For demonstration purposes, the example below uses a `key` to force **EuiDataGrid** to completely remount when its height changes between constrained & constrained heights.
+Similar to React's rule of not switching between a controlled and uncontrolled input, `EuiDataGrid` does not accommodate for its height switching to or from `undefined`. For demonstration purposes, the example below uses a `key` to force **EuiDataGrid** to completely remount when its height changes between constrained and unconstrained heights.
 
 :::
 

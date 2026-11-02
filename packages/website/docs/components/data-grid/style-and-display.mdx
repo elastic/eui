@@ -27,7 +27,7 @@ The font size overriding only works with text or elements that can inherit the p
 
 ## Grid row classes
 
-Specific rows can be highlighted or otherwise have custom styling passed to them via the`gridStyle.rowClasses` prop. It accepts an object associating the row's index with a class name string.
+Specific rows can be highlighted or otherwise have custom styling passed to them via the `gridStyle.rowClasses` prop. It accepts an object associating the row's index with a class name string.
 
 The example below sets a custom striped class on the 3rd row and dynamically updates the `rowClasses` map when rows are selected.
 
@@ -250,7 +250,7 @@ By default, all rows get a height of **34 pixels**, but there are scenarios wher
     *   Can be set to the default `undefined`,`"start"`, or`"center"`.
     *   If set to `"start"`, the topmost visible row will monitor for unexpected changes to its vertical position and try to compensate for these by scrolling the grid scroll container such that the topmost row position remains stable.
     *   If set to `"center"`, the middle visible row will monitor for unexpected changes to its vertical position and try to compensate for these by scrolling the grid scroll container such that the middle row position remains stable.
-    *   This is particularly useful when the grid contains`auto` sized rows. Since these rows are measured as they appear in the overscan, they can cause surprising shifts of the vertical position of all following rows when their measured height is different from the estimated height.
+    *   This is particularly useful when the grid contains `auto` sized rows. Since these rows are measured as they appear in the overscan, they can cause surprising shifts of the vertical position of all following rows when their measured height is different from the estimated height.
 
 :::warning Rows have minimum height requirements
 
@@ -324,7 +324,7 @@ export default () => {
 
 ## Overriding specific row heights
 
-You can override the default height of a specific row by passing a`rowHeights` object associating the row's index with a specific height configuration.
+You can override the default height of a specific row by passing a `rowHeights` object associating the row's index with a specific height configuration.
 
 :::warning Disabling the row height toolbar control
 
@@ -395,7 +395,7 @@ export default () => {
 
 To enable automatically fitting rows to their content you can set `defaultHeight="auto"`. This ensures every row automatically adjusts its height to fit the contents.
 
-You can also override the height of a specific row by passing a`rowHeights` object associating the row's index with an `"auto"` value.
+You can also override the height of a specific row by passing a `rowHeights` object associating the row's index with an `"auto"` value.
 
 ```tsx interactive
 import React, { useCallback, useState } from 'react';
