@@ -712,7 +712,9 @@ const writeIndex = (results, publicComponents) => {
     '',
     'Every documented EUI component, utility, theme token and style helper, grouped by category. Each entry links to a page with usage guidance, examples and props for the installed version.',
     '',
-    'Valid names for icon `type` and `iconType` props: [Icon names](icons.md).',
+    'Prefer these examples over patterns copied from existing code, which may use removed props or icon names.',
+    '',
+    'Check every icon `type` and `iconType` value against [Icon names](icons.md): a removed name renders as a broken image, and TypeScript accepts any string.',
     '',
   ];
   const sorted = [...groups.values()].sort(
