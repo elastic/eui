@@ -752,7 +752,7 @@ a, footer\tb, footer
             ),
             rowCellRender: () => (
               <EuiButtonIcon
-                iconType="boxesHorizontal"
+                iconType="ellipsis"
                 aria-label="Open actions"
               />
             ),
