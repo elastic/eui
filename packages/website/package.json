@@ -63,7 +63,14 @@
     "@types/react-window": "^1",
     "cross-env": "^7.0.3",
     "cspell": "^8.17.5",
-    "typescript": "~5.5.4"
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-mdx": "^3.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "typescript": "~5.5.4",
+    "unified": "^11.0.4",
+    "yaml": "^2.7.1"
   },
   "browserslist": {
     "production": [
