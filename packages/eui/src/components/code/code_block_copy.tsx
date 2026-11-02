@@ -6,14 +6,89 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, useMemo } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  SVGAttributes,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import type { SerializedStyles } from '@emotion/react';
 
-import { noCopyBoundsRegex } from '../../services';
+import { noCopyBoundsRegex, useEuiMemoizedStyles } from '../../services';
 import { useInnerText } from '../inner_text';
 import { EuiCopy } from '../copy';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
+import { EuiIcon } from '../icon';
 import { NEW_LINE_REGEX_GLOBAL } from './utils';
+import { euiCodeBlockCopyIconStyles } from './code_block_copy.styles';
+
+const CodeBlockCopiedContext = createContext(false);
+// POC: motion study held the check for about 1.8s. 0.75s keeps the confirmation brief.
+const COPY_CHECK_HOLD_MS = 750;
+
+const CodeBlockCopyIcon: FunctionComponent<
+  SVGAttributes<SVGElement> & { css?: SerializedStyles | SerializedStyles[] }
+> = ({ css: iconCss, ...rest }) => {
+  const showCheck = useContext(CodeBlockCopiedContext);
+  const styles = useEuiMemoizedStyles(euiCodeBlockCopyIconStyles);
+
+  return (
+    <span {...rest} css={iconCss}>
+      <span css={styles.frame}>
+        <span css={[styles.layer, showCheck ? styles.hidden : styles.visible]}>
+          <EuiIcon type="copy" color="inherit" aria-hidden="true" />
+        </span>
+        <span css={[styles.layer, showCheck ? styles.visible : styles.hidden]}>
+          <EuiIcon type="check" color="inherit" aria-hidden="true" />
+        </span>
+      </span>
+    </span>
+  );
+};
+
+const CodeBlockCopyButton: FunctionComponent<{
+  copy: () => void;
+  copyCount: number;
+  label: string;
+}> = ({ copy, copyCount, label }) => {
+  const [showCheck, setShowCheck] = useState(false);
+  const timer = useRef<number>();
+
+  useEffect(() => {
+    if (!copyCount) return;
+    setShowCheck(true);
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(
+      () => setShowCheck(false),
+      COPY_CHECK_HOLD_MS
+    );
+  }, [copyCount]);
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(timer.current);
+    },
+    []
+  );
+
+  return (
+    <CodeBlockCopiedContext.Provider value={showCheck}>
+      <EuiButtonIcon
+        onClick={copy}
+        iconType={CodeBlockCopyIcon}
+        color="text"
+        aria-label={label}
+        data-test-subj="euiCodeBlockCopy"
+      />
+    </CodeBlockCopiedContext.Provider>
+  );
+};
 
 /**
  * Hook that returns copy-related state/logic/utils
@@ -57,13 +132,11 @@ export const useCopy = ({
     return showCopyButton ? (
       <div className="euiCodeBlock__copyButton">
         <EuiCopy textToCopy={textToCopy}>
-          {(copy) => (
-            <EuiButtonIcon
-              onClick={copy}
-              iconType="copy"
-              color="text"
-              aria-label={copyAriaLabel || copyDefaultAriaLabel}
-              data-test-subj="euiCodeBlockCopy"
+          {(copy, _isCopied, copyCount) => (
+            <CodeBlockCopyButton
+              copy={copy}
+              copyCount={copyCount}
+              label={copyAriaLabel || copyDefaultAriaLabel}
             />
           )}
         </EuiCopy>

@@ -35,10 +35,11 @@ export interface EuiCopyProps extends CommonProps {
    */
   afterMessage?: ReactNode;
   /**
-   * Function that must return a component. First argument is 'copy' function.
-   * Use your own logic to create the component that users interact with when triggering copy.
+   * Function that must return a component. First argument is the `copy` function.
+   * Second argument is whether the tooltip still shows the copied message.
+   * Third argument increments on every successful copy.
    */
-  children(copy: () => void): ReactElement;
+  children(copy: () => void, isCopied: boolean, copyCount: number): ReactElement;
   /**
    * Optional props to pass to the EuiToolTip component.
    */
@@ -111,7 +112,7 @@ export const EuiCopy: FunctionComponent<EuiCopyProps> = ({
           isCopied || !!tooltipProps?.disableScreenReaderOutput
         }
       >
-        {children(copy)}
+        {children(copy, isCopied, copyCount)}
       </EuiToolTip>
       {/* Stable `aria-live` region so VoiceOver/Safari announces reliably.
        `EuiScreenReaderLive` alternates `aria-live` between "off" and active which
