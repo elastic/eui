@@ -82,6 +82,10 @@ const ruleTester = new RuleTester();
 ruleTester.run('no-removed-icons', NoRemovedIcons, {
   valid: [
     {
+      code: '<Wrapper iconType="constructor" />',
+      languageOptions,
+    },
+    {
       code: 'import { EuiIcon } from "@elastic/eui";\n<EuiIcon type="alert" />',
       languageOptions,
     },
@@ -131,6 +135,22 @@ ruleTester.run('no-removed-icons', NoRemovedIcons, {
         {
           messageId: 'removedIcon',
           data: { iconType: 'arrowUp', replacement: 'chevronSingleUp' },
+        },
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'arrowDown', replacement: 'chevronSingleDown' },
+        },
+      ],
+    },
+    {
+      code: "const item = { iconType: 'popout' as const };\n<EuiButton iconType={'arrowDown' as IconType} />",
+      output:
+        "const item = { iconType: 'external' as const };\n<EuiButton iconType={'chevronSingleDown' as IconType} />",
+      languageOptions,
+      errors: [
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'popout', replacement: 'external' },
         },
         {
           messageId: 'removedIcon',

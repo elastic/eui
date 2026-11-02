@@ -54,6 +54,9 @@ const getIconStringNodes = (node: TSESTree.Node): IconStringNode[] => {
     case 'TemplateLiteral':
       return node.expressions.length === 0 ? [node] : [];
     case 'JSXExpressionContainer':
+    case 'TSAsExpression':
+    case 'TSSatisfiesExpression':
+    case 'TSNonNullExpression':
       return getIconStringNodes(node.expression);
     case 'ConditionalExpression':
       return [

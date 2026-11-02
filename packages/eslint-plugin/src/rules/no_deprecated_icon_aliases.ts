@@ -111,10 +111,10 @@ type DeprecatedIconWithGuidance = keyof typeof DEPRECATED_ICONS_WITH_GUIDANCE;
 const isDeprecatedIconWithGuidance = (
   value: string
 ): value is DeprecatedIconWithGuidance =>
-  value in DEPRECATED_ICONS_WITH_GUIDANCE;
+  Object.prototype.hasOwnProperty.call(DEPRECATED_ICONS_WITH_GUIDANCE, value);
 
 const isDeprecatedIconAlias = (value: string): value is DeprecatedIconAlias =>
-  value in DEPRECATED_ICON_ALIASES;
+  Object.prototype.hasOwnProperty.call(DEPRECATED_ICON_ALIASES, value);
 
 export const NoDeprecatedIconAliases = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {

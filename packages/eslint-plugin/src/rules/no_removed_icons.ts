@@ -154,7 +154,7 @@ export const REMOVED_ICON_ALIASES = {
 type RemovedIconAlias = keyof typeof REMOVED_ICON_ALIASES;
 
 const isRemovedIconAlias = (value: string): value is RemovedIconAlias =>
-  value in REMOVED_ICON_ALIASES;
+  Object.prototype.hasOwnProperty.call(REMOVED_ICON_ALIASES, value);
 
 export const NoRemovedIcons = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
