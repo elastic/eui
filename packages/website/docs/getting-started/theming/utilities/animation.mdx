@@ -1,0 +1,40 @@
+---
+sidebar_position: 4
+sidebar_label: Animation
+keywords: [euiCanAnimate, euiCantAnimate]
+description: "Respect the user's reduced motion setting with euiCanAnimate and euiCantAnimate, and time transitions with the euiTheme.animation speed and easing tokens."
+---
+
+# Animation utilities
+
+## Reduced motion
+
+Wrap transitions and animations in `euiCanAnimate` so they only run when the user hasn't asked the operating system to reduce motion. Use `euiCantAnimate` for styles that should apply only when motion is reduced. Both are `@media` query strings for `prefers-reduced-motion`, so use them instead of writing that media query by hand.
+
+```tsx
+import { css } from '@emotion/react';
+import { euiCanAnimate, useEuiTheme } from '@elastic/eui';
+
+const { euiTheme } = useEuiTheme();
+
+const styles = css`
+  ${euiCanAnimate} {
+    transition: transform ${euiTheme.animation.normal}
+      ${euiTheme.animation.resistance};
+  }
+`;
+```
+
+## Speed and easing tokens
+
+Use `euiTheme.animation` for durations and timing functions instead of hardcoded values.
+
+| Token | Default value |
+| --- | --- |
+| `euiTheme.animation.extraFast` | `90ms` |
+| `euiTheme.animation.fast` | `150ms` |
+| `euiTheme.animation.normal` | `250ms` |
+| `euiTheme.animation.slow` | `350ms` |
+| `euiTheme.animation.extraSlow` | `500ms` |
+| `euiTheme.animation.bounce` | `cubic-bezier(.34, 1.61, .7, 1)` |
+| `euiTheme.animation.resistance` | `cubic-bezier(.32, .72, 0, 1)` |
