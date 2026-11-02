@@ -529,6 +529,137 @@ const findPublicExports = () => {
   };
 };
 
+// The website's icon list is an interactive search over `icon_map`, so the names
+// never reach the converted page. Read them (and the deprecations the lint rule
+// knows about) from source instead.
+const findInitializer = (file, name) => {
+  const source = ts.createSourceFile(
+    file,
+    fs.readFileSync(file, 'utf8'),
+    ts.ScriptTarget.Latest
+  );
+  let found;
+  const visit = (node) => {
+    if (ts.isVariableDeclaration(node) && node.name.text === name)
+      found = node.initializer;
+    else ts.forEachChild(node, visit);
+  };
+  visit(source);
+  while (found && ts.isAsExpression(found)) found = found.expression;
+  return found;
+};
+
+const objectEntries = (node) =>
+  node.properties.map((property) => [property.name.text, property.initializer]);
+
+const stringSet = (node) =>
+  new Set(node.arguments[0].elements.map((element) => element.text));
+
+const iconCategories = [
+  ['glyph', 'Glyphs', 'Monochrome UI icons. Keep the default `size="m"`.'],
+  ['app', 'Apps', 'Multi-colour Elastic app icons, usually at `size="xl"`.'],
+  ['elasticLogo', 'Elastic logos', ''],
+  ['thirdPartyLogo', 'Third-party logos', ''],
+  ['ml', 'Machine learning', ''],
+  ['token', 'Tokens', 'Code and field type icons, usually through EuiToken.'],
+];
+
+const writeIcons = () => {
+  const iconDir = path.resolve(websiteDir, '../eui/src/components/icon');
+  const lintRule = path.resolve(
+    websiteDir,
+    '../eslint-plugin/src/rules/no_deprecated_icon_aliases.ts'
+  );
+  const icons = objectEntries(
+    findInitializer(path.join(iconDir, 'icon_map.ts'), 'typeToPathMap')
+  ).map(([name, loader]) => {
+    const metadata = ts.isCallExpression(loader)
+      ? Object.fromEntries(
+          objectEntries(loader.arguments[1] ?? { properties: [] })
+        )
+      : {};
+    return {
+      name,
+      category: metadata.category?.text ?? 'glyph',
+      synonyms:
+        metadata.synonyms?.elements.map((element) => element.text) ?? [],
+    };
+  });
+  const aliases = objectEntries(
+    findInitializer(lintRule, 'DEPRECATED_ICON_ALIASES')
+  ).map(([name, value]) => [name, `\`${value.text}\``]);
+  const guidance = objectEntries(
+    findInitializer(lintRule, 'DEPRECATED_ICONS_WITH_GUIDANCE')
+  ).map(([name, value]) => [name, value.text]);
+  const withoutReplacement = [
+    ...stringSet(
+      findInitializer(lintRule, 'DEPRECATED_ICONS_WITHOUT_REPLACEMENT')
+    ),
+  ].map((name) => [name, 'No replacement']);
+  const hiddenFromDocs = stringSet(
+    findInitializer(
+      path.join(iconDir, 'icon_map.ts'),
+      'deprecatedIconsExcludedFromDocs'
+    )
+  );
+  const deprecated = new Map([...aliases, ...guidance, ...withoutReplacement]);
+  for (const name of hiddenFromDocs)
+    if (!deprecated.has(name)) deprecated.set(name, '');
+  const exists = new Set(icons.map((icon) => icon.name));
+
+  const lines = [
+    '---',
+    stringifyYaml({
+      title: 'Icon names',
+      description:
+        'Every icon name accepted by EuiIcon `type` and the `iconType` props, with search synonyms, plus deprecated names and their replacements.',
+      url: `${siteUrl}/docs/components/display/icons/`,
+    }).trim(),
+    '---',
+    '',
+    '# Icon names',
+    '',
+    'Pass these names to EuiIcon `type` or any `iconType` prop. The prop type also accepts any string (a URL or data URI), so TypeScript does not catch a wrong name: an unknown name renders as a broken image. Pick names from this list, and search the synonyms after each name to find an icon by meaning.',
+    '',
+    'For sizes, colours and custom SVGs, see [Icons](components/display/icons/index.md).',
+    '',
+  ];
+  for (const [category, label, intro] of iconCategories) {
+    lines.push(`## ${label}`, '');
+    if (intro) lines.push(intro, '');
+    for (const icon of icons) {
+      if (icon.category !== category || deprecated.has(icon.name)) continue;
+      const synonyms = icon.synonyms.length
+        ? `: ${icon.synonyms.join(', ')}`
+        : '';
+      lines.push(`- \`${icon.name}\`${synonyms}`);
+    }
+    lines.push('');
+  }
+  lines.push(
+    '## Deprecated and removed names',
+    '',
+    "Don't use these. Deprecated names still render but will be removed; removed names render a broken image. The `@elastic/eui/no-deprecated-icon-aliases` lint rule flags static uses.",
+    '',
+    '| Name | Status | Use instead |',
+    '| --- | --- | --- |',
+    ...[...deprecated]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(
+        ([name, replacement]) =>
+          `| \`${name}\` | ${
+            exists.has(name) ? 'Deprecated' : 'Removed'
+          } | ${escapeCell(replacement)} |`
+      ),
+    ''
+  );
+  fs.writeFileSync(path.join(outDir, 'icons.md'), lines.join('\n'));
+  return {
+    listed: icons.filter((icon) => !deprecated.has(icon.name)).length,
+    deprecated: deprecated.size,
+  };
+};
+
 const readCategory = (dir) => {
   const file = path.join(docsDir, dir, '_category_.yml');
   return fs.existsSync(file)
@@ -580,6 +711,8 @@ const writeIndex = (results, publicComponents) => {
     '# EUI components',
     '',
     'Every documented EUI component, utility, theme token and style helper, grouped by category. Each entry links to a page with usage guidance, examples and props for the installed version.',
+    '',
+    'Valid names for icon `type` and `iconType` props: [Icon names](icons.md).',
     '',
   ];
   const sorted = [...groups.values()].sort(
@@ -636,6 +769,10 @@ console.log(
     process.cwd(),
     outDir
   )}`
+);
+const iconCounts = writeIcons();
+console.log(
+  `Listed ${iconCounts.listed} icon names and ${iconCounts.deprecated} deprecated ones`
 );
 const publicComponents = publicExports.components;
 const { undocumented } = writeIndex(results, publicComponents);
