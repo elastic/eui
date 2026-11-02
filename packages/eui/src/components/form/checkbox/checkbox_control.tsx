@@ -53,8 +53,12 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
 }) => {
   const isSelected = checked || indeterminate || excluded;
   const isExcluded = excluded && !indeterminate;
+  // The drawn check is only the plain enabled checkbox. Indeterminate and excluded stay as they are.
+  const drawsCheck = !disabled && !indeterminate && !excluded;
 
-  const classes = classNames('euiCheckboxControl', className);
+  const classes = classNames('euiCheckboxControl', className, {
+    'euiCheckboxControl-isChecked': drawsCheck && checked,
+  });
   const styles = useEuiMemoizedStyles(euiCheckboxControlStyles);
 
   const cssStyles = [
@@ -65,8 +69,10 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
         : styles.disabled.unselected
       : isExcluded
       ? styles.enabled.excluded
-      : isSelected
+      : indeterminate
       ? styles.enabled.selected
+      : checked
+      ? styles.enabled.checked
       : styles.enabled.unselected,
   ];
 
@@ -85,7 +91,26 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
 
   return (
     <span css={cssStyles} className={classes} {...rest}>
-      <EuiIcon role="presentation" css={iconStyles} type={iconType} size="m" />
+      {drawsCheck ? (
+        <svg
+          css={styles.stroke}
+          className="euiCheckbox__stroke"
+          viewBox="0 0 16 16"
+          width="16"
+          height="16"
+          aria-hidden="true"
+        >
+          {/* POC: path from the motion study, drawn left to right. */}
+          <path d="M3.6 8.6 6.7 11.5 12.5 4.9" pathLength={1} />
+        </svg>
+      ) : (
+        <EuiIcon
+          role="presentation"
+          css={iconStyles}
+          type={iconType}
+          size="m"
+        />
+      )}
     </span>
   );
 };
