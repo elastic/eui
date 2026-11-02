@@ -10,6 +10,7 @@ import React, {
   forwardRef,
   HTMLAttributes,
   ReactNode,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -47,6 +48,18 @@ import {
 import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
 import { EuiCallOutColor, EuiCallOutHeading, EuiCallOutSize } from './types';
 import { euiNotificationIconStyles } from '../notification_icon/notification_icon.styles';
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia(REDUCED_MOTION_QUERY).matches;
+
+const durationMs = (value: string) => {
+  const amount = parseFloat(value);
+  if (Number.isNaN(amount)) return 250;
+  return value.trim().endsWith('ms') ? amount : amount * 1000;
+};
 
 export const COLOR_TO_NOTIFICATION_ICON_MAP: Record<
   EuiCallOutColor,
@@ -154,9 +167,82 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     because callouts can be placed in containers without defined size (absolute positioned, no-grow flex layout etc.)
     where container queries would collapse by design instead of adjusting to the content dimensions. */
     const layoutRef = useLayoutObserver(size);
+    const dismissRef = useRef<HTMLDivElement>(null);
     // Memoize the refs array so `useCombinedRefs` returns a stable callback-ref across renders
-    const combinedRefs = useMemo(() => [layoutRef, ref], [layoutRef, ref]);
+    const combinedRefs = useMemo(
+      () => [layoutRef, dismissRef, ref],
+      [layoutRef, ref]
+    );
     const panelRef = useCombinedRefs(combinedRefs);
+
+    const [dismissPhase, setDismissPhase] = useState<'hold' | 'collapse' | null>(
+      null
+    );
+    const dismissHeight = useRef(0);
+    const dismissingRef = useRef(false);
+    const onDismissRef = useRef(onDismiss);
+    onDismissRef.current = onDismiss;
+
+    const handleDismiss = useCallback(() => {
+      if (dismissingRef.current) return;
+
+      const node = dismissRef.current;
+      if (!node || prefersReducedMotion()) {
+        onDismissRef.current?.();
+        return;
+      }
+
+      const height = node.getBoundingClientRect().height;
+      if (height < 1) {
+        onDismissRef.current?.();
+        return;
+      }
+
+      dismissingRef.current = true;
+      dismissHeight.current = height;
+      setDismissPhase('hold');
+    }, []);
+
+    useEffect(() => {
+      if (dismissPhase !== 'hold') return;
+      const frame = window.requestAnimationFrame(() => {
+        setDismissPhase('collapse');
+      });
+      return () => window.cancelAnimationFrame(frame);
+    }, [dismissPhase]);
+
+    useEffect(() => {
+      if (dismissPhase !== 'collapse') return;
+      const node = dismissRef.current;
+      if (!node) return;
+
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        onDismissRef.current?.();
+      };
+      const onEnd = (event: TransitionEvent) => {
+        if (event.target !== node) return;
+        // Browsers report the logical property or its physical alias.
+        if (event.propertyName !== 'block-size' && event.propertyName !== 'height') {
+          return;
+        }
+        finish();
+      };
+
+      node.addEventListener('transitionend', onEnd);
+      const timeout = window.setTimeout(
+        finish,
+        durationMs(euiTheme.animation.normal) + 80
+      );
+
+      return () => {
+        settled = true;
+        node.removeEventListener('transitionend', onEnd);
+        window.clearTimeout(timeout);
+      };
+    }, [dismissPhase, euiTheme.animation.normal]);
 
     const borderColors = useEuiBorderColorCSS();
     const styles = useEuiMemoizedStyles(euiCallOutStyles);
@@ -164,6 +250,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       styles.euiCallOut,
       borderColors[color],
       onDismiss && styles.hasDismissButton,
+      dismissPhase && styles.dismissing,
+      dismissPhase === 'collapse' && styles.dismissingCollapse,
     ];
 
     const iconColorToken = getTokenName(
@@ -199,12 +287,12 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
               iconType="cross"
               color={color}
               size="xs"
-              onClick={onDismiss}
+              onClick={handleDismiss}
             />
           )}
         </EuiI18n>
       );
-    }, [onDismiss, styles, color, dismissButtonProps]);
+    }, [onDismiss, handleDismiss, styles, color, dismissButtonProps]);
 
     const headerStyles = useEuiMemoizedStyles(euiCallOutHeaderStyles);
     const iconStyles = useEuiMemoizedStyles(euiNotificationIconStyles);
@@ -345,10 +433,16 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         className={classes}
         panelRef={panelRef}
         grow={false}
-        style={style}
+        style={{
+          ...style,
+          ...(dismissPhase === 'hold'
+            ? { blockSize: dismissHeight.current, transition: 'none' }
+            : null),
+        }}
         data-size={size}
         data-test-subj={dataTestSubj}
         {...rest}
+        {...(dismissPhase ? { 'aria-hidden': true } : null)}
       >
         <div css={styles.wrapper}>
           <div css={styles.body}>

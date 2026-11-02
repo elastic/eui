@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import {
+  euiCanAnimate,
   logicalCSS,
   logicalShorthandCSS,
   mathWithUnits,
@@ -138,6 +139,45 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
       /* additional selector to ensure specificity */
       &:where([data-size]) {
         padding-inline-end: ${euiTheme.size.xxl};
+      }
+    `,
+    // Height and fade on dismiss. The callout stays mounted until this finishes.
+    dismissing: css`
+      overflow: hidden;
+      pointer-events: none;
+      box-sizing: border-box;
+      min-block-size: 0;
+    `,
+    dismissingCollapse: css`
+      /* && beats the size padding rule, which otherwise floors the height. */
+      && {
+        block-size: 0;
+        opacity: 0;
+        padding: 0;
+        padding-block: 0;
+        padding-inline: 0;
+        margin: 0;
+        border-block-width: 0;
+        border-inline-width: 0;
+
+        ${euiCanAnimate} {
+          transition: block-size ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            opacity ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            padding ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            padding-block ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            padding-inline ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            margin ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            border-block-width ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance},
+            border-inline-width ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance};
+        }
       }
     `,
     dismissButton: {
