@@ -13,6 +13,7 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 
 import { EuiAccordionProps } from '../accordion';
+import { EuiAccordionArrowIcon } from './accordion_arrow_icon';
 import { euiAccordionArrowStyles } from './accordion_arrow.styles';
 
 type _EuiAccordionArrowProps = Partial<EuiButtonIconPropsForButton> &
@@ -46,7 +47,8 @@ export const EuiAccordionArrow: FunctionComponent<_EuiAccordionArrowProps> = ({
       {...rest}
       className={classes}
       css={cssStyles}
-      iconType="chevronSingleRight"
+      iconType={EuiAccordionArrowIcon}
+      iconSize="original"
     />
   );
 };

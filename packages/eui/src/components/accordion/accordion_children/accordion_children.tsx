@@ -57,22 +57,25 @@ export const EuiAccordionChildren: FunctionComponent<
     'euiAccordion__children-isLoading': isLoading,
   });
 
-  const styles = useEuiMemoizedStyles(euiAccordionChildrenStyles);
-  const cssStyles = [
-    styles.euiAccordion__children,
-    isLoading && styles.isLoading,
-    paddingSize && paddingSize !== 'none' && styles[paddingSize],
-  ];
-
   /**
    * Wrapper
    */
   const [hasTransition, setHasTransition] = useState(false);
+  const skipInitialTransition = initialIsOpen && !hasTransition && isOpen;
+
+  const styles = useEuiMemoizedStyles(euiAccordionChildrenStyles);
+  const cssStyles = [
+    styles.euiAccordion__children,
+    isOpen ? styles.isOpen : styles.isClosed,
+    skipInitialTransition && styles.noTransition,
+    isLoading && styles.isLoading,
+    paddingSize && paddingSize !== 'none' && styles[paddingSize],
+  ];
   const wrapperStyles = useEuiMemoizedStyles(euiAccordionChildWrapperStyles);
   const wrapperCssStyles = [
     wrapperStyles.euiAccordion__childWrapper,
     isOpen ? wrapperStyles.isOpen : wrapperStyles.isClosed,
-    initialIsOpen && !hasTransition && isOpen && wrapperStyles.noTransition,
+    skipInitialTransition && wrapperStyles.noTransition,
   ];
 
   /* Controls enabling opening/closing transitions on first interaction

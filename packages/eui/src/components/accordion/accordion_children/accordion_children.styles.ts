@@ -17,7 +17,24 @@ import {
 } from '../../../global_styling';
 
 export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiAccordion__children: css``,
+  euiAccordion__children: css`
+    ${euiCanAnimate} {
+      transition: transform ${euiTheme.animation.normal}
+        ${euiTheme.animation.resistance};
+    }
+  `,
+  // Slides with the height animation. Closed content sits up by size.s.
+  isOpen: css`
+    transform: none;
+  `,
+  isClosed: css`
+    transform: translateY(calc(${euiTheme.size.s} * -1));
+  `,
+  noTransition: css`
+    ${euiCanAnimate} {
+      transition: none;
+    }
+  `,
   isLoading: css`
     align-items: center;
     display: flex;

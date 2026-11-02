@@ -9,11 +9,24 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { logicalCSS } from '../../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 
 export const euiAccordionArrowStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__arrow: css`
     flex-shrink: 0;
+
+    /* The hit target stays still. Only the triangle glyph turns. */
+    .euiButtonIcon__icon {
+      /* POC: 5×6 motion-study glyph, not a theme size. */
+      inline-size: 5px;
+      block-size: 6px;
+
+      ${euiCanAnimate} {
+        transition: transform ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance},
+          opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+      }
+    }
   `,
   left: css`
     ${logicalCSS('margin-right', euiTheme.size.xs)}
@@ -21,13 +34,17 @@ export const euiAccordionArrowStyles = ({ euiTheme }: UseEuiTheme) => ({
   right: css`
     ${logicalCSS('margin-left', euiTheme.size.xs)}
   `,
-  // !important overrides EuiButtonIcon's default transforms
+  // POC: closed opacity 0.7 is from the motion study, not a theme token.
   isClosed: css`
-    /* stylelint-disable-next-line declaration-no-important */
-    transform: rotate(0deg) !important;
+    .euiButtonIcon__icon {
+      transform: rotate(0deg);
+      opacity: 0.7;
+    }
   `,
   isOpen: css`
-    /* stylelint-disable-next-line declaration-no-important */
-    transform: rotate(90deg) !important;
+    .euiButtonIcon__icon {
+      transform: rotate(90deg);
+      opacity: 1;
+    }
   `,
 });
