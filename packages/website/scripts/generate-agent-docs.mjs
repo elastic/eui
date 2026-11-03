@@ -655,7 +655,7 @@ const writeIcons = () => {
     stringifyYaml({
       title: 'Icon names',
       description:
-        'Every icon name accepted by EuiIcon `type` and the `iconType` props, with search synonyms, plus deprecated names and their replacements.',
+        'Every icon name accepted by EuiIcon `type` and the `iconType` props, with search synonyms.',
       url: `${siteUrl}/docs/components/display/icons/`,
     }).trim(),
     '---',
@@ -664,7 +664,7 @@ const writeIcons = () => {
     '',
     'Pass these names to EuiIcon `type` or any `iconType` prop. The prop type also accepts any string (a URL or data URI), so TypeScript does not catch a wrong name: an unknown name renders as a broken image. Pick names from this list, and search the synonyms after each name to find an icon by meaning.',
     '',
-    'For sizes, colours and custom SVGs, see [Icons](components/display/icons/index.md).',
+    'For sizes, colours and custom SVGs, see [Icons](components/display/icons/index.md). Deprecated and removed names and their replacements are in [Deprecated icon names](icons-deprecated.md).',
     '',
   ];
   for (const [category, label, intro] of iconCategories) {
@@ -679,8 +679,20 @@ const writeIcons = () => {
     }
     lines.push('');
   }
-  lines.push(
-    '## Deprecated and removed names',
+  fs.writeFileSync(path.join(outDir, 'icons.md'), lines.join('\n'));
+
+  // Kept out of icons.md so that finding a name there means the name is valid:
+  // agents check names by grepping that file.
+  const deprecatedLines = [
+    '---',
+    stringifyYaml({
+      title: 'Deprecated icon names',
+      description:
+        'Deprecated and removed icon names and what to use instead.',
+    }).trim(),
+    '---',
+    '',
+    '# Deprecated icon names',
     '',
     "Don't use these. Deprecated names still render but will be removed; removed names render a broken image. The `@elastic/eui/no-deprecated-icon-aliases` lint rule flags static uses.",
     '',
@@ -694,9 +706,12 @@ const writeIcons = () => {
             exists.has(name) ? 'Deprecated' : 'Removed'
           } | ${escapeCell(replacement)} |`
       ),
-    ''
+    '',
+  ];
+  fs.writeFileSync(
+    path.join(outDir, 'icons-deprecated.md'),
+    deprecatedLines.join('\n')
   );
-  fs.writeFileSync(path.join(outDir, 'icons.md'), lines.join('\n'));
   return {
     listed: icons.filter((icon) => !deprecated.has(icon.name)).length,
     deprecated: deprecated.size,
