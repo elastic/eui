@@ -183,8 +183,24 @@ const pageUrlPath = (file, frontmatter) => {
   return `/docs/${relative}`;
 };
 
-const outputPathFor = (file) =>
-  path.join(outDir, path.relative(docsDir, file).replace(/\.mdx$/, '.md'));
+// Agents search `components/` for a component, so the website's utilities (EuiTextTruncate,
+// EuiPortal...) go there too, and theming loses the getting-started prefix.
+const outputDirs = [
+  ['utilities', 'components/utilities'],
+  ['getting-started/theming', 'theming'],
+  ['getting-started/working-with-emotion', 'theming/emotion'],
+];
+
+const outputPathFor = (file) => {
+  let relative = path.relative(docsDir, file).replace(/\.mdx$/, '.md');
+  for (const [from, to] of outputDirs) {
+    if (relative.startsWith(`${from}/`)) {
+      relative = to + relative.slice(from.length);
+      break;
+    }
+  }
+  return path.join(outDir, relative);
+};
 
 const rewriteLink = (url, fromFile, outFile) => {
   if (!isWebsiteUrl(url)) return url;
