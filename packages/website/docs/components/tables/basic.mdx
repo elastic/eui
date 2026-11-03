@@ -1403,6 +1403,20 @@ relative length units (e.g., `%`, `vw` or `cqw`/`cqi`).
 Enabling inline scrolling automatically switches `tableLayout` to `auto`
 because in that configuration the table's width is dependent on its cell widths.
 
+Set `sticky: true` on the [actions column](#row-actions) so row actions stay visible
+while the table scrolls. It must be the last column.
+
+```tsx
+const columns: Array<EuiBasicTableColumn<User>> = [
+  // ...data columns
+  {
+    name: 'Actions',
+    actions,
+    sticky: true,
+  },
+];
+```
+
 Consider turning on the [`stickyScrollbar`](./custom.mdx#sticky-horizontal-scrollbar) prop together with inline
 scrolling for best results across all devices.
 
