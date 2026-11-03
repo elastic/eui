@@ -14,12 +14,17 @@ export type IconStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;
 
 const COMPONENT_ICON_ATTRIBUTES: Readonly<Record<string, ReadonlySet<string>>> =
   {
+    EuiComment: new Set(['eventIcon']),
     EuiCommentTimeline: new Set(['timelineAvatar']),
     EuiContextMenuItem: new Set(['icon']),
+    EuiFieldNumber: new Set(['icon']),
+    EuiFieldText: new Set(['icon']),
     EuiFormAppend: new Set(['iconLeft', 'iconRight']),
     EuiFormAppendPrepend: new Set(['iconLeft', 'iconRight']),
+    EuiFormControlLayout: new Set(['icon']),
     EuiFormPrepend: new Set(['iconLeft', 'iconRight']),
     EuiLoadingLogo: new Set(['logo']),
+    EuiTextArea: new Set(['icon']),
     EuiTimelineItem: new Set(['icon']),
   };
 

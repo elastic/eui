@@ -128,6 +128,22 @@ ruleTester.run('no-removed-icons', NoRemovedIcons, {
       ],
     },
     {
+      code: 'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="popout" />;\n<EuiComment eventIcon="eyeClosed" />',
+      output:
+        'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="external" />;\n<EuiComment eventIcon="eyeSlash" />',
+      languageOptions,
+      errors: [
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'popout', replacement: 'external' },
+        },
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'eyeClosed', replacement: 'eyeSlash' },
+        },
+      ],
+    },
+    {
       code: '<GenAiToolCard iconType="returnKey" />',
       output: '<GenAiToolCard iconType="return" />',
       languageOptions,
