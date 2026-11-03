@@ -10,23 +10,34 @@ import {
   _EuiThemeSize,
   euiCanAnimate,
   logicalSizeCSS,
-  logicalShorthandCSS,
-  mathWithUnits,
 } from '../../global_styling';
-import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
-import {
-  EuiLoadingSpinnerSize,
-  EuiLoadingSpinnerColor,
-} from './loading_spinner';
+import { EuiLoadingSpinnerSize } from './loading_spinner';
 
-const _loadingSpinner = keyframes`
+const _spinnerTurn = keyframes`
   from {
     transform: rotate(0deg);
   }
 
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
+  }
+`;
+
+const _spinnerDash = keyframes`
+  0% {
+    stroke-dasharray: 0 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -16;
+  }
+
+  100% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -59;
   }
 `;
 
@@ -40,46 +51,43 @@ const spinnerSizes: {
   xxl: 'xxl',
 };
 
-export const euiSpinnerBorderColorsCSS = (
-  { euiTheme, highContrastMode }: UseEuiTheme,
-  colors: EuiLoadingSpinnerColor = {}
-): string => {
-  let {
-    border = euiTheme.components.loadingSpinnerBorder,
-    highlight = euiTheme.components.loadingSpinnerHighlight,
-  } = colors;
+const durationMs = (value: string, multiple: number) =>
+  `${Math.round((parseFloat(value) || 500) * multiple)}ms`;
 
-  if (highContrastMode === 'forced') {
-    border = euiTheme.colors.lightestShade;
-    highlight = euiTheme.colors.fullShade;
-  }
-  return `${highlight} ${border} ${border} ${border}`;
-};
-
-export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-
-  const smallerBorderWidth = highContrastMode
-    ? euiTheme.border.width.thick
-    : mathWithUnits(euiTheme.border.width.thin, (x) => x * 1.5);
-  const largerBorderWidth = highContrastMode
-    ? mathWithUnits(euiTheme.border.thick, (x) => x * 2)
-    : euiTheme.border.width.thick;
+export const euiLoadingSpinnerStyles = ({
+  euiTheme,
+  colorMode,
+}: UseEuiTheme) => {
+  // Dash cycle is 3 × extraSlow. The turn is 4/3 of that cycle.
+  const dashDuration = durationMs(euiTheme.animation.extraSlow, 3);
+  const turnDuration = durationMs(euiTheme.animation.extraSlow, 4);
 
   return {
     euiLoadingSpinner: css`
       flex-shrink: 0; /* Ensures it never scales down below its intended size */
-      display: inline-block;
-      border-radius: 50%;
-      border: ${largerBorderWidth} solid ${euiTheme.border.color};
-      ${logicalShorthandCSS(
-        'border-color',
-        euiSpinnerBorderColorsCSS(euiThemeContext)
-      )}
-      ${preventForcedColors(euiThemeContext)}
+      display: inline-flex;
+      color: currentColor;
+    `,
+    svg: css`
+      inline-size: 100%;
+      block-size: 100%;
+      overflow: visible;
+      fill: none;
+      stroke: currentColor;
 
-      ${euiCanAnimate} {
-        animation: ${_loadingSpinner} 0.6s infinite linear;
+      .euiLoadingSpinner__track {
+        opacity: ${colorMode === 'DARK' ? 0.24 : 0.18};
+      }
+
+      .euiLoadingSpinner__arc {
+        stroke-dasharray: 42 150;
+        stroke-dashoffset: -16;
+        transform-origin: center;
+
+        ${euiCanAnimate} {
+          animation: ${_spinnerDash} ${dashDuration} linear infinite,
+            ${_spinnerTurn} ${turnDuration} linear infinite;
+        }
       }
     `,
 
@@ -89,14 +97,12 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.size[spinnerSizes.s],
         euiTheme.size[spinnerSizes.s]
       )}
-      border-width: ${smallerBorderWidth};
     `,
     m: css`
       ${logicalSizeCSS(
         euiTheme.size[spinnerSizes.m],
         euiTheme.size[spinnerSizes.m]
       )}
-      border-width: ${smallerBorderWidth};
     `,
     l: css`
       ${logicalSizeCSS(

@@ -9,14 +9,15 @@
 import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 
 import { useLoadingAriaLabel } from './_loading_strings';
-import {
-  euiLoadingSpinnerStyles,
-  euiSpinnerBorderColorsCSS,
-} from './loading_spinner.styles';
+import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
+
+// ViewBox stroke weight from the dash-ring study. The 12px size is slightly heavier.
+const SPINNER_WEIGHT = 2;
+const SPINNER_WEIGHT_S = SPINNER_WEIGHT * 1.2;
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = (typeof SIZES)[number];
@@ -53,12 +54,18 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   const styles = useEuiMemoizedStyles(euiLoadingSpinnerStyles);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
 
-  const euiTheme = useEuiTheme();
-  const customColorStyle = color
-    ? { ...style, borderColor: euiSpinnerBorderColorsCSS(euiTheme, color) }
-    : style;
+  const paint =
+    color?.highlight ||
+    (color?.border && color.border.toLowerCase() !== 'currentcolor'
+      ? color.border
+      : undefined);
+  const customColorStyle = {
+    ...style,
+    ...(paint ? { color: paint } : undefined),
+  };
 
   const defaultLabel = useLoadingAriaLabel();
+  const strokeWidth = size === 's' ? SPINNER_WEIGHT_S : SPINNER_WEIGHT;
 
   return (
     <span
@@ -68,6 +75,29 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
       role="progressbar"
       aria-label={ariaLabel || defaultLabel}
       {...rest}
-    />
+    >
+      <svg
+        css={styles.svg}
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          className="euiLoadingSpinner__track"
+          cx="12"
+          cy="12"
+          r="9.5"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+        />
+        <circle
+          className="euiLoadingSpinner__arc"
+          cx="12"
+          cy="12"
+          r="9.5"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
   );
 };
