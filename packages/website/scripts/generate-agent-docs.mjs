@@ -116,20 +116,47 @@ const getAttribute = (node, name) => {
 const escapeCell = (value) =>
   value.replace(/\|/g, '\\|').replace(/\n+/g, ' ').trim();
 
+// Repeated on nearly every component with no component-specific meaning;
+// "Also accepts props from" already names their source.
+const COMMON_PROPS = new Set(['className', 'aria-label', 'data-test-subj', 'css']);
+const GENERIC_ARIA_LABEL = /^Defines a string value that labels the current element/;
+
+const isCommonProp = (prop) =>
+  COMMON_PROPS.has(prop.name) &&
+  !prop.isRequired &&
+  (!prop.description || GENERIC_ARIA_LABEL.test(prop.description));
+
+const isDeprecated = (prop) => /@deprecated\b/.test(prop.description ?? '');
+
 const renderPropTable = (component) => {
-  const rows = Object.values(component.props).map((prop) => {
+  const props = Object.values(component.props).filter(
+    (prop) => !isCommonProp(prop)
+  );
+  // Deprecated props go last so a scan of the table picks a current prop.
+  props.sort((a, b) => isDeprecated(a) - isDeprecated(b));
+  const rows = props.map((prop) => {
     let type = prop.type?.raw ?? prop.type?.name ?? '';
     if (type.length > MAX_TYPE_LENGTH)
       type = `${type.slice(0, MAX_TYPE_LENGTH)}… (truncated, see eui.d.ts)`;
-    const name = prop.isRequired
-      ? `\`${prop.name}\` (required)`
-      : `\`${prop.name}\``;
+    const deprecated = isDeprecated(prop);
+    const name = [
+      `\`${prop.name}\``,
+      prop.isRequired && '(required)',
+      deprecated && '**(deprecated)**',
+    ]
+      .filter(Boolean)
+      .join(' ');
     const defaultValue = prop.defaultValue
       ? `\`${escapeCell(prop.defaultValue)}\``
       : '';
+    const description = deprecated
+      ? `**Deprecated:** ${prop.description
+          .replace(/@deprecated\b\s*(-\s*)?/, '')
+          .trim()}`
+      : prop.description ?? '';
     return `| ${name} | \`${escapeCell(
       type
-    )}\` | ${defaultValue} | ${escapeCell(prop.description ?? '')} |`;
+    )}\` | ${defaultValue} | ${escapeCell(description)} |`;
   });
   const lines = [`### ${component.displayName} props`, ''];
   if (component.extends?.length) {
@@ -728,6 +755,8 @@ const writeIndex = (results, publicComponents) => {
     '',
     'Every documented EUI component, utility, theme token and style helper, grouped by category. Each entry links to a page with usage guidance, examples and props for the installed version.',
     '',
+    "Open a component's page before using it: these one-line summaries leave out props and usage rules.",
+    '',
     'Prefer these examples over patterns copied from existing code, which may use removed props or icon names.',
     '',
     'Check every icon `type` and `iconType` value against [Icon names](icons.md): a removed name renders as a broken image, and TypeScript accepts any string.',
@@ -799,7 +828,11 @@ console.log(
     publicComponents.length
   } public components`
 );
-if (failures.length) console.log(`\nFailed:\n${failures.join('\n')}`);
+if (failures.length) {
+  console.error(`\nFailed:\n${failures.join('\n')}`);
+  // A failed page is missing from the output, so a release must not ship it.
+  process.exitCode = 1;
+}
 if (dropped.size) {
   console.log('\nDropped content (not representable as markdown):');
   for (const [what, files] of [...dropped].sort(
