@@ -1,0 +1,21 @@
+---
+sidebar_position: 0
+sidebar_label: Overview
+description: Decision guide for searching and filtering a list or table, covering EuiFieldSearch, EuiFilterGroup, EuiSelectable in a popover, EuiSearchBar, EuiInMemoryTable search and EuiFacetGroup. Read before adding search or filters to a list.
+---
+
+# Search and filter overview
+
+Filters above a list or table are a toolbar, not a form: users toggle them on and off, combine them, and expect to see what is active at a glance. Pick the control by what the user needs to narrow down.
+
+| Need | Use |
+| --- | --- |
+| Find items by text only | [EuiFieldSearch](./search.mdx). If an [EuiInMemoryTable](../../tables/in-memory.mdx#searching) holds the data, use its `search` prop instead. |
+| A few yes/no or category filters that can be on together | [EuiFilterGroup](../../navigation/buttons/filter-group.mdx) with `EuiFilterButton` toggles (`isToggle`, `isSelected`). Put all the buttons in one group. |
+| One filter with many values, such as tags or owners | An `EuiFilterButton` that opens an [EuiPopover](../../containers/popover.mdx) with a multi-select [EuiSelectable](../selection/selectable.mdx). See [multi-select filter groups](../../navigation/buttons/filter-group.mdx#multi-select). |
+| Text search and filters in one bar, or a query users can type, read and share | [EuiSearchBar](./search-bar.mdx), or the `search` prop with `filters` on [EuiInMemoryTable](../../tables/in-memory.mdx#searching). |
+| A sidebar of facets with result counts | [EuiFacetGroup](../../navigation/facet.mdx). |
+
+Combine them: an `EuiFieldSearch` next to an `EuiFilterGroup` in an `EuiFlexGroup` is the common toolbar for a list that does not need query syntax.
+
+Avoid [EuiSelect](../selection/basic-select.mdx) and [EuiSuperSelect](../selection/super-select.mdx) as list filters. They allow only one value, so users can't combine options, and they look like form fields rather than filters.
