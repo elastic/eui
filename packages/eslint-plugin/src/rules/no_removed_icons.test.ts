@@ -116,6 +116,18 @@ ruleTester.run('no-removed-icons', NoRemovedIcons, {
       ],
     },
     {
+      code: 'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="arrowDown" />',
+      output:
+        'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="chevronSingleDown" />',
+      languageOptions,
+      errors: [
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'arrowDown', replacement: 'chevronSingleDown' },
+        },
+      ],
+    },
+    {
       code: '<GenAiToolCard iconType="returnKey" />',
       output: '<GenAiToolCard iconType="return" />',
       languageOptions,

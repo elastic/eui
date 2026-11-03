@@ -15,6 +15,7 @@ export type IconStringNode = TSESTree.Literal | TSESTree.TemplateLiteral;
 const COMPONENT_ICON_ATTRIBUTES: Readonly<Record<string, ReadonlySet<string>>> =
   {
     EuiCommentTimeline: new Set(['timelineAvatar']),
+    EuiContextMenuItem: new Set(['icon']),
     EuiFormAppend: new Set(['iconLeft', 'iconRight']),
     EuiFormAppendPrepend: new Set(['iconLeft', 'iconRight']),
     EuiFormPrepend: new Set(['iconLeft', 'iconRight']),

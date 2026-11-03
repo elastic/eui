@@ -131,6 +131,18 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
       ],
     },
     {
+      code: 'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="temperature" />',
+      output:
+        'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="thermometer" />',
+      languageOptions,
+      errors: [
+        {
+          messageId: 'deprecatedIconAlias',
+          data: { alias: 'temperature', replacement: 'thermometer' },
+        },
+      ],
+    },
+    {
       code: 'import { EuiLoadingLogo } from "@elastic/eui";\n<EuiLoadingLogo logo="visArea" />',
       output:
         'import { EuiLoadingLogo } from "@elastic/eui";\n<EuiLoadingLogo logo="chartArea" />',
