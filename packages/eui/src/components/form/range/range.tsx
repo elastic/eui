@@ -19,7 +19,11 @@ import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
-import { useEuiTheme, useGeneratedHtmlId, useLatest } from '../../../services';
+import {
+  useEuiMemoizedStyles,
+  useGeneratedHtmlId,
+  useLatest,
+} from '../../../services';
 import { useFormContext } from '../eui_form_context';
 
 import { getLevelColor } from './range_levels_colors';
@@ -70,7 +74,6 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
   inputPopoverProps,
   ...rest
 }) => {
-  const theme = useEuiTheme();
   const { defaultFullWidth } = useFormContext();
   const generatedId = useGeneratedHtmlId();
   const onBlurRef = useLatest(onBlur);
@@ -84,7 +87,7 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
   const showInputOnly = showInput === 'inputWithPopover';
   const canShowDropdown = showInputOnly && !readOnly && !disabled;
   const classes = classNames('euiRange', className);
-  const styles = euiRangeStyles(theme);
+  const styles = useEuiMemoizedStyles(euiRangeStyles);
   const cssStyles = [styles.euiRange, showInput && styles.hasInput];
   const thumbColor = levels && getLevelColor(levels, Number(value));
   const fullWidth = _fullWidth ?? defaultFullWidth;

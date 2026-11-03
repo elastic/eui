@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, useMemo } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
 import type { EuiRangeProps } from './types';
@@ -61,11 +61,10 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
     }
   }, [valuePosition, valuePositionSide]);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeTooltipStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeTooltipStyles);
   const cssStyles = [styles.euiRangeTooltip];
 
-  const valueStyles = euiRangeTooltipValueStyles(euiTheme);
+  const valueStyles = useEuiMemoizedStyles(euiRangeTooltipValueStyles);
   const cssValueStyles = [
     valueStyles.euiRangeTooltip__value,
     valueStyles[valuePositionSide],
