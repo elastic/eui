@@ -4,6 +4,8 @@ Another way to allow for continued interactions of the page content while a flyo
 
 Push flyouts do not use a focus trap, do not close on Escape keypress, do not inherit a [dialog role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role), and do not include any of the default screen reader guidance that overlay flyouts contain out-of-the-box.
 
+When a push flyout closes, it returns focus to the trigger element if focus was still inside the flyout or was lost to the document body. `focusTrapProps.returnFocus` customizes this the same way it does for overlay flyouts. Push flyouts don't move focus into themselves when they open.
+
 Please be cautious when using push flyouts, and make sure you are managing your own focus and screen reader UX.
 
 :::

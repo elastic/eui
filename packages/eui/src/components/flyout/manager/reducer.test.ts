@@ -20,6 +20,7 @@ import {
   closeAllFlyouts,
   setActiveFlyout,
   setFlyoutWidth,
+  setFlyoutResizable,
   setPagination,
   setLayoutMode,
   setActivityStage,
@@ -574,6 +575,39 @@ describe('flyoutManagerReducer', () => {
       const newState = flyoutManagerReducer(initialState, action);
 
       expect(newState).toEqual(initialState);
+    });
+  });
+
+  describe('ACTION_SET_RESIZABLE', () => {
+    it('updates the flag set at registration', () => {
+      let state = flyoutManagerReducer(
+        initialState,
+        addFlyout(
+          'main-1',
+          'main',
+          LEVEL_MAIN,
+          'm',
+          undefined,
+          undefined,
+          undefined,
+          true
+        )
+      );
+      expect(state.flyouts[0].resizable).toBe(true);
+
+      state = flyoutManagerReducer(state, setFlyoutResizable('main-1', false));
+      expect(state.flyouts[0].resizable).toBe(false);
+    });
+
+    it('returns the same state when the flag is unchanged', () => {
+      const state = flyoutManagerReducer(
+        initialState,
+        addFlyout('main-1', 'main', LEVEL_MAIN)
+      );
+
+      expect(
+        flyoutManagerReducer(state, setFlyoutResizable('main-1', false))
+      ).toBe(state);
     });
   });
 
