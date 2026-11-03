@@ -63,8 +63,10 @@ their own version at runtime.
 | `EuiContextMenuObject` | [src/components/context_menu/README.md](src/components/context_menu/README.md) |
 | `EuiModalObject` | [src/components/modal/README.md](src/components/modal/README.md) |
 | `EuiTableObject` | [src/components/table/README.md](src/components/table/README.md) |
+| `EuiTabsObject` | [src/components/tabs/README.md](src/components/tabs/README.md) |
 | `EuiPaginationObject` | [src/components/pagination/README.md](src/components/pagination/README.md) |
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
+| `EuiCallOutObject` | [src/components/call_out/README.md](src/components/call_out/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
