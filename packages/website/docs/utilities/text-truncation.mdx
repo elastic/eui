@@ -1,6 +1,6 @@
 ---
 keywords: [EuiTextTruncate, EuiTextBlockTruncate]
-description: Truncate single-line or multi-line text to fit its container, at the start, end, middle or both ends, with a tooltip for the full text.
+description: Truncate text to fit its container. EuiTextTruncate cuts one line at the start, end, middle or both ends and shows the full text in a tooltip only while truncated; use it instead of a CSS ellipsis with your own overflow check and EuiToolTip. EuiTextBlockTruncate clamps multiple lines, with no tooltip.
 ---
 
 # Text truncation
@@ -11,7 +11,7 @@ import { FixedSizeList } from 'react-window';
 
 ## Single line
 
-**EuiTextTruncate** provides customizable and size-aware single line text truncation.
+**EuiTextTruncate** provides customizable and size-aware single line text truncation. It re-measures when its container resizes and wraps the text in a tooltip with the full text only while it is truncated.
 
 The four truncation styles supported are `start`, `end`, `startEnd`, and `middle`. Resize the below demo to see how different truncation styles respond to dynamic width changes.
 
