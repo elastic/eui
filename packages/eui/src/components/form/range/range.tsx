@@ -14,6 +14,7 @@ import React, {
   type FunctionComponent,
   type MouseEvent,
   type ReactElement,
+  type ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -141,6 +142,19 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
     }
   };
 
+  // The visible value tooltip is hidden from screen readers, so any text
+  // prepended/appended to it (e.g. units) is passed to the slider instead
+  const isTextNode = (node: ReactNode) =>
+    typeof node === 'string' || typeof node === 'number';
+  const valueAffixAriaText =
+    showValue &&
+    !!String(value).length &&
+    (valuePrepend != null || valueAppend != null) &&
+    (valuePrepend == null || isTextNode(valuePrepend)) &&
+    (valueAppend == null || isTextNode(valueAppend))
+      ? `${valuePrepend ?? ''}${value}${valueAppend ?? ''}`
+      : undefined;
+
   const input: ReactElement | null = showInput ? (
     <EuiRangeInput
       id={id}
@@ -199,7 +213,9 @@ export const EuiRange: FunctionComponent<EuiRangeProps> = ({
         showRange={showRange}
       >
         <EuiRangeSlider
-          ariaValueText={ticks ? handleAriaValueText(ticks, value) : undefined}
+          ariaValueText={
+            (ticks && handleAriaValueText(ticks, value)) || valueAffixAriaText
+          }
           id={showInput ? undefined : id}
           name={name}
           min={min}

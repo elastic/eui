@@ -74,7 +74,10 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
 
   return (
     <div className="euiRangeTooltip" css={cssStyles}>
+      {/* Hidden from assistive tech: `<output>` is an implicit live region,
+          which would announce the value a second time after the slider itself */}
       <output
+        aria-hidden="true"
         className="euiRangeTooltip__value"
         css={cssValueStyles}
         htmlFor={name}
