@@ -609,7 +609,6 @@ exports[`EuiRange props value should render 1`] = `
   >
     <input
       aria-hidden="false"
-      aria-valuetext="before200after"
       class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"

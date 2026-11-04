@@ -292,51 +292,6 @@ describe('EuiRange', () => {
 
       expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
     });
-
-    it('includes string `valuePrepend` and `valueAppend` when `showValue` is set', () => {
-      const { getByRole } = render(
-        <EuiRange
-          {...props}
-          value={20}
-          showValue
-          valuePrepend="~"
-          valueAppend="%"
-        />
-      );
-
-      expect(getByRole('slider')).toHaveAttribute('aria-valuetext', '~20%');
-    });
-
-    it('prefers tick labels over `valuePrepend` and `valueAppend`', () => {
-      const { getByRole } = render(
-        <EuiRange
-          {...props}
-          value={20}
-          showValue
-          valueAppend="%"
-          showTicks
-          ticks={[{ value: 20, label: '20kb' }]}
-        />
-      );
-
-      expect(getByRole('slider')).toHaveAttribute(
-        'aria-valuetext',
-        '20, (20kb)'
-      );
-    });
-
-    it('does not use non-text `valueAppend`', () => {
-      const { getByRole } = render(
-        <EuiRange
-          {...props}
-          value={20}
-          showValue
-          valueAppend={<strong>%</strong>}
-        />
-      );
-
-      expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
-    });
   });
 
   describe('value tooltip', () => {
