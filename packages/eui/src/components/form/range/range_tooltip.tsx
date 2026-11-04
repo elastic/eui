@@ -74,10 +74,11 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
 
   return (
     <div className="euiRangeTooltip" css={cssStyles}>
-      {/* Hidden from assistive tech: `<output>` is an implicit live region,
-          which would announce the value a second time after the slider itself */}
+      {/* `<output>` is an implicit live region, which would announce the value
+          a second time after the slider itself. Turn off live announcements but
+          keep the content (incl. valuePrepend/valueAppend) readable */}
       <output
-        aria-hidden="true"
+        aria-live="off"
         className="euiRangeTooltip__value"
         css={cssValueStyles}
         htmlFor={name}

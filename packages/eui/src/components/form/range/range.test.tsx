@@ -295,14 +295,15 @@ describe('EuiRange', () => {
   });
 
   describe('value tooltip', () => {
-    it('is hidden from assistive technology', () => {
+    it('does not announce value changes but keeps its content accessible', () => {
       const { container } = render(
-        <EuiRange {...props} value={20} showValue />
+        <EuiRange {...props} value={20} showValue valueAppend="%" />
       );
+      const tooltip = container.querySelector('.euiRangeTooltip__value');
 
-      expect(
-        container.querySelector('.euiRangeTooltip__value')
-      ).toHaveAttribute('aria-hidden', 'true');
+      expect(tooltip).toHaveAttribute('aria-live', 'off');
+      expect(tooltip).not.toHaveAttribute('aria-hidden');
+      expect(tooltip).toHaveTextContent('20%');
     });
   });
 });
