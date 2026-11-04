@@ -1,5 +1,4 @@
 <svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="300" height="200" fill="var(--svg-fill-background)" />
     <rect x="40" y="30" width="220" height="140" rx="1" fill="var(--svg-fill-accent-background)" />
     <path
         d="M229.485 42.5967C230.241 42.4287 230.073 41.5049 229.737 41.253C229.485 41.085 228.897 41.169 228.645 41.5049C228.393 41.8409 228.645 42.1768 229.485 42.5967Z"

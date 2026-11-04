@@ -145,47 +145,18 @@ const config: Config = {
 
   themeConfig: {
     navbar: {
-      title: 'Elastic UI',
+      title: '',
       logo: {
         alt: 'Elastic UI',
         src: 'images/eui_logo.svg',
       },
+      // POC: section nav lives in DocSidebarTitle popover (not the navbar)
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'getting-started',
-          position: 'left',
-          label: 'Getting started',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'components',
-          position: 'left',
-          label: 'Components',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'utilities',
-          position: 'left',
-          label: 'Utilities',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'patterns',
-          position: 'left',
-          label: 'Patterns',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'content',
-          position: 'left',
-          label: 'Content',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'dataviz',
-          position: 'left',
-          label: 'Data visualization',
+          href: 'https://www.figma.com/community/file/1656321711577585144/elastic-ui-borealis',
+          label: 'Figma',
+          position: 'right',
+          component: 'figma',
         },
         {
           href: 'https://github.com/elastic/eui/tree/main/packages/eui/changelogs',
@@ -198,12 +169,6 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
           component: 'github',
-        },
-        {
-          href: 'https://www.figma.com/community/file/1656321711577585144/elastic-ui-borealis',
-          label: 'Figma',
-          position: 'right',
-          component: 'figma',
         },
       ],
     },

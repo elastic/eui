@@ -93,7 +93,8 @@ export default function NavbarNavLink({
         title={label}
         icon={componentData.icon}
         className={props.className}
-        showLabel
+        // Icon-only in the navbar; label is exposed via tooltip/`title`
+        isMenuItem={false}
       />
     );
   }

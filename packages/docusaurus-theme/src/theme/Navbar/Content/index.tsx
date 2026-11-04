@@ -20,7 +20,7 @@ import NavbarItem, {
 } from '@theme-original/NavbarItem';
 import NavbarColorModeToggle from '@theme-original/Navbar/ColorModeToggle';
 import SearchBar from '@theme-original/SearchBar';
-import NavbarMobileSidebarToggle from '@theme-original/Navbar/MobileSidebar/Toggle';
+import NavbarMobileSidebarToggle from '../MobileSidebar/Toggle';
 import NavbarLogo from '@theme-original/Navbar/Logo';
 import NavbarSearch from '@theme-original/Navbar/Search';
 import {
@@ -114,7 +114,18 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     navbarItemsRight: css`
-      gap: ${euiTheme.size.xs};
+      gap: ${euiTheme.size.xxs};
+      align-items: center;
+
+      /* Infima uses inline-block on .navbar__item which baseline-aligns
+         icons of different metrics; force a shared flex box instead */
+      .navbar__item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        line-height: 0;
+      }
     `,
     actions: css`
       ${mobileMediaQuery} {
@@ -133,7 +144,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         padding-block: ${form.controlCompressedPadding};
 
         border: ${euiTheme.border.width.thin} solid ${form.borderColor};
-        border-radius: ${form.controlBorderRadius};
+        border-radius: ${euiTheme.border.radius.control};
 
         ${placeHolderStyles(`
           color: ${form.controlPlaceholderText};
@@ -180,6 +191,18 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     themeSwitcher: css`
+      display: flex;
+      align-items: center;
+      gap: ${euiTheme.size.xxs};
+
+      /* Match logo / version selector divider; 8px each side of the rule
+         (margin accounts for parent flex gap so both sides stay even) */
+      ${desktopMediaQuery} {
+        padding-inline-end: 8px;
+        margin-inline-end: calc(8px - ${euiTheme.size.xxs});
+        border-right: ${euiTheme.border.thin};
+      }
+
       ${mobileMediaQuery} {
         display: none;
       }
@@ -282,12 +305,10 @@ export default function NavbarContent({
                 <SearchBar />
               </NavbarSearch>
             )}
-            <NavbarColorModeToggle className="colorModeToggle" />
-            {isBrowser && (
-              <div css={styles.themeSwitcher}>
-                <HighContrastModeToggle />
-              </div>
-            )}
+            <div css={styles.themeSwitcher}>
+              <NavbarColorModeToggle className="colorModeToggle" />
+              {isBrowser && <HighContrastModeToggle />}
+            </div>
             <NavbarItems items={rightItems} />
           </>
         }

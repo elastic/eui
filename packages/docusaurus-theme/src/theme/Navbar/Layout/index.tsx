@@ -26,7 +26,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 
   return {
     navbar: css`
-      --ifm-navbar-padding-horizontal: ${euiTheme.size.base};
+      --ifm-navbar-padding-horizontal: ${euiTheme.size.m}; /* 12px */
       --ifm-navbar-padding-vertical: ${euiTheme.size.s};
       --ifm-navbar-item-padding-horizontal: 0;
       --ifm-navbar-item-padding-vertical: 0;

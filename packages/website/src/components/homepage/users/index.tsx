@@ -1,215 +1,300 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import React from 'react';
 import { css } from '@emotion/react';
-import Heading from '@theme/Heading';
 import {
-  CommonProps,
-  EuiCard,
+  EuiBadge,
   EuiIcon,
+  EuiLink,
+  EuiPanel,
+  EuiSplitPanel,
+  EuiText,
+  EuiTitle,
   IconType,
-  mathWithUnits,
+  euiShadowHover,
   useEuiMemoizedStyles,
+  useGeneratedHtmlId,
   UseEuiTheme,
 } from '@elastic/eui';
 
-import { HomepageContainer, HomepageSection } from '../layout';
+import { HomepageSection } from '../layout';
 
-const CONTENT_DATA = {
-  developer: [
-    {
-      title: 'Getting started',
-      description: 'Install framework and make initial adjustments',
-      href: './docs/getting-started/setup/',
-      icon: 'keyboard',
-    },
-    {
-      title: 'Contributing',
-      description: 'Help EUI improve even faster',
-      href: 'https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui',
-      icon: 'plusCircle',
-      target: '_blank',
-    },
-    {
-      title: 'Tokens',
-      description: 'Speed up your work by using and customizing tokens',
-      href: './docs/getting-started/theming/tokens/colors/',
-      icon: 'brush',
-    },
-  ],
-  designer: [
-    {
-      title: 'Patterns',
-      description: 'Preferred solutions to specific user needs',
-      href: './docs/patterns/',
-      icon: 'pattern',
-    },
-    {
-      title: 'Content',
-      description: 'Write thoughtful and consistent in-product copy',
-      href: './docs/content/',
-      icon: 'pencil',
-    },
-    {
-      title: 'Icons',
-      description: 'A wide variety of icons to enhance your designs',
-      href: './docs/components/display/icons/',
-      icon: 'package',
-    },
-  ],
-};
+// Match DocSidebarTitle / DOC_SECTIONS order and labels
+const CONTENT_DATA = [
+  {
+    title: 'Getting started',
+    description: 'Setup, theming, and tokens for your project',
+    href: './docs/getting-started/setup/',
+    icon: 'rocket' as IconType,
+    badges: [
+      { label: 'Setup', href: './docs/getting-started/setup/' },
+      { label: 'Theming', href: './docs/getting-started/theming/theme-provider/' },
+      { label: 'Tokens', href: './docs/getting-started/theming/tokens/colors/' },
+    ],
+  },
+  {
+    title: 'Components',
+    description: 'Usage examples, guidelines, and prop tables',
+    href: './docs/components/',
+    icon: 'grid' as IconType,
+    badges: [
+      { label: 'Forms', href: './docs/components/forms/' },
+      { label: 'Tables', href: './docs/components/tables/' },
+      { label: 'Buttons', href: './docs/components/navigation/buttons/' },
+    ],
+  },
+  {
+    title: 'Utilities',
+    description: 'Helpers for portals, accessibility, and more',
+    href: './docs/utilities/accessibility/',
+    icon: 'wrench' as IconType,
+    badges: [
+      { label: 'Portal', href: './docs/utilities/portal/' },
+      { label: 'Truncation', href: './docs/utilities/text-truncation/' },
+      { label: 'Accessibility', href: './docs/utilities/accessibility/' },
+    ],
+  },
+  {
+    title: 'Patterns',
+    description: 'Preferred solutions to specific user needs',
+    href: './docs/patterns/',
+    icon: 'pattern' as IconType,
+    badges: [
+      { label: 'Errors', href: './docs/patterns/error-messages/' },
+      { label: 'Tables', href: './docs/patterns/tables/' },
+      { label: 'Save', href: './docs/patterns/save-buttons/' },
+    ],
+  },
+  {
+    title: 'Content',
+    description: 'Thoughtful and consistent in-product copy',
+    href: './docs/content/',
+    icon: 'pencil' as IconType,
+    badges: [
+      { label: 'Tone', href: './docs/content/adapt-tone/' },
+      { label: 'Language', href: './docs/content/language/' },
+      { label: 'Inclusivity', href: './docs/content/inclusivity/' },
+    ],
+  },
+  {
+    title: 'Data visualization',
+    description: 'Charts, dashboards, and data displays',
+    href: './docs/dataviz/',
+    icon: 'visArea' as IconType,
+    badges: [
+      { label: 'Types', href: './docs/dataviz/types/' },
+      { label: 'Theming', href: './docs/dataviz/theming/' },
+      { label: 'Accessibility', href: './docs/dataviz/accessibility-features/' },
+    ],
+  },
+];
 
-const getStyles = ({ euiTheme }: UseEuiTheme) => {
-  const iconSize = mathWithUnits(
-    [euiTheme.size.xxxl, euiTheme.size.s],
-    (x, y) => x + y
-  );
-  const iconOffset = mathWithUnits(
-    [iconSize, euiTheme.size.base],
-    (x, y) => x + y
-  );
+const getStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  // POC: fixed icon well; was xxxl+s (56px)
+  const iconSize = '48px';
 
   return {
-    column: css`
-      flex: 0 1 50%;
+    section: css`
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: ${euiTheme.size.xxxl} 0;
+    `,
+    heading: css`
+      margin: 0;
+      margin-block-end: ${euiTheme.size.l};
+      /* Match well EuiPanel paddingSize="l" so title lines up with cards */
+      padding-inline-start: ${euiTheme.size.l};
+      text-align: start;
+    `,
+    well: css`
+      inline-size: 100%;
+      background-color: ${euiTheme.colors.lightestShade};
+      border-radius: ${euiTheme.border.radius.panel};
     `,
     list: css`
-      margin: ${euiTheme.size.l} 0 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: stretch;
+      gap: ${euiTheme.size.base};
+      margin: 0;
       padding: 0;
       list-style: none;
-    `,
-    listItem: css`
-      & + & {
-        margin-block-start: ${euiTheme.size.base};
+      inline-size: 100%;
+
+      > li {
+        display: flex;
+        block-size: 100%;
+      }
+
+      @media (min-width: 1200px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      @media (min-width: 1600px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     `,
-    card: css`
-      &:hover [data-icon-variant='regular'] {
-        background-color: var(--eui-background-color-success);
-        color: ${euiTheme.colors.textSuccess};
+    panel: css`
+      flex: 1;
+      inline-size: 100%;
+      block-size: 100%;
+      transition: box-shadow ${euiTheme.animation.fast}
+        ${euiTheme.animation.resistance};
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
       }
 
-      &:hover [data-icon-variant='alternative'] {
-        background-color: var(--eui-background-color-accent);
-        color: ${euiTheme.colors.textAccent};
-      }
+      &:hover {
+        ${euiShadowHover(euiThemeContext, 'm')}
 
-      .euiCard__content {
-        position: relative;
-        min-block-size: ${iconSize};
-
-        > * {
-          inline-size: calc(100% - ${iconOffset});
-          margin-inline-start: ${iconOffset};
-        }
-
-        > :last-child {
-          margin-block-start: ${euiTheme.size.xs};
-        }
-      }
-
-      .euiCard__title {
-        margin-block: 0;
-        font-size: var(--eui-font-size-m);
-        line-height: var(--eui-line-height-xxl);
-        text-align: left;
-
-        > a {
-          color: inherit;
-          line-height: inherit;
+        [data-card-icon] {
+          background-color: var(--eui-background-color-accent);
+          color: ${euiTheme.colors.textAccent};
         }
       }
     `,
-    decor: css`
-      position: absolute;
-      top: 0;
-      left: 0;
+    body: css`
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      /* Override SplitPanel.Inner flex-basis: 0% so body absorbs height, not footer */
+      flex-basis: auto;
+      min-block-size: 0;
+      padding: 0; /* link owns padding so the hit target fills the pane */
+    `,
+    bodyLink: css`
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: ${euiTheme.size.s};
+      flex: 1 1 auto;
+      block-size: 100%;
+      padding: ${euiTheme.size.l};
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+        color: inherit;
+      }
+    `,
+    icon: css`
       display: flex;
       align-items: center;
       justify-content: center;
       block-size: ${iconSize};
       inline-size: ${iconSize};
-    `,
-    icon: css`
+      margin-block-end: ${euiTheme.size.s}; /* + bodyLink gap → more space before title */
+      border-radius: ${euiTheme.border.radius.control};
       background-color: ${euiTheme.colors.lightestShade};
       color: ${euiTheme.colors.textSubdued};
     `,
-    text: css`
-      font-size: var(--eui-font-size-m);
-      line-height: var(--eui-line-height-l);
-      text-align: left;
+    title: css`
+      margin: 0;
+    `,
+    // POC: match EuiEmptyPrompt accent title divider (64×4)
+    titleDivider: css`
+      display: block;
+      flex-shrink: 0;
+      inline-size: ${euiTheme.size.xxxxl};
+      block-size: ${euiTheme.size.xs};
+      margin: 0;
+      margin-inline: 0;
+      background-color: ${euiTheme.colors.accent};
+      border: none;
+    `,
+    description: css`
+      margin: 0;
+      color: ${euiTheme.colors.textSubdued};
+    `,
+    footer: css`
+      /* Keep badge rail content-sized; SplitPanel.Inner defaults to equal flex split */
+      flex: 0 0 auto;
+      flex-basis: auto;
+    `,
+    badges: css`
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: ${euiTheme.size.xs};
+
+      .euiBadge {
+        margin: 0;
+        max-inline-size: 100%;
+      }
     `,
   };
 };
 
-const Icon = ({
-  type,
-  variant = 'regular',
-  ...rest
-}: { type: IconType; variant?: 'regular' | 'alternative' } & CommonProps) => {
-  const styles = useEuiMemoizedStyles(getStyles);
-
-  return (
-    <span
-      css={styles.icon}
-      data-icon-variant={variant}
-      aria-hidden="true"
-      {...rest}
-    >
-      <EuiIcon type={type} size="l" />
-    </span>
-  );
-};
-
 export const HomepageUsers = () => {
   const styles = useEuiMemoizedStyles(getStyles);
-  const { developer, designer } = CONTENT_DATA;
+  const headingId = useGeneratedHtmlId();
 
   return (
-    <HomepageSection>
-      <HomepageContainer>
-        <div css={styles.column}>
-          <Heading as="h2">Developers</Heading>
-          <ul css={styles.list}>
-            {developer &&
-              developer.map((dev) => (
-                <li key={dev.title} css={styles.listItem}>
-                  <EuiCard
-                    title={dev.title}
-                    href={dev.href}
-                    hasBorder
-                    css={styles.card}
-                  >
-                    <Icon type={dev.icon} css={styles.decor} />
-                    <div css={styles.text}>{dev.description}</div>
-                  </EuiCard>
-                </li>
-              ))}
-          </ul>
-        </div>
-
-        <div css={styles.column}>
-          <Heading as="h2">Designers</Heading>
-          <ul css={styles.list}>
-            {designer &&
-              designer.map((des) => (
-                <li key={des.title} css={styles.listItem}>
-                  <EuiCard
-                    title={des.title}
-                    href={des.href}
-                    hasBorder
-                    css={styles.card}
-                  >
-                    <Icon
-                      type={des.icon}
-                      css={styles.decor}
-                      variant="alternative"
-                    />
-                    <div css={styles.text}>{des.description}</div>
-                  </EuiCard>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </HomepageContainer>
+    <HomepageSection css={styles.section}>
+      <EuiTitle size="m">
+        <h2 id={headingId} css={styles.heading}>
+          Categories
+        </h2>
+      </EuiTitle>
+      <EuiPanel
+        color="transparent"
+        paddingSize="l"
+        hasShadow={false}
+        css={styles.well}
+      >
+        <ul css={styles.list} aria-labelledby={headingId}>
+          {CONTENT_DATA.map((item) => (
+            <li key={item.title}>
+              <EuiSplitPanel.Outer
+                direction="column"
+                hasBorder
+                grow
+                responsive={false}
+                css={styles.panel}
+              >
+                <EuiSplitPanel.Inner paddingSize="none" grow css={styles.body}>
+                  <EuiLink href={item.href} css={styles.bodyLink}>
+                    <span css={styles.icon} data-card-icon aria-hidden="true">
+                      <EuiIcon type={item.icon} size="l" />
+                    </span>
+                    <EuiTitle size="xs">
+                      <h3 css={styles.title}>{item.title}</h3>
+                    </EuiTitle>
+                    <hr aria-hidden css={styles.titleDivider} />
+                    <EuiText size="s">
+                      <p css={styles.description}>{item.description}</p>
+                    </EuiText>
+                  </EuiLink>
+                </EuiSplitPanel.Inner>
+                <EuiSplitPanel.Inner
+                  color="subdued"
+                  paddingSize="m"
+                  grow={false}
+                  css={styles.footer}
+                >
+                  <div css={styles.badges}>
+                    {item.badges.map((badge) => (
+                      <EuiBadge key={badge.label} color="hollow" href={badge.href}>
+                        {badge.label}
+                      </EuiBadge>
+                    ))}
+                  </div>
+                </EuiSplitPanel.Inner>
+              </EuiSplitPanel.Outer>
+            </li>
+          ))}
+        </ul>
+      </EuiPanel>
     </HomepageSection>
   );
 };

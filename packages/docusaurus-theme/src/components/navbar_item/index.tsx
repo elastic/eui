@@ -62,6 +62,14 @@ export const getStyles = (euiThemeContext: UseEuiTheme) => {
       width: ${euiTheme.size.xl};
       height: ${euiTheme.size.xl};
       border-radius: 50%;
+      line-height: 0;
+
+      /* Keep custom SVG icons (GitHub/Figma) on the same optical box */
+      > svg {
+        display: block;
+        block-size: ${euiTheme.size.base};
+        inline-size: ${euiTheme.size.base};
+      }
     `,
     menuItem: css`
       justify-content: flex-start;
@@ -93,6 +101,10 @@ export const getStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     tooltipAnchor: css`
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      block-size: ${euiTheme.size.xl};
+      inline-size: ${euiTheme.size.xl};
     `,
   };
 };

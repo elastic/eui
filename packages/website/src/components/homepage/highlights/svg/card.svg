@@ -1,5 +1,4 @@
 <svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="300" height="200" fill="var(--svg-fill-background)" />
     <path
         d="M194 95H260V149C260 149.552 259.552 150 259 150H195C194.448 150 194 149.552 194 149V95Z"
         fill="var(--svg-fill-lightestShade)" />

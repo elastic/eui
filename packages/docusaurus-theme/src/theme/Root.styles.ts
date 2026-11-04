@@ -265,6 +265,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-code-border-radius: ${border.radius.inline};
       --ifm-pre-border-radius: ${border.radius.inline};
       --ifm-button-border-radius: ${border.radius.control};
+      --ifm-navbar-search-input-border-radius: ${border.radius.control};
       --ifm-card-border-radius: ${border.radius.panel};
       --ifm-pagination-border-radius: ${border.radius.control};
       --ifm-pagination-nav-border-radius: ${border.radius.control};
@@ -276,7 +277,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-spacing-horizontal: 40px;
 
       /* Wider to fit panel inset (size.m) + menu without clipping active states */
-      --doc-sidebar-width: 300px;
+      --doc-sidebar-width: 280px;
       --doc-sidebar-hidden-width: 30px;
     }
   `;

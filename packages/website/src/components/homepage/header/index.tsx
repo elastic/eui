@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import NavbarSearch from '@theme/Navbar/Search';
 import SearchBar from '@theme/SearchBar';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import {
   EuiButton,
-  EuiDescriptionList,
-  EuiDescriptionListDescription,
-  EuiDescriptionListTitle,
-  EuiLink,
+  EuiButtonEmpty,
   useEuiMemoizedStyles,
   UseEuiTheme,
 } from '@elastic/eui';
@@ -17,27 +14,14 @@ import {
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
 } from '@elastic/eui/lib/components/form/form.styles';
 
+import euiVersions from '@site/static/versions.json';
+
 import { HomepageContainer } from '../layout';
-import { DecorRight } from './decor_right';
-import { DecorLeft } from './decor_left';
 
-const title = 'Meet the EUI framework';
-const taglines = ['powering the Elastic Stack', 'shared to build your ideas'];
-
-const DESCRIPTION_DATA = [
-  {
-    title: 'Flexible and composable',
-    text: 'Mix and match a wide range of powerful components and adapt to every situation',
-  },
-  {
-    title: 'Accessible',
-    text: 'Ensure a seamless experience for all users with accessibility at the core of the framework',
-  },
-  {
-    title: 'Well documented and tested',
-    text: 'Build your designs and code with confidence in a reliable and fully documented framework',
-  },
-];
+const TITLE = 'EUI';
+const SUBTITLE = 'The design system for UIs at Elastic.';
+// Match navbar version switcher: first entry is the current/latest release
+const CURRENT_VERSION = euiVersions?.euiVersions?.[0];
 
 const getStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -46,72 +30,71 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     hero: css`
       --ifm-hero-background-color: transparent;
-      --banner-title-font-size: 3.43rem;
-
-      --hero-decor-fill-white: ${euiTheme.colors.plainLight};
-      --hero-decor-fill-background: ${euiTheme.colors.body};
-      --hero-decor-fill-lightShade: ${euiTheme.colors.lightShade};
-      --hero-decor-fill-brand-primary: ${euiTheme.colors.primary};
-      --hero-decor-fill-brand-accent: ${euiTheme.colors.accent};
-      --hero-decor-fill-brand-success: ${euiTheme.colors.success};
-      --hero-decor-fill-brand-warning: ${euiTheme.colors.warning};
-      --hero-decor-fill-brand-poppy: #ff957d;
+      --banner-title-font-size: 2.75rem;
 
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       inline-size: 100%;
-      min-block-size: 40rem;
-      padding: 7rem 0;
+      padding-block: ${euiTheme.size.xxxxl} ${euiTheme.size.xxxl};
 
       color: ${euiTheme.colors.text};
     `,
-    left: css`
-      flex: 1;
-      max-inline-size: 52rem;
+    container: css`
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-inline: 0;
+      max-inline-size: 40rem;
+      /* Match Categories panel padding; DocRoot main owns the page inset */
+      padding: 0 ${euiTheme.size.l};
+
+      @media (min-width: 997px) {
+        padding: 0 ${euiTheme.size.l};
+      }
     `,
-    right: css`
-      flex: 0 0 33%;
+    content: css`
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      inline-size: 100%;
+      text-align: start;
     `,
     title: css`
-      margin-block-end: ${euiTheme.size.xxxl};
-      font-size: var(--banner-title-font-size);
-      font-weight: ${euiTheme.font.weight.bold};
-      line-height: normal;
+      margin-block-end: ${euiTheme.size.xl};
       text-wrap: balance;
+    `,
+    titleRow: css`
+      display: flex;
+      align-items: center;
+      gap: ${euiTheme.size.m};
+      margin-block-end: ${euiTheme.size.base};
 
       > h1 {
         margin: 0;
-        font-size: inherit;
-        line-height: inherit;
-      }
-
-      p {
-        margin: 0;
-      }
-    `,
-    underscore: css`
-      animation: blink 1.5s step-end infinite;
-      -webkit-animation: blink 1.5s step-end infinite;
-
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-
-      @-webkit-keyframes blink {
-        50% {
-          opacity: 0;
-        }
+        font-size: var(--banner-title-font-size);
+        /* POC: heavier than theme bold (600) for this hero lockup only */
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.6px;
       }
     `,
-    tagline: css`
-      color: ${euiTheme.colors.primary};
+    logo: css`
+      display: block;
+      flex-shrink: 0;
+      block-size: var(--banner-title-font-size);
+      inline-size: var(--banner-title-font-size);
+    `,
+    subtitle: css`
+      margin: 0;
+      font-size: var(--eui-font-size-l);
+      line-height: var(--eui-line-height-l);
+      color: ${euiTheme.colors.textSubdued};
+      font-weight: ${euiTheme.font.weight.regular};
     `,
     search: css`
+      inline-size: 100%;
       margin-block-end: ${euiTheme.size.l};
 
       > :first-child {
@@ -129,152 +112,48 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         inline-size: 100%;
         max-inline-size: 100%;
         block-size: ${form.controlHeight};
+        border-radius: ${euiTheme.border.radius.control};
       }
 
-      // override original header use case behavior
       .ds-dropdown-menu {
         position: absolute !important;
+        text-align: start;
 
         &:before {
-          left: ${euiTheme.size.xl}; // align caret with search input
+          left: ${euiTheme.size.xl};
         }
       }
     `,
     actions: css`
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: ${euiTheme.size.xl};
-
-      .button {
-        display: flex;
-        align-items: center;
-      }
+      justify-content: flex-start;
+      gap: ${euiTheme.size.s};
     `,
-    button: css`
-      padding-inline: ${euiTheme.size.l};
-
-      &:hover {
-        color: ${euiTheme.colors.textGhost};
-      }
-    `,
-    icon: css`
-      margin-inline-start: ${euiTheme.size.s};
-    `,
-    listItem: css`
-      padding-inline-start: ${euiTheme.size.l};
-      border-inline-start: 4px solid ${euiTheme.colors.primary};
-
-      & + & {
-        margin-block-start: ${euiTheme.size.xl};
-      }
-
-      &:nth-child(2) {
-        border-color: ${euiTheme.colors.accent};
-      }
-
-      &:nth-child(3) {
-        border-color: ${euiTheme.colors.warning};
-      }
-    `,
-    decor: {
-      wrapper: css`
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        z-index: -1;
-      `,
-      decor: css`
-        position: absolute;
-        top: 0;
-        block-size: 100%;
-        inline-size: 15%;
-
-        > svg {
-          position: absolute;
-        }
-
-        @media (max-width: 996px) {
-          display: none;
-        }
-      `,
-      left: css`
-        left: 0;
-
-        > svg {
-          right: 0;
-        }
-      `,
-      right: css`
-        right: 0;
-
-        > svg {
-          left: 0;
-        }
-      `,
-    },
   };
 };
 
 export function HomepageHeader() {
-  const [currentText, setCurrentText] = useState('');
-  const [fullTextIndex, setFullTextIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
   const styles = useEuiMemoizedStyles(getStyles);
-
-  useEffect(() => {
-    const fullText = taglines[fullTextIndex];
-    let typingSpeed = 50; // normal typing speed
-
-    if (isDeleting) {
-      typingSpeed /= 2; // deleting is faster
-    }
-
-    const timeout = setTimeout(() => {
-      setCurrentText((prev) => {
-        if (isDeleting) {
-          return fullText.substring(0, prev.length - 1);
-        } else {
-          return fullText.substring(0, prev.length + 1);
-        }
-      });
-
-      if (!isDeleting && currentText === fullText) {
-        setTimeout(() => setIsDeleting(true), 5000);
-      }
-
-      if (isDeleting && currentText === '') {
-        setTimeout(() => {
-          setIsDeleting(false);
-          setFullTextIndex((prev) => (prev + 1) % taglines.length);
-        }, 300);
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, fullTextIndex]);
+  const logoSrc = useBaseUrl('/images/eui_logo.svg');
 
   return (
     <header css={styles.hero}>
-      <div css={styles.decor.wrapper}>
-        <div css={[styles.decor.decor, styles.decor.left]}>
-          <DecorLeft />
-        </div>
-        <div css={[styles.decor.decor, styles.decor.right]}>
-          <DecorRight />
-        </div>
-      </div>
-      <HomepageContainer>
-        <div css={styles.left}>
+      <HomepageContainer layout="column" css={styles.container}>
+        <div css={styles.content}>
           <div css={styles.title}>
-            <Heading as="h1">{title},</Heading>
-            <p css={styles.tagline}>
-              {currentText}
-              <span css={styles.underscore}>_</span>
-            </p>
+            <div css={styles.titleRow}>
+              <img
+                src={logoSrc}
+                alt=""
+                css={styles.logo}
+                width={44}
+                height={44}
+              />
+              <Heading as="h1">{TITLE}</Heading>
+            </div>
+            <p css={styles.subtitle}>{SUBTITLE}</p>
           </div>
           <div css={styles.search}>
             <NavbarSearch>
@@ -285,39 +164,21 @@ export function HomepageHeader() {
             <EuiButton
               href="./docs/getting-started/setup/"
               fill
-              css={styles.button}
+              iconType="download"
+              iconSide="left"
             >
-              Get started
+              {CURRENT_VERSION ? `Install v${CURRENT_VERSION}` : 'Install'}
             </EuiButton>
-            <EuiLink
-              href="https://github.com/elastic/eui/tree/main/packages/eui/changelogs"
+            <EuiButtonEmpty
+              href="https://github.com/elastic/eui"
               target="_blank"
+              color="text"
+              iconType="logoGithub"
+              iconSide="left"
             >
-              What's new?
-            </EuiLink>
-            <EuiLink
-              href="https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui"
-              target="_blank"
-            >
-              Contribute
-            </EuiLink>
+              GitHub
+            </EuiButtonEmpty>
           </div>
-        </div>
-
-        <div css={styles.right}>
-          <EuiDescriptionList aria-label="Benefits of EUI">
-            {DESCRIPTION_DATA &&
-              DESCRIPTION_DATA.map((description) => (
-                <div key={description.title} css={styles.listItem}>
-                  <EuiDescriptionListTitle>
-                    {description.title}
-                  </EuiDescriptionListTitle>
-                  <EuiDescriptionListDescription>
-                    {description.text}
-                  </EuiDescriptionListDescription>
-                </div>
-              ))}
-          </EuiDescriptionList>
         </div>
       </HomepageContainer>
     </header>

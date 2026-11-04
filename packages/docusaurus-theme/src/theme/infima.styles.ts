@@ -1025,7 +1025,7 @@ export const getInfimaStyles = () => css`
     align-items: center;
     color: var(--ifm-navbar-link-color);
     display: flex;
-    margin-right: 1rem;
+    margin-inline-end: 0;
     min-width: 0;
   }
 
@@ -1040,7 +1040,7 @@ export const getInfimaStyles = () => css`
 
   .navbar__toggle {
     display: none;
-    margin-right: 0.5rem;
+    margin-inline-end: 0;
   }
 
   .navbar__logo {
@@ -1133,7 +1133,8 @@ export const getInfimaStyles = () => css`
     background: var(--ifm-navbar-search-input-background-color)
       var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center / 1rem 1rem;
     border: none;
-    border-radius: 2rem;
+    /* POC: use control radius (was pill 2rem) */
+    border-radius: var(--ifm-navbar-search-input-border-radius, 0.375rem);
     color: var(--ifm-navbar-search-input-color);
     cursor: text;
     display: inline-block;

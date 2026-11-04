@@ -10,20 +10,25 @@ import { JSX } from 'react';
 import { css } from '@emotion/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+import {
+  EuiHorizontalRule,
+  useEuiMemoizedStyles,
+  UseEuiTheme,
+} from '@elastic/eui';
 
+import { HomepageDocLayout } from '../components/homepage/doc_layout';
 import { HomepageHeader } from '../components/homepage/header';
 import { HomepageUsers } from '../components/homepage/users';
-import { HomepageHighlights } from '../components/homepage/highlights';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
-  main: css`
+  content: css`
     h1 {
       font-size: 3.43rem;
       line-height: 1.2;
     }
 
-    h2 {
+    /* Skip EuiTitle so size props (e.g. Categories) wire through */
+    h2:not(.euiTitle) {
       font-size: var(--eui-font-size-xxl);
       line-height: 1.2;
     }
@@ -45,6 +50,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     margin-block-end: ${euiTheme.size.l};
+    inline-size: 100%;
   `,
 });
 
@@ -54,13 +60,13 @@ export default function Home(): JSX.Element {
 
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
-      <main css={styles.main}>
-        <HomepageHeader />
-
-        <HomepageHighlights />
-
-        <HomepageUsers />
-      </main>
+      <HomepageDocLayout>
+        <div css={styles.content}>
+          <HomepageHeader />
+          <EuiHorizontalRule margin="xxl" />
+          <HomepageUsers />
+        </div>
+      </HomepageDocLayout>
     </Layout>
   );
 }

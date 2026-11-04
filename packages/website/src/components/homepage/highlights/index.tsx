@@ -1,9 +1,9 @@
 import React from 'react';
 import Heading from '@theme/Heading';
 import {
-  EuiButtonEmpty,
+  EuiButton,
   EuiCard,
-  EuiIcon,
+  EuiPanel,
   EuiText,
   EuiTextAlign,
   useEuiMemoizedStyles,
@@ -140,7 +140,12 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     --svg-fill-warning-text: ${colorMode === 'DARK' ? '#FEC514' : '#E2543D'};
     --svg-fill-warning-decor: ${colorMode === 'DARK' ? '#925700' : '#FFCEA8'};
 
+    background-color: ${euiTheme.colors.backgroundBaseSubdued};
+  `,
+  well: css`
+    margin-block-start: ${euiTheme.size.xl};
     background-color: ${euiTheme.colors.lightestShade};
+    border-radius: ${euiTheme.border.radius.panel};
   `,
   list: css`
     display: grid;
@@ -151,6 +156,11 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     padding: 0;
     list-style: none;
 
+    > li {
+      display: flex;
+      block-size: 100%;
+    }
+
     @media (min-width: 450px) {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -160,6 +170,9 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     }
   `,
   card: css`
+    flex: 1;
+    block-size: 100%;
+
     &:hover {
       box-shadow: none;
       filter: none;
@@ -195,9 +208,8 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     display: flex;
     justify-content: center;
     align-items: center;
-    border: ${euiTheme.border.thin};
     border-radius: ${euiTheme.border.radius.medium};
-    background-color: ${euiTheme.colors.body};
+    background-color: transparent;
 
     svg {
       width: 100%;
@@ -211,10 +223,6 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   `,
   button: css`
     min-inline-size: 12.5rem;
-    border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.primary};
-  `,
-  icon: css`
-    margin-inline-start: ${euiTheme.size.s};
   `,
 });
 
@@ -227,46 +235,56 @@ export const HomepageHighlights = () => {
       <HomepageContainer layout="column">
         <EuiTextAlign textAlign="center">
           <Heading as="h2" id={headingId}>
-            Widely used in EUI
+            Components
           </Heading>
         </EuiTextAlign>
 
-        <ul aria-labelledby={headingId} css={styles.list}>
-          {CONTENT_DATA &&
-            CONTENT_DATA.map((item) => {
-              const SvgComponent = item.svg;
+        <EuiPanel
+          color="transparent"
+          paddingSize="l"
+          hasShadow={false}
+          css={styles.well}
+        >
+          <ul aria-labelledby={headingId} css={styles.list}>
+            {CONTENT_DATA &&
+              CONTENT_DATA.map((item) => {
+                const SvgComponent = item.svg;
 
-              return (
-                <li key={item.title}>
-                  <EuiCard
-                    title={item.title}
-                    href={item.href}
-                    image={
-                      SvgComponent && (
-                        <div css={styles.image} aria-hidden="true">
-                          <SvgComponent />
-                        </div>
-                      )
-                    }
-                    paddingSize="s"
-                    display="transparent"
-                    css={styles.card}
-                  >
-                    <EuiText>
-                      <p>{item.description}</p>
-                    </EuiText>
-                  </EuiCard>
-                </li>
-              );
-            })}
-        </ul>
+                return (
+                  <li key={item.title}>
+                    <EuiCard
+                      title={item.title}
+                      href={item.href}
+                      image={
+                        SvgComponent && (
+                          <div css={styles.image} aria-hidden="true">
+                            <SvgComponent />
+                          </div>
+                        )
+                      }
+                      paddingSize="xl"
+                      css={styles.card}
+                    >
+                      <EuiText>
+                        <p>{item.description}</p>
+                      </EuiText>
+                    </EuiCard>
+                  </li>
+                );
+              })}
+          </ul>
 
-        <div css={styles.actions}>
-          <EuiButtonEmpty href="./docs/components/" css={styles.button}>
-            All components
-            <EuiIcon type="sortRight" size="s" css={styles.icon} />
-          </EuiButtonEmpty>
-        </div>
+          <div css={styles.actions}>
+            <EuiButton
+              href="./docs/components/"
+              iconType="spaces"
+              fill
+              css={styles.button}
+            >
+              All components
+            </EuiButton>
+          </div>
+        </EuiPanel>
       </HomepageContainer>
     </HomepageSection>
   );

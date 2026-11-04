@@ -33,17 +33,15 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     min-inline-size: 0;
 
     @media (min-width: 997px) {
+      /* Balance gap on both sides of the brand/version divider */
+      padding-inline-end: 8px;
       border-right: ${euiTheme.border.thin};
     }
 
     .navbar__brand {
       display: flex;
       align-items: center;
-      margin-inline-end: ${euiTheme.size.m};
-
-      @media (min-width: 997px) {
-        margin-inline-end: ${euiTheme.size.l};
-      }
+      margin-inline-end: 0;
     }
 
     .navbar__logo {
@@ -57,7 +55,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   imageWrapper: css`
     overflow: visible;
-    margin-inline-end: ${euiTheme.size.m};
+    margin-inline-end: 0;
   `,
   image: css`
     position: relative;

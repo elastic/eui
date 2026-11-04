@@ -9,7 +9,7 @@
 import { ComponentProps, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import {
-  EuiButtonEmpty,
+  EuiBadge,
   euiFocusRing,
   EuiListGroup,
   EuiListGroupItem,
@@ -23,9 +23,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
-    button: css`
-      font-weight: ${euiTheme.font.weight.bold};
-      color: ${euiTheme.colors.primary};
+    trigger: css`
+      cursor: pointer;
     `,
     list: css`
       max-block-size: 200px;
@@ -122,21 +121,23 @@ export const VersionSwitcher = ({
   if (!allVersions?.length) return null;
 
   const latestVersion = allVersions[0];
+  const isLatest = currentVersion === latestVersion;
+  const triggerLabel = isLatest
+    ? `v${currentVersion} Latest`
+    : `v${currentVersion}`;
 
   const button = (
-    <EuiButtonEmpty
-      size="s"
-      color="text"
+    <EuiBadge
+      css={styles.trigger}
       iconType="chevronSingleDown"
       iconSide="right"
-      css={styles.button}
       onClick={() => setPopoverOpen((isOpen) => !isOpen)}
-      aria-label={`${pronounceVersion(
+      onClickAriaLabel={`${pronounceVersion(
         currentVersion
-      )}. Click to switch versions`}
+      )}${isLatest ? ', latest' : ''}. Click to switch versions`}
     >
-      v{currentVersion}
-    </EuiButtonEmpty>
+      {triggerLabel}
+    </EuiBadge>
   );
 
   return (
@@ -151,6 +152,7 @@ export const VersionSwitcher = ({
       <EuiListGroup css={[styles.list, useEuiYScroll()]}>
         {allVersions.map((version) => {
           const isCurrentVersion = version === currentVersion;
+          const isLatestVersion = version === latestVersion;
           const screenReaderVersion = pronounceVersion(version);
 
           const url =
@@ -162,8 +164,14 @@ export const VersionSwitcher = ({
             <EuiListGroupItem
               key={version}
               css={styles.listItem}
-              label={`v${version}`}
-              aria-label={screenReaderVersion}
+              label={
+                isLatestVersion ? `v${version} Latest` : `v${version}`
+              }
+              aria-label={
+                isLatestVersion
+                  ? `${screenReaderVersion}, latest`
+                  : screenReaderVersion
+              }
               href={url}
               isActive={isCurrentVersion}
               color={isCurrentVersion ? 'primary' : 'text'}
