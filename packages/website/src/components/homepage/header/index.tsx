@@ -19,7 +19,7 @@ import euiVersions from '@site/static/versions.json';
 import { HomepageContainer } from '../layout';
 
 const TITLE = 'EUI';
-const SUBTITLE = 'The design system for UIs at Elastic.';
+const SUBTITLE = 'The design system for user interfaces at Elastic.';
 // Match navbar version switcher: first entry is the current/latest release
 const CURRENT_VERSION = euiVersions?.euiVersions?.[0];
 
@@ -38,7 +38,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
       align-items: stretch;
       inline-size: 100%;
-      padding-block: ${euiTheme.size.xxxxl} ${euiTheme.size.xxxl};
+      /* POC: 80px — no size token between xxxxl (64) and larger */
+      padding-block: 80px;
 
       color: ${euiTheme.colors.text};
     `,
@@ -95,7 +96,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     search: css`
       inline-size: 100%;
-      margin-block-end: ${euiTheme.size.l};
+      margin-block-end: ${euiTheme.size.xl};
 
       > :first-child {
         position: relative;

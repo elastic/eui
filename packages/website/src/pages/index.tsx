@@ -16,12 +16,17 @@ import {
   UseEuiTheme,
 } from '@elastic/eui';
 
+import { HomepageAmbientBg } from '../components/homepage/ambient_bg';
 import { HomepageDocLayout } from '../components/homepage/doc_layout';
 import { HomepageHeader } from '../components/homepage/header';
 import { HomepageUsers } from '../components/homepage/users';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   content: css`
+    /* Sit above the fixed main-column ambient canvas */
+    position: relative;
+    z-index: 1;
+
     h1 {
       font-size: 3.43rem;
       line-height: 1.2;
@@ -61,6 +66,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <HomepageDocLayout>
+        <HomepageAmbientBg />
         <div css={styles.content}>
           <HomepageHeader />
           <EuiHorizontalRule margin="xxl" />
