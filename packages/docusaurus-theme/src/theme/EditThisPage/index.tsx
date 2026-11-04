@@ -11,32 +11,29 @@ import { css } from '@emotion/react';
 import Translate from '@docusaurus/Translate';
 import type { Props } from '@theme-original/EditThisPage';
 import {
-  EuiButton,
-  euiButtonColor,
+  EuiButtonEmpty,
   useEuiMemoizedStyles,
   UseEuiTheme,
 } from '@elastic/eui';
 
-const getStyles = (theme: UseEuiTheme) => {
-  const buttonColor = euiButtonColor(theme, 'primary');
-
-  return {
-    editPage: css`
-      // overriding Docusaurus link hover styles to preserve button styles
-      --ifm-link-hover-color: ${buttonColor.color};
-    `,
-  };
-};
+const getStyles = ({ euiTheme }: UseEuiTheme) => ({
+  editPage: css`
+    // overriding Docusaurus link hover styles to preserve button styles
+    --ifm-link-hover-color: ${euiTheme.colors.textParagraph};
+  `,
+});
 
 export default function EditThisPage({ editUrl, ...rest }: Props): JSX.Element {
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (
-    <EuiButton
+    <EuiButtonEmpty
       {...rest}
       href={editUrl}
       iconType="pencil"
-      color="primary"
+      color="text"
+      size="xs"
+      flush="both"
       css={styles.editPage}
     >
       <Translate
@@ -45,6 +42,6 @@ export default function EditThisPage({ editUrl, ...rest }: Props): JSX.Element {
       >
         Edit this page
       </Translate>
-    </EuiButton>
+    </EuiButtonEmpty>
   );
 }

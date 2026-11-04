@@ -46,13 +46,13 @@ export type FigmaAssetProps = FigmaAssetImageProps | FigmaAssetEmbedProps;
 const getFigmaAssetStyles = (euiTheme: UseEuiTheme) => ({
   wrapper: css`
     border: 1px solid ${euiTheme.euiTheme.colors.borderBasePlain};
-    border-radius: ${euiTheme.euiTheme.size.s};
+    border-radius: ${euiTheme.euiTheme.border.radius.panel};
     margin: ${euiTheme.euiTheme.size.xl} 0;
     overflow: hidden;
     background-color: ${euiTheme.euiTheme.colors.backgroundLightText};
   `,
   iframe: css`
-    border-radius: ${euiTheme.euiTheme.size.s};
+    border-radius: ${euiTheme.euiTheme.border.radius.panel};
     display: block;
   `,
   image: css`

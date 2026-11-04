@@ -35,10 +35,10 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     justify-content: center;
     width: ${euiTheme.size.xl};
     height: ${euiTheme.size.xl};
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.control};
 
     &:hover {
-      background-color: var(--ifm-color-emphasis-200);
+      background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
       color: currentColor;
     }
   `,

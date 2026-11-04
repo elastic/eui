@@ -22,29 +22,57 @@ import NavbarMobileSidebar from '../MobileSidebar';
 import { VersionSwitcherProps } from '../../../components/version_switcher';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => {
+  const inset = euiTheme.size.m; // 12px
+
   return {
     navbar: css`
-      --ifm-navbar-padding-horizontal: ${euiTheme.size.m};
+      --ifm-navbar-padding-horizontal: ${euiTheme.size.base};
       --ifm-navbar-padding-vertical: ${euiTheme.size.s};
       --ifm-navbar-item-padding-horizontal: 0;
       --ifm-navbar-item-padding-vertical: 0;
 
-      --ifm-navbar-background-color: ${euiTheme.colors.textInverse};
+      /* POC: glass fill — opacity/blur need design input */
+      --ifm-navbar-background-color: color-mix(
+        in srgb,
+        ${euiTheme.colors.backgroundBasePlain} 88%,
+        transparent
+      );
 
       flex-grow: 0;
       flex-shrink: 0;
 
-      &,
+      /* Floating inset bar */
+      &.navbar--fixed-top {
+        top: ${inset};
+        margin-block-start: ${inset};
+        margin-inline: ${inset};
+        width: calc(100% - ${inset} * 2);
+      }
+
+      border-radius: ${euiTheme.border.radius.panel};
+      border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};
+      box-shadow: none;
+      background-color: var(--ifm-navbar-background-color);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+
       .navbar-sidebar__brand {
-        border-block-end: ${euiTheme.border.thin};
+        border-block-end: ${euiTheme.border.width.thin} solid
+          ${euiTheme.border.color};
         box-shadow: none;
+      }
+
+      @media (prefers-reduced-transparency: reduce) {
+        --ifm-navbar-background-color: ${euiTheme.colors.backgroundBasePlain};
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
       }
     `,
     navbarHideable: css`
       transition: transform var(--ifm-transition-fast) ease;
     `,
     navbarHidden: css`
-      transform: translate3d(0, calc(-100% - 2px), 0);
+      transform: translate3d(0, calc(-100% - ${inset} - 2px), 0);
     `,
   };
 };

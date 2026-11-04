@@ -16,10 +16,11 @@ import EditMetaRow from '@theme-original/EditMetaRow';
 
 export default function DocItemFooter(): JSX.Element | null {
   const { metadata } = useDoc();
-  const { editUrl, lastUpdatedAt, lastUpdatedBy, tags } = metadata;
+  const { lastUpdatedAt, lastUpdatedBy, tags } = metadata;
 
   const canDisplayTagsRow = tags.length > 0;
-  const canDisplayEditMetaRow = !!(editUrl || lastUpdatedAt || lastUpdatedBy);
+  // Edit link lives in the breadcrumbs row; footer only shows last-updated meta
+  const canDisplayEditMetaRow = !!(lastUpdatedAt || lastUpdatedBy);
 
   const canDisplayFooter = canDisplayTagsRow || canDisplayEditMetaRow;
 
@@ -49,7 +50,7 @@ export default function DocItemFooter(): JSX.Element | null {
             'margin-top--sm',
             ThemeClassNames.docs.docFooterEditMetaRow
           )}
-          editUrl={editUrl}
+          editUrl={undefined}
           lastUpdatedAt={lastUpdatedAt}
           lastUpdatedBy={lastUpdatedBy}
         />

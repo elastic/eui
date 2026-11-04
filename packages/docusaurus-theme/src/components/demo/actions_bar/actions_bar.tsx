@@ -13,7 +13,6 @@ import {
   EuiToolTip,
   useEuiMemoizedStyles,
   UseEuiTheme,
-  darken,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { extraActions } from '@theme/Demo/actions';
@@ -34,7 +33,7 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
   return {
     actionsBar: css`
       padding: var(--eui-size-s);
-      background: ${darken(euiTheme.euiTheme.colors.body, 0.05)};
+      background-color: ${euiTheme.euiTheme.colors.backgroundBasePlain};
       border-top: 1px solid var(--docs-demo-border-color);
 
       &:last-child {

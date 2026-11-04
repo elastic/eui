@@ -11,6 +11,10 @@ import { getSwcLoaderOptions } from '@docusaurus/faster';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const remarkPropTableTocHeadings = require('./src/remark/prop_table_toc_headings.cjs');
 
 const ELASTIC_LICENSE_URL =
   'https://github.com/elastic/eui/blob/main/licenses/ELASTIC-LICENSE-2.0.md';
@@ -101,6 +105,8 @@ const config: Config = {
             keywords: ['accessibility'],
             extendDefaults: true,
           },
+          // Run before TOC extraction so PropTable names appear under ## Props
+          beforeDefaultRemarkPlugins: [remarkPropTableTocHeadings],
         },
         blog: {
           showReadingTime: true,

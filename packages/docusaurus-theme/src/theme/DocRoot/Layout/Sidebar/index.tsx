@@ -18,37 +18,81 @@ import { useLocation } from '@docusaurus/router';
 import DocSidebar from '@theme-original/DocSidebar';
 import type { Props } from '@theme-original/DocRoot/Layout/Sidebar';
 import ExpandButton from '@theme-original/DocRoot/Layout/Sidebar/ExpandButton';
+import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 
-// converted from css modules to Emotion
-const styles = {
-  docSidebarContainer: css`
-    display: none;
+const getStyles = ({ euiTheme }: UseEuiTheme) => {
+  const offset = euiTheme.size.m;
 
-    @media (min-width: 997px) {
-      // ensure scrolling still works
+  return {
+    docSidebarContainer: css`
+      display: none;
+
+      @media (min-width: 997px) {
+        display: flex;
+        flex-direction: column;
+        width: var(--doc-sidebar-width);
+        margin-top: calc(-1 * var(--ifm-navbar-height));
+        padding-block-start: calc(var(--ifm-navbar-height) + ${offset});
+        padding-block-end: ${offset};
+        padding-inline: ${offset};
+        background: transparent;
+        border: none;
+        border-inline-end: ${euiTheme.border.width.thin} solid
+          ${euiTheme.border.color};
+        will-change: width;
+        transition: width var(--ifm-transition-fast) ease;
+
+        .menu {
+          --ifm-menu-link-padding-vertical: ${euiTheme.size.s};
+          overflow-x: visible;
+          scrollbar-gutter: auto;
+        }
+
+        @supports (scrollbar-gutter: stable) {
+          .menu {
+            scrollbar-gutter: auto;
+          }
+        }
+
+        .menu__list .menu__list {
+          flex: 0 0 auto;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    `,
+    docSidebarContainerHidden: css`
+      width: var(--doc-sidebar-hidden-width);
+      cursor: pointer;
+    `,
+    sidebarViewport: css`
+      top: calc(var(--ifm-navbar-height) + ${offset});
+      position: sticky;
       display: flex;
-      width: var(--doc-sidebar-width);
-      margin-top: calc(-1 * var(--ifm-navbar-height));
-      border-right: 1px solid var(--ifm-toc-border-color);
-      will-change: width;
-      transition: width var(--ifm-transition-fast) ease;
-      clip-path: inset(0);
-    }
+      flex-direction: column;
+      height: calc(100vh - var(--ifm-navbar-height) - ${offset} * 2);
+      max-height: calc(100vh - var(--ifm-navbar-height) - ${offset} * 2);
+      /* Title is fixed; menu inside Content scrolls */
+      overflow: hidden;
 
-    .theme-doc-sidebar-menu.menu__list {
-      padding-inline-end: var(--eui-size-s);
-    }
-  `,
-  docSidebarContainerHidden: css`
-    width: var(--doc-sidebar-hidden-width);
-    cursor: pointer;
-  `,
-  sidebarViewport: css`
-    top: 0;
-    position: sticky;
-    height: 100%;
-    max-height: 100vh;
-  `,
+      /*
+        Classic DocSidebar Desktop CSS module sets
+        width: var(--doc-sidebar-width) on its root — same as the aside —
+        so it overflows our panel padding and clips active items on the right.
+       */
+      & > div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        min-height: 0;
+        padding-top: 0;
+        box-sizing: border-box;
+      }
+    `,
+  };
 };
 
 // Reset sidebar state when sidebar changes
@@ -69,6 +113,7 @@ export default function DocRootLayoutSidebar({
   setHiddenSidebarContainer,
 }: Props): JSX.Element {
   const { pathname } = useLocation();
+  const styles = useEuiMemoizedStyles(getStyles);
 
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
   const toggleSidebar = useCallback(() => {
@@ -87,7 +132,7 @@ export default function DocRootLayoutSidebar({
     <aside
       className={clsx(
         ThemeClassNames.docs.docSidebarContainer,
-        styles.docSidebarContainer.name // adding the name here to preserve the functionality of the class check further down
+        styles.docSidebarContainer.name
       )}
       css={[
         styles.docSidebarContainer,

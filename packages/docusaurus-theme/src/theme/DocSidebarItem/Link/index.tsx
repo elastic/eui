@@ -21,15 +21,36 @@ import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   menuListItem: css`
     .menu__link {
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textSubdued};
       font-size: var(--eui-font-size-s);
       line-height: var(--eui-line-height-s);
+      font-weight: ${euiTheme.font.weight.regular};
+      border-radius: ${euiTheme.border.radius.control};
+      /* Match category .menu__list-item-collapsible inset (not Infima 0.75rem) */
+      padding: ${euiTheme.size.s};
+
+      &:hover {
+        color: ${euiTheme.colors.textSubdued};
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+      }
     }
 
-    .menu__link--active {
-      border-radius: ${euiTheme.border.radius.small};
-      color: ${euiTheme.colors.primary};
-      font-weight: ${euiTheme.font.weight.bold};
+    .menu__link--active:not(.menu__link--sublist) {
+      color: ${euiTheme.colors.textHeading};
+      font-weight: ${euiTheme.font.weight.semiBold};
+      background-color: ${euiTheme.colors.backgroundLightText};
+    }
+  `,
+  // Leaves at levels 1–2 sit beside categories — match group title weight/color.
+  // Level 3+ stay subdued so nested page lists read as children.
+  menuListItemGroupLevel: css`
+    .menu__link {
+      color: ${euiTheme.colors.textParagraph};
+      font-weight: ${euiTheme.font.weight.semiBold};
+
+      &:hover {
+        color: ${euiTheme.colors.textParagraph};
+      }
     }
   `,
   menuExternalLink: css`
@@ -60,7 +81,10 @@ export default function DocSidebarItemLink({
         className
       )}
       key={label}
-      css={styles.menuListItem}
+      css={[
+        styles.menuListItem,
+        level <= 2 && styles.menuListItemGroupLevel,
+      ]}
     >
       <Link
         className={clsx(

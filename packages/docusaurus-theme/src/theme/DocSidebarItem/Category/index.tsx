@@ -32,26 +32,43 @@ import DocSidebarItems from '../../DocSidebarItems';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   listItem: css`
-    --ifm-menu-color-background-hover: var(--eui-background-color-primary);
-    --ifm-menu-color-background-active: var(--eui-background-color-primary);
+    --ifm-menu-color-background-hover: ${euiTheme.colors
+      .backgroundBaseInteractiveHover};
+    --ifm-menu-color-background-active: ${euiTheme.colors.backgroundLightText};
 
     --ifm-menu-link-padding-horizontal: ${euiTheme.size.s};
-    --ifm-menu-link-padding-vertical: calc(${euiTheme.size.xs} + 2px);
+    --ifm-menu-link-padding-vertical: ${euiTheme.size.s};
+
+    .menu__list-item-collapsible {
+      align-items: center;
+      border-radius: ${euiTheme.border.radius.control};
+      /* Equal inset on both edges of the highlight; link/button don't add more */
+      padding-inline: ${euiTheme.size.s};
+
+      .menu__link {
+        padding-inline: 0;
+      }
+    }
 
     .menu__link--sublist {
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       font-size: var(--eui-font-size-s);
       line-height: var(--eui-line-height-s);
-      font-weight: ${euiTheme.font.weight.bold};
+      font-weight: ${euiTheme.font.weight.semiBold};
+      border-radius: ${euiTheme.border.radius.control};
     }
 
     .menu__link--active {
-      border-radius: ${euiTheme.border.radius.small};
-      color: ${euiTheme.colors.primary};
+      color: ${euiTheme.colors.textHeading};
     }
   `,
   button: css`
-    padding: ${euiTheme.size.s};
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: ${euiTheme.colors.textSubdued};
   `,
 });
 

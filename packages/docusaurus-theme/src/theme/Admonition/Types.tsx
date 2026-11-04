@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { EuiCallOut } from '@elastic/eui';
+import { EuiCallOut, type EuiCallOutProps, type IconType } from '@elastic/eui';
 import type { Props } from '@theme-original/Admonition';
 import type AdmonitionTypes from '@theme-original/Admonition/Types';
 
@@ -22,23 +22,28 @@ type CalloutVariant =
   | 'important'
   | 'success'
   | 'caution';
-type VariantColor = 'primary' | 'success' | 'warning' | 'danger';
 
-const VARIANT_TO_PROPS_MAP: Record<
-  CalloutVariant,
-  { iconType?: string; color?: VariantColor }
-> = {
-  note: { iconType: 'paperClip', color: 'primary' },
-  tip: { iconType: 'faceHappy', color: 'success' },
-  info: { iconType: 'info', color: 'primary' },
-  accessibility: { iconType: 'accessibility', color: 'primary' },
-  warning: { iconType: 'warning', color: 'warning' },
-  danger: { iconType: 'error', color: 'danger' },
+type VariantProps = Pick<EuiCallOutProps, 'color'> & {
+  /** Only set when overriding CallOut's color-based default notification icon */
+  iconType?: IconType;
+};
+
+/**
+ * Map Docusaurus admonition types → EuiCallOut color.
+ * Omit iconType so CallOut uses its default notification icons from color.
+ */
+const VARIANT_TO_PROPS_MAP: Record<CalloutVariant, VariantProps> = {
+  note: { color: 'primary' },
+  tip: { color: 'success' },
+  info: { color: 'primary' },
+  accessibility: { color: 'success', iconType: 'accessibility' },
+  warning: { color: 'warning' },
+  danger: { color: 'danger' },
   // Undocumented legacy admonition type aliases
-  secondary: {},
-  important: {},
-  success: {},
-  caution: {},
+  secondary: { color: 'primary' },
+  important: { color: 'primary' },
+  success: { color: 'success' },
+  caution: { color: 'warning' },
 };
 
 // MDXComponents/Paragraph wraps <p> in <EuiText>,
@@ -51,12 +56,12 @@ const nestedParagraphStyleReset = css`
 `;
 
 const Callout = ({ title, type, children }: Props) => {
-  const variantProps = VARIANT_TO_PROPS_MAP[type as CalloutVariant];
+  const variantProps =
+    VARIANT_TO_PROPS_MAP[type as CalloutVariant] ?? VARIANT_TO_PROPS_MAP.note;
 
   return (
     <EuiCallOut
       title={title}
-      color="primary"
       {...variantProps}
       css={css`
         margin-block: var(--eui-theme-content-vertical-spacing);

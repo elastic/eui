@@ -35,8 +35,8 @@ const getGuidelineStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     wrapper: css`
       border-block-end: ${euiTheme.border.thick};
-      border-start-start-radius: ${euiTheme.border.radius.medium};
-      border-start-end-radius: ${euiTheme.border.radius.medium};
+      border-start-start-radius: ${euiTheme.border.radius.panel};
+      border-start-end-radius: ${euiTheme.border.radius.panel};
       overflow: hidden;
 
       ${highContrastModeStyles(euiThemeContext, {

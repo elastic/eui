@@ -6,57 +6,75 @@ keywords: [EuiTitle]
 
 **EuiTitle** styles the page, section, and content headings we use in Kibana. They can contain any markup, but usually contain a heading tag of some sort. Unlike **EuiText** they are margin neutral and more suitable for general layout design.
 
+:::note Markup agnostic
+EuiTitle confers style only. Wrap in any element (`h1`–`h6`, `span`, etc.) but still pay attention to hierarchy.
+:::
+
 ```tsx interactive
 import React from 'react';
-import { EuiTitle, EuiHorizontalRule, EuiSpacer, EuiCode } from '@elastic/eui';
+import {
+  EuiTitle,
+  EuiSpacer,
+  EuiCode,
+  useEuiTheme,
+  euiFontSizeFromScale,
+} from '@elastic/eui';
 
-export default () => (
-  <div>
-    <EuiTitle size="l">
-      <h1>This is a large title, only one should exist per page</h1>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;l&quot;</EuiCode>
+const TITLE_SIZE_TO_FONT_SCALE = {
+  xxxs: 'xs',
+  xxs: 's',
+  xs: 'm',
+  s: 'l',
+  m: 'xl',
+  l: 'xxl',
+};
 
-    <EuiSpacer />
-    <EuiTitle>
-      <h2>This is the default size for title</h2>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;m&quot;</EuiCode>
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const fontSizeFor = (size) =>
+    euiFontSizeFromScale(TITLE_SIZE_TO_FONT_SCALE[size], euiTheme, {
+      unit: 'px',
+    });
 
-    <EuiSpacer />
-    <EuiTitle size="s">
-      <h3>This is a small title</h3>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;s&quot;</EuiCode>
+  return (
+    <div>
+      <EuiTitle size="l">
+        <h1>This is a large title ({fontSizeFor('l')})</h1>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;l&quot;</EuiCode>
 
-    <EuiSpacer />
-    <EuiTitle size="xs">
-      <h4>This is an extra small title</h4>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;xs&quot;</EuiCode>
+      <EuiSpacer />
+      <EuiTitle>
+        <h2>This is a medium title ({fontSizeFor('m')})</h2>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;m&quot;</EuiCode>
 
-    <EuiSpacer />
-    <EuiTitle size="xxs">
-      <h5>This is an extra extra small title</h5>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;xxs&quot;</EuiCode>
+      <EuiSpacer />
+      <EuiTitle size="s">
+        <h3>This is a small title ({fontSizeFor('s')})</h3>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;s&quot;</EuiCode>
 
-    <EuiSpacer />
-    <EuiTitle size="xxxs">
-      <h6>
-        This is an extra extra extra small title and should only be used when
-        the title is inconsequential (like a label)
-      </h6>
-    </EuiTitle>
-    <EuiCode language="js">size=&quot;xxxs&quot;</EuiCode>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h4>This is an extra small title ({fontSizeFor('xs')})</h4>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;xs&quot;</EuiCode>
 
-    <EuiHorizontalRule />
+      <EuiSpacer />
+      <EuiTitle size="xxs">
+        <h5>This is an extra extra small title ({fontSizeFor('xxs')})</h5>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;xxs&quot;</EuiCode>
 
-    <EuiTitle size="l">
-      <span>Titles are markup agnostic, they only confer style</span>
-    </EuiTitle>
-  </div>
-);
+      <EuiSpacer />
+      <EuiTitle size="xxxs">
+        <h6>This is an extra extra extra small title ({fontSizeFor('xxxs')})</h6>
+      </EuiTitle>
+      <EuiCode language="js">size=&quot;xxxs&quot;</EuiCode>
+    </div>
+  );
+};
 ```
 
 ## Props

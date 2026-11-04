@@ -38,6 +38,12 @@ const getHeadingStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
 
+  // POC: section dividers for Component / Usage / Guidelines / Props, etc.
+  h2: css`
+    padding-block-end: ${euiTheme.size.base}; /* 16px */
+    border-block-end: ${euiTheme.border.thin};
+  `,
+
   anchor: css`
     margin-inline-start: ${euiTheme.size.s};
     opacity: 0;
@@ -72,7 +78,7 @@ const Heading = ({
       <Component
         {...restProps}
         className="heading anchor"
-        css={styles.heading}
+        css={[styles.heading, Component === 'h2' && styles.h2]}
         id={id}
       >
         {children}

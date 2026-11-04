@@ -20,7 +20,6 @@ import {
   useEuiMemoizedStyles,
   copyToClipboard,
   UseEuiTheme,
-  useIsDarkMode,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { demoDefaultScope } from '@theme/Demo/default_scope';
@@ -86,8 +85,9 @@ export interface DemoProps extends PropsWithChildren {
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
   demo: css`
     --docs-demo-border-color: ${euiTheme.euiTheme.border.color};
-    --docs-demo-border-radius: ${euiTheme.euiTheme.size.s};
+    --docs-demo-border-radius: ${euiTheme.euiTheme.border.radius.panel};
 
+    background-color: ${euiTheme.euiTheme.colors.backgroundBasePlain};
     border: 1px solid var(--docs-demo-border-color);
     border-radius: var(--docs-demo-border-radius);
     margin-block: ${euiTheme.euiTheme.size.xl};
@@ -105,11 +105,11 @@ export const Demo = ({
   previewWrapperSource,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
-  const isDarkMode = useIsDarkMode();
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
   const [isSourceOpen, setIsSourceOpen] = useState<boolean>(_isSourceOpen);
   const activeSource = sources[0] || null;
-  const prismTheme = isDarkMode ? prismThemes.dracula : prismThemes.github;
+  // POC: demo source always uses a dark Prism theme regardless of page mode
+  const prismTheme = prismThemes.dracula;
 
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);

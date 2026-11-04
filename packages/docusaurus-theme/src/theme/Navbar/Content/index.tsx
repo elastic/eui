@@ -71,10 +71,10 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       .navbar__toggle {
-        border-radius: ${euiTheme.border.radius.small};
+        border-radius: ${euiTheme.border.radius.control};
 
         &:hover {
-          background-color: var(--ifm-color-emphasis-200);
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
           color: currentColor;
         }
 
@@ -87,15 +87,34 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
 
       ${desktopMediaQuery} {
-        gap: ${euiTheme.size.l};
+        gap: ${euiTheme.size.m};
       }
 
       .navbar__link {
         ${euiTextTruncate()}
+        color: ${euiTheme.colors.textParagraph};
+        font-size: var(--eui-font-size-s);
+        font-weight: ${euiTheme.font.weight.medium};
+        line-height: var(--eui-line-height-s);
+        border-radius: ${euiTheme.border.radius.control};
+        padding-inline: ${euiTheme.size.s};
+        padding-block: ${euiTheme.size.xs};
+        text-decoration: none;
+
+        &:hover {
+          color: ${euiTheme.colors.textPrimary};
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+          text-decoration: none;
+        }
+
+        &--active {
+          color: ${euiTheme.colors.textPrimary};
+          font-weight: ${euiTheme.font.weight.semiBold};
+        }
       }
     `,
     navbarItemsRight: css`
-      gap: ${euiTheme.size.s};
+      gap: ${euiTheme.size.xs};
     `,
     actions: css`
       ${mobileMediaQuery} {

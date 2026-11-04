@@ -41,8 +41,8 @@ const styles = {
   docItemCol: css`
     @media (min-width: 997px) {
       font-size: 100%;
-      max-width: 94ch;
-      /* Ensure TOC won't wrap */
+      /* Readable measure; was 94ch and felt overly wide on large screens */
+      max-width: 76ch;
       overflow-x: auto;
     }
   `,

@@ -50,8 +50,10 @@ export const getStyles = (euiThemeContext: UseEuiTheme) => {
       -webkit-tap-highlight-color: transparent;
       transition: background var(--ifm-transition-fast);
 
+      border-radius: ${euiTheme.border.radius.control};
+
       &:hover {
-        background-color: ${euiTheme.components.buttons.backgroundTextHover};
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
         color: currentColor;
       }
     `,

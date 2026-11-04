@@ -22,12 +22,13 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &:is(ul.table-of-contents) {
         padding: ${euiTheme.size.m};
-        border-top: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};
+        border-block-start: ${euiTheme.border.width.thin} solid
+          ${euiTheme.border.color};
       }
 
       .tree-item__inner {
         font-size: var(--eui-font-size-s);
-        line-height: var(--eui-line-height-l);
+        line-height: var(--eui-line-height-s);
       }
 
       @media (min-width: 997px) {
@@ -39,32 +40,39 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         .tree-item__inner {
           display: flex;
           flex-direction: column;
-          padding: ${euiTheme.size.s} ${euiTheme.size.m} ${euiTheme.size.s} 0;
-          font-size: var(--eui-font-size-xs);
-          line-height: var(--eui-line-height-xxs);
+          padding: ${euiTheme.size.xs} ${euiTheme.size.m} ${euiTheme.size.xs} 0;
+          font-size: var(--eui-font-size-s);
+          line-height: var(--eui-line-height-s);
         }
 
-        // apply the decor border only to top level tree items
+        // apply the decor border only to top level tree items.
+        // Keep width constant (thick) so active color change doesn't shift text.
         &.table-of-contents > li > .tree-item__inner {
-          padding: ${euiTheme.size.s} ${euiTheme.size.m};
-          border-left: ${euiTheme.border.width.thick} solid
+          padding: ${euiTheme.size.xs} ${euiTheme.size.m};
+          border-inline-start: ${euiTheme.border.width.thick} solid
             ${euiTheme.border.color};
 
           &:has(.table-of-contents__link--active) {
-            border-left-color: ${euiTheme.colors.link};
+            border-inline-start-color: ${euiTheme.colors.primary};
           }
         }
       }
 
       .table-of-contents__link--active {
-        color: ${euiTheme.colors.link};
+        color: ${euiTheme.colors.textPrimary};
+        font-weight: ${euiTheme.font.weight.semiBold};
       }
     `,
     listChild: css`
       padding-inline-start: ${euiTheme.size.m};
     `,
     link: css`
-      color: ${euiTheme.colors.textParagraph};
+      color: ${euiTheme.colors.textSubdued};
+
+      &:hover {
+        color: ${euiTheme.colors.textParagraph};
+        text-decoration: none;
+      }
     `,
   };
 };

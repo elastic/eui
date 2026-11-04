@@ -10,22 +10,38 @@ import { type ReactNode, JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import { ThemeClassNames } from '@docusaurus/theme-common';
-import { useSidebarBreadcrumbs } from '@docusaurus/plugin-content-docs/client';
+import {
+  useDoc,
+  useSidebarBreadcrumbs,
+} from '@docusaurus/plugin-content-docs/client';
 import { useHomePageRoute } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
 import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 
+import EditThisPage from '../EditThisPage';
 import HomeBreadcrumbItem from './Items/Home';
 import { getItemStyles } from './Items/item.styles';
 
 // converted from css modules to Emotion
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
+  row: css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: ${euiTheme.size.m};
+    margin-block-end: ${euiTheme.size.m};
+  `,
   breadcrumbsContainer: css`
     --ifm-breadcrumb-size-multiplier: 0.8;
+    flex: 1 1 auto;
+    min-inline-size: 0;
 
     // align breadcrumb items with content
     margin-inline-start: -${euiTheme.size.m};
+  `,
+  editAction: css`
+    flex-shrink: 0;
   `,
 });
 
@@ -96,49 +112,62 @@ function BreadcrumbsItem({
 export default function DocBreadcrumbs(): JSX.Element | null {
   const breadcrumbs = useSidebarBreadcrumbs();
   const homePageRoute = useHomePageRoute();
+  const { metadata } = useDoc();
+  const { editUrl } = metadata;
 
   const styles = useEuiMemoizedStyles(getStyles);
 
-  if (!breadcrumbs) {
+  if (!breadcrumbs && !editUrl) {
     return null;
   }
 
   return (
-    <nav
-      className={clsx(ThemeClassNames.docs.docBreadcrumbs)}
-      aria-label={translate({
-        id: 'theme.docs.breadcrumbs.navAriaLabel',
-        message: 'Breadcrumbs',
-        description: 'The ARIA label for the breadcrumbs',
-      })}
-      css={styles.breadcrumbsContainer}
-    >
-      <ul
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        {homePageRoute && <HomeBreadcrumbItem />}
-        {breadcrumbs.map((item, idx) => {
-          const isLast = idx === breadcrumbs.length - 1;
-          const href =
-            item.type === 'category' && item.linkUnlisted
-              ? undefined
-              : item.href;
-          return (
-            <BreadcrumbsItem
-              key={idx}
-              active={isLast}
-              index={idx}
-              addMicrodata={!!href}
-            >
-              <BreadcrumbsItemLink href={href} isLast={isLast}>
-                {item.label}
-              </BreadcrumbsItemLink>
-            </BreadcrumbsItem>
-          );
-        })}
-      </ul>
-    </nav>
+    <div css={styles.row}>
+      {breadcrumbs ? (
+        <nav
+          className={clsx(ThemeClassNames.docs.docBreadcrumbs)}
+          aria-label={translate({
+            id: 'theme.docs.breadcrumbs.navAriaLabel',
+            message: 'Breadcrumbs',
+            description: 'The ARIA label for the breadcrumbs',
+          })}
+          css={styles.breadcrumbsContainer}
+        >
+          <ul
+            className="breadcrumbs"
+            itemScope
+            itemType="https://schema.org/BreadcrumbList"
+          >
+            {homePageRoute && <HomeBreadcrumbItem />}
+            {breadcrumbs.map((item, idx) => {
+              const isLast = idx === breadcrumbs.length - 1;
+              const href =
+                item.type === 'category' && item.linkUnlisted
+                  ? undefined
+                  : item.href;
+              return (
+                <BreadcrumbsItem
+                  key={idx}
+                  active={isLast}
+                  index={idx}
+                  addMicrodata={!!href}
+                >
+                  <BreadcrumbsItemLink href={href} isLast={isLast}>
+                    {item.label}
+                  </BreadcrumbsItemLink>
+                </BreadcrumbsItem>
+              );
+            })}
+          </ul>
+        </nav>
+      ) : (
+        <div css={styles.breadcrumbsContainer} />
+      )}
+      {editUrl && (
+        <div css={styles.editAction}>
+          <EditThisPage editUrl={editUrl} />
+        </div>
+      )}
+    </div>
   );
 }

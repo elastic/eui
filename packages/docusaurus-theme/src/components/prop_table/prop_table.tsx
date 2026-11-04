@@ -17,8 +17,9 @@ import {
   useEuiMemoizedStyles,
   EuiLink,
   EuiPanel,
+  EuiButtonEmpty,
 } from '@elastic/eui';
-import { useCallback, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 
@@ -32,12 +33,20 @@ export type PropTableProps = {
   parseDescription?: (description: string) => string | undefined;
 };
 
+const DESCRIPTION_EXPAND_THRESHOLD = 120;
+
 const getPropId = (prop: ProcessedComponentProp, componentName: string) =>
   `${encodeURIComponent(componentName)}-prop-${prop.name}`;
 
+const isLongDescription = (text?: string) =>
+  !!text &&
+  (text.length > DESCRIPTION_EXPAND_THRESHOLD || /\n/.test(text.trim()));
+
 const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
   propTable: css`
-    margin-block: ${euiTheme.size.xl};
+    // POC: keep end spacing between stacked tables; pull up under TOC heading
+    margin-block-start: 0;
+    margin-block-end: ${euiTheme.size.xl};
   `,
   header: css`
     // Increased specificity is needed here to override default
@@ -75,13 +84,39 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
     p:first-child {
       margin-block-start: 0;
     }
+
+    p:last-child {
+      margin-block-end: 0;
+    }
+  `,
+  descriptionPreview: css`
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+    /* Nested markdown blocks shouldn't add extra vertical rhythm when clamped */
+    .euiMarkdownFormat {
+      display: contents;
+    }
+  `,
+  descriptionCell: css`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: ${euiTheme.size.xs};
+  `,
+  expandedDescription: css`
+    padding-block: ${euiTheme.size.s};
+    padding-inline: ${euiTheme.size.m};
   `,
   required: css`
     font-family: ${euiTheme.font.familyCode};
     color: ${euiTheme.colors.textDanger};
   `,
-  type: css`
-    font-weight: ${euiTheme.font.weight.semiBold};
+  typeCell: css`
+    font-family: ${euiTheme.font.familyCode};
+    word-break: break-word;
   `,
   tableNameLink: css`
     display: none;
@@ -102,10 +137,14 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const PropTable = ({
   definition,
   headingLevel = 'h3',
-  showTitle = true,
+  // POC: titles come from remark-injected markdown headings (TOC); default off
+  showTitle = false,
   parseDescription,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
+  const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
+    Record<string, ReactNode>
+  >({});
 
   const tableItems = useMemo<Array<ProcessedComponentProp>>(
     () =>
@@ -115,12 +154,40 @@ export const PropTable = ({
     [definition.props]
   );
 
+  const resolveDescription = useCallback(
+    (value: ProcessedComponentProp['description']) =>
+      parseDescription ? parseDescription(value) : value,
+    [parseDescription]
+  );
+
+  const toggleDescription = useCallback(
+    (prop: ProcessedComponentProp) => {
+      setItemIdToExpandedRowMap((current) => {
+        const next = { ...current };
+        if (next[prop.name]) {
+          delete next[prop.name];
+        } else {
+          const description = resolveDescription(prop.description);
+          next[prop.name] = description ? (
+            <div css={styles.expandedDescription}>
+              <EuiMarkdownFormat css={styles.description}>
+                {description}
+              </EuiMarkdownFormat>
+            </div>
+          ) : null;
+        }
+        return next;
+      });
+    },
+    [resolveDescription, styles.description, styles.expandedDescription]
+  );
+
   const columns = useMemo<Array<EuiBasicTableColumn<ProcessedComponentProp>>>(
     () => [
       {
         field: 'name',
         name: 'Prop',
-        width: '150',
+        width: '160px',
         render(
           value: ProcessedComponentProp['name'],
           prop: ProcessedComponentProp
@@ -142,41 +209,28 @@ export const PropTable = ({
         },
       },
       {
-        field: 'description',
-        name: 'Description and type',
+        field: 'type',
+        name: 'Type',
+        width: '28%',
         render(
-          value: ProcessedComponentProp['description'],
+          _value: ProcessedComponentProp['type'],
           prop: ProcessedComponentProp
         ) {
-          const result = parseDescription ? parseDescription(value) : value;
+          if (!prop.type) {
+            return null;
+          }
 
           return (
-            <EuiFlexGroup
-              direction="column"
-              alignItems="flexStart"
-              gutterSize="s"
-            >
-              {result && (
-                <EuiMarkdownFormat css={styles.description}>
-                  {result}
-                </EuiMarkdownFormat>
-              )}
-              {prop.type && (
-                <span css={styles.type}>
-                  Type:{' '}
-                  <EuiCode language="ts">
-                    {prop.type.raw || prop.type.name}
-                  </EuiCode>
-                </span>
-              )}
-            </EuiFlexGroup>
+            <EuiCode css={styles.typeCell} language="ts">
+              {prop.type.raw || prop.type.name}
+            </EuiCode>
           );
         },
       },
       {
         field: 'defaultValue',
-        name: 'Default value',
-        width: '120',
+        name: 'Default',
+        width: '80px',
         render(
           value: ProcessedComponentProp['defaultValue'],
           prop: ProcessedComponentProp
@@ -185,11 +239,58 @@ export const PropTable = ({
             return <EuiTextColor css={styles.required}>Required</EuiTextColor>;
           }
 
-          return value && <EuiCode>{value}</EuiCode>;
+          return value ? <EuiCode>{value}</EuiCode> : null;
+        },
+      },
+      {
+        field: 'description',
+        name: 'Description',
+        // POC: explicit width so the transfer from Default is visible (unitless
+        // widths are ignored when applied via style)
+        width: '40%',
+        render(
+          value: ProcessedComponentProp['description'],
+          prop: ProcessedComponentProp
+        ) {
+          const description = resolveDescription(value);
+          if (!description) {
+            return null;
+          }
+
+          const long = isLongDescription(description);
+          const isExpanded = !!itemIdToExpandedRowMap[prop.name];
+
+          return (
+            <div css={styles.descriptionCell}>
+              {!isExpanded && (
+                <div css={long ? styles.descriptionPreview : undefined}>
+                  <EuiMarkdownFormat css={styles.description}>
+                    {description}
+                  </EuiMarkdownFormat>
+                </div>
+              )}
+              {long && (
+                <EuiButtonEmpty
+                  size="xs"
+                  flush="both"
+                  color="primary"
+                  onClick={() => toggleDescription(prop)}
+                >
+                  {isExpanded ? 'Show less' : 'Show more'}
+                </EuiButtonEmpty>
+              )}
+            </div>
+          );
         },
       },
     ],
-    []
+    [
+      definition.displayName,
+      itemIdToExpandedRowMap,
+      resolveDescription,
+      styles,
+      toggleDescription,
+    ]
   );
 
   const rowProps = useCallback(
@@ -197,15 +298,14 @@ export const PropTable = ({
       id: getPropId(item, definition.displayName),
       css: styles.tableRow,
     }),
-    [definition.displayName]
+    [definition.displayName, styles.tableRow]
   );
 
   const cellProps = useCallback(
-    (item: ProcessedComponentProp) => ({
-      id: getPropId(item, definition.displayName),
+    () => ({
       css: styles.tableCell,
     }),
-    [definition.displayName]
+    [styles.tableCell]
   );
 
   return (
@@ -228,6 +328,8 @@ export const PropTable = ({
           css={styles.table}
           width="100%"
           items={tableItems}
+          itemId="name"
+          itemIdToExpandedRowMap={itemIdToExpandedRowMap}
           columns={columns}
           rowProps={rowProps}
           cellProps={cellProps}
