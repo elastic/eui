@@ -21,9 +21,12 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     toc: css`
       /* Overrides classic TOC sticky top that ignores the inset navbar */
-      top: calc(var(--ifm-navbar-height) + ${inset} + ${gap});
+      top: calc(
+        var(--ifm-navbar-height) + var(--eui-navbar-inset, ${inset}) + ${gap}
+      );
       max-height: calc(
-        100vh - var(--ifm-navbar-height) - ${inset} - ${gap} - ${inset}
+        100vh - var(--ifm-navbar-height) - var(--eui-navbar-inset, ${inset}) -
+          ${gap} - var(--eui-navbar-inset, ${inset})
       );
     `,
   };

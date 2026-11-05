@@ -32,6 +32,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         flex-direction: column;
         width: var(--doc-sidebar-width);
         margin-top: calc(-1 * var(--ifm-navbar-height));
+        /* Keep padding at max inset so scroll float doesn't shift content */
         padding-block-start: calc(var(--ifm-navbar-height) + ${offset});
         padding-block-end: ${offset};
         padding-inline: ${offset};
@@ -68,12 +69,18 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       cursor: pointer;
     `,
     sidebarViewport: css`
-      top: calc(var(--ifm-navbar-height) + ${offset});
+      top: calc(var(--ifm-navbar-height) + var(--eui-navbar-inset, ${offset}));
       position: sticky;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - var(--ifm-navbar-height) - ${offset} * 2);
-      max-height: calc(100vh - var(--ifm-navbar-height) - ${offset} * 2);
+      height: calc(
+        100vh - var(--ifm-navbar-height) - var(--eui-navbar-inset, ${offset}) *
+          2
+      );
+      max-height: calc(
+        100vh - var(--ifm-navbar-height) - var(--eui-navbar-inset, ${offset}) *
+          2
+      );
       /* Title is fixed; menu inside Content scrolls */
       overflow: hidden;
 
