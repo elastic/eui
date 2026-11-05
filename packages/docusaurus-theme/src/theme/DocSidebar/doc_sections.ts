@@ -21,3 +21,25 @@ export const DOC_SECTIONS = [
 ] as const;
 
 export type DocSectionId = (typeof DOC_SECTIONS)[number]['sidebarId'];
+
+/**
+ * POC: primary sections shown in the navbar after the version switcher.
+ * Paths match HomepageUsers category card hrefs.
+ */
+export const HOME_NAV_SECTIONS = [
+  {
+    sidebarId: 'getting-started',
+    label: 'Getting started',
+    href: '/docs/getting-started/setup/',
+  },
+  {
+    sidebarId: 'components',
+    label: 'Components',
+    href: '/docs/components/',
+  },
+  {
+    sidebarId: 'utilities',
+    label: 'Utilities',
+    href: '/docs/utilities/accessibility/',
+  },
+] as const;

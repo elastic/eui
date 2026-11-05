@@ -8,12 +8,15 @@
 
 import { type ReactNode, JSX } from 'react';
 import { css, Global } from '@emotion/react';
+import clsx from 'clsx';
 import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
+import { useActiveDocContext } from '@docusaurus/plugin-content-docs/client';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
 import NavbarItem, {
   type Props as NavbarItemConfig,
@@ -41,6 +44,7 @@ import {
 } from '../../../components/version_switcher';
 import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
 import { getNavbarBreakpoint } from '../breakpoint';
+import { HOME_NAV_SECTIONS } from '../../DocSidebar/doc_sections';
 
 const DOCS_PATH = '/docs';
 
@@ -110,6 +114,44 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         &--active {
           color: ${euiTheme.colors.textPrimary};
           font-weight: ${euiTheme.font.weight.semiBold};
+        }
+      }
+    `,
+    // POC: primary section links — desktop only (after version switcher)
+    homeNav: css`
+      display: none;
+      align-items: center;
+      gap: ${euiTheme.size.xxs};
+      margin-inline-start: ${euiTheme.size.xs};
+
+      ${desktopMediaQuery} {
+        display: flex;
+      }
+
+      .navbar__link {
+        ${euiTextTruncate()}
+        color: ${euiTheme.colors.textParagraph};
+        font-size: var(--eui-font-size-s);
+        font-weight: ${euiTheme.font.weight.medium};
+        line-height: var(--eui-line-height-s);
+        border-radius: ${euiTheme.border.radius.control};
+        padding-inline: ${euiTheme.size.s};
+        padding-block: ${euiTheme.size.xs};
+        text-decoration: none;
+
+        &:hover {
+          color: ${euiTheme.colors.textPrimary};
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
+          text-decoration: none;
+        }
+
+        &--active {
+          color: ${euiTheme.colors.textHeading};
+          font-weight: ${euiTheme.font.weight.semiBold};
+
+          &:hover {
+            color: ${euiTheme.colors.textHeading};
+          }
         }
       }
     `,
@@ -278,6 +320,9 @@ export default function NavbarContent({
 
   const searchBarItem = items.find((item) => item.type === 'search');
   const isRoot = !location?.pathname.includes(DOCS_PATH);
+  // Only mark active when on a real docs page in that sidebar (not homepage)
+  const { activeDoc } = useActiveDocContext(undefined);
+  const activeSidebarId = activeDoc?.sidebar;
 
   return (
     <>
@@ -295,6 +340,23 @@ export default function NavbarContent({
                 <VersionSwitcher {...versionSwitcherOptions} />
               )}
             </div>
+            <nav css={styles.homeNav} aria-label="Primary documentation">
+              {HOME_NAV_SECTIONS.map((section) => (
+                <Link
+                  key={section.sidebarId}
+                  className={clsx('navbar__link', {
+                    'navbar__link--active':
+                      activeSidebarId === section.sidebarId,
+                  })}
+                  to={section.href}
+                  aria-current={
+                    activeSidebarId === section.sidebarId ? 'page' : undefined
+                  }
+                >
+                  {section.label}
+                </Link>
+              ))}
+            </nav>
             <NavbarItems items={leftItems} />
           </>
         }
