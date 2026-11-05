@@ -41,8 +41,8 @@ const styles = {
   docItemCol: css`
     @media (min-width: 997px) {
       font-size: 100%;
-      /* Readable measure; was 94ch and felt overly wide on large screens */
-      max-width: 76ch;
+      /* Readable measure for mixed prose + code docs */
+      max-width: 80ch;
       overflow-x: auto;
     }
   `,
