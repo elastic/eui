@@ -249,6 +249,24 @@ describe('EuiCodeBlock', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    it('keeps the same code element when the content changes', () => {
+      const { container, rerender } = render(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {code}
+        </EuiCodeBlock>
+      );
+      const codeElement = container.querySelector('code');
+      expect(codeElement).toBeInTheDocument();
+
+      rerender(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {`${code}\nconsole.log('more');`}
+        </EuiCodeBlock>
+      );
+
+      expect(container.querySelector('code')).toBe(codeElement);
+    });
+
     it('requires overflowHeight', () => {
       // @ts-expect-error should expect overflowHeight
       render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
