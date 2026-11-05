@@ -13,6 +13,7 @@ import {
   ACTION_SET_ACTIVE,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
+  ACTION_SET_RESIZABLE,
   ACTION_SET_PAGINATION,
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
@@ -123,8 +124,16 @@ export function flyoutManagerReducer(
     // - For a `child` flyout, attach it to the most recent session; if no
     //   session exists, do nothing (invalid child without a parent).
     case ACTION_ADD: {
-      const { flyoutId, title, level, size, historyKey, iconType, minWidth } =
-        action;
+      const {
+        flyoutId,
+        title,
+        level,
+        size,
+        historyKey,
+        iconType,
+        minWidth,
+        resizable,
+      } = action;
 
       const isDuplicate = state.flyouts.some((f) => f.flyoutId === flyoutId);
       const isIdempotentChild =
@@ -142,6 +151,7 @@ export function flyoutManagerReducer(
         flyoutId,
         size,
         minWidth,
+        resizable,
         activityStage: STAGE_OPENING,
       };
       const newFlyouts: EuiManagedFlyoutState[] = isIdempotentChild
@@ -383,6 +393,19 @@ export function flyoutManagerReducer(
       const { flyoutId, width } = action;
       const updatedFlyouts = state.flyouts.map((flyout) =>
         flyout.flyoutId === flyoutId ? { ...flyout, width } : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Update whether a flyout is resizable. No-op if unchanged or missing.
+    case ACTION_SET_RESIZABLE: {
+      const { flyoutId, resizable } = action;
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (!target || !!target.resizable === resizable) {
+        return state;
+      }
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? { ...flyout, resizable } : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
     }

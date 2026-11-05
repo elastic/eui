@@ -1,3 +1,11 @@
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+
+- Added `EuiCallOutObject` with `getTitle()`, `getText()`, `getColor()`, `dismissButton` and `dismiss()` ([#10234](https://github.com/elastic/eui/pull/10234))
+- Added `EuiSideNavObject` with `getItems()`, `item(label)`, `select(label)`, `getSelected()` and `expand(label)` ([#10229](https://github.com/elastic/eui/pull/10229))
+- Added `EuiFieldSearchObject` with `setQuery(text)`, `getQuery()` and `clear()`, and `EuiSearchBarObject` for the same input reached through the search bar `box` prop ([#10222](https://github.com/elastic/eui/pull/10222))
+- Added `EuiPaginationObject` with `getActivePage()`, `getPageCount()`, `goToPage(index)`, `next()` and `previous()` ([#10214](https://github.com/elastic/eui/pull/10214))
+- Added `EuiTableObject` for `EuiTable`, with `rows`, `headerCells`, `column(index)` and `cell(row, column)`. `EuiBasicTableObject` now extends it ([#10213](https://github.com/elastic/eui/pull/10213))
+
 ## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
 
 - Added `setColor()` and `getColor()` to `EuiColorPickerObject`, and support for pickers that use a custom `button` anchor ([#10182](https://github.com/elastic/eui/pull/10182))
