@@ -8,7 +8,7 @@
 
 import React, { Component, ReactNode, createRef } from 'react';
 
-import { RenderWithEuiTheme } from '../../../services';
+import { RenderWithEuiStylesMemoizer } from '../../../services';
 import { isArray, isNil } from '../../../services/predicate';
 import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
@@ -377,8 +377,8 @@ export class FieldValueSelectionFilter extends Component<
     }
 
     return (
-      <RenderWithEuiTheme>
-        {(euiThemeContext) => (
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => (
           <EuiPopover
             button={button}
             isOpen={this.state.popoverOpen}
@@ -386,7 +386,7 @@ export class FieldValueSelectionFilter extends Component<
             panelPaddingSize="none"
             anchorPosition="downCenter"
             panelProps={{
-              css: euiFilterGroupStyles(euiThemeContext)
+              css: stylesMemoizer(euiFilterGroupStyles)
                 .euiFilterGroup__popoverPanel,
             }}
           >
@@ -428,7 +428,7 @@ export class FieldValueSelectionFilter extends Component<
             </EuiSelectable>
           </EuiPopover>
         )}
-      </RenderWithEuiTheme>
+      </RenderWithEuiStylesMemoizer>
     );
   }
 
