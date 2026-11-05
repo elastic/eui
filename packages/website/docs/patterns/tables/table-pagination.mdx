@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Pagination for basic tables, with a reasonable default page size, 10, 25, 50 and 100 rows per page options, persisting the choice and avoiding infinite scrolling.
 ---
 
 import figmaTablePaginationSetAReasonableDefault from '!url-loader!./assets/table-pagination_set-a-reasonable-default.svg';
@@ -9,7 +10,7 @@ import figmaTablePaginationAllowCustomization from '!url-loader!./assets/table-p
 
 # Table Pagination for basic tables
 
-Patterns and recommendations for handling table pagination on basic tables
+Patterns and recommendations for handling table pagination on basic tables ([EuiBasicTable](../../components/tables/basic.mdx) and [EuiInMemoryTable](../../components/tables/in-memory.mdx)).
 
 
 Pagination is important for providing better page load times by only loading a subset of items of a long list. However it should be possible for the user to customize this setting to match their needs. The following recommendations are suggested for basic tables, typically in a content management scenario. Large data grid tables or otherwise complex tables may have their unique needs which are not covered here. If possible, it's recommended to use these as a starting point and diverge only when necessary.
