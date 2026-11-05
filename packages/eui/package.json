@@ -12,7 +12,8 @@
   },
   "sideEffects": [
     "*.css",
-    "*.scss"
+    "*.scss",
+    "**/services/color/vis_color_store.js"
   ],
   "scripts": {
     "start": "yarn storybook",

@@ -95,7 +95,7 @@ const controlColumns: Pick<
         </EuiScreenReaderOnly>
       ),
       rowCellRender: () => (
-        <EuiButtonIcon iconType="boxesHorizontal" aria-label="Open actions" />
+        <EuiButtonIcon iconType="ellipsis" aria-label="Open actions" />
       ),
     },
   ],

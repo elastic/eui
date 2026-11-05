@@ -293,4 +293,17 @@ describe('EuiRange', () => {
       expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
     });
   });
+
+  describe('value tooltip', () => {
+    it('does not announce value changes but keeps its content accessible', () => {
+      const { container } = render(
+        <EuiRange {...props} value={20} showValue valueAppend="%" />
+      );
+      const tooltip = container.querySelector('.euiRangeTooltip__value');
+
+      expect(tooltip).toHaveAttribute('aria-live', 'off');
+      expect(tooltip).not.toHaveAttribute('aria-hidden');
+      expect(tooltip).toHaveTextContent('20%');
+    });
+  });
 });
