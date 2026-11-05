@@ -1238,30 +1238,30 @@ export const getInfimaStyles = () => css`
   }
 
   .pagination-nav {
-    display: grid;
-    grid-gap: var(--ifm-spacing-horizontal);
+    /* POC: hug-content links pinned to either end */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: var(--ifm-spacing-horizontal);
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .pagination-nav__link {
-    border: 1px solid var(--ifm-color-emphasis-300);
+    border: none;
     border-radius: var(--ifm-pagination-nav-border-radius);
     display: block;
-    height: 100%;
+    inline-size: fit-content;
+    max-inline-size: 100%;
     line-height: var(--ifm-heading-line-height);
-    padding: var(--ifm-global-spacing);
-    transition: border-color var(--ifm-transition-fast)
-      var(--ifm-transition-timing-default);
+    /* POC: 8px — tighter than --ifm-global-spacing */
+    padding: var(--eui-size-s);
   }
 
   .pagination-nav__link:hover {
-    border-color: var(--ifm-pagination-nav-color-hover);
     text-decoration: none;
   }
 
   .pagination-nav__link--next {
-    grid-column: 2/3;
+    margin-inline-start: auto;
     text-align: right;
   }
 
@@ -1271,13 +1271,7 @@ export const getInfimaStyles = () => css`
     word-break: break-word;
   }
 
-  .pagination-nav__link--prev .pagination-nav__label::before {
-    content: '« ';
-  }
-
-  .pagination-nav__link--next .pagination-nav__label::after {
-    content: ' »';
-  }
+  /* POC: drop Infima « » chevrons — PaginatorNavLink uses EuiIcon instead */
 
   .pagination-nav__sublabel {
     color: var(--ifm-color-content-secondary);

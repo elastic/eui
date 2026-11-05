@@ -40,7 +40,8 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         .tree-item__inner {
           display: flex;
           flex-direction: column;
-          padding: ${euiTheme.size.xs} ${euiTheme.size.m} ${euiTheme.size.xs} 0;
+          /* POC: 6px — between xs (4) and s (8) */
+          padding: 6px ${euiTheme.size.m} 6px 0;
           font-size: var(--eui-font-size-s);
           line-height: var(--eui-line-height-s);
         }

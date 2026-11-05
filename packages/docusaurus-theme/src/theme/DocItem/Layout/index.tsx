@@ -98,7 +98,7 @@ export default function DocItemLayout({ children }: typeof Props): JSX.Element {
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
-          <EuiHorizontalRule margin="xl" />
+          <EuiHorizontalRule margin="m" />
           <DocItemPaginator />
         </div>
       </div>

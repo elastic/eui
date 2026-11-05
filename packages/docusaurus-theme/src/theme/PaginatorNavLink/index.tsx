@@ -18,11 +18,25 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
     link: css`
       --ifm-pagination-nav-color-hover: ${euiTheme.colors.primary};
 
-      border: ${euiTheme.border.thin};
+      border: none;
+      inline-size: fit-content;
+      max-inline-size: 100%;
+      padding: ${euiTheme.size.s};
+      transition: background-color ${euiTheme.animation.fast}
+        ${euiTheme.animation.resistance};
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      &:hover {
+        background-color: ${euiTheme.colors.lightestShade};
+      }
 
       .pagination-nav__label {
         display: flex;
         align-items: center;
+        gap: ${euiTheme.size.s};
 
         font-size: var(--eui-font-size-m);
         line-height: var(--eui-line-height-l);
@@ -32,15 +46,18 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         justify-content: flex-end;
       }
 
-      .pagination-nav__label::before,
-      .pagination-nav__label::after {
-        content: '';
-      }
-
       .pagination-nav__sublabel {
         margin-block-end: ${euiTheme.size.xs};
         font-size: var(--eui-font-size-s);
         line-height: var(--eui-line-height-l);
+      }
+
+      &.pagination-nav__link--prev .pagination-nav__sublabel {
+        padding-inline-start: ${euiTheme.size.l}; /* 24 — align with title after chevron */
+      }
+
+      &.pagination-nav__link--next .pagination-nav__sublabel {
+        padding-inline-end: ${euiTheme.size.l}; /* 24 — align with title before chevron */
       }
     `,
   };

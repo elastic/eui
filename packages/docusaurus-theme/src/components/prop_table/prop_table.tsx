@@ -7,10 +7,10 @@
  */
 
 import {
+  EuiBadge,
   EuiBasicTable,
   EuiMarkdownFormat,
   EuiBasicTableColumn,
-  EuiTextColor,
   EuiFlexGroup,
   EuiCode,
   UseEuiTheme,
@@ -67,16 +67,17 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
       border-block-end: none;
     }
   `,
+  propNameCell: css`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: ${euiTheme.size.xs};
+  `,
   propName: css`
     font-family: ${euiTheme.font.familyCode};
-    font-weight: ${euiTheme.font.weight.semiBold};
+    font-weight: ${euiTheme.font.weight.bold};
   `,
   description: css`
-    p,
-    ul {
-      font-size: var(--eui-font-size-s);
-    }
-
     p {
       margin-block-end: var(--eui-size-s);
     }
@@ -109,10 +110,6 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
   expandedDescription: css`
     padding-block: ${euiTheme.size.s};
     padding-inline: ${euiTheme.size.m};
-  `,
-  required: css`
-    font-family: ${euiTheme.font.familyCode};
-    color: ${euiTheme.colors.textDanger};
   `,
   typeCell: css`
     font-family: ${euiTheme.font.familyCode};
@@ -148,9 +145,12 @@ export const PropTable = ({
 
   const tableItems = useMemo<Array<ProcessedComponentProp>>(
     () =>
-      Object.values(definition.props).sort(
-        (a, b) => +(b.isRequired ?? false) - +(a.isRequired ?? false)
-      ),
+      Object.values(definition.props).sort((a, b) => {
+        const byRequired =
+          +(b.isRequired ?? false) - +(a.isRequired ?? false);
+        if (byRequired !== 0) return byRequired;
+        return a.name.localeCompare(b.name);
+      }),
     [definition.props]
   );
 
@@ -170,7 +170,7 @@ export const PropTable = ({
           const description = resolveDescription(prop.description);
           next[prop.name] = description ? (
             <div css={styles.expandedDescription}>
-              <EuiMarkdownFormat css={styles.description}>
+              <EuiMarkdownFormat textSize="s" css={styles.description}>
                 {description}
               </EuiMarkdownFormat>
             </div>
@@ -193,18 +193,23 @@ export const PropTable = ({
           prop: ProcessedComponentProp
         ) {
           return (
-            <span css={styles.propName}>
-              {value}
-              <EuiLink
-                href={`#${getPropId(prop, definition.displayName)}`}
-                css={styles.tableNameLink}
-                className="propLink"
-                aria-label={`Direct link to the ${prop.name} prop`}
-                title={`Direct link to the ${prop.name} prop`}
-              >
-                #
-              </EuiLink>
-            </span>
+            <div css={styles.propNameCell}>
+              <span css={styles.propName}>
+                {value}
+                <EuiLink
+                  href={`#${getPropId(prop, definition.displayName)}`}
+                  css={styles.tableNameLink}
+                  className="propLink"
+                  aria-label={`Direct link to the ${prop.name} prop`}
+                  title={`Direct link to the ${prop.name} prop`}
+                >
+                  #
+                </EuiLink>
+              </span>
+              {prop.isRequired && (
+                <EuiBadge color="success">Required</EuiBadge>
+              )}
+            </div>
           );
         },
       },
@@ -221,7 +226,11 @@ export const PropTable = ({
           }
 
           return (
-            <EuiCode css={styles.typeCell} language="ts">
+            <EuiCode
+              css={styles.typeCell}
+              language="ts"
+              transparentBackground
+            >
               {prop.type.raw || prop.type.name}
             </EuiCode>
           );
@@ -231,15 +240,8 @@ export const PropTable = ({
         field: 'defaultValue',
         name: 'Default',
         width: '80px',
-        render(
-          value: ProcessedComponentProp['defaultValue'],
-          prop: ProcessedComponentProp
-        ) {
-          if (prop.isRequired && !value?.trim().length) {
-            return <EuiTextColor css={styles.required}>Required</EuiTextColor>;
-          }
-
-          return value ? <EuiCode>{value}</EuiCode> : null;
+        render(value: ProcessedComponentProp['defaultValue']) {
+          return value?.trim().length ? <EuiCode>{value}</EuiCode> : null;
         },
       },
       {
@@ -264,7 +266,7 @@ export const PropTable = ({
             <div css={styles.descriptionCell}>
               {!isExpanded && (
                 <div css={long ? styles.descriptionPreview : undefined}>
-                  <EuiMarkdownFormat css={styles.description}>
+                  <EuiMarkdownFormat textSize="s" css={styles.description}>
                     {description}
                   </EuiMarkdownFormat>
                 </div>
