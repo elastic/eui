@@ -9,6 +9,8 @@
 import { css } from '@emotion/react';
 import {
   EuiCode,
+  EuiCopy,
+  EuiIconTip,
   euiShadow,
   euiShadowHover,
   useEuiTheme,
@@ -74,13 +76,20 @@ export const BrandColorsCards = () => {
     display: grid;
     /* POC: row 1 = 2 large (span 2); row 2 = 4 compact */
     grid-template-columns: repeat(4, 1fr);
-    gap: ${euiTheme.size.l};
+    /* POC: needs design input — was size.l */
+    gap: ${euiTheme.size.m};
     margin-block: ${euiTheme.size.m} ${euiTheme.size.xl};
 
+    /* Target cell wrappers (EuiCopy renders a fragment, so it can't be the grid item) */
     & > :nth-child(-n + 2) {
       grid-column: span 2;
       /* Same height as 3:4 cards at half the column width → 3:2 */
       aspect-ratio: 3 / 2;
+
+      article {
+        aspect-ratio: unset;
+        block-size: 100%;
+      }
     }
 
     @media (max-width: ${euiTheme.breakpoint.m}px) {
@@ -88,6 +97,12 @@ export const BrandColorsCards = () => {
 
       & > :nth-child(-n + 2) {
         grid-column: span 1;
+        aspect-ratio: 3 / 4;
+
+        article {
+          aspect-ratio: 3 / 4;
+          block-size: auto;
+        }
       }
     }
 
@@ -96,32 +111,34 @@ export const BrandColorsCards = () => {
     }
   `;
 
+  const gridCell = css`
+    min-inline-size: 0;
+
+    /* Stretch EuiCopy's tooltip anchor to fill the cell */
+    & > :first-of-type {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+    }
+  `;
+
   const card = css`
     display: flex;
     flex-direction: column;
     gap: ${euiTheme.size.s};
     aspect-ratio: 3 / 4;
+    inline-size: 100%;
     padding: ${euiTheme.size.s};
     padding-block-end: ${euiTheme.size.m};
     overflow: hidden;
     background-color: ${euiTheme.colors.backgroundBasePlain};
     border-radius: ${euiTheme.border.radius.control};
+    cursor: pointer;
     ${euiShadow(euiThemeContext, 'xs')}
-    transform: translateZ(0);
-    transition: box-shadow ${euiTheme.animation.fast} ease,
-      transform ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
+    transition: box-shadow ${euiTheme.animation.fast} ease;
 
     &:hover {
       ${euiShadowHover(euiThemeContext, 'm')}
-      transform: scale(1.03);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: box-shadow ${euiTheme.animation.fast} ease;
-
-      &:hover {
-        transform: none;
-      }
     }
   `;
 
@@ -136,6 +153,13 @@ export const BrandColorsCards = () => {
     flex-direction: column;
     gap: ${euiTheme.size.xxs};
     padding-inline: ${euiTheme.size.xs};
+  `;
+
+  const brandRow = css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: ${euiTheme.size.xs};
   `;
 
   const tokenCode = css`
@@ -171,22 +195,61 @@ export const BrandColorsCards = () => {
   return (
     <div css={grid}>
       {colors.map((color) => (
-        <article key={color.token} css={card} title={color.summary}>
-          <div
-            css={swatch}
-            style={{ backgroundColor: color.value }}
-            role="img"
-            aria-label={`${color.name} swatch ${color.value}`}
-          />
-          <div css={meta}>
-            <p css={brand}>EUI</p>
-            <p css={name}>{color.name}</p>
-            <p css={value}>{color.value}</p>
-            <EuiCode transparentBackground css={tokenCode}>
-              {color.token}
-            </EuiCode>
-          </div>
-        </article>
+        <div key={color.token} css={gridCell}>
+          <EuiCopy
+            textToCopy={color.token}
+            beforeMessage="Click to copy token"
+            afterMessage={`${color.token} copied`}
+            tooltipProps={{ display: 'block' }}
+          >
+            {(copy) => (
+              <article
+                css={card}
+                role="button"
+                tabIndex={0}
+                aria-label={`Copy ${color.token}`}
+                onClick={copy}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    copy();
+                  }
+                }}
+              >
+                <div
+                  css={swatch}
+                  style={{ backgroundColor: color.value }}
+                  role="img"
+                  aria-label={`${color.name} swatch ${color.value}`}
+                />
+                <div css={meta}>
+                  <div css={brandRow}>
+                    <p css={brand}>EUI</p>
+                    {/* Keep tip clicks from copying the token */}
+                    <span
+                      onClick={(e) => e.stopPropagation()}
+                      onKeyDown={(e) => e.stopPropagation()}
+                    >
+                      <EuiIconTip
+                        type="info"
+                        color="subdued"
+                        size="s"
+                        position="top"
+                        content={color.summary}
+                        aria-label={`${color.name} usage`}
+                      />
+                    </span>
+                  </div>
+                  <p css={name}>{color.name}</p>
+                  <p css={value}>{color.value}</p>
+                  <EuiCode transparentBackground css={tokenCode}>
+                    {color.token}
+                  </EuiCode>
+                </div>
+              </article>
+            )}
+          </EuiCopy>
+        </div>
       ))}
     </div>
   );
