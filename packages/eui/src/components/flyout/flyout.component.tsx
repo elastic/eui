@@ -373,6 +373,9 @@ const euiMaxContribution = (
 
 const defaultElement = 'div';
 
+// The share of the container a maximized main flyout keeps for its restored width.
+const MAXIMIZED_MAIN_RESTORE_RATIO = 0.1;
+
 type Props<T extends ElementType> = CommonProps & {
   /**
    * Sets the HTML element for `EuiFlyout`
@@ -704,13 +707,13 @@ export const EuiFlyoutComponent = forwardRef(
     // grow (max = 90% - (90% - main) = main). Using minWidth breaks this cycle
     // while ensuring the fill sibling never collapses below its configured
     // minimum. A maximized main makes room for its child the same way, but
-    // keeps at least 10% of the container: its hidden restore width clamps
-    // beside the child, and the resize hook treats a width of 0 as unset.
+    // keeps a share of the container: its hidden restore width clamps beside
+    // the child, and the resize hook treats a width of 0 as unset.
     let clampSiblingWidth = siblingFlyoutWidth ?? undefined;
     if (layoutMode !== LAYOUT_MODE_STACKED && siblingFlyout?.maximized) {
       clampSiblingWidth = Math.max(
         siblingFlyout.minWidth ?? 0,
-        (effectiveReferenceWidth ?? 0) * 0.1
+        (effectiveReferenceWidth ?? 0) * MAXIMIZED_MAIN_RESTORE_RATIO
       );
     } else if (
       layoutMode !== LAYOUT_MODE_STACKED &&
