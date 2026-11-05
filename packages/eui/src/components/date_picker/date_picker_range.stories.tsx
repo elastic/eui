@@ -55,6 +55,54 @@ export const Playground: Story = {
 };
 enableFunctionToggleControls(Playground, ['onFocus', 'onBlur']);
 
+export const Clear: Story = {
+  parameters: {
+    controls: {
+      include: ['compressed', 'fullWidth', 'disabled', 'readOnly'],
+    },
+  },
+  args: {
+    startDateControl: <EuiDatePicker />,
+    endDateControl: <EuiDatePicker />,
+  },
+  render: function Render({ startDateControl, endDateControl, ...rest }) {
+    const [startDate, setStartDate] = useState<moment.Moment | null>(
+      moment('01/01/1970')
+    );
+    const [endDate, setEndDate] = useState<moment.Moment | null>(
+      moment('01/07/1970')
+    );
+
+    return (
+      <EuiDatePickerRange
+        {...rest}
+        clear={{
+          onClick: () => {
+            setStartDate(null);
+            setEndDate(null);
+          },
+        }}
+        startDateControl={
+          <EuiDatePicker
+            selected={startDate}
+            onChange={setStartDate}
+            startDate={startDate}
+            endDate={endDate}
+          />
+        }
+        endDateControl={
+          <EuiDatePicker
+            selected={endDate}
+            onChange={setEndDate}
+            startDate={startDate}
+            endDate={endDate}
+          />
+        }
+      />
+    );
+  },
+};
+
 export const Inline: Story = {
   parameters: {
     controls: {
