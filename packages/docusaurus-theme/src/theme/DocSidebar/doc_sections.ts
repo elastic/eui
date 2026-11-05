@@ -8,8 +8,7 @@
 
 /**
  * Top-level docs sections (one Docusaurus sidebar each).
- * Kept here so the sidebar switcher can list them after they're removed
- * from the navbar.
+ * Used for navbar primary/overflow links and the static sidebar title label.
  */
 export const DOC_SECTIONS = [
   { sidebarId: 'getting-started', label: 'Getting started' },

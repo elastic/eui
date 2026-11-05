@@ -2,20 +2,44 @@
 sidebar_position: 1
 ---
 
+import { OverviewLinkCards } from './_overview_link_cards';
+
 # Overview
 
-EUI offers a wide variety of components. This section is organized topically with individual pages containing live example, usage recommendations, guidelines, and props.
+EUI offers a wide variety of components. Individual pages include live examples, usage recommendations, guidelines, and props. Browse the sidebar alphabetically for the full catalog, or jump into popular components below.
 
-The adjacent [patterns](../patterns/index.mdx) section provides additional guidance for handling use cases that cross multiple components.
+## Popular components
 
-## Components by topic
+<OverviewLinkCards
+  variant="primary"
+  items={[
+    { label: 'Badge', href: './display/badge/' },
+    { label: 'Button', href: './navigation/buttons/button/' },
+    { label: 'Callout', href: './display/callout/' },
+    { label: 'Empty prompt', href: './display/empty-prompt/' },
+    { label: 'Flyout', href: './containers/flyout/' },
+    { label: 'Forms', href: './forms/layouts/usage/' },
+    { label: 'Icons', href: './display/icons/' },
+    { label: 'Illustrations', href: './display/illustrations/' },
+    { label: 'Loading', href: './display/loading/' },
+    { label: 'Modal', href: './containers/modal/' },
+    { label: 'Panel', href: './containers/panel/' },
+    { label: 'Tables', href: './tables/' },
+  ]}
+/>
 
-- [Layout](./layout/flex/index.mdx)
-- [Containers](./containers/accordion.mdx)
-- [Navigation](./navigation/breadcrumbs.mdx)
-- [Display](./display/badge/index.mdx)
-- [Forms](./forms/layouts/usage.mdx)
-- [Data grid](./data-grid/data-grid.mdx)
-- [Tables](./tables/basic.mdx)
-- [Templates](./templates/page-template/index.mdx)
-- [Editors and syntax](./editors-and-syntax/markdown/format.mdx)
+## Layout related
+
+<OverviewLinkCards
+  variant="accent"
+  items={[
+    { label: 'Flex', href: './layout/flex/' },
+    { label: 'Horizontal rule', href: './layout/horizontal-rule/' },
+    { label: 'Resizable container', href: './containers/resizable-container/' },
+    { label: 'Spacer', href: './layout/spacer/' },
+  ]}
+/>
+
+Cross-cutting layouts and workflows live in [patterns](../patterns/index.mdx).
+
+Theme values — colors, typography, sizing, and more — live under [tokens](../getting-started/theming/tokens/colors/index.mdx).

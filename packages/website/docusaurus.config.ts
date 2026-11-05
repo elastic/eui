@@ -12,6 +12,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 import { createRequire } from 'node:module';
+import { flattenComponentsSidebarItems } from './src/sidebars/flatten_components_sidebar';
 
 const require = createRequire(import.meta.url);
 const remarkPropTableTocHeadings = require('./src/remark/prop_table_toc_headings.cjs');
@@ -107,6 +108,15 @@ const config: Config = {
           },
           // Run before TOC extraction so PropTable names appear under ## Props
           beforeDefaultRemarkPlugins: [remarkPropTableTocHeadings],
+          // POC: Components IA — flatten topic groups, keep file paths / URLs
+          sidebarItemsGenerator: async (args) => {
+            const items = await args.defaultSidebarItemsGenerator(args);
+            if (args.item.dirName !== 'components') {
+              return items;
+            }
+            // POC: helper uses a loose item shape; cast back to Docusaurus' normalized type
+            return flattenComponentsSidebarItems(items) as typeof items;
+          },
         },
         blog: {
           showReadingTime: true,
