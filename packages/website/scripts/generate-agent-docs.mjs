@@ -33,12 +33,15 @@ const websiteDir = path.resolve(
 const docsDir = path.join(websiteDir, 'docs');
 // Utilities hold documented components too (EuiProvider, EuiPortal, EuiFocusTrap...).
 // Theming and Emotion pages document the tokens, breakpoints and style helpers.
-// The order is the index's group order.
+// Patterns and content guidelines cover UX and copy decisions the component
+// pages leave out. The order is the index's group order.
 const sourceDirs = [
   'components',
   'utilities',
   'getting-started/theming',
   'getting-started/working-with-emotion',
+  'patterns',
+  'content',
 ].map((dir) => path.join(docsDir, dir));
 const isSourcePage = (file) =>
   sourceDirs.some((dir) => file.startsWith(`${dir}${path.sep}`));
@@ -118,8 +121,14 @@ const escapeCell = (value) =>
 
 // Repeated on nearly every component with no component-specific meaning;
 // "Also accepts props from" already names their source.
-const COMMON_PROPS = new Set(['className', 'aria-label', 'data-test-subj', 'css']);
-const GENERIC_ARIA_LABEL = /^Defines a string value that labels the current element/;
+const COMMON_PROPS = new Set([
+  'className',
+  'aria-label',
+  'data-test-subj',
+  'css',
+]);
+const GENERIC_ARIA_LABEL =
+  /^Defines a string value that labels the current element/;
 
 const isCommonProp = (prop) =>
   COMMON_PROPS.has(prop.name) &&
@@ -226,6 +235,17 @@ const outputPathFor = (file) => {
       break;
     }
   }
+  // Agents guess `components/<name>.md` with the wrong category or without `/index`, so component
+  // pages are flat and named after their title.
+  const title =
+    readFrontmatter(file).title ??
+    fs.readFileSync(file, 'utf8').match(/^# (.+)$/m)?.[1];
+  if (relative.startsWith('components/') && title) {
+    relative = `components/${title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')}.md`;
+  }
   return path.join(outDir, relative);
 };
 
@@ -292,6 +312,17 @@ const transformJsx = (node, ctx) => {
   if (name === 'Example.Preview') return [];
   // Website-only embeds with no meaning outside the docs site
   if (name === 'FigmaAsset' || name === 'StorybookLink') return [];
+
+  // Screenshots: the alt text carries what the image shows
+  if (name === 'img') {
+    const alt = getAttribute(node, 'alt');
+    if (typeof alt !== 'string') return [];
+    const image = {
+      type: 'emphasis',
+      children: [{ type: 'text', value: `Image: ${alt}` }],
+    };
+    return [isFlow ? { type: 'paragraph', children: [image] } : image];
+  }
 
   if (name === 'PropTable') {
     const definition = getAttribute(node, 'definition')?.expression ?? '';
@@ -450,10 +481,10 @@ const convertTree = (file, parentCtx) => {
 const findPages = (dir) =>
   fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
+    // `_`-prefixed files and folders are partials included by other pages.
+    if (entry.name.startsWith('_')) return [];
     if (entry.isDirectory()) return findPages(full);
-    return entry.name.endsWith('.mdx') && !entry.name.startsWith('_')
-      ? [full]
-      : [];
+    return entry.name.endsWith('.mdx') ? [full] : [];
   });
 
 // Hooks and functions a page documents: the ones it names in inline code,
@@ -664,7 +695,7 @@ const writeIcons = () => {
     '',
     'Pass these names to EuiIcon `type` or any `iconType` prop. The prop type also accepts any string (a URL or data URI), so TypeScript does not catch a wrong name: an unknown name renders as a broken image. Pick names from this list, and search the synonyms after each name to find an icon by meaning.',
     '',
-    'For sizes, colours and custom SVGs, see [Icons](components/display/icons/index.md). Deprecated and removed names and their replacements are in [Deprecated icon names](icons-deprecated.md).',
+    'For sizes, colours and custom SVGs, see [Icons](components/icons.md). Deprecated and removed names and their replacements are in [Deprecated icon names](icons-deprecated.md).',
     '',
   ];
   for (const [category, label, intro] of iconCategories) {
@@ -687,8 +718,7 @@ const writeIcons = () => {
     '---',
     stringifyYaml({
       title: 'Deprecated icon names',
-      description:
-        'Deprecated and removed icon names and what to use instead.',
+      description: 'Deprecated and removed icon names and what to use instead.',
     }).trim(),
     '---',
     '',
@@ -725,13 +755,14 @@ const readCategory = (dir) => {
     : undefined;
 };
 
-// Pages are grouped by category (e.g. components/forms), utilities in one group.
+// Pages are grouped by category (e.g. components/forms); utilities, patterns
+// and content each form one group.
 // Deeper folders become title context, e.g. "Markdown › Plugins".
 const indexPlacement = (result) => {
   const dirs = path
     .relative(docsDir, path.dirname(result.file))
     .split(path.sep);
-  const depth = dirs[0] === 'utilities' ? 1 : 2;
+  const depth = ['utilities', 'patterns', 'content'].includes(dirs[0]) ? 1 : 2;
   const group = path.join(...dirs.slice(0, depth));
   const labels = dirs
     .slice(depth)
@@ -744,13 +775,18 @@ const indexPlacement = (result) => {
   return { group, title: [...labels, result.title].join(' › ') };
 };
 
+// Top-level folders without a `_category_.yml`
+const groupLabels = { patterns: 'Patterns', content: 'Content guidelines' };
+
 const writeIndex = (results, publicComponents) => {
   const isPublic = new Set(publicComponents);
   const groups = new Map();
   for (const result of results) {
     if (path.dirname(result.file) === sourceDirs[0]) continue;
     const { group, title } = indexPlacement(result);
-    const category = readCategory(group) ?? { label: 'Utilities' };
+    const category = readCategory(group) ?? {
+      label: groupLabels[group] ?? 'Utilities',
+    };
     const rank = sourceDirs.findIndex((dir) =>
       result.file.startsWith(`${dir}${path.sep}`)
     );
@@ -775,6 +811,10 @@ const writeIndex = (results, publicComponents) => {
     'Prefer these examples over patterns copied from existing code, which may use removed props or icon names.',
     '',
     'Check every icon `type` and `iconType` value against [Icon names](icons.md): a removed name renders as a broken image, and TypeScript accepts any string.',
+    '',
+    'Before writing user-facing text (button labels, titles, tooltips, empty states, error and confirmation messages), read [Voice and writing style](content/style.md), [Language](content/language.md) for capitalization and punctuation, and [Word choice](content/word-choice.md). For an error state, also read [How to write good error messages](patterns/error-messages/how-to-write-good-error-messages.md) and the [Error messages](patterns/error-messages/index.md) page that fits it: banner, page, validation or warning.',
+    '',
+    'For table pagination and bulk selection, save buttons, help text and health or severity colors, follow the matching [Patterns](#patterns) page as well as the component page.',
     '',
   ];
   const sorted = [...groups.values()].sort(
@@ -813,6 +853,60 @@ const writeIndex = (results, publicComponents) => {
   return { undocumented };
 };
 
+const headingSlug = (heading) =>
+  heading
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
+// Agents open the component page and rarely reach the pattern or content page
+// that governs it, so each component page links back, under its title, to the
+// guideline sections that link to it.
+const addGuidelineLinks = (results) => {
+  const backlinks = new Map();
+  for (const { outFile, title } of results) {
+    const [area, ...rest] = path.relative(outDir, outFile).split(path.sep);
+    if (area !== 'patterns' && area !== 'content') continue;
+    // Area overviews link every page they list; they aren't usage guidelines.
+    if (rest.join(path.sep) === 'index.md') continue;
+    let section;
+    for (const line of fs.readFileSync(outFile, 'utf8').split('\n')) {
+      const heading = line.match(/^#{2,4} (.+)$/);
+      if (heading) section = heading[1].trim();
+      for (const [, target] of line.matchAll(
+        /\]\(([^)#\s]+\.md)(?:#[^)]*)?\)/g
+      )) {
+        const linked = path.resolve(path.dirname(outFile), target);
+        if (!path.relative(outDir, linked).startsWith(`components${path.sep}`))
+          continue;
+        const label = section ? `${title} › ${section}` : title;
+        const href =
+          path.relative(path.dirname(linked), outFile) +
+          (section ? `#${headingSlug(section)}` : '');
+        const links = backlinks.get(linked) ?? new Map();
+        links.set(label, href);
+        backlinks.set(linked, links);
+      }
+    }
+  }
+  for (const [file, links] of backlinks) {
+    if (!fs.existsSync(file)) continue;
+    const list = [...links]
+      .map(([label, href]) => `[${label}](${href})`)
+      .join(', ');
+    const page = fs.readFileSync(file, 'utf8');
+    fs.writeFileSync(
+      file,
+      page.replace(
+        /^# .+$/m,
+        (h1) => `${h1}\n\nUsage guidelines for this component: ${list}.`
+      )
+    );
+  }
+  return backlinks.size;
+};
+
 const publicExports = findPublicExports();
 const isUtility = new Set(publicExports.utilities);
 const pages = sourceDirs.flatMap(findPages).sort();
@@ -835,6 +929,9 @@ console.log(
 const iconCounts = writeIcons();
 console.log(
   `Listed ${iconCounts.listed} icon names and ${iconCounts.deprecated} deprecated ones`
+);
+console.log(
+  `Linked ${addGuidelineLinks(results)} component pages to their guidelines`
 );
 const publicComponents = publicExports.components;
 const { undocumented } = writeIndex(results, publicComponents);
