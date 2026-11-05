@@ -128,14 +128,18 @@ ruleTester.run('no-removed-icons', NoRemovedIcons, {
       ],
     },
     {
-      code: 'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="popout" />;\n<EuiComment eventIcon="eyeClosed" />',
+      code: 'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="popout" />;\n<EuiFieldText icon={{ type: "arrowDown", side: "right" }} />;\n<EuiComment eventIcon="eyeClosed" />',
       output:
-        'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="external" />;\n<EuiComment eventIcon="eyeSlash" />',
+        'import { EuiFieldText, EuiComment } from "@elastic/eui";\n<EuiFieldText icon="external" />;\n<EuiFieldText icon={{ type: "chevronSingleDown", side: "right" }} />;\n<EuiComment eventIcon="eyeSlash" />',
       languageOptions,
       errors: [
         {
           messageId: 'removedIcon',
           data: { iconType: 'popout', replacement: 'external' },
+        },
+        {
+          messageId: 'removedIcon',
+          data: { iconType: 'arrowDown', replacement: 'chevronSingleDown' },
         },
         {
           messageId: 'removedIcon',

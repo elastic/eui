@@ -22,6 +22,7 @@ const COMPONENT_ICON_ATTRIBUTES: Readonly<Record<string, ReadonlySet<string>>> =
     EuiFormAppend: new Set(['iconLeft', 'iconRight']),
     EuiFormAppendPrepend: new Set(['iconLeft', 'iconRight']),
     EuiFormControlLayout: new Set(['icon']),
+    EuiFormControlLayoutDelimited: new Set(['icon']),
     EuiFormPrepend: new Set(['iconLeft', 'iconRight']),
     EuiLoadingLogo: new Set(['logo']),
     EuiTextArea: new Set(['icon']),
@@ -74,6 +75,15 @@ const getIconStringNodes = (node: TSESTree.Node): IconStringNode[] => {
         ...getIconStringNodes(node.left),
         ...getIconStringNodes(node.right),
       ];
+    // Form controls accept an `IconShape` object: `icon={{ type: 'email' }}`
+    case 'ObjectExpression':
+      return node.properties.flatMap((property) =>
+        property.type === 'Property' &&
+        !property.computed &&
+        getPropertyName(property) === 'type'
+          ? getIconStringNodes(property.value)
+          : []
+      );
     default:
       return [];
   }
