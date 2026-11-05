@@ -1,0 +1,1 @@
+- Added `EuiCardObject` with `selectButton`, `getTitle()`, `getDescription()`, `click()`, `isSelected()` and `toggleSelected()`
