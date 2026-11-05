@@ -43,7 +43,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         transition: width var(--ifm-transition-fast) ease;
 
         .menu {
-          --ifm-menu-link-padding-vertical: ${euiTheme.size.s};
+          --ifm-menu-link-padding-vertical: ${euiTheme.size.xs};
           overflow-x: visible;
           scrollbar-gutter: auto;
         }

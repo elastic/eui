@@ -37,7 +37,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     --ifm-menu-color-background-active: ${euiTheme.colors.backgroundLightText};
 
     --ifm-menu-link-padding-horizontal: ${euiTheme.size.s};
-    --ifm-menu-link-padding-vertical: ${euiTheme.size.s};
+    --ifm-menu-link-padding-vertical: ${euiTheme.size.xs};
 
     .menu__list-item-collapsible {
       align-items: center;

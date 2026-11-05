@@ -26,8 +26,8 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
       line-height: var(--eui-line-height-s);
       font-weight: ${euiTheme.font.weight.regular};
       border-radius: ${euiTheme.border.radius.control};
-      /* Match category .menu__list-item-collapsible inset (not Infima 0.75rem) */
-      padding: ${euiTheme.size.s};
+      /* 4px 8px — tighter vertical than category collapsible inset */
+      padding: ${euiTheme.size.xs} ${euiTheme.size.s};
 
       &:hover {
         color: ${euiTheme.colors.textSubdued};
