@@ -354,6 +354,178 @@ describe('EuiToolTip', () => {
         'customId'
       );
     });
+
+    // Screen readers in browse mode (e.g. NVDA, JAWS virtual cursor) move focus
+    // to the trigger programmatically, which does not match `:focus-visible`.
+    // @see https://github.com/elastic/eui/issues/9753
+    describe('when the trigger is focused without `:focus-visible`', () => {
+      it('exposes the tooltip content as the accessible description without showing the tooltip', () => {
+        const { getByTestSubject, queryByRole } = render(
+          <EuiToolTip content="Tooltip content">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).toHaveFocus();
+        expect(anchor.matches(':focus-visible')).toBe(false);
+
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+        expect(anchor).toHaveAccessibleDescription('Tooltip content');
+
+        act(() => anchor.blur());
+        expect(anchor).not.toHaveAttribute('aria-describedby');
+      });
+
+      it('includes the tooltip title in the accessible description', () => {
+        const { getByTestSubject } = render(
+          <EuiToolTip title="Tooltip title" content="Tooltip content">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).toHaveAccessibleDescription(
+          'Tooltip title Tooltip content'
+        );
+      });
+
+      it('uses the tooltip `aria-label` as the accessible description', () => {
+        const { getByTestSubject } = render(
+          <EuiToolTip aria-label="Spoken label" content={<img src="" alt="" />}>
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).toHaveAccessibleDescription('Spoken label');
+      });
+
+      it.each(['', '   '])(
+        'ignores a blank `aria-label` (%j) and uses the tooltip content',
+        (ariaLabel) => {
+          const { getByTestSubject } = render(
+            <EuiToolTip aria-label={ariaLabel} content="Tooltip content">
+              <button data-test-subj="anchor">Trigger</button>
+            </EuiToolTip>
+          );
+          const anchor = getByTestSubject('anchor');
+
+          act(() => anchor.focus());
+          expect(anchor).toHaveAccessibleDescription('Tooltip content');
+        }
+      );
+
+      it('is described by the visible tooltip on hover, and keeps the description on mouseout', () => {
+        const { getByTestSubject, queryByRole } = render(
+          <EuiToolTip content="Tooltip content" id="toolTipId">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        fireEvent.mouseOver(anchor);
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+        expect(anchor).toHaveAttribute('aria-describedby', 'toolTipId');
+
+        // The tooltip hides on mouseout (no `:focus-visible`), but the trigger keeps its description
+        fireEvent.mouseOut(anchor);
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+        expect(anchor).toHaveAccessibleDescription('Tooltip content');
+      });
+
+      it('merges with custom consumer `aria-describedby`s', () => {
+        const { getByTestSubject } = render(
+          <>
+            <EuiToolTip content="Tooltip content">
+              <button data-test-subj="anchor" aria-describedby="customId">
+                Trigger
+              </button>
+            </EuiToolTip>
+            <span id="customId">Custom description</span>
+          </>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).toHaveAccessibleDescription(
+          'Tooltip content Custom description'
+        );
+      });
+
+      it('does not add `aria-describedby` when `disableScreenReaderOutput` is `true`', () => {
+        const { getByTestSubject } = render(
+          <EuiToolTip
+            content="Tooltip content"
+            disableScreenReaderOutput={true}
+          >
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(anchor).not.toHaveAttribute('aria-describedby');
+      });
+    });
+
+    // The React root can be removed from the DOM without unmounting, in which
+    // case the focused trigger never blurs.
+    // @see https://github.com/elastic/eui/issues/1105
+    describe('when the anchor is removed from the DOM without unmounting', () => {
+      beforeEach(() => jest.useFakeTimers());
+      afterEach(() => jest.useRealTimers());
+
+      it('removes the hidden description of a trigger focused without `:focus-visible`', () => {
+        const { container, getByTestSubject } = render(
+          <EuiToolTip content="Tooltip content" id="toolTipId">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+
+        act(() => anchor.focus());
+        expect(
+          document.getElementById('toolTipId-description')
+        ).toBeInTheDocument();
+
+        act(() => {
+          container.remove();
+          jest.advanceTimersByTime(100);
+        });
+        expect(
+          document.getElementById('toolTipId-description')
+        ).not.toBeInTheDocument();
+      });
+
+      it('removes the tooltip and does not leave a hidden description when the trigger was focused with `:focus-visible`', () => {
+        const { container, getByTestSubject, queryByRole } = render(
+          <EuiToolTip content="Tooltip content" id="toolTipId">
+            <button data-test-subj="anchor">Trigger</button>
+          </EuiToolTip>
+        );
+        const anchor = getByTestSubject('anchor');
+        const cleanup = simulateFocusVisible(anchor);
+
+        act(() => anchor.focus());
+        expect(queryByRole('tooltip')).toBeInTheDocument();
+
+        act(() => {
+          container.remove();
+          jest.advanceTimersByTime(100);
+        });
+        expect(queryByRole('tooltip')).not.toBeInTheDocument();
+        expect(
+          document.getElementById('toolTipId-description')
+        ).not.toBeInTheDocument();
+
+        cleanup();
+      });
+    });
   });
 
   describe('disableScreenReaderOutput', () => {

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { render, focusEuiToolTipTrigger } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
@@ -230,7 +230,7 @@ describe('EuiContextMenuItem', () => {
       );
 
       const item = getByRole('button');
-      item.focus();
+      act(() => item.focus());
 
       // a natively disabled button is not focusable, which is the whole point
       // of swapping `disabled` for `aria-disabled`
