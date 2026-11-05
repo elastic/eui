@@ -26,6 +26,7 @@ import { EuiSelectableSelectors } from './components/selectable/selectors';
 import { EuiSideNavSelectors } from './components/side_nav/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
 import { EuiTableSelectors } from './components/table/selectors';
+import { EuiTabsSelectors } from './components/tabs/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
 import { EuiToolTipSelectors } from './components/tool_tip/selectors';
 import { EuiTreeViewSelectors } from './components/tree_view/selectors';
@@ -57,6 +58,7 @@ export const selectors = {
   sideNav: EuiSideNavSelectors,
   superSelect: EuiSuperSelectSelectors,
   table: EuiTableSelectors,
+  tabs: EuiTabsSelectors,
   globalToastList: EuiGlobalToastListSelectors,
   toolTip: EuiToolTipSelectors,
   treeView: EuiTreeViewSelectors,
