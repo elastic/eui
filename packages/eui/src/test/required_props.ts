@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 // Using a variable name instead of inline causes Emotion to use `euiTestCss`
 // instead of the component name, which is easier to find in snapshots
+// eslint-disable-next-line @elastic/eui/no-css-color -- test helper whose literal color is asserted in snapshots
 const euiTestCss = css`
   color: red;
 `;

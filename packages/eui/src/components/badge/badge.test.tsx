@@ -193,6 +193,7 @@ describe('EuiBadge', () => {
     });
 
     describe('style', () => {
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       const style = { border: '4px solid tomato' };
 
       it('is rendered', () => {

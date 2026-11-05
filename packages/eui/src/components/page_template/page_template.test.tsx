@@ -119,6 +119,7 @@ describe('EuiPageTemplate', () => {
         <EuiPageTemplate {...requiredProps}>
           <EuiPageTemplate.Sidebar />
           <EuiPageTemplate.Sidebar
+            // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
             css={css`
               color: red;
             `}

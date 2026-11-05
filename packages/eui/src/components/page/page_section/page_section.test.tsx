@@ -120,6 +120,7 @@ describe('EuiPageSection', () => {
     const { getByTestSubject } = render(
       <EuiPageSection
         contentProps={{
+          // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
           css: css`
             color: red;
           `,

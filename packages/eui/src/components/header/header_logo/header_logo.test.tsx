@@ -53,6 +53,7 @@ describe('EuiHeaderLogo', () => {
       <EuiHeaderLogo
         logoType="horizontal"
         iconTitle="Moby Dick"
+        // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
         style={{ color: 'red' }}
       />
     );
