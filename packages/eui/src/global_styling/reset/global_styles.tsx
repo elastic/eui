@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { Global, css } from '@emotion/react';
-import { euiFocusRing, euiScrollBarStyles } from '../mixins';
+import {
+  euiBreakpointContainer,
+  euiFocusRing,
+  euiScrollBarStyles,
+} from '../mixins';
 import { logicalCSS } from '../functions';
 import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
@@ -119,6 +123,11 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     // The portal content is absolutely positioned relative to the body.
     .euiBody-hasPortalContent {
       position: relative;
+    }
+
+    // A container query with no matching ancestor never matches, so body is the fallback container.
+    body {
+      ${euiBreakpointContainer(euiThemeContext)}
     }
   `;
 
