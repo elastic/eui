@@ -47,4 +47,29 @@ test.describe('EuiColorPickerObject', () => {
     // The Playground story uses the default palette, so at least one swatch renders.
     await expect(colorPicker.swatches.first()).toBeVisible();
   });
+
+  test('setColor fills the anchor input without opening the panel', async () => {
+    await colorPicker.setColor('#ff0000');
+
+    expect(await colorPicker.getColor()).toBe('#FF0000');
+    await expect(colorPicker.panel).toHaveCount(0);
+  });
+});
+
+test.describe('EuiColorPickerObject with a space-separated testSubj', () => {
+  test('matches every token regardless of order', async ({ page }) => {
+    await page.goto(
+      storyUrl(
+        'forms-euicolorpicker-euicolorpicker--playground',
+        `data-test-subj:${TEST_SUBJ}%200`
+      )
+    );
+    const colorPicker = new EuiColorPickerObject(page, `0 ${TEST_SUBJ}`);
+
+    await expect(colorPicker.locator).toHaveCount(1);
+    await expect(colorPicker.locator).toHaveAttribute(
+      'data-test-subj',
+      `euiColorPickerAnchor ${TEST_SUBJ} 0`
+    );
+  });
 });

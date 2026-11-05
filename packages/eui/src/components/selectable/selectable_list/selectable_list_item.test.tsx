@@ -162,6 +162,52 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    describe('hasAriaDisabled', () => {
+      it('renders as aria-disabled instead of native disabled', () => {
+        const { getByRole } = render(
+          <EuiSelectableListItem disabled hasAriaDisabled />
+        );
+
+        const option = getByRole('option');
+        expect(option).toHaveAttribute('aria-disabled', 'true');
+        expect(option).not.toHaveAttribute('disabled');
+      });
+
+      it('shows tooltip on hover when disabled', () => {
+        const { baseElement, getByTestSubject } = render(
+          <EuiSelectableListItem
+            disabled
+            hasAriaDisabled
+            toolTipContent="Disabled reason"
+            toolTipProps={{ 'data-test-subj': 'disabledTooltip' }}
+          >
+            Item content
+          </EuiSelectableListItem>
+        );
+
+        const tooltipAnchor = baseElement.querySelector('.euiToolTipAnchor');
+        fireEvent.mouseOver(tooltipAnchor!);
+
+        expect(getByTestSubject('disabledTooltip')).toBeInTheDocument();
+      });
+
+      it('shows tooltip when disabled and isFocused', () => {
+        const { getByTestSubject } = render(
+          <EuiSelectableListItem
+            disabled
+            hasAriaDisabled
+            isFocused
+            toolTipContent="Disabled reason"
+            toolTipProps={{ 'data-test-subj': 'disabledTooltip' }}
+          >
+            Item content
+          </EuiSelectableListItem>
+        );
+
+        expect(getByTestSubject('disabledTooltip')).toBeInTheDocument();
+      });
+    });
+
     test('prepend', () => {
       const { container } = render(
         <EuiSelectableListItem prepend={<span />} />

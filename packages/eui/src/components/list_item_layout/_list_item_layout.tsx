@@ -331,6 +331,7 @@ export const EuiListItemLayout = forwardRef<
     const classes = classNames('euiListItemLayout', className);
     const wrapperStyles = useEuiMemoizedStyles(euiListItemLayoutWrapperStyles);
     const styles = useEuiMemoizedStyles(euiListItemLayoutStyles);
+    const canHaveInteractiveStyles = !isDisabled || hasAriaDisabled;
 
     const interactiveStyles = [
       isInteractive && styles.isInteractive,
@@ -345,14 +346,14 @@ export const EuiListItemLayout = forwardRef<
     const wrapperCssStyles = [
       wrapperStyles.euiListItemLayout__wrapper,
       extraAction && wrapperStyles.hasExtraAction,
-      !isDisabled && hasWrapper && interactiveStyles,
+      canHaveInteractiveStyles && hasWrapper && interactiveStyles,
       hasWrapper && css,
       isDisabled && hasWrapper && styles.isDisabled,
     ];
     const cssStyles = [
       styles.euiListItemLayout,
       hasWrapper && styles.euiListItemLayout__action,
-      !isDisabled && !hasWrapper && interactiveStyles,
+      canHaveInteractiveStyles && !hasWrapper && interactiveStyles,
       !hasWrapper && css,
       isDisabled && styles.isDisabled,
       hasAriaDisabled &&

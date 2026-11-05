@@ -26,23 +26,12 @@ const TEXT_MAX_WIDTH = 1200;
 const CONTAINER_NAME = 'euiToast';
 const CQC_BREAKPOINT_NARROWEST = '(max-width: 320px)';
 
-const decorClipSize = '9px'; // the height of the decor clip that includes the border rounding
-const decorClipPath = `polygon(0 0, 100% 0, 100% ${decorClipSize}, 0 ${decorClipSize})`;
 const euiToastAnimation = keyframes`
   from {
-    clip-path: ${decorClipPath};
+    transform: scaleX(1);
   }
   to {
-    clip-path: polygon(0 0, 0% 0, 0% ${decorClipSize}, 0 ${decorClipSize});
-  }
-`;
-
-const euiToastAnimationRTL = keyframes`
-  from {
-    clip-path: ${decorClipPath};
-  }
-  to {
-    clip-path: polygon(100% 0, 100% 0, 100% ${decorClipSize}, 100% ${decorClipSize});
+    transform: scaleX(0);
   }
 `;
 
@@ -56,7 +45,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => (highContrastMode ? x * 2 + y : x + y)
   );
   const highlightOffset = euiTheme.border.width.thin;
-  const highlightSizeOffset = mathWithUnits([highlightOffset], (x) => x * 2);
   const paddingTop = mathWithUnits(
     [euiTheme.size.base, highlightSize],
     (x, y) => x + y
@@ -66,26 +54,15 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x + y
   );
 
+  // Straight bar that doesn't follow the border radius of the toast.
   const decorCommonStyles = `
     content: '';
     position: absolute;
     inset-block-start: 0;
     inset-inline-start: 0;
-    block-size: 100%;
     inline-size: 100%;
-    border-radius: ${euiTheme.border.radius.panel};
-    border-end-start-radius: 0;
-    border-block-start: ${highlightSize} solid;
-    clip-path: ${decorClipPath};
+    block-size: ${highlightSize};
     pointer-events: none;
-
-    ${highContrastModeStyles(euiThemeContext, {
-      preferred: `
-        inset-block-start: -${highlightOffset};
-      inset-inline-start: -${highlightOffset};
-      inline-size: calc(100% + ${highlightSizeOffset});
-      `,
-    })}
   `;
 
   return {
@@ -109,26 +86,37 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     decor: css`
       position: absolute;
       inset: 0;
+      border-radius: ${borderRadius};
+      overflow: hidden;
       pointer-events: none;
       ${preventForcedColors(euiThemeContext)}
 
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `
           --euiToastTypeBackgroundColor: ${euiTheme.colors.borderBasePlain};
+          /* Cover the high contrast border so the clip matches its outer radius */
+          inset-block-start: -${highlightOffset};
+          inset-inline-start: -${highlightOffset};
+          inset-inline-end: -${highlightOffset};
         `,
       })}
 
       &::before {
         ${decorCommonStyles}
         z-index: ${decorLevel};
-        border-block-start-color: var(--euiToastTypeBackgroundColor);
+        background-color: var(--euiToastTypeBackgroundColor);
       }
 
       &::after {
         ${decorCommonStyles}
         /* ensure highlight is on top of panel border */
         z-index: ${decorLevel + 1};
-        border-block-start-color: var(--euiToastTypeColor);
+        background-color: var(--euiToastTypeColor);
+        transform-origin: left center;
+
+        [dir='rtl'] & {
+          transform-origin: right center;
+        }
       }
     `,
     // handles content + actions layout
@@ -194,14 +182,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     hasAnimation: css`
       &::after {
         ${euiCanAnimate} {
-          will-change: clip-path;
           animation: ${euiToastAnimation} var(--euiToastAnimationMs) linear
             forwards;
-
-          [dir='rtl'] & {
-            animation: ${euiToastAnimationRTL} var(--euiToastAnimationMs) linear
-              forwards;
-          }
         }
       }
     `,

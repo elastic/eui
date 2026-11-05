@@ -43,6 +43,15 @@ test.describe('EuiBasicTableObject', () => {
     });
   });
 
+  test.describe('headerCells', () => {
+    test('includes the selection checkbox cell so indexes line up with column()', async () => {
+      const headerCount = await table.headerCells.count();
+      const firstRowCellCount = await table.rows.first().locator('> :is(td, th)').count();
+
+      expect(headerCount).toBe(firstRowCellCount);
+    });
+  });
+
   test.describe('cells', () => {
     test('reads a field-data column past the leading selection checkbox', async () => {
       const cells = await table.cells('firstName');

@@ -223,10 +223,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           iconOnClick && !(onClick || href) && iconOnClickCssStyles,
         ]),
   ];
-  const textCssStyles = [
-    styles.text.euiBadge__text,
-    (onClick || href) && !isDisabled && styles.text.clickable,
-  ];
 
   const iconCssStyles = [styles.icon.euiBadge__icon, styles.icon[iconSide]];
   const iconButtonCssStyles = [
@@ -311,7 +307,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     <span className="euiBadge__content" css={styles.euiBadge__content}>
       {iconSide === 'left' && optionalIcon}
       {children && (
-        <span className="euiBadge__text" css={textCssStyles}>
+        <span className="euiBadge__text" css={styles.text.euiBadge__text}>
           {children}
         </span>
       )}

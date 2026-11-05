@@ -1,3 +1,9 @@
+## [`v3.3.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.3.0)
+
+**Dependency updates**
+
+- Updated `picomatch` to v2.3.2 ([#10216](https://github.com/elastic/eui/pull/10216))
+
 ## [`v3.2.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.2.0)
 
 - Updated `button-group-no-invalid-children` rule to support `additionalWrappers` option ([#10024](https://github.com/elastic/eui/pull/10024))

@@ -16,6 +16,7 @@ exports[`EuiRadio is rendered 1`] = `
     <input
       class="euiRadio__input emotion-euiRadio__input"
       id="id"
+      name="name"
       type="radio"
       value=""
     />
@@ -38,6 +39,7 @@ exports[`EuiRadio props checked is rendered 1`] = `
       checked=""
       class="euiRadio__input emotion-euiRadio__input"
       id="id"
+      name="name"
       type="radio"
       value=""
     />
@@ -60,6 +62,7 @@ exports[`EuiRadio props disabled is rendered 1`] = `
       class="euiRadio__input emotion-euiRadio__input"
       disabled=""
       id="id"
+      name="name"
       type="radio"
       value=""
     />
@@ -81,6 +84,7 @@ exports[`EuiRadio props label is rendered 1`] = `
     <input
       class="euiRadio__input emotion-euiRadio__input"
       id="id"
+      name="name"
       type="radio"
       value=""
     />
@@ -110,6 +114,7 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
     <input
       class="euiRadio__input emotion-euiRadio__input"
       id="id"
+      name="name"
       type="radio"
       value=""
     />
@@ -139,6 +144,7 @@ exports[`EuiRadio props value is rendered 1`] = `
     <input
       class="euiRadio__input emotion-euiRadio__input"
       id="id"
+      name="name"
       type="radio"
       value="bobbins"
     />

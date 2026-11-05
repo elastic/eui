@@ -20,7 +20,8 @@ export const euiSelectableTemplateSitewideStyles = (
 ) => {
   const { euiTheme } = euiThemeContext;
 
-  const visColors = euiPaletteColorBlind();
+  // Pass the theme's vis colors explicitly - see the note in token.styles.ts
+  const visColors = euiPaletteColorBlind({ colors: euiTheme.colors.vis });
 
   return {
     euiSelectableTemplateSitewide: css`

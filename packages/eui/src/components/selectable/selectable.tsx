@@ -372,7 +372,10 @@ export class EuiSelectable<T = {}> extends Component<
     }
 
     const firstSelected = this.state.visibleOptions.findIndex(
-      (option) => option.checked && !option.disabled && !option.isGroupLabel
+      (option) =>
+        option.checked &&
+        (!option.disabled || option.hasAriaDisabled) &&
+        !option.isGroupLabel
     );
 
     if (firstSelected > -1) {
@@ -380,7 +383,8 @@ export class EuiSelectable<T = {}> extends Component<
     } else {
       this.setState({
         activeOptionIndex: this.state.visibleOptions.findIndex(
-          (option) => !option.disabled && !option.isGroupLabel
+          (option) =>
+            (!option.disabled || option.hasAriaDisabled) && !option.isGroupLabel
         ),
         isFocused: true,
       });
@@ -472,9 +476,12 @@ export class EuiSelectable<T = {}> extends Component<
 
       // Group titles and disabled options are included in option list but are not selectable
       const direction = amount > 0 ? 1 : -1;
+      const startIndex = nextActiveOptionIndex;
+
       while (
         visibleOptions[nextActiveOptionIndex].isGroupLabel ||
-        visibleOptions[nextActiveOptionIndex].disabled
+        (visibleOptions[nextActiveOptionIndex].disabled &&
+          !visibleOptions[nextActiveOptionIndex].hasAriaDisabled)
       ) {
         nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
@@ -483,9 +490,22 @@ export class EuiSelectable<T = {}> extends Component<
         } else if (nextActiveOptionIndex === visibleOptions.length) {
           nextActiveOptionIndex = 0;
         }
+
+        // break on single options to prevent an infinite loop if no options are selectable
+        if (nextActiveOptionIndex === startIndex) {
+          break;
+        }
       }
 
-      return { activeOptionIndex: nextActiveOptionIndex };
+      // If the final index is also non-navigable, keep the current position
+      const finalOption = visibleOptions[nextActiveOptionIndex];
+      const finalActiveOptionIndex =
+        finalOption.isGroupLabel ||
+        (finalOption.disabled && !finalOption.hasAriaDisabled)
+          ? activeOptionIndex
+          : nextActiveOptionIndex;
+
+      return { activeOptionIndex: finalActiveOptionIndex };
     });
   };
 
@@ -788,7 +808,7 @@ export class EuiSelectable<T = {}> extends Component<
     ) : undefined;
 
     const resultsLength = visibleOptions.filter(
-      (option) => !option.disabled
+      (option) => !option.disabled || option.hasAriaDisabled
     ).length;
 
     const listAriaDescribedbyId = this.rootId('instructions');
