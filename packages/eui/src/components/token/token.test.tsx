@@ -7,9 +7,13 @@
  */
 
 import React from 'react';
+// Note - don't use the EUI custom RTL `render` for the vis color tests below,
+// as it auto-wraps an `EuiProvider` that can't be passed `modify`
+import { render as rtlRender } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { render } from '../../test/rtl';
+import { render, getByTestSubject } from '../../test/rtl';
+import { EuiProvider } from '../provider';
 
 import { EuiToken } from './token';
 import { COLORS, SHAPES, SIZES, FILLS } from './token_types';
@@ -93,6 +97,41 @@ describe('EuiToken', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
+    });
+  });
+
+  describe('visualization colors', () => {
+    // The vis color store is only updated in an effect, and memoized styles are
+    // not regenerated when it changes - so styles that read the store instead of
+    // the theme stay stale for the lifetime of the first computed theme
+    it('reads vis colors from the theme on the very first render', () => {
+      const { container } = rtlRender(
+        <EuiProvider
+          modify={{ colors: { LIGHT: { vis: { euiColorVis0: '#FF00FF' } } } }}
+        >
+          <EuiToken
+            data-test-subj="unfilled"
+            iconType="dot"
+            color="euiColorVis0"
+            fill="none"
+          />
+          <EuiToken
+            data-test-subj="filled"
+            iconType="dot"
+            color="euiColorVis0"
+            fill="dark"
+          />
+        </EuiProvider>
+      );
+
+      expect(getByTestSubject(container, 'unfilled')).toHaveStyleRule(
+        'color',
+        '#FF00FF'
+      );
+      expect(getByTestSubject(container, 'filled')).toHaveStyleRule(
+        'background-color',
+        '#FF00FF'
+      );
     });
   });
 });

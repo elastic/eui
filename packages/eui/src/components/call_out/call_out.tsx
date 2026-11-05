@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
@@ -295,18 +303,36 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }, [actionProps, color, styles, dataTestSubj]);
 
-    const announcement = useMemo(() => {
-      if (!announceOnMount || !(title || text || children)) return null;
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [announcement, setAnnouncement] = useState('');
 
-      return (
-        <EuiLiveAnnouncer>
-          {title}
-          {title && text && ',\u00A0'}
-          {text}
-          {(title || text) && children && ',\u00A0'}
-          {children}
-        </EuiLiveAnnouncer>
-      );
+    useEffect(() => {
+      const content = contentRef.current;
+      if (!announceOnMount || !content) {
+        setAnnouncement('');
+        return;
+      }
+
+      // Read the nodes already on screen. The live region gets that text,
+      // not a second copy of the React tree. Only direct slots are read, so a
+      // callout nested in `children` is not picked up as this one's slots.
+      // Not `:scope >`: jsdom resolves `:scope` by tag and class, which the
+      // nested callout's content shares.
+      const parts = Array.from(
+        content.children as HTMLCollectionOf<HTMLElement>
+      )
+        .filter(({ classList }) =>
+          [
+            'euiCallOutHeader__title',
+            'euiCallOut__text',
+            'euiCallOut__additionalContent',
+          ].some((className) => classList.contains(className))
+        )
+        // jsdom has no `innerText`, so tests read `textContent`
+        .map((node) => (node.innerText ?? node.textContent)?.trim())
+        .filter(Boolean);
+
+      setAnnouncement(parts.join(',\u00A0'));
     }, [announceOnMount, title, text, children]);
 
     return (
@@ -327,7 +353,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         <div css={styles.wrapper}>
           <div css={styles.body}>
             {icon}
-            <div css={styles.content}>
+            <div ref={contentRef} css={styles.content}>
               {
                 // Note: the DOM position of the dismiss button matters to screen reader users.
                 // We generally want them to have some context of _what_ they're dismissing,
@@ -349,7 +375,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           </div>
 
           {actionControls}
-          {announcement}
+          {announcement ? (
+            <EuiLiveAnnouncer>{announcement}</EuiLiveAnnouncer>
+          ) : null}
         </div>
       </EuiPanel>
     );

@@ -1,0 +1,43 @@
+name: GitHub Actions Security Analysis
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["**"]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  zizmor:
+    name: zizmor 🌈
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write # Required for upload-sarif (used by zizmor-action) to upload SARIF files.
+      contents: read         # Needed to clone the repo.
+      actions: read          # Needed for upload-sarif to read workflow run info.
+      pull-requests: read    # Needed to run paths filter on pull requests.
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dorny/paths-filter@9d7afb8d214ad99e78fbd4247752c4caed2b6e4c # v4.0.0
+        id: changes
+        with:
+          filters: |
+            src:
+              - '.github/**'
+              - 'zizmor.yml'
+      - name: Run Analysis
+        if: ${{ steps.changes.outputs.src == 'true' }}
+        uses: zizmorcore/zizmor-action@f9597c869b2e67095f9b527070297a13a6efe928 # v0.7.0
+        with:
+          persona: 'pedantic'
+          config: './zizmor.yml'
+          inputs: |
+            .github/
