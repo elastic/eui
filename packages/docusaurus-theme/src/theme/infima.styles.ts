@@ -1425,10 +1425,11 @@ export const getInfimaStyles = () => css`
     }
 
     .navbar__toggle {
-      display: inherit;
+      display: none;
     }
 
-    .navbar__item {
+    /* POC: keep right-side chrome (search, theme, links); only collapse left items */
+    .navbar__items:not(.navbar__items--right) .navbar__item {
       display: none;
     }
 

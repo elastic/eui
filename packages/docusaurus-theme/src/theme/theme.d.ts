@@ -552,6 +552,34 @@ declare module '@theme-original/TOCCollapsible/CollapseButton' {
   ): JSX.Element;
 }
 
+declare module '@theme-original/TOCCollapsible' {
+  import type { TOCItem } from '@docusaurus/mdx-loader';
+
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+  }
+
+  export default function TOCCollapsible(props: Props): JSX.Element;
+}
+
+declare module '@theme-original/TOCItems' {
+  import type { TOCItem } from '@docusaurus/mdx-loader';
+
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+    readonly linkClassName?: string | null;
+    readonly linkActiveClassName?: string;
+  }
+
+  export default function TOCItems(props: Props): JSX.Element;
+}
+
 // original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1424
 declare module '@theme-original/Logo' {
   import type { ComponentProps } from 'react';

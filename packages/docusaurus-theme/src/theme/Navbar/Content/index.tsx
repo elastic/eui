@@ -6,27 +6,27 @@
  * Side Public License, v 1.
  */
 
-import { type ReactNode, JSX } from 'react';
+import { type ReactNode, JSX, useState } from 'react';
 import { css, Global } from '@emotion/react';
 import clsx from 'clsx';
 import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
-import {
-  splitNavbarItems,
-  useNavbarMobileSidebar,
-} from '@docusaurus/theme-common/internal';
+import { splitNavbarItems } from '@docusaurus/theme-common/internal';
 import { useActiveDocContext } from '@docusaurus/plugin-content-docs/client';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Link from '@docusaurus/Link';
-import { useLocation } from '@docusaurus/router';
+import { useHistory, useLocation } from '@docusaurus/router';
 import NavbarItem, {
   type Props as NavbarItemConfig,
 } from '@theme-original/NavbarItem';
 import NavbarColorModeToggle from '@theme-original/Navbar/ColorModeToggle';
 import SearchBar from '@theme-original/SearchBar';
-import NavbarMobileSidebarToggle from '../MobileSidebar/Toggle';
 import NavbarLogo from '@theme-original/Navbar/Logo';
 import NavbarSearch from '@theme-original/Navbar/Search';
 import {
+  EuiButtonIcon,
+  EuiListGroup,
+  EuiListGroupItem,
+  EuiPopover,
   euiFocusRing,
   euiTextTruncate,
   useEuiMemoizedStyles,
@@ -43,8 +43,12 @@ import {
   VersionSwitcherProps,
 } from '../../../components/version_switcher';
 import { HighContrastModeToggle } from '../../../components/high_contrast_mode_toggle';
-import { getNavbarBreakpoint } from '../breakpoint';
-import { HOME_NAV_SECTIONS } from '../../DocSidebar/doc_sections';
+import { getNavbarBreakpoint, useIsNavbarCompact } from '../breakpoint';
+import {
+  HOME_NAV_ALL_SECTIONS,
+  HOME_NAV_OVERFLOW_SECTIONS,
+  HOME_NAV_SECTIONS,
+} from '../../DocSidebar/doc_sections';
 
 const DOCS_PATH = '/docs';
 
@@ -66,32 +70,26 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     navbarItems: css`
       --ifm-navbar-item-padding-horizontal: 0;
       --ifm-navbar-item-padding-vertical: 0;
-
-      .navbar__item,
-      [class*='colorModeToggle'] {
-        ${mobileMediaQuery} {
-          display: none;
-        }
-      }
-
-      .navbar__toggle {
-        border-radius: ${euiTheme.border.radius.control};
-
-        &:hover {
-          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
-          color: currentColor;
-        }
-
-        ${mobileMediaQuery} {
-          display: inherit;
-        }
-      }
+      position: relative;
     `,
     navbarItemsLeft: css`
       gap: ${euiTheme.size.s};
+      /* Keep left chrome from sitting under the centered search */
+      z-index: 1;
+
+      @media (max-width: ${euiTheme.breakpoint.s}px) {
+        gap: 0;
+      }
 
       ${desktopMediaQuery} {
         gap: ${euiTheme.size.m};
+      }
+
+      /* POC: left config items still collapse; right chrome stays put */
+      .navbar__item {
+        ${mobileMediaQuery} {
+          display: none;
+        }
       }
 
       .navbar__link {
@@ -117,15 +115,33 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    // POC: primary section links — desktop only (after version switcher)
+    // POC: true visual center regardless of left/right width asymmetry
+    navbarItemsCenter: css`
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      flex: 0 0 auto;
+      justify-content: center;
+      pointer-events: none;
+
+      .navbar__search {
+        pointer-events: auto;
+      }
+    `,
+    // POC: primary links on desktop; ellipsis-only on small viewports
     homeNav: css`
-      display: none;
+      display: flex;
       align-items: center;
       gap: ${euiTheme.size.xxs};
       margin-inline-start: ${euiTheme.size.xs};
 
-      ${desktopMediaQuery} {
-        display: flex;
+      .homeNavPrimary {
+        display: none;
+
+        ${desktopMediaQuery} {
+          display: contents;
+        }
       }
 
       .navbar__link {
@@ -140,7 +156,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: none;
 
         &:hover {
-          color: ${euiTheme.colors.textPrimary};
+          color: ${euiTheme.colors.textParagraph};
           background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
           text-decoration: none;
         }
@@ -155,9 +171,27 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    homeNavOverflow: css`
+      &.homeNavOverflow--active {
+        color: ${euiTheme.colors.textHeading};
+      }
+    `,
+    homeNavOverflowList: css`
+      min-inline-size: ${euiTheme.base * 12}px;
+    `,
     navbarItemsRight: css`
       gap: ${euiTheme.size.xxs};
       align-items: center;
+      z-index: 1;
+
+      @media (max-width: ${euiTheme.breakpoint.s}px) {
+        gap: 0;
+      }
+
+      /* Space search from the color mode control */
+      .navbar__search {
+        margin-inline-end: ${euiTheme.size.s};
+      }
 
       /* Infima uses inline-block on .navbar__item which baseline-aligns
          icons of different metrics; force a shared flex box instead */
@@ -184,6 +218,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiFormControlText(euiThemeContext)};
         block-size: ${form.controlCompressedHeight};
         padding-block: ${form.controlCompressedPadding};
+        inline-size: min(100vw - ${euiTheme.size.xxxxl}, 20rem);
+        min-inline-size: 12rem;
 
         border: ${euiTheme.border.width.thin} solid ${form.borderColor};
         border-radius: ${euiTheme.border.radius.control};
@@ -202,15 +238,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
         &[readOnly] {
           background-color: ${form.backgroundReadOnlyColor};
-        }
-
-        @media (min-width: 400px) {
-          inline-size: 100%;
-          max-inline-size: 25rem;
-        }
-
-        ${desktopMediaQuery} {
-          min-inline-size: 15rem;
         }
       }
 
@@ -239,15 +266,9 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* Match logo / version selector divider; 8px each side of the rule
          (margin accounts for parent flex gap so both sides stay even) */
-      ${desktopMediaQuery} {
-        padding-inline-end: 8px;
-        margin-inline-end: calc(8px - ${euiTheme.size.xxs});
-        border-right: ${euiTheme.border.thin};
-      }
-
-      ${mobileMediaQuery} {
-        display: none;
-      }
+      padding-inline-end: 8px;
+      margin-inline-end: calc(8px - ${euiTheme.size.xxs});
+      border-right: ${euiTheme.border.thin};
     `,
   };
 };
@@ -279,11 +300,80 @@ ${JSON.stringify(item, null, 2)}`,
   );
 }
 
+function HomeNavOverflow({
+  activeSidebarId,
+}: {
+  activeSidebarId?: string;
+}): JSX.Element {
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const history = useHistory();
+  const styles = useEuiMemoizedStyles(getStyles);
+  // POC: match getNavbarBreakpoint — ellipsis carries all 6 sections when compact
+  const isCompactNav = useIsNavbarCompact();
+  const sections = isCompactNav
+    ? HOME_NAV_ALL_SECTIONS
+    : HOME_NAV_OVERFLOW_SECTIONS;
+  const isOverflowActive = sections.some(
+    (section) => section.sidebarId === activeSidebarId
+  );
+  const menuLabel = isCompactNav
+    ? 'Documentation sections'
+    : 'More documentation sections';
+
+  const button = (
+    <EuiButtonIcon
+      size="s"
+      color="text"
+      iconType="ellipsis"
+      className={clsx({ 'homeNavOverflow--active': isOverflowActive })}
+      css={styles.homeNavOverflow}
+      onClick={() => setPopoverOpen((open) => !open)}
+      aria-expanded={isPopoverOpen}
+      aria-label={menuLabel}
+    />
+  );
+
+  return (
+    <EuiPopover
+      isOpen={isPopoverOpen}
+      closePopover={() => setPopoverOpen(false)}
+      button={button}
+      panelPaddingSize="s"
+      anchorPosition="downLeft"
+      repositionOnScroll
+      aria-label={menuLabel}
+    >
+      <EuiListGroup css={styles.homeNavOverflowList} maxWidth={false}>
+        {sections.map((section) => {
+          const isActive = section.sidebarId === activeSidebarId;
+
+          return (
+            <EuiListGroupItem
+              key={section.sidebarId}
+              label={section.label}
+              isActive={isActive}
+              color={isActive ? 'primary' : 'text'}
+              onClick={() => {
+                setPopoverOpen(false);
+                if (!isActive) {
+                  history.push(section.href);
+                }
+              }}
+            />
+          );
+        })}
+      </EuiListGroup>
+    </EuiPopover>
+  );
+}
+
 function NavbarContentLayout({
   left,
+  center,
   right,
 }: {
   left: ReactNode;
+  center?: ReactNode;
   right: ReactNode;
 }) {
   const styles = useEuiMemoizedStyles(getStyles);
@@ -293,6 +383,14 @@ function NavbarContentLayout({
       <div className="navbar__items" css={styles.navbarItemsLeft}>
         {left}
       </div>
+      {center != null && (
+        <div
+          className="navbar__items navbar__items--center"
+          css={styles.navbarItemsCenter}
+        >
+          {center}
+        </div>
+      )}
       <div
         className="navbar__items navbar__items--right"
         css={styles.navbarItemsRight}
@@ -311,7 +409,6 @@ export default function NavbarContent({
   versionSwitcherOptions,
 }: Props): JSX.Element {
   const isBrowser = useIsBrowser();
-  const mobileSidebar = useNavbarMobileSidebar();
   const location = useLocation();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
@@ -323,6 +420,14 @@ export default function NavbarContent({
   // Only mark active when on a real docs page in that sidebar (not homepage)
   const { activeDoc } = useActiveDocContext(undefined);
   const activeSidebarId = activeDoc?.sidebar;
+  // POC: match getNavbarBreakpoint — center search when compact, else before theme
+  const isCompactNav = useIsNavbarCompact();
+  const showSearch = !searchBarItem && !isRoot;
+  const search = showSearch ? (
+    <NavbarSearch>
+      <SearchBar />
+    </NavbarSearch>
+  ) : null;
 
   return (
     <>
@@ -333,7 +438,6 @@ export default function NavbarContent({
       <NavbarContentLayout
         left={
           <>
-            {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
             <NavbarLogo />
             <div css={styles.versionSwitcher}>
               {isBrowser && versionSwitcherOptions && (
@@ -341,32 +445,32 @@ export default function NavbarContent({
               )}
             </div>
             <nav css={styles.homeNav} aria-label="Primary documentation">
-              {HOME_NAV_SECTIONS.map((section) => (
-                <Link
-                  key={section.sidebarId}
-                  className={clsx('navbar__link', {
-                    'navbar__link--active':
-                      activeSidebarId === section.sidebarId,
-                  })}
-                  to={section.href}
-                  aria-current={
-                    activeSidebarId === section.sidebarId ? 'page' : undefined
-                  }
-                >
-                  {section.label}
-                </Link>
-              ))}
+              <div className="homeNavPrimary">
+                {HOME_NAV_SECTIONS.map((section) => (
+                  <Link
+                    key={section.sidebarId}
+                    className={clsx('navbar__link', {
+                      'navbar__link--active':
+                        activeSidebarId === section.sidebarId,
+                    })}
+                    to={section.href}
+                    aria-current={
+                      activeSidebarId === section.sidebarId ? 'page' : undefined
+                    }
+                  >
+                    {section.label}
+                  </Link>
+                ))}
+              </div>
+              <HomeNavOverflow activeSidebarId={activeSidebarId} />
             </nav>
             <NavbarItems items={leftItems} />
           </>
         }
+        center={isCompactNav ? search : undefined}
         right={
           <>
-            {!searchBarItem && !isRoot && (
-              <NavbarSearch>
-                <SearchBar />
-              </NavbarSearch>
-            )}
+            {!isCompactNav && search}
             <div css={styles.themeSwitcher}>
               <NavbarColorModeToggle className="colorModeToggle" />
               {isBrowser && <HighContrastModeToggle />}

@@ -21,9 +21,12 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding: ${euiTheme.size.s} ${euiTheme.size.m};
-      border-radius: ${euiTheme.border.radius.small};
+      padding: ${euiTheme.size.m} ${euiTheme.size.base};
+      border-radius: ${euiTheme.border.radius.control};
+      background-color: transparent;
+      color: ${euiTheme.colors.textParagraph};
       font-size: inherit;
+      font-weight: ${euiTheme.font.weight.medium};
     `,
   };
 };
@@ -47,7 +50,7 @@ export default function TOCCollapsibleCollapseButton({
       >
         On this page
       </Translate>
-      <EuiIcon type={collapsed ? 'chevronSingleDown' : 'chevronSingleUp'} />
+      <EuiIcon type={collapsed ? 'chevronSingleRight' : 'chevronSingleDown'} />
     </button>
   );
 }

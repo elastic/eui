@@ -10,7 +10,7 @@ import { JSX } from 'react';
 import { css } from '@emotion/react';
 import { ThemeClassNames } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
-import TOCCollapsible from '@theme-original/TOCCollapsible';
+import TOCCollapsible from '../../../TOCCollapsible';
 
 // converted from css modules to emotion
 const tocStyles = {
@@ -24,12 +24,13 @@ const tocStyles = {
 export default function DocItemTOCMobile(): JSX.Element {
   const { toc, frontMatter } = useDoc();
   return (
-    <TOCCollapsible
-      toc={toc}
-      minHeadingLevel={frontMatter.toc_min_heading_level}
-      maxHeadingLevel={frontMatter.toc_max_heading_level}
-      className={ThemeClassNames.docs.docTocMobile}
-      css={tocStyles.tocMobile}
-    />
+    <div css={tocStyles.tocMobile}>
+      <TOCCollapsible
+        toc={toc}
+        minHeadingLevel={frontMatter.toc_min_heading_level}
+        maxHeadingLevel={frontMatter.toc_max_heading_level}
+        className={ThemeClassNames.docs.docTocMobile}
+      />
+    </div>
   );
 }

@@ -43,3 +43,28 @@ export const HOME_NAV_SECTIONS = [
     href: '/docs/utilities/accessibility/',
   },
 ] as const;
+
+/** POC: secondary sections in the navbar overflow (“More”) menu */
+export const HOME_NAV_OVERFLOW_SECTIONS = [
+  {
+    sidebarId: 'patterns',
+    label: 'Patterns',
+    href: '/docs/patterns/',
+  },
+  {
+    sidebarId: 'content',
+    label: 'Content',
+    href: '/docs/content/',
+  },
+  {
+    sidebarId: 'dataviz',
+    label: 'Data visualization',
+    href: '/docs/dataviz/',
+  },
+] as const;
+
+/** POC: all sections — used by the ellipsis menu on small viewports */
+export const HOME_NAV_ALL_SECTIONS = [
+  ...HOME_NAV_SECTIONS,
+  ...HOME_NAV_OVERFLOW_SECTIONS,
+] as const;
