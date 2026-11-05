@@ -59,6 +59,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
           width: 100%;
           max-width: 100%;
           box-sizing: border-box;
+          margin-block-end: ${euiTheme.size.base}; /* 16 */
         }
       }
     `,

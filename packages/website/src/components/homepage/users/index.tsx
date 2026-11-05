@@ -149,12 +149,26 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       transition: box-shadow ${euiTheme.animation.fast}
         ${euiTheme.animation.resistance};
 
+      /* EuiPanel border is a ::after pseudo, not border-color on the host */
+      &::after {
+        transition: opacity ${euiTheme.animation.fast}
+          ${euiTheme.animation.resistance};
+      }
+
       @media (prefers-reduced-motion: reduce) {
         transition: none;
+
+        &::after {
+          transition: none;
+        }
       }
 
       &:hover {
         ${euiShadowHover(euiThemeContext, 'm')}
+
+        &::after {
+          opacity: 0;
+        }
 
         [data-card-icon] {
           background-color: var(--eui-background-color-accent);

@@ -69,7 +69,7 @@ export default function Home(): JSX.Element {
         <HomepageAmbientBg />
         <div css={styles.content}>
           <HomepageHeader />
-          <EuiHorizontalRule margin="xxl" />
+          <EuiHorizontalRule margin="xl" />
           <HomepageUsers />
         </div>
       </HomepageDocLayout>

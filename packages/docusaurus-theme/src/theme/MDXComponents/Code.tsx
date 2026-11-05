@@ -43,6 +43,7 @@ const Code = ({ children, className, ...rest }: Props): JSX.Element => {
         {...rest}
         className={className}
         language={language}
+        transparentBackground
         css={styles.code}
       >
         {children}
