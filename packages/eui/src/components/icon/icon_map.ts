@@ -514,6 +514,16 @@ export const typeToPathMap = {
     ],
   }),
   cloudDrizzle: () => import('./assets/cloud_rain'), // Deprecated in favor of `cloudRain`
+  cloudPlug: withMetadata(() => import('./assets/cloud_plug'), {
+    synonyms: [
+      'cloud connect',
+      'connected',
+      'plug',
+      'hybrid',
+      'self-managed',
+      'cloud services',
+    ],
+  }),
   cloudRain: withMetadata(() => import('./assets/cloud_rain'), {
     synonyms: [
       'cloud',
