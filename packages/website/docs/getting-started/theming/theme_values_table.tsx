@@ -4,10 +4,12 @@ import {
   useEuiTheme,
   EuiBasicTable,
   EuiBasicTableProps,
-  EuiCode,
   EuiBasicTableColumn,
+  EuiPanel,
   EuiTableRowCellProps,
 } from '@elastic/eui';
+
+import { CopyableToken } from './copyable_token';
 
 interface BasicItem {
   id: string;
@@ -54,7 +56,7 @@ export const ThemeValuesTable = ({
         render: (item) => (
           <>
             {render(item)}&nbsp;
-            <EuiCode language="tsx">{item.token}</EuiCode>
+            <CopyableToken token={item.token} language="tsx" />
           </>
         ),
         header: false, // Won't show inline header in mobile view
@@ -68,9 +70,9 @@ export const ThemeValuesTable = ({
       name: 'Token',
       width: '50%',
       valign,
-      render: (token: ReactNode, item) => (
+      render: (_token: ReactNode, item) => (
         <div>
-          <EuiCode language="tsx">{token}</EuiCode>
+          <CopyableToken token={item.token} language="tsx" />
         </div>
       ),
       mobileOptions: {
@@ -97,5 +99,9 @@ export const ThemeValuesTable = ({
     });
   }
 
-  return <EuiBasicTable width="100%" items={items} columns={columns} />;
+  return (
+    <EuiPanel>
+      <EuiBasicTable width="100%" items={items} columns={columns} />
+    </EuiPanel>
+  );
 };

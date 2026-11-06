@@ -3,9 +3,12 @@ import {
   useEuiTheme,
   EuiBasicTable,
   EuiCode,
+  EuiPanel,
   EuiText,
   EuiThemeFontWeights,
 } from '@elastic/eui';
+
+import { CopyableToken } from '../../copyable_token';
 
 const columns = [
   {
@@ -26,7 +29,7 @@ const columns = [
   {
     field: 'token',
     name: 'Token',
-    render: (token: string) => <EuiCode>{token}</EuiCode>,
+    render: (token: string) => <CopyableToken token={token} />,
   },
   {
     field: 'value',
@@ -45,5 +48,9 @@ export const FontWeightTable = () => {
     };
   });
 
-  return <EuiBasicTable items={items} columns={columns} />;
+  return (
+    <EuiPanel>
+      <EuiBasicTable items={items} columns={columns} />
+    </EuiPanel>
+  );
 };

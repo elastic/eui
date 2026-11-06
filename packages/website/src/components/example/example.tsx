@@ -116,6 +116,15 @@ export const Example = ({ children }: ExampleProps) => {
               border-end-end-radius: ${euiTheme.border.radius.medium};
               overflow: hidden;
 
+              & > .euiCodeBlock {
+                margin-block: 0;
+                background: transparent;
+
+                .euiCodeBlock__controls {
+                  background: ${euiTheme.colors.lightestShade};
+                }
+              }
+
               ${highContrastModeStyles(euiThemeContext, {
                 // Code block is used within a panel which already has a border - skip doubling up
                 preferred: `
