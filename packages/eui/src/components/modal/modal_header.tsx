@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiModalHeaderStyles } from './modal_header.styles';
 
 export type EuiModalHeaderProps = FunctionComponent<
@@ -24,8 +24,7 @@ export const EuiModalHeader: EuiModalHeaderProps = ({
 }) => {
   const classes = classnames('euiModalHeader', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiModalHeaderStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiModalHeaderStyles);
   const cssStyles = [styles.euiModalHeader];
 
   return (

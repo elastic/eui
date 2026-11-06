@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
-import { keys, useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { keys, useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { isDOMNode } from '../../utils';
 
 import { EuiButtonIcon } from '../button';
@@ -119,8 +119,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   const classes = classnames('euiModal', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiModalStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiModalStyles);
   const cssStyles = [
     styles.euiModal,
     maxWidth === true && styles.defaultMaxWidth,
