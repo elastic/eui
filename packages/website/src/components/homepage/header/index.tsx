@@ -18,6 +18,25 @@ import euiVersions from '@site/static/versions.json';
 import { HomepageContainer } from '../layout';
 import { HomepageLogo } from './logo';
 
+const FIGMA_URL =
+  'https://www.figma.com/community/file/1656321711577585144/elastic-ui-borealis';
+
+// POC: duplicated from the docusaurus-theme navbar `figma` icon
+const FigmaIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 17 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="currentColor"
+      d="M12.5 6.5A2.5 2.5 0 0 0 11 2H6.5A2.5 2.5 0 0 0 5 6.5a2.5 2.5 0 0 0 .085 4.063A2.75 2.75 0 1 0 9.5 12.75V10.5a2.5 2.5 0 0 0 3-4Zm0-2A1.5 1.5 0 0 1 11 6H9.5V3H11a1.5 1.5 0 0 1 1.5 1.5ZM5 4.5A1.5 1.5 0 0 1 6.5 3h2v3h-2A1.5 1.5 0 0 1 5 4.5ZM6.5 10a1.5 1.5 0 0 1 0-3h2v3h-2Zm2 2.75A1.75 1.75 0 1 1 6.75 11H8.5v1.75ZM11 10a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"
+    />
+  </svg>
+);
+
 const TITLE = 'EUI';
 const SUBTITLE = 'The design system for user interfaces at Elastic.';
 // Match navbar version switcher: first entry is the current/latest release
@@ -124,7 +143,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
-      gap: ${euiTheme.size.s};
+      gap: ${euiTheme.size.l};
     `,
   };
 };
@@ -161,10 +180,21 @@ export function HomepageHeader() {
               href="https://github.com/elastic/eui"
               target="_blank"
               color="text"
+              flush="both"
               iconType="logoGithub"
               iconSide="left"
             >
               GitHub
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              href={FIGMA_URL}
+              target="_blank"
+              color="text"
+              flush="both"
+              iconType={FigmaIcon}
+              iconSide="left"
+            >
+              Figma
             </EuiButtonEmpty>
           </div>
         </div>
