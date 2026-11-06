@@ -11,6 +11,57 @@ import { useUpdateEffect } from '../../../services';
 
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
+/**
+ * Rows are absolutely positioned, so their DOM order doesn't affect layout.
+ * It does affect text selection however, which follows DOM order - so rows
+ * must be kept in visible order, not in the order they were (re-)created in
+ */
+const insertRowInOrder = (
+  container: HTMLElement,
+  rowElement: HTMLElement,
+  visibleRowIndex: number
+) => {
+  const isRowAfter = (child: Element) =>
+    child !== rowElement &&
+    child.classList.contains('euiDataGridRow') &&
+    (child as HTMLElement).dataset.gridVisibleRowIndex != null &&
+    Number((child as HTMLElement).dataset.gridVisibleRowIndex) >
+      visibleRowIndex;
+
+  // Fast path: rows are usually created in ascending order (e.g. scrolling down),
+  // so avoid scanning every rendered row when the new row belongs at the end
+  const lastChild = container.lastElementChild;
+  const belongsAtEnd =
+    lastChild != null && lastChild !== rowElement && !isRowAfter(lastChild);
+
+  let nextRow: Element | null = null;
+  if (!belongsAtEnd) {
+    for (let i = 0; i < container.children.length; i++) {
+      if (isRowAfter(container.children[i])) {
+        nextRow = container.children[i];
+        break;
+      }
+    }
+  }
+
+  // Avoid moving rows that are already in place, which can drop focus or selection
+  if (
+    rowElement.parentNode === container &&
+    rowElement.nextElementSibling === nextRow
+  ) {
+    return;
+  }
+
+  // Moving a connected node blurs any focused descendant, so restore it afterwards
+  const focusedElement =
+    rowElement.parentNode === container &&
+    rowElement.contains(document.activeElement)
+      ? (document.activeElement as HTMLElement)
+      : null;
+  container.insertBefore(rowElement, nextRow);
+  focusedElement?.focus({ preventScroll: true });
+};
+
 export const useRowManager = ({
   innerGridRef,
   rowClasses,
@@ -40,9 +91,6 @@ export const useRowManager = ({
         // from the innerGrid width, we need to make its position relative
         innerGridRef.current!.style.position = 'relative';
 
-        // add the element to the grid
-        innerGridRef.current!.appendChild(rowElement);
-
         // add the element to the row map
         rowIdToElements.current.set(rowIndex, rowElement);
 
@@ -57,9 +105,11 @@ export const useRowManager = ({
         observer.observe(rowElement, { childList: true });
       }
 
-      // Ensure the row's visible row index & striping update correctly on sort & pagination
+      // Ensure the row's visible row index, DOM position & striping update correctly
+      // on creation, sort & pagination
       if (rowElement.dataset.gridVisibleRowIndex !== String(visibleRowIndex)) {
         rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex);
+        insertRowInOrder(innerGridRef.current!, rowElement, visibleRowIndex);
         const isOddRow = visibleRowIndex % 2 !== 0;
         if (isOddRow) {
           rowElement.classList.add('euiDataGridRow--striped');
