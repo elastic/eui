@@ -1626,6 +1626,19 @@ export const typeToPathMap = {
       'graph',
     ],
   }),
+  productCloudConnect: withMetadata(
+    () => import('./assets/product_cloud_connect'),
+    {
+      synonyms: [
+        'product',
+        'cloud connect',
+        'cloud',
+        'connect',
+        'plug',
+        'connection',
+      ],
+    }
+  ),
   productCloudInfra: withMetadata(
     () => import('./assets/product_cloud_infra'),
     { synonyms: ['cloud', 'infrastructure', 'product', 'hosting', 'platform'] }
