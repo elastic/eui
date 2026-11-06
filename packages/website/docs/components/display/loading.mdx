@@ -1,5 +1,5 @@
 ---
-keywords: [EuiLoadingElasticRing, EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner]
+keywords: [EuiLoadingElasticRing, EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner, EuiAgentLoader]
 ---
 
 # Loading
@@ -95,6 +95,25 @@ export default () => (
     <EuiLoadingSpinner size="xl" />
     &nbsp;&nbsp;
     <EuiLoadingSpinner size="xxl" />
+  </div>
+);
+```
+
+## Agentic
+
+**EuiAgentLoader** is a quiet pulse for agent work that is happening now or in the background. The centre four dots move first, then the ring around them. Sizes are 12px, 16px, and 24px.
+
+```tsx interactive
+import React from 'react';
+import { EuiAgentLoader } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiAgentLoader size="s" />
+    &nbsp;&nbsp;
+    <EuiAgentLoader size="m" />
+    &nbsp;&nbsp;
+    <EuiAgentLoader size="l" />
   </div>
 );
 ```

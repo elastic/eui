@@ -16,3 +16,5 @@ export type { EuiLoadingLogoProps } from './loading_logo';
 export { EuiLoadingLogo } from './loading_logo';
 export type { EuiLoadingElasticRingProps } from './loading_elastic_ring';
 export { EuiLoadingElasticRing } from './loading_elastic_ring';
+export type { EuiAgentLoaderProps } from './loading_agent';
+export { EuiAgentLoader } from './loading_agent';
