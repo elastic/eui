@@ -18,6 +18,7 @@ import {
 
 import { HomepageAmbientBg } from '../components/homepage/ambient_bg';
 import { HomepageDocLayout } from '../components/homepage/doc_layout';
+import { HomepageFeatured } from '../components/homepage/featured';
 import { HomepageHeader } from '../components/homepage/header';
 import { HomepageUsers } from '../components/homepage/users';
 
@@ -70,6 +71,7 @@ export default function Home(): JSX.Element {
         <div css={styles.content}>
           <HomepageHeader />
           <EuiHorizontalRule margin="xl" />
+          <HomepageFeatured />
           <HomepageUsers />
         </div>
       </HomepageDocLayout>

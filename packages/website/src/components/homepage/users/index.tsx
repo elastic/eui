@@ -83,14 +83,14 @@ const CONTENT_DATA = [
     ],
   },
   {
-    title: 'Data visualization',
-    description: 'Charts, dashboards, and data displays',
-    href: './docs/dataviz/',
-    icon: 'visArea' as IconType,
+    title: 'Icons',
+    description: 'Glyphs, logos, and custom SVG assets',
+    href: './docs/components/display/icons/',
+    icon: 'faceHappy' as IconType,
     badges: [
-      { label: 'Types', href: './docs/dataviz/types/' },
-      { label: 'Theming', href: './docs/dataviz/theming/' },
-      { label: 'Accessibility', href: './docs/dataviz/accessibility-features/' },
+      { label: 'Glyphs', href: './docs/components/display/icons/#all-icons' },
+      { label: 'Tokens', href: './docs/components/display/icons/#tokens' },
+      { label: 'Custom', href: './docs/components/display/icons/#custom-svgs' },
     ],
   },
 ];
@@ -257,7 +257,7 @@ export const HomepageUsers = () => {
     <HomepageSection css={styles.section}>
       <EuiTitle size="m">
         <h2 id={headingId} css={styles.heading}>
-          Categories
+          Shared foundation
         </h2>
       </EuiTitle>
       <EuiPanel
