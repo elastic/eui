@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import NavbarSearch from '@theme/Navbar/Search';
 import SearchBar from '@theme/SearchBar';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import {
   EuiButton,
   EuiButtonEmpty,
@@ -17,6 +16,7 @@ import {
 import euiVersions from '@site/static/versions.json';
 
 import { HomepageContainer } from '../layout';
+import { HomepageLogo } from './logo';
 
 const TITLE = 'EUI';
 const SUBTITLE = 'The design system for user interfaces at Elastic.';
@@ -81,12 +81,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         letter-spacing: -0.6px;
       }
     `,
-    logo: css`
-      display: block;
-      flex-shrink: 0;
-      block-size: var(--banner-title-font-size);
-      inline-size: var(--banner-title-font-size);
-    `,
     subtitle: css`
       margin: 0;
       font-size: var(--eui-font-size-l);
@@ -137,7 +131,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
 export function HomepageHeader() {
   const styles = useEuiMemoizedStyles(getStyles);
-  const logoSrc = useBaseUrl('/images/eui_logo.svg');
 
   return (
     <header css={styles.hero}>
@@ -145,13 +138,7 @@ export function HomepageHeader() {
         <div css={styles.content}>
           <div css={styles.title}>
             <div css={styles.titleRow}>
-              <img
-                src={logoSrc}
-                alt=""
-                css={styles.logo}
-                width={44}
-                height={44}
-              />
+              <HomepageLogo />
               <Heading as="h1">{TITLE}</Heading>
             </div>
             <p css={styles.subtitle}>{SUBTITLE}</p>
