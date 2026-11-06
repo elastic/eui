@@ -13,6 +13,7 @@ import {
   EuiIcon,
   EuiLink,
   EuiPanel,
+  EuiScreenReaderOnly,
   EuiSplitPanel,
   EuiText,
   EuiTitle,
@@ -106,13 +107,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       flex-direction: column;
       align-items: stretch;
       padding: ${euiTheme.size.xxxl} 0;
-    `,
-    heading: css`
-      margin: 0;
-      margin-block-end: ${euiTheme.size.l};
-      /* Match well EuiPanel paddingSize="l" so title lines up with cards */
-      padding-inline-start: ${euiTheme.size.l};
-      text-align: start;
     `,
     well: css`
       inline-size: 100%;
@@ -255,11 +249,9 @@ export const HomepageUsers = () => {
 
   return (
     <HomepageSection css={styles.section}>
-      <EuiTitle size="m">
-        <h2 id={headingId} css={styles.heading}>
-          Shared foundation
-        </h2>
-      </EuiTitle>
+      <EuiScreenReaderOnly>
+        <h2 id={headingId}>Explore</h2>
+      </EuiScreenReaderOnly>
       <EuiPanel
         color="transparent"
         paddingSize="l"

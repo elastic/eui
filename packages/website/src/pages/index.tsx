@@ -39,7 +39,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
       line-height: 1.2;
     }
 
-    h3 {
+    h3:not(.euiTitle) {
       font-size: var(--eui-font-size-m);
       line-height: 1.5;
     }
@@ -70,9 +70,9 @@ export default function Home(): JSX.Element {
         <HomepageAmbientBg />
         <div css={styles.content}>
           <HomepageHeader />
-          <EuiHorizontalRule margin="xl" />
-          <HomepageFeatured />
           <HomepageUsers />
+          <EuiHorizontalRule margin="m" />
+          <HomepageFeatured />
         </div>
       </HomepageDocLayout>
     </Layout>

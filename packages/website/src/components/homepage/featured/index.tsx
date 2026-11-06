@@ -15,6 +15,7 @@ import {
   EuiTitle,
   useEuiMemoizedStyles,
   UseEuiTheme,
+  useGeneratedHtmlId,
 } from '@elastic/eui';
 
 type FeaturedCard = {
@@ -49,6 +50,10 @@ const FEATURED_CARDS = [
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   section: css`
     padding: ${euiTheme.size.xl} ${euiTheme.size.l} 0;
+  `,
+  heading: css`
+    margin: 0;
+    margin-block-end: ${euiTheme.size.l};
   `,
   list: css`
     display: grid;
@@ -105,7 +110,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex-shrink: 0;
     inline-size: ${euiTheme.size.xxxxl};
     block-size: ${euiTheme.size.xs};
-    margin: 0;
+    margin: ${euiTheme.size.s} 0;
     background-color: ${euiTheme.colors.accent};
     border: none;
   `,
@@ -138,8 +143,8 @@ const FeaturedCardView = ({ card }: { card: FeaturedCard }) => {
   const panel = (
     <EuiPanel color="plain" hasBorder hasShadow paddingSize="l" css={styles.card}>
       <div css={styles.copy}>
-        <EuiTitle size="m">
-          <h2 css={styles.title}>{card.title}</h2>
+        <EuiTitle size="s">
+          <h3 css={styles.title}>{card.title}</h3>
         </EuiTitle>
         <hr aria-hidden css={styles.titleDivider} />
         <EuiText size="s">
@@ -170,9 +175,16 @@ const FeaturedCardView = ({ card }: { card: FeaturedCard }) => {
 
 export const HomepageFeatured = () => {
   const styles = useEuiMemoizedStyles(getStyles);
+  const headingId = useGeneratedHtmlId();
 
   return (
-    <section css={styles.section} aria-label="Featured">
+    <section css={styles.section} aria-labelledby={headingId}>
+      {/* POC: needs design input — heading size and spacing */}
+      <EuiTitle size="m">
+        <h2 id={headingId} css={styles.heading}>
+          In the family
+        </h2>
+      </EuiTitle>
       <ul css={styles.list}>
         {FEATURED_CARDS.map((card) => (
           <li key={card.title}>
