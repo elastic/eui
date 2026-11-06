@@ -9,6 +9,7 @@
 import classNames from 'classnames';
 import React, { FunctionComponent, OlHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 import { euiStepsHorizontalStyles } from './steps_horizontal.styles';
 
@@ -32,7 +33,7 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiStepsHorizontal', className);
-  const styles = euiStepsHorizontalStyles();
+  const styles = useEuiMemoizedStyles(euiStepsHorizontalStyles);
   const cssStyles = styles.euiStepsHorizontal;
   const cssItemStyles = styles.euiStepsHorizontal__item;
 
