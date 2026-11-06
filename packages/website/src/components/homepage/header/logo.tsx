@@ -9,15 +9,18 @@ import {
 // Distances are in viewBox units (the mark is 32 × 32)
 const LOGO_VIEWBOX = 32;
 const LOGO_CENTER = 16;
-const LOGO_MAX_PULL = 10;
+const LOGO_MAX_PULL = 24;
 const LOGO_PARTNER_FOLLOW = 0.2;
 const LOGO_SQUEEZE_TRAVEL = 2.5;
-const LOGO_STRETCH_ALONG = 0.22;
-const LOGO_STRETCH_ACROSS = 0.06;
+const LOGO_STRETCH_ALONG = 0.45;
+const LOGO_STRETCH_ACROSS = 0.15;
 const LOGO_SQUEEZE_ALONG = 0.1;
 const LOGO_SQUEEZE_ACROSS = 0.05;
 const LOGO_BRIDGE_THINNING = 1.2;
 const LOGO_BRIDGE_MAX_BULGE = 1.5;
+const LOGO_BRIDGE_MIN_WIDTH = 0.3;
+const LOGO_BRIDGE_MIN_LENGTH = 0.2;
+const BRIDGE_REST_HALF = Math.hypot(5.5, 5.5);
 const LOGO_SNAP_EASING = 'cubic-bezier(0.34, 1.9, 0.64, 1)';
 
 type PieceId = 'pink' | 'yellow' | 'teal' | 'blue';
@@ -42,10 +45,13 @@ const PIECES: Record<
 
 const PIECE_IDS = Object.keys(PIECES) as PieceId[];
 
-const BRIDGE_REST_LENGTH = Math.hypot(
-  PIECES.yellow.cx - PIECES.pink.cx,
-  PIECES.yellow.cy - PIECES.pink.cy
-);
+const BRIDGE_END_INSET =
+  Math.hypot(
+    PIECES.yellow.cx - PIECES.pink.cx,
+    PIECES.yellow.cy - PIECES.pink.cy
+  ) /
+    2 -
+  BRIDGE_REST_HALF;
 
 const toDegrees = (radians: number) => (radians * 180) / Math.PI;
 
@@ -174,8 +180,11 @@ function useLogoStretch() {
       const pinkY = PIECES.pink.cy + next.pink.y;
       const yellowX = PIECES.yellow.cx + next.yellow.x;
       const yellowY = PIECES.yellow.cy + next.yellow.y;
-      const bridgeAlong =
-        Math.hypot(yellowX - pinkX, yellowY - pinkY) / BRIDGE_REST_LENGTH;
+      const bridgeAlong = Math.max(
+        LOGO_BRIDGE_MIN_LENGTH,
+        (Math.hypot(yellowX - pinkX, yellowY - pinkY) / 2 - BRIDGE_END_INSET) /
+          BRIDGE_REST_HALF
+      );
 
       setTransform(bridge, {
         x: (pinkX + yellowX) / 2 - LOGO_CENTER,
@@ -184,7 +193,7 @@ function useLogoStretch() {
         along: bridgeAlong,
         across: Math.min(
           LOGO_BRIDGE_MAX_BULGE,
-          bridgeAlong ** -LOGO_BRIDGE_THINNING
+          Math.max(LOGO_BRIDGE_MIN_WIDTH, bridgeAlong ** -LOGO_BRIDGE_THINNING)
         ),
       });
     };
@@ -229,6 +238,8 @@ function useLogoStretch() {
 
 const getLogoStyles = ({ euiTheme }: UseEuiTheme) => ({
   logo: css`
+    position: relative;
+    z-index: 1;
     display: block;
     flex-shrink: 0;
     overflow: visible;
@@ -239,7 +250,7 @@ const getLogoStyles = ({ euiTheme }: UseEuiTheme) => ({
     -webkit-user-select: none;
 
     @supports (-moz-appearance: none) {
-      clip-path: inset(-60%);
+      clip-path: inset(-150%);
     }
 
     &[data-dragging] {
@@ -256,7 +267,7 @@ const getLogoStyles = ({ euiTheme }: UseEuiTheme) => ({
       transform-origin: center;
 
       ${euiCanAnimate} {
-        transition: transform ${euiTheme.animation.normal} ${LOGO_SNAP_EASING};
+        transition: transform ${euiTheme.animation.slow} ${LOGO_SNAP_EASING};
       }
     }
 
