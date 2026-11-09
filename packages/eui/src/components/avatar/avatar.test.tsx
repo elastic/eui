@@ -112,6 +112,25 @@ describe('EuiAvatar', () => {
 
         expect(container).toHaveTextContent('🕵🏻‍♂️');
       });
+
+      it('supports two emoji with modifiers', () => {
+        const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+        const { container } = render(<EuiAvatar name="name" initials="👍🏽👍🏽" />);
+
+        expect(container).toHaveTextContent('👍🏽👍🏽');
+        expect(warnSpy).not.toHaveBeenCalled();
+        warnSpy.mockRestore();
+      });
+
+      it('warns and truncates when more than 2 graphemes are passed', () => {
+        const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+        const { container } = render(<EuiAvatar name="name" initials="A👍🏽B" />);
+
+        expect(container).toHaveTextContent('A👍🏽');
+        expect(container).not.toHaveTextContent('B');
+        expect(warnSpy).toHaveBeenCalledTimes(1);
+        warnSpy.mockRestore();
+      });
     });
 
     describe('initialsLength', () => {

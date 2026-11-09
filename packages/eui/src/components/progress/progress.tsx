@@ -22,10 +22,15 @@ import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
-import { useEuiTheme, makeHighContrastColor } from '../../services';
+import {
+  useEuiTheme,
+  useEuiMemoizedStyles,
+  makeHighContrastColor,
+} from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import {
-  euiProgressStyles,
+  euiProgressNativeStyles,
+  euiProgressIndeterminateStyles,
   euiProgressDataStyles,
   euiProgressLabelStyles,
   euiProgressValueTextStyles,
@@ -120,7 +125,9 @@ export const EuiProgress: FunctionComponent<
     ? { color: makeHighContrastColor(color)(euiTheme.euiTheme) }
     : {};
 
-  const styles = euiProgressStyles(euiTheme, determinate);
+  const styles = useEuiMemoizedStyles(
+    determinate ? euiProgressNativeStyles : euiProgressIndeterminateStyles
+  );
   const cssStyles = [
     styles.euiProgress,
     determinate && styles.native,
@@ -130,7 +137,7 @@ export const EuiProgress: FunctionComponent<
     isNamedColor ? styles[color as EuiProgressColor] : styles.customColor,
   ];
 
-  const dataStyles = euiProgressDataStyles(euiTheme);
+  const dataStyles = useEuiMemoizedStyles(euiProgressDataStyles);
   const dataCssStyles = [
     dataStyles.euiProgress__data,
     size === 'l' && dataStyles[size],
@@ -139,7 +146,7 @@ export const EuiProgress: FunctionComponent<
     euiProgressLabelStyles.euiProgress__label,
     labelProps?.css,
   ];
-  const valueTextStyles = euiProgressValueTextStyles(euiTheme);
+  const valueTextStyles = useEuiMemoizedStyles(euiProgressValueTextStyles);
   const valueTextCssStyles = [
     valueTextStyles.euiProgress__valueText,
     isNamedColor

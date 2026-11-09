@@ -1,3 +1,7 @@
+## [`v8.2.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
+
+- Initialize the global vis color store with its default vis colors on import, so the palette functions in `@elastic/eui-theme-common` work without loading `@elastic/eui` ([#10247](https://github.com/elastic/eui/pull/10247))
+
 ## [`v8.1.0`](https://github.com/elastic/eui/releases/v8.1.0)
 
 - Added `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))

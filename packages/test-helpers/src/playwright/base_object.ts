@@ -11,12 +11,21 @@ import type { Locator, Page } from '@playwright/test';
 export type ObjectScope = Page | Locator | BaseObject;
 
 /**
- * Matches one space-separated token in `data-test-subj`, not the whole
- * attribute value. `getByTestId` does an exact match and misses components
- * like `EuiColorPicker` that add their own token to the consumer's subj.
+ * Matches space-separated tokens in `data-test-subj`, not the whole attribute
+ * value. `getByTestId` does an exact match and misses components like
+ * `EuiColorPicker` that add their own token to the consumer's subj. A
+ * `testSubj` with spaces (`colorEditorColorPicker 0`, a Kibana convention) is
+ * split so every token must be present, in any order.
  */
 const testSubjSelector = (testSubj: string): string =>
-  `[data-test-subj~="${testSubj.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"]`;
+  testSubj
+    .trim()
+    .split(/\s+/)
+    .map(
+      (token) =>
+        `[data-test-subj~="${token.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"]`
+    )
+    .join('');
 
 /**
  * Base class for Playwright Component Objects — semantic wrappers around a

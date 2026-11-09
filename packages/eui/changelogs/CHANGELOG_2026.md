@@ -1,3 +1,65 @@
+## [`v123.4.0`](https://github.com/elastic/eui/releases/v123.4.0)
+
+- Added the `productNightshift` icon. ([#10256](https://github.com/elastic/eui/pull/10256))
+- Added `showMaximizeButton` and `onMaximizeChange` to `EuiFlyout`'s `flyoutMenuProps`, for a menu button that maximizes the flyout to the full width of its container ([#10242](https://github.com/elastic/eui/pull/10242))
+- Added `setFlyoutMaximized` to the flyout manager store returned by `getFlyoutManagerStore`, to maximize or restore a main flyout that sets `flyoutMenuProps.showMaximizeButton` ([#10242](https://github.com/elastic/eui/pull/10242))
+- Moved `colorPalette` and the `euiPalette*` functions to `@elastic/eui-theme-common`, making them individually importable without loading `@elastic/eui`. They are re-exported from `@elastic/eui`. `@elastic/eui-theme-borealis` now initializes the global vis color store on import, and `EuiVisColorStore.getInstance()` throws a descriptive error when accessed before any theme package initialized it. ([#10247](https://github.com/elastic/eui/pull/10247))
+
+**Bug fixes**
+
+- Fixed `EuiAvatar` cutting custom `initials` and single-word `name` initials in the middle of a character. Initials are now counted and truncated by grapheme, so two emoji with skin tone modifiers, or a letter followed by an emoji, render correctly ([#10272](https://github.com/elastic/eui/pull/10272))
+- Fixed underline spacing for `EuiLink` and links within `EuiText` at small font sizes ([#10248](https://github.com/elastic/eui/pull/10248))
+- Fixed resizable main flyouts in the flyout system switching to stacked layout mode when a child flyout opens or the container narrows after the main flyout was resized wider. The main flyout now shrinks to the largest width that fits beside the child, and returns to the width the user dragged it to once there is room again. ([#10250](https://github.com/elastic/eui/pull/10250))
+- Fixed `EuiFlyout` with `type="push"` not returning focus to the trigger element when it closes ([#10235](https://github.com/elastic/eui/pull/10235))
+
+**Accessibility**
+
+- Fixed `EuiRange` announcing its value twice to screen readers when `showValue` is set ([#10271](https://github.com/elastic/eui/pull/10271))
+
+**Dependency updates**
+
+- Updated `lodash` to v4.18.1 ([#10265](https://github.com/elastic/eui/pull/10265))
+
+## [`v123.3.0`](https://github.com/elastic/eui/releases/v123.3.0)
+
+- Updated the `addToChat` glyph icon. ([#10221](https://github.com/elastic/eui/pull/10221))
+- Added `productAlertZero` icon. ([#10217](https://github.com/elastic/eui/pull/10217))
+
+**Bug fixes**
+
+- Fixed `EuiCallOut` and `EuiBanner` `announceOnMount` duplicating nested content in the live region. ([#10240](https://github.com/elastic/eui/pull/10240))
+- Fixed `EuiProvider`/`EuiThemeProvider` rendering an intermediate state in which `useEuiTheme()` returned an updated `colorMode` alongside a theme still computed from the previous one ([#10233](https://github.com/elastic/eui/pull/10233))
+- Fixed `EuiToken` and `EuiSelectableTemplateSitewide` rendering the default visualization colors on first render when the theme overrides them, such as under `modify.colors` or high contrast mode ([#10233](https://github.com/elastic/eui/pull/10233))
+
+## [`v123.2.0`](https://github.com/elastic/eui/releases/v123.2.0)
+
+- Updated `EuiFlyoutMenu` height to 49px to align with Kibana compact AppHeader ([#10211](https://github.com/elastic/eui/pull/10211))
+- Added new icon: `ruler`. ([#10194](https://github.com/elastic/eui/pull/10194))
+- Updated `productAgent` icon glyph ([#10179](https://github.com/elastic/eui/pull/10179))
+- Updated `EuiToast`'s highlight to a straight bar instead of a curved one ([#10197](https://github.com/elastic/eui/pull/10197))
+
+**Bug fixes**
+
+- Fixed clickable `EuiBadge` to show the pointer cursor over its icon and padding, not only over its text ([#10205](https://github.com/elastic/eui/pull/10205))
+- Fixed disabled clickable `EuiBadge` to show the `not-allowed` cursor ([#10205](https://github.com/elastic/eui/pull/10205))
+- Fixed resizable `EuiFlyout` with a numeric `size` scaling proportionally on container or window resize; it now keeps its pixel width and is only clamped while there is not enough room ([#10199](https://github.com/elastic/eui/pull/10199))
+- Fixed resizable `EuiFlyout` calling `onResize` for width changes not made by the user, such as container or sibling clamps, or clicking the resize handle without dragging ([#10199](https://github.com/elastic/eui/pull/10199))
+
+## [`v123.1.0`](https://github.com/elastic/eui/releases/v123.1.0)
+
+- Removed the left color highlight from `EuiCallOut` ([#10109](https://github.com/elastic/eui/pull/10109))
+- Updated Flyout menu height to 50px ([#10103](https://github.com/elastic/eui/pull/10103))
+- Added new icons: `chartMix`, `chartWaffle`, `clipboardWarning`, `clockUp`, `emergencyLight`, `productCanvas`, `productElasticAgent`, `productFleet`, `productLens`, `puzzlePiece`, `shield` ([#10111](https://github.com/elastic/eui/pull/10111))
+- Added `hasAriaDisabled` prop on `EuiSelectableListItem` and `type EuiSelectableOption` ([#10090](https://github.com/elastic/eui/pull/10090))
+- Added refs for `EuiFlyoutHeader`, `EuiFlyoutFooter`, and the outer `EuiFlyout` scroll container. ([#10105](https://github.com/elastic/eui/pull/10105))
+- Corrected `EuiFlyoutHeaderProps`, `EuiFlyoutFooterProps`, and `EuiFlyoutBodyProps` to describe component props instead of component types. ([#10105](https://github.com/elastic/eui/pull/10105))
+- Updated `EuiFormRow`'s `labelAppend` to render string content with an extra-small, subdued text style. ([#10067](https://github.com/elastic/eui/pull/10067))
+
+**Bug fixes**
+
+- Fixed a bug on `EuiSelectable` with `searchable={true}` that could result in an infinite loop if all search results are disabled ([#10090](https://github.com/elastic/eui/pull/10090))
+- Fixed `EuiSuperSelect` omitting the currently selected value from its accessible name when an `aria-label` or `aria-labelledby` was passed. External labels are now combined with the selected value instead of overriding it ([#10039](https://github.com/elastic/eui/pull/10039))
+
 ## [`v123.0.0`](https://github.com/elastic/eui/releases/v123.0.0)
 
 - Added `toolTipProps` to `EuiTextTruncate` to control where the full text tooltip opens, e.g. its `position` ([#10086](https://github.com/elastic/eui/pull/10086))

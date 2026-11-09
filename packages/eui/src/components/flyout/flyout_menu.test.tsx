@@ -756,6 +756,106 @@ describe('EuiFlyoutMenu', () => {
     });
   });
 
+  describe('maximize button', () => {
+    const onToggleMaximize = jest.fn();
+
+    it('is not rendered by default', () => {
+      renderWithContext(
+        <EuiFlyoutMenu title="Test" canMaximize onToggleMaximize={jest.fn()} />
+      );
+
+      expect(
+        screen.queryByTestSubject('euiFlyoutMenuMaximizeButton')
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders after the trailing actions when enabled', () => {
+      renderWithContext(
+        <EuiFlyoutMenu
+          title="Test"
+          trailingActions={[
+            { iconType: 'gear', 'aria-label': 'Settings', onClick: jest.fn() },
+          ]}
+          showMaximizeButton
+          canMaximize
+          onToggleMaximize={onToggleMaximize}
+        />
+      );
+
+      const labels = screen
+        .getAllByRole('button')
+        .map((button) => button.getAttribute('aria-label'));
+      expect(labels.indexOf('Maximize')).toBe(labels.indexOf('Settings') + 1);
+      expect(screen.getByTestSubject('euiFlyoutMenuMaximizeButton')).toBe(
+        screen.getByRole('button', { name: 'Maximize' })
+      );
+    });
+
+    it('swaps to the restore label when maximized', () => {
+      renderWithContext(
+        <EuiFlyoutMenu
+          title="Test"
+          showMaximizeButton
+          canMaximize
+          isMaximized
+          onToggleMaximize={onToggleMaximize}
+        />
+      );
+
+      expect(
+        screen.getByTestSubject('euiFlyoutMenuMaximizeButton')
+      ).toHaveAttribute('aria-label', 'Restore');
+    });
+
+    it('calls onToggleMaximize without calling onMaximizeChange', () => {
+      const onMaximizeChange = jest.fn();
+      renderWithContext(
+        <EuiFlyoutMenu
+          title="Test"
+          showMaximizeButton
+          onMaximizeChange={onMaximizeChange}
+          canMaximize
+          onToggleMaximize={onToggleMaximize}
+        />
+      );
+
+      fireEvent.click(screen.getByTestSubject('euiFlyoutMenuMaximizeButton'));
+
+      expect(onToggleMaximize).toHaveBeenCalledTimes(1);
+      expect(onMaximizeChange).not.toHaveBeenCalled();
+    });
+
+    it('renders the close divider when it is the only trailing item', () => {
+      const { container } = renderWithContext(
+        <EuiFlyoutMenu
+          title="Test"
+          showMaximizeButton
+          canMaximize
+          onToggleMaximize={onToggleMaximize}
+        />
+      );
+
+      expect(
+        container.querySelectorAll('.euiFlyoutMenu__divider')
+      ).toHaveLength(1);
+    });
+
+    it('is hidden when the flyout cannot maximize', () => {
+      renderWithContext(
+        <EuiFlyoutMenu
+          title="Test"
+          showMaximizeButton
+          canMaximize={false}
+          onToggleMaximize={onToggleMaximize}
+        />
+      );
+
+      expect(
+        screen.queryByTestSubject('euiFlyoutMenuMaximizeButton')
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe('pagination', () => {
     const pagination = {
       currentIndex: 1,

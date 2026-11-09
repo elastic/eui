@@ -72,7 +72,7 @@ exports[`EuiBadge is rendered with href provided 1`] = `
     class="euiBadge__content emotion-euiBadge__content"
   >
     <span
-      class="euiBadge__text emotion-euiBadge__text-clickable"
+      class="euiBadge__text emotion-euiBadge__text"
     >
       Content
     </span>
@@ -150,7 +150,7 @@ exports[`EuiBadge is rendered with onClick provided 1`] = `
     class="euiBadge__content emotion-euiBadge__content"
   >
     <span
-      class="euiBadge__text emotion-euiBadge__text-clickable"
+      class="euiBadge__text emotion-euiBadge__text"
     >
       Content
     </span>

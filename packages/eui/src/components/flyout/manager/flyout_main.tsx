@@ -18,6 +18,7 @@ import {
   DEFAULT_TYPE,
 } from '../const';
 import { useIsPushed } from '../hooks';
+import { getIsManagedFlyoutMaximized } from '../use_flyout_maximize';
 import { LEVEL_MAIN } from './const';
 
 /**
@@ -50,9 +51,17 @@ export const EuiFlyoutMain = forwardRef<HTMLElement, EuiFlyoutMainProps>(
       pushMinBreakpoint,
       containerWidth: context?.state.referenceWidth,
     });
+    // A maximized push flyout uses overlay chrome, so it needs the border too
+    const isMaximized = getIsManagedFlyoutMaximized(
+      props.flyoutMenuProps,
+      context?.state,
+      flyoutId
+    );
 
     const cssStyles = [
-      hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
+      hasChildFlyout &&
+        (!isPushed || isMaximized) &&
+        styles.hasChildFlyout[side],
     ];
 
     const style: React.CSSProperties = {};

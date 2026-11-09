@@ -20,6 +20,8 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
     /* use a fallback as "from-font" isn't fully supported by all last major versions yet */
     text-decoration-thickness: ${euiTheme.border.width.thin};
     text-decoration-thickness: from-font;
+    /* the font's default offset lets the underline touch the text at small font sizes */
+    text-underline-offset: 0.15em;
 
     &:hover,
     &:focus {

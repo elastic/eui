@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
@@ -31,4 +32,28 @@ export const Playground: Story = {
     activePage: 5,
     pageCount: 10,
   },
+  render: (args) => <StatefulPagination {...args} />,
+};
+
+const StatefulPagination: FunctionComponent<EuiPaginationProps> = ({
+  activePage: _activePage,
+  onPageClick,
+  ...args
+}) => {
+  const [activePage, setActivePage] = useState(_activePage);
+
+  useEffect(() => {
+    setActivePage(_activePage);
+  }, [_activePage]);
+
+  return (
+    <EuiPagination
+      {...args}
+      activePage={activePage}
+      onPageClick={(page) => {
+        setActivePage(page);
+        onPageClick?.(page);
+      }}
+    />
+  );
 };

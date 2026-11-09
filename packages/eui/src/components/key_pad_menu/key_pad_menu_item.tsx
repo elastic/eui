@@ -215,20 +215,24 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       css: cssStyles,
       checked: isSelected,
       disabled: isDisabled,
-      name,
     };
 
     if (checkable === 'single') {
       return (
         <EuiRadio
           {...sharedProps}
+          name={name}
           value={value as string}
           onChange={() => onChange!(itemId, value)}
         />
       );
     } else {
       return (
-        <EuiCheckbox {...sharedProps} onChange={() => onChange!(itemId)} />
+        <EuiCheckbox
+          {...sharedProps}
+          name={name}
+          onChange={() => onChange!(itemId)}
+        />
       );
     }
   }, [

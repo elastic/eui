@@ -20,6 +20,10 @@ import {
 import { Props } from '@theme-original/DocItem/Content';
 
 import Heading from '../../MDXComponents/Heading';
+import {
+  DocStorybookContext,
+  getDocStorybook,
+} from '../../../components/doc_title/context';
 
 /**
  Title can be declared inside md content or declared through
@@ -45,7 +49,7 @@ const getContentStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     header: css`
       // required specificity to override docusaurus styles
-      & > h1.euiTitle {
+      & h1.euiTitle {
         --ifm-h1-font-size: var(--eui-font-size-xxl);
         --ifm-h1-vertical-rhythm-bottom: 1.2;
 
@@ -56,20 +60,27 @@ const getContentStyles = ({ euiTheme }: UseEuiTheme) => {
 };
 
 export default function DocItemContent({ children }: Props): JSX.Element {
+  const { frontMatter } = useDoc();
+  const storybook =
+    'storybook' in frontMatter
+      ? getDocStorybook(frontMatter.storybook)
+      : undefined;
   const syntheticTitle = useSyntheticTitle();
   const styles = useEuiMemoizedStyles(getContentStyles);
 
   return (
-    <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
-      {syntheticTitle && (
-        <>
-          <header css={styles.header}>
-            <Heading as="h1">{syntheticTitle}</Heading>
-          </header>
-          <EuiHorizontalRule />
-        </>
-      )}
-      <MDXContent>{children}</MDXContent>
-    </div>
+    <DocStorybookContext.Provider value={storybook}>
+      <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
+        {syntheticTitle && (
+          <>
+            <header css={styles.header}>
+              <Heading as="h1">{syntheticTitle}</Heading>
+            </header>
+            <EuiHorizontalRule />
+          </>
+        )}
+        <MDXContent>{children}</MDXContent>
+      </div>
+    </DocStorybookContext.Provider>
   );
 }

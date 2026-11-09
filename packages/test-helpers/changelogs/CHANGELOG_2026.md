@@ -1,3 +1,22 @@
+## [`v2.3.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
+
+- Added `EuiTabsObject` with `tabs`, `getTabs()`, `tab(label)`, `select(label)` and `getSelected()`, covering `EuiTabs` and `EuiTabbedContent` ([#10249](https://github.com/elastic/eui/pull/10249))
+- Added `EuiMarkdownEditorObject` with `textArea`, `preview`, `setValue(text)`, `getValue()`, `isPreviewing()` and `togglePreview()` ([#10260](https://github.com/elastic/eui/pull/10260))
+- Added `EuiCardObject` with `selectButton`, `getTitle()`, `getDescription()`, `click()`, `isSelected()` and `toggleSelected()` ([#10266](https://github.com/elastic/eui/pull/10266))
+
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+
+- Added `EuiCallOutObject` with `getTitle()`, `getText()`, `getColor()`, `dismissButton` and `dismiss()` ([#10234](https://github.com/elastic/eui/pull/10234))
+- Added `EuiSideNavObject` with `getItems()`, `item(label)`, `select(label)`, `getSelected()` and `expand(label)` ([#10229](https://github.com/elastic/eui/pull/10229))
+- Added `EuiFieldSearchObject` with `setQuery(text)`, `getQuery()` and `clear()`, and `EuiSearchBarObject` for the same input reached through the search bar `box` prop ([#10222](https://github.com/elastic/eui/pull/10222))
+- Added `EuiPaginationObject` with `getActivePage()`, `getPageCount()`, `goToPage(index)`, `next()` and `previous()` ([#10214](https://github.com/elastic/eui/pull/10214))
+- Added `EuiTableObject` for `EuiTable`, with `rows`, `headerCells`, `column(index)` and `cell(row, column)`. `EuiBasicTableObject` now extends it ([#10213](https://github.com/elastic/eui/pull/10213))
+
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+
+- Added `setColor()` and `getColor()` to `EuiColorPickerObject`, and support for pickers that use a custom `button` anchor ([#10182](https://github.com/elastic/eui/pull/10182))
+- Updated Component Object roots to match a `testSubj` with spaces by requiring every token ([#10182](https://github.com/elastic/eui/pull/10182))
+
 ## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
 
 - Added a `selectors` object that holds every Component Object's selectors keyed by component (`selectors.comboBox.PILL_SELECTOR`) ([#10076](https://github.com/elastic/eui/pull/10076))
