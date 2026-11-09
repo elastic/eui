@@ -1,3 +1,9 @@
+## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
+
+- Added `EuiTabsObject` with `tabs`, `getTabs()`, `tab(label)`, `select(label)` and `getSelected()`, covering `EuiTabs` and `EuiTabbedContent` ([#10249](https://github.com/elastic/eui/pull/10249))
+- Added `EuiMarkdownEditorObject` with `textArea`, `preview`, `setValue(text)`, `getValue()`, `isPreviewing()` and `togglePreview()` ([#10260](https://github.com/elastic/eui/pull/10260))
+- Added `EuiCardObject` with `selectButton`, `getTitle()`, `getDescription()`, `click()`, `isSelected()` and `toggleSelected()` ([#10266](https://github.com/elastic/eui/pull/10266))
+
 ## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
 
 - Added `EuiCallOutObject` with `getTitle()`, `getText()`, `getColor()`, `dismissButton` and `dismiss()` ([#10234](https://github.com/elastic/eui/pull/10234))

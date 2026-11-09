@@ -1,3 +1,12 @@
+## [`v10.2.0`](https://github.com/elastic/eui/releases/v10.2.0)
+
+- Added `colorPalette` and the `euiPalette*` functions (moved from `@elastic/eui`), making the color palettes importable without loading `@elastic/eui` ([#10247](https://github.com/elastic/eui/pull/10247))
+- Updated `EuiVisColorStore.getInstance()` to be callable without arguments once initialized; it now throws a descriptive error when accessed before any theme package initialized it ([#10247](https://github.com/elastic/eui/pull/10247))
+
+**Dependency updates**
+
+- Updated `lodash` to v4.18.1 ([#10265](https://github.com/elastic/eui/pull/10265))
+
 ## [`v10.1.0`](https://github.com/elastic/eui/releases/v10.1.0)
 
 - Added type for `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))

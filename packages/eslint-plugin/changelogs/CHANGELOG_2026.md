@@ -1,3 +1,12 @@
+## [`v4.0.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%404.0.0)
+
+- Updated `@elastic/eui/no-deprecated-icon-aliases` to no longer report removed icon names. `@elastic/eui/no-removed-icons` reports them instead ([#10269](https://github.com/elastic/eui/pull/10269))
+- Updated `@elastic/eui/no-deprecated-icon-aliases` and `@elastic/eui/no-removed-icons` to check both branches of `? :`, operands of `&&`, `||` and `??`, `iconType` keys in object literals, and `*IconType` props on any component ([#10269](https://github.com/elastic/eui/pull/10269))
+
+**Breaking changes**
+
+- Added new `@elastic/eui/no-removed-icons` rule that reports icon names removed from EUI, which render as a broken image, and autofixes them to their replacements. It's an `error` in the recommended config, so removed names that `no-deprecated-icon-aliases` reported as warnings now fail lint ([#10269](https://github.com/elastic/eui/pull/10269))
+
 ## [`v3.3.0`](https://github.com/elastic/eui/releases/tag/%40elastic%2Feslint-plugin-eui%403.3.0)
 
 **Dependency updates**
