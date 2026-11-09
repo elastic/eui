@@ -52,6 +52,13 @@ test.describe('EuiMarkdownEditorObject', () => {
     await expect(editor.textArea).toBeVisible();
   });
 
+  test('getValue reads the source while previewing', async () => {
+    await editor.setValue('still here');
+    await editor.togglePreview();
+
+    expect(await editor.getValue()).toBe('still here');
+  });
+
   test('setValue leaves preview mode first', async () => {
     await editor.togglePreview();
     await editor.setValue('back to editing');
