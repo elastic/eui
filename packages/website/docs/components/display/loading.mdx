@@ -1,5 +1,5 @@
 ---
-keywords: [EuiLoadingElasticRing, EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner, EuiAgentLoader]
+keywords: [EuiLoadingElasticRing, EuiLoadingElastic, EuiLoadingLogo, EuiLoadingChart, EuiLoadingSpinner, EuiAgentLoader, EuiShimmeringText]
 ---
 
 # Loading
@@ -115,6 +115,26 @@ export default () => (
     &nbsp;&nbsp;
     <EuiAgentLoader size="l" />
   </div>
+);
+```
+
+## Shimmering text
+
+**EuiShimmeringText** is a status line for work in progress. The text stays subdued, and a highlight sweeps across it. Pass `texts` to swap through a sequence: the current line leaves upward as the next one rises in. The box stays as wide as the longest line.
+
+```tsx interactive
+import React from 'react';
+import { EuiShimmeringText } from '@elastic/eui';
+
+export default () => (
+  <EuiShimmeringText
+    texts={[
+      'Planning next moves',
+      'Reading the files',
+      'Running a command',
+      'Writing the changes',
+    ]}
+  />
 );
 ```
 

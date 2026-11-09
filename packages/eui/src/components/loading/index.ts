@@ -18,3 +18,5 @@ export type { EuiLoadingElasticRingProps } from './loading_elastic_ring';
 export { EuiLoadingElasticRing } from './loading_elastic_ring';
 export type { EuiAgentLoaderProps } from './loading_agent';
 export { EuiAgentLoader } from './loading_agent';
+export type { EuiShimmeringTextProps } from './loading_shimmer_text';
+export { EuiShimmeringText } from './loading_shimmer_text';
