@@ -171,7 +171,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow)::before {
         content: '';
         position: absolute;
-        z-index: -1;
+        z-index: ${Number(euiTheme.levels.content) - 1};
         pointer-events: none;
         inset: 0;
         background-color: ${euiTheme.components.dataGridRowBackground};
@@ -330,7 +330,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
     },
     // Sits below the controls above it and pagination below it
     euiDataGrid__content: css`
-      z-index: 1;
+      z-index: ${Number(euiTheme.levels.content) + 1};
       position: relative;
       flex-grow: 1;
       ${logicalSizeCSS('100%')}
