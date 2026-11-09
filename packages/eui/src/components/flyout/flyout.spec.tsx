@@ -251,6 +251,50 @@ describe('EuiFlyout', () => {
       cy.get('[data-test-subj="flyoutSpecTrigger"]').should('not.be.focused');
     });
 
+    it('returns focus to the trigger in the main flyout when a side-by-side child closes', () => {
+      const FlyoutWithChildTrigger = () => {
+        const [isChildOpen, setIsChildOpen] = useState(false);
+
+        return (
+          <EuiFlyoutManager>
+            <EuiFlyout
+              session="start"
+              onClose={() => {}}
+              data-test-subj="mainFlyout"
+            >
+              <EuiFlyoutBody>
+                <button
+                  data-test-subj="childTrigger"
+                  onClick={() => setIsChildOpen(true)}
+                >
+                  Open child
+                </button>
+              </EuiFlyoutBody>
+              {isChildOpen && (
+                <EuiFlyout
+                  session="inherit"
+                  onClose={() => setIsChildOpen(false)}
+                  data-test-subj="childFlyout"
+                >
+                  <EuiFlyoutBody>Child</EuiFlyoutBody>
+                </EuiFlyout>
+              )}
+            </EuiFlyout>
+          </EuiFlyoutManager>
+        );
+      };
+      cy.viewport(1200, 800); // Wide viewport for side-by-side
+      cy.mount(<FlyoutWithChildTrigger />);
+
+      cy.get('[data-test-subj="childTrigger"]').click();
+      cy.get('[data-test-subj="childFlyout"]').should('be.focused');
+      cy.get(
+        '[data-test-subj="childFlyout"] [data-test-subj="euiFlyoutCloseButton"]'
+      ).click();
+      cy.get('[data-test-subj="childFlyout"]').should('not.exist');
+      cy.get('[data-test-subj="childTrigger"]').should('be.focused');
+    });
+
     it('returns focus to a custom element', () => {
       const FlyoutWrapper = () => {
         const customTriggerRef = useRef<HTMLButtonElement>(null);
@@ -742,6 +786,18 @@ describe('EuiFlyout', () => {
       cy.mount(<FlyoutWithHeader />);
       cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
       cy.focused().should('have.class', 'euiFlyout');
+    });
+
+    it('returns focus to the header toggle when the flyout closes', () => {
+      cy.mount(<FlyoutWithHeader />);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.focused().should('have.class', 'euiFlyout');
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'toggleFlyoutFromHeader'
+      );
     });
 
     it('automatically includes fixed EuiHeaders on the page as shards, including them in the tab rotation', () => {
