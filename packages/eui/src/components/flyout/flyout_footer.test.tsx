@@ -13,6 +13,15 @@ import { render } from '../../test/rtl';
 import { EuiFlyoutFooter } from './flyout_footer';
 
 describe('EuiFlyoutFooter', () => {
+  test('forwards its ref to the footer element', () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const { unmount } = render(<EuiFlyoutFooter ref={ref} />);
+
+    expect(ref.current).toHaveClass('euiFlyoutFooter');
+    unmount();
+    expect(ref.current).toBeNull();
+  });
+
   test('is rendered', () => {
     const { container } = render(<EuiFlyoutFooter {...requiredProps} />);
 

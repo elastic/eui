@@ -4,6 +4,8 @@ Alternatively, you can also use the `EuiFlyoutResizable` component which is a th
 
 We strongly recommend setting reasonable numerical `minWidth` and `maxWidth` props based on the flyout content and page content that you _can_ predict.
 
+In a flyout session, a resizable main flyout and its child flyout stay side by side whenever they can. If the user dragged the main flyout so wide that the child doesn't fit beside it, either when the child opens or when the available space narrows, the main flyout shrinks to the largest width that fits. When the child closes or the space widens again, the main flyout returns to the width the user dragged it to. With a named `size`, that width scales with the available space. A resizable child flyout keeps its shrunk width, so the main flyout gets the space back first. `onResize` is only called when the user resizes the flyout, so a width you save from it is never replaced by a shrunk one. The flyouts still stack when the available space is too narrow, or when the main flyout's `minWidth` leaves no room for the child.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import {

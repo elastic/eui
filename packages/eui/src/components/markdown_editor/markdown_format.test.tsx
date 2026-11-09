@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
+import { focusEuiToolTipTrigger, render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
@@ -185,6 +185,25 @@ describe('EuiMarkdownFormat', () => {
           after: () => expect(getLink()).toHaveTextContent('protocol'),
         });
       });
+    });
+  });
+
+  describe('tooltip plugin', () => {
+    it('renders a keyboard focusable anchor', () => {
+      const { getByText, getByRole } = render(
+        <EuiMarkdownFormat>
+          {'!{tooltip[anchor](Tooltip content)}'}
+        </EuiMarkdownFormat>
+      );
+      const anchor = getByText('anchor').parentElement!;
+
+      expect(anchor).toHaveAttribute('tabindex', '0');
+
+      const cleanup = focusEuiToolTipTrigger(anchor);
+
+      expect(getByRole('tooltip')).toHaveTextContent('Tooltip content');
+
+      cleanup();
     });
   });
 });

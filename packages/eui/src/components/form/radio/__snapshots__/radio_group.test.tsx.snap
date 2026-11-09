@@ -26,6 +26,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
         checked=""
         class="euiRadio__input emotion-euiRadio__input"
         id="1"
+        name="radiogroupname"
         type="radio"
         value=""
       />
@@ -50,6 +51,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
       <input
         class="euiRadio__input emotion-euiRadio__input"
         id="2"
+        name="radiogroupname"
         type="radio"
         value=""
       />
@@ -86,6 +88,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       <input
         class="euiRadio__input emotion-euiRadio__input"
         id="1"
+        name="radiogroupname"
         type="radio"
         value=""
       />
@@ -110,6 +113,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       <input
         class="euiRadio__input emotion-euiRadio__input"
         id="2"
+        name="radiogroupname"
         type="radio"
         value=""
       />
@@ -198,6 +202,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
       <input
         class="euiRadio__input emotion-euiRadio__input"
         id="1"
+        name="radiogroupname"
         type="radio"
         value=""
       />
@@ -223,6 +228,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
         class="euiRadio__input emotion-euiRadio__input"
         disabled=""
         id="2"
+        name="radiogroupname"
         type="radio"
         value=""
       />

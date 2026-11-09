@@ -17,11 +17,12 @@ import { EuiText } from '../text';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from './flyout_menu';
+import type { EuiFlyoutMenuMaximizeState } from './flyout_menu/types';
 import { EuiFlyoutHeader } from './flyout_header';
 
 type PaginationVariant = 'default' | 'jump';
 
-interface Args extends EuiFlyoutMenuProps {
+interface Args extends EuiFlyoutMenuProps, EuiFlyoutMenuMaximizeState {
   leadingActionCount: number;
   trailingActionCount: number;
   historyItemCount: number;
@@ -77,11 +78,17 @@ const meta: Meta<Args> = {
     pagination: { table: { disable: true } },
     hideCloseButton: { table: { disable: true } },
     hideTitle: { table: { disable: true } },
+    onMaximizeChange: { table: { disable: true } },
+    // Passed by EuiFlyout, not part of `flyoutMenuProps`
+    isMaximized: { table: { disable: true } },
+    canMaximize: { table: { disable: true } },
+    onToggleMaximize: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
     trailingActionCount: 2,
     historyItemCount: 3,
+    showMaximizeButton: false,
   },
 };
 
@@ -95,7 +102,7 @@ const LEADING_ACTION_POOL = [
 ];
 
 const TRAILING_ACTION_POOL = [
-  { iconType: 'minimize', label: 'Minimize' },
+  { iconType: 'external', label: 'Open in new tab' },
   { iconType: 'gear', label: 'Settings' },
   { iconType: 'broom', label: 'Clear' },
   { iconType: 'share', label: 'Share' },
@@ -133,7 +140,12 @@ const buildActions = (
   }));
 
 const MenuBarFlyout = (args: Args) => {
-  const { leadingActionCount, trailingActionCount, historyItemCount } = args;
+  const {
+    leadingActionCount,
+    trailingActionCount,
+    historyItemCount,
+    showMaximizeButton,
+  } = args;
 
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(true);
   const openFlyout = () => setIsFlyoutOpen(true);
@@ -189,6 +201,8 @@ const MenuBarFlyout = (args: Args) => {
             historyItems,
             leadingActions,
             trailingActions,
+            showMaximizeButton,
+            onMaximizeChange: action('onMaximizeChange'),
           }}
         >
           <EuiFlyoutHeader hasBorder>
@@ -335,6 +349,7 @@ export const PaginationExample: StoryObj<Args> = {
   argTypes: {
     // Not applicable outside the "Playground" story
     historyItemCount: { table: { disable: true } },
+    showMaximizeButton: { table: { disable: true } },
   },
   args: {
     leadingActionCount: 1,
@@ -440,6 +455,7 @@ export const ActionStates: StoryObj<Args> = {
     historyItemCount: { table: { disable: true } },
     paginationTotal: { table: { disable: true } },
     paginationVariant: { table: { disable: true } },
+    showMaximizeButton: { table: { disable: true } },
   },
   render: () => <ActionStatesFlyout />,
 };

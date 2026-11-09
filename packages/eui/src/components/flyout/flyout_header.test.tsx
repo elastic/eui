@@ -13,6 +13,15 @@ import { render } from '../../test/rtl';
 import { EuiFlyoutHeader } from './flyout_header';
 
 describe('EuiFlyoutHeader', () => {
+  test('forwards its ref to the header element', () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const { unmount } = render(<EuiFlyoutHeader ref={ref} />);
+
+    expect(ref.current).toHaveClass('euiFlyoutHeader');
+    unmount();
+    expect(ref.current).toBeNull();
+  });
+
   test('is rendered', () => {
     const { container } = render(<EuiFlyoutHeader {...requiredProps} />);
 

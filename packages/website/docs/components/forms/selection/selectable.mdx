@@ -895,6 +895,52 @@ export default () => {
 };
 ```
 
+## Tooltips on disabled options
+
+To add tooltips on disabled options, set `hasAriaDisabled: true` alongside `disabled: true` on the option. This keeps the option focusable but excluded from selection. This is useful for communicating *why* an option is unavailable.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+    },
+    {
+      label: 'Enceladus',
+      disabled: true,
+      hasAriaDisabled: true,
+      toolTipContent: 'Enceladus is currently unavailable',
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+      disabled: true,
+      hasAriaDisabled: true,
+      toolTipContent: 'Iapetus requires elevated permissions',
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Example with disabled options and tooltips"
+      options={options}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list) => list}
+    </EuiSelectable>
+  );
+};
+```
+
 ## Rendering the options
 
 There are two object properties you can add to enhance the content of your options, `option.prepend` and `option.append`. These will add nodes before and after the option label respectively. They will not be included in the searchable content as this only matches against the label property.

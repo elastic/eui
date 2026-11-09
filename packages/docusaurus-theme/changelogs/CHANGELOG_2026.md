@@ -1,3 +1,10 @@
+## [`v2.8.1`](https://github.com/elastic/eui/releases/v2.8.1)
+
+**Bug fixes**
+
+- Fixed light background of highlighted search results in dark mode ([#10178](https://github.com/elastic/eui/pull/10178))
+- Removed the redundant border below the last row of documentation prop tables ([#10181](https://github.com/elastic/eui/pull/10181))
+
 ## [`v2.8.0`](https://github.com/elastic/eui/releases/v2.8.0)
 
 - Added a hover animation to the EUI mark in the documentation navbar. ([#9924](https://github.com/elastic/eui/pull/9924))

@@ -6,28 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { forwardRef, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutFooterStyles } from './flyout_footer.styles';
 
-export type EuiFlyoutFooterProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
->;
+export type EuiFlyoutFooterProps = HTMLAttributes<HTMLDivElement> & CommonProps;
 
-export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
-  children,
-  className,
-  ...rest
-}) => {
-  const classes = classNames('euiFlyoutFooter', className);
+export const EuiFlyoutFooter = forwardRef<HTMLDivElement, EuiFlyoutFooterProps>(
+  ({ children, className, ...rest }, ref) => {
+    const classes = classNames('euiFlyoutFooter', className);
 
-  const styles = useEuiMemoizedStyles(euiFlyoutFooterStyles);
+    const styles = useEuiMemoizedStyles(euiFlyoutFooterStyles);
 
-  return (
-    <div className={classes} css={styles.euiFlyoutFooter} {...rest}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div className={classes} css={styles.euiFlyoutFooter} {...rest} ref={ref}>
+        {children}
+      </div>
+    );
+  }
+);
+
+EuiFlyoutFooter.displayName = 'EuiFlyoutFooter';

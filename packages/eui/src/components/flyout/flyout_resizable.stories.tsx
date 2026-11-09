@@ -15,6 +15,7 @@ import { EuiText } from '../text';
 import { EuiFlyoutBody } from './flyout_body';
 
 import defaultFlyoutMeta from './flyout.stories';
+import { FLYOUT_SIZES } from './const';
 import {
   EuiFlyoutResizable,
   EuiFlyoutResizableProps,
@@ -24,8 +25,8 @@ const meta: Meta<EuiFlyoutResizableProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutResizable',
   component: EuiFlyoutResizable as any,
   argTypes: {
-    // TODO: `size` control isn't working correctly for whatever reason (appears to be a Storybook bug
-    // as manually adding `&args=size:s` to the URL gets erased by Storybook)
+    // `size` has a union type that Storybook can't infer a control for
+    size: { options: [...FLYOUT_SIZES, 800], control: { type: 'radio' } },
     as: { control: 'text' },
     onResize: { action: 'onResize' },
   },

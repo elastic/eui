@@ -44,7 +44,7 @@ on:
         description: Published @elastic/eui snapshot version
         type: string
 concurrency:
-  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', github.run_id) }}
+  group: ${{ inputs.nightly && 'kibana-nightly' || format('prepare-kibana-{0}', inputs.source_pr_number && format('pr-{0}', inputs.source_pr_number) || github.run_id) }}
   cancel-in-progress: false
   queue: max
 permissions:
@@ -108,11 +108,15 @@ jobs:
         id: git_branch
         env:
           NIGHTLY: ${{ inputs.nightly }}
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
-          # Nightly runs reuse a fixed branch; all other runs remain unique.
+          # Nightly reuses a fixed branch. Regression runs reuse a branch keyed
+          # by the source PR number. Manual runs stay unique.
           if [[ "$NIGHTLY" == "true" ]]; then
             branch_name="nightly/update-dependencies"
+          elif [[ -n "${SOURCE_PR_NUMBER:-}" ]]; then
+            branch_name="update-dependencies/pr-${SOURCE_PR_NUMBER}"
           else
             branch_name="update-dependencies/$(date +%s)"
           fi
@@ -149,15 +153,15 @@ jobs:
           notes=""
 
           while IFS= read -r url; do
-            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url")
-            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url")
+            pr_number=$(grep -oP '(?<=/pull/)\d+' <<< "$url" || true)
+            sha=$(grep -oP '[0-9a-f]{40}$' <<< "$url" || true)
 
-            if [[ -z "$pr_number" || -z "$sha" ]]; then
+            if [[ -z "$sha" ]]; then
               echo "::warning::Could not parse URL: $url"
               continue
             fi
 
-            echo "Cherry-picking $sha from PR #$pr_number"
+            echo "Cherry-picking $sha"
             if ! git fetch --depth=2 origin "$sha"; then
               echo "::warning::Skipping $sha: could not fetch commit"
               continue
@@ -166,12 +170,12 @@ jobs:
             # Incoming commit wins
             if git cherry-pick -X theirs "$sha"; then
               short_sha="${sha:0:8}"
-              notes+="- [\`$short_sha\`](https://github.com/elastic/kibana/pull/$pr_number/commits/$sha) from elastic/kibana#$pr_number"$'\n'
+              notes+="- [\`$short_sha\`]($url)${pr_number:+ from elastic/kibana#$pr_number}"$'\n'
             elif git diff --quiet && git diff --cached --quiet; then
               echo "Skipping $sha: already applied on this branch"
               git cherry-pick --skip
             else
-              echo "::error::Cherry-pick of $sha from PR #$pr_number failed"
+              echo "::error::Cherry-pick of $sha failed"
               echo "conflict_sha=$sha" >> "$GITHUB_OUTPUT"
               git cherry-pick --abort || true
               exit 1
@@ -246,14 +250,15 @@ jobs:
           # pnpm freezes the lockfile on GHA. We just bumped package.json,
           # so the lockfile must change.
           # Retry and wait until snapshot versions are on npm.
-          for attempt in $(seq 1 20); do
+          max_attempts=90
+          for attempt in $(seq 1 "$max_attempts"); do
             if pnpm install --no-frozen-lockfile; then
               break
             fi
-            if [[ "$attempt" -eq 20 ]]; then
+            if [[ "$attempt" -eq "$max_attempts" ]]; then
               exit 1
             fi
-            echo "install failed (attempt ${attempt}/20); retrying in 30s"
+            echo "install failed (attempt ${attempt}/${max_attempts}); retrying in 30s"
             sleep 30
           done
           node scripts/deduplicate_dependencies
@@ -313,9 +318,12 @@ jobs:
           GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
           BRANCH_NAME: ${{ steps.git_branch.outputs.BRANCH_NAME }}
           NIGHTLY: ${{ inputs.nightly }}
+          SOURCE_PR_NUMBER: ${{ inputs.source_pr_number }}
         # language=bash
         run: |
-          if [[ "$NIGHTLY" == "true" ]]; then
+          # Reused branches are recreated from latest Kibana main, so the
+          # remote history is replaced.
+          if [[ "$NIGHTLY" == "true" || -n "${SOURCE_PR_NUMBER:-}" ]]; then
             git push -u --force fork "$BRANCH_NAME"
           else
             git push -u fork "$BRANCH_NAME"

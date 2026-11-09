@@ -20,6 +20,7 @@ Set `data-test-subj` on the `<EuiBasicTable>`/`<EuiInMemoryTable>` (EUI spreads 
 |---|---|
 | `rows` | `Locator` for the table's data rows, excluding EUI's own "no items found"/error-message row. |
 | `cells(field)` | `Locator` for a field-data column's cells across all rows, resolved from EUI's own header `data-test-subj`. |
+| `headerCells`, `column(index)`, `cell(row, column)` | Inherited from [EuiTableObject](../table/README.md), positional access when no `field` is available. |
 
 `rows` excludes EUI's empty/error message row by filtering out any row whose cell carries a `colspan` — real data rows don't set one, EUI's own placeholder row always does (it spans every column).
 
