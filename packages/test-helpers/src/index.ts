@@ -29,6 +29,7 @@ export { EuiMarkdownEditorObject } from './playwright/components/markdown_editor
 export { EuiPaginationObject } from './playwright/components/pagination/object';
 export { EuiBasicTableObject } from './playwright/components/basic_table/object';
 export { EuiCallOutObject } from './playwright/components/call_out/object';
+export { EuiCardObject } from './playwright/components/card/object';
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
 export { EuiToolTipObject } from './playwright/components/tool_tip/object';

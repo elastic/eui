@@ -60,7 +60,8 @@ jest.mock('../flyout.component', () => {
       ref: any
     ) {
       // Extract non-DOM props to prevent them from being passed to DOM
-      const { flyoutMenuProps, minWidth, container, ...domProps } = props;
+      const { flyoutMenuProps, minWidth, resizable, container, ...domProps } =
+        props;
       mockFlyoutRender(flyoutMenuProps);
       return React.createElement('div', {
         ref,
@@ -198,6 +199,38 @@ describe('EuiManagedFlyout', () => {
 
     expect(mockCloseFlyout).toHaveBeenCalledWith('close-me');
     expect(mockCloseAllFlyouts).not.toHaveBeenCalled();
+  });
+
+  it('updates `resizable` in the manager without re-registering', () => {
+    const { rerender } = renderInProvider(
+      <EuiManagedFlyout
+        id="main"
+        level={LEVEL_MAIN}
+        onClose={() => {}}
+        resizable
+      />
+    );
+    expect(mockFlyoutManager.addFlyout).toHaveBeenCalledTimes(1);
+    expect(jest.mocked(mockFlyoutManager.addFlyout).mock.calls[0][7]).toBe(
+      true
+    );
+
+    rerender(
+      <EuiFlyoutManager>
+        <EuiManagedFlyout
+          id="main"
+          level={LEVEL_MAIN}
+          onClose={() => {}}
+          resizable={false}
+        />
+      </EuiFlyoutManager>
+    );
+    expect(mockFlyoutManager.addFlyout).toHaveBeenCalledTimes(1);
+    expect(mockCloseAllFlyouts).not.toHaveBeenCalled();
+    expect(mockFlyoutManager.setFlyoutResizable).toHaveBeenLastCalledWith(
+      'main',
+      false
+    );
   });
 
   it('registers child flyout and sets data-level child', () => {

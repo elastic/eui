@@ -173,6 +173,17 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     showBackButton?: boolean;
     /**
+     * Shows a maximize/restore button in the trailing actions. A maximized
+     * flyout fills the width of its container, leaving room for an open child
+     * flyout. Child flyouts never show the button.
+     * @default false
+     */
+    showMaximizeButton?: boolean;
+    /**
+     * Called with the new state each time the flyout is maximized or restored.
+     */
+    onMaximizeChange?: (isMaximized: boolean) => void;
+    /**
      * Props to pass to the back button, such as `onClick` handler
      */
     backButtonProps?: EuiFlyoutMenuBackButtonProps;
@@ -201,3 +212,14 @@ export type EuiFlyoutMenuProps = CommonProps &
      */
     pagination?: EuiFlyoutMenuPagination;
   };
+
+/**
+ * Maximize state that `EuiFlyout` passes to its menu. Not part of the public
+ * `flyoutMenuProps`.
+ * @internal
+ */
+export interface EuiFlyoutMenuMaximizeState {
+  isMaximized?: boolean;
+  canMaximize?: boolean;
+  onToggleMaximize?: () => void;
+}
