@@ -60,6 +60,26 @@ A few important aspects of the document can be configured here:
 
 Check the Docusaurus docs for a [full list of fields](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
 
+### Storybook links
+
+Add `storybook` front matter to show an **Open in Storybook** link beside the page title. Use the component's Playground story by default, or a specific story when it better represents the page:
+
+```yaml
+storybook: navigation-euibreadcrumbs--playground
+```
+
+For pages covering multiple components, provide a list to show a popover of links:
+
+```yaml
+storybook:
+  - id: navigation-euibutton--playground
+    label: EuiButton
+  - id: navigation-euibuttonempty--playground
+    label: EuiButtonEmpty
+```
+
+Copy the story ID from the `path=/story/` portion of its Storybook URL. Links use the site's `storybookBaseUrl` and open the full Storybook interface. Pages without this field do not show a link; individual documentation demos do not need matching stories.
+
 ## Collapsible sidebar items
 
 To create a collapsible item in the sidebar, just add a folder in the file system containing one or more `.mdx` files. In Docusaurus these are called category items, and they can be configured by adding a `_category_.yml` file to the folder. By default the category label will be the folder name, this can be changed with the `label` field in the `_category_.yml` file. Other useful fields are `position` and `collapsed`.
