@@ -33,10 +33,15 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
   return {
+    /* eslint-disable @elastic/eui/no-static-z-index -- only isolates the layers
+       inside the control; stays at 0 so the control doesn't rise above
+       neighbouring layers that don't follow levels.content, such as the
+       EuiTable sticky header */
     euiFormControlLayout: css`
       position: relative;
-      z-index: ${euiTheme.levels.content};
+      z-index: 0;
     `,
+    /* eslint-enable @elastic/eui/no-static-z-index */
     // Skip the css`` on the default height to avoid generating a className
     uncompressed: `
       ${logicalCSS('height', form.controlHeight)}
@@ -55,6 +60,9 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     group: {
+      /* eslint-disable @elastic/eui/no-static-z-index -- the group border
+         (::after) has to stay below the focus and invalid outlines of the
+         controls inside, which use z-index: 1 (euiFormControlHighlightBorderStyles) */
       group: css`
         position: relative;
         display: flex;
@@ -69,7 +77,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
           content: '';
           position: absolute;
           inset: 0;
-          z-index: ${euiTheme.levels.content};
+          z-index: 0;
           border: ${euiTheme.border.width.thin} solid ${form.borderColor};
           border-radius: inherit;
           pointer-events: none;
@@ -128,6 +136,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('height', '100%')}
         }
       `,
+      /* eslint-enable @elastic/eui/no-static-z-index */
       // Skipping css`` to avoid repeated compressed/uncompressed classNames
       uncompressed: `
         border-radius: ${form.controlBorderRadius};

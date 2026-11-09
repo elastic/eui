@@ -67,6 +67,8 @@ export const euiSelectableListGroupLabelStyles = (
   const borderColor = euiTheme.components.selectableListItemBorderColor;
 
   return {
+    /* eslint-disable @elastic/eui/no-static-z-index -- the separator (::before)
+       has to stay behind the label's content, such as appended links */
     groupLabel: css`
       ${euiTitle(euiThemeContext, 'xxxs')}
       position: relative;
@@ -86,7 +88,7 @@ export const euiSelectableListGroupLabelStyles = (
         &::before {
           content: '';
           position: absolute;
-          z-index: ${Number(euiTheme.levels.content) - 1};
+          z-index: -1;
           inset: 0;
           inset-block-start: ${spacingVertical};
           ${logicalCSS(
@@ -96,5 +98,6 @@ export const euiSelectableListGroupLabelStyles = (
         }
       }
     `,
+    /* eslint-enable @elastic/eui/no-static-z-index */
   };
 };
