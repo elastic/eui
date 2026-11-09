@@ -15,6 +15,7 @@ export {
   closeAllFlyouts as closeAllFlyoutsAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setFlyoutMaximized as setFlyoutMaximizedAction,
   setPagination as setPaginationAction,
   setPushPadding as setPushPaddingAction,
   setActivityStage as setActivityStageAction,

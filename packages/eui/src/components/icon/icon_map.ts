@@ -1611,6 +1611,9 @@ export const typeToPathMap = {
   productAgent: withMetadata(() => import('./assets/product_agent'), {
     synonyms: ['agent', 'product', 'elastic agent', 'fleet', 'monitoring'],
   }),
+  productAlertZero: withMetadata(() => import('./assets/product_alert_zero'), {
+    synonyms: ['alertzero', 'alert', 'zero', 'attack', 'security'],
+  }),
   productCanvas: withMetadata(() => import('./assets/product_canvas'), {
     synonyms: [
       'product',
@@ -1655,6 +1658,9 @@ export const typeToPathMap = {
   }),
   productML: withMetadata(() => import('./assets/product_ml'), {
     synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
+  }),
+  productNightshift: withMetadata(() => import('./assets/product_nightshift'), {
+    synonyms: ['nightshift', 'night', 'shift', 'moon'],
   }),
   productStreamsClassic: withMetadata(
     () => import('./assets/product_streams_classic'),
@@ -1738,6 +1744,9 @@ export const typeToPathMap = {
   }),
   routeSplit: withMetadata(() => import('./assets/route_split'), {
     synonyms: ['tree', 'parent'],
+  }),
+  ruler: withMetadata(() => import('./assets/ruler'), {
+    synonyms: ['ruler', 'measure', 'measurement', 'length', 'scale', 'size'],
   }),
   save: withMetadata(() => import('./assets/save'), {
     synonyms: ['save', 'store', 'disk', 'persist', 'keep'],

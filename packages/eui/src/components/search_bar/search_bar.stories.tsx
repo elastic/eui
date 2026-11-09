@@ -157,3 +157,20 @@ export const Playground: Story = {
     toolsRight: false as any,
   },
 };
+
+export const WithBoxTestSubj: Story = {
+  name: 'With box data-test-subj',
+  parameters: {
+    vrt: {
+      // Same render as the Playground, only adds a test subj for test tooling
+      skip: true,
+    },
+  },
+  args: {
+    ...Playground.args,
+    box: {
+      ...Playground.args?.box,
+      'data-test-subj': 'searchBarBox',
+    },
+  },
+};

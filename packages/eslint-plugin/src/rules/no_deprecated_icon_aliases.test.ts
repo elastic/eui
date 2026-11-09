@@ -55,6 +55,10 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
       code: '<EuiIcon type="alert" />',
       languageOptions,
     },
+    {
+      code: 'import { EuiIcon } from "@elastic/eui";\n<EuiIcon type="popout" />',
+      languageOptions,
+    },
   ],
   invalid: [
     ...Object.entries(DEPRECATED_ICON_ALIASES).map(([alias, replacement]) => ({
@@ -127,6 +131,18 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
       ],
     },
     {
+      code: 'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="temperature" />',
+      output:
+        'import { EuiContextMenuItem } from "@elastic/eui";\n<EuiContextMenuItem icon="thermometer" />',
+      languageOptions,
+      errors: [
+        {
+          messageId: 'deprecatedIconAlias',
+          data: { alias: 'temperature', replacement: 'thermometer' },
+        },
+      ],
+    },
+    {
       code: 'import { EuiLoadingLogo } from "@elastic/eui";\n<EuiLoadingLogo logo="visArea" />',
       output:
         'import { EuiLoadingLogo } from "@elastic/eui";\n<EuiLoadingLogo logo="chartArea" />',
@@ -159,6 +175,17 @@ ruleTester.run('no-deprecated-icon-aliases', NoDeprecatedIconAliases, {
         {
           messageId: 'deprecatedIconAlias',
           data: { alias: 'mapMarker', replacement: 'waypoint' },
+        },
+      ],
+    },
+    {
+      code: "const action = { name: 'Docs', iconType: 'documents' };",
+      output: "const action = { name: 'Docs', iconType: 'document' };",
+      languageOptions,
+      errors: [
+        {
+          messageId: 'deprecatedIconAlias',
+          data: { alias: 'documents', replacement: 'document' },
         },
       ],
     },

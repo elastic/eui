@@ -83,6 +83,26 @@ describe('EuiCheckableCard', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('passes name to the radio input', () => {
+    const { getByRole } = render(
+      <EuiCheckableCard {...checkablePanelRequiredProps} name="radioGroup" />
+    );
+
+    expect(getByRole('radio')).toHaveAttribute('name', 'radioGroup');
+  });
+
+  test('passes name to the checkbox input', () => {
+    const { getByRole } = render(
+      <EuiCheckableCard
+        {...checkablePanelRequiredProps}
+        checkableType="checkbox"
+        name="checkboxGroup"
+      />
+    );
+
+    expect(getByRole('checkbox')).toHaveAttribute('name', 'checkboxGroup');
+  });
+
   test('applies labelProps to the label element', () => {
     const labelProps = {
       'data-test-subj': 'testLabel',

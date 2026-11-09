@@ -71,7 +71,14 @@ export const EuiFlyoutChild = forwardRef<HTMLElement, EuiFlyoutChildProps>(
     }
 
     let style: React.CSSProperties = {};
-    if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
+    if (mainFlyout.maximized && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
+      // A maximized main fills the rest of the viewport, so the child sits
+      // against the far edge, where the shared edge follows a resize
+      style = {
+        [side]: 'auto',
+        [side === 'left' ? 'right' : 'left']: 0,
+      };
+    } else if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
       // Use the CSS custom property for synchronous tracking during resize.
       // Falls back to the pixel value from manager state when the variable
       // is not set (e.g. main flyout is not actively being resized).

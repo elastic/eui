@@ -16,13 +16,13 @@ import { EuiRadio } from './radio';
 
 describe('EuiRadio', () => {
   shouldRenderCustomStyles(
-    <EuiRadio onChange={() => {}} id="id" label="test" />,
+    <EuiRadio onChange={() => {}} id="id" name="name" label="test" />,
     { childProps: ['labelProps'] }
   );
 
   test('is rendered', () => {
     const { container } = render(
-      <EuiRadio id="id" onChange={() => {}} {...requiredProps} />
+      <EuiRadio id="id" name="name" onChange={() => {}} {...requiredProps} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe('EuiRadio', () => {
   describe('props', () => {
     test('checked is rendered', () => {
       const { container } = render(
-        <EuiRadio id="id" onChange={() => {}} checked />
+        <EuiRadio id="id" name="name" onChange={() => {}} checked />
       );
 
       expect(container.firstChild).toMatchSnapshot();
@@ -39,7 +39,12 @@ describe('EuiRadio', () => {
 
     test('label is rendered', () => {
       const { container } = render(
-        <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>} />
+        <EuiRadio
+          id="id"
+          name="name"
+          onChange={() => {}}
+          label={<span>Label</span>}
+        />
       );
 
       expect(container.firstChild).toMatchSnapshot();
@@ -47,7 +52,7 @@ describe('EuiRadio', () => {
 
     test('value is rendered', () => {
       const { container } = render(
-        <EuiRadio id="id" onChange={() => {}} value={'bobbins'} />
+        <EuiRadio id="id" name="name" onChange={() => {}} value={'bobbins'} />
       );
 
       expect(container.firstChild).toMatchSnapshot();
@@ -55,7 +60,7 @@ describe('EuiRadio', () => {
 
     test('disabled is rendered', () => {
       const { container } = render(
-        <EuiRadio id="id" onChange={() => {}} disabled />
+        <EuiRadio id="id" name="name" onChange={() => {}} disabled />
       );
 
       expect(container.firstChild).toMatchSnapshot();
@@ -65,6 +70,7 @@ describe('EuiRadio', () => {
       const { container } = render(
         <EuiRadio
           id="id"
+          name="name"
           onChange={() => {}}
           label="Label"
           labelProps={requiredProps}
@@ -77,7 +83,7 @@ describe('EuiRadio', () => {
     test('onChange is fired', () => {
       const onChange = jest.fn();
       const { getByRole } = render(
-        <EuiRadio id="id" onChange={onChange} label="test" />
+        <EuiRadio id="id" name="name" onChange={onChange} label="test" />
       );
       fireEvent.click(getByRole('radio', { name: 'test' }));
 

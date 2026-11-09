@@ -98,6 +98,7 @@ export const Example = ({ children }: ExampleProps) => {
   return (
     <EuiSplitPanel.Outer
       color="transparent"
+      hasBorder={false}
       direction="column"
       css={styles.wrappingSplitPanel}
     >
