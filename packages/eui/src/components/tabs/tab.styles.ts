@@ -11,7 +11,6 @@ import {
   logicalCSS,
   mathWithUnits,
   euiFontSize,
-  euiFocusRing,
   euiCanAnimate,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -42,8 +41,7 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:focus {
-        /* POC: dual focus ring (don't clobber global outline-offset) */
-        ${euiFocusRing(euiThemeContext, 'outset')}
+        outline-offset: -${euiTheme.focus.width};
       }
 
       /* Selected underline - use a pseudo element instead of box-shadow for easier

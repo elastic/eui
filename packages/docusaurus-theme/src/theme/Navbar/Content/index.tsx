@@ -229,7 +229,9 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
           opacity: 1;
         `)}
 
-        ${euiFocusRing(euiThemeContext, 'outset', { color: 'primary' })}
+        ${euiFocusRing(euiThemeContext, 'outset', {
+          color: euiTheme.colors.primary,
+        })}
 
         &:disabled {
           border-color: ${form.borderDisabledColor};

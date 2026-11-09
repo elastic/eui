@@ -44,11 +44,9 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         .euiSaturation__indicator {
           ${highContrastModeStyles(euiThemeContext, {
             none: `
-              /* POC: dual focus ring on saturation indicator */
-              outline: ${euiTheme.focus.width} solid ${euiTheme.colors.primary};
-              outline-offset: ${euiTheme.focus.width};
-              box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.accent};
-              border-color: ${euiTheme.colors.accent};
+              outline: none; /* Standardize indicator focus ring */
+              box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
+              border-color: ${euiTheme.colors.primary};
             `,
             preferred: `
               outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.plainDark};

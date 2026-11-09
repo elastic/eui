@@ -48,10 +48,7 @@ export const euiCardStyles = (
         &:has(
             [class*='euiCard__text'][class*='-interactive']:focus:focus-visible
           ) {
-          /* POC: dual focus ring on interactive cards */
-          outline: ${euiTheme.focus.width} solid ${euiTheme.colors.primary};
-          outline-offset: ${euiTheme.focus.width};
-          box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.accent};
+          outline: ${euiTheme.focus.width} solid currentColor;
         }
       `,
       aligned: {

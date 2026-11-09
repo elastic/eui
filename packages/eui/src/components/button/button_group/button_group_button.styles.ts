@@ -155,6 +155,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const colors = [...BUTTON_COLORS, 'disabled'] as const;
 
   return colors.reduce((acc, color) => {
@@ -162,8 +163,7 @@ export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
       ...acc,
       [color]: css`
         &:focus-visible {
-          /* POC: dual focus ring defaults (inner Teal / outer primary) */
-          ${euiOutline(euiThemeContext, 'outset')}
+          ${euiOutline(euiThemeContext, 'outset', euiTheme.focus.color)}
         }
       `,
     };

@@ -45,17 +45,14 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
         pointer-events: none;
         position: absolute;
         inset: 0;
-        /* POC: dual focus ring — outer primary border, inner Teal inset */
-        border: ${outlineWidth} solid ${euiTheme.colors.primary};
+        border: ${outlineWidth} solid ${focusColor};
         border-radius: ${borderRadius};
-        box-shadow: inset 0 0 0 ${outlineWidth} ${euiTheme.colors.accent};
       }
     `,
     hoverColor,
     hoverStyles: `
       &::after {
         border-color: ${hoverColor};
-        box-shadow: none;
       }
     `,
     markedColor,
@@ -63,7 +60,6 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
     markedStyles: `
       &::after {
         border-color: ${markedColor};
-        box-shadow: none;
       }
 
       .euiDataGridRowCell__actions {

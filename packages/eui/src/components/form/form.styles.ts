@@ -12,7 +12,6 @@ import {
   mathWithUnits,
   euiCanAnimate,
   euiFontSize,
-  euiOutline,
 } from '../../global_styling';
 import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
@@ -305,15 +304,13 @@ export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const form = euiFormVariables(euiThemeContext);
-  // POC: dual ring uses accent (inner) + primary (outer); keep CSS var for legacy consumers
-  const focusColor = euiTheme.colors.accent;
+  const focusColor = euiTheme.colors.primary;
 
   return `
       --euiFormControlStateColor: ${form.borderFocused};
       --euiFormControlStateHoverColor: ${form.borderFocused};
       --euiFormControlStateWidth: ${euiTheme.border.width.thick};
-      /* POC: dual inset focus ring — outer primary, inner Teal */
-      ${euiOutline(euiThemeContext, 'inset')}
+      ${euiFormControlHighlightBorderStyles}
       ${highContrastModeStyles(euiThemeContext, {
         forced: `
           ${euiFormControlShowBackgroundLine(euiThemeContext, focusColor)}
@@ -551,8 +548,8 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       focusVisible: `
         &:has(input:focus-visible) {
-          /* POC: dual focus ring on checkbox/radio faux controls */
-          ${euiOutline(euiThemeContext, 'outset')}
+          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
+          outline-offset: ${euiTheme.focus.width};
         }
       `,
       // TODO: Revert https://github.com/elastic/eui/pull/7981
