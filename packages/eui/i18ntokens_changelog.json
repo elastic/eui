@@ -1,5 +1,20 @@
 [
   {
+    "version": "123.4.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.maximize",
+        "changeType": "added",
+        "value": "Maximize"
+      },
+      {
+        "token": "euiFlyoutMenu.restore",
+        "changeType": "added",
+        "value": "Restore"
+      }
+    ]
+  },
+  {
     "version": "122.0.0",
     "changes": [
       {
