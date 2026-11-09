@@ -1,0 +1,1 @@
+- Added `EuiMarkdownEditorObject` with `textArea`, `preview`, `setValue(text)`, `getValue()`, `isPreviewing()` and `togglePreview()`
