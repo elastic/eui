@@ -1290,10 +1290,13 @@ export const EuiFlyoutComponent = forwardRef(
      * target before calling `onActivation`; focusing it any earlier would make
      * the wrapper that target.
      *
-     * Only the first activation auto-focuses: the trap reactivates when a
-     * child flyout closes, and focus belongs on the child's trigger then.
+     * Only the first activation of a trap auto-focuses: the trap reactivates
+     * when a child flyout closes, and focus belongs on the child's trigger
+     * then. A pushed flyout has no active trap, and the trap is remounted when
+     * the flyout becomes an overlay again, so that counts as a first activation.
      */
     const hasActivatedFocusTrap = useRef(false);
+    if (isPushed) hasActivatedFocusTrap.current = false;
     const onFocusTrapActivation = useCallback(() => {
       if (hasActivatedFocusTrap.current) return;
       hasActivatedFocusTrap.current = true;

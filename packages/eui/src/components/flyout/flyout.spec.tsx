@@ -788,6 +788,54 @@ describe('EuiFlyout', () => {
       cy.focused().should('have.class', 'euiFlyout');
     });
 
+    it('focuses the flyout wrapper when a pushed flyout becomes an overlay again', () => {
+      const SwitchableFlyout = () => {
+        const [isOpen, setIsOpen] = useState(false);
+        const [type, setType] = useState<'overlay' | 'push'>('overlay');
+
+        return (
+          <>
+            <EuiHeader position="fixed">
+              <EuiHeaderSection>
+                <button
+                  data-test-subj="toggleFlyoutFromHeader"
+                  onClick={() => setIsOpen(true)}
+                >
+                  Open flyout
+                </button>
+                <button
+                  data-test-subj="switchType"
+                  onClick={() => setType(type === 'push' ? 'overlay' : 'push')}
+                >
+                  Switch type
+                </button>
+              </EuiHeaderSection>
+            </EuiHeader>
+            {isOpen && (
+              <EuiFlyout
+                data-test-subj="flyoutSpec"
+                type={type}
+                pushMinBreakpoint="xs"
+                onClose={() => setIsOpen(false)}
+              >
+                {childrenDefault}
+              </EuiFlyout>
+            )}
+          </>
+        );
+      };
+
+      cy.mount(<SwitchableFlyout />);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.focused().should('have.class', 'euiFlyout');
+
+      cy.get('[data-test-subj="switchType"]').click();
+      cy.get('.euiOverlayMask').should('not.exist');
+      cy.get('[data-test-subj="switchType"]').click();
+      cy.get('.euiOverlayMask').should('exist');
+      cy.focused().should('have.class', 'euiFlyout');
+    });
+
     it('returns focus to the header toggle when the flyout closes', () => {
       cy.mount(<FlyoutWithHeader />);
       cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
