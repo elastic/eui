@@ -455,6 +455,68 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    // Selection pill travels between buttons. Hover only changes the text colour.
+    selectionTravel: css`
+      .euiButtonGroup__item,
+      .euiButtonGroup__tooltipWrapper,
+      .euiButton,
+      .euiButtonIcon,
+      .euiButtonGroupButton {
+        position: relative;
+        z-index: 1;
+      }
+
+      && .euiButton,
+      && .euiButton::before,
+      && .euiButton:hover::before,
+      && .euiButton:active::before,
+      && .euiButtonIcon,
+      && .euiButtonIcon::before,
+      && .euiButtonIcon:hover::before,
+      && .euiButtonIcon:active::before,
+      && .euiButtonGroupButton,
+      && .euiButtonGroupButton::before,
+      && .euiButtonGroupButton:hover::before,
+      && .euiButtonGroupButton:active::before {
+        ${highContrastModeStyles(euiThemeContext, {
+          none: 'background-color: transparent;',
+        })}
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        ${euiCanAnimate} {
+          .euiButton,
+          .euiButtonIcon,
+          .euiButtonGroupButton {
+            transition: color ${euiTheme.animation.slow}
+              ${euiTheme.animation.resistance};
+          }
+
+          .euiButton:not([aria-pressed='true']):not(${euiDisabledSelector}):hover,
+          .euiButtonIcon:not([aria-pressed='true']):not(${euiDisabledSelector}):hover,
+          .euiButtonGroupButton:not([aria-pressed='true']):not(${euiDisabledSelector}):hover {
+            color: ${euiTheme.colors.textHeading};
+          }
+        }
+      }
+    `,
+    selectionTravelPill: css`
+      position: absolute;
+      z-index: 0;
+      /* Physical origin: the offset is measured from the container's left edge. */
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-color: ${euiTheme.colors.backgroundLightText};
+
+      ${euiCanAnimate} {
+        transition: transform ${euiTheme.animation.slow}
+            ${euiTheme.animation.resistance},
+          width ${euiTheme.animation.slow} ${euiTheme.animation.resistance},
+          height ${euiTheme.animation.slow} ${euiTheme.animation.resistance},
+          opacity ${euiTheme.animation.slow} ${euiTheme.animation.resistance};
+      }
+    `,
     hoverHighlightPill: css`
       position: absolute;
       z-index: 0;
