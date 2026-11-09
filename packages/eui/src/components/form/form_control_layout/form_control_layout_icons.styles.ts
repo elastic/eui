@@ -15,6 +15,7 @@ import { euiFormVariables } from '../form.styles';
 export const euiFormControlLayoutIconsStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
+  const { euiTheme } = euiThemeContext;
   const {
     controlHeight,
     controlCompressedHeight,
@@ -26,7 +27,8 @@ export const euiFormControlLayoutIconsStyles = (
   return {
     euiFormControlLayoutIcons: css`
       position: relative;
-      z-index: 1; /* Ensure the icon is visible above sibling inputs */
+      /* Ensure the icon is visible above sibling inputs */
+      z-index: ${Number(euiTheme.levels.content) + 1};
       display: flex;
       align-items: center;
       pointer-events: none;
@@ -54,7 +56,7 @@ export const euiFormControlLayoutIconsStyles = (
         uncompressed: {
           left: css`
             /* Ensure the icon is visible above focused sibling inputs */
-            z-index: 2;
+            z-index: ${Number(euiTheme.levels.content) + 2};
             ${logicalCSS('left', controlPadding)}
           `,
           right: css`
@@ -64,7 +66,7 @@ export const euiFormControlLayoutIconsStyles = (
         compressed: {
           left: css`
             /* Ensure the icon is visible above focused sibling inputs */
-            z-index: 2;
+            z-index: ${Number(euiTheme.levels.content) + 2};
             ${logicalCSS('left', controlCompressedPadding)}
           `,
           right: css`

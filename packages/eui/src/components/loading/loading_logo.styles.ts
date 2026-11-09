@@ -70,7 +70,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
           inset-inline-start: 5%;
           border-radius: 50%;
           opacity: 0.2;
-          z-index: 1;
+          z-index: ${Number(euiTheme.levels.content) + 1};
         }
 
         &::before {

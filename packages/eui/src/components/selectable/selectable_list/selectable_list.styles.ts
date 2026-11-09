@@ -86,7 +86,7 @@ export const euiSelectableListGroupLabelStyles = (
         &::before {
           content: '';
           position: absolute;
-          z-index: -1;
+          z-index: ${Number(euiTheme.levels.content) - 1};
           inset: 0;
           inset-block-start: ${spacingVertical};
           ${logicalCSS(

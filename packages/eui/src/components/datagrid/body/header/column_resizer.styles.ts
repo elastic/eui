@@ -28,7 +28,8 @@ export const euiDataGridColumnResizerStyles = (
 
   return {
     euiDataGridColumnResizer: css`
-      z-index: 2; /* Needs to be a level above the cells themselves in case of overlaps */
+      /* Needs to be a level above the cells themselves in case of overlaps */
+      z-index: ${Number(euiTheme.levels.content) + 2};
       position: absolute;
       ${logicalCSS('vertical', 0)}
       ${logicalCSS('right', positionOffset)}

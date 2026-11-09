@@ -13,7 +13,8 @@ import { logicalCSS } from '../../../global_styling';
 
 export const euiDataGridPaginationStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiDataGrid__pagination: css`
-    z-index: 2; /* Sits above the content above it */
+    /* Sits above the content above it */
+    z-index: ${Number(euiTheme.levels.content) + 2};
     flex-grow: 0;
     ${logicalCSS('padding-top', euiTheme.size.xs)}
 

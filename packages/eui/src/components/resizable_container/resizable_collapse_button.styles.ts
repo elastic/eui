@@ -26,7 +26,8 @@ export const euiResizableCollapseButtonStyles = (
 
   return {
     euiResizableCollapseButton: css`
-      z-index: 2; /* 1 higher than EuiResizableButton */
+      /* 1 higher than EuiResizableButton */
+      z-index: ${Number(euiTheme.levels.content) + 2};
       position: absolute;
 
       /* Remove animation inherited from EuiButtonIcon */

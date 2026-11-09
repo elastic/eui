@@ -699,7 +699,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            z-index: 1;
+                            z-index: ${Number(euiTheme.levels.content) + 1};
                             color: ${euiTheme.colors.textDisabled};
 
                             &:is(:hover, :active) {
@@ -983,7 +983,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            z-index: 1;
+                            z-index: ${Number(euiTheme.levels.content) + 1};
                             color: ${euiTheme.colors.textDisabled};
                           `}
                         >

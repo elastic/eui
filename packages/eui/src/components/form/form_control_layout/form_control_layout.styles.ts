@@ -35,7 +35,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiFormControlLayout: css`
       position: relative;
-      z-index: 0;
+      z-index: ${euiTheme.levels.content};
     `,
     // Skip the css`` on the default height to avoid generating a className
     uncompressed: `
@@ -69,7 +69,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
           content: '';
           position: absolute;
           inset: 0;
-          z-index: 0;
+          z-index: ${euiTheme.levels.content};
           border: ${euiTheme.border.width.thin} solid ${form.borderColor};
           border-radius: inherit;
           pointer-events: none;
@@ -229,7 +229,7 @@ export const euiFormControlLayoutSideNodeStyles = (
 
         /* Account for border around focusable children */
         &:focus-visible {
-          z-index: 1;
+          z-index: ${Number(euiTheme.levels.content) + 1};
           outline-offset: ${euiTheme.focus.width};
         }
       }

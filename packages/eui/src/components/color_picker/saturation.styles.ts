@@ -30,7 +30,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiSaturation: css`
-      z-index: 3; /* Required to be above the hue slider, which can overlap */
+      /* Required to be above the hue slider, which can overlap */
+      z-index: ${Number(euiTheme.levels.content) + 3};
       position: relative;
       aspect-ratio: 1 / 1;
       ${logicalCSS('width', '100%')}
@@ -92,7 +93,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiSaturation__tooltip: css`
-      z-index: 2;
+      z-index: ${Number(euiTheme.levels.content) + 2};
       position: absolute;
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);

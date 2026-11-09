@@ -148,7 +148,7 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       .react-datepicker__navigation {
-        z-index: 1;
+        z-index: ${Number(euiTheme.levels.content) + 1};
         position: absolute;
         ${logicalCSS('top', paddingSize)}
 
@@ -236,7 +236,7 @@ const _monthYearDropdowns = (
 
     .react-datepicker__year-dropdown,
     .react-datepicker__month-dropdown {
-      z-index: 1;
+      z-index: ${Number(euiTheme.levels.content) + 1};
       position: absolute;
       ${euiYScroll(euiThemeContext, { height: 'auto' })}
       ${logicalCSS('max-height', '250px')}
