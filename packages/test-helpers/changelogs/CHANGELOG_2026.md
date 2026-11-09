@@ -1,4 +1,4 @@
-## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
+## [`v2.3.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
 
 - Added `EuiTabsObject` with `tabs`, `getTabs()`, `tab(label)`, `select(label)` and `getSelected()`, covering `EuiTabs` and `EuiTabbedContent` ([#10249](https://github.com/elastic/eui/pull/10249))
 - Added `EuiMarkdownEditorObject` with `textArea`, `preview`, `setValue(text)`, `getValue()`, `isPreviewing()` and `togglePreview()` ([#10260](https://github.com/elastic/eui/pull/10260))
