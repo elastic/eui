@@ -1,0 +1,39 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
+
+import * as React from 'react';
+import type { SVGProps } from 'react';
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+const EuiIconProductCloudConnect = ({
+  title,
+  titleId,
+  ...props
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    aria-labelledby={titleId}
+    {...props}
+  >
+    {title ? <title id={titleId}>{title}</title> : null}
+    <path
+      fillRule="evenodd"
+      d="M12 10h1V8h1v2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-1v2h-1v-2h-1a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1V8h1v2Zm-1 3h3v-2h-3v2Z"
+      clipRule="evenodd"
+    />
+    <path d="M7.506 1.03a4.004 4.004 0 0 1 4.372 2.989A3.503 3.503 0 0 1 14.968 7h-1.069a2.503 2.503 0 0 0-2.4-2h-.03l-.25.016a2.493 2.493 0 0 0-1.487.716l-.707-.707a3.496 3.496 0 0 1 1.825-.963 3.004 3.004 0 0 0-3.324-2.02 3.004 3.004 0 0 0-2.488 3.437l.117.727-.718-.16a2.003 2.003 0 0 0-1.596.327 2.005 2.005 0 0 0-.74 2.235 2.007 2.007 0 0 0 1.085 1.215c.256.116.533.177.814.177h5.27A1.99 1.99 0 0 0 9 11H4a3 3 0 0 1 0-6c0-.976.357-1.919 1-2.65a4.013 4.013 0 0 1 2.506-1.32Z" />
+  </svg>
+);
+export const icon = EuiIconProductCloudConnect;
