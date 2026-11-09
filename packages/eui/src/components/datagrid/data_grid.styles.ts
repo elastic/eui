@@ -66,6 +66,8 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
   const border = `${euiTheme.border.width.thin} solid ${borderColors.default}`;
 
   return {
+    /* eslint-disable @elastic/eui/no-static-z-index -- the row hover background
+       (::before) has to stay behind the row's cells, which use z-index: auto */
     euiDataGrid: css`
       display: flex;
       flex-direction: column;
@@ -171,12 +173,13 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow)::before {
         content: '';
         position: absolute;
-        z-index: ${Number(euiTheme.levels.content) - 1};
+        z-index: -1;
         pointer-events: none;
         inset: 0;
         background-color: ${euiTheme.components.dataGridRowBackground};
       }
     `,
+    /* eslint-enable @elastic/eui/no-static-z-index */
     cellPadding: {
       cellPadding: (size: 's' | 'm' | 'l') => css`
         .euiDataGridHeaderCell,
