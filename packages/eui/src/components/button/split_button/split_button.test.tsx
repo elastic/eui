@@ -94,21 +94,41 @@ describe('EuiSplitButton', () => {
           <EuiProvider highContrastMode={highContrastMode}>
             <EuiSplitButton
               {...defaultProps}
-              aria-label="Changing"
+              data-test-subj="changing"
               color={changed ? 'warning' : 'primary'}
               fill={changed}
             />
             <EuiSplitButton
               {...defaultProps}
-              aria-label="Warning"
+              data-test-subj="warning"
               color="warning"
+              fill
+            />
+            <EuiSplitButton
+              {...defaultProps}
+              data-test-subj="success"
+              color="success"
               fill
             />
           </EuiProvider>
         );
-        const { getByRole, rerender } = render(buttons(false));
-        const changing = getByRole('group', { name: 'Changing' });
-        const warning = getByRole('group', { name: 'Warning' });
+        const { getByTestSubject, rerender } = render(buttons(false), {
+          wrapper: React.Fragment,
+        });
+        const changing = getByTestSubject('changing');
+        const warning = getByTestSubject('warning');
+        const success = getByTestSubject('success');
+        const successDividerColor = success.style.getPropertyValue(
+          '--euiSplitButtonDividerColor'
+        );
+        const successBorderColor = success.style.getPropertyValue(
+          '--euiSplitButtonBorderColor'
+        );
+        if (highContrastMode) {
+          expect(successDividerColor).not.toBe(successBorderColor);
+        } else {
+          expect(successDividerColor).toBe(successBorderColor);
+        }
         const variables = [
           '--euiSplitButtonBackgroundColor',
           '--euiSplitButtonBorderColor',
