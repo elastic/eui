@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUI agent docs: OnWeek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           THEME (Elastic Brand)
+           Colors and type for the whole deck.
+           =========================================== */
+        :root {
+            --elastic-blue: #0B64DD;
+            --white: #FFFFFF;
+            --developer-blue: #101C3F; /* outlines only */
+            --light-teal: #48EFCF;
+            --light-grey: #F5F7FA;
+            --dark-ink: #1C1E23;
+            --ink: #343741;
+            --midnight: #153385;
+            --pink: #F04E98;
+            --yellow: #FEC514;
+            --light-poppy: #FF957D;
+
+            --font-display: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+
+            --slide-padding: 96px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+
+            --stage-bg: #0a1a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ===========================================
+           FIXED 16:9 STAGE (viewport-base.css, verbatim)
+           =========================================== */
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: var(--stage-bg, #000);
+        }
+        .deck-viewport {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            background: var(--stage-bg, #000);
+        }
+        .deck-stage {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            transform-origin: 0 0;
+            background: var(--slide-bg, #fff);
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            display: block;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            background: var(--slide-bg, #fff);
+        }
+        .slide.active,
+        .slide.visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 1;
+        }
+        img,
+        video,
+        canvas,
+        svg {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .deck-controls {
+            position: fixed;
+            left: 50%;
+            bottom: 22px;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        @media print {
+            html,
+            body {
+                width: 1920px;
+                height: auto;
+                overflow: visible;
+                background: #fff;
+            }
+            .deck-viewport {
+                position: static;
+                overflow: visible;
+                background: #fff;
+            }
+            .deck-stage {
+                position: static;
+                width: auto;
+                height: auto;
+                transform: none !important;
+                background: none;
+            }
+            .slide {
+                position: relative;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                width: 1920px;
+                height: 1080px;
+                break-after: page;
+                page-break-after: always;
+            }
+            .slide:last-child {
+                break-after: auto;
+                page-break-after: auto;
+            }
+            .deck-controls {
+                display: none !important;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+        }
+
+        /* ===========================================
+           ANIMATIONS
+           .reveal children fade up when their slide becomes visible.
+           Set --d on an element to stagger it.
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+            transition-delay: var(--d, 0s);
+        }
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===========================================
+           SHARED TYPE
+           =========================================== */
+        body { font-family: var(--font-body); color: var(--dark-ink); }
+        .kicker {
+            font-family: var(--font-mono);
+            font-size: 22px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .rule {
+            width: 70px;
+            height: 3px;
+            background: var(--light-teal);
+        }
+        code, pre { font-family: var(--font-mono); }
+
+        /* ===========================================
+           SLIDE TYPES
+           .s-open: blue opener. .s-content: white content slide.
+           =========================================== */
+        .s-open {
+            --slide-bg: var(--elastic-blue);
+            color: var(--white);
+            padding: 0 var(--slide-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 64px 64px,
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 64px 64px,
+                radial-gradient(ellipse at 85% 10%, rgba(72,239,207,0.18) 0%, transparent 45%),
+                var(--elastic-blue);
+        }
+        .s-content {
+            --slide-bg: var(--white);
+            color: var(--dark-ink);
+            padding: 96px var(--slide-padding);
+        }
+        h1, h2 {
+            font-family: var(--font-display);
+            font-weight: 900;
+            letter-spacing: -0.035em;
+            line-height: 1.02;
+        }
+        h1 { font-size: 152px; }
+        h2 { font-size: 72px; text-wrap: balance; }
+        .rule { margin-top: 40px; }
+        .quote {
+            margin-top: 56px;
+            max-width: 1100px;
+            font-size: 40px;
+            line-height: 1.35;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+        }
+        .s-content .quote { margin-top: 48px; color: var(--ink); }
+        .byline {
+            position: absolute;
+            left: var(--slide-padding);
+            bottom: 80px;
+            font-family: var(--font-mono);
+            font-size: 26px;
+            color: rgba(255,255,255,0.7);
+        }
+        .label {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 28px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--elastic-blue);
+            margin-bottom: 20px;
+        }
+
+        /* ===========================================
+           SLIDE 2: the bug
+           =========================================== */
+        .s-bug {
+            display: grid;
+            grid-template-columns: 600px 1fr;
+            gap: 96px;
+            align-items: center;
+        }
+        .s-bug .shot {
+            width: 100%;
+            border: 2px solid var(--developer-blue);
+            border-radius: 16px;
+        }
+
+        /* ===========================================
+           SLIDE 3: no docs vs docs (build: → reveals the docs side)
+           =========================================== */
+        .s-compare { display: flex; flex-direction: column; justify-content: center; }
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 600px;
+            gap: 40px;
+            align-items: start;
+        }
+        .compare .label { font-size: 32px; }
+        .compare .fail { color: var(--pink); }
+        .panel {
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--dark-ink);
+        }
+        .panel pre {
+            padding: 32px 34px;
+            font-size: 19px;
+            line-height: 1.6;
+            color: #d7dce6;
+            white-space: pre;
+        }
+        .panel.big pre { font-size: 22px; }
+        /* ===========================================
+           SLIDES 4-5: more examples (prompt on top, same compare build)
+           =========================================== */
+        .s-example { display: flex; flex-direction: column; justify-content: center; }
+        .s-example .quote { margin-top: 0; max-width: 1500px; font-size: 36px; }
+        .s-example .compare { margin-top: 72px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+        .s-example .panel pre { font-size: 20px; }
+        .s-example .panel.big pre { font-size: 22px; }
+        .result {
+            display: block;
+            margin-top: 28px;
+            border: 2px solid var(--developer-blue);
+            border-radius: 14px;
+            background: var(--white);
+        }
+        .s-paired .compare > div { display: flex; flex-direction: column; }
+        .s-paired .compare .panel { flex: 1; }
+        .s-paired .compare { align-items: stretch; }
+        .s-paired .result { align-self: flex-start; }
+        .s-flyout .compare .panel { flex: none; margin-bottom: 20px; }
+        .s-flyout .result { margin-top: auto; }
+        .s-flyout .fix { margin-top: 8px; font-size: 34px; font-weight: 700; color: var(--elastic-blue); }
+        .result.button { height: 150px; padding: 12px 20px; box-sizing: content-box; }
+        .result.menu { width: 100%; }
+
+        /* ===========================================
+           SLIDE 6: what I saw (simple list, fix line as a step)
+           =========================================== */
+        .s-verdict { display: flex; flex-direction: column; justify-content: center; }
+        .s-verdict .backing { margin-top: 20px; font-size: 34px; color: var(--ink); }
+        .s-verdict .quote { margin-top: 56px; font-size: 40px; }
+        .misses { margin-top: 24px; list-style: none; counter-reset: m; }
+        .misses li {
+            counter-increment: m;
+            display: flex;
+            align-items: baseline;
+            gap: 36px;
+            padding: 22px 0;
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .misses li::before {
+            content: "0" counter(m);
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--pink);
+        }
+        .s-verdict .fix { margin-top: 56px; font-size: 40px; font-weight: 700; color: var(--elastic-blue); }
+
+        /* ===========================================
+           SLIDE 7: where agents look (bars grow on entry, website bar in pink)
+           =========================================== */
+        .s-look { display: flex; flex-direction: column; justify-content: center; }
+        .bars { margin-top: 64px; display: grid; grid-template-columns: 640px 1fr; row-gap: 26px; column-gap: 40px; align-items: center; }
+        .bars dt { font-size: 34px; font-weight: 600; color: var(--dark-ink); text-align: right; }
+        .bars dt code { font-family: var(--font-mono); font-size: 30px; }
+        .bars dd { display: flex; align-items: center; gap: 24px; }
+        .bar {
+            height: 52px;
+            width: calc(var(--n) / 750 * 900px);
+            min-width: 6px;
+            background: var(--elastic-blue);
+            border-radius: 0 8px 8px 0;
+            transform-origin: left;
+        }
+        .slide.active .bar { animation: grow 1.1s var(--ease-out-expo) both; animation-delay: var(--d, 0s); }
+        @keyframes grow { from { transform: scaleX(0); } }
+        .bars .num { font-family: var(--font-mono); font-size: 30px; font-weight: 700; color: var(--ink); }
+        .bars .web dt, .bars .web .num { color: var(--pink); }
+        .bars .web .bar { background: var(--pink); }
+        .s-look .source { margin-top: 48px; font-size: 26px; color: var(--ink); }
+        .s-look .fix { margin-top: 48px; font-size: 40px; font-weight: 700; color: var(--elastic-blue); }
+
+        /* ===========================================
+           SLIDE 8: not a new idea (team work left, outside precedents right)
+           =========================================== */
+        .s-prior { display: flex; flex-direction: column; justify-content: center; }
+        .prior { margin-top: 48px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 96px; }
+        .prior ul { list-style: none; }
+        .prior li { padding: 14px 0; border-top: 1px solid rgba(52, 55, 65, 0.15); }
+        .prior li:last-child { border-bottom: 1px solid rgba(52, 55, 65, 0.15); }
+        .prior .what { display: block; font-size: 36px; font-weight: 700; letter-spacing: -0.01em; }
+        .prior .who { display: block; margin-top: 4px; font-size: 26px; color: var(--ink); }
+        .prior .who { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 20px; }
+        .prior a.ref {
+            font-family: var(--font-mono);
+            font-size: 21px;
+            color: var(--elastic-blue);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+        }
+        .prior .what a.ref { margin-left: 16px; font-weight: 400; letter-spacing: 0; }
+        .s-prior .fix { margin-top: 40px; font-size: 40px; font-weight: 700; color: var(--elastic-blue); }
+
+        /* ===========================================
+           SLIDE 9: what I built (one route, stops grouped by owner; the line draws left to right)
+           =========================================== */
+        .s-built { display: flex; flex-direction: column; justify-content: center; }
+        .route {
+            margin-top: 88px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: auto 28px auto auto;
+            column-gap: 32px;
+            row-gap: 20px;
+        }
+        .route .line {
+            grid-row: 2; grid-column: 1 / 5;
+            align-self: center;
+            height: 4px;
+            margin: 0 -46px 0 14px;
+            background: linear-gradient(90deg, var(--dark-ink) 0 37%, var(--elastic-blue) 37%);
+            transform-origin: left;
+        }
+        .slide.active .route .line { animation: grow 1.4s var(--ease-out-expo) both; animation-delay: 0.2s; }
+        .stop { grid-row: 1 / 4; display: grid; grid-template-rows: subgrid; position: relative; }
+        .stop .name { align-self: end; font-size: 36px; font-weight: 700; letter-spacing: -0.01em; }
+        .stop .name code { font-family: var(--font-mono); font-size: 32px; letter-spacing: 0; }
+        .stop .dot { align-self: center; width: 28px; height: 28px; border-radius: 50%; background: var(--elastic-blue); box-shadow: 0 0 0 8px var(--white); }
+        .stop .desc { font-size: 28px; line-height: 1.3; color: var(--ink); }
+        .stop.kbn .dot { background: var(--dark-ink); }
+        .stop:nth-child(2) { grid-column: 1; }
+        .stop:nth-child(3) { grid-column: 2; }
+        .stop:nth-child(4) { grid-column: 3; }
+        .stop:nth-child(5) { grid-column: 4; }
+        .stop:nth-child(6) { grid-column: 5; }
+        .owner { grid-row: 4; margin-top: 36px; padding-top: 20px; border-top: 3px solid var(--elastic-blue); }
+        .owner.kbn { grid-column: 1 / 3; border-color: var(--dark-ink); }
+        .owner.eui { grid-column: 3 / 6; }
+        .owner .label { margin-bottom: 8px; }
+        .owner.kbn .label { color: var(--dark-ink); }
+        .owner .gen { margin-bottom: 8px; font-size: 30px; font-weight: 700; color: var(--dark-ink); }
+        .owner .where { font-family: var(--font-mono); font-size: 24px; line-height: 1.5; color: var(--ink); }
+        .s-built .fix { margin-top: 64px; font-size: 40px; font-weight: 700; color: var(--elastic-blue); }
+
+        /* ===========================================
+           TASK ROWS (slides 11-14): one row per task, one dot per run per setup.
+           Filled dot = pass, pink ring = miss. Same grammar on every evidence slide.
+           =========================================== */
+        .s-tasks { display: flex; flex-direction: column; justify-content: center; }
+        .tasks { margin-top: 48px; display: grid; grid-template-columns: 1fr 360px 360px; column-gap: 48px; align-items: center; }
+        .tasks .head { padding-bottom: 20px; font-size: 32px; font-weight: 700; color: var(--dark-ink); }
+        .tasks .head.b { color: var(--elastic-blue); }
+        .tasks .task, .tasks .cell { padding: 24px 0; border-top: 2px solid var(--light-grey); }
+        .tasks .task { font-size: 34px; font-weight: 600; color: var(--dark-ink); }
+        .tasks .cell { display: flex; align-items: center; gap: 14px; }
+        .tasks .cell i { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--dark-ink); }
+        .tasks .cell.b i { background: var(--elastic-blue); }
+        .tasks .cell i.miss { background: var(--white); box-shadow: inset 0 0 0 5px var(--pink); }
+        .tasks .cell i.other { background: var(--white); box-shadow: inset 0 0 0 5px var(--ink); }
+        .tasks.kbn { margin-top: 36px; grid-template-columns: 1fr 540px 540px; }
+        .tasks.kbn .cell { gap: 12px; font-size: 26px; color: var(--ink); }
+        .tasks.kbn .cell code { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--dark-ink); }
+        .tasks.kbn .cell.b code { color: var(--elastic-blue); }
+        .tasks.kbn + .meta { margin-top: 24px; }
+        .tasks.kbn ~ .fix { margin-top: 24px; }
+        .tasks.kbn + .load { margin-top: 20px; font-size: 30px; color: var(--ink); }
+        .tasks.kbn .head { padding-bottom: 20px; }
+        .tasks.kbn .task, .tasks.kbn .cell { padding: 14px 0; row-gap: 4px; }
+        .s-tasks .fix + .ex { margin-top: 20px; max-width: 1500px; font-size: 32px; line-height: 1.35; color: var(--ink); text-wrap: balance; }
+        .s-tasks .lede code, .tasks.kbn .head code { font-size: 0.9em; letter-spacing: 0; }
+        .s-tasks .ex code { font-family: var(--font-mono); font-size: 0.9em; color: var(--dark-ink); }
+        .s-tasks .path { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; list-style: none; font-size: 30px; font-weight: 600; color: var(--dark-ink); }
+        .s-tasks .path li { padding: 12px 22px; border-radius: 12px; background: var(--light-grey); }
+        .s-tasks .path li.k { background: var(--elastic-blue); color: var(--white); }
+        .s-tasks .path span { color: var(--ink); font-weight: 400; }
+        .tasks .cell b { margin-left: 12px; font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--dark-ink); }
+        .tasks .cell.b b { color: var(--elastic-blue); }
+        .s-tasks .lede { margin-top: 28px; max-width: 1500px; font-size: 40px; line-height: 1.35; color: var(--ink); text-wrap: balance; }
+        .tasks .cell { flex-wrap: wrap; row-gap: 8px; }
+        .tasks.built { margin-top: 32px; }
+        .tasks.built .task, .tasks.built .cell { padding: 14px 0; row-gap: 4px; }
+        .tasks.built + .meta { margin-top: 24px; }
+        .tasks.built ~ .fix { margin-top: 24px; }
+        .tasks.built .cell small { font-size: 22px; line-height: 1.15; }
+        .tasks .cell small { flex-basis: 100%; font-size: 24px; line-height: 1.2; color: var(--ink); }
+        .s-tasks .meta { margin-top: 40px; font-family: var(--font-mono); font-size: 24px; color: var(--ink); }
+        .s-tasks .meta + .meta { margin-top: 8px; }
+        .s-tasks .fix { margin-top: 36px; font-size: 40px; font-weight: 700; color: var(--elastic-blue);  text-wrap: balance; }
+
+        /* ===========================================
+           SLIDE 10: overview of ticket types (type, example, what I wanted to learn)
+           =========================================== */
+        .s-kinds { display: flex; flex-direction: column; justify-content: center; }
+        .kinds { margin-top: 44px; display: grid; grid-template-columns: max-content 1fr 1.15fr; column-gap: 56px; }
+        .kinds .head { padding-bottom: 20px; font-size: 28px; font-weight: 700; color: var(--ink); }
+        .kinds .row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; padding: 20px 0; border-top: 2px solid var(--light-grey); }
+        .kinds .kind { font-size: 36px; font-weight: 800; letter-spacing: -0.015em; color: var(--dark-ink); }
+        .kinds .ex { font-size: 32px; line-height: 1.3; color: var(--ink); }
+        .kinds .pass { font-size: 32px; line-height: 1.3; font-weight: 600; color: var(--elastic-blue); }
+        .s-kinds .note { margin-top: 32px; font-size: 32px; color: var(--dark-ink); }
+        .s-kinds .meta { margin-top: 20px; font-family: var(--font-mono); font-size: 24px; color: var(--ink); }
+
+        /* Minimal syntax colors */
+        .k { color: #ff957d; }   /* keywords */
+        .t { color: #48efcf; }   /* JSX tags / components */
+        .s { color: #fec514; }   /* strings */
+        .hl { color: var(--white); font-weight: 700; }
+        /* Fade everything but the highlighted code so the key line reads from the back row. */
+        .panel pre:has(.hl) { color: rgba(215, 220, 230, 0.55); }
+        .panel pre:has(.hl) span:not(.hl) { opacity: 0.55; }
+
+        /* ===========================================
+           SLIDE 15: what I'd do next (owner, then what ships)
+           =========================================== */
+        .s-ship { display: flex; flex-direction: column; justify-content: center; }
+        .ship { margin-top: 56px; display: grid; grid-template-columns: 260px 1fr; }
+        .ship .row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; padding: 32px 0; border-top: 2px solid var(--light-grey); }
+        .ship .row:last-child { border-bottom: 2px solid var(--light-grey); }
+        .ship .who { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; color: var(--dark-ink); }
+        .ship .what { font-size: 38px; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+        .s-ship .fix { margin-top: 40px; font-size: 40px; font-weight: 700; color: var(--elastic-blue); text-wrap: balance; }
+        .s-ship .meta { margin-top: 40px; font-family: var(--font-mono); font-size: 24px; color: var(--ink); }
+        .s-ship code { white-space: nowrap; }
+        .s-ship .meta a { color: inherit; text-underline-offset: 4px; }
+        .ship .what code { font-family: var(--font-mono); font-size: 0.9em; color: var(--dark-ink); }
+
+        /* ===========================================
+           BUILD STEPS
+           .step elements appear one per → press before the deck moves on.
+           =========================================== */
+        .step {
+            opacity: 0;
+            transform: translateX(48px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+        .step.shown { opacity: 1; transform: none; }
+        @media print { .step { opacity: 1 !important; transform: none !important; } }
+
+        /* ===========================================
+           DECK CHROME (outside the stage)
+           =========================================== */
+        .progress {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            background: var(--light-teal);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+        .edit-hotzone {
+            position: fixed; top: 0; left: 0;
+            width: 80px; height: 80px;
+            z-index: 10000;
+            cursor: pointer;
+        }
+        .edit-toggle {
+            position: fixed; top: 16px; left: 16px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--light-teal);
+            background: var(--developer-blue);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10001;
+        }
+        .edit-toggle.show,
+        .edit-toggle.active { opacity: 1; pointer-events: auto; }
+        .edit-toggle.active { background: var(--light-teal); color: var(--developer-blue); }
+        body.editing [contenteditable="true"] { outline: 2px dashed rgba(72,239,207,0.6); outline-offset: 4px; }
+        .flash {
+            position: fixed; left: 50%; top: 20px;
+            transform: translateX(-50%);
+            font: 14px var(--font-mono);
+            color: #fff;
+            background: var(--developer-blue);
+            border: 1px solid var(--light-teal);
+            border-radius: 6px;
+            padding: 8px 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10002;
+            pointer-events: none;
+        }
+        .flash.show { opacity: 1; }
+
+        /* === COMMENT MODE ===
+           C toggles. Click any text, code panel or empty slide area to leave a note. */
+        :root {
+            --comment-accent: #fec514;
+            --comment-ink: #101c3f;
+        }
+        .comment-toggle {
+            position: fixed; top: 16px; left: 68px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--comment-accent);
+            background: var(--comment-ink);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10001;
+        }
+        .comment-toggle.show,
+        .comment-toggle.active { opacity: 1; pointer-events: auto; }
+        .comment-toggle.active { background: var(--comment-accent); color: var(--comment-ink); }
+        body.commenting .slide.active { cursor: crosshair; }
+        body.commenting .comment-hover { outline: 3px solid var(--comment-accent); outline-offset: 4px; }
+        .comment-pin {
+            position: absolute;
+            z-index: 50;
+            min-width: 40px; height: 40px;
+            padding: 0 10px;
+            border-radius: 20px 20px 20px 4px;
+            background: var(--comment-accent);
+            color: var(--comment-ink);
+            font: 700 20px/1 monospace;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        .comment-panel {
+            position: fixed; right: 16px; bottom: 16px;
+            display: none;
+            gap: 8px;
+            align-items: center;
+            font: 13px monospace;
+            color: #fff;
+            background: var(--comment-ink);
+            border: 2px solid var(--comment-accent);
+            border-radius: 8px;
+            padding: 8px 10px;
+            z-index: 10001;
+        }
+        body.commenting .comment-panel { display: flex; }
+        .comment-panel button {
+            font: inherit;
+            color: var(--comment-ink);
+            background: var(--comment-accent);
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        .comment-panel button.secondary { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); }
+    </style>
+</head>
+<body>
+    <div class="deck-viewport">
+        <main class="deck-stage" id="deckStage">
+
+            <!-- ===========================================
+                 SLIDE 1: How good are agents at EUI?
+                 Notes:
+                 - The quote is the question from the epic. Agents look fine at a glance;
+                   this talk is what an eval showed.
+                 =========================================== -->
+            <section class="slide s-open active" data-title="How good are agents at EUI?">
+                <h1 class="reveal">How good are<br>agents at EUI?</h1>
+                <div class="rule reveal" style="--d:0.1s"></div>
+                <p class="quote reveal" style="--d:0.2s">“Do we need to do anything? Agents seem to do a pretty good job already.”</p>
+                <p class="byline reveal" style="--d:0.3s">Anton Dosov · OnWeek, November 2026</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 2: the bug
+                 Notes:
+                 - Real open issue elastic/kibana#293498 (tuned case H2).
+                 - Screenshot: kbn_ui Storybook, "Navigation with Long Secondary Menu
+                   Title" story (kibana main, 2026-11-06).
+                 - The agent prompt is the issue rewritten without its hint to reuse
+                   the overflow measurement from another PR.
+                 =========================================== -->
+            <section class="slide s-content s-bug" data-title="The bug">
+                <div>
+                    <div class="label reveal">Bug</div>
+                    <h2 class="reveal">Long titles wrap.</h2>
+                    <div class="rule reveal" style="--d:0.1s"></div>
+                    <div class="label reveal" style="--d:0.2s; margin-top: 72px">Prompt</div>
+                    <p class="quote reveal" style="--d:0.2s; margin-top: 0">Truncate long titles. Show the full title in a tooltip only when it's truncated.</p>
+                </div>
+                <img class="shot reveal" style="--d:0.3s" src="deck-assets/h2-bug.png" alt="Kibana side nav with a long secondary menu title wrapping over four lines">
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 3: no docs vs docs (one build step)
+                 Notes:
+                 - Left, no docs (0/3 runs used EUI): each run wrote its own component. This one is
+                   54 lines, trimmed (final-a-k1/H2-a-2).
+                 - → What we want, and what all 3 runs with docs did: one EuiTextTruncate after reading
+                   text-truncation.md (final-ship-k1/H2-c-2).
+                 - Point: agents rebuild what EUI already ships. A lint rule can
+                   catch this one pattern once we know it; it can't cover every
+                   built-in the agent doesn't know about (S9 search, F1 pagination).
+                 - H2 started untuned: 0/5 in the first batch, before I touched the
+                   docs. Then I tuned on it.
+                 - Missing a built-in feature came up most in the failure log (34 of 76
+                   logged failures, 20 of them repeat runs of F1 and N1 while tuning). A
+                   count from development runs, not a rate.
+                 =========================================== -->
+            <section class="slide s-content s-compare" data-title="No docs vs docs">
+                <div class="compare">
+                    <div class="reveal">
+                        <div class="label fail">What the agent wrote</div>
+                        <figure class="panel bad">
+<pre><span class="k">export const</span> <span class="t">TruncatedTitle</span>: FC&lt;{ title: string }&gt; = ({ title }) =&gt; {
+  <span class="k">const</span> ref = useRef&lt;HTMLHeadingElement&gt;(null);
+  <span class="k">const</span> [isTruncated, setIsTruncated] = useState(false);
+
+  useLayoutEffect(() =&gt; {
+    <span class="k">const</span> element = ref.current;
+    <span class="k">if</span> (!element) <span class="k">return</span>;
+    <span class="k">const</span> measure = () =&gt; setIsTruncated(<span class="hl">element.scrollWidth &gt; element.clientWidth</span>);
+    measure();
+    <span class="k">const</span> observer = <span class="k">new</span> <span class="hl">ResizeObserver</span>(measure);
+    observer.observe(element);
+    <span class="k">return</span> () =&gt; observer.disconnect();
+  }, [title]);
+
+  <span class="k">return</span> (
+    &lt;<span class="t">EuiToolTip</span> content={isTruncated ? title : undefined} display=<span class="s">"block"</span>&gt;
+      &lt;<span class="t">h4</span> ref={ref} css={titleStyles}&gt;{title}&lt;/<span class="t">h4</span>&gt;
+    &lt;/<span class="t">EuiToolTip</span>&gt;
+  );
+};</pre>
+                        </figure>
+                    </div>
+                    <div class="step">
+                        <div class="label">What we want</div>
+                        <figure class="panel big">
+<pre>&lt;<span class="t">EuiTitle</span> size=<span class="s">"xs"</span>&gt;
+  &lt;<span class="t">h4</span> css={headingStyle}&gt;
+    <span class="hl">&lt;EuiTextTruncate text={title} /&gt;</span>
+  &lt;/<span class="t">h4</span>&gt;
+&lt;/<span class="t">EuiTitle</span>&gt;</pre>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 4: copy button (I1)
+                 Notes:
+                 - Illustrative, built from I1. The hand-rolled clipboard call is mine;
+                   the copyClipboard icon is real: every no-docs I1 run used it (0/5),
+                   docs + skill fixed it 3/3. Removed icons compile (iconType takes any
+                   string) and render blank.
+                 - The real I1 runs already used EuiCopy; their only miss was the icon.
+                   The label says "simplified" for this reason. Say so if asked.
+                 - Both screenshots are taken right after a click: the agent's button has
+                   no icon and gives no feedback; EuiCopy shows "Copied".
+                 =========================================== -->
+            <section class="slide s-content s-example s-paired" data-title="Copy button">
+                <div class="label reveal">Prompt</div>
+                <p class="quote reveal" style="--d:0.1s">Add a button that copies the workflow ID.</p>
+                <div class="compare">
+                    <div class="reveal" style="--d:0.2s">
+                        <div class="label fail">Simplified from the agent's code</div>
+                        <figure class="panel big">
+<pre>&lt;<span class="t">EuiButtonEmpty</span>
+  <span class="hl">iconType="copyClipboard"</span>
+  <span class="hl">onClick={() =&gt; navigator.clipboard.writeText(id)}</span>
+&gt;
+  Copy workflow ID
+&lt;/<span class="t">EuiButtonEmpty</span>&gt;</pre>
+                        </figure>
+                        <img class="result button" src="deck-assets/i1-agent.png" alt="Copy workflow ID button after a click, with a blank icon and no feedback">
+                    </div>
+                    <div class="step">
+                        <div class="label">What we want</div>
+                        <figure class="panel big">
+<pre><span class="hl">&lt;EuiCopy textToCopy={id}&gt;</span>
+  {(copy) =&gt; (
+    &lt;<span class="t">EuiButtonEmpty</span> <span class="hl">iconType="copy"</span> onClick={copy}&gt;
+      Copy workflow ID
+    &lt;/<span class="t">EuiButtonEmpty</span>&gt;
+  )}
+&lt;/<span class="t">EuiCopy</span>&gt;</pre>
+                        </figure>
+                        <img class="result button" src="deck-assets/i1-want.png" alt="Copy workflow ID button after a click, with a Copied tooltip">
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 5: flyout pagination (F1)
+                 Notes:
+                 - Tuned case F1: step to previous/next evaluator inside the detail flyout.
+                 - No docs (cc-avc-k1/F1-a-1): hand-rolled prev/next, trimmed here; its
+                   arrowLeft/arrowRight are removed icons and render blank. 0/1.
+                 - Docs + pointer, no skill: still hand-rolled (valid chevrons), never
+                   opened flyout.md. 0/3. With the kibana-ui skill: flyoutMenuProps
+                   pagination 3/3. The skill ablation slide comes back to this.
+                 - Left screenshot: the agent's footer (Close, its prev/next, Edit) rebuilt
+                   in a temp EUI story; the two arrow buttons render blank.
+                 - Right code is the shipped diff's shape (pagination = { currentIndex, total, onPrevious, onNext }). Screenshot: EUI Storybook,
+                   EuiFlyoutMenu "Pagination example".
+                 - Step line answers "why not types?": flyoutMenuProps.pagination has JSDoc
+                   ("Enables Prev/Next navigation controls...", eui.d.ts in 123.3.0), and
+                   every no-docs F1 run still hand-rolled prev/next (0/4 across batches).
+                   A comment explains a prop once you've found it.
+                 =========================================== -->
+            <section class="slide s-content s-example s-paired s-flyout" data-title="Flyout pagination">
+                <div class="label reveal">Prompt</div>
+                <p class="quote reveal" style="--d:0.1s">Let reviewers step to the previous or next evaluator from inside the detail flyout, and show which one of how many they are on.</p>
+                <div class="compare">
+                    <div class="reveal" style="--d:0.2s">
+                        <div class="label fail">What the agent wrote</div>
+                        <figure class="panel">
+<pre>&lt;<span class="t">EuiFlexGroup</span> alignItems=<span class="s">"center"</span> gutterSize=<span class="s">"s"</span>&gt;
+  &lt;<span class="t">EuiFlexItem</span> grow={<span class="k">false</span>}&gt;
+    &lt;<span class="t">EuiButtonIcon</span> iconType=<span class="s">"arrowLeft"</span> onClick={onPrevious} /&gt;
+  &lt;/<span class="t">EuiFlexItem</span>&gt;
+  &lt;<span class="t">EuiFlexItem</span> grow={<span class="k">false</span>}&gt;
+    &lt;<span class="t">EuiText</span> size=<span class="s">"s"</span>&gt;{position} of {total}&lt;/<span class="t">EuiText</span>&gt;
+  &lt;/<span class="t">EuiFlexItem</span>&gt;
+  &lt;<span class="t">EuiFlexItem</span> grow={<span class="k">false</span>}&gt;
+    &lt;<span class="t">EuiButtonIcon</span> iconType=<span class="s">"arrowRight"</span> onClick={onNext} /&gt;
+  &lt;/<span class="t">EuiFlexItem</span>&gt;
+&lt;/<span class="t">EuiFlexGroup</span>&gt;</pre>
+                        </figure>
+                        <img class="result menu" src="deck-assets/f1-agent.png" alt="Flyout footer with Close, 1 of 5 and Edit; the previous and next buttons are blank">
+                    </div>
+                    <div class="step">
+                        <div class="label">What we want</div>
+                        <figure class="panel big">
+<pre>&lt;<span class="t">EuiFlyout</span>
+  <span class="hl">flyoutMenuProps={{ pagination }}</span>
+&gt;</pre>
+                        </figure>
+                        <img class="result menu" src="deck-assets/f1-want.png" alt="EUI flyout menu with built-in 1 of 5 pagination">
+                    </div>
+                </div>
+                <p class="fix step">The prop has JSDoc in the types. Agents without docs still built their own.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 6: what I saw
+                 Notes:
+                 - Framed as what I saw across the runs, not a verdict: the numbers come
+                   on slides 11-14.
+                 - "Familiar EUI work": held-out tickets (H3, H5, H6) worked 8/9 with no docs
+                   and 8/9 with docs. Copy defaults were already good without docs
+                   (sentence case, errors say what failed). No docs still means types,
+                   source and nearby Kibana code.
+                 - "New": flyoutMenuProps.pagination (F1) missed in every no-docs run.
+                   Missing a built-in came up most in the failure log: 34 of 76 logged
+                   failures, from tuning runs (20 are repeats of F1 and N1). Not all are
+                   new: EuiSearchBar and EuiTextTruncate are old but less known.
+                 - "Removed": copyClipboard in 5/5 no-docs I1 runs; removed icon names
+                   were 18 of 76 and show up in almost every icon-touching run. They
+                   render blank, no type error. In Kibana itself only 7 of 5779 static
+                   iconType literals are invalid, so the risk is new code.
+                 - Names match the ticket types on slide 10. "Renamed or removed" has no
+                   row there: slide 4 shows it (I1), and the Checks row on slide 15 answers it.
+                 - Kibana conventions: G1 error banner shipped raw EuiCallOut or
+                   EuiEmptyPrompt instead of KbnDangerCallout (12 of 76 failures); AH1
+                   used EuiPageTemplate.Header instead of AppHeader.
+                 - Component picks: S1-S4, S6, S7, S10 and D4 passed in both arms with
+                   nearly the same diff (dropped as cases for that reason). Wrong picks
+                   were 9 of 76 failures, on less familiar components: S8 filter chips
+                   used bare EuiFilterButton without EuiFilterGroup.
+                 - Copy defaults were already good without docs (sentence case, errors
+                   say what failed). The miss is the specific rules, e.g. G1's
+                   one-failed-section case has no pattern at all.
+                 - "Renamed or removed" was icons in our runs (copyClipboard, arrowDown,
+                   exportAction). The removed-prop bucket had 0 failures: tsc rejects a
+                   removed prop, but iconType accepts any string, so a removed icon
+                   compiles and renders blank. That's why lint, not types, owns it.
+                 - Patterns and content: these pages existed only on the website, which
+                   agents don't open. X3 help text: before backlinks the agent read
+                   tooltip.md only and never reached help-content.md.
+                 - Closing question hands off to slide 7. Don't answer it here: docs in
+                   the package (7-9) and lint for removed icon names (15) come later.
+                 =========================================== -->
+            <section class="slide s-content s-verdict" data-title="What I saw">
+                <div class="label reveal">What I saw</div>
+                <h2 class="reveal">Agents handle familiar EUI work.</h2>
+                <p class="backing reveal" style="--d:0.1s">Common components and familiar tasks mostly came out right without docs.</p>
+                <p class="quote reveal" style="--d:0.15s">They miss what they don't know to look for:</p>
+                <ol class="misses">
+                    <li class="reveal" style="--d:0.2s">Built-in EUI solutions</li>
+                    <li class="reveal" style="--d:0.3s">What EUI renamed or removed</li>
+                    <li class="reveal" style="--d:0.4s">Kibana conventions</li>
+                    <li class="reveal" style="--d:0.5s">EUI guidelines</li>
+                </ol>
+                <p class="fix step">So where do agents look?</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 7: where agents look
+                 Notes:
+                 - Counts are tool calls from a colleague's scan: 515 sessions across
+                   Cursor, Claude Code and Copilot in VS Code, 107 with EUI lookups,
+                   skewed to chrome migrations. Website hits were Copilot only.
+                 - My scan of 491 of my own sessions: same order. Compiled JS ~400
+                   calls in ~57 sessions after grepping Kibana for usage; website
+                   fetched in 3 sessions. Two users, three tools, same pattern.
+                 - Compiled JS: the package ships no TS source and no source maps, so
+                   agents read Babel output to learn defaults, aria and styles.
+                 - eui.d.ts is 1.6 MB and never read in full: a grep, then a 30-145
+                   line slice.
+                 - node -e: require('@elastic/eui') to list icon names, tokens, exports.
+                 - Q: "Maybe agents just can't reach the website." Partly: web access is
+                   often off or sandboxed, and all 13 website hits were Copilot. Either
+                   way, docs on disk are reachable in every setup. Whether the agent
+                   reads them depends on the harness: pi at medium effort read no
+                   docs in 5/5 runs, and with the same docs read them in 3/7 vs Claude
+                   Code's 7/7. Results in this talk are Claude Code at medium effort.
+                 - Q: "Why aren't types and compiled JS enough?" They do carry comments:
+                   every prop's JSDoc is in eui.d.ts and in the compiled propTypes. But a
+                   comment explains a prop once you've found it. F1's
+                   flyoutMenuProps.pagination has JSDoc ("Enables Prev/Next navigation
+                   controls...", eui.d.ts in 123.3.0) and every no-docs run still built
+                   its own. Code says how a component works, not which one to pick or
+                   what Kibana's rule is: slide 6's misses.
+                 - Kibana code is a source too, and copying it spreads old patterns: the
+                   removed arrowDown icon in our runs came from Kibana source.
+                 - Bridge (say it): "So I put the docs in the npm package." On disk is
+                   step one. Agents also need a route to features they don't know to
+                   look for: slide 9.
+                 - Next slide: we weren't the first to think of this.
+                 =========================================== -->
+            <section class="slide s-content s-look" data-title="Where agents look">
+                <div class="label reveal">Where agents look</div>
+                <h2 class="reveal">Agents read what's on disk.</h2>
+                <dl class="bars">
+                    <dt class="reveal" style="--d:0.1s">Compiled EUI JavaScript</dt>
+                    <dd><span class="bar" style="--n:750; --d:0.2s"></span><span class="num">~750</span></dd>
+                    <dt class="reveal" style="--d:0.2s">Kibana code that uses EUI</dt>
+                    <dd><span class="bar" style="--n:670; --d:0.3s"></span><span class="num">~670</span></dd>
+                    <dt class="reveal" style="--d:0.3s">Types, <code>eui.d.ts</code></dt>
+                    <dd><span class="bar" style="--n:140; --d:0.4s"></span><span class="num">~140</span></dd>
+                    <dt class="reveal" style="--d:0.4s"><code>node -e</code> listing icons and exports</dt>
+                    <dd><span class="bar" style="--n:105; --d:0.5s"></span><span class="num">~105</span></dd>
+                    <div class="web" style="display: contents">
+                        <dt class="reveal" style="--d:0.5s">EUI website</dt>
+                        <dd><span class="bar" style="--n:13; --d:0.6s"></span><span class="num">13</span></dd>
+                    </div>
+                </dl>
+                <p class="source reveal" style="--d:0.7s">Tool calls in the 107 of 515 sessions that looked up EUI, across Cursor, Claude Code and Copilot.</p>
+                <p class="fix step">So I put the docs in the npm package.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 8: not a new idea
+                 Notes:
+                 - Credit first. Everything we built this week was proposed or
+                   prototyped before. Chronology:
+                   - 2025-05/06, Weronika: JSDoc for agents (elastic/eui#8685), llms.txt
+                     and .md per page (elastic/eui#8828). #8828 already flagged that
+                     pages need description frontmatter.
+                   - 2026-03, epic elastic/kibana-team#3100 (Jason, Weronika); Ryan's
+                     rule (elastic/eui-private#600). 2026-04, Codex docs MCP via
+                     docs-builder (elastic/kibana-team#3036).
+                   - 2026-05 sync: Python MCP prototype (Weronika, Kiriakos). Baseline
+                     flagged as the missing step.
+                   - 2026-05 proposals: skill + local metadata (Arturo); Markdown from
+                     MDX, JSDoc summaries, catalog (Tomasz); generate from source
+                     (Weronika). Design OnWeek: package metadata + SKILL.md (Jose,
+                     elastic/eui#9664), Figma-to-EUI skill and eui-vs-kbnui.md (Ryan,
+                     elastic/kibana#269994).
+                   - 2026-05-27, benchmark PoC (Weronika: LiteLLM, Gemini, LLM judge).
+                   - Shipped: EUI contributor AGENTS.md, @see links on components,
+                     agent-catching lint rules; Kibana AGENTS.md "prefer @kbn/ui-*";
+                     accessibility skill (Alexey).
+                   - 2026-07, Weronika's plan: source-driven; JSDoc, types, lint, thin
+                     skill, benchmark each step. Spikes #3535, #3763-#3766.
+                   - Jason's analyze-eui (April OnWeek): EUI definitions plus a Kibana
+                     override index. Marius (2026-09): a local EUI clone + grep beat
+                     MCP and docs reads for app generation.
+                 - Elsewhere, precedents for the shape, not evidence our setup works:
+                   - MUI: Markdown docs in the package
+                     (github.com/mui/material-ui/pull/48722); its discussion leaves
+                     discovery open too.
+                   - Next.js: version-matched docs plus project instructions
+                     (nextjs.org/docs/app/guides/ai-agents).
+                   - shadcn: a skill over project-aware CLI discovery
+                     (ui.shadcn.com/docs/skills).
+                 - Don't claim nobody measured before: Weronika's benchmark prototype did.
+                   What's new is the comparison on real Kibana tickets, with and
+                   without docs, graded by reading diffs.
+                 - Step line is what's new. Then bridge: "Here's what I built this OnWeek."
+                   The pieces are the ones above; slide 9 shows how they fit into one route.
+                 =========================================== -->
+            <section class="slide s-content s-prior" data-title="Not a new idea">
+                <div class="label reveal">Prior work</div>
+                <h2 class="reveal">Not a new idea.</h2>
+                <div class="prior">
+                    <div>
+                        <div class="label reveal" style="--d:0.1s">At Elastic</div>
+                        <ul>
+                            <li class="reveal" style="--d:0.15s"><span class="what">Markdown docs for each page</span><span class="who"><span>Weronika, Tomasz</span><a class="ref" href="https://github.com/elastic/eui/issues/8828" target="_blank" rel="noopener">eui#8828</a><a class="ref" href="https://github.com/elastic/kibana-team/issues/3100" target="_blank" rel="noopener">kibana-team#3100</a></span></li>
+                            <li class="reveal" style="--d:0.2s"><span class="what">Skills and package metadata</span><span class="who"><span>Arturo, Jose, Ryan</span><a class="ref" href="https://github.com/elastic/eui/pull/9664" target="_blank" rel="noopener">eui#9664</a><a class="ref" href="https://github.com/elastic/kibana/pull/269994" target="_blank" rel="noopener">kibana#269994</a></span></li>
+                            <li class="reveal" style="--d:0.25s"><span class="what">A docs MCP server</span><span class="who"><span>Weronika, Kiriakos</span><a class="ref" href="https://github.com/elastic/kibana-team/issues/3100" target="_blank" rel="noopener">kibana-team#3100</a></span></li>
+                            <li class="reveal" style="--d:0.3s"><span class="what">Local EUI index and grep</span><span class="who"><span>Jason, Marius</span><a class="ref" href="https://github.com/elastic/eui-team-scripts/tree/main/analyze-eui" target="_blank" rel="noopener">analyze-eui</a><a class="ref" href="https://elastic.slack.com/archives/C7QC1JV6F/p1790610116934479?thread_ts=1790608452.681169&amp;cid=C7QC1JV6F" target="_blank" rel="noopener">#eui thread</a></span></li>
+                            <li class="reveal" style="--d:0.35s"><span class="what">A benchmark prototype</span><span class="who"><span>Weronika</span><a class="ref" href="https://github.com/elastic/kibana-team/issues/3535" target="_blank" rel="noopener">kibana-team#3535</a><a class="ref" href="https://elastic.slack.com/archives/C04UK0RDL2J/p1783352793524509" target="_blank" rel="noopener">#eui-core plan</a></span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="label reveal" style="--d:0.4s">Elsewhere</div>
+                        <ul>
+                            <li class="reveal" style="--d:0.45s"><span class="what">MUI<a class="ref" href="https://github.com/mui/material-ui/pull/48722" target="_blank" rel="noopener">material-ui#48722</a></span><span class="who">Markdown docs in the package</span></li>
+                            <li class="reveal" style="--d:0.5s"><span class="what">Next.js<a class="ref" href="https://nextjs.org/docs/app/guides/ai-agents" target="_blank" rel="noopener">nextjs.org</a></span><span class="who">Version-matched docs and project instructions</span></li>
+                            <li class="reveal" style="--d:0.55s"><span class="what">shadcn<a class="ref" href="https://ui.shadcn.com/docs/skills" target="_blank" rel="noopener">ui.shadcn.com</a></span><span class="who">A skill over its CLI</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fix step">What I added is a comparison on real Kibana tickets, with and without docs.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 9: what I built
+                 Notes:
+                 - Two parts: docs where agents already look (slide 7), and a route
+                   to features they don't know to look for.
+                 - Agents rarely open index.md (1-4 of 12 runs); they ls or grep the
+                   folder, so flat file names got them to the right page (10/12). Claude
+                   Code followed the AGENTS.md pointer in 7/7. The skill's job is the
+                   features they don't search for: slides 12 and 14.
+                 - EUI side: generated from the website MDX at build time, with prop
+                   tables from eui-docgen (component source), so the docs
+                   match the installed version and nobody copies guidance by hand.
+                   Counts are from the held-out docs build: 158 pages = 136 component,
+                   15 pattern, 7 content, plus icons.md. Component pages link to
+                   their guidelines. Kibana side lives in AGENTS.md and
+                   .agents/skills/kibana-ui.
+                 - Paths are flat (components/<name>.md) because agents guessed
+                   category paths and got them wrong.
+                 - 13 component pages link to the pattern or content pages that use
+                   them. Agents rarely found a pattern page from a component page
+                   on their own.
+                 - index.md descriptions decide the pick. One loose phrase on
+                   EuiEmptyPrompt ("for loading or error states") sent G1 to an empty
+                   prompt instead of a callout.
+                 - Kibana side: the skill says Kibana components first (kbn-ui),
+                   then EUI, then "does EUI already do this?". The AGENTS.md pointer
+                   stays alongside it for agents that don't load skills.
+                 - Ownership: EUI owns components, patterns and copy. Kibana owns
+                   the skill, kbn-ui READMEs and convention lint (slide 15).
+                 - Until Kibana is on the EUI release with docs, the skill and pointer
+                   point at files that aren't there (slide 15).
+                 - Bridge: "Then I ran a bunch of Kibana tasks with and without the docs."
+                   Slide 10 is the overview; the held-out tie is 11; the skill on its own is 12 and 14.
+                 =========================================== -->
+            <section class="slide s-content s-built" data-title="What I built">
+                <div class="label reveal">What I built</div>
+                <h2 class="reveal">Kibana routes agents into the EUI docs.</h2>
+                <div class="route">
+                    <div class="line" aria-hidden="true"></div>
+                    <div class="stop kbn reveal" style="--d:0.2s"><span class="name"><code>AGENTS.md</code></span><span class="dot"></span><span class="desc">Points to the docs</span></div>
+                    <div class="stop kbn reveal" style="--d:0.4s"><span class="name"><code>/kibana-ui</code> skill</span><span class="dot"></span><span class="desc">Kibana first, then EUI</span></div>
+                    <div class="stop reveal" style="--d:0.6s"><span class="name"><code>index.md</code></span><span class="dot"></span><span class="desc">Lists every page</span></div>
+                    <div class="stop reveal" style="--d:0.8s"><span class="name">Component page</span><span class="dot"></span><span class="desc">Props and examples</span></div>
+                    <div class="stop reveal" style="--d:1s"><span class="name">Guidelines</span><span class="dot"></span><span class="desc">Patterns and copy</span></div>
+                    <div class="owner kbn reveal" style="--d:1.2s"><div class="label">Kibana owns</div></div>
+                    <div class="owner eui reveal" style="--d:1.3s"><div class="label">EUI owns</div><div class="gen">Generated from website docs and source</div><div class="where">node_modules/@elastic/eui/docs · 158 pages</div></div>
+                </div>
+                <p class="fix step">Then I ran a bunch of Kibana tasks with and without the docs.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 10: overview of ticket types
+                 Notes:
+                 - Say: "I split the tickets by the guidance they needed. Some were general
+                   changes where I didn't expect much benefit. Others had a specific EUI
+                   feature, an EUI guideline or a Kibana convention that should shape
+                   the solution."
+                 - These are reasons for picking a ticket, not exclusive categories. A form
+                   can touch all four; each ticket has one main question.
+                 - General changes test a possible downside. Say "same result on these
+                   tickets", not "docs don't make things worse".
+                 - Each type gets its own slide next, and each slide says what counts
+                   as a pass. The pass rules differ, so don't compare numbers across slides.
+                 - Blind agent review: a Sonnet subagent read each diff with the setup
+                   files stripped, so it couldn't tell which setup made it. Criteria were
+                   written before the runs. Nothing ran the UI.
+                 - "Docs + skill" is the full setup from slide 9. Every run starts from a
+                   fresh Kibana copy.
+                 - Run counts: docs + skill has 3 runs per task; the no-docs baselines
+                   have 1 to 5, from several batches. Each chart shows its own dots.
+                 - Tuning: I improved the docs, pointer and skill against the EUI feature,
+                   guideline and convention tasks until they passed. The general tickets
+                   came after, untouched.
+                 - Renamed or removed icons from slide 6 aren't one of these types: they're
+                   about using a valid API, not finding a feature. They come back with
+                   lint on slide 15.
+                 =========================================== -->
+            <section class="slide s-content s-kinds" data-title="Overview">
+                <div class="label reveal">What I tested</div>
+                <h2 class="reveal">Where should extra guidance help?</h2>
+                <div class="kinds">
+                    <div class="head reveal" style="--d:0.1s">Ticket type</div>
+                    <div class="head reveal" style="--d:0.1s">Example</div>
+                    <div class="head reveal" style="--d:0.1s">What I wanted to learn</div>
+                    <div class="row reveal" style="--d:0.2s"><span class="kind">General Kibana changes</span><span class="ex">Toggle between stacked and side-by-side panes</span><span class="pass">Does extra guidance help, distract or change nothing?</span></div>
+                    <div class="row reveal" style="--d:0.3s"><span class="kind">Built-in EUI solutions</span><span class="ex">Step between items in a flyout</span><span class="pass">Does the agent find and use what EUI already provides?</span></div>
+                    <div class="row reveal" style="--d:0.4s"><span class="kind">EUI guidelines</span><span class="ex">Add explanations to form fields</span><span class="pass">Does the agent follow EUI's design and content guidance?</span></div>
+                    <div class="row reveal" style="--d:0.5s"><span class="kind">Kibana conventions</span><span class="ex">Show a loading error with Retry</span><span class="pass">Does the agent use Kibana's preferred component?</span></div>
+                </div>
+                <p class="note reveal" style="--d:0.6s">I tuned the docs and skill for the last three types.</p>
+                <p class="meta reveal" style="--d:0.6s">No docs vs docs + skill · Claude Code + Sonnet · fresh Kibana copy per run · I graded the code, not the running UI</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 11: General Kibana changes
+                 Notes:
+                 - Say: "Agents got these right without the docs. I think the code nearby
+                   already showed the pattern."
+                 - That's my reading of why, from the transcripts: components
+                   the model knows, in code that already shows the pattern (Console already
+                   uses EuiResizableContainer). Three tickets don't prove it.
+                 - Three real Kibana tickets I never tuned the docs on (H3, H5, H6),
+                   three runs per setup. "Docs + skill" is the full setup from slide 9.
+                 - Pass = every acceptance criterion met, judged from the diff by a blind
+                   Sonnet subagent that couldn't tell which setup a diff came from. Criteria were
+                   written before the runs. I read every transcript too. Nothing ran the UI.
+                 - Say "same result on these tickets", not "docs don't make things worse".
+                 - Both misses are the Streams ticket, the same logic bug in both setups:
+                   onBlur still applies the condition, so the preview shifts anyway.
+                 - Conventions 8/9 vs 9/9. The one miss: a confirm button left at the
+                   default color.
+                 - Cost: median $0.20 per run with docs + skill vs $0.19 without.
+                 - Q&A, tuned cases: $0.19 vs $0.91 per passing run (24/24 vs 5/27). The
+                   no-docs runs span six batches, so it's not a clean comparison.
+                 - Bridge: "Next, tickets where EUI already has a feature for the job."
+                 =========================================== -->
+            <section class="slide s-content s-tasks" data-title="General Kibana changes">
+                <div class="label reveal">General Kibana changes</div>
+                <h2 class="reveal">Agents got these tickets mostly right without the docs.</h2>
+                <p class="lede reveal" style="--d:0.1s">Both setups met the acceptance criteria in 8 of 9 runs.</p>
+                <div class="tasks reveal" style="--d:0.2s">
+                    <div class="head"></div>
+                    <div class="head">No docs</div>
+                    <div class="head b">Docs + skill</div>
+                    <div class="task">Toggle side-by-side or stacked panes</div>
+                    <div class="cell"><i></i><i></i><i></i><b>3/3</b></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b></div>
+                    <div class="task">Warn before a risky save</div>
+                    <div class="cell"><i></i><i></i><i></i><b>3/3</b></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b></div>
+                    <div class="task">Apply condition edits with Cmd+Enter</div>
+                    <div class="cell"><i></i><i></i><i class="miss"></i><b>2/3</b></div>
+                    <div class="cell b"><i></i><i></i><i class="miss"></i><b>2/3</b></div>
+                </div>
+                <p class="meta reveal" style="--d:0.4s">3 tickets I never tuned on · 3 runs per setup · filled dot = met the acceptance criteria, by a blind agent review of the diff</p>
+                <p class="fix step">With docs + skill, agents read the docs in 7 of 9 runs, for about a cent more per run.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 12: Built-in EUI solutions
+                 Notes:
+                 - Say: "Without help, agents built their own version. They don't search
+                   for a feature they don't know exists."
+                 - Tuned: I improved the docs, pointer and skill on these tasks until they
+                   passed. This shows what I managed to fix, not how often it works on new
+                   tasks.
+                 - What I changed while tuning and kept general: flat docs layout so a
+                   grep finds EuiTextTruncate; the skill step that greps the docs for the
+                   feature in the ticket's own words. The flyout page description was
+                   written after F1; without the skill F1 was still 0/3 with it.
+                 - Pass = used the intended EUI feature (EuiTextTruncate, EuiSearchBar or
+                   EuiFieldSearch + EuiFilterGroup, flyout pagination, hasNotificationDot),
+                   by a regex grader and my read of each diff.
+                 - Choosing the feature isn't a working change: one APM run had a
+                   search/filter interaction bug the grader missed.
+                 - No-docs runs are thin and come from several batches: 3, 4, 1 and 1.
+                 - Unread dot (N1): hasNotificationDot is from an unreleased EUI change. I
+                   added it to the types in both setups (no runtime code), documented it
+                   in the docs setup only. It shows the agent picking up a prop newer than
+                   its training data. I tuned on N1 for several batches; earlier versions
+                   scored 1/3 and 2/3.
+                 - Step: same docs and pointer, skill removed. All three runs hand-rolled
+                   prev/next; two read only icons.md, one read no docs.
+                 - I removed the skill only on F1 and G1 (slide 14). An earlier batch
+                   with just the pointer (cc-avc-k1, one run per task) passed S9, N1 and
+                   H2, and 6/7 across its seven tasks vs 2/7 with no docs; the miss was
+                   F1. So the docs do part of the work, hence "not always".
+                 - Skill v1 scored F1 2/5 and G1 3/5. The fix was a step that greps the
+                   docs for the feature in the ticket's own words; agents had been
+                   searching only to confirm a plan they'd already made.
+                 - Backup if asked: made-up props HN1/HN2, discovery only.
+                 - Bridge: "Next, tickets where EUI has design and content guidelines."
+                 =========================================== -->
+            <section class="slide s-content s-tasks" data-title="Built-in EUI solutions">
+                <div class="label reveal">Built-in EUI solutions</div>
+                <h2 class="reveal">Without help, agents rebuilt EUI features.</h2>
+                <p class="lede reveal" style="--d:0.1s">The docs and skill make agents look for features they don't know exist.</p>
+                <div class="tasks built reveal" style="--d:0.2s">
+                    <div class="head"></div>
+                    <div class="head">No docs</div>
+                    <div class="head b">Docs + skill</div>
+                    <div class="task">Shorten long menu titles</div>
+                    <div class="cell"><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/3</b><small>Own CSS ellipsis</small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small>EuiTextTruncate</small></div>
+                    <div class="task">Add search and filters to a list</div>
+                    <div class="cell"><i class="miss"></i><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/4</b><small>Plain field and selects</small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small>EUI search and filters</small></div>
+                    <div class="task">Step between items in a flyout</div>
+                    <div class="cell"><i class="miss"></i><b>0/1</b><small>Own prev/next buttons</small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small>Built-in pagination</small></div>
+                    <div class="task">Show an unread dot on a button*</div>
+                    <div class="cell"><i class="miss"></i><b>0/1</b><small>Own dot</small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small>hasNotificationDot</small></div>
+                </div>
+                <p class="meta reveal" style="--d:0.4s">I tuned the docs and skill on these tasks · filled dot = used the built-in EUI feature</p>
+                <p class="meta reveal" style="--d:0.4s">* Unreleased prop, in the types only during the eval: shows discovery, not a working dot.</p>
+                <p class="fix step">A pointer wasn't always enough. Without the skill, flyout stepping was 0/3.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 13: EUI guidelines
+                 Notes:
+                 - Say: "Docs got agents to the guidelines. They followed a pattern they
+                   could copy, but not a page of copy rules."
+                 - Table (D1, report schedules table): pass = the documented pattern,
+                   scrollableInline + column minWidth + sticky actions. No docs 2/4 across
+                   batches; one miss only set responsiveBreakpoint. Docs + skill 3/3, from
+                   the tables page. Tuned: I added the sticky snippet after D1 first
+                   failed. Opus and Terra passed without docs, so the model can know it;
+                   Sonnet didn't reach for it.
+                 - Help text (X3, Ingest Pipelines flyout, patterns/help-content.md): pass
+                   = all five rules: term first, short body without a title, primary
+                   question icon, no link, tooltip. Docs + skill read the guide in 2/3
+                   runs (after I added backlinks; before, they read tooltip.md only). The
+                   third read tooltip.md, saw the backlink and didn't follow it.
+                   Term first 1/3, primary icon 1/3, all five 0/3. No docs 0/3, missing
+                   the same two rules. Short-body failures were a grader artifact; I
+                   corrected them.
+                 - Takeaway: finding a guideline and following it are separate problems.
+                   The second is open.
+                 - Bridge: "Next, tickets where Kibana has a preferred way to do it."
+                 =========================================== -->
+            <section class="slide s-content s-tasks" data-title="EUI guidelines">
+                <div class="label reveal">EUI guidelines</div>
+                <h2 class="reveal">Reading a guideline didn't mean following it.</h2>
+                <p class="lede reveal" style="--d:0.1s">A table layout they could copy worked. A list of help text rules didn't.</p>
+                <div class="tasks built reveal" style="--d:0.2s">
+                    <div class="head"></div>
+                    <div class="head">No docs</div>
+                    <div class="head b">Docs + skill</div>
+                    <div class="task">Make a table readable at any width</div>
+                    <div class="cell"><i></i><i></i><i class="miss"></i><i class="miss"></i><b>2/4</b><small>Half found the scrolling pattern</small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small>Followed the table guide</small></div>
+                    <div class="task">Add explanations to form fields</div>
+                    <div class="cell"><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/3</b><small>Missed term first and icon color</small></div>
+                    <div class="cell b"><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/3</b><small>Guide read in 2/3, none met all five rules</small></div>
+                </div>
+                <p class="meta reveal" style="--d:0.4s">I tuned the docs and skill on these tasks · filled dot = followed every rule in the guide</p>
+                <p class="fix step">Docs got agents to the guidelines. Following every rule is still open.</p>
+            </section>
+
+            <!-- ===========================================
+                 SLIDE 14: Kibana conventions
+                 Notes:
+                 - Say: "EUI's answer can be reasonable on its own. But inside Kibana, we
+                   sometimes have a wrapper or a different convention. The skill brings that
+                   context into the task and gives it priority where it applies. We keep the
+                   detailed guidance with the owning package."
+                 - Pass = chose the Kibana wrapper. The EUI choices work; the empty prompt
+                   fits that tab (the table is the whole tab). I read every diff; nothing ran
+                   in Kibana.
+                 - Matched comparison: same EUI docs and AGENTS.md pointer, skill removed vs on
+                   (abl-noskill: 2 EuiCallOut, 1 EuiEmptyPrompt; abl-v4: KbnDangerCallout 3/3,
+                   also 3/3 in an earlier batch). The whole skill is the treatment; it names
+                   @kbn/ui-callout, so this task is tuned.
+                 - Page header example (AH1, Hello World app, 3 runs per setup): "For page
+                   headers, the skill had to name the component." The first skill run found
+                   src/platform/kbn-ui/app-header, but its README didn't say to use it for page
+                   headers, so it used EuiPageTemplate.Header. Skill v4 names AppHeader and
+                   the chrome README; then the skill run used AppHeader. The README fix alone
+                   did nothing: the run without the skill never opened a README.
+                 - Counts: both rows are matched comparisons (same docs and pointer, k=3).
+                 - Expected question: "Does the skill have to name every Kibana component?"
+                   No. It points at kbn-ui first, and each package README says when to use
+                   it. AH1 missed until the app-header README said "use this for page
+                   headers"; the skill names only the components most tasks hit.
+                 - Loading: I saw 7/7 load it first; I didn't test which wording causes
+                   that. The description opens "How to build UI in Kibana. Load before any
+                   UI change...", so the skill is the agent's first read, before the plan
+                   forms. Final setup: 7/7 runs loaded kibana-ui first; EUI-specific pointers
+                   were read late or skipped. Claude loads it from the project skills folder;
+                   pi runs needed it passed with --skill.
+                 - Takeaway: a thin Kibana skill that names the preferred components can
+                   steer choices toward Kibana conventions. Both rows are rules the skill
+                   states outright.
+                 - Backup: G1 renders (deck-assets/g1-*.png).
+                 - Bridge: "So what would I ship?"
+                 =========================================== -->
+            <section class="slide s-content s-tasks" data-title="Kibana conventions">
+                <div class="label reveal">Kibana conventions</div>
+                <h2 class="reveal">A valid EUI choice isn't always Kibana's preferred choice.</h2>
+                <p class="lede reveal" style="--d:0.1s">The <code>/kibana-ui</code> skill tells agents when to use a Kibana wrapper or convention instead of the generic EUI option.</p>
+                <ol class="path reveal" style="--d:0.15s">
+                    <li class="k">Check Kibana guidance</li><span aria-hidden="true">→</span>
+                    <li class="k">Use its preferred component where it applies</li><span aria-hidden="true">→</span>
+                    <li>Otherwise use EUI</li>
+                </ol>
+                <div class="tasks kbn reveal" style="--d:0.2s">
+                    <div class="head"></div>
+                    <div class="head">Same EUI docs, without the skill</div>
+                    <div class="head b">With the <code>/kibana-ui</code> skill</div>
+                    <div class="task">Show a loading error with Retry</div>
+                    <div class="cell"><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/3</b><small><code>EuiCallOut</code> or <code>EuiEmptyPrompt</code></small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small><code>KbnDangerCallout</code></small></div>
+                    <div class="task">Turn an example app into a page</div>
+                    <div class="cell"><i class="miss"></i><i class="miss"></i><i class="miss"></i><b>0/3</b><small><code>EuiPageTemplate.Header</code></small></div>
+                    <div class="cell b"><i></i><i></i><i></i><b>3/3</b><small><code>AppHeader</code></small></div>
+                </div>
+                <p class="load reveal" style="--d:0.25s">Agents loaded it first in 7/7 runs. Its description says “Load before any UI change.”</p>
+                <p class="fix step">The skill names the Kibana component and links its README.</p>
+            </section>
+
+
+            <!-- ===========================================
+                 SLIDE 15: what I'd do next
+                 Notes:
+                 - Say: "Next is delivering this: the docs in the EUI package and the
+                   Kibana skill."
+                 - Step line answers slide 1's "Do we need to do anything?"
+                 - EUI row answers slide 13: the copyable table worked and the help text
+                   rule list didn't, so turn rule lists into examples. Lint can take the
+                   mechanical rules (sentence case, term first).
+                 - Kibana row carries the order: the skill and pointer need the EUI
+                   release with docs first.
+                 - Expected question: "Won't a better model fix this?" Partly. Opus and
+                   Terra passed the table task without docs; Sonnet didn't. pi read the docs
+                   far less than Claude Code with the same files. Built-ins newer than the
+                   model (hasNotificationDot) and Kibana conventions still need the route.
+                 - Expected question: "So it only helps where you tuned it?" On the 3
+                   held-out tickets docs changed nothing, good or bad (slide 11). Every gain
+                   is on tuned tickets. Whether it carries over to new tickets is the main
+                   open question, and the eval after delivery answers it.
+                 - EUI: the docs are built from the website MDX into @elastic/eui/docs, so
+                   they match the installed version. Component pages link to the pattern
+                   and content pages that use them. Pending: the release copy step.
+                 - Kibana: the kibana-ui skill (kbn-ui first, then EUI, then "does EUI
+                   already do this?"), the AGENTS.md pointer, and the app-header README fix.
+                 - Checks, invalid APIs: removed icons showed up in almost every
+                   icon-touching run. I1 "copy workflow ID": no docs used copyClipboard
+                   0/5; docs fixed it on that tuned case 3/3, but a check should own this
+                   class (elastic/eui#10269). Lint messages that named the fix were
+                   followed (arrowDown -> chevronSingleDown, copyClipboard -> copy);
+                   "Consider adding href..." was skipped. Small sample; wording and error
+                   vs warn not isolated.
+                 - Checks, repeatable mistakes: deprecated page-header APIs, hand-rolled
+                   truncation, EuiBasicTable actions without onClick/href. Run in oxlint
+                   (~5 s); single-file eslint took 109-164 s, which agents won't wait for.
+                 - Not on the slide: the eval graded diffs; nothing ran the UI. Driving the
+                   changed UI is the next eval step.
+                 - Order: until Kibana is on the EUI release with docs, the pointer and
+                   skill point at files that aren't there.
+                 - Owners: EUI for docs and the website source; kbn-ui and chrome owners
+                   for READMEs and convention lint; UX for patterns.
+                 - Eval, after delivery: freeze the setup, new held-out tickets (drift and Kibana
+                   conventions), other agents.
+                 - Fits the Agent-Ready design system epic (elastic/kibana-team#3100) and
+                   Weronika's July plan: EUI row = auto-generated docs from the website MDX,
+                   one source of truth (her 2026-05-18 call, no parallel catalog); Kibana row
+                   = kbn-ui routing in Kibana skills, the epic goal "choose KBN-UI over EUI
+                   when relevant"; Checks = more ESLint and the deprecated/removed-API goal;
+                   the eval after delivery = benchmark each step (#3535).
+                 - Where it differs: her plan leads with JSDoc/types and a thin EUI-owned
+                   SKILL.md (#3766). I lead with docs because F1's pagination JSDoc was on
+                   disk and no-docs runs still missed it. The skill that worked is
+                   Kibana-owned because it loads first on any UI task; an EUI skill can sit
+                   behind it. Harnesses differ: pi read the docs far less than Claude Code
+                   (slide 7 notes). Cursor, Copilot and other models weren't tested (an
+                   epic goal).
+                 - Docs examples: agents copy them verbatim. Three examples passed an
+                   invalid size to EuiContextMenuPanel and P1 failed tsc on it; a stale
+                   prop comment naming arrowDown was copied in S5.
+                 =========================================== -->
+            <section class="slide s-content s-ship" data-title="What I'd do next">
+                <div class="label reveal">What I'd do next</div>
+                <h2 class="reveal">Make the preferred solution easier to find.</h2>
+                <div class="ship">
+                    <div class="row reveal" style="--d:0.2s"><span class="who">EUI</span><span class="what">Ship generated docs in the package. Agents copy examples verbatim, so fix inconsistent ones and turn rule lists into examples.</span></div>
+                    <div class="row reveal" style="--d:0.3s"><span class="who">Kibana</span><span class="what">After that EUI release, add a thin <code>/kibana-ui</code> skill: Kibana components first, then EUI.</span></div>
+                    <div class="row reveal" style="--d:0.4s"><span class="who">Checks</span><span class="what">Lint removed icon names first, then repeated mistakes. Each message names the fix.</span></div>
+                </div>
+                <p class="fix step">So yes, agents need a route to what they don't know to look for.</p>
+                <p class="meta reveal" style="--d:0.5s">Epic: <a href="https://github.com/elastic/kibana-team/issues/3100">github.com/elastic/kibana-team/issues/3100</a></p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ===========================================
+         DECK CHROME: progress, edit and comment toggles
+         =========================================== -->
+    <div class="progress" id="progress"></div>
+    <div class="flash" id="flash"></div>
+    <div class="edit-hotzone"></div>
+    <button class="edit-toggle" id="editToggle" title="Edit mode (E)">✏️</button>
+    <button class="comment-toggle" id="commentToggle" title="Comment mode (C)">💬</button>
+    <div class="comment-panel" id="commentPanel">
+        <span id="commentCount"></span>
+        <button id="copyComments">Copy comments</button>
+        <button id="clearComments" class="secondary">Clear</button>
+    </div>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           Arrows / Space / PageUp/Down / wheel / swipe.
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.stage = document.getElementById('deckStage');
+                this.progress = document.getElementById('progress');
+                this.setupStageScale();
+                this.setupKeyboardNav();
+                this.setupTouchNav();
+                this.setupWheelNav();
+                const fromHash = parseInt(location.hash.slice(1), 10);
+                this.showSlide(Number.isFinite(fromHash) ? fromHash - 1 : 0);
+            }
+
+            setupStageScale() {
+                const scale = () => {
+                    const factor = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+                    const x = (window.innerWidth - 1920 * factor) / 2;
+                    const y = (window.innerHeight - 1080 * factor) / 2;
+                    this.stage.style.transform = `translate(${x}px, ${y}px) scale(${factor})`;
+                };
+                scale();
+                window.addEventListener('resize', scale);
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.getAttribute && e.target.getAttribute('contenteditable') === 'true') return;
+                    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) {
+                        e.preventDefault();
+                        this.next();
+                    } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) {
+                        e.preventDefault();
+                        this.prev();
+                    } else if (e.key === 'Home') {
+                        this.showSlide(0);
+                    } else if (e.key === 'End') {
+                        this.showSlide(this.slides.length - 1);
+                    }
+                });
+            }
+
+            setupTouchNav() {
+                let startX = null;
+                document.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+                document.addEventListener('touchend', (e) => {
+                    if (startX === null) return;
+                    const dx = e.changedTouches[0].clientX - startX;
+                    if (Math.abs(dx) > 50) (dx < 0 ? this.next() : this.prev());
+                    startX = null;
+                });
+            }
+
+            setupWheelNav() {
+                let locked = false;
+                document.addEventListener('wheel', (e) => {
+                    if (locked || Math.abs(e.deltaY) < 30) return;
+                    locked = true;
+                    e.deltaY > 0 ? this.next() : this.prev();
+                    setTimeout(() => { locked = false; }, 700);
+                }, { passive: true });
+            }
+
+            next() {
+                const hidden = this.slides[this.currentSlide].querySelector('.step:not(.shown)');
+                if (hidden) hidden.classList.add('shown');
+                else this.showSlide(this.currentSlide + 1);
+            }
+
+            // Going back into a slide shows it fully built.
+            prev() {
+                const shown = this.slides[this.currentSlide].querySelectorAll('.step.shown');
+                if (shown.length) shown[shown.length - 1].classList.remove('shown');
+                else this.showSlide(this.currentSlide - 1, true);
+            }
+
+            showSlide(index, built = false) {
+                this.currentSlide = Math.max(0, Math.min(index, this.slides.length - 1));
+                this.slides[this.currentSlide].querySelectorAll('.step').forEach((el) => el.classList.toggle('shown', built));
+                this.slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === this.currentSlide);
+                    slide.classList.toggle('visible', i === this.currentSlide);
+                });
+                this.progress.style.width = ((this.currentSlide + 1) / this.slides.length * 100) + '%';
+                history.replaceState(null, '', '#' + (this.currentSlide + 1));
+            }
+        }
+
+        const deck = new SlidePresentation();
+
+        /* ===========================================
+           INLINE EDITING
+           E toggles. Edits autosave to localStorage; Cmd/Ctrl+S downloads the edited file.
+           =========================================== */
+        class InlineEditor {
+            constructor() {
+                this.isActive = false;
+                this.storageKey = 'deck-edits:' + location.pathname;
+                this.flashEl = document.getElementById('flash');
+                this.editable = () => document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide p, .slide li');
+                this.restore();
+            }
+            toggleEditMode() {
+                this.isActive = !this.isActive;
+                document.body.classList.toggle('editing', this.isActive);
+                this.editable().forEach((el) => el.setAttribute('contenteditable', this.isActive ? 'true' : 'false'));
+                editToggle.classList.toggle('active', this.isActive);
+                editToggle.classList.toggle('show', this.isActive);
+                if (!this.isActive) this.save();
+                this.flash(this.isActive ? 'Editing: click text to change it, E to exit' : 'Edits saved locally');
+            }
+            save() {
+                const data = Array.from(this.editable()).map((el) => el.innerHTML);
+                try { localStorage.setItem(this.storageKey, JSON.stringify(data)); } catch (e) {}
+            }
+            restore() {
+                let data = null;
+                try { data = JSON.parse(localStorage.getItem(this.storageKey) || 'null'); } catch (e) {}
+                if (!data) return;
+                const els = this.editable();
+                if (els.length !== data.length) return;
+                els.forEach((el, i) => { el.innerHTML = data[i]; });
+            }
+            exportFile() {
+                this.save();
+                const clone = document.documentElement.cloneNode(true);
+                clone.querySelectorAll('[contenteditable]').forEach((el) => el.removeAttribute('contenteditable'));
+                clone.querySelectorAll('.comment-pin').forEach((el) => el.remove());
+                clone.querySelectorAll('.comment-hover').forEach((el) => el.classList.remove('comment-hover'));
+                clone.querySelector('body').classList.remove('commenting', 'editing');
+                const blob = new Blob(['<!DOCTYPE html>\n' + clone.outerHTML], { type: 'text/html' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = location.pathname.split('/').pop() || 'deck.html';
+                a.click();
+                this.flash('Downloaded edited file');
+            }
+            flash(text) {
+                this.flashEl.textContent = text;
+                this.flashEl.classList.add('show');
+                clearTimeout(this.flashTimer);
+                this.flashTimer = setTimeout(() => this.flashEl.classList.remove('show'), 1800);
+            }
+        }
+
+        const editToggle = document.getElementById('editToggle');
+        const commentToggle = document.getElementById('commentToggle');
+        const hotzone = document.querySelector('.edit-hotzone');
+        const editor = new InlineEditor();
+        let hideTimeout = null;
+
+        editToggle.addEventListener('click', () => {
+            if (comments.isActive) comments.toggle();
+            editor.toggleEditMode();
+        });
+        hotzone.addEventListener('click', () => {
+            if (comments.isActive) comments.toggle();
+            editor.toggleEditMode();
+        });
+
+        const showToggles = () => {
+            clearTimeout(hideTimeout);
+            editToggle.classList.add('show');
+            commentToggle.classList.add('show');
+        };
+        const scheduleHideToggles = () => {
+            hideTimeout = setTimeout(() => {
+                if (!editor.isActive) editToggle.classList.remove('show');
+                if (!comments.isActive) commentToggle.classList.remove('show');
+            }, 400);
+        };
+        [hotzone, editToggle, commentToggle].forEach((el) => {
+            el.addEventListener('mouseenter', showToggles);
+            el.addEventListener('mouseleave', scheduleHideToggles);
+        });
+
+        /* ===========================================
+           COMMENT MODE
+           Notes are stored in localStorage per slide and element index.
+           "Copy comments" puts a Markdown list on the clipboard to paste back to the author.
+           =========================================== */
+        const COMMENTABLE = 'h1, h2, h3, p, li, td, th, figcaption, figure, pre, blockquote, .kicker, .ticket, .panel, .slide';
+
+        class CommentMode {
+            constructor() {
+                this.isActive = false;
+                this.storageKey = 'deck-comments:' + location.pathname;
+                try { this.comments = JSON.parse(localStorage.getItem(this.storageKey) || '[]'); } catch (e) { this.comments = []; }
+                this.panelCount = document.getElementById('commentCount');
+                this.hovered = null;
+
+                document.addEventListener('click', (e) => this.onClick(e), true);
+                document.addEventListener('mouseover', (e) => this.onHover(e));
+                document.getElementById('copyComments').addEventListener('click', () => this.copy());
+                document.getElementById('clearComments').addEventListener('click', () => {
+                    if (!confirm('Delete all comments?')) return;
+                    this.comments = [];
+                    this.persist();
+                });
+                this.renderPins();
+            }
+
+            toggle() {
+                if (editor.isActive) editor.toggleEditMode();
+                this.isActive = !this.isActive;
+                document.body.classList.toggle('commenting', this.isActive);
+                commentToggle.classList.toggle('active', this.isActive);
+                commentToggle.classList.toggle('show', this.isActive);
+                if (!this.isActive) this.setHovered(null);
+                this.renderPins();
+                editor.flash(this.isActive ? 'Commenting: click anything to add a note, C to exit' : 'Comments saved locally');
+            }
+
+            targetsOf(slide) {
+                return [slide, ...slide.querySelectorAll(COMMENTABLE)];
+            }
+
+            targetFor(node) {
+                const slide = node.closest && node.closest('.slide.active');
+                return slide ? node.closest(COMMENTABLE) : null;
+            }
+
+            setHovered(el) {
+                if (this.hovered) this.hovered.classList.remove('comment-hover');
+                this.hovered = el && !el.classList.contains('slide') ? el : null;
+                if (this.hovered) this.hovered.classList.add('comment-hover');
+            }
+
+            onHover(e) {
+                if (!this.isActive) return;
+                this.setHovered(e.target.closest('.comment-pin') ? null : this.targetFor(e.target));
+            }
+
+            onClick(e) {
+                if (!this.isActive) return;
+                const pin = e.target.closest('.comment-pin');
+                if (pin) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.edit(Number(pin.dataset.id));
+                    return;
+                }
+                const target = this.targetFor(e.target);
+                if (!target) return;
+                e.preventDefault();
+                e.stopPropagation();
+                const slide = target.closest('.slide');
+                const slideIndex = Array.from(deck.slides).indexOf(slide);
+                const note = prompt('Comment on slide ' + (slideIndex + 1) + ':');
+                if (!note || !note.trim()) return;
+                this.comments.push({
+                    id: Date.now(),
+                    slide: slideIndex,
+                    el: this.targetsOf(slide).indexOf(target),
+                    kind: target.classList.contains('slide') ? 'slide' : target.tagName.toLowerCase(),
+                    quote: this.quoteOf(target),
+                    note: note.trim(),
+                });
+                this.persist();
+            }
+
+            edit(id) {
+                const comment = this.comments.find((c) => c.id === id);
+                const note = prompt('Edit comment (empty to delete):', comment.note);
+                if (note === null) return;
+                if (note.trim()) comment.note = note.trim();
+                else this.comments = this.comments.filter((c) => c.id !== id);
+                this.persist();
+            }
+
+            quoteOf(el) {
+                if (el.classList.contains('slide')) return '(whole slide)';
+                const img = el.matches('figure') && el.querySelector('img');
+                if (img) return 'image ' + img.getAttribute('src');
+                const text = el.textContent.replace(/\s+/g, ' ').trim();
+                return text.length > 90 ? text.slice(0, 90) + '…' : text;
+            }
+
+            persist() {
+                try { localStorage.setItem(this.storageKey, JSON.stringify(this.comments)); } catch (e) {}
+                this.renderPins();
+            }
+
+            // Offsets ignore the stage transform and .reveal transforms, so pins land in 1920×1080 slide coordinates.
+            offsetIn(el, slide) {
+                let x = 0, y = 0;
+                for (let node = el; node && node !== slide; node = node.offsetParent) {
+                    x += node.offsetLeft;
+                    y += node.offsetTop;
+                }
+                return { x, y };
+            }
+
+            renderPins() {
+                document.querySelectorAll('.comment-pin').forEach((pin) => pin.remove());
+                this.comments.forEach((comment, i) => {
+                    const slide = deck.slides[comment.slide];
+                    if (!slide) return;
+                    const target = this.targetsOf(slide)[comment.el] || slide;
+                    const { x, y } = target === slide ? { x: 24, y: 24 } : this.offsetIn(target, slide);
+                    const pin = document.createElement('div');
+                    pin.className = 'comment-pin';
+                    pin.dataset.id = comment.id;
+                    pin.textContent = i + 1;
+                    pin.title = comment.note;
+                    pin.style.left = Math.max(4, x - 20) + 'px';
+                    pin.style.top = Math.max(4, y - 20) + 'px';
+                    slide.appendChild(pin);
+                });
+                this.panelCount.textContent = this.comments.length + ' comment' + (this.comments.length === 1 ? '' : 's');
+            }
+
+            toMarkdown() {
+                const lines = ['Deck comments (' + (location.pathname.split('/').pop() || 'deck') + ')'];
+                const sorted = this.comments.map((c, i) => ({ ...c, n: i + 1 })).sort((a, b) => a.slide - b.slide || a.n - b.n);
+                let lastSlide = -1;
+                sorted.forEach((c) => {
+                    if (c.slide !== lastSlide) {
+                        lastSlide = c.slide;
+                        lines.push('', 'Slide ' + (c.slide + 1) + ' · ' + (deck.slides[c.slide]?.dataset.title || ''));
+                    }
+                    lines.push('- #' + c.n + ' [' + c.kind + '] "' + c.quote + '" → ' + c.note);
+                });
+                return lines.join('\n');
+            }
+
+            // file:// pages may not get navigator.clipboard, so fall back to execCommand.
+            copy() {
+                const text = this.toMarkdown();
+                const fallback = () => {
+                    const area = document.createElement('textarea');
+                    area.value = text;
+                    document.body.appendChild(area);
+                    area.select();
+                    document.execCommand('copy');
+                    area.remove();
+                };
+                (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+                    .catch(fallback)
+                    .finally(() => editor.flash('Copied ' + this.comments.length + ' comments'));
+            }
+        }
+
+        const comments = new CommentMode();
+        commentToggle.addEventListener('click', () => comments.toggle());
+
+        /* ===========================================
+           MODE SHORTCUTS: E edit, C comment, Cmd/Ctrl+S save
+           =========================================== */
+        document.addEventListener('keydown', (e) => {
+            const typing = (e.target.getAttribute && e.target.getAttribute('contenteditable') === 'true') || e.metaKey || e.ctrlKey;
+            if ((e.key === 'e' || e.key === 'E') && !typing) {
+                if (comments.isActive) comments.toggle();
+                editor.toggleEditMode();
+            }
+            if ((e.key === 'c' || e.key === 'C') && !typing) {
+                comments.toggle();
+            }
+            if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+                e.preventDefault();
+                editor.exportFile();
+            }
+        });
+    </script>
+</body>
+</html>
