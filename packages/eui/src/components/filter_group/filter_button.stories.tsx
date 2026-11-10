@@ -25,7 +25,7 @@ const meta: Meta<EuiFilterButtonProps> = {
     // Component defaults
     iconSide: 'right',
     color: 'text',
-    badgeColor: 'accent',
+    badgeColor: 'primary',
     grow: true,
     isToggle: false,
     isSelected: false,

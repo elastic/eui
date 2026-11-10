@@ -115,7 +115,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters renders 1`]
       >
         <span
           aria-label="5 active filters"
-          class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-accent-euiFilterButton__notification"
+          class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-primary-euiFilterButton__notification"
           role="marquee"
         >
           5
