@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { useContext } from 'react';
 import { css } from '@emotion/react';
 
 import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
@@ -19,6 +20,7 @@ import {
 import { euiTableVariables } from './table.styles';
 import { EUI_TABLE_CSS_CONTAINER_NAME } from './const';
 import { EuiTableStickyCellOptions } from './types';
+import { EuiTableVariantContext } from './table_context';
 
 export const euiTableHeaderFooterCellStyles = (
   euiThemeContext: UseEuiTheme
@@ -105,6 +107,9 @@ export const euiTableCellCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
+  // POC: needs design input — final fill for sticky cells on glass surfaces while scrolling
+  const scrollingBackground = `var(--euiTableCellStickyBackgroundColor, ${euiTheme.colors.backgroundBaseRecessed})`;
+
   return {
     root: css`
       position: sticky;
@@ -139,6 +144,33 @@ const euiTableStickyCellStyles = ({ euiTheme }: UseEuiTheme) => {
         inset-inline-end: 0;
       `,
     },
+    // POC: transparent sticky cells for `hasBackground: false` tables
+    transparent: {
+      start: css`
+        background-color: var(--euiTableCellStickyBackgroundColor, transparent);
+
+        /* stylelint-disable selector-type-no-unknown, selector-type-case */
+        ${euiContainerQuery(
+          'scroll-state(scrollable: left)',
+          EUI_TABLE_CSS_CONTAINER_NAME
+        )} {
+          background-color: ${scrollingBackground};
+        }
+        /* stylelint-enable */
+      `,
+      end: css`
+        background-color: var(--euiTableCellStickyBackgroundColor, transparent);
+
+        /* stylelint-disable selector-type-no-unknown, selector-type-case */
+        ${euiContainerQuery(
+          'scroll-state(scrollable: right)',
+          EUI_TABLE_CSS_CONTAINER_NAME
+        )} {
+          background-color: ${scrollingBackground};
+        }
+        /* stylelint-enable */
+      `,
+    },
   };
 };
 
@@ -149,10 +181,15 @@ export const _useEuiTableStickyCellStyles = (
   options?: EuiTableStickyCellOptions
 ) => {
   const styles = useEuiMemoizedStyles(euiTableStickyCellStyles);
+  const { hasBackground } = useContext(EuiTableVariantContext);
 
   if (!options) {
     return undefined;
   }
 
-  return [styles.root, styles.side[options.side]];
+  return [
+    styles.root,
+    styles.side[options.side],
+    !hasBackground && styles.transparent[options.side],
+  ];
 };

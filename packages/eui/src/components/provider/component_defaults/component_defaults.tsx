@@ -44,6 +44,7 @@ export type EuiComponentDefaults = {
    * Provide a global configuration for EuiTable's.
    *
    * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
+   * Includes `hasBackground` so apps can opt tables into a transparent surface.
    */
   EuiTable?: Pick<
     EuiTableProps,
@@ -52,6 +53,7 @@ export type EuiComponentDefaults = {
     | 'tableLayout'
     | 'stickyScrollbar'
     | 'stickyHeader'
+    | 'hasBackground'
   >;
 
   /**
@@ -121,13 +123,20 @@ export const usePropsWithComponentDefaults = <
 
   const componentDefaults = context[componentName] ?? emptyDefaults;
 
-  return useMemo(
-    () => ({
+  return useMemo(() => {
+    // Skip `undefined` overrides so wrappers (e.g. EuiBasicTable → EuiTable)
+    // that forward unset props don't wipe provider defaults.
+    const definedProps = Object.fromEntries(
+      Object.entries(props as Record<string, unknown>).filter(
+        ([, value]) => value !== undefined
+      )
+    ) as TComponentProps;
+
+    return {
       ...componentDefaults,
-      ...props,
-    }),
-    [componentDefaults, props]
-  );
+      ...definedProps,
+    };
+  }, [componentDefaults, props]);
 };
 
 /*
