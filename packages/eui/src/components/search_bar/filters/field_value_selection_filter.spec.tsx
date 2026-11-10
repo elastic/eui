@@ -197,19 +197,24 @@ describe('FieldValueSelectionFilter', () => {
         .should('have.attr', 'aria-selected', 'false')
         .click();
       cy.get('.euiNotificationBadge').should('have.text', '1');
+
+      // Multiselect false closes the popover after each selection
+      cy.get('.euiPopover__panel').should('not.exist');
+      cy.get('button').click();
       cy.contains('li[role="option"]', 'feature').should(
         'have.attr',
         'aria-selected',
         'true'
       );
 
-      // Multiselect false should close the popover, so we need to re-open it
-      cy.get('button').click();
       cy.contains('li[role="option"]', 'bug')
         .should('have.attr', 'aria-selected', 'false')
         .click();
       // Filter count should have remained at 1
       cy.get('.euiNotificationBadge').should('have.text', '1');
+
+      cy.get('.euiPopover__panel').should('not.exist');
+      cy.get('button').click();
       cy.contains('li[role="option"]', 'bug').should(
         'have.attr',
         'aria-selected',

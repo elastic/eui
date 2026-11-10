@@ -1466,40 +1466,52 @@ describe('EuiDataGrid', () => {
 
   describe('column sorting', () => {
     it('calls the onSort callback', () => {
-      const onSort = jest.fn((columns) => {
-        component.setProps({ sorting: { columns, onSort } });
-        component.update();
-      });
+      const onSort = jest.fn();
 
-      const component = mount(
-        <EuiDataGrid
-          aria-labelledby="#test"
-          columns={[{ id: 'ColumnA' }]}
-          columnVisibility={{
-            visibleColumns: ['ColumnA'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={1}
-          sorting={{
-            columns: [],
-            onSort,
-          }}
-          renderCellValue={() => 'hello'}
-        />
+      const TestGrid = () => {
+        const [sortingColumns, setSortingColumns] = useState<
+          NonNullable<EuiDataGridProps['sorting']>['columns']
+        >([]);
+
+        return (
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'ColumnA' }]}
+            columnVisibility={{
+              visibleColumns: ['ColumnA'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={1}
+            sorting={{
+              columns: sortingColumns,
+              onSort: (columns) => {
+                onSort(columns);
+                setSortingColumns(columns);
+              },
+            }}
+            renderCellValue={() => 'hello'}
+          />
+        );
+      };
+
+      const { getByTestSubject } = render(<TestGrid />);
+      fireEvent.click(getByTestSubject('dataGridColumnSortingButton'));
+      fireEvent.click(getByTestSubject('dataGridColumnSortingSelectionButton'));
+      fireEvent.click(
+        getByTestSubject('dataGridColumnSortingPopoverColumnSelection-ColumnA')
       );
-
-      sortByColumn(component, 'ColumnA', 'desc');
-
-      expect(onSort).toHaveBeenCalledTimes(2);
       expect(onSort).toHaveBeenCalledWith([
         { id: 'ColumnA', direction: 'asc' },
       ]);
+
+      fireEvent.click(
+        getByTestSubject('euiDataGridColumnSorting-sortColumn-ColumnA-desc')
+      );
       expect(onSort).toHaveBeenCalledWith([
         { id: 'ColumnA', direction: 'desc' },
       ]);
 
-      const [, sortDirection] = getColumnSortDirection(component, 'ColumnA');
-      expect(sortDirection).toBe('desc');
+      fireEvent.click(getByTestSubject('dataGridColumnSortingButton'));
     });
 
     describe('in-memory sorting', () => {
@@ -1957,6 +1969,8 @@ describe('EuiDataGrid', () => {
         );
         expect(actionGroup.render()).toMatchSnapshot();
       }
+
+      component.unmount();
     });
   });
 

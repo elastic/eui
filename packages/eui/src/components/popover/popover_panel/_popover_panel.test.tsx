@@ -31,7 +31,9 @@ describe('EuiPopoverPanel', () => {
     });
 
     test('isAttached is rendered', () => {
-      const { container } = render(<EuiPopoverPanel isOpen />);
+      const { container } = render(
+        <EuiPopoverPanel isOpen isAttached position="bottom" />
+      );
 
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -39,7 +41,9 @@ describe('EuiPopoverPanel', () => {
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
-          const { container } = render(<EuiPopoverPanel position={position} />);
+          const { container } = render(
+            <EuiPopoverPanel isOpen position={position} />
+          );
 
           expect(container.firstChild).toMatchSnapshot();
         });
