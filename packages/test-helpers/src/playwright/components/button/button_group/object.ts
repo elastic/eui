@@ -101,10 +101,7 @@ const labelsOf = (buttons: Locator): Promise<string[]> =>
           .join(' ')
           .trim();
       }
-      return (
-        element.getAttribute('aria-label') ??
-        element.textContent ??
-        ''
-      ).trim();
+      const label = element.getAttribute('aria-label')?.trim();
+      return label || (element.textContent ?? '').trim();
     })
   );
