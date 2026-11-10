@@ -1,8 +1,8 @@
-## [`v2.6.0`](https://github.com/elastic/eui/releases/v2.6.0)
+## [`v2.6.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.6.0)
 
 - Added new `require-table-caption` rule. ([#9168](https://github.com/elastic/eui/pull/9168))
 
-## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v107.0.1)
 
 - Added new `accessible-interactive-element` rule. ([#9093](https://github.com/elastic/eui/pull/9093))
 - Added new `tooltip-focusable-anchor` rule. ([#9051](https://github.com/elastic/eui/pull/9051))

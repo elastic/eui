@@ -102,6 +102,7 @@ const buildMockManagerState = ({
     level: string;
     size: string;
     width?: number;
+    maximized?: boolean;
     minWidth?: number;
     resizable?: boolean;
   } | null,
@@ -838,6 +839,41 @@ describe('layout_mode', () => {
       // Should maintain side-by-side layout for fill flyouts
       expect(mockDispatch).toHaveBeenCalledWith(
         mockSetLayoutMode(LAYOUT_MODE_SIDE_BY_SIDE)
+      );
+    });
+
+    it('should stay side-by-side when a maximized parent and its child fill the reference width', () => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        value: 1200,
+      });
+
+      const mockDispatch = jest.fn();
+      mockUseFlyoutManager.mockReturnValue({
+        state: buildMockManagerState({
+          layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+          mainFlyout: {
+            flyoutId: 'main-1',
+            level: 'main',
+            size: 'm',
+            // Fills everything the child doesn't use: 100% together
+            width: 900,
+            maximized: true,
+          },
+          childFlyout: {
+            flyoutId: 'child-1',
+            level: 'child',
+            size: 's',
+            width: 300,
+          },
+        }),
+        dispatch: mockDispatch,
+      });
+
+      render(<TestComponent />);
+
+      expect(mockDispatch).not.toHaveBeenCalledWith(
+        mockSetLayoutMode(LAYOUT_MODE_STACKED)
       );
     });
 
