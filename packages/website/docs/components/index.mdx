@@ -2,41 +2,312 @@
 sidebar_position: 1
 ---
 
+import {
+  EuiAgentLoader,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiLoadingChart,
+  EuiLoadingElasticRing,
+  EuiLoadingSpinner,
+  EuiShimmeringText,
+} from '@elastic/eui';
 import { OverviewLinkCards } from './_overview_link_cards';
+import buttonImage from './assets/button.png';
+import buttonGroupImage from './assets/button-group.png';
+import filterGroupImage from './assets/filter-group.png';
+import keyPadMenuImage from './assets/key-pad-menu.png';
+import splitButtonImage from './assets/split-button.png';
+import flexImage from './assets/flex.png';
+import flexGridsImage from './assets/flex-grids.png';
+import flexGroupsImage from './assets/flex-groups.png';
+import flexItemsImage from './assets/flex-items.png';
+import formsOverviewImage from './assets/forms-overview.png';
+import datePickerImage from './assets/date-picker.png';
+import checkboxImage from './assets/checkbox.png';
+import passwordImage from './assets/password.png';
+import switchImage from './assets/switch.png';
+import accordionImage from './assets/accordion.png';
+import calloutImage from './assets/callout.png';
+import iconsImage from './assets/icons.png';
+import illustrationsImage from './assets/illustrations.png';
+import panelImage from './assets/panel.png';
+import tabsImage from './assets/tabs.png';
+import basicTableImage from './assets/basic-table.png';
+import cardImage from './assets/card.png';
 
 # Overview
 
 EUI offers a wide variety of components. Individual pages include live examples, usage recommendations, guidelines, and props. Browse the sidebar alphabetically for the full catalog, or jump into popular components below.
 
-## Popular components
+## Buttons
 
 <OverviewLinkCards
-  variant="primary"
   items={[
-    { label: 'Badge', href: './display/badge/' },
-    { label: 'Button', href: './navigation/buttons/button/' },
-    { label: 'Callout', href: './display/callout/' },
-    { label: 'Empty prompt', href: './display/empty-prompt/' },
-    { label: 'Flyout', href: './containers/flyout/' },
-    { label: 'Forms', href: './forms/layouts/usage/' },
-    { label: 'Icons', href: './display/icons/' },
-    { label: 'Illustrations', href: './display/illustrations/' },
-    { label: 'Loading', href: './display/loading/' },
-    { label: 'Modal', href: './containers/modal/' },
-    { label: 'Panel', href: './containers/panel/' },
-    { label: 'Tables', href: './tables/' },
+    {
+      label: 'Button',
+      href: './navigation/buttons/button/',
+      image: buttonImage,
+      description:
+        'Buttons enable user actions and are crucial for forms, modals, toolbars, and interactive pages. These guidelines detail their optimal configuration and placement.',
+    },
+    {
+      label: 'Button group',
+      href: './navigation/buttons/group/',
+      image: buttonGroupImage,
+      description: 'EuiButtonGroup groups related buttons together.',
+    },
+    {
+      label: 'Filter group',
+      href: './navigation/buttons/filter-group/',
+      image: filterGroupImage,
+      description:
+        'Use EuiFilterGroup to wrap EuiFilterButton components into a container that looks nice against form fields (like search).',
+    },
+    {
+      label: 'Key pad menu',
+      href: './navigation/buttons/key-pad-menu/',
+      image: keyPadMenuImage,
+      description:
+        'The EuiKeyPadMenu component presents EuiKeyPadMenuItems in a tiled format, with a fixed width which will accommodate three items and then wrap.',
+    },
+    {
+      label: 'Split button',
+      href: './navigation/buttons/split-button/',
+      image: splitButtonImage,
+      description:
+        'Split buttons combine a primary and secondary action into a visual button group. The main button performs the most common action, while the secondary button may perform an additional action or open a dropdown popover with related secondary actions.',
+    },
   ]}
 />
 
-## Layout related
+## Flex
 
 <OverviewLinkCards
-  variant="accent"
   items={[
-    { label: 'Flex', href: './layout/flex/' },
-    { label: 'Horizontal rule', href: './layout/horizontal-rule/' },
-    { label: 'Resizable container', href: './containers/resizable-container/' },
-    { label: 'Spacer', href: './layout/spacer/' },
+    {
+      label: 'Flex',
+      href: './layout/flex/',
+      image: flexImage,
+      description:
+        'EuiFlexGroup is useful for single row layouts and for quick alignment of items.',
+    },
+    {
+      label: 'Flex grids',
+      href: './layout/flex/grid/',
+      image: flexGridsImage,
+      description:
+        'EuiFlexGrid is a more rigid component, used for repeatable rows of same-width items.',
+    },
+    {
+      label: 'Flex groups',
+      href: './layout/flex/group/',
+      image: flexGroupsImage,
+      description:
+        'EuiFlexGroup is useful for setting up layouts for a single row of content.',
+    },
+    {
+      label: 'Flex items',
+      href: './layout/flex/item/',
+      image: flexItemsImage,
+      description:
+        'To work correctly, EuiFlexItem must be a direct child of EuiFlexGroup or EuiFlexGrid.',
+    },
+  ]}
+/>
+
+## Forms
+
+<OverviewLinkCards
+  items={[
+    {
+      label: 'Forms Overview',
+      href: './forms/layouts/usage/',
+      image: formsOverviewImage,
+      description:
+        'This page documents patterns for form layout, validation and how best to use various components.',
+    },
+    {
+      label: 'Date picker',
+      href: './forms/date-and-time/date-picker/',
+      image: datePickerImage,
+      description:
+        'EuiDatePicker is the foundational component that all other EUI date and time controls are built upon.',
+    },
+    {
+      label: 'Checkbox',
+      href: './forms/selection/checkbox-and-checkbox-group/',
+      image: checkboxImage,
+      description:
+        'Checkboxes are ideal for allowing users to select options among a small list of options, or to switch settings on/off.',
+    },
+    {
+      label: 'Password',
+      href: './forms/text/password/',
+      image: passwordImage,
+      description:
+        'Use a EuiFieldPassword to allow users to enter a password. By default, it renders a basic HTML password input where the content is obfuscated.',
+    },
+    {
+      label: 'Switch',
+      href: './forms/selection/switch/',
+      image: switchImage,
+      description:
+        'An EuiSwitch can be substituted for an EuiCheckbox when the semantics of the label dictate a true on/off state.',
+    },
+  ]}
+/>
+
+## Loaders
+
+<OverviewLinkCards
+  items={[
+    {
+      label: 'Agentic',
+      href: './display/loading/#agentic',
+      preview: (
+        <EuiFlexGroup
+          gutterSize="m"
+          alignItems="center"
+          justifyContent="center"
+          responsive={false}
+        >
+          <EuiFlexItem grow={false}>
+            <EuiAgentLoader size="s" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiAgentLoader size="m" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiAgentLoader size="l" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      description:
+        'EuiAgentLoader is a quiet pulse for agent work that is happening now or in the background.',
+    },
+    {
+      label: 'Chart',
+      href: './display/loading/#chart',
+      preview: <EuiLoadingChart size="m" />,
+      description:
+        'To indicate that a visualization is loading, use EuiLoadingChart.',
+    },
+    {
+      label: 'Elastic ring',
+      href: './display/loading/#elastic-ring',
+      preview: <EuiLoadingElasticRing size="m" />,
+      description:
+        'EuiLoadingElasticRing is the branded ring indicator for product and full-page loading.',
+    },
+    {
+      label: 'Shimmering text',
+      href: './display/loading/#shimmering-text',
+      preview: (
+        <EuiShimmeringText
+          style={{
+            fontSize: 'var(--eui-font-size-s)',
+            lineHeight: 'var(--eui-line-height-s)',
+          }}
+        >
+          Running tools ...
+        </EuiShimmeringText>
+      ),
+      description:
+        'EuiShimmeringText is a status line for work in progress. The text stays subdued, and a highlight sweeps across it.',
+    },
+    {
+      label: 'Spinner',
+      href: './display/loading/#spinner',
+      preview: (
+        <EuiFlexGroup
+          gutterSize="m"
+          alignItems="center"
+          justifyContent="center"
+          responsive={false}
+        >
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="s" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="m" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="l" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="xl" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="xxl" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      description:
+        'EuiLoadingSpinner is a simple spinner for most loading contexts.',
+    },
+  ]}
+/>
+
+## Other popular components
+
+<OverviewLinkCards
+  items={[
+    {
+      label: 'Accordion',
+      href: './containers/accordion/',
+      image: accordionImage,
+      description:
+        'EuiAccordion has been purposely designed with minimal styles, allowing you to visually enhance it as needed. The only styling enforced by EUI is the caret icon, which indicates to users that the item can be opened.',
+    },
+    {
+      label: 'Basic table',
+      href: './tables/basic/',
+      image: basicTableImage,
+      description:
+        'EuiBasicTable is a high-level component that provides a consistent way to display and manage table data.',
+    },
+    {
+      label: 'Callout',
+      href: './display/callout/',
+      image: calloutImage,
+      description:
+        'EuiCallOut is used to display important messages directly related to content on the page.',
+    },
+    {
+      label: 'Card',
+      href: './containers/card/',
+      image: cardImage,
+      description:
+        'EuiCard is a content-oriented component built on top of EuiPanel.',
+    },
+    {
+      label: 'Icons',
+      href: './display/icons/',
+      image: iconsImage,
+      description:
+        'EuiIcon is a handy component for using our custom glyphs and logos.',
+    },
+    {
+      label: 'Illustrations',
+      href: './display/illustrations/',
+      image: illustrationsImage,
+      description:
+        'EuiIllustration renders theme-adaptive SVGs. Each illustration ships a light and a dark variant and the component inlines the one that matches the current theme.',
+    },
+    {
+      label: 'Panel',
+      href: './containers/panel/',
+      image: panelImage,
+      description:
+        'EuiPanel is a building block component. Use it as a layout helper for containing content.',
+    },
+    {
+      label: 'Tabs',
+      href: './containers/tabs/',
+      image: tabsImage,
+      description:
+        'Use tabs to organize related but unique content for a single idea or subject. Tabs show and hide content using in-page navigation UI.',
+    },
   ]}
 />
 

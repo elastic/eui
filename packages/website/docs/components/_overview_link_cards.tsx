@@ -6,101 +6,155 @@
  * Side Public License, v 1.
  */
 
+import { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
-import { euiShadow, euiShadowHover, useEuiTheme } from '@elastic/eui';
+import {
+  EuiFlexGrid,
+  EuiFlexGroup,
+  EuiImage,
+  EuiText,
+  EuiTextBlockTruncate,
+  useEuiTheme,
+} from '@elastic/eui';
 
 export type OverviewLinkItem = {
   label: string;
+  description: string;
   href: string;
+  image?: string;
+  preview?: ReactNode;
 };
 
 type OverviewLinkCardsProps = {
-  /** POC: Popular = primary, Layout = accent */
-  variant: 'primary' | 'accent';
   items: OverviewLinkItem[];
 };
 
-export const OverviewLinkCards = ({
-  variant,
-  items,
-}: OverviewLinkCardsProps) => {
-  const euiThemeContext = useEuiTheme();
-  const { euiTheme } = euiThemeContext;
-  const borderColor =
-    variant === 'primary'
-      ? euiTheme.colors.borderBasePrimary
-      : euiTheme.colors.borderBaseAccent;
+export const OverviewLinkCards = ({ items }: OverviewLinkCardsProps) => {
+  const { euiTheme } = useEuiTheme();
 
   const grid = css`
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(${euiTheme.base * 7}px, 1fr)
-    );
-    gap: ${euiTheme.size.m};
-    margin-block: ${euiTheme.size.m} ${euiTheme.size.xl};
+    margin-block: ${euiTheme.size.xxl} ${euiTheme.size.xxxxl};
   `;
 
   const card = css`
-    position: relative;
     display: flex;
-    align-items: flex-end;
-    aspect-ratio: 3 / 4;
-    max-inline-size: ${euiTheme.base * 10}px;
-    padding: ${euiTheme.size.m};
-    padding-inline-start: calc(${euiTheme.size.m} + ${euiTheme.size.s});
+    flex-direction: column;
+    align-items: stretch;
+    block-size: 100%;
     overflow: hidden;
-    /* POC: book-like — tighter spine corners, rounder page edge */
-    /* POC: near-square spine; smallest theme radius still reads soft */
-    border-start-start-radius: 2px;
-    border-end-start-radius: 2px;
-    border-start-end-radius: ${euiTheme.border.radius.panel};
-    border-end-end-radius: ${euiTheme.border.radius.panel};
+    border: ${euiTheme.border.width.thin} solid
+      ${euiTheme.colors.borderBasePlain};
+    border-radius: ${euiTheme.border.radius.panel};
     background-color: ${euiTheme.colors.backgroundBasePlain};
+    box-shadow: none;
     color: ${euiTheme.colors.textHeading};
-    font-size: var(--eui-font-size-s);
-    font-weight: ${euiTheme.font.weight.bold};
-    line-height: var(--eui-line-height-s);
     text-decoration: none;
-    ${euiShadow(euiThemeContext, 'xs')}
-    transform: translateZ(0);
-    transition: box-shadow ${euiTheme.animation.fast} ease,
-      transform ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
-
-    /* POC: flat spine bar (border-radius on thick borders pill-shapes the ends) */
-    &::before {
-      content: '';
-      position: absolute;
-      inset-block: 0;
-      inset-inline-start: 0;
-      inline-size: ${euiTheme.size.s};
-      background-color: ${borderColor};
-    }
+    transition: box-shadow ${euiTheme.animation.fast} ease;
 
     &:hover {
+      box-shadow: ${euiTheme.shadows.hover.base.down};
       color: ${euiTheme.colors.textHeading};
       text-decoration: none;
-      ${euiShadowHover(euiThemeContext, 'm')}
-      transform: scale(1.04);
+    }
+
+    &:focus-visible {
+      box-shadow: ${euiTheme.shadows.hover.base.down};
     }
 
     @media (prefers-reduced-motion: reduce) {
-      transition: box-shadow ${euiTheme.animation.fast} ease;
-
-      &:hover {
-        transform: none;
-      }
+      transition: none;
     }
   `;
 
+  const imageFrame = css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    aspect-ratio: 2 / 1;
+    background-color: ${euiTheme.colors.backgroundBaseSubdued};
+    border-block-end: ${euiTheme.border.width.thin} solid
+      ${euiTheme.colors.borderBasePlain};
+  `;
+
+  const image = css`
+    .euiImageWrapper,
+    .euiImage {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  `;
+
+  const body = css`
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: ${euiTheme.size.xs};
+    padding: ${euiTheme.size.m};
+  `;
+
+  const title = css`
+    margin: 0;
+    color: ${euiTheme.colors.textHeading};
+    font-size: var(--eui-font-size-m);
+    font-weight: ${euiTheme.font.weight.bold};
+    line-height: var(--eui-line-height-m);
+    min-block-size: 1lh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `;
+
+  const description = css`
+    color: ${euiTheme.colors.textSubdued};
+    font-size: var(--eui-font-size-s);
+    font-weight: ${euiTheme.font.weight.regular};
+    line-height: var(--eui-line-height-s);
+    min-block-size: 2lh;
+  `;
+
   return (
-    <div css={grid}>
+    <EuiFlexGrid columns={2} gutterSize="m" css={grid}>
       {items.map((item) => (
-        <Link key={item.href} to={item.href} css={card}>
-          {item.label}
-        </Link>
+          <Link key={item.href} to={item.href} css={card}>
+            <EuiFlexGroup
+              alignItems="center"
+              justifyContent="center"
+              gutterSize="none"
+              css={imageFrame}
+              aria-hidden="true"
+            >
+              {item.preview ? (
+                item.preview
+              ) : item.image ? (
+                <EuiImage
+                  alt=""
+                  src={item.image}
+                  size="fullWidth"
+                  allowFullScreen={false}
+                  css={image}
+                />
+              ) : null}
+            </EuiFlexGroup>
+            <EuiFlexGroup
+              direction="column"
+              gutterSize="xs"
+              alignItems="stretch"
+              responsive={false}
+              css={body}
+            >
+              <EuiText component="p" size="m" css={title}>
+                {item.label}
+              </EuiText>
+              <EuiTextBlockTruncate lines={2} css={description}>
+                {item.description}
+              </EuiTextBlockTruncate>
+            </EuiFlexGroup>
+          </Link>
       ))}
-    </div>
+    </EuiFlexGrid>
   );
 };
