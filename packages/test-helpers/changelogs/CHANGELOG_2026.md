@@ -4,7 +4,7 @@
 - Added `EuiMarkdownEditorObject` with `textArea`, `preview`, `setValue(text)`, `getValue()`, `isPreviewing()` and `togglePreview()` ([#10260](https://github.com/elastic/eui/pull/10260))
 - Added `EuiCardObject` with `selectButton`, `getTitle()`, `getDescription()`, `click()`, `isSelected()` and `toggleSelected()` ([#10266](https://github.com/elastic/eui/pull/10266))
 
-## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v123.3.0)
 
 - Added `EuiCallOutObject` with `getTitle()`, `getText()`, `getColor()`, `dismissButton` and `dismiss()` ([#10234](https://github.com/elastic/eui/pull/10234))
 - Added `EuiSideNavObject` with `getItems()`, `item(label)`, `select(label)`, `getSelected()` and `expand(label)` ([#10229](https://github.com/elastic/eui/pull/10229))
@@ -12,12 +12,12 @@
 - Added `EuiPaginationObject` with `getActivePage()`, `getPageCount()`, `goToPage(index)`, `next()` and `previous()` ([#10214](https://github.com/elastic/eui/pull/10214))
 - Added `EuiTableObject` for `EuiTable`, with `rows`, `headerCells`, `column(index)` and `cell(row, column)`. `EuiBasicTableObject` now extends it ([#10213](https://github.com/elastic/eui/pull/10213))
 
-## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v123.2.0)
 
 - Added `setColor()` and `getColor()` to `EuiColorPickerObject`, and support for pickers that use a custom `button` anchor ([#10182](https://github.com/elastic/eui/pull/10182))
 - Updated Component Object roots to match a `testSubj` with spaces by requiring every token ([#10182](https://github.com/elastic/eui/pull/10182))
 
-## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+## [`v2.0.0`](https://github.com/elastic/eui/releases/v123.0.0)
 
 - Added a `selectors` object that holds every Component Object's selectors keyed by component (`selectors.comboBox.PILL_SELECTOR`) ([#10076](https://github.com/elastic/eui/pull/10076))
 
@@ -25,11 +25,11 @@
 
 - Removed the flat `Eui*Selectors` exports. Use the `selectors` object instead. ([#10076](https://github.com/elastic/eui/pull/10076))
 
-## [`v1.8.0`](https://github.com/elastic/eui/releases/v1.8.0)
+## [`v1.8.0`](https://github.com/elastic/eui/releases/v122.1.0)
 
 - Exported the `Eui*Selectors` constants of every Component Object from the package index, for tooling such as lint rules ([#10049](https://github.com/elastic/eui/pull/10049))
 
-## [`v1.7.0`](https://github.com/elastic/eui/releases/v1.7.0)
+## [`v1.7.0`](https://github.com/elastic/eui/releases/v122.0.0)
 
 - Added `EuiTreeViewObject`, a Playwright Component Object for `EuiTreeView` ([#10025](https://github.com/elastic/eui/pull/10025))
 - Added `EuiToolTipObject`, a Playwright Component Object for `EuiToolTip` ([#10026](https://github.com/elastic/eui/pull/10026))
@@ -40,7 +40,7 @@
 
 - Fixed Component Objects not finding components whose `data-test-subj` holds several space-separated tokens, such as `EuiColorPicker`. The root now matches one token, following Kibana's `data-test-subj` convention ([#10015](https://github.com/elastic/eui/pull/10015))
 
-## [`v1.6.0`](https://github.com/elastic/eui/releases/v1.6.0)
+## [`v1.6.0`](https://github.com/elastic/eui/releases/v121.0.0)
 
 - Added `EuiPopoverObject`, a Playwright Component Object for `EuiPopover` ([#9993](https://github.com/elastic/eui/pull/9993))
 - Added `EuiFlyoutObject`, a Playwright Component Object for `EuiFlyout` ([#9994](https://github.com/elastic/eui/pull/9994))
@@ -51,24 +51,24 @@
 
 - Fixed `EuiComboBoxObject.clear()` and `setSelectedOptions()` timing out on `singleSelection` combo boxes, whose pills have no close button ([#9998](https://github.com/elastic/eui/pull/9998))
 
-## [`v1.5.0`](https://github.com/elastic/eui/releases/v1.5.0)
+## [`v1.5.0`](https://github.com/elastic/eui/releases/v120.0.0)
 
 - Added `EuiRangeObject`, a Playwright Component Object for `EuiRange`/`EuiDualRange` ([#9957](https://github.com/elastic/eui/pull/9957))
 - Added `EuiDraggableObject` with `reorder(steps)` ([#9936](https://github.com/elastic/eui/pull/9936))
 - Added `EuiBasicTableObject` with `rows` and `cells(field)` ([#9933](https://github.com/elastic/eui/pull/9933))
 - Added `EuiFilterButtonObject`, a Playwright Component Object for `EuiFilterButton` ([#9942](https://github.com/elastic/eui/pull/9942))
 
-## [`v1.4.0`](https://github.com/elastic/eui/releases/v1.4.0)
+## [`v1.4.0`](https://github.com/elastic/eui/releases/v119.1.0)
 
 - Added `EuiSelectableObject` with `options`, `selectOption(label)` and `search(term)` ([#9908](https://github.com/elastic/eui/pull/9908))
 
-## [`v1.3.0`](https://github.com/elastic/eui/releases/v1.3.0)
+## [`v1.3.0`](https://github.com/elastic/eui/releases/v119.0.0)
 
 - Added `EuiDataGridObject` with `rows`, `cell()`, `cells()`, `doActionOnColumn()` and `openFullScreenMode()`/`closeFullScreenMode()` ([#9874](https://github.com/elastic/eui/pull/9874))
 - Added `EuiSuperSelectObject` with `selectOptionByValue()`, `selectOptionByLabel()` and `getSelectedValue()` ([#9874](https://github.com/elastic/eui/pull/9874))
 - Added `EuiGlobalToastListObject` with a `toasts` locator and `closeAll()` ([#9874](https://github.com/elastic/eui/pull/9874))
 
-## [`v1.2.0`](https://github.com/elastic/eui/releases/v1.2.0)
+## [`v1.2.0`](https://github.com/elastic/eui/releases/v118.0.0)
 
 - Fixed `EuiComboBoxObject.setSelectedOptions()` selecting the wrong option when a label is a substring of another (e.g. `ip` vs `clientip`) by matching options by exact text ([#9838](https://github.com/elastic/eui/pull/9838))
 - Fixed `EuiComboBoxObject` timing out when its target element is absent by skipping the component-type guard in that case ([#9838](https://github.com/elastic/eui/pull/9838))
@@ -84,7 +84,7 @@
 
 - Fixed `EuiComboBoxObject.getSelectedOptions()` to read selected pills by class, so combo boxes that set a per-option `data-test-subj` are read correctly ([#9809](https://github.com/elastic/eui/pull/9809))
 
-## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
+## [`v1.1.0`](https://www.npmjs.com/package/@elastic/eui-test-helpers/v/1.1.0)
 
 - Prepared `@elastic/eui-test-helpers` for npm publishing (CommonJS + ESM + type declarations) ([#9772](https://github.com/elastic/eui/pull/9772))
 
