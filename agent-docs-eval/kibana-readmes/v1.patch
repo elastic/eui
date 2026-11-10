@@ -1,0 +1,52 @@
+--- a/src/core/packages/chrome/app-header/README.md
++++ b/src/core/packages/chrome/app-header/README.md
+@@ -15,7 +15,27 @@
+ Presentation (shell, title, tabs, badges, menu rendering, stories) lives in private
+ `@kbn/ui-app-header`. This package is the stable plugin facade: it keeps registration semantics,
+ Chrome-connected adapters, and the public `@kbn/app-header` imports.
++
++## Page headers
++
++Every app route renders `AppHeader` as its page header, new pages included. Put it first inside
++`KibanaPageTemplate`, outside the content sections:
++
++```tsx
++import { AppHeader } from '@kbn/app-header';
++import { KibanaPageTemplate } from '@kbn/shared-ux-page-kibana-template';
++
++<KibanaPageTemplate>
++  <AppHeader title={title} description={description} />
++  <KibanaPageTemplate.Section>{content}</KibanaPageTemplate.Section>
++</KibanaPageTemplate>;
++```
+ 
++`AppHeader` reads Chrome from context, so mount the app through `KibanaRenderContextProvider
++{...coreStart}`. Use it instead of `EuiPageHeader`, `EuiPageTemplate.Header`,
++`KibanaPageTemplate.Header` or the `pageHeader` prop; see [Migrating route
++headers](#migrating-route-headers).
++
+ ## Folder layout
+ 
+ Connected adapters and Chrome hooks live in `src/app_header/`. Presentation components live in
+--- a/src/platform/kbn-ui/app-header/README.md
++++ b/src/platform/kbn-ui/app-header/README.md
+@@ -2,6 +2,10 @@
+ 
+ Props-driven AppHeader presentation for Kibana UI. Usable without Kibana Core or Chrome services.
+ 
++For an app's page header, use `AppHeader` from
++[`@kbn/app-header`](../../../core/packages/chrome/app-header/README.md#page-headers) inside
++`KibanaPageTemplate`. Plugins can't import this package.
++
+ ## Usage
+ 
+ ```tsx
+@@ -21,7 +25,7 @@
+ 
+ ## Compatibility
+ 
+-Plugins should import from `@kbn/app-header`. That package is the Core-connected facade: it
++`@kbn/app-header` is the Core-connected facade: it
+ resolves base-path-prefixed back targets, Chrome badges, documentation/feedback/integrations menu
+ items, and the inline slot.
+ 

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "H7",
+    "issue": 232067,
+    "url": "https://github.com/elastic/kibana/issues/232067",
+    "title": "[Maps] Improve error message when WebGL is not available",
+    "team": "Team:Presentation - DEPRECATED (Feature:Maps)",
+    "project": "x-pack/platform/plugins/shared/maps",
+    "startFile": "x-pack/platform/plugins/shared/maps/public/connected_components/map_container/map_container.tsx",
+    "prompt": "[Maps] Show a friendly message when WebGL is not available\n\nWhen the browser cannot create a WebGL context, creating or opening any map shows a long, hard to decipher error under the title \"Unable to initialize map\". The body is a raw dump of the requested context attributes, GPU vendor and renderer strings and the \"webglcontextcreationerror\" type. Users cannot tell what is wrong or what to do.\n\nExpected: Maps shows a user-friendly, actionable message when the map cannot start because WebGL is unavailable. Other initialization errors keep working as today.\n\nStart in x-pack/platform/plugins/shared/maps/public/connected_components/map_container/map_container.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "When map initialization fails because WebGL is unavailable, the user sees a short plain-language explanation instead of the raw error dump.",
+      "The message tells the user what to do (for example enable hardware acceleration or use a browser/device with WebGL support).",
+      "Other initialization errors still show their own error text.",
+      "The raw technical details are not shown as the main message."
+    ],
+    "whySuitable": "Error state UI in a single container component; spare because the exact wording and WebGL detection approach are open, which makes acceptance slightly looser.",
+    "pinCheck": "At the pin, map_container.tsx renders <KbnDangerCallout title='Unable to initialize map' text={mapInitError}> for any init error, and mb_map.tsx _initializeMap catches and passes error.message straight to setMapInitError; no WebGL-specific handling exists. No PR in the timeline or search fixes it."
+  },
+  {
+    "id": "H8",
+    "issue": 274068,
+    "url": "https://github.com/elastic/kibana/issues/274068",
+    "title": "[Markdown] Leaving markdown edit mode was not intuitive",
+    "team": "Team:Presentation - DEPRECATED / Team:Visualizations (Feature:Markdown)",
+    "project": "src/platform/plugins/shared/dashboard_markdown",
+    "startFile": "src/platform/plugins/shared/dashboard_markdown/public/components/markdown_editor.tsx",
+    "prompt": "[Markdown] Leaving markdown edit mode without making changes is not intuitive\n\nOpen an existing markdown panel on a dashboard for editing and make no changes. Only the \"Discard\" button is enabled and \"Apply\" is disabled. Clicking outside the panel does nothing. The user feels stuck: they did not want to click \"Discard\" because that implies losing changes, and the only way back to view mode is to make a change and press \"Apply\".\n\nExpected: a user who opened the editor and changed nothing can leave edit mode in an obvious way that keeps what they see, for example by having \"Apply\" enabled, or by letting a click outside the panel return to view mode when nothing has changed.\n\nStart in src/platform/plugins/shared/dashboard_markdown/public/components/markdown_editor.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "With the editor open and no edits, the user has a clear way to return to view mode without pressing \"Discard\".",
+      "That way keeps the existing content unchanged.",
+      "When there are edits, the Apply and Discard behavior is unchanged."
+    ],
+    "whySuitable": "Small UI state change; spare because the issue gives two alternative fixes, so the acceptance has to stay generic.",
+    "pinCheck": "At the pin, markdown_editor.tsx computes isSaveable = Boolean(value === '' || value !== content || haveSettingsChanged) and passes it to MarkdownFooter, so Apply is disabled when nothing changed; no click-outside handler. No fixing PR found."
+  }
+]

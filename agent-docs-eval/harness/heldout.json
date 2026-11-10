@@ -1,0 +1,111 @@
+[
+  {
+    "id": "H1",
+    "issue": 298259,
+    "url": "https://github.com/elastic/kibana/issues/298259",
+    "title": "Hide the \"Create view\" new-feature dot after the user clicks the button once",
+    "team": "Team:Discover",
+    "project": "src/platform/packages/private/kbn-esql-editor",
+    "startFile": "src/platform/packages/private/kbn-esql-editor/src/editor_menu/index.tsx",
+    "prompt": "Hide the \"Create view\" new-feature dot after the first click\n\nThe blue dot on the \"Create view\" button in the ES|QL editor is a new-feature marker. It should disappear for good once the user clicks the button, and it should not come back on later sessions or page reloads.\n\nStart in src/platform/packages/private/kbn-esql-editor/src/editor_menu/index.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "The dot next to the \"Create view\" button is no longer rendered after the user has clicked the button once.",
+      "Clicking the button still performs its existing action (opening the create view flow).",
+      "The dismissed state is stored persistently on the client, so the dot stays hidden after a page reload and in later sessions.",
+      "Before the first click, the dot is still shown."
+    ],
+    "whySuitable": "Small stateful UI behavior in one component; clear observable result; no backend. Needs a decision on where to persist the flag (browser storage), which is a realistic design choice.",
+    "pinCheck": "At the pin, editor_menu/index.tsx renders <EuiIcon type=\"dot\" data-test-subj=\"ESQLEditor-create-view-dot\"> unconditionally inside {canCreateView && (...)} next to the ESQLEditor-create-view-icon button, with no dismissed state; index.test.tsx asserts the dot is always present. No linked or searched PR fixes it."
+  },
+  {
+    "id": "H2",
+    "issue": 293498,
+    "url": "https://github.com/elastic/kibana/issues/293498",
+    "title": "[Sidenav] Truncate long secondary menu titles",
+    "team": "Team:SharedUX",
+    "project": "src/platform/kbn-ui/side-navigation",
+    "startFile": "src/platform/kbn-ui/side-navigation/src/components/secondary_menu/index.tsx",
+    "prompt": "[Sidenav] Truncate long secondary menu titles\n\nSecondary menu titles have no truncation. A long title, for example a long plugin-provided label or a longer translation, wraps to multiple lines. The panel is a fixed 248px wide, so this is easy to hit. Two headers are affected:\n- The secondary menu title in the side panel and in the collapsed nav popover (for example \"Dashboards\"). A long title pushes the beta/new badge around.\n- The nested submenu header that has the back button (for example under \"More\"). A long title wraps into a tall block beside the back button.\n\nExpected: keep both titles on one line and truncate them when they don't fit, keeping the badge and the back button visible. Show the full title in a tooltip only when the title is actually truncated.\n\nStart in src/platform/kbn-ui/side-navigation/src/components/secondary_menu/index.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "The secondary menu title renders on a single line and is truncated when it does not fit the panel width.",
+      "The nested submenu header title is also single-line and truncated, with the back button always visible.",
+      "The beta/new badge next to the secondary menu title does not shrink or get pushed out by a long title.",
+      "The full title is available in a tooltip only when the title overflows, not for titles that fit."
+    ],
+    "whySuitable": "Two sibling components in one package, layout plus conditional tooltip based on overflow measurement; the issue states the behavior precisely and an existing overflow pattern exists in the same package to compare against.",
+    "pinCheck": "At the pin, secondary_menu/index.tsx renders <EuiTitle size=\"xs\"><div css={titleWithBadgeStyles}><h4>{title}</h4>{badge}</div></EuiTitle> with a plain flex row (display:flex; align-items:center; gap) and no overflow/min-width handling; nested_secondary_menu/header.tsx renders the back button plus <EuiTitle size=\"xs\"><h4>{title}</h4></EuiTitle> in a flex div with no truncation. No PR in the issue timeline fixes it (only unrelated cross-references)."
+  },
+  {
+    "id": "H3",
+    "issue": 279583,
+    "url": "https://github.com/elastic/kibana/issues/279583",
+    "title": "Console: add user option to toggle between horizontal and vertical split pane layouts",
+    "team": "Team:Kibana Management",
+    "project": "src/platform/plugins/shared/console",
+    "startFile": "src/platform/plugins/shared/console/public/application/containers/editor/editor.tsx",
+    "prompt": "Console: let the user toggle between side-by-side and stacked pane layouts\n\nOn wide monitors, or when inspecting large response payloads, the narrow side-by-side response pane forces heavy horizontal scrolling or truncates the data preview. Add a user-facing control in the Console UI that switches the editor and response panes between side-by-side (the current layout, and the default) and top-and-bottom. In the top-and-bottom layout the request editor is on top of the response pane, with a draggable horizontal resize bar. Only the pane layout toggle is in scope.\n\nThe chosen layout should persist across page refreshes and sessions. The toggle and the splitter must be usable with the keyboard and have proper ARIA labels. Both panes keep a minimum height while resizing so neither collapses completely.\n\nStart in src/platform/plugins/shared/console/public/application/containers/editor/editor.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "A control in the Console UI switches between side-by-side and top-and-bottom pane layouts; side-by-side stays the default.",
+      "In the top-and-bottom layout the request editor is above the response pane and the splitter is horizontal and draggable.",
+      "The selected layout is persisted and restored after a page refresh.",
+      "The toggle has an accessible label and is operable by keyboard.",
+      "Both panes have a minimum size in the stacked layout."
+    ],
+    "whySuitable": "New control plus layout/persistence change in a self-contained plugin; the issue gives explicit acceptance criteria. Largest of the set (likely 3-4 files) but without ES or API dependency.",
+    "pinCheck": "At the pin, console editor.tsx derives direction only from useIsWithinBreakpoints(['xs','s','m']) (isVerticalLayout) passed to the resizable container; panel sizes persist through panelStorage; there is no user-controlled layout toggle or stored layout preference anywhere in the console plugin. No PR in the timeline fixes it."
+  },
+  {
+    "id": "H4",
+    "issue": 285512,
+    "url": "https://github.com/elastic/kibana/issues/285512",
+    "title": "[Security Solution][Bug] Incorrect pagination range displayed when total results are less than rows-per-page setting on Translated Rules or Dashboards page",
+    "team": "Team:Automatic Migrations",
+    "project": "x-pack/solutions/security/plugins/security_solution",
+    "startFile": "x-pack/solutions/security/plugins/security_solution/public/siem_migrations/rules/components/rules_table/index.tsx",
+    "prompt": "Wrong item range shown above the Translated Rules and Translated Dashboards tables\n\nWhen the total number of items is less than the rows-per-page setting, the range text above the table is wrong. With 8 translated rules it says \"Showing 1 - 10 of 8 rules\", and with 3 dashboards it says \"Showing 1 - 10 of 3 dashboards\". The upper number is always the page size, which suggests more items exist than there really are.\n\nExpected: \"Showing 1 - 8 of 8 rules\" and \"Showing 1 - 3 of 3 dashboards\". The same must hold on the Translated Dashboards page.\n\nStart in x-pack/solutions/security/plugins/security_solution/public/siem_migrations/rules/components/rules_table/index.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "On the Translated Rules page, when the total is smaller than the page size the label shows the real last item number (for example \"Showing 1 - 8 of 8 rules\").",
+      "The same fix is applied to the Translated Dashboards page label.",
+      "On the last, partially filled page of a larger result set the upper bound equals the total, not the page size multiple.",
+      "Labels for full pages are unchanged."
+    ],
+    "whySuitable": "Visible table status text bug in two near-identical components; reviewer can verify from the diff. Small, with a hidden second location (dashboards) that tests scope handling.",
+    "pinCheck": "At the pin, rules_table/index.tsx:~472 and dashboards/components/dashboard_table/index.tsx:~327 both pass pageSize: (pagination.pageIndex + 1) * (pagination.pageSize ?? 0) into the 'Showing {pageIndex} - {pageSize} of {total}' message with no min against totalItemCount. PR searches and issue timeline show only unrelated cross-references."
+  },
+  {
+    "id": "H5",
+    "issue": 298028,
+    "url": "https://github.com/elastic/kibana/issues/298028",
+    "title": "[Index Management] Warn when changing a template's index mode affects data streams that use it",
+    "team": "Team:Kibana Management",
+    "project": "x-pack/platform/plugins/shared/index_management",
+    "startFile": "x-pack/platform/plugins/shared/index_management/public/application/sections/template_edit/template_edit.tsx",
+    "prompt": "[Index Management] Warn when changing a template's index mode affects data streams that use it\n\nThe index template editor lets users change a template's index mode to time series even when data streams in a non-standard index mode (for example logsdb) use that template. Elasticsearch only supports changing a data stream to time series from standard, so the next rollover of those data streams fails. The template saves without any warning, and nothing tells the user that the template change caused the failure. Changing the index mode of a template that nothing uses is still valid.\n\nWhen the user saves an edited template whose index mode changes to time series, check whether any data stream that uses this template currently has an index mode other than standard (use the data stream's current index mode, not the template's previous one). If so, show a confirmation before saving that lists the affected data streams and says their next rollover will fail. The user can cancel or save anyway. Creating a new template is not affected, and no extra request should be made when the index mode does not change to time series.\n\nStart in x-pack/platform/plugins/shared/index_management/public/application/sections/template_edit/template_edit.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "Saving an edited template whose index mode changes to time series, with data streams using it that are not in standard mode, shows a confirmation that lists those data streams and warns that their next rollover will fail.",
+      "The confirmation offers both cancel (no save) and save anyway (saves the template).",
+      "Data streams are matched by template name and by their current index mode being other than standard.",
+      "No data streams request is made and no confirmation is shown when the index mode is not changing to time series, or when creating a template."
+    ],
+    "whySuitable": "Confirmation modal and conditional pre-save check in the edit page; the existing list-data-streams client call already returns the needed fields, so no new API. Likely 1-2 files.",
+    "pinCheck": "At the pin, template_edit.tsx onSave only does setIsSaving, updateTemplate(updatedTemplate), then navigates or sets saveError; there is no data stream lookup, confirmation modal, or index-mode comparison. public/application/services/api.ts already has the GET data_streams client (line ~94). No fixing PR found (searches only return unrelated PRs)."
+  },
+  {
+    "id": "H6",
+    "issue": 255954,
+    "url": "https://github.com/elastic/kibana/issues/255954",
+    "title": "[Streams] Use Cmd+Enter to apply condition editor changes",
+    "team": "Team:obs-onboarding",
+    "project": "x-pack/platform/plugins/shared/streams_app",
+    "startFile": "x-pack/platform/plugins/shared/streams_app/public/components/stream_management/data_management/shared/condition_editor.tsx",
+    "prompt": "[Streams] Apply condition editor changes with Cmd+Enter\n\nThe condition editor in YAML (syntax) mode propagates changes on every keystroke. This makes the preview table update while the user is still editing their condition. The results shift around and the user loses their reference point.\n\nAdd a Cmd+Enter (Ctrl+Enter on non-Mac) shortcut that intentionally applies the condition. Until the user presses it, the preview stays stable and shows the results of the previously applied condition. The interaction should be discoverable, for example a subtle hint in the editor or a tooltip. The partitioning page also uses the condition editor, so it must work there as well.\n\nStart in x-pack/platform/plugins/shared/streams_app/public/components/stream_management/data_management/shared/condition_editor.tsx. Keep the change scoped to this feature.",
+    "acceptance": [
+      "Typing in the YAML condition editor no longer updates the applied condition by itself.",
+      "Pressing Cmd+Enter (Ctrl+Enter on non-Mac) in the editor applies the current condition.",
+      "A visible hint or tooltip tells the user about the shortcut.",
+      "The shared editor behaves the same in every place it is used, including partitioning."
+    ],
+    "whySuitable": "Keyboard interaction plus discoverability hint in one shared component; clear before/after behavior. Mild design freedom in the hint, so reviewers see how the agent handles it.",
+    "pinCheck": "At the pin, condition_editor.tsx CodeEditor onChange parses the YAML and calls debouncedEmitConditionChange(parsed) on every change (and flushes on blur via flushSyntaxEditorCondition); there is no Cmd/Ctrl+Enter command or hint. No fixing PR found (only unrelated PR #204793 in search)."
+  }
+]
