@@ -1,0 +1,86 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { expect, type Locator } from '@playwright/test';
+
+import { BaseObject, type ObjectScope } from '../../base_object';
+import { EuiButtonGroupSelectors } from '../../../components/button_group/selectors';
+
+/**
+ * Playwright Component Object for {@link
+ * https://eui.elastic.co/docs/components/navigation/buttons/group/ EuiButtonGroup}.
+ * Buttons are addressed by their exact label, which is the accessible name
+ * for icon-only buttons too. Selection is read from `aria-pressed`, which
+ * both the `options` and the children API set.
+ *
+ * `testSubj` must be set on `EuiButtonGroup` itself, EUI spreads it onto the
+ * group element.
+ */
+export class EuiButtonGroupObject extends BaseObject {
+  constructor(
+    scope: ObjectScope,
+    testSubj: string,
+    componentSelector = EuiButtonGroupSelectors.ROOT_SELECTOR
+  ) {
+    super(scope, testSubj, componentSelector);
+  }
+
+  /** All buttons, in order. */
+  get buttons(): Locator {
+    return this.root
+      .locator(EuiButtonGroupSelectors.BUTTONS_SELECTOR)
+      .getByRole('button');
+  }
+
+  /** The button with exactly this label. */
+  button(label: string): Locator {
+    return this.root
+      .locator(EuiButtonGroupSelectors.BUTTONS_SELECTOR)
+      .getByRole('button', { name: label, exact: true });
+  }
+
+  /** The labels of all buttons, in order. Hidden icon-only labels included. */
+  async getOptions(): Promise<string[]> {
+    await this.buttons.first().waitFor({ state: 'attached' });
+    return labelsOf(this.buttons);
+  }
+
+  /** Click the button with this label unless it is already selected, then wait for it. */
+  async select(label: string): Promise<void> {
+    await this.setSelected(label, true);
+  }
+
+  /** Click the selected button with this label to deselect it, `multi` type only. */
+  async deselect(label: string): Promise<void> {
+    await this.setSelected(label, false);
+  }
+
+  /** The labels of the selected buttons, in order. One at most with `single` type. */
+  async getSelected(): Promise<string[]> {
+    await this.buttons.first().waitFor({ state: 'attached' });
+    return labelsOf(
+      this.root
+        .locator(EuiButtonGroupSelectors.BUTTONS_SELECTOR)
+        .getByRole('button', { pressed: true })
+    );
+  }
+
+  private async setSelected(label: string, selected: boolean): Promise<void> {
+    const button = this.button(label);
+    if ((await button.getAttribute('aria-pressed')) !== String(selected)) {
+      await button.click();
+    }
+    await expect(button).toHaveAttribute('aria-pressed', String(selected));
+  }
+}
+
+/** `textContent` keeps the visually hidden label of icon-only buttons, `innerText` drops it. */
+const labelsOf = (buttons: Locator): Promise<string[]> =>
+  buttons.evaluateAll((elements) =>
+    elements.map((element) => (element.textContent ?? '').trim())
+  );
