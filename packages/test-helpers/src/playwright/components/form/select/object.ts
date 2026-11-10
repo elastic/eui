@@ -44,11 +44,11 @@ export class EuiSelectObject extends BaseObject {
     return this.root.inputValue();
   }
 
-  /** The visible `text` of the selected option. */
+  /** The visible label of the selected option, its `label` or else its `text`. */
   async getSelectedLabel(): Promise<string> {
     return this.root.evaluate(
       (select) =>
-        (select as HTMLSelectElement).selectedOptions[0]?.text.trim() ?? ''
+        (select as HTMLSelectElement).selectedOptions[0]?.label.trim() ?? ''
     );
   }
 }

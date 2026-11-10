@@ -21,7 +21,7 @@ Set `data-test-subj` on `<EuiSelect>`. EUI spreads it onto the native `<select>`
 | `selectOptionByValue(value)` | Select the option with this `value` and wait for it to be the selection. |
 | `selectOptionByLabel(label)` | Select the option with this visible `text`. |
 | `getSelectedValue()` | The `value` of the selected option. |
-| `getSelectedLabel()` | The visible `text` of the selected option. |
+| `getSelectedLabel()` | The visible label of the selected option, its `label` or else its `text`. |
 
 ## Deliberately excluded
 

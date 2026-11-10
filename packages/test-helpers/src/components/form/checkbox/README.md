@@ -18,7 +18,7 @@ Set `data-test-subj` on `<EuiCheckbox>`. EUI spreads it onto the native `<input 
 
 | Member | Description |
 |---|---|
-| `isChecked()` | Whether the checkbox is checked. `indeterminate` counts as unchecked. |
+| `isChecked()` | Whether the checkbox is checked. `indeterminate` is a separate state, read it through `locator`. |
 | `check()` | Check the box, a no-op when it already is. |
 | `uncheck()` | Uncheck the box, a no-op when it already is. |
 | `toggle()` | Flip the checked state. |

@@ -25,7 +25,7 @@ export class EuiCheckboxObject extends BaseObject {
     super(scope, testSubj, componentSelector);
   }
 
-  /** Whether the checkbox is checked. `indeterminate` counts as unchecked. */
+  /** Whether the checkbox is checked. `indeterminate` is a separate state, read it through `locator`. */
   async isChecked(): Promise<boolean> {
     return this.root.isChecked();
   }
