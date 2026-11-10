@@ -1,0 +1,4 @@
+- Added `EuiCheckboxObject` with `isChecked()`, `check()`, `uncheck()` and `toggle()`
+- Added `EuiSwitchObject` with `isChecked()`, `check()`, `uncheck()` and `toggle()`
+- Added `EuiFieldTextObject` with `fill()`, `getValue()` and `clear()`
+- Added `EuiSelectObject` with `selectOptionByValue()`, `selectOptionByLabel()`, `getSelectedValue()` and `getSelectedLabel()`

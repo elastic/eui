@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
@@ -37,4 +38,20 @@ export const Playground: Story = {
     id: 'checkbox',
     label: 'Checkbox label',
   },
+  render: (args) => <StatefulCheckbox {...args} />,
+};
+
+const StatefulCheckbox = ({ checked, onChange, ...rest }: EuiCheckboxProps) => {
+  const [_checked, setChecked] = useState(checked);
+
+  useEffect(() => {
+    setChecked(checked);
+  }, [checked]);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+    onChange?.(e);
+  };
+
+  return <EuiCheckbox checked={_checked} onChange={handleOnChange} {...rest} />;
 };
