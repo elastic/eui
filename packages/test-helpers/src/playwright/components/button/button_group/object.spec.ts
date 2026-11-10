@@ -46,6 +46,23 @@ test.describe('EuiButtonGroupObject', () => {
     ]);
   });
 
+  test('falls back to the text when aria-label is blank', async ({
+    page,
+  }) => {
+    await page.goto(SINGLE_URL);
+    const group = new EuiButtonGroupObject(page, TEST_SUBJ);
+
+    await group.button('Option one').evaluate((button) => {
+      button.setAttribute('aria-label', ' ');
+    });
+    expect(await group.getOptions()).toEqual([
+      'Option one',
+      'Option two',
+      'Option three',
+    ]);
+    expect(await group.getSelected()).toEqual(['Option one']);
+  });
+
   test('select moves the single selection', async ({ page }) => {
     await page.goto(SINGLE_URL);
     const group = new EuiButtonGroupObject(page, TEST_SUBJ);
