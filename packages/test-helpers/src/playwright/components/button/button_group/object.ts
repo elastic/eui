@@ -8,8 +8,8 @@
 
 import { expect, type Locator } from '@playwright/test';
 
-import { BaseObject, type ObjectScope } from '../../base_object';
-import { EuiButtonGroupSelectors } from '../../../components/button_group/selectors';
+import { BaseObject, type ObjectScope } from '../../../base_object';
+import { EuiButtonGroupSelectors } from '../../../../components/button/button_group/selectors';
 
 /**
  * Playwright Component Object for {@link
@@ -44,9 +44,9 @@ export class EuiButtonGroupObject extends BaseObject {
       .getByRole('button', { name: label, exact: true });
   }
 
-  /** The labels of all buttons, in order. Hidden icon-only labels included. */
+  /** The accessible labels of all buttons, in order. Empty for an empty group. */
   async getOptions(): Promise<string[]> {
-    await this.buttons.first().waitFor({ state: 'attached' });
+    await this.root.waitFor({ state: 'attached' });
     return labelsOf(this.buttons);
   }
 
@@ -62,7 +62,7 @@ export class EuiButtonGroupObject extends BaseObject {
 
   /** The labels of the selected buttons, in order. One at most with `single` type. */
   async getSelected(): Promise<string[]> {
-    await this.buttons.first().waitFor({ state: 'attached' });
+    await this.root.waitFor({ state: 'attached' });
     return labelsOf(
       this.root
         .locator(EuiButtonGroupSelectors.BUTTONS_SELECTOR)
@@ -70,17 +70,41 @@ export class EuiButtonGroupObject extends BaseObject {
     );
   }
 
+  /** A missing `aria-pressed` counts as unselected, `options` omits it for ids absent from `idToSelectedMap`. */
   private async setSelected(label: string, selected: boolean): Promise<void> {
     const button = this.button(label);
-    if ((await button.getAttribute('aria-pressed')) !== String(selected)) {
+    const pressed = (await button.getAttribute('aria-pressed')) === 'true';
+    if (pressed !== selected) {
       await button.click();
     }
-    await expect(button).toHaveAttribute('aria-pressed', String(selected));
+    if (selected) {
+      await expect(button).toHaveAttribute('aria-pressed', 'true');
+      return;
+    }
+    await expect(button).not.toHaveAttribute('aria-pressed', 'true');
   }
 }
 
-/** `textContent` keeps the visually hidden label of icon-only buttons, `innerText` drops it. */
+/**
+ * The accessible name of each button. `aria-labelledby` and `aria-label`
+ * cover `EuiButtonIcon` children, `textContent` keeps the visually hidden
+ * label of `isIconOnly` options that `innerText` drops.
+ */
 const labelsOf = (buttons: Locator): Promise<string[]> =>
   buttons.evaluateAll((elements) =>
-    elements.map((element) => (element.textContent ?? '').trim())
+    elements.map((element) => {
+      const labelledBy = element.getAttribute('aria-labelledby');
+      if (labelledBy) {
+        return labelledBy
+          .split(/\s+/)
+          .map((id) => document.getElementById(id)?.textContent ?? '')
+          .join(' ')
+          .trim();
+      }
+      return (
+        element.getAttribute('aria-label') ??
+        element.textContent ??
+        ''
+      ).trim();
+    })
   );
