@@ -1,12 +1,12 @@
-## [`v7.2.0`](https://github.com/elastic/eui/releases/v7.2.0)
+## [`v7.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/7.2.0)
 
 - Updated parameters used for `euiAnimSlightResistance` for a smoother animation ([#9202](https://github.com/elastic/eui/pull/9202))
 
-## [`v7.1.0`](https://github.com/elastic/eui/releases/v7.1.0)
+## [`v7.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/7.1.0)
 
 - Added type for component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
 
-## [`v7.0.0`](https://github.com/elastic/eui/releases/v7.0.0)
+## [`v7.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/7.0.0)
 
 - Added types for color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
 
@@ -14,7 +14,7 @@
 
 - Removed types for `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
 
-## [`v6.0.0`](https://github.com/elastic/eui/releases/v6.0.0)
+## [`v6.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/6.0.0)
 
 **Breaking changes**
 
@@ -31,7 +31,7 @@
   - `src/global_styling/mixins/_panel.scss`
   - `src/global_styling/mixins/_range.scss`
 
-## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
+## [`v5.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/5.0.0)
 
 - Added `shadowVariant` theme flag ([#9088](https://github.com/elastic/eui/pull/9088))
 - Added new types shadow types: ([#9088](https://github.com/elastic/eui/pull/9088))
@@ -60,7 +60,7 @@
 - Removed SCSS shadow variables and mixins (they're available on the themes directly) ([#9088](https://github.com/elastic/eui/pull/9088))
 - Updated shadow utility functions (e.g. `euiShadow`) to apply a floating border style in dark mode. This may lead to visual issues with double borders in dark mode when a regular `border` styling is applied. - Use the `options.border` argument on the utils to adjust or remove the floating border as needed. ([#9088](https://github.com/elastic/eui/pull/9088))
 
-## [`v4.0.0`](https://github.com/elastic/eui/releases/v4.0.0)
+## [`v4.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/4.0.0)
 
 **Breaking changes**
 
@@ -79,13 +79,13 @@
   - convertToRem()
   - lineHeightFromBaseline()
 
-## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
+## [`v3.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/3.1.0)
 
 **Deprecations**
 
 - Deprecated support for React 16. Please update to a modern version of React or stay on EUI version 106.0.0 if you can't switch right now. ([#8868](https://github.com/elastic/eui/pull/8868))
 
-## [`v3.0.0`](https://github.com/elastic/eui/releases/v3.0.0)
+## [`v3.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/3.0.0)
 
 - Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))
   - `colors.borderInteractiveFormsHoverPlain`
@@ -103,7 +103,7 @@
 
 - Updated `_EuiThemeColors` type to include `_EuiThemeVisColors` and `_EuiThemeSeverityColors` as `StrictColorModeSwitch` instead of static colors. This requires `vis` and `severity` keys to be defined as part of `LIGHT` and `DARK` color mode objects. ([#8800](https://github.com/elastic/eui/pull/8800))
 
-## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+## [`v2.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/2.2.0)
 
 - Added component token types: ([#8834](https://github.com/elastic/eui/pull/8834))
   - `dataGridRowBackgroundMarked`
@@ -114,11 +114,11 @@
   - `tableRowBackgroundMarked`
   - `tableRowBackgroundMarkedHover`
 
-## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+## [`v2.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/2.1.0)
 
 - Added type for `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
 
-## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+## [`v2.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/2.0.0)
 
 - Added type for tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
   - `colors.vis.euiColorVisText0`
@@ -161,13 +161,13 @@
   - `colors.vis.euiColorVisAsTextDark5`
   - `colors.vis.euiColorVisAsTextDark6`
 
-## [`v1.2.1`](https://github.com/elastic/eui/releases/v1.2.1)
+## [`v1.2.1`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/1.2.1)
 
 **Bug fixes**
 
 - Fixed a wrong variable in `getComputed` theme function which prevented high contrast overrides from being applied ([#8742](https://github.com/elastic/eui/pull/8742))
 
-## [`v1.2.0`](https://github.com/elastic/eui/releases/v1.2.0)
+## [`v1.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/1.2.0)
 
 - Added new tokens on `colors.vis`: ([#8725](https://github.com/elastic/eui/pull/8725))
   -  `euiColorVisBase0`
@@ -181,7 +181,7 @@
 - Fixed missing source map warnings emitted by some bundlers by excluding source maps from being published ([#8764](https://github.com/elastic/eui/pull/8764))
   - To align with `@elastic/eui` and many other popular packages, we made a call to not ship source maps anymore
 
-## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
+## [`v1.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/1.1.0)
 
 - Added type for token `filterButtonBadgeBackgroundHover` ([#8652](https://github.com/elastic/eui/pull/8652))
 - Added support for `buttonVariant` on `_EuiThemeFlags` ([#8595](https://github.com/elastic/eui/pull/8595))
@@ -194,7 +194,7 @@
   - `backgroundEmpty{color}Active`
 - Updated `getTokenName` util making the `variant` argument optional ([#8595](https://github.com/elastic/eui/pull/8595))
 
-## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
+## [`v1.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/1.0.0)
 
 - Added `severity` key on `_EuiThemeConstantColors` to support tokens on `colors.severity` ([#8601](https://github.com/elastic/eui/pull/8601))
 - Added type for semantic severity color tokens ([#8601](https://github.com/elastic/eui/pull/8601))
@@ -248,12 +248,12 @@
     - `colors.vis.euiColorSeverity13`
     - `colors.vis.euiColorSeverity14`
 
-## [`v0.2.0`](https://github.com/elastic/eui/releases/v0.2.0)
+## [`v0.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/0.2.0)
 
 - Added support for theme `overrides` as optional part of `EuiThemeShape` ([#8558](https://github.com/elastic/eui/pull/8558))
 - Updated `getComputed` to support high contrast mode overrides defined on `overrides.HCM` ([#8558](https://github.com/elastic/eui/pull/8558))
 
-## [`v0.1.0`](https://github.com/elastic/eui/releases/v0.1.0)
+## [`v0.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/0.1.0)
 
 - Removed type `EuiShadowCustomColor` ([#8444](https://github.com/elastic/eui/pull/8444))
 - Added types:  ([#8444](https://github.com/elastic/eui/pull/8444))

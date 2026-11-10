@@ -111,46 +111,46 @@
 
 - Updated `@typescript-eslint/*` packages from `8.31.1` to `8.64.0` ([#9804](https://github.com/elastic/eui/pull/9804))
 
-## [`v2.14.0`](https://github.com/elastic/eui/releases/v2.14.0)
+## [`v2.14.0`](https://github.com/elastic/eui/releases/v116.3.0)
 
 - Removed auto-fix from `tooltip-button-icon-wrap` rule ([#9695](https://github.com/elastic/eui/pull/9695))
 
-## [`v2.13.0`](https://github.com/elastic/eui/releases/v2.13.0)
+## [`v2.13.0`](https://github.com/elastic/eui/releases/v116.1.0)
 
 - Added `tooltip-button-icon-wrap` rule  ([#9635](https://github.com/elastic/eui/pull/9635))
 - Added `tooltip-no-interactive-content` rule ([#9635](https://github.com/elastic/eui/pull/9635))
 - Added new `require-href-for-link` rule ([#9615](https://github.com/elastic/eui/pull/9615))
 
-## [`v2.12.0`](https://github.com/elastic/eui/releases/v2.12.0)
+## [`v2.12.0`](https://github.com/elastic/eui/releases/v115.0.0)
 
 - Added a new `prefer-tooltip-trigger-focus-test-utility` rule that flags `fireEvent.focus()` inside `it`/`test` blocks that also query for a tooltip. The rule auto-fixes to `focusEuiToolTipTrigger` from EUI's RTL test utilities. ([#9624](https://github.com/elastic/eui/pull/9624))
 
-## [`v2.11.1`](https://github.com/elastic/eui/releases/v2.11.1)
+## [`v2.11.1`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.11.1)
 
 **Bug fixes**
 
 - Fixed `no-css-color` ESLint rule crash when analyzing functions that return `undefined` or non-object values ([#9368](https://github.com/elastic/eui/pull/9368))
 
-## [`v2.11.0`](https://github.com/elastic/eui/releases/v2.11.0)
+## [`v2.11.0`](https://github.com/elastic/eui/releases/v114.0.0)
 
 - Updated `no-unnamed-interactive-element` to include checking `EuiColorPicker` ([#9436](https://github.com/elastic/eui/pull/9436))
 
-## [`v2.10.0`](https://github.com/elastic/eui/releases/v2.10.0)
+## [`v2.10.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.10.0)
 
 - Added `EuiPopover` and `EuiWrappingPopover` checks to `require-aria-label-for-modals`, requiring either `aria-label` or `aria-labelledby` for these popover components. ([#9427](https://github.com/elastic/eui/pull/9427))
 - Updated `require-aria-label-for-modals` to skip ARIA validation when the component has spread attributes (for example, `<EuiModal {...props} />`). ([#9427](https://github.com/elastic/eui/pull/9427))
 
-## [`v2.9.0`](https://github.com/elastic/eui/releases/v2.9.0)
+## [`v2.9.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.9.0)
 
 -  Prevented `badge-accessibility-rules` rule autofix from duplicating `aria-hidden` attributes. ([#9366](https://github.com/elastic/eui/pull/9366))
 -  Skip `badge-accessibility-rules` rule validation when a spread operator is used in a component. ([#9366](https://github.com/elastic/eui/pull/9366))
 
-## [`v2.8.0`](https://github.com/elastic/eui/releases/v2.8.0)
+## [`v2.8.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.8.0)
 
 - Added new `icon-accessibility-rules` rule. ([#9357](https://github.com/elastic/eui/pull/9357))
 - Added new `badge-accessibility-rules` rule. ([#9354](https://github.com/elastic/eui/pull/9354))
 
-## [`v2.7.0`](https://github.com/elastic/eui/releases/v2.7.0)
+## [`v2.7.0`](https://www.npmjs.com/package/@elastic/eslint-plugin-eui/v/2.7.0)
 
 - Added `no-static-z-index` rule ([#9236](https://github.com/elastic/eui/pull/9236))
 

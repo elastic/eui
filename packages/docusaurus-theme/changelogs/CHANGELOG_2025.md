@@ -1,4 +1,4 @@
-## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+## [`v2.1.0`](https://www.npmjs.com/package/@elastic/eui-docusaurus-theme/v/2.1.0)
 
 - Swizzled `DocCard` and used `EuiCard` with `href` for auto-generated section pages ([#9222](https://github.com/elastic/eui/pull/9222))
 
@@ -6,7 +6,7 @@
 
 - Changed hard-coded "EUI" to `title` from `siteConfig` in `Home` breadcrumb ([#9222](https://github.com/elastic/eui/pull/9222))
 
-## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+## [`v2.0.0`](https://www.npmjs.com/package/@elastic/eui-docusaurus-theme/v/2.0.0)
 
 - Added `HighContrastModeToggle` component and adds it as main navbar item ([#9090](https://github.com/elastic/eui/pull/9090))
 
