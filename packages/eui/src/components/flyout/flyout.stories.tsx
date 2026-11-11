@@ -11,13 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 import { css } from '@emotion/react';
 
-import {
-  EuiButton,
-  EuiCallOut,
-  EuiSpacer,
-  EuiText,
-  EuiTitle,
-} from '../index';
+import { EuiButton, EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../index';
 import { useEuiTheme } from '../../services';
 
 import {

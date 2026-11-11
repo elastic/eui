@@ -35,6 +35,7 @@ export const euiAgentLoaderStyles = (euiThemeContext: UseEuiTheme) => {
     euiAgentLoader: css`
       flex-shrink: 0;
       display: inline-flex;
+
       --euiAgentLoaderColorOff: ${euiTheme.colors.lightShade};
       --euiAgentLoaderColorOn: ${euiTheme.colors.textSubdued};
       ${preventForcedColors(euiThemeContext)}

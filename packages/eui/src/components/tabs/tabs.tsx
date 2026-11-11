@@ -17,11 +17,7 @@ import React, {
   useRef,
 } from 'react';
 import classNames from 'classnames';
-import {
-  keys,
-  setMultipleRefs,
-  useEuiMemoizedStyles,
-} from '../../services';
+import { keys, setMultipleRefs, useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
@@ -114,7 +110,10 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
       const tabRect = selected.getBoundingClientRect();
       const left =
         Math.round(
-          (tabRect.left - tabsRect.left - tabsEl.clientLeft + tabsEl.scrollLeft) *
+          (tabRect.left -
+            tabsRect.left -
+            tabsEl.clientLeft +
+            tabsEl.scrollLeft) *
             100
         ) / 100;
       const width = Math.round(tabRect.width * 100) / 100;

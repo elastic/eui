@@ -39,7 +39,11 @@ export interface EuiCopyProps extends CommonProps {
    * Second argument is whether the tooltip still shows the copied message.
    * Third argument increments on every successful copy.
    */
-  children(copy: () => void, isCopied: boolean, copyCount: number): ReactElement;
+  children(
+    copy: () => void,
+    isCopied: boolean,
+    copyCount: number
+  ): ReactElement;
   /**
    * Optional props to pass to the EuiToolTip component.
    */

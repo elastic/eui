@@ -215,9 +215,7 @@ const EuiButtonGroupOptions: FunctionComponent<OptionsModeProps> = ({
   const selectionTravels = color === 'text' && !isDisabled;
   const selectionTravel = useButtonGroupSelectionTravel(
     selectionTravels,
-    type === 'multi'
-      ? selectedButtonIds(idToSelectedMap)
-      : idSelected
+    type === 'multi' ? selectedButtonIds(idToSelectedMap) : idSelected
   );
   const cssStyles = [
     styles.euiButtonGroup__buttons,
@@ -476,8 +474,7 @@ export const EuiButtonGroupChildren: FunctionComponent<ChildrenModeProps> = ({
   ];
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
-  const selectionTravels =
-    isSelection && display === 'regular' && !isDisabled;
+  const selectionTravels = isSelection && display === 'regular' && !isDisabled;
   const selectionTravel = useButtonGroupSelectionTravel(
     selectionTravels,
     type === 'multi' ? selectedButtonIds(idToSelectedMap) : idSelected ?? ''

@@ -63,9 +63,7 @@ export type EuiProgressColor = (typeof COLORS)[number];
 
 /** Recommended Progress colors for new usage (excludes soft-deprecated accents) */
 export const RECOMMENDED_COLORS = COLORS.filter(
-  (
-    color
-  ): color is Exclude<EuiProgressColor, 'accent' | 'accentSecondary'> =>
+  (color): color is Exclude<EuiProgressColor, 'accent' | 'accentSecondary'> =>
     color !== 'accent' && color !== 'accentSecondary'
 );
 

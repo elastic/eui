@@ -200,12 +200,10 @@ class LoadingElasticRingEngine {
       else if (cyc >= eStart)
         tail = easeInOutCubic((cyc - eStart) / (1 + OV - eStart)) * 360;
       if (cyc < OV && this.prevLay) {
-        prevTail =
-          easeInOutCubic((cyc + 1 - eStart) / (1 + OV - eStart)) * 360;
+        prevTail = easeInOutCubic((cyc + 1 - eStart) / (1 + OV - eStart)) * 360;
         prevTail += (360 - prevTail) * sEm;
       }
-      sGf =
-        cyc < fEnd ? smoothstep(clamp((head / 360 - 0.9) / 0.1, 0, 1)) : 1;
+      sGf = cyc < fEnd ? smoothstep(clamp((head / 360 - 0.9) / 0.1, 0, 1)) : 1;
       const vis = clamp(((head - tail) / 360 - 0.8) / 0.2, 0, 1);
       const v = 1 - 0.75 * smoothstep(vis);
       this.sRot += ((dtS * 360) / (period / 1000)) * v * (1 - sEm);
@@ -258,15 +256,16 @@ class LoadingElasticRingEngine {
             [Math.max(a, tl + sh), Math.min(b, hd + sh)] as [number, number]
         )
         .filter(([s, e]) => e > s)
-        .flatMap(([s, e]): Lay =>
-          s >= 360
-            ? [[s - 360, e - 360]]
-            : e > 360
-            ? [
-                [s, 360],
-                [0, e - 360],
-              ]
-            : [[s, e]]
+        .flatMap(
+          ([s, e]): Lay =>
+            s >= 360
+              ? [[s - 360, e - 360]]
+              : e > 360
+              ? [
+                  [s, 360],
+                  [0, e - 360],
+                ]
+              : [[s, e]]
         )
         .filter(([s, e]) => e > s);
     const usePrev =
@@ -311,8 +310,7 @@ class LoadingElasticRingEngine {
     const f = t % 1;
     const n = 1.8;
     const T =
-      Math.floor(t) +
-      Math.pow(f, n) / (Math.pow(f, n) + Math.pow(1 - f, n));
+      Math.floor(t) + Math.pow(f, n) / (Math.pow(f, n) + Math.pow(1 - f, n));
     const g2 = (t + 0.5) % 1;
     const m = 2;
     const G =
@@ -340,7 +338,8 @@ class LoadingElasticRingEngine {
     const gj = Math.floor(G);
     [gj - 2, gj - 1, gj, gj + 1].forEach(step);
     const g = [0, 0, 0, 0, 0];
-    const capOf = (i: number) => (1.5 * 0.55 * (360 - BASE[i])) / BASE[i] - 0.55;
+    const capOf = (i: number) =>
+      (1.5 * 0.55 * (360 - BASE[i])) / BASE[i] - 0.55;
     [gj - 2, gj - 1, gj].forEach((j) => {
       const d = G - (j + 1);
       const env =
@@ -353,8 +352,7 @@ class LoadingElasticRingEngine {
           : 0;
       if (env > 0) {
         const st = step(j);
-        g[st.c] +=
-          capOf(st.c) * (0.7 + (0.3 * (st.a - 1.3)) / 1.7) * env;
+        g[st.c] += capOf(st.c) * (0.7 + (0.3 * (st.a - 1.3)) / 1.7) * env;
       }
     });
     const wp = BASE.map((b, i) => b * (0.55 + Math.min(g[i], capOf(i))));
@@ -406,8 +404,7 @@ class LoadingElasticRingEngine {
         st.target = Math.ceil((st.from + 120) / 360) * 360;
         st.em0 = em;
       }
-      const f =
-        st.em0 >= 1 ? 1 : Math.max(0, (em - st.em0) / (1 - st.em0));
+      const f = st.em0 >= 1 ? 1 : Math.max(0, (em - st.em0) / (1 - st.em0));
       out = (base + st.hold) * (1 - f) + st.target * f;
     } else {
       if (!st.prevL && st.out != null) st.hold = st.out - base;
@@ -514,13 +511,15 @@ export const EuiLoadingElasticRing: FunctionComponent<
   const sw = SIZE_THICKNESS[size];
   const markPx = SIZE_MARK_PX[size];
   // Scale path so its on-screen size is markPx (path is authored in the 120 viewBox)
-  const markScale =
-    (markPx * VIEWBOX_SIZE) / (MARK_PATH_VIEWBOX_SIZE * px);
+  const markScale = (markPx * VIEWBOX_SIZE) / (MARK_PATH_VIEWBOX_SIZE * px);
 
   return (
     <div
       className={classes}
-      css={[styles.euiLoadingElasticRing, styles.euiLoadingElasticRing__size(px)]}
+      css={[
+        styles.euiLoadingElasticRing,
+        styles.euiLoadingElasticRing__size(px),
+      ]}
       role="status"
       aria-live="polite"
       aria-busy={loading}

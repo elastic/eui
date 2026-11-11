@@ -30,6 +30,7 @@ export const euiOverlayMaskStyles = ({
       : `rgba(155, 166, 184, 0.6)`};
     /* POC: glass blur effect; needs design input for blur/saturation values */
     backdrop-filter: blur(4px) saturate(180%);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-backdrop-filter: blur(4px) saturate(180%);
   `,
   aboveHeader: css`

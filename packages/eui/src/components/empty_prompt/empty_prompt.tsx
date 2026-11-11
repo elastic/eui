@@ -100,8 +100,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   ...rest
 }) => {
   // POC: horizontal defaults to l (30px); vertical stays m (24px)
-  const resolvedTitleSize =
-    titleSize ?? (layout === 'horizontal' ? 'l' : 'm');
+  const resolvedTitleSize = titleSize ?? (layout === 'horizontal' ? 'l' : 'm');
   const hasBorder = _hasBorder ?? color === 'plain';
 
   const classes = classNames('euiEmptyPrompt', className);
@@ -193,9 +192,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       <div className="euiEmptyPrompt__main" css={mainStyles}>
         {iconNode}
         <div className="euiEmptyPrompt__content" css={contentStyles}>
-          {title && (
-            <EuiTitle size={resolvedTitleSize}>{title}</EuiTitle>
-          )}
+          {title && <EuiTitle size={resolvedTitleSize}>{title}</EuiTitle>}
           {title &&
             body &&
             (layout === 'horizontal' ? (
@@ -203,10 +200,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
               <hr
                 aria-hidden
                 className="euiEmptyPrompt__titleDivider"
-                css={[
-                  styles.titleDivider,
-                  styles.titleDividerHorizontal,
-                ]}
+                css={[styles.titleDivider, styles.titleDividerHorizontal]}
               />
             ) : (
               <EuiSpacer size="s" />

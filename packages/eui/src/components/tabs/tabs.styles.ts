@@ -47,7 +47,7 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
     // `left` stays physical because the transform is measured from that edge.
     euiTabs__indicator: css`
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('height', '2px')}
       background-color: ${euiTheme.colors.primary};

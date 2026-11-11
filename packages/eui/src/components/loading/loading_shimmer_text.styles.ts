@@ -48,6 +48,7 @@ export const euiShimmeringTextStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline-block;
       text-align: start;
       font-weight: ${euiTheme.font.weight.regular};
+
       --euiShimmerTextDistance: ${euiTheme.size.xs};
       --euiShimmerTextBlur: ${euiTheme.size.xxs};
     `,
@@ -83,6 +84,7 @@ export const euiShimmeringTextStyles = (euiThemeContext: UseEuiTheme) => {
         background-size: 300% 100%;
         background-repeat: no-repeat;
         background-position: 100% 0;
+        /* stylelint-disable-next-line property-no-vendor-prefix */
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;

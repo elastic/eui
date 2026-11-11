@@ -441,15 +441,27 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
 
           /* Clear the resting fill so the shared pill reads through the track. Pressed buttons keep theirs. */
           .euiButton:not(${euiDisabledSelector}):not([aria-pressed='true']),
-          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']) {
+          .euiButtonIcon:not(${euiDisabledSelector}):not(
+              [aria-pressed='true']
+            ) {
             background-color: transparent;
           }
 
-          .euiButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
-          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
-          .euiButtonIcon:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover,
-          .euiButtonGroupButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover::before,
-          .euiButtonGroupButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(:active):hover {
+          .euiButton:not(${euiDisabledSelector}):not([aria-pressed='true']):not(
+              :active
+            ):hover::before,
+          .euiButtonIcon:not(${euiDisabledSelector}):not(
+              [aria-pressed='true']
+            ):not(:active):hover::before,
+          .euiButtonIcon:not(${euiDisabledSelector}):not(
+              [aria-pressed='true']
+            ):not(:active):hover,
+          .euiButtonGroupButton:not(${euiDisabledSelector}):not(
+              [aria-pressed='true']
+            ):not(:active):hover::before,
+          .euiButtonGroupButton:not(${euiDisabledSelector}):not(
+              [aria-pressed='true']
+            ):not(:active):hover {
             background-color: transparent;
           }
         }
@@ -492,9 +504,15 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
               ${euiTheme.animation.resistance};
           }
 
-          .euiButton:not([aria-pressed='true']):not(${euiDisabledSelector}):hover,
-          .euiButtonIcon:not([aria-pressed='true']):not(${euiDisabledSelector}):hover,
-          .euiButtonGroupButton:not([aria-pressed='true']):not(${euiDisabledSelector}):hover {
+          .euiButton:not([aria-pressed='true']):not(
+              ${euiDisabledSelector}
+            ):hover,
+          .euiButtonIcon:not([aria-pressed='true']):not(
+              ${euiDisabledSelector}
+            ):hover,
+          .euiButtonGroupButton:not([aria-pressed='true']):not(
+              ${euiDisabledSelector}
+            ):hover {
             color: ${euiTheme.colors.textHeading};
           }
         }
@@ -504,8 +522,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       z-index: 0;
       /* Physical origin: the offset is measured from the container's left edge. */
-      top: 0;
-      left: 0;
+      inset-block-start: 0;
+      inset-inline-start: 0;
       pointer-events: none;
       background-color: ${euiTheme.colors.backgroundLightText};
 
@@ -521,8 +539,8 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       z-index: 0;
       /* Physical origin: the offset is measured from the container's left edge. */
-      top: 0;
-      left: 0;
+      inset-block-start: 0;
+      inset-inline-start: 0;
       pointer-events: none;
       background-color: ${euiTheme.components.buttons.backgroundTextHover};
 
@@ -532,8 +550,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
               ${euiTheme.animation.resistance},
             width ${euiTheme.animation.fast} ${euiTheme.animation.resistance},
             height ${euiTheme.animation.fast} ${euiTheme.animation.resistance},
-            opacity ${euiTheme.animation.fast}
-              ${euiTheme.animation.resistance};
+            opacity ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
         }
       }
     `,

@@ -983,8 +983,7 @@ export const EuiFlyoutComponent = forwardRef(
           if (side === 'left') {
             containerPositionStyles.left = containerRect.left + edgeOffset;
           } else {
-            containerPositionStyles.right =
-              containerRightOffset + edgeOffset;
+            containerPositionStyles.right = containerRightOffset + edgeOffset;
           }
 
           if (containerRelativeWidth !== undefined) {
@@ -1011,9 +1010,7 @@ export const EuiFlyoutComponent = forwardRef(
           top: `calc(var(--euiFixedHeadersOffset, 0) + ${edgeOffset}px)`,
           bottom: edgeOffset,
           height: 'auto',
-          ...(side === 'left'
-            ? { left: edgeOffset }
-            : { right: edgeOffset }),
+          ...(side === 'left' ? { left: edgeOffset } : { right: edgeOffset }),
         };
       }
 

@@ -76,11 +76,7 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
       aria-label={ariaLabel || defaultLabel}
       {...rest}
     >
-      <svg
-        css={styles.svg}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
+      <svg css={styles.svg} viewBox="0 0 24 24" aria-hidden="true">
         <circle
           className="euiLoadingSpinner__track"
           cx="12"

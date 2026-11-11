@@ -171,8 +171,7 @@ export const euiCallOutStyles = (euiThemeContext: UseEuiTheme) => {
               ${euiTheme.animation.resistance},
             padding-inline ${euiTheme.animation.normal}
               ${euiTheme.animation.resistance},
-            margin ${euiTheme.animation.normal}
-              ${euiTheme.animation.resistance},
+            margin ${euiTheme.animation.normal} ${euiTheme.animation.resistance},
             border-block-width ${euiTheme.animation.normal}
               ${euiTheme.animation.resistance},
             border-inline-width ${euiTheme.animation.normal}
