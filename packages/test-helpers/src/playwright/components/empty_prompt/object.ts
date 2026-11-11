@@ -32,12 +32,19 @@ export class EuiEmptyPromptObject extends BaseObject {
     return this.root.locator(EuiEmptyPromptSelectors.FOOTER_SELECTOR);
   }
 
-  /** The action with exactly this accessible name, a button or a link. */
+  /**
+   * The action with exactly this accessible name, a button or a link. Only
+   * the actions are searched, a link inside the body is not an action.
+   */
   action(name: string): Locator {
-    const content = this.root.locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR);
-    return content
-      .getByRole('button', { name, exact: true })
-      .or(content.getByRole('link', { name, exact: true }));
+    const blocks = this.actionBlocks;
+    const button = this.root.getByRole('button', { name, exact: true });
+    const link = this.root.getByRole('link', { name, exact: true });
+    return blocks
+      .and(button)
+      .or(blocks.and(link))
+      .or(blocks.getByRole('button', { name, exact: true }))
+      .or(blocks.getByRole('link', { name, exact: true }));
   }
 
   /** The title text, or an empty string without `title`. */
@@ -78,6 +85,16 @@ export class EuiEmptyPromptObject extends BaseObject {
   /** Click the action with this name. What follows is up to the consumer. */
   async clickAction(name: string): Promise<void> {
     await this.action(name).click();
+  }
+
+  /**
+   * The content children that hold the actions: a single action itself, or
+   * the actions wrapper. The title, the body and the spacer are skipped.
+   */
+  private get actionBlocks(): Locator {
+    return this.root
+      .locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR)
+      .locator(':scope > :not(.euiTitle):not(.euiText):not(.euiSpacer)');
   }
 
   private async textOf(element: Locator): Promise<string> {
