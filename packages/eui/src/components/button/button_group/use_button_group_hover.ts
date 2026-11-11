@@ -174,7 +174,9 @@ interface SelectionPill extends HoverHighlight {
 const buttonSelectionId = (button: HTMLElement, index: number) =>
   button.id || button.getAttribute('data-test-subj') || `selected-${index}`;
 
-const pillCenter = (pill: Pick<SelectionPill, 'x' | 'y' | 'width' | 'height'>) => ({
+const pillCenter = (
+  pill: Pick<SelectionPill, 'x' | 'y' | 'width' | 'height'>
+) => ({
   x: pill.x + pill.width / 2,
   y: pill.y + pill.height / 2,
 });
@@ -202,7 +204,7 @@ export const useButtonGroupSelectionTravel = (
   selectionKey: string
 ) => {
   const { euiTheme } = useEuiTheme();
-  const hideAfter = Math.round(parseFloat(euiTheme.animation.slow));
+  const hideAfter = Math.round(parseFloat(euiTheme.animation.slow ?? ''));
   const containerRef = useRef<HTMLDivElement>(null);
   const placed = useRef(false);
   const pillsRef = useRef<SelectionPill[]>([]);

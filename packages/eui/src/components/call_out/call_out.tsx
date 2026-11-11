@@ -55,7 +55,7 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia(REDUCED_MOTION_QUERY).matches;
 
-const durationMs = (value: string) => {
+const durationMs = (value: string = '') => {
   const amount = parseFloat(value);
   if (Number.isNaN(amount)) return 250;
   return value.trim().endsWith('ms') ? amount : amount * 1000;
@@ -175,9 +175,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     );
     const panelRef = useCombinedRefs(combinedRefs);
 
-    const [dismissPhase, setDismissPhase] = useState<'hold' | 'collapse' | null>(
-      null
-    );
+    const [dismissPhase, setDismissPhase] = useState<
+      'hold' | 'collapse' | null
+    >(null);
     const dismissHeight = useRef(0);
     const dismissingRef = useRef(false);
     const onDismissRef = useRef(onDismiss);
@@ -225,7 +225,10 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       const onEnd = (event: TransitionEvent) => {
         if (event.target !== node) return;
         // Browsers report the logical property or its physical alias.
-        if (event.propertyName !== 'block-size' && event.propertyName !== 'height') {
+        if (
+          event.propertyName !== 'block-size' &&
+          event.propertyName !== 'height'
+        ) {
           return;
         }
         finish();

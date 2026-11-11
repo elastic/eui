@@ -38,7 +38,7 @@ describe('EuiListGroupItem', () => {
 
     test('color', () => {
       const { container } = render(
-        <EuiListGroupItemExtraAction {...props} color="accent" />
+        <EuiListGroupItemExtraAction {...props} color="primary" />
       );
 
       expect(container.firstChild).toMatchSnapshot();

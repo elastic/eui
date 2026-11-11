@@ -67,8 +67,8 @@ export const EuiShimmeringText: FunctionComponent<EuiShimmeringTextProps> = ({
   const longest = phrases.reduce((widest, phrase) =>
     phrase.length > widest.length ? phrase : widest
   );
-  const holdMs = Math.round(parseFloat(euiTheme.animation.extraSlow) * 4);
-  const swapMs = Math.round(parseFloat(euiTheme.animation.slow));
+  const holdMs = Math.round(parseFloat(euiTheme.animation.extraSlow ?? '') * 4);
+  const swapMs = Math.round(parseFloat(euiTheme.animation.slow ?? ''));
 
   const [lines, setLines] = useState<Line[]>([
     { id: 0, text: phrases[0], phase: 'live' },

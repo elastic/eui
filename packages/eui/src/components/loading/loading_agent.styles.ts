@@ -27,7 +27,9 @@ const pulse = keyframes`
 export const euiAgentLoaderStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   // One cycle is the fast token × 8.
-  const cycle = `${Math.round(parseFloat(euiTheme.animation.fast) * 8)}ms`;
+  const cycle = `${Math.round(
+    parseFloat(euiTheme.animation.fast ?? '') * 8
+  )}ms`;
 
   return {
     euiAgentLoader: css`
