@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
 import { euiTimelineStyles } from './timeline.styles';
@@ -42,8 +42,7 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
 }) => {
   const classes = classNames('euiTimeline', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiTimelineStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTimelineStyles);
 
   const cssStyles = [styles.euiTimeline, styles[gutterSize]];
 
