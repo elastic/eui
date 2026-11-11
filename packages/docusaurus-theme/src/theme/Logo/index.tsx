@@ -237,7 +237,10 @@ function EuiNavbarLogoMenu({ children }: { children: ReactNode }) {
             icon="logoElastic"
             href={href}
             target="_blank"
-            onClick={closePopover}
+            onClick={(event) => {
+              event.stopPropagation();
+              closePopover();
+            }}
           >
             {label}
           </EuiContextMenuItem>
