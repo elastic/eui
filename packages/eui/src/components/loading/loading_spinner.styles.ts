@@ -51,7 +51,7 @@ const spinnerSizes: {
   xxl: 'xxl',
 };
 
-const durationMs = (value: string, multiple: number) =>
+const durationMs = (value: string = '', multiple: number) =>
   `${Math.round((parseFloat(value) || 500) * multiple)}ms`;
 
 export const euiLoadingSpinnerStyles = ({

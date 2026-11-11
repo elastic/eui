@@ -229,7 +229,7 @@ export const RenderCustomToolbar: StoryObj<
           })}
         >
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty size="xs" iconType="brush" color="accent">
+            <EuiButtonEmpty size="xs" iconType="brush" color="primary">
               Custom left side
             </EuiButtonEmpty>
           </EuiFlexItem>

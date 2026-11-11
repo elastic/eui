@@ -8,6 +8,7 @@
 
 import React, {
   FunctionComponent,
+  HTMLAttributes,
   ReactNode,
   SVGAttributes,
   createContext,
@@ -39,7 +40,8 @@ const CodeBlockCopyIcon: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiCodeBlockCopyIconStyles);
 
   return (
-    <span {...rest} css={iconCss}>
+    // POC: iconType passes SVG props; only className/aria attrs reach this span.
+    <span {...(rest as HTMLAttributes<HTMLSpanElement>)} css={iconCss}>
       <span css={styles.frame}>
         <span css={[styles.layer, showCheck ? styles.hidden : styles.visible]}>
           <EuiIcon type="copy" color="inherit" aria-hidden="true" />
