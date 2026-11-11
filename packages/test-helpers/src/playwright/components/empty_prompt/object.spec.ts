@@ -14,13 +14,19 @@ import { storyUrl } from '../../../storybook';
 /**
  * Validates `EuiEmptyPromptObject` against the live component in EUI
  * Storybook. The Playground story has a title, a body, two actions and a
- * footer.
+ * footer, the PageTemplate story a single action.
  */
 
 const TEST_SUBJ = 'testEmptyPrompt';
 
 const PLAYGROUND_URL = storyUrl(
   'display-euiemptyprompt--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
+
+/** The PageTemplate story has a single action. */
+const PAGE_TEMPLATE_URL = storyUrl(
+  'display-euiemptyprompt--page-template',
   `data-test-subj:${TEST_SUBJ}`
 );
 
@@ -49,6 +55,28 @@ test.describe('EuiEmptyPromptObject', () => {
     expect(await prompt.getActions()).toEqual(['Upgrade', 'Start a trial']);
     await expect(prompt.action('Upgrade')).toBeVisible();
     await prompt.clickAction('Start a trial');
+  });
+
+  test('ignores a link in the body with the same name', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
+    await page
+      .locator('.euiEmptyPrompt__content > .euiText')
+      .evaluate((body) => {
+        body.insertAdjacentHTML('beforeend', '<a href="#">Upgrade</a>');
+      });
+
+    await expect(prompt.action('Upgrade')).toHaveCount(1);
+    await expect(prompt.action('Upgrade')).toHaveRole('button');
+    expect(await prompt.getActions()).toEqual(['Upgrade', 'Start a trial']);
+  });
+
+  test('reads and clicks a single action', async ({ page }) => {
+    await page.goto(PAGE_TEMPLATE_URL);
+    const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
+
+    expect(await prompt.getActions()).toEqual(['Create visualization']);
+    await prompt.clickAction('Create visualization');
   });
 
   test('exposes the footer', async ({ page }) => {
