@@ -16,7 +16,6 @@ import {
   EuiLoadingElasticRing,
   EuiLoadingElasticRingProps,
   MODES,
-  SIZES,
 } from './loading_elastic_ring';
 
 const meta: Meta<EuiLoadingElasticRingProps> = {
@@ -24,12 +23,10 @@ const meta: Meta<EuiLoadingElasticRingProps> = {
   component: EuiLoadingElasticRing,
   argTypes: {
     mode: { control: 'select', options: [...MODES] },
-    size: { control: 'select', options: [...SIZES] },
   },
   args: {
     mode: 'sweep',
     loading: true,
-    size: 'xl',
   },
 };
 

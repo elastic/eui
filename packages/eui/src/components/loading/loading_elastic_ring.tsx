@@ -26,35 +26,17 @@ import { EUI_LOADING_ELASTIC_RING_LOGO_PATH } from './loading_elastic_ring_path'
 export const MODES = ['sweep', 'pulse'] as const;
 export type EuiLoadingElasticRingMode = (typeof MODES)[number];
 
-export const SIZES = ['m', 'l', 'xl'] as const;
-export type EuiLoadingElasticRingSize = (typeof SIZES)[number];
-
-const SIZE_PX: Record<EuiLoadingElasticRingSize, number> = {
-  m: 80,
-  l: 96,
-  xl: 120,
-};
-
-/** Stroke width in viewBox units (viewBox is 120), per size. */
-const SIZE_THICKNESS: Record<EuiLoadingElasticRingSize, number> = {
-  m: 4,
-  l: 5,
-  xl: 8,
-};
-
-/** Centre mark rendered size in CSS px, per size. */
-const SIZE_MARK_PX: Record<EuiLoadingElasticRingSize, number> = {
-  m: 24,
-  l: 28,
-  xl: 36,
-};
-
-/**
- * Approximate axis-aligned size of the mark path in the 120 viewBox.
- * Used to scale the path so it renders at SIZE_MARK_PX.
- */
+/** Rendered size in CSS px; matches the 120 viewBox, so 1 unit = 1px. */
+const SIZE_PX = 120;
+/** Ring stroke width in px. */
+const THICKNESS_PX = 4;
+/** Centre mark rendered size in px. */
+// POC: needs design input — mark bumped ~33% (was 36)
+const MARK_PX = 48;
+/** Approximate axis-aligned size of the mark path in the 120 viewBox. */
 const MARK_PATH_VIEWBOX_SIZE = 36;
 const VIEWBOX_SIZE = 120;
+const MARK_SCALE = MARK_PX / MARK_PATH_VIEWBOX_SIZE;
 
 export type EuiLoadingElasticRingProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
@@ -65,8 +47,6 @@ export type EuiLoadingElasticRingProps = CommonProps &
      * Once settle starts it always finishes before loading can resume.
      */
     loading?: boolean;
-    /** Preset size. Default `xl` (120px). */
-    size?: EuiLoadingElasticRingSize;
     /**
      * Visually hidden status text.
      * Defaults to the shared loading i18n string.
@@ -469,7 +449,6 @@ export const EuiLoadingElasticRing: FunctionComponent<
 > = ({
   mode = 'sweep',
   loading = true,
-  size = 'xl',
   label,
   className,
   ...rest
@@ -508,18 +487,12 @@ export const EuiLoadingElasticRing: FunctionComponent<
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const px = SIZE_PX[size];
-  const sw = SIZE_THICKNESS[size];
-  const markPx = SIZE_MARK_PX[size];
-  // Scale path so its on-screen size is markPx (path is authored in the 120 viewBox)
-  const markScale = (markPx * VIEWBOX_SIZE) / (MARK_PATH_VIEWBOX_SIZE * px);
-
   return (
     <div
       className={classes}
       css={[
         styles.euiLoadingElasticRing,
-        styles.euiLoadingElasticRing__size(px),
+        styles.euiLoadingElasticRing__size(SIZE_PX),
       ]}
       role="status"
       aria-live="polite"
@@ -528,8 +501,8 @@ export const EuiLoadingElasticRing: FunctionComponent<
     >
       <svg
         aria-hidden="true"
-        width={px}
-        height={px}
+        width={SIZE_PX}
+        height={SIZE_PX}
         viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         fill="none"
         css={styles.euiLoadingElasticRing__svg}
@@ -545,7 +518,7 @@ export const EuiLoadingElasticRing: FunctionComponent<
               cy="60"
               r={R}
               stroke={SEG_COLORS[i]}
-              strokeWidth={sw}
+              strokeWidth={THICKNESS_PX}
               strokeDasharray={`${((b - a) / 360) * C} ${C}`}
               strokeDashoffset={(-a / 360) * C}
             />
@@ -556,7 +529,7 @@ export const EuiLoadingElasticRing: FunctionComponent<
           clipRule="evenodd"
           d={EUI_LOADING_ELASTIC_RING_LOGO_PATH}
           css={styles.euiLoadingElasticRing__mark}
-          transform={`translate(60 60) scale(${markScale}) translate(-60 -60)`}
+          transform={`translate(60 60) scale(${MARK_SCALE}) translate(-60 -60)`}
         />
       </svg>
       <EuiScreenReaderOnly>
