@@ -46,7 +46,7 @@ describe('EuiOverlayMask', () => {
     );
 
     expect(getClassName(baseElement)).toMatchInlineSnapshot(
-      `"euiOverlayMask css-cjuudi-euiOverlayMask-aboveHeader hello"`
+      `"euiOverlayMask css-1kiyizc-euiOverlayMask-aboveHeader hello"`
     );
 
     rerender(
@@ -55,7 +55,7 @@ describe('EuiOverlayMask', () => {
       </EuiOverlayMask>
     );
     expect(getClassName(baseElement)).toMatchInlineSnapshot(
-      `"euiOverlayMask css-1hs3u1r-euiOverlayMask-belowHeader world"`
+      `"euiOverlayMask css-s756vz-euiOverlayMask-belowHeader world"`
     );
   });
 
@@ -90,13 +90,13 @@ describe('EuiOverlayMask', () => {
       );
 
       expect(getClassName(baseElement)).toMatchInlineSnapshot(
-        `"euiOverlayMask css-cjuudi-euiOverlayMask-aboveHeader"`
+        `"euiOverlayMask css-1kiyizc-euiOverlayMask-aboveHeader"`
       );
 
       rerender(<EuiOverlayMask hasAnimation={false}>Content</EuiOverlayMask>);
 
       expect(getClassName(baseElement)).toMatchInlineSnapshot(
-        `"euiOverlayMask css-15c6294-euiOverlayMask-aboveHeader-noAnimation"`
+        `"euiOverlayMask css-4e83md-euiOverlayMask-aboveHeader-noAnimation"`
       );
     });
   });

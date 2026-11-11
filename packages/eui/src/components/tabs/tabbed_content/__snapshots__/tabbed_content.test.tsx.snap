@@ -7,7 +7,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -53,6 +53,11 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="es"
@@ -69,7 +74,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 <div>
   <div
-    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -115,6 +120,11 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="es"
@@ -131,7 +141,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 <div>
   <div
-    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -177,6 +187,11 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="es"
@@ -193,7 +208,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -239,6 +254,11 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="kibana"
@@ -255,7 +275,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
 exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -301,6 +321,11 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="kibana"
@@ -317,7 +342,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
-    class="euiTabs emotion-euiTabs-s-bottomBorder"
+    class="euiTabs emotion-euiTabs-s-hideTabUnderline-bottomBorder"
     role="tablist"
   >
     <button
@@ -363,6 +388,11 @@ exports[`EuiTabbedContent props size can be small 1`] = `
         append
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      class="euiTabs__indicator emotion-euiTabs__indicator"
+      style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+    />
   </div>
   <div
     aria-labelledby="es"

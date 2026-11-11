@@ -37,10 +37,10 @@ describe('EuiCheckboxControl', () => {
 
       const wrapper = container.querySelector('.euiCheckboxControl')!;
       const classes = Array.from(wrapper.classList) as string[];
-      expect(classes.some((clx) => clx.includes('selected'))).toBe(true);
+      expect(classes).toContain('euiCheckboxControl-isChecked');
 
       expect(
-        container.querySelector('[data-euiicon-type="check"]')
+        container.querySelector('.euiCheckbox__stroke')
       ).toBeInTheDocument();
     });
 

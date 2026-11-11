@@ -3,6 +3,43 @@
 exports[`euiMarkdownFormat text colors accent 1`] = `
 "
     .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #48EFCF;
+    }
+
+    .euiHorizontalRule {
+      background-color: #48EFCF;
+      color: #48EFCF; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #48EFCF;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #48EFCF;
+
+      &:last-child {
+        border-inline-end: 1px solid #48EFCF;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #48EFCF;
+    }
+  ;label:accent;"
+`;
+
+exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
       border-inline-start-color: #BC1E70;
     }
 
@@ -33,43 +70,6 @@ exports[`euiMarkdownFormat text colors accent 1`] = `
 
     .euiMarkdownFormat__table tr {
       border-block-start: 1px solid #BC1E70;
-    }
-  ;label:accent;"
-`;
-
-exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
-"
-    .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #008B87;
-    }
-
-    .euiHorizontalRule {
-      background-color: #008B87;
-      color: #008B87; /* ensure that firefox gets the currentColor */
-    }
-
-    /* Tables */
-
-    .euiMarkdownFormat__table {
-      display: block;
-      inline-size: 100%;
-      overflow: auto;
-      border-spacing: 0;
-      border-collapse: collapse;
-      border-inline-start: 1px solid #008B87;
-    }
-
-    .euiMarkdownFormat__table th,
-    .euiMarkdownFormat__table td {
-      border-block: 1px solid #008B87;
-
-      &:last-child {
-        border-inline-end: 1px solid #008B87;
-      }
-    }
-
-    .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #008B87;
     }
   ;label:accentSecondary;"
 `;

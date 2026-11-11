@@ -17,11 +17,18 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
         <span
           class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
         >
-          <span
-            class="emotion-euiCheckbox__icon-check"
-            data-euiicon-type="empty"
-            role="presentation"
-          />
+          <svg
+            aria-hidden="true"
+            class="euiCheckbox__stroke css-1xtm1q-stroke"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+          >
+            <path
+              d="M3.6 8.6 6.7 11.5 12.5 4.9"
+              pathLength="1"
+            />
+          </svg>
         </span>
         <input
           class="euiCheckbox__input emotion-euiCheckbox__input"

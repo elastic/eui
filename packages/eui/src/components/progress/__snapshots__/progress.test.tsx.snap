@@ -116,7 +116,7 @@ exports[`EuiProgress has labelProps 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      class="euiProgress__valueText emotion-euiProgress__valueText-primary"
     >
       150
     </div>
@@ -133,7 +133,7 @@ exports[`EuiProgress has labelProps 1`] = `
   <progress
     aria-label="aria-label"
     aria-valuetext="150"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-primary-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
@@ -154,7 +154,7 @@ exports[`EuiProgress has max 1`] = `
 exports[`EuiProgress has value 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-primary-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -172,7 +172,7 @@ exports[`EuiProgress has valueText and label 1`] = `
     </div>
     <div
       aria-hidden="true"
-      class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      class="euiProgress__valueText emotion-euiProgress__valueText-primary"
     >
       150
     </div>
@@ -191,7 +191,7 @@ exports[`EuiProgress has valueText and label 1`] = `
   <progress
     aria-label="aria-label"
     aria-valuetext="150"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-primary-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
@@ -214,7 +214,7 @@ exports[`EuiProgress is determinate 1`] = `
 exports[`EuiProgress is indeterminate 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-primary-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -222,32 +222,32 @@ exports[`EuiProgress is indeterminate 1`] = `
 exports[`EuiProgress is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-primary-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiProgress size l is rendered 1`] = `
 <div
-  class="euiProgress emotion-euiProgress-indeterminate-l-static-success"
+  class="euiProgress emotion-euiProgress-indeterminate-l-static-primary"
 />
 `;
 
 exports[`EuiProgress size m is rendered 1`] = `
 <div
-  class="euiProgress emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress emotion-euiProgress-indeterminate-m-static-primary"
 />
 `;
 
 exports[`EuiProgress size s is rendered 1`] = `
 <div
-  class="euiProgress emotion-euiProgress-indeterminate-s-static-success"
+  class="euiProgress emotion-euiProgress-indeterminate-s-static-primary"
 />
 `;
 
 exports[`EuiProgress size xs is rendered 1`] = `
 <div
-  class="euiProgress emotion-euiProgress-indeterminate-xs-static-success"
+  class="euiProgress emotion-euiProgress-indeterminate-xs-static-primary"
 />
 `;
 
@@ -258,7 +258,7 @@ exports[`EuiProgress valueText is true 1`] = `
   >
     <div
       aria-hidden="true"
-      class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      class="euiProgress__valueText emotion-euiProgress__valueText-primary"
     >
       50%
     </div>
@@ -275,7 +275,7 @@ exports[`EuiProgress valueText is true 1`] = `
   <progress
     aria-label="aria-label"
     aria-valuetext="50%"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-primary-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"

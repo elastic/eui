@@ -79,7 +79,30 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
         aria-label="Loading"
         class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
         role="progressbar"
-      />
+      >
+        <svg
+          aria-hidden="true"
+          class="css-o4zl73-svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="euiLoadingSpinner__track"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+          <circle
+            class="euiLoadingSpinner__arc"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+        </svg>
+      </span>
     </div>
   </div>
 </div>
@@ -225,7 +248,30 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
         aria-label="Loading"
         class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
         role="progressbar"
-      />
+      >
+        <svg
+          aria-hidden="true"
+          class="css-o4zl73-svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="euiLoadingSpinner__track"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+          <circle
+            class="euiLoadingSpinner__arc"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+        </svg>
+      </span>
       <span
         color="danger"
         data-euiicon-type="warning"
@@ -295,7 +341,30 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
         aria-label="Loading"
         class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
         role="progressbar"
-      />
+      >
+        <svg
+          aria-hidden="true"
+          class="css-o4zl73-svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="euiLoadingSpinner__track"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+          <circle
+            class="euiLoadingSpinner__arc"
+            cx="12"
+            cy="12"
+            r="9.5"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
+        </svg>
+      </span>
     </div>
   </div>
 </div>
@@ -369,7 +438,7 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
     class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
   >
     <div
-      class="css-162bf1-wrapper"
+      class="css-13oziez-wrapper"
     >
       <div
         class="euiFormAppend css-19treal-side-uncompressed"
@@ -429,7 +498,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
     class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
   >
     <div
-      class="css-162bf1-wrapper"
+      class="css-13oziez-wrapper"
     >
       <div
         class="euiFormPrepend css-19treal-side-uncompressed"

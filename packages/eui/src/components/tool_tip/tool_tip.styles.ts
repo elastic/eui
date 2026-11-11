@@ -57,12 +57,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     to { transform: none; }
   `;
 
-  const reveal = (driftAnimation: ReturnType<typeof keyframes>) => css`
-    ${euiCanAnimate} {
-      animation-name: ${fadeIn}, ${driftAnimation};
-    }
-  `;
-
   return {
     // Base
     euiToolTip: css`
@@ -91,10 +85,26 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         animation-fill-mode: both;
       }
     `,
-    top: reveal(driftFromTop),
-    bottom: reveal(driftFromBottom),
-    left: reveal(driftFromLeft),
-    right: reveal(driftFromRight),
+    top: css`
+      ${euiCanAnimate} {
+        animation-name: ${fadeIn}, ${driftFromTop};
+      }
+    `,
+    bottom: css`
+      ${euiCanAnimate} {
+        animation-name: ${fadeIn}, ${driftFromBottom};
+      }
+    `,
+    left: css`
+      ${euiCanAnimate} {
+        animation-name: ${fadeIn}, ${driftFromLeft};
+      }
+    `,
+    right: css`
+      ${euiCanAnimate} {
+        animation-name: ${fadeIn}, ${driftFromRight};
+      }
+    `,
     // Arrow
     euiToolTip__arrow: css`
       ${arrowStyles._arrowStyles}

@@ -35,7 +35,7 @@ describe('euiFormVariables', () => {
         "borderAutofilled": "#BFDBFF",
         "borderAutofilledHovered": "#0B64DD",
         "borderColor": "#CAD3E2",
-        "borderFocused": "#0B64DD",
+        "borderFocused": "#28D7B9",
         "borderHovered": "#B4C1D5",
         "borderInvalid": "#C61E25",
         "borderInvalidHovered": "#DA3737",
@@ -150,8 +150,8 @@ describe('euiFormControlStyles', () => {
 
         ",
         "focus": "
-            --euiFormControlStateColor: #0B64DD;
-            --euiFormControlStateHoverColor: #0B64DD;
+            --euiFormControlStateColor: #28D7B9;
+            --euiFormControlStateHoverColor: #28D7B9;
             --euiFormControlStateWidth: 2px;
             
         position: relative;

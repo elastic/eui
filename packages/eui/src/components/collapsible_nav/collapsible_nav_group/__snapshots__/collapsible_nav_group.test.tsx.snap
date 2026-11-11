@@ -246,7 +246,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="chevronSingleRight"
+        data-euiicon-type="EuiAccordionArrowIcon"
       />
     </button>
   </div>
@@ -259,7 +259,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
     style="block-size: 0;"
   >
     <div
-      class="euiAccordion__children emotion-euiAccordion__children"
+      class="euiAccordion__children emotion-euiAccordion__children-isClosed"
     />
   </div>
 </div>
@@ -311,7 +311,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
         aria-hidden="true"
         class="euiButtonIcon__icon"
         color="inherit"
-        data-euiicon-type="chevronSingleRight"
+        data-euiicon-type="EuiAccordionArrowIcon"
       />
     </button>
   </div>
@@ -324,7 +324,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     style="block-size: 0;"
   >
     <div
-      class="euiAccordion__children emotion-euiAccordion__children"
+      class="euiAccordion__children emotion-euiAccordion__children-isClosed"
     />
   </div>
 </div>

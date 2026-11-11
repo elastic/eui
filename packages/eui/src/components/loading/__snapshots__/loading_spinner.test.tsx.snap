@@ -6,20 +6,89 @@ exports[`EuiLoadingSpinner custom colors 1`] = `
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color: #0b64dd white white white;"
-  />
+    style="color: white;"
+  >
+    <svg
+      aria-hidden="true"
+      class="css-o4zl73-svg"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="euiLoadingSpinner__track"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+      <circle
+        class="euiLoadingSpinner__arc"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+    </svg>
+  </span>
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color: black #cad3e2 #cad3e2 #cad3e2;"
-  />
+    style="color: black;"
+  >
+    <svg
+      aria-hidden="true"
+      class="css-o4zl73-svg"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="euiLoadingSpinner__track"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+      <circle
+        class="euiLoadingSpinner__arc"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+    </svg>
+  </span>
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="color: red; border-color: black white white white;"
-  />
+    style="color: black;"
+  >
+    <svg
+      aria-hidden="true"
+      class="css-o4zl73-svg"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="euiLoadingSpinner__track"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+      <circle
+        class="euiLoadingSpinner__arc"
+        cx="12"
+        cy="12"
+        r="9.5"
+        stroke-linecap="round"
+        stroke-width="2"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -29,7 +98,30 @@ exports[`EuiLoadingSpinner is rendered 1`] = `
   class="euiLoadingSpinner testClass1 testClass2 emotion-euiLoadingSpinner-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+  </svg>
+</span>
 `;
 
 exports[`EuiLoadingSpinner size l is rendered 1`] = `
@@ -37,7 +129,30 @@ exports[`EuiLoadingSpinner size l is rendered 1`] = `
   aria-label="Loading"
   class="euiLoadingSpinner emotion-euiLoadingSpinner-l"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+  </svg>
+</span>
 `;
 
 exports[`EuiLoadingSpinner size m is rendered 1`] = `
@@ -45,7 +160,30 @@ exports[`EuiLoadingSpinner size m is rendered 1`] = `
   aria-label="Loading"
   class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+  </svg>
+</span>
 `;
 
 exports[`EuiLoadingSpinner size s is rendered 1`] = `
@@ -53,7 +191,30 @@ exports[`EuiLoadingSpinner size s is rendered 1`] = `
   aria-label="Loading"
   class="euiLoadingSpinner emotion-euiLoadingSpinner-s"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2.4"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2.4"
+    />
+  </svg>
+</span>
 `;
 
 exports[`EuiLoadingSpinner size xl is rendered 1`] = `
@@ -61,7 +222,30 @@ exports[`EuiLoadingSpinner size xl is rendered 1`] = `
   aria-label="Loading"
   class="euiLoadingSpinner emotion-euiLoadingSpinner-xl"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+  </svg>
+</span>
 `;
 
 exports[`EuiLoadingSpinner size xxl is rendered 1`] = `
@@ -69,5 +253,28 @@ exports[`EuiLoadingSpinner size xxl is rendered 1`] = `
   aria-label="Loading"
   class="euiLoadingSpinner emotion-euiLoadingSpinner-xxl"
   role="progressbar"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="css-o4zl73-svg"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="euiLoadingSpinner__track"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+    <circle
+      class="euiLoadingSpinner__arc"
+      cx="12"
+      cy="12"
+      r="9.5"
+      stroke-linecap="round"
+      stroke-width="2"
+    />
+  </svg>
+</span>
 `;

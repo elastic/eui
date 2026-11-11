@@ -615,9 +615,7 @@ describe('EuiListItemLayout', () => {
 
         expect(element).toHaveAttribute('aria-checked', 'true');
         expect(checkbox).toBeInTheDocument();
-        expect(
-          element.querySelector('[data-euiicon-type="check"]')
-        ).toBeInTheDocument();
+        expect(checkbox).toHaveClass('euiCheckboxControl-isChecked');
       });
 
       it('applies an unchecked state for multi-selection items when `checked=undefined`', () => {
@@ -637,9 +635,7 @@ describe('EuiListItemLayout', () => {
 
         expect(element).toHaveAttribute('aria-checked', 'false');
         expect(checkbox).toBeInTheDocument();
-        expect(
-          element.querySelector('[data-euiicon-type="empty"]')
-        ).toBeInTheDocument();
+        expect(checkbox).not.toHaveClass('euiCheckboxControl-isChecked');
       });
 
       it('applies an exclusion state for multi-selection items when checked="off"', () => {

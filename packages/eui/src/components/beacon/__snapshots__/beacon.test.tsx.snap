@@ -3,7 +3,7 @@
 exports[`EuiBeacon is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon-accent-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
 />
@@ -66,7 +66,7 @@ exports[`EuiBeacon props color warning is rendered 1`] = `
 exports[`EuiBeacon props size accepts size 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon-accent-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 14px; inline-size: 14px;"
 />

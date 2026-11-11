@@ -15,8 +15,13 @@ exports[`EuiTimeWindowButtons renders 1`] = `
     class="euiButtonGroup__container emotion-euiButtonGroup__container"
   >
     <div
-      class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
+      class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap-hoverHighlight"
     >
+      <div
+        aria-hidden="true"
+        class="css-1ded0km-hoverHighlightPill"
+        style="width: 0px; height: 0px; border-radius: 0; transform: translate3d(0px, 0px, 0); opacity: 0; transition-property: opacity;"
+      />
       <div
         class="euiButtonGroup__item"
       >

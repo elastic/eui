@@ -2,7 +2,7 @@
 
 exports[`useEuiButtonColorCSS base 1`] = `
 {
-  "accent": {
+  "accentSecondary": {
     "map": undefined,
     "name": "iw9nst-displaysColorsMap-display-color",
     "next": undefined,
@@ -31,40 +31,6 @@ exports[`useEuiButtonColorCSS base 1`] = `
             position: absolute;
             inset: 0;
             background-color: rgba(229,74,145, 0.16);
-          }
-        }
-   ;;label:base-accent;",
-    "toString": [Function],
-  },
-  "accentSecondary": {
-    "map": undefined,
-    "name": "2bsqr1-displaysColorsMap-display-color",
-    "next": undefined,
-    "styles": "color:#046e6b;background-color:#C9F3F0;     
-    position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled, [aria-disabled="true"]) {
-          &::before {
-            content: '';
-            position: absolute;
-            /* should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(0,176,170, 0.12);
-            pointer-events: none;
-          }
-        }
-
-        &:active:not(:disabled, [aria-disabled="true"]) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0,176,170, 0.16);
           }
         }
    ;;label:base-accentSecondary;",
@@ -349,7 +315,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
 
 exports[`useEuiButtonColorCSS empty 1`] = `
 {
-  "accent": {
+  "accentSecondary": {
     "map": undefined,
     "name": "17z5qwe-displaysColorsMap-display-color",
     "next": undefined,
@@ -378,40 +344,6 @@ exports[`useEuiButtonColorCSS empty 1`] = `
             position: absolute;
             inset: 0;
             background-color: rgba(229,74,145, 0.16);
-          }
-        }
-  ;;label:empty-accent;",
-    "toString": [Function],
-  },
-  "accentSecondary": {
-    "map": undefined,
-    "name": "utsfcv-displaysColorsMap-display-color",
-    "next": undefined,
-    "styles": "color:#046e6b;    
-    position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled, [aria-disabled="true"]) {
-          &::before {
-            content: '';
-            position: absolute;
-            /* should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(0,176,170, 0.12);
-            pointer-events: none;
-          }
-        }
-
-        &:active:not(:disabled, [aria-disabled="true"]) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0,176,170, 0.16);
           }
         }
   ;;label:empty-accentSecondary;",
@@ -694,7 +626,7 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 
 exports[`useEuiButtonColorCSS fill 1`] = `
 {
-  "accent": {
+  "accentSecondary": {
     "map": undefined,
     "name": "3mx2qw-displaysColorsMap-display-color",
     "next": undefined,
@@ -705,21 +637,6 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 
       &:active:not(:disabled, [aria-disabled="true"]) {
         background-color: #831652;
-      }
-  ;;label:fill-accent;",
-    "toString": [Function],
-  },
-  "accentSecondary": {
-    "map": undefined,
-    "name": "1xku66d-displaysColorsMap-display-color",
-    "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;    
-    &:hover:not(:disabled, [aria-disabled="true"]) {
-        background-color: #047471;
-      }
-
-      &:active:not(:disabled, [aria-disabled="true"]) {
-        background-color: #065B58;
       }
   ;;label:fill-accentSecondary;",
     "toString": [Function],

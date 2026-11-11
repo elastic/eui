@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accent 1`] = `"#FFF0F8"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accent 1`] = `"#E8FAF5"`;
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accentSecondary 1`] = `"#EAFBFA"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accentSecondary 1`] = `"#FFF0F8"`;
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent accent 1`] = `"#FFF0F8"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent accent 1`] = `"#E8FAF5"`;
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent accentSecondary 1`] = `"#EAFBFA"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent accentSecondary 1`] = `"#FFF0F8"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent danger 1`] = `"#FFF3F1"`;
 
@@ -48,9 +48,9 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: warning 1`] = `"#FFF7E2"`;
 
-exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: accent 1`] = `"background-color:#FFF0F8;label:accent;"`;
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: accent 1`] = `"background-color:#E8FAF5;label:accent;"`;
 
-exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: accentSecondary 1`] = `"background-color:#EAFBFA;label:accentSecondary;"`;
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: accentSecondary 1`] = `"background-color:#FFF0F8;label:accentSecondary;"`;
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: danger 1`] = `"background-color:#FFF3F1;label:danger;"`;
 
@@ -72,9 +72,9 @@ exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-c
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: warning 1`] = `"background-color:#FFF7E2;label:warning;"`;
 
-exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accent 1`] = `"border-color:#FFC7DB;label:accent;"`;
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accent 1`] = `"border-color:#93F0D9;label:accent;"`;
 
-exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accentSecondary 1`] = `"border-color:#A6EDEA;label:accentSecondary;"`;
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accentSecondary 1`] = `"border-color:#FFC7DB;label:accentSecondary;"`;
 
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: danger 1`] = `"border-color:#FFC9C2;label:danger;"`;
 

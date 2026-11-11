@@ -62,7 +62,7 @@ describe('EuiEmotionThemeProvider', () => {
     );
 
     expect(getByTestSubject('consumer')).toHaveStyleRule('color', 'pink');
-    expect(getByTestSubject('eui')).toHaveStyleRule('color', '#A11262');
+    expect(getByTestSubject('eui')).toHaveStyleRule('color', '#006A59');
 
     expect(container).toMatchInlineSnapshot(`
       <div>

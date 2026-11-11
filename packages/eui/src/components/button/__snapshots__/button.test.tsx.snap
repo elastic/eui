@@ -19,17 +19,6 @@ exports[`EuiButton is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButton props color accent is rendered 1`] = `
-<button
-  class="euiButton emotion-euiButtonDisplay-m-base-accent"
-  type="button"
->
-  <span
-    class="emotion-euiButtonDisplayContent"
-  />
-</button>
-`;
-
 exports[`EuiButton props color accentSecondary is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-base-accentSecondary"
@@ -300,8 +289,30 @@ exports[`EuiButton props isLoading is rendered 1`] = `
       aria-label="Loading"
       class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
-      style="border-color: #0b64dd currentcolor currentcolor currentcolor;"
-    />
+    >
+      <svg
+        aria-hidden="true"
+        class="css-o4zl73-svg"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="euiLoadingSpinner__track"
+          cx="12"
+          cy="12"
+          r="9.5"
+          stroke-linecap="round"
+          stroke-width="2"
+        />
+        <circle
+          class="euiLoadingSpinner__arc"
+          cx="12"
+          cy="12"
+          r="9.5"
+          stroke-linecap="round"
+          stroke-width="2"
+        />
+      </svg>
+    </span>
   </span>
 </button>
 `;

@@ -443,12 +443,13 @@ class LoadingElasticRingEngine {
  */
 const usePrefersReducedMotion = () => {
   const [reduced, setReduced] = useState(() =>
-    typeof window !== 'undefined'
+    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
       ? window.matchMedia(REDUCED_MOTION_QUERY).matches
       : false
   );
 
   useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
     const mql = window.matchMedia(REDUCED_MOTION_QUERY);
     const onChange = () => setReduced(mql.matches);
     onChange();

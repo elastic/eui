@@ -153,7 +153,7 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
 
     useLayoutEffect(() => {
       const tabsEl = tabsRef.current;
-      if (!tabsEl) return;
+      if (!tabsEl || typeof ResizeObserver === 'undefined') return;
 
       const observer = new ResizeObserver(() => placeIndicator(false));
       observer.observe(tabsEl);

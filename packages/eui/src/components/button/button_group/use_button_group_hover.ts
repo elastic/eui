@@ -68,6 +68,7 @@ const measureButton = (container: HTMLElement, button: HTMLElement) => {
 
 const hoverHighlightAllowed = () =>
   typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
   window.matchMedia(FINE_POINTER_QUERY).matches &&
   !window.matchMedia(REDUCED_MOTION_QUERY).matches;
 

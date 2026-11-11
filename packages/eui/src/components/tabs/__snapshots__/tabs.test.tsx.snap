@@ -2,7 +2,7 @@
 
 exports[`EuiTabs props expand passes down to EuiTab children 1`] = `
 <div
-  class="euiTabs emotion-euiTabs-m-bottomBorder"
+  class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
   role="tablist"
 >
   <button
@@ -18,12 +18,17 @@ exports[`EuiTabs props expand passes down to EuiTab children 1`] = `
       Tab
     </span>
   </button>
+  <span
+    aria-hidden="true"
+    class="euiTabs__indicator emotion-euiTabs__indicator"
+    style="opacity: 0;"
+  />
 </div>
 `;
 
 exports[`EuiTabs props size l renders and passes down to EuiTab children 1`] = `
 <div
-  class="euiTabs emotion-euiTabs-l-bottomBorder"
+  class="euiTabs emotion-euiTabs-l-hideTabUnderline-bottomBorder"
   role="tablist"
 >
   <button
@@ -39,12 +44,17 @@ exports[`EuiTabs props size l renders and passes down to EuiTab children 1`] = `
       Tab
     </span>
   </button>
+  <span
+    aria-hidden="true"
+    class="euiTabs__indicator emotion-euiTabs__indicator"
+    style="opacity: 0;"
+  />
 </div>
 `;
 
 exports[`EuiTabs props size m renders and passes down to EuiTab children 1`] = `
 <div
-  class="euiTabs emotion-euiTabs-m-bottomBorder"
+  class="euiTabs emotion-euiTabs-m-hideTabUnderline-bottomBorder"
   role="tablist"
 >
   <button
@@ -60,12 +70,17 @@ exports[`EuiTabs props size m renders and passes down to EuiTab children 1`] = `
       Tab
     </span>
   </button>
+  <span
+    aria-hidden="true"
+    class="euiTabs__indicator emotion-euiTabs__indicator"
+    style="opacity: 0;"
+  />
 </div>
 `;
 
 exports[`EuiTabs props size s renders and passes down to EuiTab children 1`] = `
 <div
-  class="euiTabs emotion-euiTabs-s-bottomBorder"
+  class="euiTabs emotion-euiTabs-s-hideTabUnderline-bottomBorder"
   role="tablist"
 >
   <button
@@ -81,16 +96,26 @@ exports[`EuiTabs props size s renders and passes down to EuiTab children 1`] = `
       Tab
     </span>
   </button>
+  <span
+    aria-hidden="true"
+    class="euiTabs__indicator emotion-euiTabs__indicator"
+    style="opacity: 0;"
+  />
 </div>
 `;
 
 exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTabs testClass1 testClass2 emotion-euiTabs-m-bottomBorder-euiTestCss"
+  class="euiTabs testClass1 testClass2 emotion-euiTabs-m-hideTabUnderline-bottomBorder-euiTestCss"
   data-test-subj="test subject string"
   role="tablist"
 >
   children
+  <span
+    aria-hidden="true"
+    class="euiTabs__indicator emotion-euiTabs__indicator"
+    style="opacity: 0;"
+  />
 </div>
 `;

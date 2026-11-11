@@ -40,7 +40,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
           class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
         >
           <div
-            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
+            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap-selectionTravel"
           >
             <div
               class="euiButtonGroup__item"
@@ -155,8 +155,13 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
             class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
           >
             <div
-              class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
+              class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap-selectionTravel"
             >
+              <div
+                aria-hidden="true"
+                class="css-nwxuxu-selectionTravelPill"
+                style="width: 0px; height: 0px; border-radius: 0; transform: translate3d(0px, 0px, 0); opacity: 1; transition-property: opacity;"
+              />
               <div
                 class="euiButtonGroup__item"
               >
@@ -322,7 +327,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                   class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
                 >
                   <div
-                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
+                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap-selectionTravel"
                   >
                     <div
                       class="euiButtonGroup__item"
@@ -434,8 +439,13 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                     class="euiButtonGroup__container emotion-euiButtonGroup__container-fullWidth"
                   >
                     <div
-                      class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap"
+                      class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-noWrap-selectionTravel"
                     >
+                      <div
+                        aria-hidden="true"
+                        class="css-nwxuxu-selectionTravelPill"
+                        style="width: 0px; height: 0px; border-radius: 0; transform: translate3d(0px, 0px, 0); opacity: 1; transition-property: opacity;"
+                      />
                       <div
                         class="euiButtonGroup__item"
                       >

@@ -276,7 +276,30 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
       aria-label="Loading"
       class="euiLoadingSpinner euiStepNumber__loader emotion-euiLoadingSpinner-xl"
       role="progressbar"
-    />
+    >
+      <svg
+        aria-hidden="true"
+        class="css-o4zl73-svg"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="euiLoadingSpinner__track"
+          cx="12"
+          cy="12"
+          r="9.5"
+          stroke-linecap="round"
+          stroke-width="2"
+        />
+        <circle
+          class="euiLoadingSpinner__arc"
+          cx="12"
+          cy="12"
+          r="9.5"
+          stroke-linecap="round"
+          stroke-width="2"
+        />
+      </svg>
+    </span>
   </span>
   <span
     class="euiStepHorizontal__title emotion-euiStepHorizontal__title"

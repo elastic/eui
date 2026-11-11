@@ -479,9 +479,9 @@ exports[`EuiColorPicker inline 1`] = `
         id="generated-id_euiToolTipAnchor"
       >
         <button
-          aria-label="Select #16C5C0 as the color"
+          aria-label="Select #EE72A6 as the color"
           class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-          style="background: rgb(22, 197, 192);"
+          style="background: rgb(238, 114, 166);"
           type="button"
         />
       </span>
@@ -492,9 +492,9 @@ exports[`EuiColorPicker inline 1`] = `
         id="generated-id_euiToolTipAnchor"
       >
         <button
-          aria-label="Select #A6EDEA as the color"
+          aria-label="Select #FFC7DB as the color"
           class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-          style="background: rgb(166, 237, 234);"
+          style="background: rgb(255, 199, 219);"
           type="button"
         />
       </span>
@@ -531,9 +531,9 @@ exports[`EuiColorPicker inline 1`] = `
         id="generated-id_euiToolTipAnchor"
       >
         <button
-          aria-label="Select #EE72A6 as the color"
+          aria-label="Select #00BDA0 as the color"
           class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-          style="background: rgb(238, 114, 166);"
+          style="background: rgb(0, 189, 160);"
           type="button"
         />
       </span>
@@ -544,9 +544,9 @@ exports[`EuiColorPicker inline 1`] = `
         id="generated-id_euiToolTipAnchor"
       >
         <button
-          aria-label="Select #FFC7DB as the color"
+          aria-label="Select #93F0D9 as the color"
           class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-          style="background: rgb(255, 199, 219);"
+          style="background: rgb(147, 240, 217);"
           type="button"
         />
       </span>
@@ -765,7 +765,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-13oziez-wrapper"
       >
         <div
           class="euiFormPrepend css-19treal-side-uncompressed"
@@ -839,7 +839,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-13oziez-wrapper"
       >
         <div
           class="euiFormAppend css-19treal-side-uncompressed"

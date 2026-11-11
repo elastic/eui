@@ -4,7 +4,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 {
   "color": "#111C2C",
   "fontSize": "2.1429rem",
-  "fontWeight": 600,
+  "fontWeight": 700,
   "letterSpacing": "-0.2px",
   "lineHeight": "2.5714rem",
 }
@@ -14,7 +14,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 {
   "color": "#111C2C",
   "fontSize": "1.7143rem",
-  "fontWeight": 600,
+  "fontWeight": 700,
   "letterSpacing": "-0.2px",
   "lineHeight": "2.0000rem",
 }
@@ -24,7 +24,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 {
   "color": "#111C2C",
   "fontSize": "1.4286rem",
-  "fontWeight": 600,
+  "fontWeight": 700,
   "letterSpacing": "-0.2px",
   "lineHeight": "1.7143rem",
 }

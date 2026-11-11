@@ -82,7 +82,7 @@ describe('EuiSelectableListItem', () => {
           container.querySelector('.euiListItemLayout__checkbox')
         ).toBeInTheDocument();
         expect(
-          container.querySelector('[data-euiicon-type="check"]')
+          container.querySelector('.euiCheckboxControl-isChecked')
         ).toBeInTheDocument();
       });
 

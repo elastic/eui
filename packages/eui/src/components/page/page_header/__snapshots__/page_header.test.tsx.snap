@@ -334,7 +334,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-hideTabUnderline-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -364,6 +364,11 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
             Tab 2
           </span>
         </button>
+        <span
+          aria-hidden="true"
+          class="euiTabs__indicator emotion-euiTabs__indicator"
+          style="opacity: 1; width: 0px; transform: translate3d(0px, 0, 0);"
+        />
       </div>
     </div>
   </div>

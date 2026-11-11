@@ -11,7 +11,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-13oziez-wrapper"
       >
         <button
           aria-expanded="false"
@@ -57,7 +57,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-13oziez-wrapper"
       >
         <button
           aria-expanded="false"
@@ -102,7 +102,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-readOnly"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-13oziez-wrapper"
       >
         <button
           aria-expanded="false"
