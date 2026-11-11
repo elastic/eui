@@ -6,18 +6,30 @@
  * Side Public License, v 1.
  */
 
-import { useContext, type CSSProperties, type JSX } from 'react';
+import {
+  useContext,
+  useState,
+  type CSSProperties,
+  type JSX,
+  type MouseEvent,
+  type ReactNode,
+} from 'react';
 import { css } from '@emotion/react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useThemeConfig, type NavbarLogo } from '@docusaurus/theme-common';
 import type { Props } from '@theme-original/Logo';
 import {
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
   EuiImage,
+  EuiPopover,
   euiCanAnimate,
   euiTextTruncate,
   useEuiMemoizedStyles,
+  useGeneratedHtmlId,
   UseEuiTheme,
 } from '@elastic/eui';
 
@@ -25,6 +37,10 @@ import { AppThemeContext } from '../../components/theme_context';
 
 const EUI_LOGO = 'eui_logo.svg';
 const LOGO_DISTANCE = '5px';
+const elasticLinks = [
+  { label: 'Elastic', href: 'https://www.elastic.co' },
+  { label: 'Brand Guide', href: 'https://brand.elastic.co' },
+];
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   wrapper: css`
@@ -44,6 +60,26 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
       @media (min-width: 997px) {
         margin-inline-end: ${euiTheme.size.l};
       }
+
+      ${euiCanAnimate} {
+        &:hover {
+          .euiNavbarLogo__pink {
+            transform: translate(-${LOGO_DISTANCE}, -${LOGO_DISTANCE});
+          }
+
+          .euiNavbarLogo__yellow {
+            transform: translate(${LOGO_DISTANCE}, ${LOGO_DISTANCE});
+          }
+
+          .euiNavbarLogo__teal {
+            transform: translate(${LOGO_DISTANCE}, -${LOGO_DISTANCE});
+          }
+
+          .euiNavbarLogo__blue {
+            transform: translate(-${LOGO_DISTANCE}, ${LOGO_DISTANCE});
+          }
+        }
+      }
     }
 
     .navbar__logo {
@@ -51,9 +87,22 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
       height: auto;
     }
 
+    .euiPopover {
+      display: flex;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
+
     .navbar__title {
       ${euiTextTruncate()}
     }
+  `,
+  lockup: css`
+    display: inline-flex;
+    align-items: center;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    user-select: none;
   `,
   imageWrapper: css`
     overflow: visible;
@@ -85,30 +134,10 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
         transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
       }
     }
-
-    ${euiCanAnimate} {
-      &:hover {
-        .euiNavbarLogo__pink {
-          transform: translate(-${LOGO_DISTANCE}, -${LOGO_DISTANCE});
-        }
-
-        .euiNavbarLogo__yellow {
-          transform: translate(${LOGO_DISTANCE}, ${LOGO_DISTANCE});
-        }
-
-        .euiNavbarLogo__teal {
-          transform: translate(${LOGO_DISTANCE}, -${LOGO_DISTANCE});
-        }
-
-        .euiNavbarLogo__blue {
-          transform: translate(-${LOGO_DISTANCE}, ${LOGO_DISTANCE});
-        }
-      }
-    }
   `,
 });
 
-function EuiNavbarLogo({
+function NavbarLogoSvg({
   alt,
   className,
   style,
@@ -165,6 +194,72 @@ function EuiNavbarLogo({
   );
 }
 
+function EuiNavbarLogoMenu({ children }: { children: ReactNode }) {
+  const styles = useEuiMemoizedStyles(getStyles);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [offset, setOffset] = useState<number>();
+
+  const popoverId = useGeneratedHtmlId({ prefix: 'elasticLinks' });
+
+  const closePopover = () => setIsOpen(false);
+
+  const openMenu = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+
+    const anchorBottom = event.currentTarget.getBoundingClientRect().bottom;
+    const header = event.currentTarget.closest('.navbar');
+    const headerBottom = header?.getBoundingClientRect().bottom ?? anchorBottom;
+
+    setOffset(headerBottom - anchorBottom);
+    setIsOpen(true);
+  };
+
+  return (
+    <EuiPopover
+      id={popoverId}
+      button={
+        <span css={styles.lockup} onContextMenu={openMenu}>
+          {children}
+        </span>
+      }
+      isOpen={isOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      offset={offset}
+      aria-label="Elastic links"
+    >
+      <EuiContextMenuPanel
+        initialFocusedItemIndex={0}
+        items={elasticLinks.map(({ label, href }) => (
+          <EuiContextMenuItem
+            key={href}
+            icon="logoElastic"
+            href={href}
+            target="_blank"
+            onClick={(event) => {
+              event.stopPropagation();
+              closePopover();
+            }}
+          >
+            {label}
+          </EuiContextMenuItem>
+        ))}
+      />
+    </EuiPopover>
+  );
+}
+
+function EuiNavbarLogo({ children }: { children: ReactNode }) {
+  const styles = useEuiMemoizedStyles(getStyles);
+
+  return (
+    <BrowserOnly fallback={<span css={styles.lockup}>{children}</span>}>
+      {() => <EuiNavbarLogoMenu>{children}</EuiNavbarLogoMenu>}
+    </BrowserOnly>
+  );
+}
+
 function LogoThemedImage({
   logo,
   alt,
@@ -185,7 +280,7 @@ function LogoThemedImage({
     : useBaseUrl(logo.src);
 
   const themedImage = isEuiLogo ? (
-    <EuiNavbarLogo alt={alt} className={logo.className} style={logo.style} />
+    <NavbarLogoSvg alt={alt} className={logo.className} style={logo.style} />
   ) : (
     <EuiImage
       src={src}
@@ -230,6 +325,19 @@ export default function Logo(props: Props): JSX.Element {
   // Use logo alt text if provided (including empty string),
   // and provide a sensible fallback otherwise.
   const alt = logo?.alt ?? fallbackAlt;
+  const isEuiLogo = logo?.src.includes(EUI_LOGO);
+  const lockup = (
+    <>
+      {logo && (
+        <LogoThemedImage
+          logo={logo}
+          alt={alt}
+          imageClassName={imageClassName}
+        />
+      )}
+      {navbarTitle != null && <b className={titleClassName}>{navbarTitle}</b>}
+    </>
+  );
 
   return (
     <div css={styles.wrapper}>
@@ -238,14 +346,7 @@ export default function Logo(props: Props): JSX.Element {
         {...propsRest}
         {...(logo?.target && { target: logo.target })}
       >
-        {logo && (
-          <LogoThemedImage
-            logo={logo}
-            alt={alt}
-            imageClassName={imageClassName}
-          />
-        )}
-        {navbarTitle != null && <b className={titleClassName}>{navbarTitle}</b>}
+        {isEuiLogo ? <EuiNavbarLogo>{lockup}</EuiNavbarLogo> : lockup}
       </Link>
     </div>
   );
