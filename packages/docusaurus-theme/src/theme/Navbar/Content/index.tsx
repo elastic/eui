@@ -13,6 +13,7 @@ import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
 import { splitNavbarItems } from '@docusaurus/theme-common/internal';
 import { useActiveDocContext } from '@docusaurus/plugin-content-docs/client';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import { useHistory, useLocation } from '@docusaurus/router';
 import NavbarItem, {
@@ -309,6 +310,7 @@ function HomeNavOverflow({
 }): JSX.Element {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const history = useHistory();
+  const { withBaseUrl } = useBaseUrlUtils();
   const styles = useEuiMemoizedStyles(getStyles);
   // POC: match getNavbarBreakpoint — ellipsis carries all 6 sections when compact
   const isCompactNav = useIsNavbarCompact();
@@ -358,7 +360,7 @@ function HomeNavOverflow({
               onClick={() => {
                 setPopoverOpen(false);
                 if (!isActive) {
-                  history.push(section.href);
+                  history.push(withBaseUrl(section.href));
                 }
               }}
             />
@@ -464,7 +466,10 @@ export default function NavbarContent({
                   </Link>
                 ))}
               </div>
-              <HomeNavOverflow activeSidebarId={activeSidebarId} />
+              {/* EuiPopover references HTMLElement during render, which breaks SSG */}
+              {isBrowser && (
+                <HomeNavOverflow activeSidebarId={activeSidebarId} />
+              )}
             </nav>
             <NavbarItems items={leftItems} />
           </>
