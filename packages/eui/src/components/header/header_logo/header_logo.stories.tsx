@@ -24,6 +24,7 @@ type Story = StoryObj<EuiHeaderLogoProps>;
 export const Playground: Story = {
   args: {
     logoType: 'glyph',
+    logoMono: false,
   },
 
   render: ({ ...args }) => (
@@ -38,6 +39,7 @@ export const Playground: Story = {
 export const WithText: Story = {
   args: {
     logoType: 'horizontal',
+    logoMono: false,
   },
 
   render: ({ ...args }) => (
