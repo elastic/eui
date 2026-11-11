@@ -17,6 +17,7 @@ import React, {
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps, EuiTableProps } from '../../table';
+import type { EuiBasicTableProps } from '../../basic_table';
 import type { EuiFlyoutProps } from '../../flyout';
 import type { EuiPopoverProps } from '../../popover';
 import type { EuiToolTipProps } from '../../tool_tip';
@@ -55,6 +56,12 @@ export type EuiComponentDefaults = {
     | 'stickyHeader'
     | 'hasBackground'
   >;
+  /**
+   * Provide a global configuration for `EuiBasicTable`s.
+   *
+   * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
+   */
+  EuiBasicTable?: Pick<EuiBasicTableProps<object>, 'panelled'>;
 
   /**
    * Provide a global configuration for `EuiFlyout`s.

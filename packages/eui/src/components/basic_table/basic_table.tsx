@@ -330,6 +330,18 @@ export class EuiBasicTable<T extends object = any> extends Component<
   static contextType = EuiComponentDefaultsContext;
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
 
+  get panelled() {
+    return this.props.panelled ?? this.context.EuiBasicTable?.panelled;
+  }
+
+  // The panelled wrapper must match the breakpoint EuiTable resolves from defaults
+  get resolvedResponsiveBreakpoint() {
+    return (
+      this.props.responsiveBreakpoint ??
+      this.context.EuiTable?.responsiveBreakpoint
+    );
+  }
+
   static defaultProps = {
     tableLayout: 'fixed',
     noItemsMessage: (
@@ -570,8 +582,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       scrollableInline,
       stickyScrollbar,
       stickyHeader,
-      panelled,
     } = this.props;
+    const { panelled } = this;
 
     const content = (
       <>
@@ -603,9 +615,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
     if (panelled) {
       return (
         <div
-          css={
-            panelled && euiBasicTableWrapperPanelledStyles(responsiveBreakpoint)
-          }
+          css={euiBasicTableWrapperPanelledStyles(
+            this.resolvedResponsiveBreakpoint
+          )}
           data-test-subj="euiBasicTablePanelledWrapper"
         >
           {content}
@@ -1472,9 +1484,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       pagination,
       tableCaption,
       onChange,
-      panelled,
-      responsiveBreakpoint,
     } = this.props;
+    const { panelled, resolvedResponsiveBreakpoint } = this;
     if (!error && pagination && pagination.totalItemCount > 0) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
@@ -1491,7 +1502,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             <PaginationBar
               pagination={pagination}
               panelled={panelled}
-              responsiveBreakpoint={responsiveBreakpoint}
+              responsiveBreakpoint={resolvedResponsiveBreakpoint}
               onPageSizeChange={this.onPageSizeChange.bind(this)}
               onPageChange={this.onPageChange.bind(this)}
               aria-controls={this.tableId}
