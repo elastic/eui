@@ -1,0 +1,1 @@
+- Added `EuiEmptyPromptObject` with `footer`, `action()`, `getTitle()`, `getBody()`, `getActions()` and `clickAction()`

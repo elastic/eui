@@ -74,6 +74,7 @@ their own version at runtime.
 | `EuiCallOutObject` | [src/components/call_out/README.md](src/components/call_out/README.md) |
 | `EuiCardObject` | [src/components/card/README.md](src/components/card/README.md) |
 | `EuiButtonGroupObject` | [src/components/button/button_group/README.md](src/components/button/button_group/README.md) |
+| `EuiEmptyPromptObject` | [src/components/empty_prompt/README.md](src/components/empty_prompt/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
