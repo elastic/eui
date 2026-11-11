@@ -59,4 +59,24 @@ describe('EuiHeaderLogo', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('renders the glyph logo in monochrome', () => {
+    const { container } = render(<EuiHeaderLogo logoMono />);
+
+    expect(container.querySelector('.euiHeaderLogo__icon')).toHaveAttribute(
+      'data-euiicon-type',
+      'logoElasticMono'
+    );
+  });
+
+  it('renders the horizontal logo in monochrome', () => {
+    const { container } = render(
+      <EuiHeaderLogo logoType="horizontal" logoMono />
+    );
+
+    expect(container.querySelector('svg path')).toHaveAttribute(
+      'fill',
+      'currentColor'
+    );
+  });
 });
