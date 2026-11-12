@@ -1,11 +1,11 @@
-## [`v2.8.1`](https://github.com/elastic/eui/releases/v2.8.1)
+## [`v2.8.1`](https://github.com/elastic/eui/releases/v123.2.0)
 
 **Bug fixes**
 
 - Fixed light background of highlighted search results in dark mode ([#10178](https://github.com/elastic/eui/pull/10178))
 - Removed the redundant border below the last row of documentation prop tables ([#10181](https://github.com/elastic/eui/pull/10181))
 
-## [`v2.8.0`](https://github.com/elastic/eui/releases/v2.8.0)
+## [`v2.8.0`](https://github.com/elastic/eui/releases/v119.1.0)
 
 - Added a hover animation to the EUI mark in the documentation navbar. ([#9924](https://github.com/elastic/eui/pull/9924))
 
@@ -13,11 +13,11 @@
 
 - Fixed overlapping rows and inconsistent hover highlighting in `VersionSwitcher` ([#9925](https://github.com/elastic/eui/pull/9925))
 
-## [`v2.7.0`](https://github.com/elastic/eui/releases/v2.7.0)
+## [`v2.7.0`](https://github.com/elastic/eui/releases/v118.0.0)
 
 - Refactored the FigmaEmbed component to become a more generic FigmaAsset so that can output either an SVG (Now as a default) raster image asset or a Figma embed iframe. ([#9830](https://github.com/elastic/eui/pull/9830))
 
-## [`v2.6.0`](https://github.com/elastic/eui/releases/v2.6.0)
+## [`v2.6.0`](https://github.com/elastic/eui/releases/v117.1.0)
 
 - Updated `icon_map.ts` to centralise all available icons in a single file, with optional metadata like synonyms and categories alongside each icon reference. ([#9675](https://github.com/elastic/eui/pull/9675))
 - Removed redundant static icon type files: `icon_types.ts`, `icon_types_apps.ts`, `icon_types_logos.ts`, `icon_types_ml.ts`, `icon_types_tokens.ts`. ([#9675](https://github.com/elastic/eui/pull/9675))
@@ -26,7 +26,7 @@
 
 - Adding synonyms to each icon improves discoverability and search experience when looking for specific icons. ([#9675](https://github.com/elastic/eui/pull/9675))
 
-## [`v2.5.0`](https://github.com/elastic/eui/releases/v2.5.0)
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v117.0.0)
 
 - Wrapped the documentation heading anchor link `EuiButtonIcon` in an `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
 - Wrapped navbar icon links and toggles in `EuiToolTip` instead of using the native `title` attribute ([#9771](https://github.com/elastic/eui/pull/9771))
@@ -43,15 +43,15 @@
 
 - Replaced `codesandbox` with `lz-string@^1.5.0` for CodeSandbox demo parameter encoding, removing vulnerable transitive dependencies from `axios`. ([#9790](https://github.com/elastic/eui/pull/9790))
 
-## [`v2.4.0`](https://github.com/elastic/eui/releases/v2.4.0)
+## [`v2.4.0`](https://github.com/elastic/eui/releases/v116.0.0)
 
 - Updated `VersionSwitcher` to align with the updated API for `EuiListGroupItem` ([#9579](https://github.com/elastic/eui/pull/9579))
 
-## [`v2.3.0`](https://github.com/elastic/eui/releases/v2.3.0)
+## [`v2.3.0`](https://www.npmjs.com/package/@elastic/eui-docusaurus-theme/v/2.3.0)
 
 - Added `versionsUrl` prop to `VersionSwitcher` component to fetch the versions list at runtime from the main deployment, ensuring all released versions are always visible in the version switcher ([#9363](https://github.com/elastic/eui/pull/9363))
 
-## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v112.1.0)
 
 - Added `extraFiles` prop to the `Demo` component. It allows to pass extra files that will be added to the Codesandbox instance. ([#9317](https://github.com/elastic/eui/pull/9317))
 - Updated the `IMPORT_REGEX` to include relative imports so that all imports are removed from the snippet. All imported references have to be passed to `Demo` in the `scope` prop. ([#9317](https://github.com/elastic/eui/pull/9317))

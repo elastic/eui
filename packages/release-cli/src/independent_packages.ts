@@ -50,7 +50,8 @@ export const getIndependentlyReleasedPackages = (): string[] => {
  */
 export const getChangelogReleaseUrl = (
   packageName: string,
-  version: string
+  version: string,
+  euiVersion?: string
 ): string => {
   if (getIndependentlyReleasedPackages().includes(packageName)) {
     const tag = `${packageName}@${version}`;
@@ -59,5 +60,5 @@ export const getChangelogReleaseUrl = (
     )}`;
   }
 
-  return `https://github.com/elastic/eui/releases/v${version}`;
+  return `https://github.com/elastic/eui/releases/v${euiVersion ?? version}`;
 };

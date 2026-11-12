@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "123.3.0",
+  "version": "123.4.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -12,7 +12,8 @@
   },
   "sideEffects": [
     "*.css",
-    "*.scss"
+    "*.scss",
+    "**/services/color/vis_color_store.js"
   ],
   "scripts": {
     "start": "yarn storybook",
@@ -66,7 +67,7 @@
     "chroma-js": "^2.4.2",
     "classnames": "^2.5.1",
     "diff-match-patch": "^1.0.5",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "mdast-util-to-hast": "^10.2.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.8.1",
@@ -233,7 +234,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@elastic/eui-theme-borealis": "8.1.0",
+    "@elastic/eui-theme-borealis": "8.2.0",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^17.0 || ^18.0",

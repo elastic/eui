@@ -1,4 +1,13 @@
-## [`v10.1.0`](https://github.com/elastic/eui/releases/v10.1.0)
+## [`v10.2.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
+
+- Added `colorPalette` and the `euiPalette*` functions (moved from `@elastic/eui`), making the color palettes importable without loading `@elastic/eui` ([#10247](https://github.com/elastic/eui/pull/10247))
+- Updated `EuiVisColorStore.getInstance()` to be callable without arguments once initialized; it now throws a descriptive error when accessed before any theme package initialized it ([#10247](https://github.com/elastic/eui/pull/10247))
+
+**Dependency updates**
+
+- Updated `lodash` to v4.18.1 ([#10265](https://github.com/elastic/eui/pull/10265))
+
+## [`v10.1.0`](https://github.com/elastic/eui/releases/v122.1.0)
 
 - Added type for `euiTheme.colors.backgroundBaseRecessed` ([#9968](https://github.com/elastic/eui/pull/9968))
 - Added types for semantic border radius tokens: ([#9968](https://github.com/elastic/eui/pull/9968))
@@ -15,7 +24,7 @@
   - `euiTheme.border.radius.small`
   - `euiTheme.border.radius.medium`
 
-## [`v10.0.0`](https://github.com/elastic/eui/releases/v10.0.0)
+## [`v10.0.0`](https://github.com/elastic/eui/releases/v116.0.0)
 
 **Breaking changes**
 
@@ -25,7 +34,7 @@
   - `components.listGroupItemBackgroundHover`
   - `components.listGroupItemBackgroundPrimaryHover`
 
-## [`v9.0.0`](https://github.com/elastic/eui/releases/v9.0.0)
+## [`v9.0.0`](https://github.com/elastic/eui/releases/v114.0.0)
 
 **Breaking changes**
 
@@ -39,7 +48,7 @@
   - `vis.euiColorVisBehindText10`
   - `vis.euiColorVisBehindText11`
 
-## [`v8.1.0`](https://github.com/elastic/eui/releases/v8.1.0)
+## [`v8.1.0`](https://github.com/elastic/eui/releases/v113.1.0)
 
 - Added new assistance tokens: ([#9383](https://github.com/elastic/eui/pull/9383))
     - `euiTheme.colors.backgroundFilledAssistance`
@@ -58,7 +67,7 @@
     - `euiTheme.colors.vis.euiColorVisText10`
     - `euiTheme.colors.vis.euiColorVisText11`
 
-## [`v8.0.0`](https://github.com/elastic/eui/releases/v8.0.0)
+## [`v8.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/8.0.0)
 
 - Added `textInk` and `textGhost` color tokens for text and icon colors that should always remain dark or light regardless of color mode. ([#9379](https://github.com/elastic/eui/pull/9379))
 
@@ -67,7 +76,7 @@
 - Removed `ink` and `ghost` theme tokens. Use `textInk` / `textGhost` for text and icon colors or `plainDark` /`plainLight` for non-text use cases. ([#9379](https://github.com/elastic/eui/pull/9379))
 - Removed types from `components.superDatePickerBackgroundSuccees` token ([#9305](https://github.com/elastic/eui/pull/9305))
 
-## [`v7.3.0`](https://github.com/elastic/eui/releases/v7.3.0)
+## [`v7.3.0`](https://www.npmjs.com/package/@elastic/eui-theme-common/v/7.3.0)
 
 - Added component token `components.tourStepIndicatorInactiveColor` and `components.tourStepIndicatorActiveColor` ([#9271](https://github.com/elastic/eui/pull/9271))
 

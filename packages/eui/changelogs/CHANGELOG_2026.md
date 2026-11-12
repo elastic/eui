@@ -1,3 +1,25 @@
+## [`v123.4.0`](https://github.com/elastic/eui/releases/v123.4.0)
+
+- Added the `productNightshift` icon. ([#10256](https://github.com/elastic/eui/pull/10256))
+- Added `showMaximizeButton` and `onMaximizeChange` to `EuiFlyout`'s `flyoutMenuProps`, for a menu button that maximizes the flyout to the full width of its container ([#10242](https://github.com/elastic/eui/pull/10242))
+- Added `setFlyoutMaximized` to the flyout manager store returned by `getFlyoutManagerStore`, to maximize or restore a main flyout that sets `flyoutMenuProps.showMaximizeButton` ([#10242](https://github.com/elastic/eui/pull/10242))
+- Moved `colorPalette` and the `euiPalette*` functions to `@elastic/eui-theme-common`, making them individually importable without loading `@elastic/eui`. They are re-exported from `@elastic/eui`. `@elastic/eui-theme-borealis` now initializes the global vis color store on import, and `EuiVisColorStore.getInstance()` throws a descriptive error when accessed before any theme package initialized it. ([#10247](https://github.com/elastic/eui/pull/10247))
+
+**Bug fixes**
+
+- Fixed `EuiAvatar` cutting custom `initials` and single-word `name` initials in the middle of a character. Initials are now counted and truncated by grapheme, so two emoji with skin tone modifiers, or a letter followed by an emoji, render correctly ([#10272](https://github.com/elastic/eui/pull/10272))
+- Fixed underline spacing for `EuiLink` and links within `EuiText` at small font sizes ([#10248](https://github.com/elastic/eui/pull/10248))
+- Fixed resizable main flyouts in the flyout system switching to stacked layout mode when a child flyout opens or the container narrows after the main flyout was resized wider. The main flyout now shrinks to the largest width that fits beside the child, and returns to the width the user dragged it to once there is room again. ([#10250](https://github.com/elastic/eui/pull/10250))
+- Fixed `EuiFlyout` with `type="push"` not returning focus to the trigger element when it closes ([#10235](https://github.com/elastic/eui/pull/10235))
+
+**Accessibility**
+
+- Fixed `EuiRange` announcing its value twice to screen readers when `showValue` is set ([#10271](https://github.com/elastic/eui/pull/10271))
+
+**Dependency updates**
+
+- Updated `lodash` to v4.18.1 ([#10265](https://github.com/elastic/eui/pull/10265))
+
 ## [`v123.3.0`](https://github.com/elastic/eui/releases/v123.3.0)
 
 - Updated the `addToChat` glyph icon. ([#10221](https://github.com/elastic/eui/pull/10221))

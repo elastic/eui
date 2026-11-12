@@ -69,6 +69,7 @@ interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   childFlyoutMenuProps?: EuiFlyoutMenuProps;
   showMainTrailingActions?: boolean;
   showChildTrailingActions?: boolean;
+  showMaximizeButton?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -146,6 +147,11 @@ const meta: Meta<FlyoutChildStoryArgs> = {
       control: { type: 'boolean' },
       description: 'Whether to show trailing actions in the child flyout menu.',
     },
+    showMaximizeButton: {
+      control: { type: 'boolean' },
+      description:
+        'Passes `flyoutMenuProps.showMaximizeButton` to the main flyout. Only main flyouts have the button: a maximized main flyout makes room for its child.',
+    },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
     // use "mainMaxWidth" and "childMaxWidth" instead
@@ -179,6 +185,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showMainTrailingActions: true,
     childFlyoutMenuDisplayMode: DEFAULT_MENU_DISPLAY_MODE,
     showChildTrailingActions: true,
+    showMaximizeButton: true,
   },
   parameters: {
     // Skipping visual regression testing
@@ -209,6 +216,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
   showMainTrailingActions,
   childFlyoutMenuDisplayMode,
   showChildTrailingActions,
+  showMaximizeButton,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
@@ -238,13 +246,16 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
 
   const layoutMode = useFlyoutLayoutMode();
 
-  const trailingActions = ['gear', 'broom'].map((iconType) => ({
-    iconType,
-    onClick: () => {
-      action('trailing action')(`${iconType} action clicked`);
+  const trailingActions = [
+    {
+      iconType: 'gear',
+      onClick: () => {
+        action('trailing action')('Settings clicked');
+      },
+      'aria-label': 'Settings',
+      toolTipContent: 'Settings',
     },
-    'aria-label': `${iconType} action`,
-  }));
+  ];
 
   return (
     <>
@@ -280,6 +291,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
             trailingActions: showMainTrailingActions
               ? trailingActions
               : undefined,
+            showMaximizeButton,
+            onMaximizeChange: (isMaximized) =>
+              playgroundActions.log(`Main flyout maximized: ${isMaximized}`),
           }}
           {...args}
           onClose={closeMain}

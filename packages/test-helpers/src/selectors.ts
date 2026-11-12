@@ -9,6 +9,7 @@
 import { EuiAccordionSelectors } from './components/accordion/selectors';
 import { EuiBasicTableSelectors } from './components/basic_table/selectors';
 import { EuiCallOutSelectors } from './components/call_out/selectors';
+import { EuiCardSelectors } from './components/card/selectors';
 import { EuiColorPickerSelectors } from './components/color_picker/selectors';
 import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
@@ -17,6 +18,7 @@ import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
 import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
+import { EuiMarkdownEditorSelectors } from './components/markdown_editor/selectors';
 import { EuiModalSelectors } from './components/modal/selectors';
 import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
@@ -41,6 +43,7 @@ export const selectors = {
   accordion: EuiAccordionSelectors,
   basicTable: EuiBasicTableSelectors,
   callOut: EuiCallOutSelectors,
+  card: EuiCardSelectors,
   colorPicker: EuiColorPickerSelectors,
   comboBox: EuiComboBoxSelectors,
   contextMenu: EuiContextMenuSelectors,
@@ -49,6 +52,7 @@ export const selectors = {
   fieldSearch: EuiFieldSearchSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
+  markdownEditor: EuiMarkdownEditorSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,
   popover: EuiPopoverSelectors,
