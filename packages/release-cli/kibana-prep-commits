@@ -8,6 +8,8 @@
 # Nightly cherry-picks both sections, skipping commits that are missing or already applied.
 
 # @next
+https://github.com/elastic/kibana/pull/304390/commits/504b95310ff544fb7c81abd7e34096042ebd2e25
+https://github.com/elastic/kibana/pull/304304/commits/e0f3b2f4ae9e55a905f000fc92b64c34b2e9c810
 
 # @previous
 https://github.com/elastic/kibana/pull/301642/commits/a99c03c4c6257b92a1b2146e82de6fde6938737c
