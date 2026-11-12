@@ -14,6 +14,7 @@ import React, {
   PropsWithChildren,
   ReactElement,
   ReactNode,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
@@ -81,7 +82,17 @@ interface State {
   tookInitialFocus: boolean;
 }
 
-export class EuiContextMenuPanelClass extends Component<
+export const EuiContextMenuPanelClass = (
+  props: WithEuiStylesMemoizerProps & Props
+) => {
+  useEffect(() => {
+    // Class component handles lifecycle; this hook ensures the wrapper is a function component
+  }, []);
+
+  return <EuiContextMenuPanelClassInternal {...props} />;
+};
+
+class EuiContextMenuPanelClassInternal extends Component<
   WithEuiStylesMemoizerProps & Props,
   State
 > {
