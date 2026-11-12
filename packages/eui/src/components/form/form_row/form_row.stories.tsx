@@ -78,17 +78,15 @@ export const Playground: Story = {
 };
 
 export const TallLabelAppend: Story = {
-  parameters: {
-    controls: { include: ['label', 'labelAppend'] },
-  },
+  tags: ['vrt-only'],
   args: {
     children: <EuiFieldText />,
     label: 'Text field label',
     labelAppend: (
       <EuiButtonIcon
-        iconType="questionInCircle"
+        iconType="ellipsis"
         size="xs"
-        aria-label="More information"
+        aria-label="More options"
       />
     ),
   },
