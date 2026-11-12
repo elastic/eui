@@ -1,0 +1,1 @@
+- Added `EuiButtonGroupObject` with `buttons`, `button()`, `getOptions()`, `select()`, `deselect()` and `getSelected()`
