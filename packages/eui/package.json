@@ -39,8 +39,6 @@
     "test-cypress-a11y": "yarn test-cypress --a11y",
     "test-visual-regression": "node ./scripts/test-visual-regression.js",
     "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
-    "yo-component": "yo ./generator-eui/app/component.js",
-    "yo-changelog": "yo ./generator-eui/changelog/index.js",
     "release": "node ./scripts/release.js",
     "release-backport": "node ./scripts/release.js --type=backport",
     "release-rc": "node ./scripts/release.js --type=prerelease",
@@ -131,7 +129,7 @@
     "@svgr/core": "8.0.0",
     "@svgr/plugin-jsx": "^8.0.1",
     "@svgr/plugin-svgo": "^8.0.1",
-    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-17": "npm:@testing-library/react@^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
@@ -226,9 +224,7 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^5.2.7",
-    "yargs": "^17.2.1",
-    "yeoman-generator": "^4.12.0",
-    "yo": "^4.3.1"
+    "yargs": "^17.2.1"
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
