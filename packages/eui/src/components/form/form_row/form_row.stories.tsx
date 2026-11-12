@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiButton } from '../../button';
+import { EuiButton, EuiButtonIcon } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import {
   EuiForm,
@@ -74,6 +74,23 @@ export const Playground: Story = {
     children: <EuiFieldText />,
     label: 'Text field label',
     helpText: 'I am some friendly help text.',
+  },
+};
+
+export const TallLabelAppend: Story = {
+  parameters: {
+    controls: { include: ['label', 'labelAppend'] },
+  },
+  args: {
+    children: <EuiFieldText />,
+    label: 'Text field label',
+    labelAppend: (
+      <EuiButtonIcon
+        iconType="questionInCircle"
+        size="xs"
+        aria-label="More information"
+      />
+    ),
   },
 };
 
