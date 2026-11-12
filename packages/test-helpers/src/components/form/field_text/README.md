@@ -18,7 +18,7 @@ Set `data-test-subj` on `<EuiFieldText>`. EUI spreads it onto the native `<input
 
 | Member | Description |
 |---|---|
-| `fill(text)` | Replace the text and wait for the input to hold it. |
+| `fill(text)` | Replace the text and wait for the input to hold exactly it. Fails if the app transforms the value, for example by trimming it. |
 | `getValue()` | The current text of the input. |
 | `clear()` | Empty the input. |
 

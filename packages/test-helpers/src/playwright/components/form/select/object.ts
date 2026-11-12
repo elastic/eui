@@ -33,7 +33,10 @@ export class EuiSelectObject extends BaseObject {
     await expect(this.root).toHaveValue(value);
   }
 
-  /** Select the option with this visible `text`. */
+  /**
+   * Select the option with this visible label, its `label` attribute if set,
+   * otherwise its text.
+   */
   async selectOptionByLabel(label: string): Promise<void> {
     const [value] = await this.root.selectOption({ label });
     await expect(this.root).toHaveValue(value);

@@ -27,7 +27,10 @@ export class EuiFieldTextObject extends BaseObject {
     super(scope, testSubj, componentSelector);
   }
 
-  /** Replace the text and wait for the input to hold it. */
+  /**
+   * Replace the text and wait for the input to hold exactly it. Fails if the
+   * app transforms the value, for example by trimming it.
+   */
   async fill(text: string): Promise<void> {
     await this.root.fill(text);
     await expect(this.root).toHaveValue(text);
