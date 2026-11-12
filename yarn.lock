@@ -17,6 +17,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@adobe/css-tools@npm:^4.0.1":
+  version: 4.5.0
+  resolution: "@adobe/css-tools@npm:4.5.0"
+  checksum: 10c0/fc969e1117098eb4cccdb73beb2508daa0e52760af1183d6288bafea59204943490ab3ede28593032ffb8929c0cee270b2a53254fe61139ab00604ea8fc33cea
+  languageName: node
+  linkType: hard
+
 "@adobe/css-tools@npm:^4.4.0":
   version: 4.4.1
   resolution: "@adobe/css-tools@npm:4.4.1"
@@ -7516,7 +7523,7 @@ __metadata:
     "@svgr/core": "npm:8.0.0"
     "@svgr/plugin-jsx": "npm:^8.0.1"
     "@svgr/plugin-svgo": "npm:^8.0.1"
-    "@testing-library/jest-dom": "npm:^5.16.3"
+    "@testing-library/jest-dom": "npm:^5.17.0"
     "@testing-library/react": "npm:^14.0.0"
     "@testing-library/react-17": "npm:@testing-library/react@^12.1.5"
     "@testing-library/react-hooks": "npm:^7.0.2"
@@ -11864,20 +11871,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^5.16.3":
-  version: 5.16.4
-  resolution: "@testing-library/jest-dom@npm:5.16.4"
+"@testing-library/jest-dom@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "@testing-library/jest-dom@npm:5.17.0"
   dependencies:
+    "@adobe/css-tools": "npm:^4.0.1"
     "@babel/runtime": "npm:^7.9.2"
     "@types/testing-library__jest-dom": "npm:^5.9.1"
     aria-query: "npm:^5.0.0"
     chalk: "npm:^3.0.0"
-    css: "npm:^3.0.0"
     css.escape: "npm:^1.5.1"
     dom-accessibility-api: "npm:^0.5.6"
     lodash: "npm:^4.17.15"
     redent: "npm:^3.0.0"
-  checksum: 10c0/c34016bbc4865f8f9912d62ac63b409b87e785ff281a50f6eae8c1bc2364963c0831541da8a185bbd8b5964a6e3371fb623c339e8128d84706eb06f93f145801
+  checksum: 10c0/24e09c5779ea44644945ec26f2e4e5f48aecfe57d469decf2317a3253a5db28d865c55ad0ea4818d8d1df7572a6486c45daa06fa09644a833a7dd84563881939
   languageName: node
   linkType: hard
 
@@ -16224,7 +16231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"atob@npm:^2.1.1, atob@npm:^2.1.2":
+"atob@npm:^2.1.1":
   version: 2.1.2
   resolution: "atob@npm:2.1.2"
   bin:
@@ -19609,17 +19616,6 @@ __metadata:
   version: 1.5.1
   resolution: "css.escape@npm:1.5.1"
   checksum: 10c0/5e09035e5bf6c2c422b40c6df2eb1529657a17df37fda5d0433d722609527ab98090baf25b13970ca754079a0f3161dd3dfc0e743563ded8cfa0749d861c1525
-  languageName: node
-  linkType: hard
-
-"css@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "css@npm:3.0.0"
-  dependencies:
-    inherits: "npm:^2.0.4"
-    source-map: "npm:^0.6.1"
-    source-map-resolve: "npm:^0.6.0"
-  checksum: 10c0/c17cb4a46a39c11b00225f1314158a892828af34cdf3badc7e88084882e9f414e4902a1d59231c0854f310af30bde343fd8a9e79c6001426fe88af45d3312fe2
   languageName: node
   linkType: hard
 
@@ -38243,16 +38239,6 @@ __metadata:
     source-map-url: "npm:^0.4.0"
     urix: "npm:^0.1.0"
   checksum: 10c0/ba7e6e4039cd0bd8cc679722c73524cc06ca083278a5e7616a4723734baf64529339fd41450139011ead7fd184bd284148c93512bac08e64dd8c391b2ae5cf68
-  languageName: node
-  linkType: hard
-
-"source-map-resolve@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "source-map-resolve@npm:0.6.0"
-  dependencies:
-    atob: "npm:^2.1.2"
-    decode-uri-component: "npm:^0.2.0"
-  checksum: 10c0/bc2a94af3d2417196195eecf0130925b3558726726504a7c7bd1b9e383c4a789fa3f4616c4c673cf8bd7930ddd2e80481f203422282aeae342dbd56b91995188
   languageName: node
   linkType: hard
 
