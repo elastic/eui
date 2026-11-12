@@ -305,9 +305,17 @@
     "euiColorVis9": {
       "graphic": "#FCD883",
       "behindText": "#FCD883"
+    },
+    "euiColorVis10": {
+      "graphic": "#B386F9",
+      "behindText": "#B386F9"
+    },
+    "euiColorVis11": {
+      "graphic": "#E2D3FE",
+      "behindText": "#E2D3FE"
     }
   },
-  "euiPaletteColorBlindKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9'",
+  "euiPaletteColorBlindKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9', 'euiColorVis10', 'euiColorVis11'",
   "euiColorVis0": "#16C5C0",
   "euiColorVis1": "#A6EDEA",
   "euiColorVis2": "#61A2FF",
@@ -318,6 +326,8 @@
   "euiColorVis7": "#FFC9C2",
   "euiColorVis8": "#EAAE01",
   "euiColorVis9": "#FCD883",
+  "euiColorVis10": "#B386F9",
+  "euiColorVis11": "#E2D3FE",
   "euiColorVis0_behindText": "#16C5C0",
   "euiColorVis1_behindText": "#A6EDEA",
   "euiColorVis2_behindText": "#61A2FF",
@@ -328,6 +338,8 @@
   "euiColorVis7_behindText": "#FFC9C2",
   "euiColorVis8_behindText": "#EAAE01",
   "euiColorVis9_behindText": "#FCD883",
+  "euiColorVis10_behindText": "#B386F9",
+  "euiColorVis11_behindText": "#E2D3FE",
   "euiColorVisText0": "#065B58",
   "euiColorVisText1": "#047471",
   "euiColorVisText2": "#154399",
@@ -338,6 +350,8 @@
   "euiColorVisText7": "#DA3737",
   "euiColorVisText8": "#6A4906",
   "euiColorVisText9": "#966B03",
+  "euiColorVisText10": "#52357E",
+  "euiColorVisText11": "#8144CC",
   "euiColorVisSuccess0": "#24C292",
   "euiColorVisSuccess1": "#AEE8D2",
   "euiColorVisWarning0": "#FCD883",
