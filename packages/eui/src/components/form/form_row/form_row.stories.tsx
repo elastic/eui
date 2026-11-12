@@ -77,17 +77,6 @@ export const Playground: Story = {
   },
 };
 
-export const TallLabelAppend: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: <EuiFieldText />,
-    label: 'Text field label',
-    labelAppend: (
-      <EuiButtonIcon iconType="ellipsis" size="xs" aria-label="More options" />
-    ),
-  },
-};
-
 export const ColumnLayout: Story = {
   parameters: {
     // Show for relevant props documentation, but don't allow configuring
@@ -231,3 +220,14 @@ const RenderInlineLayout = ({ compressed }: { compressed: boolean }) => (
     </EuiFlexItem>
   </EuiFlexGroup>
 );
+
+export const TallLabelAppend: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: <EuiFieldText />,
+    label: 'Text field label',
+    labelAppend: (
+      <EuiButtonIcon iconType="ellipsis" size="xs" aria-label="More options" />
+    ),
+  },
+};
