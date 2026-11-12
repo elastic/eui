@@ -83,11 +83,7 @@ export const TallLabelAppend: Story = {
     children: <EuiFieldText />,
     label: 'Text field label',
     labelAppend: (
-      <EuiButtonIcon
-        iconType="ellipsis"
-        size="xs"
-        aria-label="More options"
-      />
+      <EuiButtonIcon iconType="ellipsis" size="xs" aria-label="More options" />
     ),
   },
 };
