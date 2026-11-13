@@ -16,6 +16,7 @@ import { keysOf } from '../../components/common';
 
 export const customStyles = {
   className: 'hello',
+  // eslint-disable-next-line @elastic/eui/no-css-color -- test helper whose literal color is asserted in snapshots
   css: css`
     color: red;
   `,
