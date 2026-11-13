@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
@@ -585,5 +586,43 @@ describe('EuiSelectableListItem', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
+  });
+
+  describe('options with duplicate labels', () => {
+    const duplicateOptions: EuiSelectableOption[] = [
+      { label: 'Item' },
+      { label: 'Item' },
+      { label: 'Item' },
+    ];
+
+    it.each([0, 1, 2])(
+      'sets the clicked option (index %i) as active, not the first matching label',
+      (index) => {
+        const setActiveOptionIndex = jest.fn((_index, cb) => cb?.());
+        const onOptionClick = jest.fn();
+        const { getAllByRole } = render(
+          <EuiSelectableList
+            options={duplicateOptions}
+            isVirtualized={false}
+            {...selectableListRequiredProps}
+            setActiveOptionIndex={setActiveOptionIndex}
+            onOptionClick={onOptionClick}
+          />
+        );
+
+        fireEvent.click(getAllByRole('option')[index]);
+
+        // Called with the callback from onAddOrRemoveOption
+        expect(setActiveOptionIndex).toHaveBeenCalledWith(
+          index,
+          expect.any(Function)
+        );
+
+        const changedOption = onOptionClick.mock.calls[0][2];
+
+        expect(changedOption.key).toEqual(duplicateOptions[index].key);
+        expect(changedOption.checked).toEqual('on');
+      }
+    );
   });
 });
