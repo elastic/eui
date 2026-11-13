@@ -107,7 +107,7 @@ describe('EuiDescriptionListDescription', () => {
 
             expect(container.firstChild).toHaveStyleRule(
               'font-size',
-              '0.8571rem'
+              type === 'column' ? '1.0000rem' : '0.8571rem'
             );
             expect(container.firstChild).not.toHaveStyleRule('font-weight');
             expect(container.firstChild).toMatchSnapshot();

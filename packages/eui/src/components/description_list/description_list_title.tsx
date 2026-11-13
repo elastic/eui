@@ -30,11 +30,13 @@ export const EuiDescriptionListTitle: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiDescriptionListTitleStyles);
 
   // normal is title-styled, so its compressed size lives in fontStyles;
-  // reverse is text-styled, so it uses a padding-free compressed size
+  // reverse is text-styled, so columns use the regular text size
   let conditionalStyles = compressed
     ? [
         textStyle !== 'reverse'
           ? styles.fontStyles.compressed
+          : type === 'column'
+          ? styles.fontStyles.reverse
           : styles.fontStyles.compressedReverse,
       ]
     : [styles.fontStyles[textStyle]];
