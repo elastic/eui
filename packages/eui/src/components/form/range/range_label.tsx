@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import type { _SharedRangeInputProps, _SharedRangeInputSide } from './types';
 import { euiRangeLabelStyles } from './range_label.styles';
 
@@ -26,8 +26,7 @@ export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
   disabled,
   side = 'max',
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeLabelStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeLabelStyles);
   const cssStyles = [
     styles.euiRangeLabel,
     styles[side],
