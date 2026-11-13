@@ -185,6 +185,11 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const [visible, setVisible] = useState(false);
     const [skipAnimation, setSkipAnimation] = useState(false);
     const [hasFocus, setHasFocus] = useState(false);
+    // Any focus on the trigger, including focus that doesn't match `:focus-visible`
+    // (e.g. screen reader browse mode, mouse click or programmatic focus).
+    // The tooltip is only shown on `:focus-visible`, but its content stays
+    // available to assistive technology while the trigger has focus.
+    const [isTriggerFocused, setIsTriggerFocused] = useState(false);
     const [calculatedPosition, setCalculatedPosition] =
       useState<ToolTipPositions>(positionProp);
     const [toolTipStyles, setToolTipStyles] = useState<ToolTipStyles>(
@@ -196,6 +201,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const generatedId = useGeneratedHtmlId();
     const id = idProp ?? generatedId;
+    const descriptionId = `${id}-description`;
 
     const anchorRef = useRef<HTMLSpanElement | null>(null);
     const popoverRef = useRef<HTMLDivElement | null>(null);
@@ -288,11 +294,14 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     useEffect(() => {
       if (
         anchorRef.current?.contains(document.activeElement) &&
-        document.activeElement != null &&
-        isFocusVisible(document.activeElement)
+        document.activeElement != null
       ) {
-        setHasFocus(true);
-        showToolTip();
+        setIsTriggerFocused(true);
+
+        if (isFocusVisible(document.activeElement)) {
+          setHasFocus(true);
+          showToolTip();
+        }
       }
     }, [showToolTip]);
 
@@ -302,16 +311,26 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       };
     }, [hideToolTip]);
 
-    // When the tooltip is visible, this checks if the anchor is still part of document.
-    // This fixes when the react root is removed from the DOM without unmounting
+    // While the trigger has focus but the tooltip isn't visible, expose its
+    // content to assistive technology via a hidden `aria-describedby` target
+    const hasHiddenDescription =
+      isTriggerFocused &&
+      !visible &&
+      !disableScreenReaderOutput &&
+      !!(content || title);
+
+    // When the tooltip or the hidden description is rendered, this checks if the
+    // anchor is still part of document. This fixes when the react root is removed
+    // from the DOM without unmounting, in which case the focused trigger never blurs
     // See: https://github.com/elastic/eui/issues/1105
     useEffect(() => {
-      if (!visible) return;
+      if (!visible && !hasHiddenDescription) return;
 
       let rafId: number;
       const testAnchor = () => {
         if (document.body.contains(anchorRef.current) === false) {
           // the anchor is no longer part of `document`
+          setIsTriggerFocused(false);
           hideToolTip();
         } else {
           rafId = requestAnimationFrame(testAnchor);
@@ -322,7 +341,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       return () => {
         cancelAnimationFrame(rafId);
       };
-    }, [visible, hideToolTip]);
+    }, [visible, hasHiddenDescription, hideToolTip]);
 
     // update scroll listener
     useEffect(() => {
@@ -347,6 +366,8 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
 
     const onFocus = useCallback(
       (e: ReactFocusEvent) => {
+        setIsTriggerFocused(true);
+
         if (isFocusVisible(e.target as Element)) {
           setHasFocus(true);
           showToolTip();
@@ -356,6 +377,7 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     );
 
     const onBlur = useCallback(() => {
+      setIsTriggerFocused(false);
       setHasFocus(false);
       hideToolTip();
       onBlurProp?.();
@@ -413,12 +435,26 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
           onMouseOut={onMouseOutProp}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
           id={!disableScreenReaderOutput ? id : undefined}
+          descriptionId={hasHiddenDescription ? descriptionId : undefined}
           className={anchorClasses}
           display={display}
           isVisible={visible}
         >
           {children}
         </EuiToolTipAnchor>
+        {hasHiddenDescription && (
+          <EuiPortal>
+            <div id={descriptionId} hidden>
+              {rest['aria-label']?.trim() ? (
+                rest['aria-label']
+              ) : (
+                <>
+                  {title} {content}
+                </>
+              )}
+            </div>
+          </EuiPortal>
+        )}
         {visible && (content || title) && (
           <EuiPortal>
             <EuiToolTipPopover
