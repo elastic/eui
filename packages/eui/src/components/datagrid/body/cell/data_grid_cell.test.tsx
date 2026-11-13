@@ -6,14 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect } from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import { act } from '@testing-library/react';
+import React, { createRef, useEffect } from 'react';
+import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../../utils/focus';
-import type { EuiDataGridProps } from '../../data_grid_types';
+import type {
+  DataGridFocusContextShape,
+  EuiDataGridCellProps,
+  EuiDataGridCellValueElementProps,
+  EuiDataGridProps,
+} from '../../data_grid_types';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
@@ -48,6 +52,31 @@ describe('EuiDataGridCell', () => {
     gridStyles: {},
   };
 
+  const renderCell = (
+    initialProps: Partial<EuiDataGridCellProps> = {},
+    focusContext?: DataGridFocusContextShape
+  ) => {
+    const ref = createRef<EuiDataGridCell>();
+    let props = { ...requiredProps, ...initialProps };
+    const ui = () => {
+      const cell = <EuiDataGridCell ref={ref} {...props} />;
+      return focusContext ? (
+        <DataGridFocusContext.Provider value={focusContext}>
+          {cell}
+        </DataGridFocusContext.Provider>
+      ) : (
+        cell
+      );
+    };
+    const result = render(ui());
+    const setProps = (nextProps: Record<string, any>) => {
+      props = { ...props, ...nextProps };
+      result.rerender(ui());
+    };
+    const getInstance = () => ref.current!;
+    return { ...result, setProps, getInstance };
+  };
+
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
@@ -76,33 +105,27 @@ describe('EuiDataGridCell', () => {
   });
 
   it('renders cell actions', () => {
-    const component = mount(
-      <EuiDataGridCell
-        {...requiredProps}
-        isExpandable={false}
-        column={{
-          id: 'someColumn',
-          cellActions: [() => <button />],
-        }}
-      />
-    );
-    act(() => {
-      component.setState({ isHovered: true });
+    const { getByTestSubject, getAllByTestSubject, setProps } = renderCell({
+      isExpandable: false,
+      column: {
+        id: 'someColumn',
+        cellActions: [() => <button />],
+      },
     });
+    fireEvent.mouseEnter(getByTestSubject('dataGridRowCell'));
 
-    const getCellActions = () => component.find('EuiDataGridCellActions');
-    expect(getCellActions()).toHaveLength(1);
+    expect(getAllByTestSubject('euiDataGridCellExpandButton')).toHaveLength(1);
 
     // Should handle opening the popover
-    (getCellActions().prop('onExpandClick') as Function)();
+    fireEvent.click(getByTestSubject('euiDataGridCellExpandButton'));
     expect(mockPopoverContext.openCellPopover).toHaveBeenCalled();
 
     // Should handle closing the popover
-    component.setProps({
+    setProps({
       isExpandable: true,
       popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
     });
-    (getCellActions().prop('onExpandClick') as Function)();
+    fireEvent.click(getByTestSubject('euiDataGridCellExpandButton'));
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
   });
 
@@ -163,14 +186,15 @@ describe('EuiDataGridCell', () => {
 
   describe('shouldComponentUpdate', () => {
     let shouldComponentUpdate: jest.SpyInstance;
-    let component: ReactWrapper;
+    let component: ReturnType<typeof renderCell>;
 
     beforeEach(() => {
       shouldComponentUpdate = jest.spyOn(
         EuiDataGridCell.prototype,
         'shouldComponentUpdate'
       );
-      component = mount(<EuiDataGridCell {...requiredProps} />);
+      component = renderCell();
+      shouldComponentUpdate.mockClear();
     });
     afterEach(() => {
       shouldComponentUpdate.mockRestore();
@@ -249,12 +273,12 @@ describe('EuiDataGridCell', () => {
       describe('when state changes:', () => {
         it('cellProps', () => {
           act(() => {
-            component.setState({ cellProps: {} });
+            component.getInstance().setState({ cellProps: {} });
           });
         });
         it('isFocused', () => {
           act(() => {
-            component.setState({ isFocused: true });
+            component.getInstance().setState({ isFocused: true });
           });
         });
       });
@@ -272,7 +296,7 @@ describe('EuiDataGridCell', () => {
   describe('componentDidUpdate', () => {
     it('resets cell props when the cell is moved (columnId) or sorted (rowIndex)', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
-      const component = mount(<EuiDataGridCell {...requiredProps} />);
+      const component = renderCell();
       setState.mockClear();
 
       component.setProps({ columnId: 'newColumnId' });
@@ -282,15 +306,13 @@ describe('EuiDataGridCell', () => {
       component.setProps({ rowIndex: 1 });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
       expect(setState).toHaveBeenCalledTimes(2);
+      setState.mockRestore();
     });
 
     it("handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context", () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...requiredProps}
-          column={{ id: 'someColumn', cellActions: [() => <button />] }}
-        />
-      );
+      const component = renderCell({
+        column: { id: 'someColumn', cellActions: [() => <button />] },
+      });
       expect(mockPopoverContext.setPopoverAnchor).not.toHaveBeenCalled();
       expect(mockPopoverContext.setPopoverContent).not.toHaveBeenCalled();
 
@@ -308,19 +330,16 @@ describe('EuiDataGridCell', () => {
     });
 
     describe('rowHeightsOptions.scrollAnchorRow', () => {
-      let component: ReactWrapper;
+      let component: ReturnType<typeof renderCell>;
 
       beforeEach(() => {
-        component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{
-              defaultHeight: 'auto',
-              scrollAnchorRow: 'start',
-            }}
-            style={{ top: '30px' }}
-          />
-        );
+        component = renderCell({
+          rowHeightsOptions: {
+            defaultHeight: 'auto',
+            scrollAnchorRow: 'start',
+          },
+          style: { top: '30px' },
+        });
       });
 
       it('compensates for layout shifts', () => {
@@ -362,43 +381,30 @@ describe('EuiDataGridCell', () => {
 
   describe('componentDidMount', () => {
     it('creates an onFocusUpdate subscription', () => {
-      mount(
-        <DataGridFocusContext.Provider value={mockFocusContext}>
-          <EuiDataGridCell {...requiredProps} />
-        </DataGridFocusContext.Provider>
-      );
+      renderCell({}, mockFocusContext);
 
       expect(mockFocusContext.onFocusUpdate).toHaveBeenCalled();
     });
 
     it('mounts the cell with focus state if the current cell should be focused', () => {
       const focusSpy = jest.spyOn(HTMLElement.prototype, 'focus');
-      const component = mount(
-        <DataGridFocusContext.Provider
-          value={{ ...mockFocusContext, focusedCell: [3, 3] }}
-        >
-          <EuiDataGridCell
-            {...requiredProps}
-            colIndex={3}
-            visibleRowIndex={3}
-          />
-        </DataGridFocusContext.Provider>
+      const { getInstance } = renderCell(
+        { colIndex: 3, visibleRowIndex: 3 },
+        { ...mockFocusContext, focusedCell: [3, 3] }
       );
 
-      expect((component.instance().state as any).isFocused).toEqual(true);
+      expect(getInstance().state.isFocused).toEqual(true);
       expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
       expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
         true
       );
+      focusSpy.mockRestore();
     });
 
     it('handles the cell popover if the current cell should have an open popover', () => {
-      mount(
-        <EuiDataGridCell
-          {...requiredProps}
-          popoverContext={{ ...mockPopoverContext, popoverIsOpen: true }}
-        />
-      );
+      renderCell({
+        popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+      });
 
       expect(mockPopoverContext.setPopoverAnchor).toHaveBeenCalled();
       expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
@@ -410,29 +416,18 @@ describe('EuiDataGridCell', () => {
       const unsubscribeCellMock = jest.fn();
       mockFocusContext.onFocusUpdate.mockReturnValueOnce(unsubscribeCellMock);
 
-      const component = mount(
-        <DataGridFocusContext.Provider value={mockFocusContext}>
-          <EuiDataGridCell {...requiredProps} />
-        </DataGridFocusContext.Provider>
-      );
-      component.unmount();
+      const { unmount } = renderCell({}, mockFocusContext);
+      unmount();
 
       expect(unsubscribeCellMock).toHaveBeenCalled();
     });
 
     it('sets isFocusedCellInView to false if the current cell is focused and unmounting due to being scrolled out of view', () => {
-      const component = mount(
-        <DataGridFocusContext.Provider
-          value={{ ...mockFocusContext, focusedCell: [3, 3] }}
-        >
-          <EuiDataGridCell
-            {...requiredProps}
-            colIndex={3}
-            visibleRowIndex={3}
-          />
-        </DataGridFocusContext.Provider>
+      const { unmount } = renderCell(
+        { colIndex: 3, visibleRowIndex: 3 },
+        { ...mockFocusContext, focusedCell: [3, 3] }
       );
-      component.unmount();
+      unmount();
 
       expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
         false
@@ -440,16 +435,13 @@ describe('EuiDataGridCell', () => {
     });
 
     it('closes the popover if open and the user scrolls out of view', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...requiredProps}
-          popoverContext={{
-            ...mockPopoverContext,
-            popoverIsOpen: true,
-          }}
-        />
-      );
-      component.unmount();
+      const { unmount } = renderCell({
+        popoverContext: {
+          ...mockPopoverContext,
+          popoverIsOpen: true,
+        },
+      });
+      unmount();
 
       expect(mockPopoverContext.closeCellPopover).toHaveBeenCalled();
     });
@@ -457,35 +449,21 @@ describe('EuiDataGridCell', () => {
 
   describe('isFocusedCell', () => {
     it("returns true if the current focusedCell[x,y] matches the cell's colIndex and visibleRowIndex", () => {
-      const component = mount(
-        <DataGridFocusContext.Provider
-          value={{ ...mockFocusContext, focusedCell: [5, 10] }}
-        >
-          <EuiDataGridCell
-            {...requiredProps}
-            colIndex={5}
-            visibleRowIndex={10}
-          />
-        </DataGridFocusContext.Provider>
+      const { getInstance } = renderCell(
+        { colIndex: 5, visibleRowIndex: 10 },
+        { ...mockFocusContext, focusedCell: [5, 10] }
       );
 
-      expect((component.instance() as any).isFocusedCell()).toEqual(true);
+      expect(getInstance().isFocusedCell()).toEqual(true);
     });
 
     it("returns false if the current focusedCell[x,y] does not match the cell's colIndex and visibleRowIndex", () => {
-      const component = mount(
-        <DataGridFocusContext.Provider
-          value={{ ...mockFocusContext, focusedCell: [1, 2] }}
-        >
-          <EuiDataGridCell
-            {...requiredProps}
-            colIndex={3}
-            visibleRowIndex={4}
-          />
-        </DataGridFocusContext.Provider>
+      const { getInstance } = renderCell(
+        { colIndex: 3, visibleRowIndex: 4 },
+        { ...mockFocusContext, focusedCell: [1, 2] }
       );
 
-      expect((component.instance() as any).isFocusedCell()).toEqual(false);
+      expect(getInstance().isFocusedCell()).toEqual(false);
     });
   });
 
@@ -503,77 +481,75 @@ describe('EuiDataGridCell', () => {
     };
 
     it('returns true if the cell is expandable, the popover is open, and the cell location matches', () => {
-      const component = mount(<EuiDataGridCell {...props} />);
+      const { getInstance } = renderCell(props);
 
-      expect((component.instance() as any).isPopoverOpen()).toEqual(true);
+      expect(getInstance().isPopoverOpen()).toEqual(true);
     });
 
     it('returns false if popoverContext.popoverIsOpen is false', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...props}
-          popoverContext={{ ...props.popoverContext, popoverIsOpen: false }}
-        />
-      );
-      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+      const { getInstance } = renderCell({
+        ...props,
+        popoverContext: { ...props.popoverContext, popoverIsOpen: false },
+      });
+      expect(getInstance().isPopoverOpen()).toEqual(false);
     });
 
     it("returns false if popoverContext.cellLocation does not match the cell's colIndex and visibleRowIndex", () => {
-      const component = mount(
-        <EuiDataGridCell {...props} colIndex={3} visibleRowIndex={4} />
-      );
-      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+      const { getInstance } = renderCell({
+        ...props,
+        colIndex: 3,
+        visibleRowIndex: 4,
+      });
+      expect(getInstance().isPopoverOpen()).toEqual(false);
     });
 
     it('returns false if the cell is not expandable', () => {
-      const component = mount(
-        <EuiDataGridCell {...props} isExpandable={false} />
-      );
-      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+      const { getInstance } = renderCell({ ...props, isExpandable: false });
+      expect(getInstance().isPopoverOpen()).toEqual(false);
     });
   });
 
   describe('isExpandable', () => {
     it('always returns true if column.cellActions exists', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...requiredProps}
-          column={{ id: 'someId', cellActions: [() => <button />] }}
-          isExpandable={false}
-        />
+      const renderCellValue = jest.fn<null, [EuiDataGridCellValueElementProps]>(
+        () => null
       );
+      renderCell({
+        renderCellValue,
+        column: { id: 'someId', cellActions: [() => <button />] },
+        isExpandable: false,
+      });
 
-      expect(component.find('renderCellValue').prop('isExpandable')).toBe(true);
+      expect(renderCellValue.mock.lastCall?.[0]).toMatchObject({
+        isExpandable: true,
+      });
     });
 
     it('falls back to props.isExpandable which is derived from the column config', () => {
-      const component = mount(
-        <EuiDataGridCell {...requiredProps} isExpandable={true} />
+      const renderCellValue = jest.fn<null, [EuiDataGridCellValueElementProps]>(
+        () => null
       );
+      renderCell({ renderCellValue, isExpandable: true });
 
-      expect(component.find('renderCellValue').prop('isExpandable')).toBe(true);
+      expect(renderCellValue.mock.lastCall?.[0]).toMatchObject({
+        isExpandable: true,
+      });
     });
 
     it('allows overriding column.isExpandable with setCellProps({ isExpandable })', () => {
-      const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
-        setCellProps,
-      }) => {
-        useEffect(() => {
-          setCellProps({ isExpandable: false });
-        }, [setCellProps]);
-        return 'cell render';
-      };
-      const component = mount(
-        <EuiDataGridCell
-          {...requiredProps}
-          isExpandable={true}
-          renderCellValue={RenderCellValue}
-        />
+      const RenderCellValue = jest.fn(
+        ({ setCellProps }: EuiDataGridCellValueElementProps) => {
+          useEffect(() => {
+            setCellProps({ isExpandable: false });
+          }, [setCellProps]);
+          return 'cell render';
+        }
       );
+      renderCell({ isExpandable: true, renderCellValue: RenderCellValue });
 
-      expect(component.find('RenderCellValue').prop('isExpandable')).toBe(
-        false
-      );
+      expect(RenderCellValue.mock.lastCall?.[0]).toMatchObject({
+        isExpandable: false,
+      });
     });
   });
 
@@ -584,18 +560,15 @@ describe('EuiDataGridCell', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockRestore();
       });
 
-      const triggerUpdate = (component: ReactWrapper) =>
+      const triggerUpdate = (component: ReturnType<typeof renderCell>) =>
         component.setProps({ rowIndex: 2 });
 
       it('sets the row height cache with cell heights on update', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
 
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: 'auto' }}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: { defaultHeight: 'auto' },
+        });
 
         triggerUpdate(component);
         expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
@@ -604,12 +577,9 @@ describe('EuiDataGridCell', () => {
       it('does not update the cache if cell height is not auto', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(false);
 
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: 34 }}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: { defaultHeight: 34 },
+        });
 
         triggerUpdate(component);
         expect(mockRowHeightUtils.setRowHeight).not.toHaveBeenCalled();
@@ -619,18 +589,15 @@ describe('EuiDataGridCell', () => {
     describe('recalculateLineHeight', () => {
       const setRowHeight = jest.fn();
 
-      const callMethod = (component: ReactWrapper) =>
-        (component.instance() as any).recalculateLineHeight();
+      const callMethod = (component: ReturnType<typeof renderCell>) =>
+        component.getInstance().recalculateLineHeight();
 
       describe('default height', () => {
         it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
-          const component = mount(
-            <EuiDataGridCell
-              {...requiredProps}
-              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
-              setRowHeight={setRowHeight}
-            />
-          );
+          const component = renderCell({
+            rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+            setRowHeight,
+          });
 
           callMethod(component);
           expect(
@@ -642,17 +609,14 @@ describe('EuiDataGridCell', () => {
 
       describe('row height overrides', () => {
         it('uses the rowHeightUtils.setRowHeight cache instead of this.props.setRowHeight', () => {
-          const component = mount(
-            <EuiDataGridCell
-              {...requiredProps}
-              rowHeightsOptions={{
-                defaultHeight: { lineCount: 3 },
-                rowHeights: { 10: { lineCount: 10 } },
-              }}
-              rowIndex={10}
-              setRowHeight={setRowHeight}
-            />
-          );
+          const component = renderCell({
+            rowHeightsOptions: {
+              defaultHeight: { lineCount: 3 },
+              rowHeights: { 10: { lineCount: 10 } },
+            },
+            rowIndex: 10,
+            setRowHeight,
+          });
 
           callMethod(component);
           expect(
@@ -663,9 +627,7 @@ describe('EuiDataGridCell', () => {
         });
 
         it('recalculates when the override for the row changes', () => {
-          const component = mount(
-            <EuiDataGridCell {...requiredProps} setRowHeight={setRowHeight} />
-          );
+          const component = renderCell({ setRowHeight });
 
           component.setProps({
             rowHeightsOptions: {
@@ -693,13 +655,10 @@ describe('EuiDataGridCell', () => {
       });
 
       it('recalculates when props that affect row/line height change', () => {
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: { lineCount: 4 } }}
-            setRowHeight={setRowHeight}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: { defaultHeight: { lineCount: 4 } },
+          setRowHeight,
+        });
         component.setProps({
           rowHeightsOptions: { defaultHeight: { lineCount: 2 } },
         });
@@ -730,13 +689,10 @@ describe('EuiDataGridCell', () => {
       });
 
       it('calculates undefined heights as single rows with a lineCount of 1', () => {
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: undefined }}
-            setRowHeight={setRowHeight}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: { defaultHeight: undefined },
+          setRowHeight,
+        });
 
         callMethod(component);
         expect(
@@ -746,13 +702,10 @@ describe('EuiDataGridCell', () => {
       });
 
       it('does nothing if cell height is not lineCount or undefined', () => {
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: 34 }}
-            setRowHeight={setRowHeight}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: { defaultHeight: 34 },
+          setRowHeight,
+        });
 
         callMethod(component);
         expect(setRowHeight).not.toHaveBeenCalled();
@@ -761,16 +714,13 @@ describe('EuiDataGridCell', () => {
       it('does nothing if cell height is auto or autoBelowLineCount', () => {
         mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
 
-        const component = mount(
-          <EuiDataGridCell
-            {...requiredProps}
-            rowHeightsOptions={{
-              autoBelowLineCount: true,
-              defaultHeight: { lineCount: 3 },
-            }}
-            setRowHeight={setRowHeight}
-          />
-        );
+        const component = renderCell({
+          rowHeightsOptions: {
+            autoBelowLineCount: true,
+            defaultHeight: { lineCount: 3 },
+          },
+          setRowHeight,
+        });
 
         callMethod(component);
         expect(setRowHeight).not.toHaveBeenCalled();
@@ -784,79 +734,76 @@ describe('EuiDataGridCell', () => {
     const props = { ...requiredProps, renderCellValue: () => null };
 
     test('default', () => {
-      const component = mount(
-        <EuiDataGridCell {...props} rowHeightsOptions={undefined} />
-      );
+      const { container } = renderCell({
+        ...props,
+        rowHeightsOptions: undefined,
+      });
 
       expect(
-        component.find('.euiDataGridRowCell__content--defaultHeight').exists()
-      ).toBe(true);
-      expect(component.find('.eui-textTruncate').exists()).toBe(true);
+        container.querySelector('.euiDataGridRowCell__content--defaultHeight')
+      ).toBeInTheDocument();
+      expect(container.querySelector('.eui-textTruncate')).toBeInTheDocument();
     });
 
     test('auto', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...props}
-          rowHeightsOptions={{ defaultHeight: 'auto' }}
-        />
-      );
+      const { container } = renderCell({
+        ...props,
+        rowHeightsOptions: { defaultHeight: 'auto' },
+      });
 
       expect(
-        component.find('.euiDataGridRowCell__content--autoHeight').exists()
-      ).toBe(true);
-      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+        container.querySelector('.euiDataGridRowCell__content--autoHeight')
+      ).toBeInTheDocument();
+      expect(container.querySelector('.eui-textBreakWord')).toBeInTheDocument();
     });
 
     test('numerical', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...props}
-          rowHeightsOptions={{ defaultHeight: { height: 3 } }}
-        />
-      );
+      const { container } = renderCell({
+        ...props,
+        rowHeightsOptions: { defaultHeight: { height: 3 } },
+      });
 
       expect(
-        component.find('.euiDataGridRowCell__content--numericalHeight').exists()
-      ).toBe(true);
-      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+        container.querySelector('.euiDataGridRowCell__content--numericalHeight')
+      ).toBeInTheDocument();
+      expect(container.querySelector('.eui-textBreakWord')).toBeInTheDocument();
     });
 
     test('lineCount', () => {
-      const component = mount(
-        <EuiDataGridCell
-          {...props}
-          rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
-        />
-      );
+      const { container } = renderCell({
+        ...props,
+        rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+      });
 
       expect(
-        component.find('.euiDataGridRowCell__content--lineCountHeight').exists()
-      ).toBe(true);
-      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
-      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+        container.querySelector('.euiDataGridRowCell__content--lineCountHeight')
+      ).toBeInTheDocument();
+      expect(container.querySelector('.eui-textBreakWord')).toBeInTheDocument();
+      expect(
+        container.querySelector('.euiTextBlockTruncate')
+      ).toBeInTheDocument();
     });
 
     test('autoBelowLineCount', () => {
       mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
 
-      const component = mount(
-        <EuiDataGridCell
-          {...props}
-          rowHeightsOptions={{
-            autoBelowLineCount: true,
-            defaultHeight: { lineCount: 3 },
-          }}
-        />
-      );
+      const { container } = renderCell({
+        ...props,
+        rowHeightsOptions: {
+          autoBelowLineCount: true,
+          defaultHeight: { lineCount: 3 },
+        },
+      });
 
       expect(
-        component
-          .find('div.euiDataGridRowCell__content--autoBelowLineCountHeight')
-          .hasClass(/autoHeight/)
-      ).toBe(true);
-      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
-      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+        container.querySelector(
+          'div.euiDataGridRowCell__content--autoBelowLineCountHeight'
+        )?.className
+      ).toMatch(/autoHeight/);
+      expect(container.querySelector('.eui-textBreakWord')).toBeInTheDocument();
+      expect(
+        container.querySelector('.euiTextBlockTruncate')
+      ).toBeInTheDocument();
 
       mockRowHeightUtils.isAutoBelowLineCount.mockRestore();
     });
