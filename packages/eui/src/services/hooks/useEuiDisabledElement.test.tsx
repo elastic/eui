@@ -8,10 +8,8 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { mount } from 'enzyme';
 
 import { render, renderHook } from '../../test/rtl';
-import { findTestSubject } from '../../test';
 import { useEuiDisabledElement } from './useEuiDisabledElement';
 
 describe('useEuiDisabledElement', () => {
@@ -434,48 +432,42 @@ describe('useEuiDisabledElement', () => {
     });
   });
 
-  describe('Enzyme (legacy)', () => {
-    const Component = ({ isDisabled = false, hasAriaDisabled = false }) => {
-      const disabledProps = useEuiDisabledElement<HTMLButtonElement>({
-        isDisabled,
-        hasAriaDisabled,
-      });
-
-      return (
-        <button {...disabledProps} data-test-subj="button">
-          button label
-        </button>
-      );
+  describe('toHaveEuiDisabledProp', () => {
+    const getProps = (options: {
+      isDisabled?: boolean;
+      hasAriaDisabled?: boolean;
+    }) => {
+      let buttonProps: Record<string, unknown> = {};
+      const Component = () => {
+        const { ref, ...props } =
+          useEuiDisabledElement<HTMLButtonElement>(options);
+        buttonProps = props;
+        return (
+          <button ref={ref} {...props}>
+            button label
+          </button>
+        );
+      };
+      render(<Component />);
+      return buttonProps;
     };
 
-    it('renders enabled buttons', () => {
-      const component = mount(<Component />);
-
-      const button = findTestSubject(component, 'button');
-
-      expect(button.props()).not.toHaveEuiDisabledProp();
+    it('does not match enabled props', () => {
+      expect(getProps({})).not.toHaveEuiDisabledProp();
     });
 
-    it('renders `disabled` buttons', () => {
-      const component = mount(<Component isDisabled />);
+    it('matches `disabled` props', () => {
+      const props = getProps({ isDisabled: true });
 
-      const button = findTestSubject(component, 'button');
-
-      expect(button.props()).toHaveEuiDisabledProp();
-      expect(button.props()).toEqual(
-        expect.objectContaining({
-          disabled: true,
-        })
-      );
+      expect(props).toHaveEuiDisabledProp();
+      expect(props).toEqual(expect.objectContaining({ disabled: true }));
     });
 
-    it('renders `aria-disabled` buttons', () => {
-      const component = mount(<Component isDisabled hasAriaDisabled />);
+    it('matches `aria-disabled` props', () => {
+      const props = getProps({ isDisabled: true, hasAriaDisabled: true });
 
-      const button = findTestSubject(component, 'button');
-
-      expect(button.props()).toHaveEuiDisabledProp();
-      expect(button.props()).toEqual(
+      expect(props).toHaveEuiDisabledProp();
+      expect(props).toEqual(
         expect.objectContaining({
           'aria-disabled': true,
           disabled: undefined,

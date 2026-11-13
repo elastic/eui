@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { ReactWrapper } from 'enzyme';
-import { Component } from 'react';
+import type { ReactWrapper } from 'enzyme';
+import type { Component } from 'react';
 
 interface TakeMountedSnapshotOptions {
   hasArrayOutput?: boolean;
