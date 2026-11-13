@@ -375,15 +375,18 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
       [disableScreenReaderOutput, visible, hideToolTip]
     );
 
+    const onAnchorMouseEnter = anchorProps?.onMouseEnter;
+    const onAnchorMouseLeave = anchorProps?.onMouseLeave;
+
     /**
      * Show the tooltip on enter.
      */
     const onMouseEnter = useCallback(
       (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
         showToolTip();
-        anchorProps?.onMouseEnter?.(event);
+        onAnchorMouseEnter?.(event);
       },
-      [showToolTip, anchorProps?.onMouseEnter]
+      [showToolTip, onAnchorMouseEnter]
     );
 
     /**
@@ -392,9 +395,9 @@ export const EuiToolTip = forwardRef<EuiToolTipRef, EuiToolTipProps>(
     const onMouseLeave = useCallback(
       (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
         if (!hasFocus) hideToolTip();
-        anchorProps?.onMouseLeave?.(event);
+        onAnchorMouseLeave?.(event);
       },
-      [hasFocus, hideToolTip, anchorProps?.onMouseLeave]
+      [hasFocus, hideToolTip, onAnchorMouseLeave]
     );
 
     const classes = classNames('euiToolTip', className);
