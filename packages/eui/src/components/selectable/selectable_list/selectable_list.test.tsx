@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { render } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
@@ -597,7 +597,7 @@ describe('EuiSelectableListItem', () => {
 
     it.each([0, 1, 2])(
       'sets the clicked option (index %i) as active, not the first matching label',
-      (index) => {
+      async (index) => {
         const setActiveOptionIndex = jest.fn((_index, cb) => cb?.());
         const onOptionClick = jest.fn();
         const { getAllByRole } = render(
@@ -610,7 +610,7 @@ describe('EuiSelectableListItem', () => {
           />
         );
 
-        fireEvent.click(getAllByRole('option')[index]);
+        await userEvent.click(getAllByRole('option')[index]);
 
         // Called with the callback from onAddOrRemoveOption
         expect(setActiveOptionIndex).toHaveBeenCalledWith(
