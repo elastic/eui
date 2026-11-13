@@ -612,7 +612,6 @@ describe('EuiSelectableListItem', () => {
 
         await userEvent.click(getAllByRole('option')[index]);
 
-        // Called with the callback from onAddOrRemoveOption
         expect(setActiveOptionIndex).toHaveBeenCalledWith(
           index,
           expect.any(Function)
