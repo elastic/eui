@@ -18,7 +18,10 @@ import {
   useEuiPaddingCSS,
   _EuiThemeBreakpoint,
 } from '../../../global_styling';
-import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
+import {
+  useEuiMemoizedStyles,
+  useIsWithinBreakpoints,
+} from '../../../services';
 import { euiPageInnerStyles } from './page_inner.styles';
 
 export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
@@ -59,9 +62,8 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   responsive = ['xs', 's'],
   ...rest
 }: _EuiPageInnerProps<T>) => {
-  const themeContext = useEuiTheme();
   const isResponding = useIsWithinBreakpoints(responsive);
-  const styles = euiPageInnerStyles(themeContext);
+  const styles = useEuiMemoizedStyles(euiPageInnerStyles);
   const paddingStyles = useEuiPaddingCSS()[paddingSize];
 
   let borderSide: 'top' | 'left' | undefined;
