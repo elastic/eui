@@ -83,7 +83,7 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
 
         .euiPopover:focus-within {
-          z-index: 1;
+          z-index: ${Number(euiTheme.levels.content) + 1};
         }
 
         .euiFilterButton__wrapper {

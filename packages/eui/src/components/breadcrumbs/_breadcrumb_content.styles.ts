@@ -135,7 +135,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         clip-path: none;
 
         .euiBreadcrumb:has(&) {
-          z-index: 2;
+          z-index: ${Number(euiTheme.levels.content) + 2};
           ${highContrastModeStyles(euiThemeContext, {
             preferred: 'filter: none;',
           })}

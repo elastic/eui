@@ -83,7 +83,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-inline-end: ${euiTheme.size.xs};
       inset-block-start: ${euiTheme.size.xs};
-      z-index: 3;
+      z-index: ${Number(euiTheme.levels.content) + 3};
     `,
   };
 };

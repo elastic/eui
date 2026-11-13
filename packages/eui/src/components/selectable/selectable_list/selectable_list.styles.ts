@@ -67,6 +67,8 @@ export const euiSelectableListGroupLabelStyles = (
   const borderColor = euiTheme.components.selectableListItemBorderColor;
 
   return {
+    /* eslint-disable @elastic/eui/no-static-z-index -- the separator (::before)
+       has to stay behind the label's content, such as appended links */
     groupLabel: css`
       ${euiTitle(euiThemeContext, 'xxxs')}
       position: relative;
@@ -96,5 +98,6 @@ export const euiSelectableListGroupLabelStyles = (
         }
       }
     `,
+    /* eslint-enable @elastic/eui/no-static-z-index */
   };
 };
