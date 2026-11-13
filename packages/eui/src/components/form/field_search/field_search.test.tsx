@@ -9,7 +9,7 @@
 import React from 'react';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
-import { render } from '../../../test/rtl';
+import { render, fireEvent } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFieldSearch } from './field_search';
@@ -97,6 +97,53 @@ describe('EuiFieldSearch', () => {
 
       const input = container.querySelector('.euiFieldSearch');
       expect(input?.className).toContain('fullWidth');
+    });
+  });
+  describe('behavioral tests', () => {
+    test('incremental onSearch fires once per value', () => {
+      const onSearch = jest.fn();
+      const { getByRole } = render(
+        <EuiFieldSearch incremental onSearch={onSearch} />
+      );
+      const input = getByRole('searchbox');
+
+      fireEvent.change(input, { target: { value: 'a' } });
+      expect(onSearch).toHaveBeenCalledTimes(1);
+      expect(onSearch).toHaveBeenLastCalledWith('a');
+    });
+
+    test('native search event triggers onSearch', () => {
+      const onSearch = jest.fn();
+      const { getByRole } = render(<EuiFieldSearch onSearch={onSearch} />);
+      const input = getByRole('searchbox');
+
+      fireEvent(input, new Event('search'));
+      expect(onSearch).toHaveBeenCalled();
+    });
+
+    test('clear button empties value and refocuses input', () => {
+      const onSearch = jest.fn();
+      const { getByRole, getByTestId } = render(
+        <EuiFieldSearch defaultValue="hello" onSearch={onSearch} />
+      );
+      const input = getByRole('searchbox');
+      const clearButton = getByTestId('clearSearchButton');
+
+      fireEvent.click(clearButton);
+      
+      expect(input).toHaveValue('');
+      expect(input).toHaveFocus();
+      expect(onSearch).toHaveBeenCalledWith('');
+    });
+
+    test('listener cleanup on unmount', () => {
+      const { unmount, getByRole } = render(<EuiFieldSearch />);
+      const input = getByRole('searchbox');
+      
+      const removeEventListenerSpy = jest.spyOn(input, 'removeEventListener');
+      unmount();
+      
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('change', expect.any(Function));
     });
   });
 });
