@@ -832,7 +832,7 @@ export class EuiSelectableList<T> extends Component<
 
     this.props.setActiveOptionIndex(
       // Match by identity, not label, as options can share the same label
-      visibleOptions.findIndex((visibleOption) => visibleOption === option),
+      visibleOptions.indexOf(option),
       () => {
         if (option.checked === 'on' && allowExclusions) {
           this.onExcludeOption(option, event);
