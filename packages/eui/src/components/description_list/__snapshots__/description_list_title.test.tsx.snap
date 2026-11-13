@@ -14,7 +14,7 @@ exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations compres
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations compressed combined with reverse text style row uses the compressed font size without inline pill padding 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-compressedReverse-s"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-reverse-s"
 />
 `;
 
