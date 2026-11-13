@@ -71,7 +71,6 @@ module.exports = {
       // TODO: Remove Sass-specific config & rules once we're completely off Sass
       files: ['**/*.scss'],
       ignoreFiles: [
-        'generator-eui/**/*.scss',
         'src/global_styling/react_date_picker/**/*.scss',
         'src/components/date_picker/react-datepicker/**/*.scss',
       ],

@@ -21,8 +21,7 @@ Changes that do not impact consumers or end-users may use the `skip-changelog` l
 ## How to write a changelog
 
 * Create a new file with the ID/number of the pull request.
-  * In `packages/eui`, you can use `yarn yo-changelog #####` (passing the PR ID/number) to automatically generate a changelog boilerplate file.
-  * Reference [`packages/eui/changelogs/upcoming/_template.md`](/packages/eui/changelogs/upcoming/_template.md) for the canonical section ordering and formatting.
+  * Copy [`packages/eui/changelogs/upcoming/_template.md`](/packages/eui/changelogs/upcoming/_template.md) as a starting point. It has the canonical section ordering and formatting.
 * Create `**` wrapped subheadings for bug fixes, deprecations, or breaking changes. New features/enhancements should go at the top, and do not need a subheading.
 * Add a `-` list item for each significant change in the PR. Larger PRs may have multiple changes, whereas smaller PRs may have only one.
 * Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...).

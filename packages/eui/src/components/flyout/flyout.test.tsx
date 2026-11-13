@@ -163,6 +163,23 @@ describe('EuiFlyout', () => {
     ).toBeTruthy();
   });
 
+  it('does not mutate the `includeSelectorInFocusTrap` array', () => {
+    const childSelectors: string[] = [];
+    render(
+      <EuiFlyoutManager>
+        <EuiFlyout onClose={() => {}} session="start">
+          <EuiFlyout
+            onClose={() => {}}
+            includeSelectorInFocusTrap={childSelectors}
+            includeFixedHeadersInFocusTrap={false}
+          />
+        </EuiFlyout>
+      </EuiFlyoutManager>
+    );
+
+    expect(childSelectors).toEqual([]);
+  });
+
   it('allows setting custom aria-describedby attributes', () => {
     const { getByTestSubject } = render(
       <>
