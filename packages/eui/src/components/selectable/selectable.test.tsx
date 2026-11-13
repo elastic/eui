@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -500,6 +501,64 @@ describe('EuiSelectable', () => {
 
       fireEvent.keyDown(target, { key: 'ArrowDown' });
       expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
+    });
+  });
+
+  describe('options with duplicate labels', () => {
+    const duplicateOptions: EuiSelectableOption[] = [
+      { key: '1', label: 'Item' },
+      { key: '2', label: 'Item' },
+      { key: '3', label: 'Item' },
+    ];
+    const focusedClass = 'euiSelectableListItem-isFocused';
+
+    it.each([0, 1, 2])(
+      'focuses the clicked option (index %i), not the first matching label',
+      async (index) => {
+        const { getAllByRole } = render(
+          <EuiSelectable
+            options={duplicateOptions}
+            listProps={{ isVirtualized: false }}
+          >
+            {(list) => list}
+          </EuiSelectable>
+        );
+
+        await act(async () => {
+          await userEvent.click(getAllByRole('option')[index]);
+        });
+
+        getAllByRole('option').forEach((option, i) => {
+          if (i === index) {
+            expect(option).toHaveClass(focusedClass);
+          } else {
+            expect(option).not.toHaveClass(focusedClass);
+          }
+        });
+      }
+    );
+
+    it('moves focus through each duplicate option with the keyboard', () => {
+      const { getAllByRole, getByRole } = render(
+        <EuiSelectable
+          options={duplicateOptions}
+          listProps={{ isVirtualized: false }}
+          searchable
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      const search = getByRole('searchbox');
+
+      [0, 1, 2].forEach((index) => {
+        fireEvent.keyDown(search, { key: 'ArrowDown' });
+        expect(getAllByRole('option')[index]).toHaveClass(focusedClass);
+      });
     });
   });
 

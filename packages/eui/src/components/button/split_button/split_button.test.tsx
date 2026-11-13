@@ -9,7 +9,9 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 
-import { render } from '../../../test/rtl';
+import { render, within } from '../../../test/rtl';
+import { EuiProvider } from '../../provider';
+import * as splitButtonStyles from './split_button.styles';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiSplitButton, EuiSplitButtonProps } from './split_button';
@@ -41,6 +43,114 @@ describe('EuiSplitButton', () => {
     const { container } = render(<EuiSplitButton {...defaultProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('memoized styles', () => {
+    it('shares theme styles across colors and sizes, including rerenders', () => {
+      const styleSpies = [
+        jest.spyOn(splitButtonStyles, 'euiSplitButtonStyles'),
+        jest.spyOn(splitButtonStyles, 'euiSplitButtonDividerStyles'),
+        jest.spyOn(splitButtonStyles, 'euiSplitButtonActionStyles'),
+      ];
+
+      try {
+        const { getByRole, rerender } = render(
+          <>
+            <EuiSplitButton {...defaultProps} aria-label="Small" size="s" />
+            <EuiSplitButton
+              {...defaultProps}
+              aria-label="Medium"
+              color="warning"
+              fill
+            />
+          </>
+        );
+
+        const smallActions = within(getByRole('group', { name: 'Small' }));
+        const mediumActions = within(getByRole('group', { name: 'Medium' }));
+        for (const action of ['primary-action', 'secondary-action']) {
+          expect(smallActions.getByTestSubject(action)).toHaveStyleRule(
+            'block-size',
+            '24px'
+          );
+          expect(mediumActions.getByTestSubject(action)).toHaveStyleRule(
+            'block-size',
+            '32px'
+          );
+        }
+
+        rerender(<EuiSplitButton {...defaultProps} color="danger" size="s" />);
+
+        styleSpies.forEach((spy) => expect(spy).toHaveBeenCalledTimes(1));
+      } finally {
+        styleSpies.forEach((spy) => spy.mockRestore());
+      }
+    });
+
+    it.each([false, true])(
+      'updates per-instance colors with highContrastMode=%s',
+      (highContrastMode) => {
+        const buttons = (changed: boolean) => (
+          <EuiProvider highContrastMode={highContrastMode}>
+            <EuiSplitButton
+              {...defaultProps}
+              data-test-subj="changing"
+              color={changed ? 'warning' : 'primary'}
+              fill={changed}
+            />
+            <EuiSplitButton
+              {...defaultProps}
+              data-test-subj="warning"
+              color="warning"
+              fill
+            />
+            <EuiSplitButton
+              {...defaultProps}
+              data-test-subj="success"
+              color="success"
+              fill
+            />
+          </EuiProvider>
+        );
+        const { getByTestSubject, rerender } = render(buttons(false), {
+          wrapper: React.Fragment,
+        });
+        const changing = getByTestSubject('changing');
+        const warning = getByTestSubject('warning');
+        const success = getByTestSubject('success');
+        const successDividerColor = success.style.getPropertyValue(
+          '--euiSplitButtonDividerColor'
+        );
+        const successBorderColor = success.style.getPropertyValue(
+          '--euiSplitButtonBorderColor'
+        );
+        if (highContrastMode) {
+          expect(successDividerColor).not.toBe(successBorderColor);
+        } else {
+          expect(successDividerColor).toBe(successBorderColor);
+        }
+        const variables = [
+          '--euiSplitButtonBackgroundColor',
+          '--euiSplitButtonBorderColor',
+          '--euiSplitButtonDividerColor',
+        ];
+
+        variables.forEach((variable) => {
+          expect(changing.style.getPropertyValue(variable)).not.toBe('');
+          expect(changing.style.getPropertyValue(variable)).not.toBe(
+            warning.style.getPropertyValue(variable)
+          );
+        });
+
+        rerender(buttons(true));
+
+        variables.forEach((variable) => {
+          expect(changing.style.getPropertyValue(variable)).toBe(
+            warning.style.getPropertyValue(variable)
+          );
+        });
+      }
+    );
   });
 
   describe('props', () => {
