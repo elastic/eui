@@ -590,9 +590,9 @@ describe('EuiSelectableListItem', () => {
 
   describe('options with duplicate labels', () => {
     const duplicateOptions: EuiSelectableOption[] = [
-      { label: 'Item' },
-      { label: 'Item' },
-      { label: 'Item' },
+      { key: '1', label: 'Item' },
+      { key: '2', label: 'Item' },
+      { key: '3', label: 'Item' },
     ];
 
     it.each([0, 1, 2])(
