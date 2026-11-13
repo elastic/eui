@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiButton } from '../../button';
+import { EuiButton, EuiButtonIcon } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import {
   EuiForm,
@@ -220,3 +220,14 @@ const RenderInlineLayout = ({ compressed }: { compressed: boolean }) => (
     </EuiFlexItem>
   </EuiFlexGroup>
 );
+
+export const TallLabelAppend: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: <EuiFieldText />,
+    label: 'Text field label',
+    labelAppend: (
+      <EuiButtonIcon iconType="ellipsis" size="xs" aria-label="More options" />
+    ),
+  },
+};
