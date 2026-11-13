@@ -7,8 +7,29 @@
  */
 
 import { sortMapBySmallToLargeValues } from '../../services/breakpoint/_sorting';
+import { EUI_BREAKPOINT_CONTAINER } from '../../services/breakpoint/breakpoint_container';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { _EuiThemeBreakpoint } from '../variables';
+
+// Query the nearest breakpoint container instead of the viewport when `EuiProvider` `breakpointContainer` is set.
+// A bare `@container <name>` without a condition is invalid, so condition-less rules stay `@media`.
+const atRule = ({ breakpointContainer }: UseEuiTheme, conditions: string[]) => {
+  if (!conditions.length) return '@media only screen';
+  return breakpointContainer
+    ? `@container ${EUI_BREAKPOINT_CONTAINER} ${conditions.join(' and ')}`
+    : ['@media only screen', ...conditions].join(' and ');
+};
+
+/**
+ * Makes the element a breakpoint container when `EuiProvider` `breakpointContainer` is set.
+ * Also set `EUI_BREAKPOINT_CONTAINER_ATTRIBUTE` on it, so the JS breakpoint hooks measure the same element.
+ * Like any CSS container, it becomes the containing block for its `position: fixed` descendants
+ * and starts a stacking context.
+ */
+export const euiBreakpointContainer = ({ breakpointContainer }: UseEuiTheme) =>
+  breakpointContainer
+    ? `container: ${EUI_BREAKPOINT_CONTAINER} / inline-size;`
+    : '';
 
 /**
  * Generates a CSS media query rule string based on the input breakpoint *ranges*.
@@ -24,9 +45,10 @@ import { _EuiThemeBreakpoint } from '../variables';
  * euiBreakpoint(['l', 'xl']) becomes `@media only screen and (min-width: 992px)`
  */
 export const euiBreakpoint = (
-  { euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   sizes: [_EuiThemeBreakpoint, ..._EuiThemeBreakpoint[]]
 ) => {
+  const { euiTheme } = euiThemeContext;
   // Ensure we inherit any theme breakpoint overrides & sort by small to large
   const orderedBreakpoints = Object.keys(
     sortMapBySmallToLargeValues(euiTheme.breakpoint)
@@ -50,13 +72,13 @@ export const euiBreakpoint = (
     maxBreakpointSize = euiTheme.breakpoint[orderedBreakpoints[nextBreakpoint]];
   }
 
-  return [
-    '@media only screen',
-    minBreakpointSize ? `(min-width: ${minBreakpointSize}px)` : false, // If 0, don't render a min-width
-    maxBreakpointSize ? `(max-width: ${maxBreakpointSize - 1}px)` : false, // If undefined, don't render a max-width
-  ]
-    .filter(Boolean)
-    .join(' and ');
+  return atRule(
+    euiThemeContext,
+    [
+      minBreakpointSize ? `(min-width: ${minBreakpointSize}px)` : false, // If 0, don't render a min-width
+      maxBreakpointSize ? `(max-width: ${maxBreakpointSize - 1}px)` : false, // If undefined, don't render a max-width
+    ].filter((condition): condition is string => Boolean(condition))
+  );
 };
 
 export const useEuiBreakpoint = (
@@ -82,12 +104,13 @@ export const useEuiBreakpoint = (
  */
 
 export const euiMinBreakpoint = (
-  { euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   size: _EuiThemeBreakpoint
 ) => {
+  const { euiTheme } = euiThemeContext;
   const minBreakpointSize = euiTheme.breakpoint[size];
   if (minBreakpointSize) {
-    return `@media only screen and (min-width: ${minBreakpointSize}px)`;
+    return atRule(euiThemeContext, [`(min-width: ${minBreakpointSize}px)`]);
   } else {
     console.warn(`Invalid min breakpoint size: ${size}`);
     return '@media only screen';
@@ -100,12 +123,13 @@ export const useEuiMinBreakpoint = (size: _EuiThemeBreakpoint) => {
 };
 
 export const euiMaxBreakpoint = (
-  { euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   size: _EuiThemeBreakpoint
 ) => {
+  const { euiTheme } = euiThemeContext;
   const maxBreakpointSize = euiTheme.breakpoint[size];
   if (maxBreakpointSize) {
-    return `@media only screen and (max-width: ${maxBreakpointSize - 1}px)`;
+    return atRule(euiThemeContext, [`(max-width: ${maxBreakpointSize - 1}px)`]);
   } else {
     console.warn(`Invalid max breakpoint size: ${size}`);
     return '@media only screen';

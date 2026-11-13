@@ -24,6 +24,7 @@ import {
   EuiNestedThemeContext,
 } from './context';
 import { emitEuiProviderWarning } from './warning';
+import { EuiBreakpointContainerContext } from '../breakpoint/breakpoint_container';
 
 const providerMessage = `\`EuiProvider\` is missing which can result in negative effects.
 Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
@@ -37,6 +38,10 @@ export interface UseEuiTheme<T extends {} = {}> {
   colorMode: EuiThemeColorModeStandard;
   highContrastMode: EuiThemeHighContrastMode;
   modifications: EuiThemeModifications<T>;
+  /**
+   * Whether breakpoint mixins query the nearest breakpoint container instead of the viewport
+   */
+  breakpointContainer?: boolean;
 }
 
 export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
@@ -44,6 +49,8 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const colorMode = useContext(EuiColorModeContext);
   const highContrastMode = useContext(EuiHighContrastModeContext);
   const modifications = useContext(EuiModificationsContext);
+  const breakpointContainer =
+    useContext(EuiBreakpointContainerContext) !== undefined;
 
   const isFallback = theme === defaultComputedTheme;
   if (isFallback) {
@@ -56,8 +63,9 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
       colorMode,
       highContrastMode,
       modifications: modifications as EuiThemeModifications<T>,
+      breakpointContainer,
     }),
-    [theme, colorMode, highContrastMode, modifications]
+    [theme, colorMode, highContrastMode, modifications, breakpointContainer]
   );
 
   return assembledTheme;
