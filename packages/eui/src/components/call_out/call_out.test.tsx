@@ -434,6 +434,61 @@ describe('EuiCallOut', () => {
 
         expect(liveRegion).toHaveTextContent('');
       });
+
+      it('announces child text once and does not copy nested controls', () => {
+        const { getAllByTestSubject } = render(
+          <EuiCallOut
+            announceOnMount
+            title="Announcement title"
+            text="Announcement content"
+            onDismiss={() => {}}
+            dismissButtonProps={{ 'aria-label': 'Dismiss this callout' }}
+            actionProps={{
+              primary: { children: 'Primary action' },
+            }}
+          >
+            {/* This nested control is the regression. It must be announced, not cloned. */}
+            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
+            <button id="retry" data-test-subj="retry">
+              Retry
+            </button>
+          </EuiCallOut>
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(50);
+        });
+
+        expect(getAllByTestSubject('retry')).toHaveLength(1);
+        expect(document.querySelectorAll('#retry')).toHaveLength(1);
+        expect(screen.getAllByRole('button', { name: 'Retry' })).toHaveLength(
+          1
+        );
+
+        const liveRegion = screen.getByRole('status');
+        expect(liveRegion).toHaveTextContent(
+          'Announcement title, Announcement content, Retry'
+        );
+        expect(liveRegion).not.toHaveTextContent('Dismiss this callout');
+        expect(liveRegion).not.toHaveTextContent('Primary action');
+      });
+
+      it('does not read the slots of a callout nested in children', () => {
+        render(
+          <EuiCallOut announceOnMount title="Outer title">
+            {/* eslint-disable-next-line @elastic/eui/callout-prefer-props-for-content */}
+            <EuiCallOut text="Inner text" />
+          </EuiCallOut>
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(50);
+        });
+
+        expect(screen.getByRole('status')).toHaveTextContent(
+          /^Outer title, Inner text$/
+        );
+      });
     });
   });
 });

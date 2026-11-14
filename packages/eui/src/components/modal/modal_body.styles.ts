@@ -21,6 +21,12 @@ export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
 
+      /* If a header doesn't exist (body is the first element) reserve space for the close button */
+      &:first-of-type .euiModalBody__overflow {
+        padding-block-start: ${euiTheme.size.l};
+        padding-inline-end: ${euiTheme.size.xxl};
+      }
+
       /* If a footer doesn't exist (body is the last element) add padding to the bottom */
       &:last-of-type .euiModalBody__overflow {
         padding-block-end: ${euiTheme.size.l};

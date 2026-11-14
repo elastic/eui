@@ -30,6 +30,7 @@ import { EuiIconAccessibilityRules } from './rules/a11y/icon_accessibility_rules
 import { TooltipNoInteractiveContent } from './rules/a11y/tooltip_no_interactive_content';
 import { TooltipButtonIconWrap } from './rules/a11y/tooltip_button_icon_wrap';
 import { NoDeprecatedIconAliases } from './rules/no_deprecated_icon_aliases';
+import { NoRemovedIcons } from './rules/no_removed_icons';
 import { ButtonGroupNoInvalidChildren } from './rules/button_group_no_invalid_children';
 import { ButtonGroupSelectionRequireId } from './rules/button_group_selection_require_id';
 
@@ -44,6 +45,7 @@ const config = {
     'no-deprecated-icon-aliases': NoDeprecatedIconAliases,
     'no-nested-copy-tooltip': NoNestedCopyTooltip,
     'no-nested-interactive-element': NoNestedInteractiveElement,
+    'no-removed-icons': NoRemovedIcons,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-static-z-index': NoStaticZIndex,
     'no-unnamed-interactive-element': NoUnnamedInteractiveElement,
@@ -78,6 +80,7 @@ const config = {
         '@elastic/eui/no-deprecated-icon-aliases': 'warn',
         '@elastic/eui/no-nested-copy-tooltip': 'warn',
         '@elastic/eui/no-nested-interactive-element': 'warn',
+        '@elastic/eui/no-removed-icons': 'error',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-static-z-index': 'warn',
         '@elastic/eui/no-unnamed-interactive-element': 'warn',

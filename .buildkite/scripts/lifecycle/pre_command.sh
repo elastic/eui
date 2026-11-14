@@ -13,7 +13,7 @@ echo '[INSTALL]: Exported variables'
 GCE_ACCOUNT=$(retry 5 vault read -field=value $VAULT_ACCOUNT)
 export GCE_ACCOUNT
 
-DOCKER_BASE_IMAGE=docker.elastic.co/eui/ci:6.7
+DOCKER_BASE_IMAGE=docker.elastic.co/eui/ci:6.8
 export DOCKER_BASE_IMAGE
 
 GCE_IMAGE=google/cloud-sdk:slim
