@@ -100,6 +100,73 @@ describe('EuiDescriptionList', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      it.each([
+        ['row', 'normal'],
+        ['row', 'reverse'],
+        ['column', 'normal'],
+        ['column', 'reverse'],
+      ] as const)(
+        'uses matching font sizes in %s with %s text',
+        (type, textStyle) => {
+          const { getByText } = render(
+            <EuiDescriptionList
+              compressed
+              type={type}
+              textStyle={textStyle}
+              listItems={[{ title: 'title', description: 'description' }]}
+            />
+          );
+
+          expect(getByText('title')).toHaveStyleRule('font-size', '1.0000rem');
+          expect(getByText('description')).toHaveStyleRule(
+            'font-size',
+            '1.0000rem'
+          );
+        }
+      );
+
+      it.each(['normal', 'reverse'] as const)(
+        'keeps matching font sizes when responsive columns collapse with %s text',
+        (textStyle) => {
+          mockUseIsWithinBreakpoints.mockReturnValue(false);
+          const props = {
+            compressed: true,
+            type: 'responsiveColumn' as const,
+            textStyle,
+            listItems: [{ title: 'title', description: 'description' }],
+          };
+          const { getByText, rerender } = render(
+            <EuiDescriptionList {...props} />
+          );
+
+          const text = textStyle === 'normal' ? 'description' : 'title';
+          expect(getByText(text)).toHaveStyleRule('font-size', '1.0000rem');
+          mockUseIsWithinBreakpoints.mockReturnValue(true);
+          rerender(<EuiDescriptionList {...props} />);
+          expect(getByText(text)).toHaveStyleRule('font-size', '1.0000rem');
+        }
+      );
+
+      it.each(['normal', 'reverse'] as const)(
+        'preserves the compressed inline font size with %s text',
+        (textStyle) => {
+          const { getByText } = render(
+            <EuiDescriptionList
+              compressed
+              type="inline"
+              textStyle={textStyle}
+              listItems={[{ title: 'title', description: 'description' }]}
+            />
+          );
+
+          expect(getByText('title')).toHaveStyleRule('font-size', '0.8571rem');
+          expect(getByText('description')).toHaveStyleRule(
+            'font-size',
+            '0.8571rem'
+          );
+        }
+      );
     });
 
     describe('type', () => {
