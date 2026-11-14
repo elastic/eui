@@ -6,10 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import { findTestSubject, requiredProps } from '../../test';
+import { requiredProps } from '../../test';
 import { getAllByTestSubject, render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { keys } from '../../services';
@@ -25,19 +24,39 @@ jest.mock('../popover', () => ({
   ),
 }));
 
-function getFocusableCell(component: ReactWrapper) {
-  const headerCell = component.find('[role="columnheader"][tabIndex=0]');
-  return headerCell.length
-    ? headerCell
-    : findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
-}
+// Keyboard dragging doesn't reorder columns in a fully rendered grid under
+// jsdom, so capture `onDragEnd` handlers (keyed by the child droppable's id)
+// to be called directly
+const mockOnDragEndHandlers: { [droppableId: string]: Function } = {};
+jest.mock('../drag_and_drop', () => {
+  const actual = jest.requireActual('../drag_and_drop');
+  return {
+    ...actual,
+    EuiDragDropContext: (props: any) => {
+      const droppableId = props.children?.props?.droppableId;
+      if (droppableId) mockOnDragEndHandlers[droppableId] = props.onDragEnd;
+      return <actual.EuiDragDropContext {...props} />;
+    },
+  };
+});
 
-function getFocusableCellRTL(element: HTMLElement) {
-  const headerCell = element.querySelector(
+const renderDataGrid = (element: ReactElement<EuiDataGridProps>) => {
+  let currentProps = element.props;
+  const result = render(<EuiDataGrid {...currentProps} />);
+
+  // Mimics Enzyme's `setProps`, which merges into the current props
+  const setProps = (nextProps: Partial<EuiDataGridProps>) => {
+    currentProps = { ...currentProps, ...nextProps } as EuiDataGridProps;
+    result.rerender(<EuiDataGrid {...currentProps} />);
+  };
+
+  return { ...result, setProps, getProps: () => currentProps };
+};
+
+function getFocusableCell(element: HTMLElement) {
+  const headerCell = element.querySelector<HTMLElement>(
     '[role="columnheader"][tabindex="0"]'
   );
-
-  // console.log(element.querySelector('[data-test-subj="dataGridRowCell"]'));
 
   const rowCell = getAllByTestSubject(element, 'dataGridRowCell').find(
     (el) => el.getAttribute('tabindex') === '0'
@@ -46,25 +65,41 @@ function getFocusableCellRTL(element: HTMLElement) {
   return headerCell ?? rowCell;
 }
 
-function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
+const getHeaderCells = (element: HTMLElement) =>
+  Array.from(
+    element.querySelectorAll<HTMLElement>(
+      '[data-test-subj|="dataGridHeaderCell"]'
+    )
+  );
+
+const getRowCells = (element: HTMLElement) =>
+  Array.from(
+    element.querySelectorAll<HTMLElement>('[data-test-subj~="dataGridRowCell"]')
+  );
+
+const getCellContentText = (cell: Element) =>
+  cell.querySelector('[data-datagrid-cellcontent]')?.textContent ?? '';
+
+function extractGridData(element: HTMLElement) {
   const rows: string[][] = [];
 
-  const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell', '|=');
-  const headerRow: string[] = [];
-  headerCells.forEach((cell: any) =>
-    headerRow.push(cell.find('div.euiDataGridHeaderCell__content').text())
+  const headerCells = getHeaderCells(element);
+  rows.push(
+    headerCells.map(
+      (cell) =>
+        cell.querySelector('div.euiDataGridHeaderCell__content')?.textContent ??
+        ''
+    )
   );
-  rows.push(headerRow);
 
   // reduce the virtualized grid of cells into rows
-  const columnCount = datagrid.prop('columnVisibility').visibleColumns.length;
-  const gridCells = findTestSubject(datagrid, 'dataGridRowCell');
+  const columnCount = headerCells.length;
+  const gridCells = getRowCells(element);
   const visibleRowsCount = gridCells.length / columnCount;
   for (let i = 0; i < visibleRowsCount; i++) {
     const rowContent: string[] = [];
     for (let j = i * columnCount; j < (i + 1) * columnCount; j++) {
-      const cell = gridCells.at(j);
-      rowContent.push(cell.find('[data-test-subj="cell-content"]').text());
+      rowContent.push(getCellContentText(gridCells[j]));
     }
     rows.push(rowContent);
   }
@@ -72,340 +107,204 @@ function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
   return rows;
 }
 
-function extractRowHeights(datagrid: ReactWrapper) {
-  return (
-    findTestSubject(datagrid, 'dataGridRowCell') as ReactWrapper<any>
-  ).reduce((heights: { [key: string]: number }, cell) => {
-    const cellProps = cell.props();
-    const cellContentProps = cell
-      .find('[data-test-subj="cell-content"]')
-      .props() as any;
-    heights[cellContentProps.rowIndex] = parseFloat(cellProps.style.height);
-    return heights;
-  }, {});
+function extractRowHeights(element: HTMLElement) {
+  return getRowCells(element).reduce(
+    (heights: { [key: string]: number }, cell) => {
+      const rowIndex = cell.getAttribute('data-gridcell-row-index')!;
+      heights[rowIndex] = parseFloat(cell.style.height);
+      return heights;
+    },
+    {}
+  );
 }
 
-function extractColumnWidths(datagrid: ReactWrapper) {
-  return (
-    findTestSubject(datagrid, 'dataGridHeaderCell', '|=') as ReactWrapper<any>
-  ).reduce((widths: { [key: string]: number }, cell) => {
-    const [, columnId] = cell
-      .props()
-      ['data-test-subj'].match(/dataGridHeaderCell-(.*)/);
-    widths[columnId] = parseFloat(cell.props().style.width);
-    return widths;
-  }, {});
+function extractColumnWidths(element: HTMLElement) {
+  return getHeaderCells(element).reduce(
+    (widths: { [key: string]: number }, cell) => {
+      const [, columnId] = cell
+        .getAttribute('data-test-subj')!
+        .match(/dataGridHeaderCell-(.*)/)!;
+      widths[columnId] = parseFloat(cell.style.width);
+      return widths;
+    },
+    {}
+  );
 }
+
+const getColumnResizer = (element: HTMLElement, columnId: string) =>
+  element.querySelector<HTMLElement>(
+    `[data-test-subj="dataGridHeaderCell-${columnId}"] [data-test-subj="dataGridColumnResizer"]`
+  );
 
 function resizeColumn(
-  datagrid: ReactWrapper,
+  element: HTMLElement,
   columnId: string,
   columnWidth: number
 ) {
-  const widths = extractColumnWidths(datagrid);
+  const widths = extractColumnWidths(element);
   const originalWidth = widths[columnId];
 
-  const firstResizer = datagrid
-    .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
-    .find('div.euiDataGridColumnResizer');
-
-  act(() => {
-    firstResizer.simulate('mousedown', {
-      pageX: originalWidth,
-      stopPropagation: () => {},
-      preventDefault: () => {},
-    });
+  // jsdom derives `pageX` from `clientX`
+  fireEvent.mouseDown(getColumnResizer(element, columnId)!, {
+    clientX: originalWidth,
   });
-  // `mousemove` and `mouseup` are bound to `window`; jsdom derives `pageX`
-  // from `clientX`
-  act(() => {
-    fireEvent.mouseMove(window, { clientX: columnWidth });
-  });
-  act(() => {
-    fireEvent.mouseUp(window);
-  });
-
-  datagrid.update();
+  // `mousemove` and `mouseup` are bound to `window`
+  fireEvent.mouseMove(window, { clientX: columnWidth });
+  fireEvent.mouseUp(window);
 }
 
-function openColumnSorterSelection(datagrid: ReactWrapper) {
-  let columnSelectionPopover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+const getButton = (element: HTMLElement, dataTestSubj: string) =>
+  element.querySelector<HTMLButtonElement>(
+    `button[data-test-subj="${dataTestSubj}"]`
   );
-  expect(columnSelectionPopover).not.euiPopoverToBeOpen();
-  act(() => {
-    columnSelectionPopover
-      .find('button[data-test-subj="dataGridColumnSortingSelectionButton"]')
-      .simulate('click');
-  });
 
-  datagrid.update();
+const expectPopoverOpen = (trigger: HTMLElement, isOpen: boolean) =>
+  expect(trigger).toHaveAttribute('aria-expanded', String(isOpen));
 
-  columnSelectionPopover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+const getOpenPopoverPanels = () =>
+  Array.from(document.querySelectorAll<HTMLElement>('[data-popover-open]'));
+
+/**
+ * Clicks a popover's trigger button, asserting the popover's open state
+ * before and after. Returns the newly opened popover panel when opening.
+ */
+function togglePopover(
+  element: HTMLElement,
+  triggerTestSubj: string,
+  isOpening: boolean
+) {
+  const trigger = getButton(element, triggerTestSubj)!;
+  expectPopoverOpen(trigger, !isOpening);
+  // generated ids are mocked in tests, so `aria-controls` can't identify the panel
+  const previouslyOpenPanels = getOpenPopoverPanels();
+
+  fireEvent.click(trigger);
+
+  expectPopoverOpen(trigger, isOpening);
+  return getOpenPopoverPanels().find(
+    (panel) => !previouslyOpenPanels.includes(panel)
   );
-  expect(columnSelectionPopover).euiPopoverToBeOpen();
-
-  return columnSelectionPopover;
 }
 
-function closeColumnSorterSelection(datagrid: ReactWrapper) {
-  let columnSelectionPopover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
-  );
+// Merges adjacent text nodes, matching the serialization of the
+// previously used `.render()` snapshots
+const getSnapshotNode = (node: Node) => {
+  const clone = node.cloneNode(true);
+  clone.normalize();
+  return clone;
+};
+
+// The selection popover is nested in the portalled sorting popover,
+// so it lives outside of the render container
+const openColumnSorterSelection = (element: HTMLElement) =>
+  togglePopover(
+    element.ownerDocument.body,
+    'dataGridColumnSortingSelectionButton',
+    true
+  )!;
+
+function closeColumnSorterSelection(element: HTMLElement) {
+  const { body } = element.ownerDocument;
   // popover will go away if all of the columns are selected
-  if (columnSelectionPopover.length > 0) {
-    expect(columnSelectionPopover).euiPopoverToBeOpen();
-
-    act(() => {
-      columnSelectionPopover
-        .find('button[data-test-subj="dataGridColumnSortingSelectionButton"]')
-        .simulate('click');
-    });
-
-    datagrid.update();
-
-    columnSelectionPopover = datagrid.find(
-      'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
-    );
-    expect(columnSelectionPopover).not.euiPopoverToBeOpen();
+  if (getButton(body, 'dataGridColumnSortingSelectionButton')) {
+    togglePopover(body, 'dataGridColumnSortingSelectionButton', false);
   }
-
-  return columnSelectionPopover;
 }
 
 function getColumnSortDirection(
-  datagrid: ReactWrapper,
+  element: HTMLElement,
   columnId: string
-): [ReactWrapper, string] {
-  // get the button that sorts by this column
-  let columnSorter = datagrid.find(
-    `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
-  );
-  if (columnSorter.length === 0) {
-    // need to enable this column
-    openColumnSorterSelection(datagrid);
-
-    // find button to enable this column and click it
-    const selectColumnButton = datagrid.find(
-      `button[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
-    );
-    expect(selectColumnButton.length).toBe(1);
-    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-    act(() => selectColumnButton.props().onClick());
-
-    // close column selection popover
-    closeColumnSorterSelection(datagrid);
-
-    // find the column sorter
-    const columnSelectionPopover = datagrid.find(
-      'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
-    );
-    columnSorter = columnSelectionPopover.find(
+): [HTMLElement, string] {
+  const getColumnSorter = () =>
+    document.querySelector<HTMLElement>(
       `div[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}"]`
     );
+
+  // get the button that sorts by this column
+  let columnSorter = getColumnSorter();
+  if (!columnSorter) {
+    // need to enable this column
+    openColumnSorterSelection(element);
+
+    // find button to enable this column and click it
+    const selectColumnButton = getButton(
+      document.body,
+      `dataGridColumnSortingPopoverColumnSelection-${columnId}`
+    );
+    expect(selectColumnButton).toBeInTheDocument();
+    fireEvent.click(selectColumnButton!);
+
+    // close column selection popover
+    closeColumnSorterSelection(element);
+
+    // find the column sorter
+    columnSorter = getColumnSorter();
   }
 
-  expect(columnSorter.length).toBe(1);
-  const activeSort = columnSorter
-    .find('button')
-    .filterWhere((btn) => btn.prop('aria-pressed') === true);
+  expect(columnSorter).toBeInTheDocument();
+  const activeSort = columnSorter!.querySelector(
+    'button[aria-pressed="true"]'
+  )!;
 
-  const sortDirection = (
-    activeSort.props() as {
-      'data-test-subj': string;
-    }
-  )['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
+  const sortDirection = activeSort
+    .getAttribute('data-test-subj')!
+    .match(/(?<direction>[^-]+)$/)!.groups!.direction;
 
-  return [columnSorter, sortDirection];
+  return [columnSorter!, sortDirection];
 }
 
-function openColumnSorter(datagrid: ReactWrapper) {
-  let popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
+const openColumnSorter = (element: HTMLElement) =>
+  togglePopover(element, 'dataGridColumnSortingButton', true)!;
 
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSortingButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  return popover;
-}
-
-function closeColumnSorter(datagrid: ReactWrapper) {
-  let popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSortingButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
-
-  return popover;
-}
+const closeColumnSorter = (element: HTMLElement) =>
+  togglePopover(element, 'dataGridColumnSortingButton', false);
 
 function sortByColumn(
-  datagrid: ReactWrapper,
+  element: HTMLElement,
   columnId: string,
   direction: 'asc' | 'desc' | 'off'
 ) {
-  openColumnSorter(datagrid);
+  openColumnSorter(element);
 
-  let [columnSorter, currentSortDirection] = getColumnSortDirection(
-    datagrid,
+  const [columnSorter, currentSortDirection] = getColumnSortDirection(
+    element,
     columnId
   );
 
-  // if this column isn't being sorted, enable it
-  if (currentSortDirection === 'off') {
-    act(() => {
-      // @ts-ignore does not require an argument in this usage
-      columnSorter.find('EuiSwitch').props().onChange!();
-    });
-
-    datagrid.update();
-
-    // inspect the column's new sort details
-    [columnSorter, currentSortDirection] = getColumnSortDirection(
-      datagrid,
-      columnId
-    );
-  }
-
   if (currentSortDirection !== direction) {
-    const sortButton = columnSorter.find(
-      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+    const sortButton = getButton(
+      columnSorter,
+      `euiDataGridColumnSorting-sortColumn-${columnId}-${direction}`
     );
-    expect(sortButton.length).toBe(1);
-    sortButton.simulate('click');
+    expect(sortButton).toBeInTheDocument();
+    fireEvent.click(sortButton!);
   }
 
-  closeColumnSorter(datagrid);
+  closeColumnSorter(element);
 }
 
-expect.extend({
-  toBeEuiPopover(received: ReactWrapper) {
-    const pass = received.name() === 'EuiPopover';
-    if (pass) {
-      return {
-        pass: true,
-        message: () =>
-          `expected component "${received.name}" to not be EuiPopover`,
-      };
-    } else {
-      return {
-        pass: false,
-        message: () => `expected component "${received.name}" to be EuiPopover`,
-      };
-    }
-  },
-  euiPopoverToBeOpen(received) {
-    expect(received).toBeEuiPopover();
-    const { isOpen } = received.props();
-    const pass = isOpen === true;
-    if (pass) {
-      return {
-        pass: true,
-        message: () => 'expected EuiPopover to be closed',
-      };
-    } else {
-      return {
-        pass: false,
-        message: () => 'expected EuiPopover to be open',
-      };
-    }
-  },
-});
-declare global {
-  /* eslint-disable-next-line @typescript-eslint/no-namespace,no-redeclare */
-  namespace jest {
-    interface Matchers<R> {
-      toBeEuiPopover(): R;
-      euiPopoverToBeOpen(): R;
-    }
-  }
-}
+const openColumnSelector = (element: HTMLElement) =>
+  togglePopover(element, 'dataGridColumnSelectorButton', true)!;
 
-function openColumnSelector(datagrid: ReactWrapper) {
-  let popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
-
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  return popover;
-}
-
-function closeColumnSelector(datagrid: ReactWrapper) {
-  let popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
-
-  return popover;
-}
+const closeColumnSelector = (element: HTMLElement) =>
+  togglePopover(element, 'dataGridColumnSelectorButton', false);
 
 function setColumnVisibility(
-  datagrid: ReactWrapper,
+  element: HTMLElement,
   columnId: string,
   isVisible: boolean
 ) {
-  const popover = openColumnSelector(datagrid);
+  const popover = openColumnSelector(element);
 
   // toggle column's visibility switch
-  const portal = popover.find('EuiPortal');
+  const columnSwitch = popover.querySelector<HTMLButtonElement>(
+    `[role="switch"][name="${columnId}"]`
+  )!;
+  if (columnSwitch.getAttribute('aria-checked') !== `${isVisible}`) {
+    fireEvent.click(columnSwitch);
+  }
 
-  const columnSwitch = portal.find(`EuiSwitch[name="${columnId}"]`);
-  const switchInput = columnSwitch.find('button');
-  switchInput.getDOMNode().setAttribute('aria-checked', `${isVisible}`);
-  switchInput.simulate('click');
-
-  closeColumnSelector(datagrid);
+  closeColumnSelector(element);
 }
 
 const renderCellValueRowAndColumnCount: RenderCellValue = ({
@@ -430,65 +329,38 @@ const renderCellValueALowBHigh: RenderCellValue = ({ rowIndex, columnId }) =>
   columnId === 'A' ? rowIndex % 2 : 9 - rowIndex;
 
 function moveColumnToIndex(
-  datagrid: ReactWrapper<EuiDataGridProps>,
+  element: HTMLElement,
   columnId: string,
   nextIndex: number
 ) {
   // open datagrid column options
-  let popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
+  openColumnSelector(element);
 
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  const [initialColumnOrder] = extractGridData(datagrid);
+  const [initialColumnOrder] = extractGridData(element);
   const initialColumnIndex = initialColumnOrder.indexOf(columnId);
+  expect(initialColumnIndex).not.toBe(-1);
 
   // "drag" column into new location
-  const portal = popover.find('EuiPortal');
+  const onDragEnd = mockOnDragEndHandlers.columnOrder;
+  expect(onDragEnd).toBeDefined();
   act(() =>
-    portal.find('EuiDragDropContext').props().onDragEnd!({
-      // @ts-ignore - only `index` is used from `source`, don't need to mock rest of the event
+    onDragEnd({
       source: { index: initialColumnIndex },
       destination: { index: nextIndex },
     })
   );
 
-  datagrid.update();
-
   // close popover
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).euiPopoverToBeOpen();
-
-  act(() => {
-    popover
-      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
-      .simulate('click');
-  });
-
-  datagrid.update();
-
-  popover = datagrid.find(
-    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
-  );
-  expect(popover).not.euiPopoverToBeOpen();
+  closeColumnSelector(element);
 }
 
 describe('EuiDataGrid', () => {
+  afterEach(() => {
+    Object.keys(mockOnDragEndHandlers).forEach(
+      (droppableId) => delete mockOnDragEndHandlers[droppableId]
+    );
+  });
+
   // Mock requestAnimationFrame to run immediately
   jest
     .spyOn(window, 'requestAnimationFrame')
@@ -643,12 +515,14 @@ describe('EuiDataGrid', () => {
       );
 
       expect(container).toMatchSnapshot();
-      expect(container.querySelector('.leadingControlCol')).toBeDefined();
-      expect(container.querySelector('.trailingControlCol')).toBeDefined();
+      expect(container.querySelector('.leadingControlCol')).toBeInTheDocument();
+      expect(
+        container.querySelector('.trailingControlCol')
+      ).toBeInTheDocument();
     });
 
     it('can hide the toolbar', () => {
-      const component = mount(
+      const { queryAllByTestSubject, setProps } = renderDataGrid(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -663,10 +537,10 @@ describe('EuiDataGrid', () => {
       );
 
       // The toolbar should not show
-      expect(findTestSubject(component, 'dataGridControls').length).toBe(0);
+      expect(queryAllByTestSubject('dataGridControls')).toHaveLength(0);
 
       // Check for false / true and unset values
-      component.setProps({
+      setProps({
         toolbarVisibility: {
           showFullScreenSelector: false,
           showSortSelector: false,
@@ -675,25 +549,22 @@ describe('EuiDataGrid', () => {
       });
 
       // fullscreen selector
-      expect(
-        findTestSubject(component, 'dataGridFullScreenButton').length
-      ).toBe(0);
+      expect(queryAllByTestSubject('dataGridFullScreenButton')).toHaveLength(0);
 
       // sort selector
-      expect(
-        findTestSubject(component, 'dataGridColumnSortingButton').length
-      ).toBe(0);
+      expect(queryAllByTestSubject('dataGridColumnSortingButton')).toHaveLength(
+        0
+      );
 
       // style selector
-      component.debug();
       expect(
-        findTestSubject(component, 'dataGridDisplaySelectorButton').length
-      ).toBe(1);
+        queryAllByTestSubject('dataGridDisplaySelectorButton')
+      ).toHaveLength(1);
 
       // column selector
       expect(
-        findTestSubject(component, 'dataGridColumnSelectorButton').length
-      ).toBe(1);
+        queryAllByTestSubject('dataGridColumnSelectorButton')
+      ).toHaveLength(1);
     });
 
     describe('schema classnames', () => {
@@ -849,7 +720,7 @@ describe('EuiDataGrid', () => {
         const [value] = useState(`Hello, Row ${rowIndex}-${columnId}!`);
         return <span>{value}</span>;
       };
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           aria-label="test"
           columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
@@ -861,7 +732,7 @@ describe('EuiDataGrid', () => {
           renderCellValue={RenderCellValueWithHooks}
         />
       );
-      expect(extractGridData(component)).toMatchInlineSnapshot(`
+      expect(extractGridData(container)).toMatchInlineSnapshot(`
         [
           [
             "Column 1",
@@ -918,7 +789,7 @@ describe('EuiDataGrid', () => {
 
   describe('pagination', () => {
     it('renders', () => {
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           aria-label="test grid"
           columns={[{ id: 'Column' }]}
@@ -938,98 +809,98 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component.find('EuiTablePagination').render()).toMatchSnapshot();
+      expect(
+        getSnapshotNode(
+          container.querySelector('.euiDataGrid__pagination')!.firstChild!
+        )
+      ).toMatchSnapshot();
     });
 
     describe('page navigation', () => {
       it('next button pages through content', () => {
-        const component = mount(
-          <EuiDataGrid
-            aria-label="test grid"
-            columns={[{ id: 'Column' }]}
-            columnVisibility={{
-              visibleColumns: ['Column'],
-              setVisibleColumns: () => {},
-            }}
-            rowCount={8}
-            renderCellValue={renderCellRowAsValue}
-            pagination={{
-              pageIndex: 0,
-              pageSize: 3,
-              pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn((pageIndex) => {
-                const pagination = component.props().pagination;
-                component.setProps({
-                  pagination: { ...pagination, pageIndex },
-                });
-              }),
-              onChangeItemsPerPage: jest.fn(),
-            }}
-          />
-        );
+        const onChangePage = jest.fn((pageIndex: number) => {
+          setProps({
+            pagination: { ...getProps().pagination!, pageIndex },
+          });
+        });
+        const { container, getByTestSubject, setProps, getProps } =
+          renderDataGrid(
+            <EuiDataGrid
+              aria-label="test grid"
+              columns={[{ id: 'Column' }]}
+              columnVisibility={{
+                visibleColumns: ['Column'],
+                setVisibleColumns: () => {},
+              }}
+              rowCount={8}
+              renderCellValue={renderCellRowAsValue}
+              pagination={{
+                pageIndex: 0,
+                pageSize: 3,
+                pageSizeOptions: [3, 6, 10],
+                onChangePage,
+                onChangeItemsPerPage: jest.fn(),
+              }}
+            />
+          );
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['Column'],
           ['0'],
           ['1'],
           ['2'],
         ]);
 
-        findTestSubject(component, 'pagination-button-next').simulate('click');
+        fireEvent.click(getByTestSubject('pagination-button-next'));
 
-        expect(component.props().pagination.onChangePage).toHaveBeenCalledTimes(
-          1
-        );
-        const firstCallPageIndex =
-          component.props().pagination.onChangePage.mock.calls[0][0];
+        expect(getProps().pagination!.onChangePage).toHaveBeenCalledTimes(1);
+        const firstCallPageIndex = onChangePage.mock.calls[0][0];
         expect(firstCallPageIndex).toBe(1);
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['Column'],
           ['3'],
           ['4'],
           ['5'],
         ]);
 
-        findTestSubject(component, 'pagination-button-next').simulate('click');
+        fireEvent.click(getByTestSubject('pagination-button-next'));
 
-        expect(component.props().pagination.onChangePage).toHaveBeenCalledTimes(
-          2
-        );
-        const secondCallPageIndex =
-          component.props().pagination.onChangePage.mock.calls[1][0];
+        expect(getProps().pagination!.onChangePage).toHaveBeenCalledTimes(2);
+        const secondCallPageIndex = onChangePage.mock.calls[1][0];
         expect(secondCallPageIndex).toBe(2);
 
-        expect(extractGridData(component)).toEqual([['Column'], ['6'], ['7']]);
+        expect(extractGridData(container)).toEqual([['Column'], ['6'], ['7']]);
       });
 
       it('pages are navigable through page links', () => {
-        const component = mount(
-          <EuiDataGrid
-            aria-label="test grid"
-            columns={[{ id: 'Column' }]}
-            columnVisibility={{
-              visibleColumns: ['Column'],
-              setVisibleColumns: () => {},
-            }}
-            rowCount={8}
-            renderCellValue={renderCellRowAsValue}
-            pagination={{
-              pageIndex: 0,
-              pageSize: 3,
-              pageSizeOptions: [3, 6, 10],
-              onChangePage: jest.fn((pageIndex) => {
-                const pagination = component.props().pagination;
-                component.setProps({
-                  pagination: { ...pagination, pageIndex },
-                });
-              }),
-              onChangeItemsPerPage: jest.fn(),
-            }}
-          />
-        );
+        const onChangePage = jest.fn((pageIndex: number) => {
+          setProps({
+            pagination: { ...getProps().pagination!, pageIndex },
+          });
+        });
+        const { container, getByTestSubject, setProps, getProps } =
+          renderDataGrid(
+            <EuiDataGrid
+              aria-label="test grid"
+              columns={[{ id: 'Column' }]}
+              columnVisibility={{
+                visibleColumns: ['Column'],
+                setVisibleColumns: () => {},
+              }}
+              rowCount={8}
+              renderCellValue={renderCellRowAsValue}
+              pagination={{
+                pageIndex: 0,
+                pageSize: 3,
+                pageSizeOptions: [3, 6, 10],
+                onChangePage,
+                onChangeItemsPerPage: jest.fn(),
+              }}
+            />
+          );
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['Column'],
           ['0'],
           ['1'],
@@ -1037,28 +908,22 @@ describe('EuiDataGrid', () => {
         ]);
 
         // goto page 3
-        findTestSubject(component, 'pagination-button-2').simulate('click');
+        fireEvent.click(getByTestSubject('pagination-button-2'));
 
-        expect(component.props().pagination.onChangePage).toHaveBeenCalledTimes(
-          1
-        );
-        const firstCallPageIndex =
-          component.props().pagination.onChangePage.mock.calls[0][0];
+        expect(getProps().pagination!.onChangePage).toHaveBeenCalledTimes(1);
+        const firstCallPageIndex = onChangePage.mock.calls[0][0];
         expect(firstCallPageIndex).toBe(2);
 
-        expect(extractGridData(component)).toEqual([['Column'], ['6'], ['7']]);
+        expect(extractGridData(container)).toEqual([['Column'], ['6'], ['7']]);
 
         // goto page 2
-        findTestSubject(component, 'pagination-button-1').simulate('click');
+        fireEvent.click(getByTestSubject('pagination-button-1'));
 
-        expect(component.props().pagination.onChangePage).toHaveBeenCalledTimes(
-          2
-        );
-        const secondCallPageIndex =
-          component.props().pagination.onChangePage.mock.calls[1][0];
+        expect(getProps().pagination!.onChangePage).toHaveBeenCalledTimes(2);
+        const secondCallPageIndex = onChangePage.mock.calls[1][0];
         expect(secondCallPageIndex).toBe(1);
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['Column'],
           ['3'],
           ['4'],
@@ -1068,43 +933,40 @@ describe('EuiDataGrid', () => {
     });
 
     it('changes the page size', () => {
-      const component = mount(
-        <EuiDataGrid
-          aria-label="test grid"
-          columns={[{ id: 'Column' }]}
-          columnVisibility={{
-            visibleColumns: ['Column'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={8}
-          renderCellValue={renderCellRowAsValue}
-          pagination={{
-            pageIndex: 0,
-            pageSize: 3,
-            pageSizeOptions: [3, 6, 10],
-            onChangePage: jest.fn(),
-            onChangeItemsPerPage: jest.fn((pageSize) => {
-              const pagination = component.props().pagination;
-              component.setProps({
-                pagination: { ...pagination, pageSize },
-              });
-            }),
-          }}
-        />
-      );
+      const onChangeItemsPerPage = jest.fn((pageSize: number) => {
+        setProps({
+          pagination: { ...getProps().pagination!, pageSize },
+        });
+      });
+      const { container, getByTestSubject, setProps, getProps } =
+        renderDataGrid(
+          <EuiDataGrid
+            aria-label="test grid"
+            columns={[{ id: 'Column' }]}
+            columnVisibility={{
+              visibleColumns: ['Column'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={8}
+            renderCellValue={renderCellRowAsValue}
+            pagination={{
+              pageIndex: 0,
+              pageSize: 3,
+              pageSizeOptions: [3, 6, 10],
+              onChangePage: jest.fn(),
+              onChangeItemsPerPage,
+            }}
+          />
+        );
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['Column'],
         ['0'],
         ['1'],
         ['2'],
       ]);
 
-      act(() => {
-        findTestSubject(component, 'tablePaginationPopoverButton').simulate(
-          'click'
-        );
-      });
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
 
       const rowButtons: NodeListOf<HTMLButtonElement> =
         document.body.querySelectorAll('.euiContextMenuItem');
@@ -1115,18 +977,15 @@ describe('EuiDataGrid', () => {
         )
       ).toEqual(['3 rows', '6 rows', '10 rows']);
 
-      act(() => {
-        rowButtons[1].click();
-      });
+      fireEvent.click(rowButtons[1]);
 
-      expect(
-        component.props().pagination.onChangeItemsPerPage
-      ).toHaveBeenCalledTimes(1);
-      const firstCallPageIndex =
-        component.props().pagination.onChangeItemsPerPage.mock.calls[0][0];
+      expect(getProps().pagination!.onChangeItemsPerPage).toHaveBeenCalledTimes(
+        1
+      );
+      const firstCallPageIndex = onChangeItemsPerPage.mock.calls[0][0];
       expect(firstCallPageIndex).toBe(6);
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['Column'],
         ['0'],
         ['1'],
@@ -1140,7 +999,7 @@ describe('EuiDataGrid', () => {
 
   describe('column sizing', () => {
     it('uses a columns initialWidth', () => {
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'Column 1', initialWidth: 400 }, { id: 'Column 2' }]}
@@ -1153,7 +1012,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      const originalCellWidths = extractColumnWidths(component);
+      const originalCellWidths = extractColumnWidths(container);
       expect(originalCellWidths).toEqual({
         'Column 1': 400,
         'Column 2': 100,
@@ -1162,7 +1021,7 @@ describe('EuiDataGrid', () => {
 
     describe('resizing', () => {
       it('resizes a column by grab handles', () => {
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
@@ -1175,28 +1034,22 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        act(() => {
-          const originalCellWidths = extractColumnWidths(component);
-          expect(originalCellWidths).toEqual({
-            'Column 1': 100,
-            'Column 2': 100,
-          });
+        expect(extractColumnWidths(container)).toEqual({
+          'Column 1': 100,
+          'Column 2': 100,
         });
 
-        resizeColumn(component, 'Column 1', 150);
+        resizeColumn(container, 'Column 1', 150);
 
-        act(() => {
-          const updatedCellWidths = extractColumnWidths(component);
-          expect(updatedCellWidths).toEqual({
-            'Column 1': 150,
-            'Column 2': 100,
-          });
+        expect(extractColumnWidths(container)).toEqual({
+          'Column 1': 150,
+          'Column 2': 100,
         });
       });
 
       it('should listen for column resize', () => {
         const onColumnResizeCallback = jest.fn();
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[{ id: 'Column 1' }, { id: 'Column 2', initialWidth: 75 }]}
@@ -1210,8 +1063,8 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        resizeColumn(component, 'Column 1', 150);
-        resizeColumn(component, 'Column 2', 100);
+        resizeColumn(container, 'Column 1', 150);
+        resizeColumn(container, 'Column 2', 100);
 
         expect(onColumnResizeCallback.mock.calls.length).toBe(2);
         expect(onColumnResizeCallback.mock.calls[0][0]).toEqual({
@@ -1225,7 +1078,7 @@ describe('EuiDataGrid', () => {
       });
 
       it('is prevented by isResizable:false', () => {
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[
@@ -1241,25 +1094,21 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        const originalCellWidths = extractColumnWidths(component);
+        const originalCellWidths = extractColumnWidths(container);
         expect(originalCellWidths).toEqual({
           'Column 1': 100,
           'Column 2': 100,
         });
 
         // verify there is no resizer on Column 1 but that there is on Column 2
-        expect(
-          component.find('EuiDataGridColumnResizer[columnId="Column 1"]').length
-        ).toBe(0);
-        expect(
-          component.find('EuiDataGridColumnResizer[columnId="Column 2"]').length
-        ).toBe(1);
+        expect(getColumnResizer(container, 'Column 1')).not.toBeInTheDocument();
+        expect(getColumnResizer(container, 'Column 2')).toBeInTheDocument();
       });
 
       it('does not trigger value re-renders', () => {
         const renderCellValue = jest.fn(() => 'value');
 
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[{ id: 'ColumnA' }]}
@@ -1275,9 +1124,9 @@ describe('EuiDataGrid', () => {
         expect(renderCellValue).toHaveBeenCalledTimes(3);
         renderCellValue.mockClear();
 
-        resizeColumn(component, 'ColumnA', 200);
+        resizeColumn(container, 'ColumnA', 200);
 
-        expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
+        expect(extractColumnWidths(container)).toEqual({ ColumnA: 200 });
         expect(renderCellValue).toHaveBeenCalledTimes(0);
       });
     });
@@ -1289,11 +1138,11 @@ describe('EuiDataGrid', () => {
         visibleColumns: ['ColumnA', 'ColumnB'],
         setVisibleColumns: (visibleColumns: string[]) => {
           columnVisibility.visibleColumns = visibleColumns;
-          component.setProps({ columnVisibility });
+          setProps({ columnVisibility });
         },
       };
 
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
@@ -1303,21 +1152,21 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['ColumnA', 'ColumnB'],
         ['0, ColumnA', '0, ColumnB'],
         ['1, ColumnA', '1, ColumnB'],
       ]);
 
-      setColumnVisibility(component, 'ColumnA', false);
-      expect(extractGridData(component)).toEqual([
+      setColumnVisibility(container, 'ColumnA', false);
+      expect(extractGridData(container)).toEqual([
         ['ColumnB'],
         ['0, ColumnB'],
         ['1, ColumnB'],
       ]);
 
-      setColumnVisibility(component, 'ColumnA', true);
-      expect(extractGridData(component)).toEqual([
+      setColumnVisibility(container, 'ColumnA', true);
+      expect(extractGridData(container)).toEqual([
         ['ColumnA', 'ColumnB'],
         ['0, ColumnA', '0, ColumnB'],
         ['1, ColumnA', '1, ColumnB'],
@@ -1329,11 +1178,11 @@ describe('EuiDataGrid', () => {
         visibleColumns: ['ColumnA', 'ColumnB'],
         setVisibleColumns: (visibleColumns: string[]) => {
           columnVisibility.visibleColumns = visibleColumns;
-          component.setProps({ columnVisibility });
+          setProps({ columnVisibility });
         },
       };
 
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
@@ -1343,15 +1192,15 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['ColumnA', 'ColumnB'],
         ['0, ColumnA', '0, ColumnB'],
         ['1, ColumnA', '1, ColumnB'],
       ]);
 
-      moveColumnToIndex(component, 'ColumnB', 0);
+      moveColumnToIndex(container, 'ColumnB', 0);
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['ColumnB', 'ColumnA'],
         ['0, ColumnB', '0, ColumnA'],
         ['1, ColumnB', '1, ColumnA'],
@@ -1363,7 +1212,7 @@ describe('EuiDataGrid', () => {
         visibleColumns: ['ColumnA', 'ColumnB'],
         setVisibleColumns: (visibleColumns: string[]) => {
           columnVisibility.visibleColumns = visibleColumns;
-          component.setProps({ columnVisibility });
+          setProps({ columnVisibility });
         },
       };
 
@@ -1381,7 +1230,7 @@ describe('EuiDataGrid', () => {
         return `${rowIndex}-${columnId}`;
       };
 
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
@@ -1392,15 +1241,13 @@ describe('EuiDataGrid', () => {
       );
 
       const getCellColorAt = (index: number) =>
-        component
-          .find('div[data-test-subj="dataGridRowCell"]')
-          .at(index)
-          .prop('style')?.color;
+        getAllByTestSubject(container, 'dataGridRowCell')[index].style.color ||
+        undefined;
 
       expect(getCellColorAt(0)).toEqual(undefined);
       expect(getCellColorAt(1)).toEqual('blue');
 
-      moveColumnToIndex(component, 'B', 0);
+      moveColumnToIndex(container, 'ColumnB', 0);
 
       expect(getCellColorAt(0)).toEqual('blue');
       expect(getCellColorAt(1)).toEqual(undefined);
@@ -1429,7 +1276,7 @@ describe('EuiDataGrid', () => {
 
       expect(
         container.querySelector('.euiDataGridHeaderCell.displayHeaderCellProps')
-      ).toBeDefined();
+      ).toBeInTheDocument();
       expect(getByTestSubject('display')).toBeInTheDocument();
       expect(
         container.querySelector('[aria-label="displayAsText"]')
@@ -1467,11 +1314,10 @@ describe('EuiDataGrid', () => {
   describe('column sorting', () => {
     it('calls the onSort callback', () => {
       const onSort = jest.fn((columns) => {
-        component.setProps({ sorting: { columns, onSort } });
-        component.update();
+        setProps({ sorting: { columns, onSort } });
       });
 
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }]}
@@ -1488,7 +1334,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      sortByColumn(component, 'ColumnA', 'desc');
+      sortByColumn(container, 'ColumnA', 'desc');
 
       expect(onSort).toHaveBeenCalledTimes(2);
       expect(onSort).toHaveBeenCalledWith([
@@ -1498,7 +1344,7 @@ describe('EuiDataGrid', () => {
         { id: 'ColumnA', direction: 'desc' },
       ]);
 
-      const [, sortDirection] = getColumnSortDirection(component, 'ColumnA');
+      const [, sortDirection] = getColumnSortDirection(container, 'ColumnA');
       expect(sortDirection).toBe('desc');
     });
 
@@ -1507,7 +1353,7 @@ describe('EuiDataGrid', () => {
         const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
           // render A 0->4 and B 9->5
           columnId === 'A' ? rowIndex : 9 - rowIndex;
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-label="test"
             columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1525,7 +1371,7 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['A', 'B'],
           ['4', '5'],
           ['3', '6'],
@@ -1536,7 +1382,7 @@ describe('EuiDataGrid', () => {
       });
 
       it('sorts on multiple columns', () => {
-        const component = mount(
+        const { container } = render(
           <EuiDataGrid
             aria-label="test"
             columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1557,7 +1403,7 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['A', 'B'],
           ['1', '6'],
           ['1', '8'],
@@ -1569,11 +1415,10 @@ describe('EuiDataGrid', () => {
 
       it('sorts in response to user interaction', () => {
         const onSort = jest.fn((columns) => {
-          component.setProps({ sorting: { columns, onSort } });
-          component.update();
+          setProps({ sorting: { columns, onSort } });
         });
 
-        const component = mount(
+        const { container, setProps } = renderDataGrid(
           <EuiDataGrid
             aria-labelledby="#test"
             columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1591,7 +1436,7 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['A', 'B'],
           ['0', '9'],
           ['1', '8'],
@@ -1600,8 +1445,8 @@ describe('EuiDataGrid', () => {
           ['0', '5'],
         ]);
 
-        sortByColumn(component, 'A', 'desc');
-        expect(extractGridData(component)).toEqual([
+        sortByColumn(container, 'A', 'desc');
+        expect(extractGridData(container)).toEqual([
           ['A', 'B'],
           ['1', '8'],
           ['1', '6'],
@@ -1610,8 +1455,8 @@ describe('EuiDataGrid', () => {
           ['0', '5'],
         ]);
 
-        sortByColumn(component, 'B', 'asc');
-        expect(extractGridData(component)).toEqual([
+        sortByColumn(container, 'B', 'asc');
+        expect(extractGridData(container)).toEqual([
           ['A', 'B'],
           ['1', '6'],
           ['1', '8'],
@@ -1623,13 +1468,12 @@ describe('EuiDataGrid', () => {
 
       it('sorts with all digit groups in numerical-like', () => {
         const onSort = jest.fn((columns) => {
-          component.setProps({ sorting: { columns, onSort } });
-          component.update();
+          setProps({ sorting: { columns, onSort } });
         });
         const renderCellValue: RenderCellValue = ({ rowIndex }) =>
           `1.0.${(rowIndex % 3) + rowIndex}`; // computes as 0,2,4,3,5
 
-        const component = mount(
+        const { container, setProps } = renderDataGrid(
           <EuiDataGrid
             aria-label="test"
             columns={[{ id: 'version' }]}
@@ -1648,7 +1492,7 @@ describe('EuiDataGrid', () => {
         );
 
         // verify rows are unordered
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['version'],
           ['1.0.0'],
           ['1.0.2'],
@@ -1657,9 +1501,9 @@ describe('EuiDataGrid', () => {
           ['1.0.5'],
         ]);
 
-        sortByColumn(component, 'version', 'asc');
+        sortByColumn(container, 'version', 'asc');
 
-        expect(extractGridData(component)).toEqual([
+        expect(extractGridData(container)).toEqual([
           ['version'],
           ['1.0.0'],
           ['1.0.2'],
@@ -1674,7 +1518,7 @@ describe('EuiDataGrid', () => {
       const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
         // render A 0->4 and B 12->8
         columnId === 'A' ? rowIndex : 12 - rowIndex;
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           aria-label="test"
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1692,7 +1536,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['A', 'B'],
         ['4', '8'],
         ['3', '9'],
@@ -1705,7 +1549,7 @@ describe('EuiDataGrid', () => {
 
   describe('updating column definitions', () => {
     it('renders the new set', () => {
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1718,13 +1562,13 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['A', 'B'],
         ['0, A', '0, B'],
         ['1, A', '1, B'],
       ]);
 
-      component.setProps({
+      setProps({
         columns: [{ id: 'A' }, { id: 'C' }],
         columnVisibility: {
           visibleColumns: ['A', 'C'],
@@ -1732,7 +1576,7 @@ describe('EuiDataGrid', () => {
         },
       });
 
-      expect(extractGridData(component)).toEqual([
+      expect(extractGridData(container)).toEqual([
         ['A', 'C'],
         ['0, A', '0, C'],
         ['1, A', '1, C'],
@@ -1740,7 +1584,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('"Hide fields" updates', () => {
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1754,16 +1598,17 @@ describe('EuiDataGrid', () => {
       );
 
       // verify original column list is A, B
-      let popover = openColumnSelector(component);
+      let popover = openColumnSelector(container);
       expect(
-        popover
-          .find('div.euiDataGridColumnSelector__item')
-          .map((item) => item.text())
+        Array.from(
+          popover.querySelectorAll('div.euiDataGridColumnSelector__item'),
+          (item) => item.textContent
+        )
       ).toEqual(['A', 'B']);
-      closeColumnSelector(component);
+      closeColumnSelector(container);
 
       // update columns
-      component.setProps({
+      setProps({
         columns: [{ id: 'A' }, { id: 'C' }],
         columnVisibility: {
           visibleColumns: ['A', 'C'],
@@ -1772,17 +1617,18 @@ describe('EuiDataGrid', () => {
       });
 
       // test that the column list updated to A,C
-      popover = openColumnSelector(component);
+      popover = openColumnSelector(container);
       expect(
-        popover
-          .find('div.euiDataGridColumnSelector__item')
-          .map((item) => item.text())
+        Array.from(
+          popover.querySelectorAll('div.euiDataGridColumnSelector__item'),
+          (item) => item.textContent
+        )
       ).toEqual(['A', 'C']);
-      closeColumnSelector(component);
+      closeColumnSelector(container);
     });
 
     it('"Sort fields" updates', () => {
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1800,18 +1646,19 @@ describe('EuiDataGrid', () => {
       );
 
       // verify original column list is A, B
-      openColumnSorter(component);
-      let popover = openColumnSorterSelection(component);
+      openColumnSorter(container);
+      let popover = openColumnSorterSelection(container);
       expect(
-        popover
-          .find('button.euiDataGridColumnSorting__field')
-          .map((item) => item.text())
+        Array.from(
+          popover.querySelectorAll('button.euiDataGridColumnSorting__field'),
+          (item) => item.textContent
+        )
       ).toEqual(['A', 'B']);
-      closeColumnSorterSelection(component);
-      closeColumnSorter(component);
+      closeColumnSorterSelection(container);
+      closeColumnSorter(container);
 
       // update columns
-      component.setProps({
+      setProps({
         columns: [{ id: 'A' }, { id: 'C' }],
         columnVisibility: {
           visibleColumns: ['A', 'C'],
@@ -1820,19 +1667,20 @@ describe('EuiDataGrid', () => {
       });
 
       // test that the column list updated to A,C
-      openColumnSorter(component);
-      popover = openColumnSorterSelection(component);
+      openColumnSorter(container);
+      popover = openColumnSorterSelection(container);
       expect(
-        popover
-          .find('button.euiDataGridColumnSorting__field')
-          .map((item) => item.text())
+        Array.from(
+          popover.querySelectorAll('button.euiDataGridColumnSorting__field'),
+          (item) => item.textContent
+        )
       ).toEqual(['A', 'C']);
-      closeColumnSorterSelection(component);
-      closeColumnSorter(component);
+      closeColumnSorterSelection(container);
+      closeColumnSorter(container);
     });
 
     it('"Sort fields" button text updates', () => {
-      const component = mount(
+      const { container, setProps } = renderDataGrid(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -1851,16 +1699,16 @@ describe('EuiDataGrid', () => {
 
       // Get column sort count
       const getBadgeText = () => {
-        const button = component.find(
-          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+        const button = getButton(container, 'dataGridColumnSortingButton')!;
+        const badge = button.querySelector(
+          'span.euiDataGridToolbarControl__badge'
         );
-        const badge = button.find('span.euiDataGridToolbarControl__badge');
-        return badge.length ? badge.text() : false;
+        return badge ? badge.textContent : false;
       };
       expect(getBadgeText()).toBeFalsy();
 
       // Update sorted columns
-      component.setProps({
+      setProps({
         sorting: {
           columns: [{ id: 'A', direction: 'asc' }],
           onSort: () => {},
@@ -1869,7 +1717,7 @@ describe('EuiDataGrid', () => {
       expect(getBadgeText()).toEqual('1');
 
       // Update sorted columns again
-      component.setProps({
+      setProps({
         sorting: {
           columns: [
             { id: 'A', direction: 'asc' },
@@ -1884,7 +1732,7 @@ describe('EuiDataGrid', () => {
 
   describe('render column actions', () => {
     it('renders various column actions configurations', () => {
-      const component = mount(
+      const { queryByTestSubject, getByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           sorting={{
@@ -1938,31 +1786,25 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      const buttonA = findTestSubject(
-        component,
-        'dataGridHeaderCellActionButton-A'
-      );
-      expect(buttonA.length).toBe(0);
+      expect(
+        queryByTestSubject('dataGridHeaderCellActionButton-A')
+      ).not.toBeInTheDocument();
 
       for (const col of ['B', 'C', 'D', 'E']) {
-        const button = findTestSubject(
-          component,
-          `dataGridHeaderCellActionButton-${col}`
+        fireEvent.click(
+          getByTestSubject(`dataGridHeaderCellActionButton-${col}`)
         );
-        button.simulate('click');
-        component.update();
-        const actionGroup = findTestSubject(
-          component,
+        const actionGroup = getByTestSubject(
           `dataGridHeaderCellActionGroup-${col}`
         );
-        expect(actionGroup.render()).toMatchSnapshot();
+        expect(getSnapshotNode(actionGroup)).toMatchSnapshot();
       }
     });
   });
 
   describe('render sorting arrows', () => {
     it('renders sorting arrows when direction is given', () => {
-      const component = mount(
+      const { queryAllByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           sorting={{
@@ -1984,21 +1826,17 @@ describe('EuiDataGrid', () => {
           renderCellValue={renderCellValueRowAndColumnCount}
         />
       );
-      const arrowA = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-A'
-      );
-      expect(arrowA.length).toBe(1);
+      expect(
+        queryAllByTestSubject('dataGridHeaderCellSortingIcon-A')
+      ).toHaveLength(1);
 
-      const arrowB = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-B'
-      );
-      expect(arrowB.length).toBe(1);
+      expect(
+        queryAllByTestSubject('dataGridHeaderCellSortingIcon-B')
+      ).toHaveLength(1);
     });
 
     it('does not render the arrows if the column is not sorted', () => {
-      const component = mount(
+      const { queryAllByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           sorting={{
@@ -2027,15 +1865,13 @@ describe('EuiDataGrid', () => {
           renderCellValue={renderCellValueRowAndColumnCount}
         />
       );
-      const arrowC = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-C'
-      );
-      expect(arrowC.length).toBe(0);
+      expect(
+        queryAllByTestSubject('dataGridHeaderCellSortingIcon-C')
+      ).toHaveLength(0);
     });
 
     it('renders the icons if they are sorted but user is not allowed to perform any action', () => {
-      const component = mount(
+      const { queryAllByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           sorting={{
@@ -2051,11 +1887,9 @@ describe('EuiDataGrid', () => {
           renderCellValue={renderCellValueRowAndColumnCount}
         />
       );
-      const arrowD = findTestSubject(
-        component,
-        'dataGridHeaderCellSortingIcon-D'
-      );
-      expect(arrowD.length).toBe(1);
+      expect(
+        queryAllByTestSubject('dataGridHeaderCellSortingIcon-D')
+      ).toHaveLength(1);
     });
   });
 
@@ -2063,92 +1897,86 @@ describe('EuiDataGrid', () => {
     it('renders various column cell actions configurations after cell gets hovered', async () => {
       const alertFn = jest.fn();
       const happyFn = jest.fn();
-      const component = mount(
-        <EuiDataGrid
-          aria-labelledby="#test"
-          sorting={{
-            columns: [{ id: 'A', direction: 'asc' }],
-            onSort: () => {},
-          }}
-          columns={[
-            {
-              id: 'A',
-              isSortable: true,
-              cellActions: [
-                ({ rowIndex, columnId, Component, isExpanded }) => {
-                  return (
-                    <Component
-                      onClick={() => alertFn(rowIndex, columnId)}
-                      iconType="warning"
-                      aria-label="test1 aria label"
-                      data-test-subj={
-                        isExpanded ? 'alertActionPopover' : 'alertAction'
-                      }
-                    >
-                      test1
-                    </Component>
-                  );
-                },
-                ({ rowIndex, columnId, Component, isExpanded }) => {
-                  return (
-                    <Component
-                      onClick={() => happyFn(rowIndex, columnId)}
-                      iconType="faceHappy"
-                      aria-label="test2 aria label"
-                      data-test-subj={
-                        isExpanded ? 'happyActionPopover' : 'happyAction'
-                      }
-                    >
-                      test2
-                    </Component>
-                  );
-                },
-              ],
-            },
-          ]}
-          columnVisibility={{
-            visibleColumns: ['A'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
-        />
-      );
+      const { getByTestSubject, queryByTestSubject, getAllByTestSubject } =
+        render(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            sorting={{
+              columns: [{ id: 'A', direction: 'asc' }],
+              onSort: () => {},
+            }}
+            columns={[
+              {
+                id: 'A',
+                isSortable: true,
+                cellActions: [
+                  ({ rowIndex, columnId, Component, isExpanded }) => {
+                    return (
+                      <Component
+                        onClick={() => alertFn(rowIndex, columnId)}
+                        iconType="warning"
+                        aria-label="test1 aria label"
+                        data-test-subj={
+                          isExpanded ? 'alertActionPopover' : 'alertAction'
+                        }
+                      >
+                        test1
+                      </Component>
+                    );
+                  },
+                  ({ rowIndex, columnId, Component, isExpanded }) => {
+                    return (
+                      <Component
+                        onClick={() => happyFn(rowIndex, columnId)}
+                        iconType="faceHappy"
+                        aria-label="test2 aria label"
+                        data-test-subj={
+                          isExpanded ? 'happyActionPopover' : 'happyAction'
+                        }
+                      >
+                        test2
+                      </Component>
+                    );
+                  },
+                ],
+              },
+            ]}
+            columnVisibility={{
+              visibleColumns: ['A'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={2}
+            renderCellValue={renderCellValueRowAndColumnCount}
+          />
+        );
 
       // cell buttons should not get rendered for unfocused, unhovered cell
-      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
-      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
+      expect(queryByTestSubject('alertAction')).not.toBeInTheDocument();
+      expect(queryByTestSubject('happyAction')).not.toBeInTheDocument();
 
-      act(() => {
-        findTestSubject(component, 'dataGridRowCell')
-          .at(1)
-          .prop('onMouseEnter')!({} as React.MouseEvent);
-      });
+      fireEvent.mouseEnter(getAllByTestSubject('dataGridRowCell')[1]);
 
-      component.update();
-
-      findTestSubject(component, 'alertAction').at(0).simulate('click');
+      fireEvent.click(getAllByTestSubject('alertAction')[0]);
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyAction').at(0).simulate('click');
+      fireEvent.click(getAllByTestSubject('happyAction')[0]);
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
       alertFn.mockReset();
       happyFn.mockReset();
 
-      findTestSubject(component, 'dataGridRowCell')
-        .at(1)
-        .simulate('keydown', { key: keys.ENTER });
-      component.update();
+      fireEvent.keyDown(getAllByTestSubject('dataGridRowCell')[1], {
+        key: keys.ENTER,
+      });
 
-      findTestSubject(component, 'alertActionPopover').simulate('click');
+      fireEvent.click(getByTestSubject('alertActionPopover'));
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyActionPopover').simulate('click');
+      fireEvent.click(getByTestSubject('happyActionPopover'));
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
     });
   });
 
   describe('rowHeightsOptions', () => {
     it('all row heights options applied correctly', async () => {
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
@@ -2170,7 +1998,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      const cellHeights = extractRowHeights(component);
+      const cellHeights = extractRowHeights(container);
       expect(cellHeights).toEqual({
         0: 70,
         1: 34,
@@ -2179,59 +2007,58 @@ describe('EuiDataGrid', () => {
     });
 
     it('render cells with correct height during pagination', () => {
-      const component = mount(
-        <EuiDataGrid
-          aria-label="test grid"
-          columns={[{ id: 'Column' }]}
-          columnVisibility={{
-            visibleColumns: ['Column'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={8}
-          renderCellValue={renderCellRowAsValue}
-          rowHeightsOptions={{
-            defaultHeight: 50,
-            rowHeights: {
-              0: 70,
-              1: {
-                lineCount: 3,
+      const { container, getByTestSubject, setProps, getProps } =
+        renderDataGrid(
+          <EuiDataGrid
+            aria-label="test grid"
+            columns={[{ id: 'Column' }]}
+            columnVisibility={{
+              visibleColumns: ['Column'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={8}
+            renderCellValue={renderCellRowAsValue}
+            rowHeightsOptions={{
+              defaultHeight: 50,
+              rowHeights: {
+                0: 70,
+                1: {
+                  lineCount: 3,
+                },
               },
-            },
-          }}
-          pagination={{
-            pageIndex: 0,
-            pageSize: 3,
-            pageSizeOptions: [3, 6, 10],
-            onChangePage: jest.fn((pageIndex) => {
-              const pagination = component.props().pagination;
-              component.setProps({
-                pagination: { ...pagination, pageIndex },
-              });
-            }),
-            onChangeItemsPerPage: jest.fn(),
-          }}
-        />
-      );
+            }}
+            pagination={{
+              pageIndex: 0,
+              pageSize: 3,
+              pageSizeOptions: [3, 6, 10],
+              onChangePage: jest.fn((pageIndex) => {
+                const pagination = getProps().pagination!;
+                setProps({
+                  pagination: { ...pagination, pageIndex },
+                });
+              }),
+              onChangeItemsPerPage: jest.fn(),
+            }}
+          />
+        );
 
-      expect(extractRowHeights(component)).toEqual({
+      expect(extractRowHeights(container)).toEqual({
         0: 70,
         1: 34,
         2: 50,
       });
 
-      findTestSubject(component, 'pagination-button-next').simulate('click');
+      fireEvent.click(getByTestSubject('pagination-button-next'));
 
-      expect(extractRowHeights(component)).toEqual({
+      expect(extractRowHeights(container)).toEqual({
         3: 50,
         4: 50,
         5: 50,
       });
 
-      findTestSubject(component, 'pagination-button-previous').simulate(
-        'click'
-      );
+      fireEvent.click(getByTestSubject('pagination-button-previous'));
 
-      expect(extractRowHeights(component)).toEqual({
+      expect(extractRowHeights(container)).toEqual({
         0: 70,
         1: 34,
         2: 50,
@@ -2291,124 +2118,118 @@ describe('EuiDataGrid', () => {
       );
 
       // enable the grid to accept focus
-      act(() => {
-        // component.find('div [data-test-subj="euiDataGridBody"]').props()
-        //   .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
-
-        fireEvent.keyUp(
-          container.querySelector('div [data-test-subj="euiDataGridBody"]')!,
-          { key: 'Tab' }
-        );
-      });
-      // component.update();
+      fireEvent.keyUp(
+        container.querySelector('div [data-test-subj="euiDataGridBody"]')!,
+        { key: keys.TAB }
+      );
 
       // focus should begin at the first header cell
-      let focusableCell = getFocusableCellRTL(container)!;
+      let focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toBeInTheDocument();
       expect(focusableCell).toHaveTextContent('A');
 
       // focus should not move when up against the left edge
       fireEvent.focus(focusableCell);
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('A');
 
       // focus should not move when up against the top edge
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('A');
 
       // move down
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('1, A');
 
       // move right
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('1, B');
 
       // move up
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('0, B');
 
       // move left
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('0, A');
 
       // move down and to the end of the row
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
       fireEvent.keyDown(focusableCell, { key: keys.END });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('1, C');
 
       // move up and to the beginning of the row
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
       fireEvent.keyDown(focusableCell, { key: keys.HOME });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('0, A');
 
       // jump to the last cell
       fireEvent.keyDown(focusableCell, { key: keys.END, ctrlKey: true });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('2, C');
 
       // jump to the first cell
       fireEvent.keyDown(focusableCell, { key: keys.HOME, ctrlKey: true });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('0, A');
 
       // page should not change when moving before the first entry
       // but the last row should remain focused
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('2, A');
 
       // advance to the next page
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('3, A');
 
       // move over one column and advance one more page
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT }); // 3, B
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 6, B
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('6, B');
 
       // does not advance beyond the last page
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('6, B');
 
       // move left one column, return to the previous page
       fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT }); // 6, A
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP }); // 5, A
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('5, A');
 
       // return to the previous (first) page
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP });
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('2, A');
 
       // move to the last cell of the page then advance one page
       fireEvent.keyDown(focusableCell, { key: keys.END, ctrlKey: true }); // 2, C (last cell of the first page)
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 3, C (first cell of the second page, same cell position as previous page)
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('3, C');
 
       // advance to the final page
       fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 6, C
-      focusableCell = getFocusableCellRTL(container)!;
+      focusableCell = getFocusableCell(container)!;
       expect(focusableCell).toHaveTextContent('6, C');
     });
 
     // Maximum call stack reached
     it.skip('does not break arrow key focus control behavior when also using a mouse', async () => {
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[
@@ -2425,30 +2246,24 @@ describe('EuiDataGrid', () => {
       );
 
       // enable the grid to accept focus
-      act(() =>
-        component.find('div [data-test-subj="euiDataGridBody"]').props()
-          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
+      fireEvent.keyUp(
+        container.querySelector('div [data-test-subj="euiDataGridBody"]')!,
+        { key: keys.TAB }
       );
-      component.update();
 
-      let focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+      let focusableCell = getFocusableCell(container)!;
+      expect(getCellContentText(focusableCell)).toEqual('0, A');
 
-      findTestSubject(component, 'dataGridRowCell').at(3).simulate('focus');
+      fireEvent.focus(getAllByTestSubject(container, 'dataGridRowCell')[3]);
 
       // wait for a tick to give focus logic time to run
       await act(async () => {
         await new Promise((r) => setTimeout(r, 0));
       });
-      component.update();
 
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.length).toEqual(1);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('1, B');
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell).toBeInTheDocument();
+      expect(getCellContentText(focusableCell)).toEqual('1, B');
     });
     it.skip('supports arrow navigation through grids with different interactive cells', () => {
       const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => {
@@ -2478,7 +2293,7 @@ describe('EuiDataGrid', () => {
 
         return 'error';
       };
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }, { id: 'D' }]}
@@ -2494,48 +2309,47 @@ describe('EuiDataGrid', () => {
       /**
        * Make sure we start from a happy state
        */
-      let focusableCell = getFocusableCell(component);
-      expect(focusableCell.length).toEqual(1);
-      expect(focusableCell.text()).toEqual('0, A');
-      focusableCell
-        .simulate('focus')
-        .simulate('keydown', { key: keys.ARROW_DOWN });
+      let focusableCell = getFocusableCell(container)!;
+      expect(focusableCell).toBeInTheDocument();
+      expect(focusableCell.textContent).toEqual('0, A');
+      fireEvent.focus(focusableCell);
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
 
       /**
        * On text only cells, the cell receives focus
        */
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, A'); // make sure we're on the right cell
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('1, A'); // make sure we're on the right cell
+      expect(focusableCell).toBe(document.activeElement);
 
-      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with 1 interactive item, the interactive item receives focus
        */
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, B');
-      expect(focusableCell.find('button').getDOMNode()).toBe(
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('1, B');
+      expect(focusableCell.querySelector('button')).toBe(
         document.activeElement
       );
 
-      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with multiple interactive items, the cell receives focus
        */
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, C');
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('1, C');
+      expect(focusableCell).toBe(document.activeElement);
 
-      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
 
       /**
        * On cells with 1 interactive item and non-interactive item(s), the cell receives focus
        */
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, D');
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('1, D');
+      expect(focusableCell).toBe(document.activeElement);
     });
     it.skip('allows user to enter and exit grid navigation', async () => {
       const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => (
@@ -2543,7 +2357,7 @@ describe('EuiDataGrid', () => {
           <button>{rowIndex}</button>, <button>{columnId}</button>
         </>
       );
-      const component = mount(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -2559,74 +2373,71 @@ describe('EuiDataGrid', () => {
       /**
        * Make sure we start from a happy state
        */
-      let focusableCell = getFocusableCell(component);
-      expect(focusableCell.length).toEqual(1);
-      expect(focusableCell.text()).toEqual('0, A');
-      focusableCell
-        .simulate('focus')
-        .simulate('keydown', { key: keys.ARROW_DOWN });
-      focusableCell = getFocusableCell(component);
+      let focusableCell = getFocusableCell(container)!;
+      expect(focusableCell).toBeInTheDocument();
+      expect(focusableCell.textContent).toEqual('0, A');
+      fireEvent.focus(focusableCell);
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
+      focusableCell = getFocusableCell(container)!;
 
       /**
        * Confirm initial state is with grid navigation turn on
        */
-      expect(focusableCell.text()).toEqual('1, A');
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
-      expect(component.render()).toMatchSnapshot();
+      expect(focusableCell.textContent).toEqual('1, A');
+      expect(focusableCell).toBe(document.activeElement);
+      expect(container).toMatchSnapshot();
 
       /**
        * Disable grid navigation using ENTER
        */
-      focusableCell
-        .simulate('keydown', { key: keys.ENTER })
-        .simulate('keydown', { key: keys.ARROW_DOWN });
+      fireEvent.keyDown(focusableCell, { key: keys.ENTER });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
 
-      let buttons = focusableCell.find('button');
+      let buttons = focusableCell.querySelectorAll('button');
 
       // grid navigation is disabled, location should not move
-      expect(buttons.at(0).text()).toEqual('1');
-      expect(buttons.at(1).text()).toEqual('A');
-      expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
-      expect(component.render()).toMatchSnapshot(); // should prove focus lock is on
+      expect(buttons[0].textContent).toEqual('1');
+      expect(buttons[1].textContent).toEqual('A');
+      expect(buttons[0]).toBe(document.activeElement); // focus should move to first button
+      expect(container).toMatchSnapshot(); // should prove focus lock is on
 
       /**
        * Enable grid navigation ESCAPE
        */
-      focusableCell.simulate('keydown', { key: keys.ESCAPE });
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
+      fireEvent.keyDown(focusableCell, { key: keys.ESCAPE });
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell).toBe(document.activeElement); // focus should move back to cell
 
-      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('1, B'); // grid navigation is enabled again, check that we can move
-      expect(component.render()).toMatchSnapshot();
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('1, B'); // grid navigation is enabled again, check that we can move
+      expect(container).toMatchSnapshot();
 
       /**
        * Disable grid navigation using F2
        */
-      focusableCell = getFocusableCell(component);
-      focusableCell
-        .simulate('keydown', { key: keys.F2 })
-        .simulate('keydown', { key: keys.ARROW_UP });
-      buttons = focusableCell.find('button');
+      focusableCell = getFocusableCell(container)!;
+      fireEvent.keyDown(focusableCell, { key: keys.F2 });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
+      buttons = focusableCell.querySelectorAll('button');
 
       // grid navigation is disabled, location should not move
-      expect(buttons.at(0).text()).toEqual('1');
-      expect(buttons.at(1).text()).toEqual('B');
-      expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
-      expect(component.render()).toMatchSnapshot(); // should prove focus lock is on
+      expect(buttons[0].textContent).toEqual('1');
+      expect(buttons[1].textContent).toEqual('B');
+      expect(buttons[0]).toBe(document.activeElement); // focus should move to first button
+      expect(container).toMatchSnapshot(); // should prove focus lock is on
 
       /**
        * Enable grid navigation using F2
        */
-      focusableCell.simulate('keydown', { key: keys.F2 });
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
+      fireEvent.keyDown(focusableCell, { key: keys.F2 });
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell).toBe(document.activeElement); // focus should move back to cell
 
-      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
-      focusableCell = getFocusableCell(component);
-      expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
-      expect(component.render()).toMatchSnapshot();
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
+      focusableCell = getFocusableCell(container)!;
+      expect(focusableCell.textContent).toEqual('0, B'); // grid navigation is enabled again, check that we can move
+      expect(container).toMatchSnapshot();
     });
   });
 

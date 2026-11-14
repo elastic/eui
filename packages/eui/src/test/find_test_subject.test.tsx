@@ -6,10 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount } from 'enzyme';
+import React, { ReactElement } from 'react';
+import type { ReactWrapper } from 'enzyme';
 
+import { render } from './rtl';
 import { findTestSubject } from './find_test_subject';
+
+/**
+ * Minimal stand-in for an Enzyme wrapper: `find().hostNodes()` resolves the
+ * selector against the rendered DOM.
+ */
+const mount = (ui: ReactElement) => {
+  const { container } = render(ui);
+
+  return {
+    find: (selector: string) => ({
+      hostNodes: () => container.querySelectorAll(selector),
+    }),
+  } as unknown as ReactWrapper;
+};
 
 describe('findTestSubject', () => {
   test('finds the specified element in a mounted component', () => {
