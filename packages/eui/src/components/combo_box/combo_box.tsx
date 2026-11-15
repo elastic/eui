@@ -144,12 +144,12 @@ export interface _EuiComboBoxProps<T>
    */
   optionMatcher?: EuiComboBoxOptionMatcher<T>;
   /**
-   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming before input.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming after input.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
