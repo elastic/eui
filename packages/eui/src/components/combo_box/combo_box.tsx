@@ -913,7 +913,7 @@ export class EuiComboBox<T> extends Component<
                 {...inputPopoverProps}
                 isOpen={isListOpen && !noSuggestions}
                 closePopover={this.closeList}
-                /* we don't want content changes to be announced via aria-live 
+                /* we don't want content changes to be announced via aria-live
                 because ComboBox uses a virtualized list that updates itself
                 on scroll and would result in unexpected screen reader output */
                 aria-live="off"
@@ -958,8 +958,8 @@ export class EuiComboBox<T> extends Component<
                     selectedOptions={selectedOptions}
                     singleSelection={singleSelection}
                     value={value}
-                    append={singleSelection ? append : undefined}
-                    prepend={singleSelection ? prepend : undefined}
+                    append={append}
+                    prepend={prepend}
                     isLoading={isLoading}
                     isInvalid={markAsInvalid}
                     autoFocus={autoFocus}

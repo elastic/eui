@@ -33,6 +33,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     multiSelect: css`
       flex-wrap: wrap;
+      box-shadow: none;
     `,
     uncompressed: `
       ${formStyles.uncompressed}
