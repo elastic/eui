@@ -200,10 +200,10 @@ export const euiFormControlLayoutSideNodeStyles = (
         position: absolute;
         inset-inline-${side}: 0;
         z-index: ${side === 'end' ? 1 : 0};
-        block-size: ${compressed ? euiTheme.size.base : euiTheme.size.l};
+        inset-block: ${euiTheme.size.s};
         inline-size: ${euiTheme.border.width.thin};
         pointer-events: none;
-        border-inline-${side}: 
+        border-inline-${side}:
           ${euiTheme.border.width.thin} solid ${form.borderColor};
       }
     `;
@@ -211,7 +211,7 @@ export const euiFormControlLayoutSideNodeStyles = (
 
   return {
     euiFormControlLayout__side: css`
-      ${logicalCSS('height', '100%')}
+      ${logicalCSS('height', 'inherit')}
       ${euiTextTruncate('50%')}
       flex-shrink: 0;
       display: flex;

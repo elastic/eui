@@ -63,6 +63,7 @@ export const euiFormAppendPrependStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     wrapper: css`
+      ${logicalCSS('height', '100%')}
       position: relative;
       max-inline-size: 100%;
 
