@@ -190,7 +190,7 @@ export const euiFormControlLayoutSideNodeStyles = (
   const _buttonPadding = (size: EuiButtonDisplaySizes) =>
     logicalCSS('padding-horizontal', buttonSizes[size].padding);
 
-  const dividerStyles = (side: 'start' | 'end', compressed?: boolean) => {
+  const dividerStyles = (side: 'start' | 'end') => {
     return `
       position: relative;
       ${`margin-inline-${side}`}: -${euiTheme.border.width.thin};
@@ -347,10 +347,10 @@ export const euiFormControlLayoutSideNodeStyles = (
         }
       `,
       append: `
-       ${dividerStyles('start', true)}
+       ${dividerStyles('start')}
       `,
       prepend: `
-        ${dividerStyles('end', true)}
+        ${dividerStyles('end')}
       `,
     },
     disabled: css`
