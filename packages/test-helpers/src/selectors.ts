@@ -19,6 +19,7 @@ import { EuiDataGridSelectors } from './components/datagrid/selectors';
 import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
 import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFieldTextSelectors } from './components/form/field_text/selectors';
+import { EuiFormRowSelectors } from './components/form/form_row/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
 import { EuiMarkdownEditorSelectors } from './components/markdown_editor/selectors';
@@ -60,6 +61,7 @@ export const selectors = {
   fieldText: EuiFieldTextSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
+  formRow: EuiFormRowSelectors,
   markdownEditor: EuiMarkdownEditorSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,

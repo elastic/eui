@@ -21,6 +21,7 @@ export { EuiRangeObject } from './playwright/components/form/range/object';
 export { EuiCheckboxObject } from './playwright/components/form/checkbox/object';
 export { EuiSwitchObject } from './playwright/components/form/switch/object';
 export { EuiFieldTextObject } from './playwright/components/form/field_text/object';
+export { EuiFormRowObject } from './playwright/components/form/form_row/object';
 export { EuiSelectObject } from './playwright/components/form/select/object';
 export { EuiPopoverObject } from './playwright/components/popover/object';
 export { EuiFlyoutObject } from './playwright/components/flyout/object';
