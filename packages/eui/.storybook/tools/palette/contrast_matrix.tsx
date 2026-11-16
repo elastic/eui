@@ -6,41 +6,48 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  CSSProperties,
-  FunctionComponent,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
+import { css } from '@emotion/react';
 
-import { useEuiMemoizedStyles, useEuiTheme } from '../../../src/services';
+import { UseEuiTheme, useEuiTheme } from '../../../src/services';
+import { getColorContrast } from '../../../src/services/color/contrast';
 import { EuiBadge } from '../../../src/components/badge';
 import { EuiColorPickerSwatch } from '../../../src/components/color_picker/color_picker_swatch';
 import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
-import { EuiFormRow } from '../../../src/components/form/form_row';
-import { EuiRange } from '../../../src/components/form/range';
 import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiStat } from '../../../src/components/stat';
-import { EuiText } from '../../../src/components/text';
-import { getApcaContrast } from './apca';
-import {
-  COLUMNS_VAR,
-  ROWS_VAR,
-  contrastMatrixStyles,
-} from './contrast_matrix.styles';
-import {
-  ColorMap,
-  Palette,
-  groupPaletteByHue,
-  resolvePalette,
-} from './palette';
+import { ColorMap, Palette } from './palette';
 
-const SEMANTIC_ELEMENT_WIDTH_STOPS = [
-  { px: 2, lc: 60 },
-  { px: 3, lc: 45 },
-  { px: 10, lc: 20 },
-  { px: 15, lc: 15 },
-] as const;
+// WCAG 2.1 SC 1.4.11 Non-text Contrast
+const THRESHOLD = 3;
+
+const tableStyles = css`
+  border-collapse: collapse;
+`;
+
+const cellStyles = css`
+  inline-size: 48px;
+  block-size: 48px;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+const hairlines =
+  (...layers: string[]) =>
+  ({ euiTheme }: UseEuiTheme) => {
+    const line = euiTheme.colors.borderBaseSubdued;
+    // Solid-color gradients, because `background-color` can't be sized or positioned
+    return css`
+      background: ${layers
+        .map((layer) => `linear-gradient(${line}, ${line}) ${layer} no-repeat`)
+        .join(', ')};
+    `;
+  };
+
+const colHeaderStyles = hairlines('center bottom / 1px 50%');
+const rowHeaderStyles = hairlines('right center / 50% 1px');
+const intersectionStyles = hairlines('center / 1px 100%', 'center / 100% 1px');
 
 export interface ContrastMatrixProps {
   palette: Palette;
@@ -61,9 +68,11 @@ const Swatch: FunctionComponent<{ color: string; label: string }> = ({
 
 const ContrastBadge: FunctionComponent<{
   value: number;
-  passes: boolean;
+  passes?: boolean;
 }> = ({ value, passes }) => (
-  <EuiBadge color={passes ? 'success' : 'danger'}>{value.toFixed(1)}</EuiBadge>
+  <EuiBadge color={passes == null ? 'hollow' : passes ? 'success' : 'danger'}>
+    {value.toFixed(1)}
+  </EuiBadge>
 );
 
 interface PassRate {
@@ -72,29 +81,43 @@ interface PassRate {
   total: number;
 }
 
-const passRate = (
-  values: Array<number | null>,
-  threshold: number
-): PassRate | null => {
-  const checks = values.filter((value): value is number => value != null);
-  if (checks.length === 0) return null;
-  const passing = checks.filter((value) => Math.abs(value) >= threshold).length;
+const passRate = (values: number[]): PassRate | null => {
+  if (values.length === 0) return null;
+  const passing = values.filter((value) => value >= THRESHOLD).length;
   return {
-    percent: (passing / checks.length) * 100,
+    percent: (passing / values.length) * 100,
     passing,
-    total: checks.length,
+    total: values.length,
   };
 };
+
+const mean = (values: number[]) =>
+  values.length > 0
+    ? values.reduce((sum, value) => sum + value, 0) / values.length
+    : null;
+
+const AverageStat: FunctionComponent<{
+  label: string;
+  value: number | null;
+}> = ({ label, value }) => (
+  <EuiStat
+    reverse
+    titleSize="s"
+    title={value == null ? '—' : `${value.toFixed(2)}:1`}
+    description={label}
+    titleColor={value == null ? 'subdued' : 'default'}
+    titleElement="p"
+  />
+);
 
 const PassRateStat: FunctionComponent<{
   label: string;
   value: PassRate | null;
-  threshold: number;
-}> = ({ label, value, threshold }) => {
+}> = ({ label, value }) => {
   const detail =
     value == null
       ? `${label}: no contrast checks`
-      : `${label}: ${value.passing} of ${value.total} pairs at or above Lc ${threshold}`;
+      : `${label}: ${value.passing} of ${value.total} pairs at or above ${THRESHOLD}:1`;
 
   return (
     <div title={detail}>
@@ -122,208 +145,101 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
   colors,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const styles = useEuiMemoizedStyles(contrastMatrixStyles);
-
-  const [widthStopIndex, setWidthStopIndex] = useState(2);
-  const { px: elementWidth, lc: threshold } =
-    SEMANTIC_ELEMENT_WIDTH_STOPS[widthStopIndex];
 
   const themeBackgroundColor = euiTheme.colors.backgroundBasePlain;
 
-  const { columns, rows, contrasts, average, passRates } = useMemo(() => {
-    const columns = resolvePalette(palette, colors);
-    const themeBackground = {
+  const { columns, rows, stats } = useMemo(() => {
+    const columns = palette.map((name) => ({ name, value: colors[name] }));
+    const ratiosAgainst = (value: string, count: number) =>
+      columns
+        .slice(0, count)
+        .map((column) => getColorContrast(column.value, value));
+
+    const background = {
       name: 'background',
       value: themeBackgroundColor,
+      graded: true,
+      ratios: ratiosAgainst(themeBackgroundColor, columns.length),
     };
-    const rows = [...columns, themeBackground];
-    const contrasts = rows.map((background) =>
-      columns.map((value) =>
-        background.name === value.name
-          ? null
-          : getApcaContrast(value.value, background.value)
-      )
-    );
-    const abs = contrasts
-      .flat()
-      .filter((value): value is number => value != null)
-      .map(Math.abs);
-    const average =
-      abs.length > 0
-        ? abs.reduce((sum, value) => sum + value, 0) / abs.length
-        : null;
+    const paletteRows = columns
+      .map((color, index) => ({
+        ...color,
+        graded: false,
+        ratios: ratiosAgainst(color.value, index),
+      }))
+      .slice(1)
+      .reverse();
 
-    const backgroundRow = contrasts[contrasts.length - 1] ?? [];
-    const intraRows = contrasts.slice(0, -1);
-
-    const darkerNames = new Set(
-      groupPaletteByHue(palette, colors).flatMap((group) =>
-        group.colors.length > 0 ? [group.colors[0].name] : []
-      )
-    );
-    const darkerColumns = columns.flatMap((column, index) =>
-      darkerNames.has(column.name) ? [index] : []
-    );
-    const darkerAndBackgroundRows = rows.flatMap((row, index) =>
-      row.name === 'background' || darkerNames.has(row.name) ? [index] : []
-    );
-
-    const passRates = {
-      vsBackground: passRate(backgroundRow, threshold),
-      intraColors: passRate(intraRows.flat(), threshold),
-      darkerHuesAndBackground: passRate(
-        darkerAndBackgroundRows.flatMap((row) =>
-          darkerColumns.map((column) => contrasts[row][column])
-        ),
-        threshold
-      ),
+    const stats = {
+      backgroundPassRate: passRate(background.ratios),
+      backgroundAverage: mean(background.ratios),
+      intraAverage: mean(paletteRows.flatMap((row) => row.ratios)),
     };
 
-    return { columns, rows, contrasts, average, passRates };
-  }, [palette, colors, themeBackgroundColor, threshold]);
+    return { columns, rows: [background, ...paletteRows], stats };
+  }, [palette, colors, themeBackgroundColor]);
 
   return (
     <>
       <EuiFlexGroup alignItems="flexStart" gutterSize="xl" wrap>
-        <EuiFlexItem grow={false} css={styles.slider}>
-          <EuiFormRow label="Semantic element width">
-            <EuiRange
-              min={0}
-              max={SEMANTIC_ELEMENT_WIDTH_STOPS.length - 1}
-              step={1}
-              value={widthStopIndex}
-              onChange={(event) =>
-                setWidthStopIndex(Number(event.currentTarget.value))
-              }
-              showTicks
-              ticks={SEMANTIC_ELEMENT_WIDTH_STOPS.map((stop, index) => ({
-                value: index,
-                label: `${stop.px}px`,
-                accessibleLabel: `${stop.px} pixels, Lc ${stop.lc}`,
-              }))}
-              aria-label="Semantic element width"
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <PassRateStat
             label="vs. background"
-            value={passRates.vsBackground}
-            threshold={threshold}
+            value={stats.backgroundPassRate}
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <PassRateStat
-            label="intra colors"
-            value={passRates.intraColors}
-            threshold={threshold}
+          <AverageStat
+            label="avg. vs. background"
+            value={stats.backgroundAverage}
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <PassRateStat
-            label="darker hues + background"
-            value={passRates.darkerHuesAndBackground}
-            threshold={threshold}
-          />
+          <AverageStat label="avg. intra palette" value={stats.intraAverage} />
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />
 
-      <div
-        css={styles.grid}
-        style={
-          {
-            [COLUMNS_VAR]: columns.length,
-            [ROWS_VAR]: rows.length,
-          } as CSSProperties
-        }
-        role="table"
-        aria-label={`APCA contrast matrix. Rows are the background, columns are the value. Threshold Lc ${threshold} for a ${elementWidth}px element.`}
-      >
-        <div css={[styles.cell, styles.axisLabel, styles.valueLabel]}>
-          Value
-        </div>
-        <div css={[styles.cell, styles.axisLabel, styles.backgroundLabel]}>
-          Background
-        </div>
+      <table css={tableStyles}>
+        <thead>
+          <tr>
+            <td css={cellStyles} />
+            {columns.map((columnColor) => (
+              <th
+                key={columnColor.name}
+                scope="col"
+                css={[cellStyles, colHeaderStyles]}
+              >
+                <Swatch color={columnColor.value} label={columnColor.name} />
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.name}>
+              <th scope="row" css={[cellStyles, rowHeaderStyles]}>
+                <Swatch color={row.value} label={row.name} />
+              </th>
 
-        {columns.map((value, column) => (
-          <div
-            key={`col-${value.name}`}
-            css={[styles.cell, styles.colHeader]}
-            style={{ gridColumn: column + 3 }}
-            role="columnheader"
-          >
-            <Swatch color={value.value} label={`${value.name} value`} />
-          </div>
-        ))}
-
-        {rows.map((background, row) => (
-          <React.Fragment key={background.name}>
-            <div
-              css={[styles.cell, styles.rowHeader]}
-              style={{ gridRow: row + 3 }}
-              role="rowheader"
-            >
-              <Swatch
-                color={background.value}
-                label={`${background.name} background`}
-              />
-            </div>
-
-            {columns.map((value, column) => {
-              const key = `${background.name}-on-${value.name}`;
-              const contrast = contrasts[row][column];
-              const passes =
-                contrast != null && Math.abs(contrast) >= threshold;
-
-              return (
-                <div
-                  key={key}
-                  css={[styles.cell, styles.intersection]}
-                  style={{
-                    gridRow: row + 3,
-                    gridColumn: column + 3,
-                  }}
-                  role="cell"
-                  title={
-                    contrast == null
-                      ? undefined
-                      : `${value.name} value on ${
-                          background.name
-                        } background: APCA Lc ${contrast.toFixed(1)}`
-                  }
+              {row.ratios.map((ratio, column) => (
+                <td
+                  key={columns[column].name}
+                  css={[cellStyles, intersectionStyles]}
+                  title={`${columns[column].name} / ${
+                    row.name
+                  }: ${ratio.toFixed(2)}:1`}
                 >
-                  {contrast != null && (
-                    <ContrastBadge value={Math.abs(contrast)} passes={passes} />
-                  )}
-                </div>
-              );
-            })}
-          </React.Fragment>
-        ))}
-      </div>
-
-      {average != null && (
-        <>
-          <EuiSpacer size="s" />
-          <EuiFlexGroup
-            css={styles.average}
-            alignItems="center"
-            gutterSize="s"
-            responsive={false}
-          >
-            <EuiFlexItem grow={false}>
-              <EuiText size="xs" color="subdued">
-                Avg contrast
-              </EuiText>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <ContrastBadge value={average} passes={average >= threshold} />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </>
-      )}
+                  <ContrastBadge
+                    value={ratio}
+                    passes={row.graded ? ratio >= THRESHOLD : undefined}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };

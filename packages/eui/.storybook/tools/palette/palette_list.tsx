@@ -29,7 +29,7 @@ import {
 export interface PaletteListProps {
   palette: Palette;
   colors: ColorMap;
-  onReorder?: (palette: string[]) => void;
+  onReorder: (palette: Palette) => void;
 }
 
 export const PaletteList: FunctionComponent<PaletteListProps> = ({
@@ -38,17 +38,7 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
   onReorder,
 }) => {
   const fontSize = useEuiFontSize('xs');
-
-  const numberedGroups = useMemo(() => {
-    let index = 1;
-    return groupPaletteByHue(palette, colors).map((group) => ({
-      ...group,
-      colors: group.colors.map((color) => ({
-        ...color,
-        index: index++,
-      })),
-    }));
-  }, [palette, colors]);
+  const groups = useMemo(() => groupPaletteByHue(palette), [palette]);
 
   return (
     <EuiFlexGroup
@@ -60,7 +50,7 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
       <EuiText component="p" size="xs" color="subdued">
         Drag hues to reorder.
       </EuiText>
-      {numberedGroups.length === 0 ? (
+      {groups.length === 0 ? (
         <EuiText component="p" size="s" color="subdued">
           No colors in the palette.
         </EuiText>
@@ -68,19 +58,14 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
         <EuiDragDropContext
           onDragEnd={({ source, destination }) => {
             if (!destination || source.index === destination.index) return;
-            onReorder?.(
-              reorderPaletteHues(
-                palette,
-                colors,
-                source.index,
-                destination.index
-              )
+            onReorder(
+              reorderPaletteHues(palette, source.index, destination.index)
             );
           }}
         >
           <EuiDroppable droppableId="paletteHues" spacing="s">
             <>
-              {numberedGroups.map((group, index) => (
+              {groups.map((group, index) => (
                 <EuiDraggable
                   key={group.hue}
                   draggableId={group.hue}
@@ -113,9 +98,9 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
                           />
                         </EuiFlexItem>
                         <EuiFlexItem>
-                          {group.colors.map((color) => (
+                          {group.names.map((name) => (
                             <EuiFlexGroup
-                              key={color.name}
+                              key={name}
                               alignItems="center"
                               gutterSize="s"
                               responsive={false}
@@ -133,10 +118,10 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
                                   textAlign: 'end',
                                 })}
                               >
-                                {color.index}
+                                {palette.indexOf(name) + 1}
                               </span>
                               <EuiColorPickerSwatch
-                                color={color.value}
+                                color={colors[name]}
                                 disabled
                                 showToolTip={false}
                                 aria-hidden
@@ -146,7 +131,7 @@ export const PaletteList: FunctionComponent<PaletteListProps> = ({
                                   inlineSize: euiTheme.size.base,
                                 })}
                               />
-                              <span>{color.name}</span>
+                              <span>{name}</span>
                             </EuiFlexGroup>
                           ))}
                         </EuiFlexItem>

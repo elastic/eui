@@ -11,28 +11,27 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PRIMITIVE_COLORS } from '@elastic/eui-theme-borealis/lib/esm/variables/colors/_primitive_colors.js';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../../src/components/flex';
+import { EuiLink } from '../../../src/components/link';
 import { EuiSpacer } from '../../../src/components/spacer';
 import { EuiText } from '../../../src/components/text';
 import { EuiTitle } from '../../../src/components/title';
-import { useEuiTheme } from '../../../src/services';
 import { useEuiPaletteColorBlind } from '../../../src/services/color/eui_palettes_hooks';
 import { ColorGrid } from './color_grid';
 import { ContrastMatrix } from './contrast_matrix';
 import { PaletteList } from './palette_list';
-import { normalizePaletteOrder, togglePaletteColor } from './palette';
+import { paletteFromValues, togglePaletteColor } from './palette';
 
 const COLOR_BLIND_EXTENDED = { extended: true };
 
-const PaletteTools = ({ cellSize }: { cellSize: number }) => {
-  const { colorMode, highContrastMode } = useEuiTheme();
+const PaletteTools = () => {
   const colorBlind = useEuiPaletteColorBlind(COLOR_BLIND_EXTENDED);
   const [palette, setPalette] = useState(() =>
-    normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS)
+    paletteFromValues(colorBlind, PRIMITIVE_COLORS)
   );
 
   useEffect(() => {
-    setPalette(normalizePaletteOrder(colorBlind, PRIMITIVE_COLORS));
-  }, [colorBlind, colorMode, highContrastMode]);
+    setPalette(paletteFromValues(colorBlind, PRIMITIVE_COLORS));
+  }, [colorBlind]);
 
   return (
     <>
@@ -46,9 +45,8 @@ const PaletteTools = ({ cellSize }: { cellSize: number }) => {
           <ColorGrid
             palette={palette}
             colors={PRIMITIVE_COLORS}
-            cellSize={cellSize}
             onToggleColor={(name) => {
-              setPalette(togglePaletteColor(palette, name, PRIMITIVE_COLORS));
+              setPalette(togglePaletteColor(palette, name));
             }}
           />
         </EuiFlexItem>
@@ -64,12 +62,18 @@ const PaletteTools = ({ cellSize }: { cellSize: number }) => {
       <EuiSpacer size="xxl" />
 
       <EuiTitle size="s">
-        <h2>APCA contrast matrix</h2>
+        <h2>Contrast matrix</h2>
       </EuiTitle>
       <EuiText component="p" size="s" color="subdued">
-        Every pair of palette colors, reading the row as the background and the
-        column as the value. Pills follow the APCA non-semantic element minimum
-        width contrast threshold.
+        WCAG 2 contrast ratio of every unique pair of palette colors, plus each
+        color against the theme background. 3:1 minimum for non-text contrast (
+        <EuiLink
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          WCAG 1.4.11
+        </EuiLink>
+        ).
       </EuiText>
       <EuiSpacer size="m" />
       <ContrastMatrix palette={palette} colors={PRIMITIVE_COLORS} />
@@ -77,22 +81,16 @@ const PaletteTools = ({ cellSize }: { cellSize: number }) => {
   );
 };
 
-const meta: Meta<{ cellSize: number }> = {
+const meta: Meta<typeof PaletteTools> = {
   title: 'Internal/Tools/Palette',
   component: PaletteTools,
   parameters: {
     codeSnippet: { skip: true },
     vrt: { skip: true },
   },
-  argTypes: {
-    cellSize: { control: { type: 'range', min: 12, max: 48, step: 2 } },
-  },
-  args: {
-    cellSize: 32,
-  },
 };
 
 export default meta;
-type Story = StoryObj<{ cellSize: number }>;
+type Story = StoryObj<typeof PaletteTools>;
 
 export const Playground: Story = {};
