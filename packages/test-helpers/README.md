@@ -50,6 +50,7 @@ their own version at runtime.
 | `EuiDataGridObject` | [src/components/datagrid/README.md](src/components/datagrid/README.md) |
 | `EuiSuperSelectObject` | [src/components/form/super_select/README.md](src/components/form/super_select/README.md) |
 | `EuiGlobalToastListObject` | [src/components/toast/README.md](src/components/toast/README.md) |
+| `EuiLinkObject` | [src/components/link/README.md](src/components/link/README.md) |
 | `EuiSelectableObject` | [src/components/selectable/README.md](src/components/selectable/README.md) |
 | `EuiSideNavObject` | [src/components/side_nav/README.md](src/components/side_nav/README.md) |
 | `EuiDraggableObject` | [src/components/drag_and_drop/README.md](src/components/drag_and_drop/README.md) |
@@ -74,7 +75,10 @@ their own version at runtime.
 | `EuiBasicTableObject` | [src/components/basic_table/README.md](src/components/basic_table/README.md) |
 | `EuiCallOutObject` | [src/components/call_out/README.md](src/components/call_out/README.md) |
 | `EuiCardObject` | [src/components/card/README.md](src/components/card/README.md) |
+| `EuiButtonObject` | [src/components/button/README.md](src/components/button/README.md) |
+| `EuiButtonEmptyObject` | [src/components/button/button_empty/README.md](src/components/button/button_empty/README.md) |
 | `EuiButtonGroupObject` | [src/components/button/button_group/README.md](src/components/button/button_group/README.md) |
+| `EuiButtonIconObject` | [src/components/button/button_icon/README.md](src/components/button/button_icon/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
