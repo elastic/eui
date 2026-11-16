@@ -285,7 +285,7 @@ export class EuiComboBoxInput<T> extends Component<
       );
     }
 
-    const isInGroup = singleSelection && (prepend || append);
+    const isInGroup = prepend || append;
     const showPlaceholder =
       placeholder && !selectedOptions?.length && !searchValue;
 
@@ -330,6 +330,7 @@ export class EuiComboBoxInput<T> extends Component<
           const cssStyles = [
             styles.euiComboBoxInputWrapper,
             !singleSelection && styles.multiSelect,
+            !singleSelection && isInGroup && styles.multiSelectWithFormLayout,
             compressed ? styles.compressed : styles.uncompressed,
             ...(this.asPlainText || showPlaceholder
               ? [
