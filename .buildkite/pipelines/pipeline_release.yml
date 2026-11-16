@@ -1,6 +1,7 @@
 agents:
   provider: gcp
-  machineType: 'n2-standard-2'
+  diskType: "hyperdisk-balanced"
+  machineType: 'n4d-standard-2'
   preemptible: true
 
 steps:
@@ -12,7 +13,8 @@ steps:
         env:
           TEST_TYPE: 'lint'
         agents:
-          machineType: 'n1-standard-1'
+          diskType: "hyperdisk-balanced"
+          machineType: 'n4d-standard-2'
         timeout_in_minutes: 15
         retry:
           automatic:
@@ -23,7 +25,8 @@ steps:
         env:
           TEST_TYPE: 'unit:ts'
         agents:
-          machineType: 'n1-standard-1'
+          diskType: "hyperdisk-balanced"
+          machineType: 'n4d-standard-2'
         timeout_in_minutes: 60
         retry:
           automatic:
