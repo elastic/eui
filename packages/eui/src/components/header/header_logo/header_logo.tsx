@@ -29,7 +29,13 @@ export type EuiHeaderLogoProps = CommonProps &
     rel?: string;
     target?: string;
     iconTitle?: string;
+    /**
+     * Whether to use the monochromatic outlined version of the logo.
+     */
     logoMono?: boolean;
+    /**
+     * Only symbol or horizontal logo version with trademark.
+     */
     logoType?: 'glyph' | 'horizontal';
   };
 
