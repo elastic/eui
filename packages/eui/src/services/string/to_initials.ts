@@ -9,12 +9,29 @@
 export const MAX_INITIALS = 2;
 
 /**
+ * Splits a string into user-perceived characters (grapheme clusters), so that
+ * emoji sequences and combining marks are never cut in half.
+ * Falls back to code points where `Intl.Segmenter` is unavailable.
+ */
+export const toGraphemes = (str: string): string[] => {
+  if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    const segmenter = new Intl.Segmenter('en', {
+      granularity: 'grapheme',
+    });
+    return Array.from(segmenter.segment(str), ({ segment }) => segment);
+  }
+
+  return Array.from(str);
+};
+
+/**
  * This function calculates the initials/acronym for a given name.
  * It defaults to only 2 characters and will take the first character (of each word).
  * If only one word is supplied for the name, it will only pass back the first letter of the word,
  * unless forced to 2 letters by setting `initialsLength` to `2`.
  * It will pass back the characters with the same casing as the original string
  * unless otherwise specified.
+ * Characters are counted as graphemes, so an emoji with a skin tone modifier counts as one.
  *
  * @param {string} name The full name of the item to turn into initials
  * @param {number} initialsLength (Optional) How many characters to show (max 2 allowed)
@@ -25,20 +42,11 @@ export function toInitials(
   initialsLength?: 1 | 2,
   initials?: string
 ) {
-  // If `initials` provided, check if it's a single emoji
-  // in order to support complex, "multi-character" ones
-  if (initials && typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
-    const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
-    const segments = Array.from(segmenter.segment(initials));
-
-    if (segments.length === 1 && isEmoji(segments[0].segment)) {
-      return segments[0].segment;
-    }
-  }
+  const initialsGraphemes = initials ? toGraphemes(initials) : undefined;
 
   // Calculate the number of initials to show, maxing out at MAX_INITIALS
-  let calculatedInitialsLength: number = initials
-    ? initials.split('').length
+  let calculatedInitialsLength: number = initialsGraphemes
+    ? initialsGraphemes.length
     : name.split(' ').length;
 
   calculatedInitialsLength =
@@ -54,8 +62,10 @@ export function toInitials(
 
   let calculatedInitials;
   // A. Set to initials prop if exists (but truncate to 2 characters max unless length is supplied)
-  if (initials) {
-    calculatedInitials = initials.substring(0, calculatedInitialsLength);
+  if (initialsGraphemes) {
+    calculatedInitials = initialsGraphemes
+      .slice(0, calculatedInitialsLength)
+      .join('');
   } else {
     if (name.trim() && name.split(' ').length > 1) {
       // B. If there are any spaces in the name, set to first letter of each word
@@ -65,21 +75,11 @@ export function toInitials(
         calculatedInitials.join('').substring(0, calculatedInitialsLength);
     } else {
       // C. Set to the name's initials truncated based on calculated length
-      calculatedInitials = name.substring(0, calculatedInitialsLength);
+      calculatedInitials = toGraphemes(name)
+        .slice(0, calculatedInitialsLength)
+        .join('');
     }
   }
 
   return calculatedInitials || '';
-}
-
-function isEmoji(str: string) {
-  /**
-   * The \p escape sequence allows matching a character based on its Unicode properties
-   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape
-   * @see https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt
-   * @see https://www.unicode.org/reports/tr51/#Definitions
-   * @see https://util.unicode.org/UnicodeJsps/character.jsp?a=1F440&B1=Show
-   */
-  const emojiRegex = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u;
-  return emojiRegex.test(str);
 }

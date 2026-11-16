@@ -15,8 +15,8 @@ import React, {
 import classNames from 'classnames';
 
 import {
-  withEuiTheme,
-  WithEuiThemeProps,
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
   keys,
   htmlIdGenerator,
 } from '../../services';
@@ -115,7 +115,7 @@ export type EuiTreeViewProps = Omit<
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
 export class EuiTreeViewClass extends Component<
-  EuiTreeViewProps & WithEuiThemeProps,
+  WithEuiStylesMemoizerProps & EuiTreeViewProps,
   EuiTreeViewState
 > {
   treeIdGenerator = htmlIdGenerator('euiTreeView');
@@ -126,7 +126,7 @@ export class EuiTreeViewClass extends Component<
   isNested: boolean;
 
   constructor(
-    props: EuiTreeViewProps & WithEuiThemeProps,
+    props: WithEuiStylesMemoizerProps & EuiTreeViewProps,
     // Without the optional ? typing, TS will throw errors on JSX component errors
     // @see https://github.com/facebook/react/issues/13944#issuecomment-1183693239
     context?: ContextType<typeof EuiTreeViewContext>
@@ -276,11 +276,11 @@ export class EuiTreeViewClass extends Component<
       display = 'default',
       expandByDefault,
       showExpansionArrows,
-      theme,
+      stylesMemoizer,
       ...rest
     } = this.props;
 
-    const styles = euiTreeViewStyles(theme);
+    const styles = stylesMemoizer(euiTreeViewStyles);
     const cssStyles = [styles.euiTreeView, styles[display]];
 
     // Computed classNames
@@ -375,6 +375,6 @@ export class EuiTreeViewClass extends Component<
  * @see {@link https://eui.elastic.co/docs/components/navigation/tree-view/|EuiTreeView documentation}
  */
 export const EuiTreeView = Object.assign(
-  withEuiTheme<EuiTreeViewProps>(EuiTreeViewClass),
+  withEuiStylesMemoizer<EuiTreeViewProps>(EuiTreeViewClass),
   { Item: EuiTreeViewItem }
 );

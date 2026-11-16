@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiSubStepsStyles } from './sub_steps.styles';
 
 export type EuiSubStepsProps = FunctionComponent<
@@ -22,8 +22,7 @@ export const EuiSubSteps: EuiSubStepsProps = ({
   ...rest
 }) => {
   const classes = classNames('euiSubSteps', className);
-  const euiTheme = useEuiTheme();
-  const styles = euiSubStepsStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiSubStepsStyles);
   const cssStyles = [styles.euiSubSteps];
 
   return (

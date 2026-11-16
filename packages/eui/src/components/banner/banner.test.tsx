@@ -255,5 +255,35 @@ describe('EuiBanner', () => {
         expect(getByRole('status')).toHaveTextContent('Hello, World')
       );
     });
+
+    it('announces child text once and does not copy nested controls', async () => {
+      const { getAllByRole, getAllByTestSubject, getByRole } = render(
+        <EuiBanner
+          {...requiredProps}
+          title="Hello"
+          text="World"
+          announceOnMount
+          onDismiss={() => {}}
+          dismissButtonProps={{ 'aria-label': 'Dismiss this banner' }}
+          actionProps={{
+            primary: { children: 'Primary action', onClick: () => {} },
+          }}
+        >
+          <button id="retry" data-test-subj="retry">
+            Retry
+          </button>
+        </EuiBanner>
+      );
+
+      await waitFor(() => {
+        const liveRegion = getByRole('status');
+        expect(liveRegion).toHaveTextContent('Hello, World, Retry');
+        expect(getAllByTestSubject('retry')).toHaveLength(1);
+        expect(document.querySelectorAll('#retry')).toHaveLength(1);
+        expect(getAllByRole('button', { name: 'Retry' })).toHaveLength(1);
+        expect(liveRegion).not.toHaveTextContent('Dismiss this banner');
+        expect(liveRegion).not.toHaveTextContent('Primary action');
+      });
+    });
   });
 });

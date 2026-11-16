@@ -1,12 +1,12 @@
-## [`v5.2.0`](https://github.com/elastic/eui/releases/v5.2.0)
+## [`v5.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/5.2.0)
 
 - Updated parameters used for `euiAnimSlightResistance` for a smoother animation ([#9202](https://github.com/elastic/eui/pull/9202))
 
-## [`v5.1.0`](https://github.com/elastic/eui/releases/v5.1.0)
+## [`v5.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/5.1.0)
 
 - Added component token `components.tableFooterBackground` ([#9224](https://github.com/elastic/eui/pull/9224))
 
-## [`v5.0.0`](https://github.com/elastic/eui/releases/v5.0.0)
+## [`v5.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/5.0.0)
 
 - Added color tokens `borderBaseProminent` and `borderInteractiveFormsHoverProminent` ([#9162](https://github.com/elastic/eui/pull/9162))
 
@@ -14,7 +14,7 @@
 
 - Removed `borderBaseFormsControl` token ([#9162](https://github.com/elastic/eui/pull/9162))
 
-## [`v4.0.0`](https://github.com/elastic/eui/releases/v4.0.0)
+## [`v4.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/4.0.0)
 
 **Breaking changes**
 
@@ -23,7 +23,7 @@
 - Removed `euiTheme.flags.buttonVariant` and `euiTheme.flags.formVariant` ([#9090](https://github.com/elastic/eui/pull/9090))
 - Removed `euiTheme.components.keyPadMenuItemBackgroundDisabledSelect` ([#9090](https://github.com/elastic/eui/pull/9090))
 
-## [`v3.6.0`](https://github.com/elastic/eui/releases/v3.6.0)
+## [`v3.6.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.6.0)
 
 - Added new shadow tokens ([#9088](https://github.com/elastic/eui/pull/9088))
   - `shadows.colors.base`
@@ -36,7 +36,7 @@
   - `shadows.hover.base`
   - `shadows.hover.xl`
 
-## [`v3.5.0`](https://github.com/elastic/eui/releases/v3.5.0)
+## [`v3.5.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.5.0)
 
 - Updated color value of `textSubdued` and legacy `subduedText` in dark mode from `#8E9FBC` to `#98A8C3` ([#9071](https://github.com/elastic/eui/pull/9071))
 
@@ -44,7 +44,7 @@
 
 - Fixed values of `$euiFormBackground` and `$euiFormBackgroundReadOnlyColor` to match JS tokens ([#9067](https://github.com/elastic/eui/pull/9067))
 
-## [`v3.4.0`](https://github.com/elastic/eui/releases/v3.4.0)
+## [`v3.4.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.4.0)
 
 - Updated values for component tokens ([#8983](https://github.com/elastic/eui/pull/8983))
   - `dataGridRowStripesBackgroundHover`
@@ -53,19 +53,19 @@
   - `dataGridRowStripesBackgroundHover`
   - `dataGridRowStripesBackgroundStripedHover`
 
-## [`v3.3.2`](https://github.com/elastic/eui/releases/v3.3.2)
+## [`v3.3.2`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.3.2)
 
 **Bug fixes**
 
 - Fixed the syntax of the SCSS variable `$euiColorTransparent` to ensure a valid value ([#8966](https://github.com/elastic/eui/pull/8966))
 
-## [`v3.3.1`](https://github.com/elastic/eui/releases/v3.3.1)
+## [`v3.3.1`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.3.1)
 
 **Bug fixes**
 
 - Updated shared theme SCSS imports to ensure expected results for the SCSS function `lineHeightFromBaseline` ([#8922](https://github.com/elastic/eui/pull/8922))
 
-## [`v3.3.0`](https://github.com/elastic/eui/releases/v3.3.0)
+## [`v3.3.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.3.0)
 
 - Added high contrast mode specific color values for `colors.vis` and `colors.severity` tokens in light color mode ([#8800](https://github.com/elastic/eui/pull/8800))
 - Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))
@@ -91,7 +91,7 @@
   - `colors.borderStrongDanger`
   - `components.forms.backgroundReadOnly`
 
-## [`v3.2.0`](https://github.com/elastic/eui/releases/v3.2.0)
+## [`v3.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.2.0)
 
 - Added component tokens: ([#8834](https://github.com/elastic/eui/pull/8834))
   - `dataGridRowBackgroundMarked`
@@ -102,11 +102,11 @@
   - `tableRowBackgroundMarked`
   - `tableRowBackgroundMarkedHover`
 
-## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
+## [`v3.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.1.0)
 
 - Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
 
-## [`v3.0.0`](https://github.com/elastic/eui/releases/v3.0.0)
+## [`v3.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/3.0.0)
 
 - Added data vis text color tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
   - `colors.vis.euiColorVisText0`
@@ -153,7 +153,7 @@
   - `colors.vis.euiColorVisAsTextDark5`
   - `colors.vis.euiColorVisAsTextDark6`
 
-## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+## [`v2.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/2.0.0)
 
 - Added new tokens on `colors.vis`: ([#8725](https://github.com/elastic/eui/pull/8725))
   -  `euiColorVisNeutral0`
@@ -172,7 +172,7 @@
 
 - Renamed `colors.vis.euiColorVisNeutral0` to `euiColorVisBase0` ([#8725](https://github.com/elastic/eui/pull/8725))
 
-## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
+## [`v1.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/1.1.0)
 
 - Added token `filterButtonBadgeBackgroundHover` ([#8652](https://github.com/elastic/eui/pull/8652))
 - Updated values for tokens `buttonGroupFocusColor` and `buttonGroupBackgroundDisabledSelected` ([#8652](https://github.com/elastic/eui/pull/8652))
@@ -186,7 +186,7 @@
   - `backgroundEmpty{color}Active`
 - Updated `backgroundLightText` token value to `shade120` ([#8595](https://github.com/elastic/eui/pull/8595))
 
-## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
+## [`v1.0.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/1.0.0)
 
 - Added semantic severity color tokens: ([#8601](https://github.com/elastic/eui/pull/8601))
     - `colors.severity.unknown`
@@ -243,13 +243,13 @@
 
 - Updated `@elastic/eui-theme-common` from `peer dependencies` to a `dependencies` ([#8606](https://github.com/elastic/eui/pull/8606))
 
-## [`v0.2.0`](https://github.com/elastic/eui/releases/v0.2.0)
+## [`v0.2.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/0.2.0)
 
 - Updated component tokens to use `computed` values to ensure correct inheritance from theme overrides ([#8558](https://github.com/elastic/eui/pull/8558))
 - Added `overrides.HCM` to `euiThemeBorealis` to support theme internal overrides ([#8558](https://github.com/elastic/eui/pull/8558))
 - Updated `border.radius.medium` token value to `4px` ([#8563](https://github.com/elastic/eui/pull/8563))
 
-## [`v0.1.0`](https://github.com/elastic/eui/releases/v0.1.0)
+## [`v0.1.0`](https://www.npmjs.com/package/@elastic/eui-theme-borealis/v/0.1.0)
 
 - Added new component tokens: ([#8444](https://github.com/elastic/eui/pull/8444))
   - `buttonGroupBackgroundDisabledSelected`

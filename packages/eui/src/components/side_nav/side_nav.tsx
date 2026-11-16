@@ -14,7 +14,7 @@ import { EuiButtonEmpty } from '../button';
 import { EuiI18n } from '../i18n';
 import {
   EuiBreakpointSize,
-  useEuiTheme,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
 } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
@@ -90,8 +90,6 @@ export const EuiSideNav = <T = {},>({
   headingProps,
   ...rest
 }: EuiSideNavProps<T>) => {
-  const theme = useEuiTheme();
-
   const isItemOpen = (item: EuiSideNavItemType<T>): boolean => {
     // The developer can force the item to be open.
     if (item.forceOpen) {
@@ -164,7 +162,7 @@ export const EuiSideNav = <T = {},>({
   const classes = classNames('euiSideNav', className, {
     'euiSideNav-isOpenMobile': isOpenOnMobile,
   });
-  const styles = euiSideNavMobileStyles(theme);
+  const styles = useEuiMemoizedStyles(euiSideNavMobileStyles);
 
   const contentClasses = classNames('euiSideNav__content');
   const sideNavContentId = useGeneratedHtmlId({

@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -64,8 +64,7 @@ export const EuiFormControlLayoutIcons = ({
   isInvalid,
   isDropdown,
 }: EuiFormControlLayoutIconsProps) => {
-  const euiThemeContext = useEuiTheme();
-  const styles = euiFormControlLayoutIconsStyles(euiThemeContext);
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutIconsStyles);
   const cssStyles = [
     styles.euiFormControlLayoutIcons,
     compressed ? styles.compressed : styles.uncompressed,
