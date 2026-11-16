@@ -115,7 +115,9 @@ export const euiPaletteColorBlind = ({
     visColors.euiColorVis7,
     visColors.euiColorVis8,
     visColors.euiColorVis9,
-    ...(extended ? [visColors.euiColorVis10, visColors.euiColorVis11] : []),
+    ...(extended
+      ? [visColors.euiColorVis10, visColors.euiColorVis11].filter(Boolean)
+      : []),
   ];
 
   if (sortBy === 'natural') {

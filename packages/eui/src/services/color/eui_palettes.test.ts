@@ -39,6 +39,23 @@ describe('euiPaletteColorBlind', () => {
 
     expect(result[0]).toEqual(customColor);
   });
+
+  it('should omit missing extended colors', () => {
+    const {
+      euiColorVis10: _euiColorVis10,
+      euiColorVis11: _euiColorVis11,
+      ...colors
+    } = colorVis;
+
+    const result = euiPaletteColorBlind({
+      colors: colors as typeof colorVis,
+      extended: true,
+      rotations: 2,
+    });
+
+    expect(result).toHaveLength(20);
+    expect(result.every(Boolean)).toBe(true);
+  });
 });
 
 describe('euiPaletteColorBlindBehindText', () => {
