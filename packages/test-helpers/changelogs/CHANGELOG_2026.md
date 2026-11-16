@@ -1,3 +1,11 @@
+## [`v2.4.0`](https://github.com/elastic/eui/releases/v123.5.0)
+
+- Added `EuiCheckboxObject` with `isChecked()`, `check()`, `uncheck()` and `toggle()` ([#10284](https://github.com/elastic/eui/pull/10284))
+- Added `EuiSwitchObject` with `isChecked()`, `check()`, `uncheck()` and `toggle()` ([#10284](https://github.com/elastic/eui/pull/10284))
+- Added `EuiFieldTextObject` with `fill()`, `getValue()` and `clear()` ([#10284](https://github.com/elastic/eui/pull/10284))
+- Added `EuiSelectObject` with `selectOptionByValue()`, `selectOptionByLabel()`, `getSelectedValue()` and `getSelectedLabel()` ([#10284](https://github.com/elastic/eui/pull/10284))
+- Added `EuiButtonGroupObject` with `buttons`, `button()`, `getOptions()`, `select()`, `deselect()` and `getSelected()` ([#10287](https://github.com/elastic/eui/pull/10287))
+
 ## [`v2.3.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
 
 - Added `EuiTabsObject` with `tabs`, `getTabs()`, `tab(label)`, `select(label)` and `getSelected()`, covering `EuiTabs` and `EuiTabbedContent` ([#10249](https://github.com/elastic/eui/pull/10249))
