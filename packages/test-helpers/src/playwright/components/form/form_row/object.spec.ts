@@ -62,6 +62,36 @@ test.describe('EuiFormRowObject', () => {
     expect(await row.isInvalid()).toBe(true);
   });
 
+  test('leaves a nested row out', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const row = new EuiFormRowObject(page, TEST_SUBJ);
+    // An inline EuiColorPicker renders a nested EuiFormRow inside the field,
+    // the Playground cannot, so one is added by hand.
+    await page
+      .locator('.euiFormRow__fieldWrapper')
+      .evaluate((fieldWrapper) => {
+        fieldWrapper.insertAdjacentHTML(
+          'beforeend',
+          '<div class="euiFormRow">' +
+            '<div class="euiFormRow__labelWrapper">' +
+            '<label class="euiFormRow__label" aria-invalid="true">Nested</label>' +
+            '</div>' +
+            '<div class="euiFormRow__fieldWrapper">' +
+            '<div class="euiFormErrorText">Nested error</div>' +
+            '<div class="euiFormHelpText">Nested help</div>' +
+            '</div>' +
+            '</div>'
+        );
+      });
+
+    expect(await row.getLabel()).toBe('Text field label');
+    expect(await row.getHelpTexts()).toEqual([
+      'I am some friendly help text.',
+    ]);
+    expect(await row.getErrors()).toEqual([]);
+    expect(await row.isInvalid()).toBe(false);
+  });
+
   test('hides the error while valid', async ({ page }) => {
     await page.goto(`${PLAYGROUND_URL};error:Required`);
     const row = new EuiFormRowObject(page, TEST_SUBJ);
