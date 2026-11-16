@@ -39,6 +39,16 @@ test.describe('EuiLinkObject', () => {
     expect(await link.getText()).toBe('Elastic website');
   });
 
+  test('keeps the line breaks of the text', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const link = new EuiLinkObject(page, TEST_SUBJ);
+    await page.locator('.euiLink').evaluate((element) => {
+      element.innerHTML = 'First<br>Second';
+    });
+
+    expect(await link.getText()).toBe('First\nSecond');
+  });
+
   test('renders as a button without href', async ({ page }) => {
     await page.goto(`${PLAYGROUND_URL};href:!undefined`);
     const link = new EuiLinkObject(page, TEST_SUBJ);

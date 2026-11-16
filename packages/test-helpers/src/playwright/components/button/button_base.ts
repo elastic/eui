@@ -19,33 +19,23 @@ export abstract class EuiButtonBaseObject extends BaseObject {
   }
 
   /**
-   * The visible text, trimmed. Empty for an icon-only button. Screen reader
-   * only text, as the external link suffix, is left out, EUI clips it to a
-   * single pixel rather than hiding it.
+   * The visible text, trimmed, with line breaks as rendered. Empty for an
+   * icon-only button. Screen reader only text, as the external link suffix,
+   * is left out, EUI clips it to a single pixel rather than hiding it.
    */
   async getText(): Promise<string> {
     return this.root.evaluate((element) => {
-      const isClipped = (node: Element) => {
-        const { width, height } = node.getBoundingClientRect();
-        return width <= 1 && height <= 1;
-      };
-      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-      const parts: string[] = [];
-      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-        let ancestor = node.parentElement;
-        let clipped = false;
-        while (ancestor && ancestor !== element) {
-          if (isClipped(ancestor)) {
-            clipped = true;
-            break;
-          }
-          ancestor = ancestor.parentElement;
+      const clipped = Array.from(element.querySelectorAll('*')).filter(
+        (node): node is HTMLElement => {
+          const { width, height } = node.getBoundingClientRect();
+          return node instanceof HTMLElement && width <= 1 && height <= 1;
         }
-        if (!clipped) {
-          parts.push(node.textContent ?? '');
-        }
-      }
-      return parts.join('').replace(/\s+/g, ' ').trim();
+      );
+      const previous = clipped.map((node) => node.style.display);
+      clipped.forEach((node) => (node.style.display = 'none'));
+      const text = (element as HTMLElement).innerText;
+      clipped.forEach((node, i) => (node.style.display = previous[i]));
+      return text.trim();
     });
   }
 
