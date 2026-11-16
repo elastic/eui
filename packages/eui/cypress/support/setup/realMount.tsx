@@ -15,7 +15,8 @@ const realMountCommand = (children: ReactNode, options: MountOptions = {}) => {
     <>
       <div
         data-test-subj="cypress-real-event-target"
-        style={{ height: '1px', width: '1px' }}
+        // position: relative ensures the element is properly positioned for realClick
+        style={{ height: '1px', width: '1px', position: 'relative' }}
       />
       {children}
     </>,

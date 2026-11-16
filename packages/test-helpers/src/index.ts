@@ -18,6 +18,10 @@ export { EuiFilterButtonObject } from './playwright/components/filter_button/obj
 export { EuiFieldSearchObject } from './playwright/components/form/field_search/object';
 export { EuiSearchBarObject } from './playwright/components/search_bar/object';
 export { EuiRangeObject } from './playwright/components/form/range/object';
+export { EuiCheckboxObject } from './playwright/components/form/checkbox/object';
+export { EuiSwitchObject } from './playwright/components/form/switch/object';
+export { EuiFieldTextObject } from './playwright/components/form/field_text/object';
+export { EuiSelectObject } from './playwright/components/form/select/object';
 export { EuiPopoverObject } from './playwright/components/popover/object';
 export { EuiFlyoutObject } from './playwright/components/flyout/object';
 export { EuiAccordionObject } from './playwright/components/accordion/object';

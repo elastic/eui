@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
-import { EuiSwitch, EuiSwitchProps } from './switch';
+import { EuiSwitch, EuiSwitchEvent, EuiSwitchProps } from './switch';
 
 const meta: Meta<EuiSwitchProps> = {
   title: 'Forms/EuiSwitch',
@@ -38,6 +38,22 @@ export const Playground: Story = {
     checked: false,
     label: 'Switch label',
   },
+  render: (args) => <StatefulSwitch {...args} />,
+};
+
+const StatefulSwitch = ({ checked, onChange, ...rest }: EuiSwitchProps) => {
+  const [_checked, setChecked] = useState(checked);
+
+  useEffect(() => {
+    setChecked(checked);
+  }, [checked]);
+
+  const handleOnChange = (e: EuiSwitchEvent) => {
+    setChecked(e.target.checked);
+    onChange?.(e);
+  };
+
+  return <EuiSwitch checked={_checked} onChange={handleOnChange} {...rest} />;
 };
 
 // adding a specific story for VRT permutation testing, excluded

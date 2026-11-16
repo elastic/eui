@@ -57,6 +57,10 @@ their own version at runtime.
 | `EuiFieldSearchObject` | [src/components/form/field_search/README.md](src/components/form/field_search/README.md) |
 | `EuiSearchBarObject` | [src/components/search_bar/README.md](src/components/search_bar/README.md) |
 | `EuiRangeObject` | [src/components/form/range/README.md](src/components/form/range/README.md) |
+| `EuiCheckboxObject` | [src/components/form/checkbox/README.md](src/components/form/checkbox/README.md) |
+| `EuiSwitchObject` | [src/components/form/switch/README.md](src/components/form/switch/README.md) |
+| `EuiFieldTextObject` | [src/components/form/field_text/README.md](src/components/form/field_text/README.md) |
+| `EuiSelectObject` | [src/components/form/select/README.md](src/components/form/select/README.md) |
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
 | `EuiAccordionObject` | [src/components/accordion/README.md](src/components/accordion/README.md) |
