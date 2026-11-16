@@ -4,7 +4,7 @@ All components should have, at minimum, unit tests for each prop.
 
 ## Test stack at a glance
 
-- **[Jest unit tests](./unit-testing.md)** — required for every component. New tests should be written with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/); legacy [Enzyme](https://enzymejs.github.io/enzyme/) tests still exist and are being migrated.
+- **[Jest unit tests](./unit-testing.md)** — required for every component, written with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 - **[Cypress component tests](./cypress-testing.md)** — optional, used for complex components or where real-browser DOM and interactions are needed.
 - **Storybook** — the component development environment and the source of stories used by visual regression testing.
 - **[Visual regression tests](./visual-regression-testing.md)** — Playwright + `jest-image-snapshot` against Storybook stories, run on every pull request.

@@ -1,6 +1,6 @@
 # Unit testing
 
-EUI unit tests run on Jest. New tests should be written with [React Testing Library (RTL)](https://testing-library.com/docs/react-testing-library/intro/). A subset of legacy tests still uses [Enzyme](https://enzymejs.github.io/enzyme/) and is being migrated — see [Legacy: Enzyme](#legacy-enzyme) below.
+EUI unit tests run on Jest and are written with [React Testing Library (RTL)](https://testing-library.com/docs/react-testing-library/intro/).
 
 ## Running tests
 
@@ -42,16 +42,15 @@ The [`packages/eui/src/test`](/packages/eui/src/test) module exports functions a
 
 ### Test helper naming pattern
 
-If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
+If the test helper uses libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
 
-## Legacy: Enzyme
+## Enzyme helpers for consumers
 
-EUI is migrating away from Enzyme. **Do not write new Enzyme tests** — use RTL (see [Test helpers](#test-helpers) above). The helpers below exist only to support existing Enzyme tests until the migration completes:
+EUI's own tests don't use [Enzyme](https://enzymejs.github.io/enzyme/), and Enzyme is not installed in this repo. Don't write Enzyme tests. The following helpers remain exported from `@elastic/eui/lib/test` for consuming projects that still use Enzyme:
 
 * `findTestSubject` helps you find DOM nodes in mounted components.
 * `takeMountedSnapshot` generates a snapshot of a mounted component.
-
-When touching a legacy Enzyme test, prefer porting it to RTL if the change is non-trivial.
+* `setupEuiEnzymeMatchers` (from `@elastic/eui/lib/test/enzyme`) registers the `toHaveEuiDisabledProp` matcher.
 
 ## Test design
 
