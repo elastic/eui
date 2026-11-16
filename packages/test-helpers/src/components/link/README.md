@@ -19,7 +19,7 @@ Set `data-test-subj` on `<EuiLink>`. EUI spreads it onto the `<a>`, or onto the 
 | Member | Description |
 |---|---|
 | `click()` | Click the element. What follows is up to the consumer. |
-| `getText()` | The visible text, trimmed. Empty for an icon-only button. |
+| `getText()` | The visible text, trimmed. Empty for an icon-only button. Screen reader only text, as the external link suffix, is left out. |
 | `isDisabled()` | Whether the element is disabled, through the native attribute or `aria-disabled`. |
 | `getHref()` | The `href`, or an empty string when the link renders as a button. |
 

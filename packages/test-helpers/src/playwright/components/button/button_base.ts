@@ -18,9 +18,47 @@ export abstract class EuiButtonBaseObject extends BaseObject {
     await this.root.click();
   }
 
-  /** The visible text, trimmed. Empty for an icon-only button. */
+  /**
+   * The visible text, trimmed. Empty for an icon-only button. Screen reader
+   * only text, as the external link suffix, is left out, EUI clips it to a
+   * single pixel rather than hiding it.
+   */
   async getText(): Promise<string> {
-    return (await this.root.innerText()).trim();
+    return this.root.evaluate((element) => {
+      const isClipped = (node: Element) => {
+        const { width, height } = node.getBoundingClientRect();
+        return width <= 1 && height <= 1;
+      };
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      const parts: string[] = [];
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        let ancestor = node.parentElement;
+        let clipped = false;
+        while (ancestor && ancestor !== element) {
+          if (isClipped(ancestor)) {
+            clipped = true;
+            break;
+          }
+          ancestor = ancestor.parentElement;
+        }
+        if (!clipped) {
+          parts.push(node.textContent ?? '');
+        }
+      }
+      return parts.join('').replace(/\s+/g, ' ').trim();
+    });
+  }
+
+  /**
+   * Whether EUI's loading spinner replaces the icon. Only the component's own
+   * spinner counts, not one rendered inside the children.
+   */
+  async isLoading(): Promise<boolean> {
+    await this.root.waitFor({ state: 'attached' });
+    const spinner = this.root.locator(
+      ':scope > .euiLoadingSpinner, :scope > * > .euiLoadingSpinner'
+    );
+    return (await spinner.count()) > 0;
   }
 
   /**

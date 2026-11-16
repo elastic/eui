@@ -25,10 +25,4 @@ export class EuiButtonIconObject extends EuiButtonBaseObject {
   ) {
     super(scope, testSubj, componentSelector);
   }
-
-  /** Whether the loading spinner replaces the icon. */
-  async isLoading(): Promise<boolean> {
-    await this.root.waitFor({ state: 'attached' });
-    return (await this.root.getByRole('progressbar').count()) > 0;
-  }
 }

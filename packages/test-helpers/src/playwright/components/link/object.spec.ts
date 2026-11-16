@@ -30,6 +30,15 @@ test.describe('EuiLinkObject', () => {
     expect(await link.isDisabled()).toBe(false);
   });
 
+  test('leaves the screen reader suffix out of an external link', async ({
+    page,
+  }) => {
+    await page.goto(`${PLAYGROUND_URL};external:!true;target:_blank`);
+    const link = new EuiLinkObject(page, TEST_SUBJ);
+
+    expect(await link.getText()).toBe('Elastic website');
+  });
+
   test('renders as a button without href', async ({ page }) => {
     await page.goto(`${PLAYGROUND_URL};href:!undefined`);
     const link = new EuiLinkObject(page, TEST_SUBJ);

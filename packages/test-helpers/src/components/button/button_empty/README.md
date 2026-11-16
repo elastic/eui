@@ -18,9 +18,9 @@ Set `data-test-subj` on `<EuiButtonEmpty>`. EUI spreads it onto the `<button>` o
 | Member | Description |
 |---|---|
 | `click()` | Click the element. What follows is up to the consumer. |
-| `getText()` | The visible text, trimmed. Empty for an icon-only button. |
+| `getText()` | The visible text, trimmed. Empty for an icon-only button. Screen reader only text, as the external link suffix, is left out. |
 | `isDisabled()` | Whether the element is disabled, through the native attribute or `aria-disabled`. |
-| `isLoading()` | Whether the loading spinner replaces the icon. |
+| `isLoading()` | Whether EUI's loading spinner replaces the icon. A spinner inside the children does not count. |
 
 ## Deliberately excluded
 

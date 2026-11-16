@@ -51,4 +51,13 @@ test.describe('EuiButtonIconObject', () => {
 
     expect(await button.isLoading()).toBe(true);
   });
+
+  test('reports the loading state when hidden from assistive tech', async ({
+    page,
+  }) => {
+    await page.goto(`${PLAYGROUND_URL};isLoading:!true;aria-hidden:!true`);
+    const button = new EuiButtonIconObject(page, TEST_SUBJ);
+
+    expect(await button.isLoading()).toBe(true);
+  });
 });
