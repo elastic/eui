@@ -1,3 +1,8 @@
+## [`v2.9.0`](https://github.com/elastic/eui/releases/v123.5.0)
+
+- Added a context menu on the EUI logo in the documentation navbar with links to Elastic and Brand Guide. ([#9937](https://github.com/elastic/eui/pull/9937))
+- Added page-level Storybook links with support for a single story or a component menu in documentation front matter. ([#10107](https://github.com/elastic/eui/pull/10107))
+
 ## [`v2.8.1`](https://github.com/elastic/eui/releases/v123.2.0)
 
 **Bug fixes**
