@@ -1,7 +1,7 @@
 ## [`v123.5.0`](https://github.com/elastic/eui/releases/v123.5.0)
 
 - Updated `EuiFormRow` to vertically align `label` and `labelAppend` to the bottom of the label wrapper when they have different heights ([#10293](https://github.com/elastic/eui/pull/10293))
-- Updated the `productNightshif` icon glyph. ([#10300](https://github.com/elastic/eui/pull/10300))
+- Updated the `productNightshift` icon glyph. ([#10300](https://github.com/elastic/eui/pull/10300))
 - Added `logoMono` prop to the `EuiHeaderLogo` component to render a monochromatic Elastic logo version. ([#10291](https://github.com/elastic/eui/pull/10291))
 - Added `logoElasticMono` icon. ([#10291](https://github.com/elastic/eui/pull/10291))
 - Updated the `moon` icon glyph. ([#10279](https://github.com/elastic/eui/pull/10279))
