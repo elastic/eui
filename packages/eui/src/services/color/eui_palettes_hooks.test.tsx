@@ -73,6 +73,28 @@ describe('useEuiPaletteColorBlind', () => {
     const Wrapper = (props: PropsWithChildren) => (
       <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
     );
+    const { result } = renderHook(() => useEuiPaletteColorBlind(), {
+      wrapper: Wrapper,
+    });
+
+    expect(result.current).toEqual([
+      '#065B58',
+      '#009E99',
+      '#154399',
+      '#2476F0',
+      '#831652',
+      '#D13680',
+      '#7F1F27',
+      '#DA3737',
+      '#6A4906',
+      '#AD7E00',
+    ]);
+  });
+
+  it('should return extended high contrast mode colors in LIGHT mode', () => {
+    const Wrapper = (props: PropsWithChildren) => (
+      <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
+    );
     const { result } = renderHook(
       () => useEuiPaletteColorBlind({ extended: true }),
       { wrapper: Wrapper }
