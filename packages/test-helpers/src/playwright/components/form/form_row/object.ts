@@ -31,8 +31,9 @@ export class EuiFormRowObject extends BaseObject {
 
   /** The label, absent without `label`. */
   get label(): Locator {
+    const { LABEL_WRAPPER_SELECTOR, LABEL_SELECTOR } = EuiFormRowSelectors;
     return this.root.locator(
-      `:scope > ${EuiFormRowSelectors.LABEL_WRAPPER_SELECTOR} > ${EuiFormRowSelectors.LABEL_SELECTOR}`
+      `:scope > ${LABEL_WRAPPER_SELECTOR} > ${LABEL_SELECTOR}`
     );
   }
 
