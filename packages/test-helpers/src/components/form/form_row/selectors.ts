@@ -15,6 +15,9 @@ export const EuiFormRowSelectors = {
   /** The row element carrying the consumer's `data-test-subj`. */
   ROOT_SELECTOR: '.euiFormRow',
 
+  /** The wrapper around the label, rendered only with `label`. */
+  LABEL_WRAPPER_SELECTOR: '.euiFormRow__labelWrapper',
+
   /** The label, rendered only with `label`. */
   LABEL_SELECTOR: '.euiFormRow__label',
 

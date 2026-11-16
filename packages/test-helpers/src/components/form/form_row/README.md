@@ -12,7 +12,7 @@ expect(await row.getLabel()).toBe('Name');
 expect(await row.getErrors()).toEqual(['Name is required']);
 ```
 
-Set `data-test-subj` on `<EuiFormRow>`. EUI spreads it onto the row element, which the component-type guard verifies. Drive the field inside with its own Component Object, for example `EuiFieldTextObject`.
+Set `data-test-subj` on `<EuiFormRow>`. EUI spreads it onto the row element, which the component-type guard verifies. Drive the field inside with its own Component Object, for example `EuiFieldTextObject`. Only the row's own label, errors and help texts are read, a nested row inside the field, as an inline `EuiColorPicker` renders, is left out.
 
 ## API
 

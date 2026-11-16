@@ -16,7 +16,9 @@ import { EuiFormRowSelectors } from '../../../../components/form/form_row/select
  * https://eui.elastic.co/docs/components/forms/layouts/row/ EuiFormRow}.
  *
  * `testSubj` must be set on `EuiFormRow` itself, EUI spreads it onto the row
- * element. Drive the field inside with its own Component Object.
+ * element. Drive the field inside with its own Component Object. Only the
+ * row's own label, errors and help texts are read, a nested row inside the
+ * field, as an inline `EuiColorPicker` renders, is left out.
  */
 export class EuiFormRowObject extends BaseObject {
   constructor(
@@ -29,17 +31,19 @@ export class EuiFormRowObject extends BaseObject {
 
   /** The label, absent without `label`. */
   get label(): Locator {
-    return this.root.locator(EuiFormRowSelectors.LABEL_SELECTOR);
+    return this.root.locator(
+      `:scope > ${EuiFormRowSelectors.LABEL_WRAPPER_SELECTOR} > ${EuiFormRowSelectors.LABEL_SELECTOR}`
+    );
   }
 
   /** The error texts, absent unless `isInvalid` with `error`. */
   get errors(): Locator {
-    return this.root.locator(EuiFormRowSelectors.ERROR_TEXT_SELECTOR);
+    return this.ownFieldChildren(EuiFormRowSelectors.ERROR_TEXT_SELECTOR);
   }
 
   /** The help texts, absent without `helpText`. */
   get helpTexts(): Locator {
-    return this.root.locator(EuiFormRowSelectors.HELP_TEXT_SELECTOR);
+    return this.ownFieldChildren(EuiFormRowSelectors.HELP_TEXT_SELECTOR);
   }
 
   /** The label text, or an empty string without `label`. */
@@ -64,13 +68,20 @@ export class EuiFormRowObject extends BaseObject {
    */
   async isInvalid(): Promise<boolean> {
     await this.root.waitFor({ state: 'attached' });
-    const invalidLabel = await this.root
-      .locator(`${EuiFormRowSelectors.LABEL_SELECTOR}[aria-invalid="true"]`)
+    const invalidLabel = await this.label
+      .and(this.root.locator('[aria-invalid="true"]'))
       .count();
     if (invalidLabel > 0) {
       return true;
     }
     return (await this.errors.count()) > 0;
+  }
+
+  /** Direct children of the row's own field wrapper matching `selector`. */
+  private ownFieldChildren(selector: string): Locator {
+    return this.root.locator(
+      `:scope > ${EuiFormRowSelectors.FIELD_WRAPPER_SELECTOR} > ${selector}`
+    );
   }
 
   private async textOf(element: Locator): Promise<string> {

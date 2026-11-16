@@ -45,6 +45,23 @@ test.describe('EuiFormRowObject', () => {
     await expect(row.errors).toBeVisible();
   });
 
+  test('reads an invalid label without an error', async ({ page }) => {
+    await page.goto(`${PLAYGROUND_URL};isInvalid:!true`);
+    const row = new EuiFormRowObject(page, TEST_SUBJ);
+
+    expect(await row.getErrors()).toEqual([]);
+    expect(await row.isInvalid()).toBe(true);
+  });
+
+  test('reads an error without a label', async ({ page }) => {
+    await page.goto(`${PLAYGROUND_URL};label:;isInvalid:!true;error:Required`);
+    const row = new EuiFormRowObject(page, TEST_SUBJ);
+
+    expect(await row.getLabel()).toBe('');
+    expect(await row.getErrors()).toEqual(['Required']);
+    expect(await row.isInvalid()).toBe(true);
+  });
+
   test('hides the error while valid', async ({ page }) => {
     await page.goto(`${PLAYGROUND_URL};error:Required`);
     const row = new EuiFormRowObject(page, TEST_SUBJ);
