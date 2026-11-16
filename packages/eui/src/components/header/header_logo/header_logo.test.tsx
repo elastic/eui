@@ -28,7 +28,7 @@ jest.mock('../../icon', () => {
 
   return {
     ...actualIcon,
-    EuiIcon: (props) =>
+    EuiIcon: (props: any) =>
       React.createElement(
         mockUseActualIcon ? actualIcon.EuiIcon : testEnvIcon.EuiIcon,
         props
