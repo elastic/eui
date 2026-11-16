@@ -765,7 +765,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-1rsvzdl-wrapper"
       >
         <div
           class="euiFormPrepend css-19treal-side-uncompressed"
@@ -839,7 +839,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__append emotion-euiFormControlLayout__side"
     >
       <div
-        class="css-162bf1-wrapper"
+        class="css-1rsvzdl-wrapper"
       >
         <div
           class="euiFormAppend css-19treal-side-uncompressed"

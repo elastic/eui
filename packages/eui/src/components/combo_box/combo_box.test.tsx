@@ -201,6 +201,24 @@ describe('EuiComboBox', () => {
         ).toBeInTheDocument();
       });
 
+      it('renders prepend and append in form layout when singleSelection is false', () => {
+        const { container } = render(
+          <EuiComboBox
+            options={options}
+            singleSelection={false}
+            prepend="String"
+            append="String"
+          />
+        );
+
+        expect(
+          container.querySelector('.euiFormControlLayout__prepend')
+        ).toBeInTheDocument();
+        expect(
+          container.querySelector('.euiFormControlLayout__append')
+        ).toBeInTheDocument();
+      });
+
       it('renders `asPlainText` in the search input, not as a pill', () => {
         const { queryByTestSubject, getByTestSubject } = render(
           <EuiComboBox
