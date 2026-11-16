@@ -8,10 +8,33 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { EuiThemeProvider } from '../../../services';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
-
+import {
+  appendIconComponentCache,
+  clearIconComponentCache,
+} from '../../icon/icon';
+import { icon as logoElasticMono } from '../../icon/assets/logo_elastic_mono';
+import { EuiHeader } from '../header';
 import { EuiHeaderLogo } from './header_logo';
+
+let mockUseActualIcon = false;
+
+jest.mock('../../icon', () => {
+  const React = jest.requireActual('react');
+  const actualIcon = jest.requireActual('../../icon');
+  const testEnvIcon = jest.requireActual('../../icon/icon.testenv');
+
+  return {
+    ...actualIcon,
+    EuiIcon: (props) =>
+      React.createElement(
+        mockUseActualIcon ? actualIcon.EuiIcon : testEnvIcon.EuiIcon,
+        props
+      ),
+  };
+});
 
 describe('EuiHeaderLogo', () => {
   shouldRenderCustomStyles(<EuiHeaderLogo />);
@@ -78,5 +101,33 @@ describe('EuiHeaderLogo', () => {
       'fill',
       'currentColor'
     );
+  });
+});
+
+describe('EuiHeaderLogo monochrome glyph', () => {
+  beforeEach(() => {
+    mockUseActualIcon = true;
+    appendIconComponentCache({ logoElasticMono });
+  });
+
+  afterEach(() => {
+    mockUseActualIcon = false;
+    clearIconComponentCache('logoElasticMono');
+  });
+
+  it('uses the foreground color in a dark header in light mode', () => {
+    const { getByRole } = render(
+      <EuiThemeProvider colorMode="light">
+        <EuiHeader theme="dark">
+          <EuiHeaderLogo logoMono />
+        </EuiHeader>
+      </EuiThemeProvider>
+    );
+
+    const glyph = getByRole('img', { name: 'Elastic' });
+    const path = glyph.querySelector('path');
+
+    expect(path).toHaveAttribute('fill', 'currentColor');
+    expect(path).not.toHaveClass('euiIcon__fillNegative');
   });
 });
