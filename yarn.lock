@@ -7162,6 +7162,7 @@ __metadata:
     chalk: "npm:^4.1.0"
     chokidar: "npm:^4.0.3"
     pre-push: "npm:^0.1.4"
+    prettier: "npm:^2.8.8"
     rimraf: "npm:^6.0.1"
   languageName: unknown
   linkType: soft
