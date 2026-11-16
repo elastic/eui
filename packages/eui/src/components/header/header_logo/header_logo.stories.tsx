@@ -50,3 +50,18 @@ export const WithText: Story = {
     </EuiHeader>
   ),
 };
+
+export const WithMono: Story = {
+  args: {
+    logoType: 'glyph',
+    logoMono: true,
+  },
+
+  render: ({ ...args }) => (
+    <EuiHeader position="fixed">
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo {...args} />
+      </EuiHeaderSectionItem>
+    </EuiHeader>
+  ),
+};
