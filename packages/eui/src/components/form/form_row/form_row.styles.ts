@@ -43,7 +43,7 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: end;
+        align-items: flex-end;
       }
 
       + .euiFormRow {
