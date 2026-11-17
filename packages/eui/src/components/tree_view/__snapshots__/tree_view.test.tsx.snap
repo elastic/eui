@@ -30,6 +30,7 @@ exports[`EuiTreeView is rendered 1`] = `
           class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
         >
           <span
+            aria-hidden="true"
             data-euiicon-type="folderOpen"
           />
         </span>
@@ -58,6 +59,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
+                  aria-hidden="true"
                   data-euiicon-type="document"
                 />
               </span>
@@ -82,6 +84,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
+                  aria-hidden="true"
                   data-euiicon-type="chevronSingleRight"
                 />
               </span>
@@ -109,6 +112,7 @@ exports[`EuiTreeView is rendered 1`] = `
                 class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
+                  aria-hidden="true"
                   data-euiicon-type="chevronSingleRight"
                 />
               </span>
