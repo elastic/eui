@@ -42,7 +42,7 @@ const Card = () => {
       <EuiFlexItem>
         <EuiCard
           data-test-subj="cy-card-1"
-          icon={<EuiIcon size="xxl" type="logoSketch" />}
+          icon={<EuiIcon size="xxl" type="logoSketch" aria-hidden={true} />}
           title="Sketch"
           description="Example of a short card description."
           footer={
@@ -63,7 +63,7 @@ const Card = () => {
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          icon={<EuiIcon size="xxl" type="logoGCP" />}
+          icon={<EuiIcon size="xxl" type="logoGCP" aria-hidden={true} />}
           title="Google"
           description="Example of a longer card description. See how the footers stay lined up."
           footer={
@@ -84,7 +84,7 @@ const Card = () => {
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
-          icon={<EuiIcon size="xxl" type="logoAerospike" />}
+          icon={<EuiIcon size="xxl" type="logoAerospike" aria-hidden={true} />}
           title="Not Adobe"
           description="Example of a short card description."
           footer={

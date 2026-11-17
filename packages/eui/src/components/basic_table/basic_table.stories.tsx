@@ -329,7 +329,7 @@ const NestedTable = ({
     ? [
         {
           name: '',
-          render: () => <EuiIcon type="warning" />,
+          render: () => <EuiIcon type="warning" aria-hidden={true} />,
           width: euiTheme.size.xl,
         },
         ...columns,

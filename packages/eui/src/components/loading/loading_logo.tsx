@@ -51,7 +51,7 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
       {...rest}
     >
       <span css={styles.euiLoadingLogo__icon}>
-        <EuiIcon type={logo} size={size} />
+        <EuiIcon type={logo} size={size} aria-hidden={true} />
       </span>
     </span>
   );

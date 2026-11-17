@@ -77,7 +77,7 @@ const meta: Meta<EuiListItemLayoutProps> = {
       control: 'radio',
       options: ['icon', 'text', undefined],
       mapping: {
-        icon: <EuiIcon type="info" />,
+        icon: <EuiIcon type="info" aria-hidden={true} />,
         text: '(Prepend)',
         undefined: undefined,
       },
@@ -357,7 +357,7 @@ export const CustomContent: Story = {
         <EuiListItemLayout {...args}>
           <EuiFlexGroup alignItems="center" gutterSize="xs">
             <EuiFlexItem grow={false}>
-              <EuiIcon type="warning" color="warning" />
+              <EuiIcon type="warning" color="warning" aria-hidden={true} />
             </EuiFlexItem>
             <EuiFlexItem>
               Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -459,7 +459,7 @@ export const KitchenSink: Story = {
 const renderKitchenSink = (args: EuiListItemLayoutProps) => {
   const { children, element, isDisabled } = args;
 
-  const _prepend = <EuiIcon type="info" />;
+  const _prepend = <EuiIcon type="info" aria-hidden={true} />;
   const _append = <EuiBadge color="hollow">Badge</EuiBadge>;
   const _extraAction = (
     <EuiButtonIcon
