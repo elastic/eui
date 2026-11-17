@@ -60,9 +60,12 @@ const config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
-    '^.+\\.(jsx?|tsx?)$': ['babel-jest', {
-      configFile: path.resolve(__dirname, '../../.babelrc.js'),
-    }],
+    '^.+\\.(jsx?|tsx?)$': [
+      'babel-jest',
+      {
+        configFile: path.resolve(__dirname, '../../.babelrc.js'),
+      },
+    ],
   },
   transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
   snapshotSerializers: ['<rootDir>/scripts/jest/setup/emotion'],

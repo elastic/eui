@@ -33,7 +33,9 @@ export class EuiBasicTableObject extends EuiTableObject {
    * spans every column with `colspan`. Basic table data rows never set it.
    */
   public override get rows(): Locator {
-    return super.rows.filter({ hasNot: this.root.page().locator('td[colspan]') });
+    return super.rows.filter({
+      hasNot: this.root.page().locator('td[colspan]'),
+    });
   }
 
   /**
@@ -63,7 +65,9 @@ export class EuiBasicTableObject extends EuiTableObject {
     const cellIndex = await this.root.evaluate(
       (tableEl, { prefix, pattern, field: originalField }) => {
         const regex = new RegExp(`^${prefix}${pattern}_\\d+$`);
-        const headers = Array.from(tableEl.querySelectorAll('thead th, thead td'));
+        const headers = Array.from(
+          tableEl.querySelectorAll('thead th, thead td')
+        );
         const header = headers.find((el) =>
           regex.test(el.getAttribute('data-test-subj') ?? '')
         ) as HTMLTableCellElement | undefined;
@@ -74,7 +78,11 @@ export class EuiBasicTableObject extends EuiTableObject {
         }
         return header.cellIndex;
       },
-      { prefix: EuiBasicTableSelectors.HEADER_CELL_SELECTOR_PREFIX, pattern: escaped, field }
+      {
+        prefix: EuiBasicTableSelectors.HEADER_CELL_SELECTOR_PREFIX,
+        pattern: escaped,
+        field,
+      }
     );
     return this.rows.locator(`:is(td, th):nth-child(${cellIndex + 1})`);
   }

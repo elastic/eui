@@ -1,4 +1,8 @@
-import { useEuiBackgroundColorCSS, useEuiPaddingCSS, useEuiBackgroundColor } from '@elastic/eui';
+import {
+  useEuiBackgroundColorCSS,
+  useEuiPaddingCSS,
+  useEuiBackgroundColor,
+} from '@elastic/eui';
 
 export const UseEuiBackgroundColorCSSPreview = () => {
   const accentStyles = useEuiBackgroundColorCSS().accent;
@@ -7,5 +11,5 @@ export const UseEuiBackgroundColorCSSPreview = () => {
     <div css={[accentStyles, useEuiPaddingCSS().s]}>
       background-color: {useEuiBackgroundColor('accent')}
     </div>
-  )
-}
+  );
+};

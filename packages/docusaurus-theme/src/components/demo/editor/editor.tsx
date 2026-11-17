@@ -13,10 +13,12 @@ import { useEuiMemoizedStyles } from '@elastic/eui';
 const getEditorStyles = () => ({
   editor: css`
     font-family: var(--ifm-font-family-monospace);
-    border-radius: 0 0 var(--docs-demo-border-radius) var(--docs-demo-border-radius);
+    border-radius: 0 0 var(--docs-demo-border-radius)
+      var(--docs-demo-border-radius);
 
     & .prism-code {
-      border-radius: 0 0 calc(var(--docs-demo-border-radius) - 1px) calc(var(--docs-demo-border-radius) - 1px);
+      border-radius: 0 0 calc(var(--docs-demo-border-radius) - 1px)
+        calc(var(--docs-demo-border-radius) - 1px);
       max-height: 450px;
       overflow: auto;
     }
@@ -48,4 +50,4 @@ export const DemoEditor = () => {
       </div>
     </div>
   );
-}
+};

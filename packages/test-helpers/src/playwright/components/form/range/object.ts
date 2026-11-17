@@ -39,6 +39,8 @@ export class EuiRangeObject extends BaseObject {
    * zero elements otherwise.
    */
   public get numberInput(): Locator {
-    return this.root.and(this.scope.locator(EuiRangeSelectors.NUMBER_INPUT_SELECTOR));
+    return this.root.and(
+      this.scope.locator(EuiRangeSelectors.NUMBER_INPUT_SELECTOR)
+    );
   }
 }
