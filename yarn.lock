@@ -18843,12 +18843,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:esbuild-wasm@^0.23.0":
-  version: 0.23.1
-  resolution: "esbuild-wasm@npm:0.23.1"
+"esbuild@npm:esbuild-wasm@^0.28.1":
+  version: 0.28.2
+  resolution: "esbuild-wasm@npm:0.28.2"
   bin:
     esbuild: bin/esbuild
-  checksum: 10c0/20217aae4cf8dbde5cd1114bfe74e292c59ae8541945f22162046a71403bf7d3da6b3f6b77c37291b035a23f4aa43c6c93930732d00201b600fd24f789015f79
+  checksum: 10c0/1dd9a680b12e688850d841da416bb874e42383bd1707f272b1fcfb1c250a4ec6b7d5d69d1821921f503b7e09914ca4ed8785460256e3926a38b43b268bd5d59b
   languageName: node
   linkType: hard
 
