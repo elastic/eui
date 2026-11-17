@@ -6,43 +6,29 @@
  * Side Public License, v 1.
  */
 
-const grantClipboardPermissions = () => {
-  // Force Chrome devtools to allow reading from the clipboard
-  cy.wrap(
-    Cypress.automation('remote:debugger:protocol', {
-      command: 'Browser.grantPermissions',
-      params: {
-        permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'],
-        origin: window.location.origin,
-      },
-    })
-  );
-
-  // For some annoying reason, mocking selection+copying throws a bunch
-  // of document errors from the code coverage reporter - just ignore them
-  Cypress.on('uncaught:exception', (err) => {
-    console.log(err.message);
-    if (
-      err.message.includes(
-        "Cannot read properties of null (reading 'document')"
-      )
-    ) {
-      return false;
-    }
-  });
-};
-
 const copyToClipboard = () => {
-  grantClipboardPermissions();
-
   return cy.window().then((window) => {
-    window.document.execCommand('copy');
-    return window.navigator.clipboard.readText();
+    const selectedText = window.getSelection()?.toString() ?? '';
+    const clipboardData = new window.DataTransfer();
+    const copyEvent = new window.ClipboardEvent('copy', {
+      bubbles: true,
+      cancelable: true,
+    });
+    Object.defineProperty(copyEvent, 'clipboardData', {
+      value: clipboardData,
+    });
+
+    window.document.dispatchEvent(copyEvent);
+
+    // Browsers ignore `clipboardData` changes unless the copy is canceled
+    return copyEvent.defaultPrevented
+      ? clipboardData.getData('text/plain')
+      : selectedText;
   });
 };
 
 const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
-  cy.get(selectorToCopy).then(($el) => {
+  cy.get(selectorToCopy).should(($el) => {
     const el = $el[0];
     const document = el.ownerDocument;
     const range = document.createRange();
@@ -58,6 +44,7 @@ const selectAndCopy = (selectorToCopy: string, startSelector?: string) => {
     }
     document.getSelection()!.removeAllRanges();
     document.getSelection()!.addRange(range);
+    expect(document.getSelection()!.toString()).not.to.be.empty;
   });
 
   return copyToClipboard();

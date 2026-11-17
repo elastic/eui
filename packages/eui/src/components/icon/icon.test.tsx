@@ -57,8 +57,8 @@ const testIcon =
 describe('EuiIcon', () => {
   test('is rendered', testIcon({ type: 'magnify', ...requiredProps }));
 
-  shouldRenderCustomStyles(<EuiIcon type="customImg" />);
-  shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />, {
+  shouldRenderCustomStyles(<EuiIcon type="customImg" aria-hidden={true} />);
+  shouldRenderCustomStyles(<EuiIcon type="videoPlayer" aria-hidden={true} />, {
     wrapper: ({ children }) => {
       // Need to preload the icon so we don't run into Emotion CSS `isLoading`/`isLoaded` race conditions
       appendIconComponentCache({ videoPlayer: EuiIconVideoPlayer });
@@ -70,7 +70,9 @@ describe('EuiIcon', () => {
     test('onIconLoad', async () => {
       const onIconLoad = jest.fn();
 
-      render(<EuiIcon type="magnify" onIconLoad={onIconLoad} />);
+      render(
+        <EuiIcon type="magnify" onIconLoad={onIconLoad} aria-hidden={true} />
+      );
       expect(onIconLoad).toHaveBeenCalledTimes(0);
 
       await waitFor(() => {
@@ -198,13 +200,17 @@ describe('EuiIcon', () => {
         </span>
       );
     };
-    const { container } = render(<EuiIcon type={CustomIcon} />);
+    const { container } = render(
+      <EuiIcon type={CustomIcon} aria-label="heart" />
+    );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
-      const { container } = render(<EuiIcon type="videoPlayer" />);
+      const { container } = render(
+        <EuiIcon type="videoPlayer" aria-hidden={true} />
+      );
       expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
 
@@ -212,7 +218,9 @@ describe('EuiIcon', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
-      const { container } = render(<EuiIcon type="videoPlayer" />);
+      const { container } = render(
+        <EuiIcon type="videoPlayer" aria-hidden={true} />
+      );
       expect(container.firstChild).not.toHaveAttribute('data-is-loading');
     });
 
@@ -220,7 +228,9 @@ describe('EuiIcon', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
-      const { container } = render(<EuiIcon type="accessibility" />);
+      const { container } = render(
+        <EuiIcon type="accessibility" aria-hidden={true} />
+      );
       expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
   });

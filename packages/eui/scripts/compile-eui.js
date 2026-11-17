@@ -9,7 +9,6 @@ const {
   IGNORE_BUILD,
   IGNORE_TESTS,
   IGNORE_TESTENV,
-  IGNORE_PACKAGES,
 } = require('../../../scripts/constants');
 
 const packageRootDir = path.resolve(__dirname, '..');
@@ -183,13 +182,8 @@ async function compileLib() {
     ...IGNORE_BUILD,
     ...IGNORE_TESTS,
     ...IGNORE_TESTENV,
-    ...IGNORE_PACKAGES,
   ].join(',');
-  const testEnvIgnore = [
-    ...IGNORE_BUILD,
-    ...IGNORE_TESTS,
-    ...IGNORE_PACKAGES,
-  ].join(',');
+  const testEnvIgnore = [...IGNORE_BUILD, ...IGNORE_TESTS].join(',');
 
   const babelConfigs = [
     {

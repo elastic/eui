@@ -68,6 +68,14 @@ cat <<YAML | buildkite-agent pipeline upload
 steps:
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":playwright: Flake detection (${FLAKY_REPEAT}× affected specs)"
+    agents:
+      provider: gcp
+      image: family/eui-ubuntu-2204
+      machineType: c4d-standard-4
+      preemptible: true
+      diskType: hyperdisk-balanced
+      diskSizeGb: 30
+      spotZones: us-central1-a,us-central1-b,us-central1-c
     env:
       TEST_TYPE: 'test-helpers'
       PLAYWRIGHT_ARGS: '${affected} --repeat-each=${FLAKY_REPEAT}'
