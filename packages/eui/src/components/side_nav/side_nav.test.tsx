@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -336,7 +337,7 @@ describe('EuiSideNav', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
-      test('toggles `aria-expanded` and child items when a collapsible item is clicked', () => {
+      test('toggles `aria-expanded` and child items when a collapsible item is clicked', async () => {
         const sideNav = [
           {
             name: 'A',
@@ -360,11 +361,15 @@ describe('EuiSideNav', () => {
         expect(toggle).toHaveAttribute('aria-expanded', 'false');
         expect(queryByText('C')).not.toBeInTheDocument();
 
-        fireEvent.click(toggle);
+        await act(async () => {
+          await userEvent.click(toggle);
+        });
         expect(toggle).toHaveAttribute('aria-expanded', 'true');
         expect(queryByText('C')).toBeInTheDocument();
 
-        fireEvent.click(toggle);
+        await act(async () => {
+          await userEvent.click(toggle);
+        });
         expect(toggle).toHaveAttribute('aria-expanded', 'false');
         expect(queryByText('C')).not.toBeInTheDocument();
 
