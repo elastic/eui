@@ -261,6 +261,35 @@ describe('EuiCard', () => {
     });
 
     describe('paddingSize', () => {
+      test('updates padding and selection spacing when switching to and from none', () => {
+        const card = (paddingSize: 'none' | 's') => (
+          <EuiCard
+            title="Card title"
+            paddingSize={paddingSize}
+            selectable={{ onClick: () => {} }}
+            data-test-subj="card"
+          />
+        );
+        const { container, getByTestSubject, getByRole, rerender } = render(
+          card('none')
+        );
+        const assertNoPadding = () => {
+          expect(getByTestSubject('card')).not.toHaveStyleRule('padding');
+          expect(container.querySelector('.euiSpacer')).not.toBeInTheDocument();
+          expect(getByRole('switch')).toBeInTheDocument();
+        };
+
+        assertNoPadding();
+        rerender(card('s'));
+        expect(getByTestSubject('card')).toHaveStyleRule('padding', '8px');
+        expect(container.querySelector('.euiSpacer')).toHaveStyleRule(
+          'block-size',
+          '8px'
+        );
+        rerender(card('none'));
+        assertNoPadding();
+      });
+
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const { container } = render(
