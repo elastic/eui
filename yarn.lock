@@ -7325,7 +7325,7 @@ __metadata:
     "@emotion/eslint-plugin": "npm:^11.11.0"
     "@emotion/jest": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.0"
-    "@faker-js/faker": "npm:^8.0.2"
+    "@faker-js/faker": "npm:^10.3.0"
     "@fontsource-variable/inter": "npm:^5.3.0"
     "@fontsource-variable/roboto-mono": "npm:^5.3.0"
     "@hello-pangea/dnd": "npm:^16.6.0"
@@ -7361,7 +7361,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^5.59.7"
     "@typescript-eslint/parser": "npm:^5.59.7"
     "@vitejs/plugin-react": "npm:^5.2.0"
-    autoprefixer: "npm:^9.8.6"
+    autoprefixer: "npm:^10.4.27"
     axe-core: "npm:^4.9.0"
     babel-jest: "npm:^29.7.0"
     babel-loader: "npm:^9.1.2"
@@ -8093,13 +8093,6 @@ __metadata:
   version: 10.6.0
   resolution: "@faker-js/faker@npm:10.6.0"
   checksum: 10c0/ee285d597249a019f3a11b6705d1908616ea9e880207ca4f89e6205dbf7e98abd1129f025f5da19484f5e88f556b0629a4363745ff0bbaf1984ebf54cffde6e3
-  languageName: node
-  linkType: hard
-
-"@faker-js/faker@npm:^8.0.2":
-  version: 8.4.1
-  resolution: "@faker-js/faker@npm:8.4.1"
-  checksum: 10c0/4f2aecddcfdc2cc8b50b2d15d1e37302a7c7a5bbd184ae910a9d271bc11248533ca74dcdd4a9ccbe20410553e7af0f6a4d334c5b955635e09a32ddf4a64942d4
   languageName: node
   linkType: hard
 
@@ -14889,7 +14882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.23":
+"autoprefixer@npm:^10.4.23, autoprefixer@npm:^10.4.27":
   version: 10.6.2
   resolution: "autoprefixer@npm:10.6.2"
   dependencies:
@@ -14903,23 +14896,6 @@ __metadata:
   bin:
     autoprefixer: bin/autoprefixer
   checksum: 10c0/16dce8742468c4f956205f2ad3a1b4a8da5a298533796077110dcddd2dfcc439fea693c03aaf503db080c10b24f0a286ae841a54dbd8f78b1aba4a690ac5b7f7
-  languageName: node
-  linkType: hard
-
-"autoprefixer@npm:^9.8.6":
-  version: 9.8.6
-  resolution: "autoprefixer@npm:9.8.6"
-  dependencies:
-    browserslist: "npm:^4.12.0"
-    caniuse-lite: "npm:^1.0.30001109"
-    colorette: "npm:^1.2.1"
-    normalize-range: "npm:^0.1.2"
-    num2fraction: "npm:^1.2.2"
-    postcss: "npm:^7.0.32"
-    postcss-value-parser: "npm:^4.1.0"
-  bin:
-    autoprefixer: bin/autoprefixer
-  checksum: 10c0/cf4451009a00d5b0d3f85e9716ff01bf822e230913403cafa20a66a9c02fe39fe758d2d5e62dab2611e7253858437a43405bba63defa6b895f1377fa60a3d307
   languageName: node
   linkType: hard
 
@@ -15514,7 +15490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.12.0, browserslist@npm:^4.21.3, browserslist@npm:^4.21.9, browserslist@npm:^4.22.2, browserslist@npm:^4.23.0, browserslist@npm:^4.24.0, browserslist@npm:^4.24.2, browserslist@npm:^4.24.3, browserslist@npm:^4.24.4, browserslist@npm:^4.28.1, browserslist@npm:^4.28.9":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.21.3, browserslist@npm:^4.21.9, browserslist@npm:^4.22.2, browserslist@npm:^4.23.0, browserslist@npm:^4.24.0, browserslist@npm:^4.24.2, browserslist@npm:^4.24.3, browserslist@npm:^4.24.4, browserslist@npm:^4.28.1, browserslist@npm:^4.28.9":
   version: 4.29.6
   resolution: "browserslist@npm:4.29.6"
   dependencies:
@@ -15822,7 +15798,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001599":
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001599":
   version: 1.0.30001770
   resolution: "caniuse-lite@npm:1.0.30001770"
   checksum: 10c0/02d15a8b723af65318cb4d888a52bb090076898da7b0de99e8676d537f8d1d2ae4797e81518e1e30cbfe84c33b048c322e8bfafc5b23cfee8defb0d2bf271149
@@ -16441,7 +16417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^1.2.1, colorette@npm:^1.4.0":
+"colorette@npm:^1.4.0":
   version: 1.4.0
   resolution: "colorette@npm:1.4.0"
   checksum: 10c0/4955c8f7daafca8ae7081d672e4bd89d553bd5782b5846d5a7e05effe93c2f15f7e9c0cb46f341b59f579a39fcf436241ff79594899d75d5f3460c03d607fe9e
@@ -26475,13 +26451,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"num2fraction@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "num2fraction@npm:1.2.2"
-  checksum: 10c0/3bf17b44af00508a2b0370146629710645c3e3ff3c052893680efe3f4a6ff5c953ce9e54734013b02b35744a49352d54fbc5d8b455fac979047ef17dd8ec74bd
-  languageName: node
-  linkType: hard
-
 "numeral@npm:^2.0.6":
   version: 2.0.6
   resolution: "numeral@npm:2.0.6"
@@ -27391,13 +27360,6 @@ __metadata:
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
   checksum: 10c0/e2e3e8170ab9d7c7421969adaa7e1b31434f789afb9b3f115f6b96d91945041ac3ceb02e9ec6fe6510ff036bcc0bf91e69a1772edc0b707e12b19c0f2d6bcf58
-  languageName: node
-  linkType: hard
-
-"picocolors@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "picocolors@npm:0.2.1"
-  checksum: 10c0/98a83c77912c80aea0fc518aec184768501bfceafa490714b0f43eda9c52e372b844ce0a591e822bbfe5df16dcf366be7cbdb9534d39cf54a80796340371ee17
   languageName: node
   linkType: hard
 
@@ -28402,16 +28364,6 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.31
   checksum: 10c0/346291703e1f2dd954144d2bb251713dad6ae10e8aa05c3873dee2fc7a30d72da7866bec060abd932b9b839bc1495f73d813dde5312750a69d7ad33c435ce7ea
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^7.0.32":
-  version: 7.0.39
-  resolution: "postcss@npm:7.0.39"
-  dependencies:
-    picocolors: "npm:^0.2.1"
-    source-map: "npm:^0.6.1"
-  checksum: 10c0/fd27ee808c0d02407582cccfad4729033e2b439d56cd45534fb39aaad308bb35a290f3b7db5f2394980e8756f9381b458a625618550808c5ff01a125f51efc53
   languageName: node
   linkType: hard
 
