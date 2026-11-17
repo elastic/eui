@@ -723,6 +723,9 @@ describe('EuiDataGrid', () => {
   });
 
   describe('copying tabular content', () => {
+    const waitForLastRow = () =>
+      cy.get('[data-gridcell-row-index="2"]').should('exist');
+
     const copiedDataColumns = `First\tSecond
 a, 0\tb, 0
 a, 1\tb, 1
@@ -760,6 +763,7 @@ a, footer\tb, footer
 
     it('renders one newline per-row and renders horizontal tab characters between cells', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
+      waitForLastRow();
 
       cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
         expect(copiedText).to.eq(copiedDataColumns);
@@ -768,6 +772,7 @@ a, footer\tb, footer
 
     it('keeps headers aligned with body rows when control columns are present (#9951)', () => {
       cy.realMount(gridWithControlColumns());
+      waitForLastRow();
 
       cy.selectAndCopy(
         '.euiDataGrid__content',
@@ -779,6 +784,7 @@ a, footer\tb, footer
 
     it('excludes control columns from a full-grid copy', () => {
       cy.realMount(gridWithControlColumns());
+      waitForLastRow();
 
       cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
         expect(copiedText).to.eq(copiedDataColumns);
