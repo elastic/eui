@@ -13517,7 +13517,7 @@ exports[`EuiIcon renders custom components 1`] = `
 <span
   aria-label="heart"
   class="euiIcon emotion-euiIcon-m"
-  role="presentation"
+  role="img"
 >
   ❤️
 </span>
