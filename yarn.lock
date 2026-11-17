@@ -9939,14 +9939,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pnpm/npm-conf@npm:^2.1.0":
-  version: 2.2.2
-  resolution: "@pnpm/npm-conf@npm:2.2.2"
+"@pnpm/npm-conf@npm:^3.0.2":
+  version: 3.0.3
+  resolution: "@pnpm/npm-conf@npm:3.0.3"
   dependencies:
     "@pnpm/config.env-replace": "npm:^1.1.0"
     "@pnpm/network.ca-file": "npm:^1.0.1"
     config-chain: "npm:^1.1.11"
-  checksum: 10c0/71393dcfce85603fddd8484b486767163000afab03918303253ae97992615b91d25942f83751366cb40ad2ee32b0ae0a033561de9d878199a024286ff98b0296
+  checksum: 10c0/74a276b4acf609edd60300afef3e5c632ecf9f3e9b9da486314edd0478964815f4a03e9c9b1e0cb1f38e2acfef07e5c2d3211527b8f97a0c44cbb040f2755e5c
   languageName: node
   linkType: hard
 
@@ -29627,11 +29627,11 @@ __metadata:
   linkType: hard
 
 "registry-auth-token@npm:^5.0.1":
-  version: 5.0.2
-  resolution: "registry-auth-token@npm:5.0.2"
+  version: 5.1.1
+  resolution: "registry-auth-token@npm:5.1.1"
   dependencies:
-    "@pnpm/npm-conf": "npm:^2.1.0"
-  checksum: 10c0/20fc2225681cc54ae7304b31ebad5a708063b1949593f02dfe5fb402bc1fc28890cecec6497ea396ba86d6cca8a8480715926dfef8cf1f2f11e6f6cc0a1b4bde
+    "@pnpm/npm-conf": "npm:^3.0.2"
+  checksum: 10c0/86b0f7fd87d327cb4177fee69bcf96563147ea72e206bc9c7a6a50a51c785a31b83a6c45956a489ed292d23b908b2755a075d0b2f7fec1ba91b1fb800b24cee3
   languageName: node
   linkType: hard
 
