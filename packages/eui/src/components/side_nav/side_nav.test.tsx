@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -333,6 +334,44 @@ describe('EuiSideNav', () => {
         const { container } = render(<EuiSideNav items={sideNav} />);
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+
+      test('toggles `aria-expanded` and child items when a collapsible item is clicked', () => {
+        const sideNav = [
+          {
+            name: 'A',
+            id: 0,
+            items: [
+              {
+                name: 'B',
+                id: 1,
+                items: [{ name: 'C', id: 2 }],
+              },
+              { name: 'D', id: 3, href: '#' },
+            ],
+          },
+        ];
+
+        const { getByRole, queryByText } = render(
+          <EuiSideNav items={sideNav} />
+        );
+        const toggle = getByRole('button', { name: 'B' });
+
+        expect(toggle).toHaveAttribute('aria-expanded', 'false');
+        expect(queryByText('C')).not.toBeInTheDocument();
+
+        fireEvent.click(toggle);
+        expect(toggle).toHaveAttribute('aria-expanded', 'true');
+        expect(queryByText('C')).toBeInTheDocument();
+
+        fireEvent.click(toggle);
+        expect(toggle).toHaveAttribute('aria-expanded', 'false');
+        expect(queryByText('C')).not.toBeInTheDocument();
+
+        // Linked items aren't collapsible, so they don't get `aria-expanded`
+        expect(getByRole('link', { name: 'D' })).not.toHaveAttribute(
+          'aria-expanded'
+        );
       });
     });
   });
