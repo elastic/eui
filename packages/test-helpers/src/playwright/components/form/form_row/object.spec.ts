@@ -68,7 +68,7 @@ test.describe('EuiFormRowObject', () => {
     // An inline EuiColorPicker renders a nested EuiFormRow inside the field,
     // the Playground cannot, so one is added by hand.
     await page
-      .locator('.euiFormRow__fieldWrapper')
+      .locator(`[data-test-subj="${TEST_SUBJ}"] > .euiFormRow__fieldWrapper`)
       .evaluate((fieldWrapper) => {
         fieldWrapper.insertAdjacentHTML(
           'beforeend',
