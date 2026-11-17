@@ -35,6 +35,14 @@ const PaletteTools = () => {
 
   return (
     <>
+      <EuiTitle size="s">
+        <h2>Data Vis Color Palettes</h2>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiText component="p" size="s" color="subdued">
+        Contrast checks for data visualization color palettes, to validate color
+        changes.
+      </EuiText>
       <EuiText component="p" size="s" color="subdued">
         Click a square to add to/remove from the palette.
       </EuiText>
@@ -82,8 +90,9 @@ const PaletteTools = () => {
 };
 
 const meta: Meta<typeof PaletteTools> = {
-  title: 'Internal/Tools/Palette',
+  title: 'Tools/Data Vis Color Palette',
   component: PaletteTools,
+  tags: ['internal-tool'],
   parameters: {
     codeSnippet: { skip: true },
     vrt: { skip: true },

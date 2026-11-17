@@ -87,17 +87,11 @@ const colorGridStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export interface ColorGridProps {
+export const ColorGrid: FunctionComponent<{
   palette: Palette;
   colors: ColorMap;
   onToggleColor: (name: string) => void;
-}
-
-export const ColorGrid: FunctionComponent<ColorGridProps> = ({
-  palette,
-  colors,
-  onToggleColor,
-}) => {
+}> = ({ palette, colors, onToggleColor }) => {
   const styles = useEuiMemoizedStyles(colorGridStyles);
   const { euiTheme } = useEuiTheme();
   const { plainDark, plainLight } = euiTheme.colors;
@@ -154,12 +148,12 @@ export const ColorGrid: FunctionComponent<ColorGridProps> = ({
                 css={[styles.cell, styles.interactive]}
                 style={
                   {
-                    [CELL_COLOR_VAR]: value,
+                    [CELL_COLOR_VAR as string]: value,
                     ...(isSelected && {
                       backgroundColor: value,
                       color: getTextColor(value),
                     }),
-                  } as CSSProperties
+                  } satisfies CSSProperties
                 }
                 onClick={() => onToggleColor(name)}
               >

@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, useMemo } from 'react';
 import { css } from '@emotion/react';
+import { mean } from 'lodash';
 
 import { UseEuiTheme, useEuiTheme } from '../../../src/services';
 import { getColorContrast } from '../../../src/services/color/contrast';
@@ -37,22 +38,13 @@ const hairlines =
   (...layers: string[]) =>
   ({ euiTheme }: UseEuiTheme) => {
     const line = euiTheme.colors.borderBaseSubdued;
-    // Solid-color gradients, because `background-color` can't be sized or positioned
+    // Gradients to render the centered hairlines, so we avoid additional divs or shifting borders
     return css`
       background: ${layers
         .map((layer) => `linear-gradient(${line}, ${line}) ${layer} no-repeat`)
         .join(', ')};
     `;
   };
-
-const colHeaderStyles = hairlines('center bottom / 1px 50%');
-const rowHeaderStyles = hairlines('right center / 50% 1px');
-const intersectionStyles = hairlines('center / 1px 100%', 'center / 100% 1px');
-
-export interface ContrastMatrixProps {
-  palette: Palette;
-  colors: ColorMap;
-}
 
 const Swatch: FunctionComponent<{ color: string; label: string }> = ({
   color,
@@ -91,21 +83,16 @@ const passRate = (values: number[]): PassRate | null => {
   };
 };
 
-const mean = (values: number[]) =>
-  values.length > 0
-    ? values.reduce((sum, value) => sum + value, 0) / values.length
-    : null;
-
 const AverageStat: FunctionComponent<{
   label: string;
-  value: number | null;
+  value: number;
 }> = ({ label, value }) => (
   <EuiStat
     reverse
     titleSize="s"
-    title={value == null ? '—' : `${value.toFixed(2)}:1`}
+    title={Number.isNaN(value) ? '—' : `${value.toFixed(2)}:1`}
     description={label}
-    titleColor={value == null ? 'subdued' : 'default'}
+    titleColor={Number.isNaN(value) ? 'subdued' : 'default'}
     titleElement="p"
   />
 );
@@ -140,10 +127,10 @@ const PassRateStat: FunctionComponent<{
   );
 };
 
-export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
-  palette,
-  colors,
-}) => {
+export const ContrastMatrix: FunctionComponent<{
+  palette: Palette;
+  colors: ColorMap;
+}> = ({ palette, colors }) => {
   const { euiTheme } = useEuiTheme();
 
   const themeBackgroundColor = euiTheme.colors.backgroundBasePlain;
@@ -208,7 +195,7 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
               <th
                 key={columnColor.name}
                 scope="col"
-                css={[cellStyles, colHeaderStyles]}
+                css={[cellStyles, hairlines('center bottom / 1px 50%')]}
               >
                 <Swatch color={columnColor.value} label={columnColor.name} />
               </th>
@@ -218,14 +205,20 @@ export const ContrastMatrix: FunctionComponent<ContrastMatrixProps> = ({
         <tbody>
           {rows.map((row) => (
             <tr key={row.name}>
-              <th scope="row" css={[cellStyles, rowHeaderStyles]}>
+              <th
+                scope="row"
+                css={[cellStyles, hairlines('right center / 50% 1px')]}
+              >
                 <Swatch color={row.value} label={row.name} />
               </th>
 
               {row.ratios.map((ratio, column) => (
                 <td
                   key={columns[column].name}
-                  css={[cellStyles, intersectionStyles]}
+                  css={[
+                    cellStyles,
+                    hairlines('center / 1px 100%', 'center / 100% 1px'),
+                  ]}
                   title={`${columns[column].name} / ${
                     row.name
                   }: ${ratio.toFixed(2)}:1`}

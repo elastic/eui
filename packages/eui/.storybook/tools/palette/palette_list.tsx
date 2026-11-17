@@ -26,17 +26,11 @@ import {
   reorderPaletteHues,
 } from './palette';
 
-export interface PaletteListProps {
+export const PaletteList: FunctionComponent<{
   palette: Palette;
   colors: ColorMap;
   onReorder: (palette: Palette) => void;
-}
-
-export const PaletteList: FunctionComponent<PaletteListProps> = ({
-  palette,
-  colors,
-  onReorder,
-}) => {
+}> = ({ palette, colors, onReorder }) => {
   const fontSize = useEuiFontSize('xs');
   const groups = useMemo(() => groupPaletteByHue(palette), [palette]);
 
