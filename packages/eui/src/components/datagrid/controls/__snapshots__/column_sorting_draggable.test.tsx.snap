@@ -135,6 +135,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
       tabindex="0"
     >
       <span
+        aria-hidden="true"
         color="subdued"
         data-euiicon-type="dragVertical"
       />
