@@ -38,6 +38,8 @@ const KIBANA_PREP_COMMITS_FILE = 'packages/release-cli/kibana-prep-commits';
 const KIBANA_PREP_COMMITS_HEADER = `# List Kibana prep commits to cherry-pick during the nightly Kibana integration run.
 # Add URLs under @next, one per line:
 # https://github.com/elastic/kibana/pull/NNNN/commits/COMMIT_SHA
+# or
+# https://github.com/elastic/kibana/commit/COMMIT_SHA
 #
 # On release, @next moves to @previous and @previous is cleared.
 # Nightly cherry-picks both sections, skipping commits that are missing or already applied.
@@ -98,6 +100,24 @@ const rotateKibanaPrepCommits = async (
   return filePath;
 };
 
+const getUpcomingEuiVersion = async (
+  rootWorkspaceDir: string,
+  workspaces: Array<YarnWorkspace>
+): Promise<string | undefined> => {
+  const euiWorkspace = workspaces.find(({ name }) => name === '@elastic/eui');
+  if (!euiWorkspace) return undefined;
+
+  const workspaceDir = path.join(rootWorkspaceDir, euiWorkspace.location);
+  const { changelogMap, hasChanges } =
+    await collateChangelogFiles(workspaceDir);
+  if (!hasChanges) return undefined;
+
+  return getUpcomingVersion(
+    await getWorkspacePackageVersion(workspaceDir),
+    getVersionTypeFromChangelog(changelogMap)
+  );
+};
+
 /**
  * Update version numbers and yearly changelogs based on workspace
  * changelog files.
@@ -119,6 +139,7 @@ export const stepUpdateVersions = async (
   const changedWorkspaces: YarnWorkspace[] = [];
   const rootWorkspaceDir = getRootWorkspaceDir();
   const snapshotId = getUniqueSnapshotId();
+  const euiVersion = await getUpcomingEuiVersion(rootWorkspaceDir, workspaces);
 
   for (const workspace of workspaces) {
     logger.debug(`Calculating changes in ${workspace.name}`);
@@ -157,7 +178,8 @@ export const stepUpdateVersions = async (
         workspaceDir,
         changelog,
         newVersion,
-        workspace.name
+        workspace.name,
+        euiVersion
       );
       await deleteObsoleteChangelogs(processedChangelogFiles);
 

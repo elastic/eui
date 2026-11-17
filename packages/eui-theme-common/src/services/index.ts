@@ -6,4 +6,6 @@
  * Side Public License, v 1.
  */
 
+export * from './color_palette';
+export * from './eui_palettes';
 export * from './vis_color_store';

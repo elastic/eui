@@ -29,7 +29,7 @@ describe('EuiIcons', () => {
     const MLGrid = () => (
       <div>
         {MLIcons.map((glyph) => (
-          <EuiIcon className="eui-alignMiddle" type={glyph} />
+          <EuiIcon className="eui-alignMiddle" type={glyph} title={glyph} />
         ))}
       </div>
     );
@@ -37,8 +37,8 @@ describe('EuiIcons', () => {
     it('has zero violations on first render', () => {
       cy.mount(<MLGrid />);
       cy.get('div[data-cy-root]')
-        .find('svg', { timeout: 5000 })
-        .should('have.length', 8);
+        .find('svg > title', { timeout: 5000 })
+        .should('have.length', MLIcons.length);
       cy.checkAxe();
     });
   });

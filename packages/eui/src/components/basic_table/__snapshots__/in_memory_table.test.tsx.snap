@@ -71,7 +71,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
 
 exports[`EuiInMemoryTable behavior pagination 1`] = `
 <nav
-  aria-label="Pagination for table: "
+  aria-label="Pagination for table: Test table"
   class="euiPagination emotion-euiPagination"
 >
   <span

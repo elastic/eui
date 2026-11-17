@@ -8,7 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
-import type { PlayFunctionContext } from 'storybook/internal/csf';
+import type { StoryContext } from 'storybook/internal/csf';
 import { expect, fireEvent, waitFor } from 'storybook/test';
 import type { DragDropContextProps } from '@hello-pangea/dnd';
 
@@ -113,7 +113,7 @@ export const WithinFlyouts: Story = {
     ),
   },
   render: (args) => <VRTStory type="flyout" {...args} />,
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+  play: async ({ canvasElement }: StoryContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
     await waitFor(async () => {

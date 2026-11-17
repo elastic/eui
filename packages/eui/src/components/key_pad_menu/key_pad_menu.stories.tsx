@@ -75,22 +75,22 @@ export const Playground: Story = {
   args: {
     children: [
       <EuiKeyPadMenuItem label="Dashboard">
-        <EuiIcon type="dashboardApp" size="l" />
+        <EuiIcon type="dashboardApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Canvas">
-        <EuiIcon type="canvasApp" size="l" />
+        <EuiIcon type="canvasApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Lens">
-        <EuiIcon type="lensApp" size="l" />
+        <EuiIcon type="lensApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Visualize">
-        <EuiIcon type="visualizeApp" size="l" />
+        <EuiIcon type="visualizeApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Graph">
-        <EuiIcon type="graphApp" size="l" />
+        <EuiIcon type="graphApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Advanced Settings">
-        <EuiIcon type="advancedSettingsApp" size="l" />
+        <EuiIcon type="advancedSettingsApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
     ],
   },
@@ -106,7 +106,7 @@ export const CheckableSingle: Story = {
         name="single-checkable-radio"
         onChange={onChange}
       >
-        <EuiIcon type="dashboardApp" size="l" />
+        <EuiIcon type="dashboardApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-1"
@@ -116,7 +116,7 @@ export const CheckableSingle: Story = {
         onChange={onChange}
         isSelected
       >
-        <EuiIcon type="canvasApp" size="l" />
+        <EuiIcon type="canvasApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-2"
@@ -125,7 +125,7 @@ export const CheckableSingle: Story = {
         name="single-checkable-radio"
         onChange={onChange}
       >
-        <EuiIcon type="lensApp" size="l" />
+        <EuiIcon type="lensApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-3"
@@ -135,7 +135,7 @@ export const CheckableSingle: Story = {
         isDisabled
         onChange={onChange}
       >
-        <EuiIcon type="visualizeApp" size="l" />
+        <EuiIcon type="visualizeApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-4"
@@ -144,7 +144,7 @@ export const CheckableSingle: Story = {
         name="single-checkable-radio"
         onChange={onChange}
       >
-        <EuiIcon type="graphApp" size="l" />
+        <EuiIcon type="graphApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-5"
@@ -153,7 +153,7 @@ export const CheckableSingle: Story = {
         name="single-checkable-radio"
         onChange={onChange}
       >
-        <EuiIcon type="advancedSettingsApp" size="l" />
+        <EuiIcon type="advancedSettingsApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
     ],
     checkable: {
@@ -172,7 +172,7 @@ export const CheckableMulti: Story = {
         checkable="multi"
         onChange={onChange}
       >
-        <EuiIcon type="dashboardApp" size="l" />
+        <EuiIcon type="dashboardApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-1"
@@ -181,7 +181,7 @@ export const CheckableMulti: Story = {
         onChange={onChange}
         isSelected
       >
-        <EuiIcon type="canvasApp" size="l" />
+        <EuiIcon type="canvasApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-2"
@@ -189,7 +189,7 @@ export const CheckableMulti: Story = {
         checkable="multi"
         onChange={onChange}
       >
-        <EuiIcon type="lensApp" size="l" />
+        <EuiIcon type="lensApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-3"
@@ -198,7 +198,7 @@ export const CheckableMulti: Story = {
         isDisabled
         onChange={onChange}
       >
-        <EuiIcon type="visualizeApp" size="l" />
+        <EuiIcon type="visualizeApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-4"
@@ -206,7 +206,7 @@ export const CheckableMulti: Story = {
         checkable="multi"
         onChange={onChange}
       >
-        <EuiIcon type="graphApp" size="l" />
+        <EuiIcon type="graphApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         id="keyPadMenuItem-5"
@@ -214,7 +214,7 @@ export const CheckableMulti: Story = {
         checkable="multi"
         onChange={onChange}
       >
-        <EuiIcon type="advancedSettingsApp" size="l" />
+        <EuiIcon type="advancedSettingsApp" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
     ],
     checkable: {
@@ -230,10 +230,10 @@ export const HighContrast: Story = {
   args: {
     children: [
       <EuiKeyPadMenuItem label="Button" autoFocus>
-        <EuiIcon type="grid" size="l" />
+        <EuiIcon type="grid" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Link" href="#">
-        <EuiIcon type="link" size="l" />
+        <EuiIcon type="link" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         label="Badge"
@@ -241,13 +241,13 @@ export const HighContrast: Story = {
         betaBadgeTooltipContent="This module is an external app."
         betaBadgeIconType="external"
       >
-        <EuiIcon type="beta" size="l" />
+        <EuiIcon type="beta" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Selected" isSelected>
-        <EuiIcon type="faceHappy" size="l" />
+        <EuiIcon type="faceHappy" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem label="Disabled" isDisabled>
-        <EuiIcon type="faceSad" size="l" />
+        <EuiIcon type="faceSad" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
         label="Selected and disabled"
@@ -255,7 +255,7 @@ export const HighContrast: Story = {
         isDisabled
         href="#"
       >
-        <EuiIcon type="faceNeutral" size="l" />
+        <EuiIcon type="faceNeutral" size="l" aria-hidden={true} />
       </EuiKeyPadMenuItem>,
     ],
   },

@@ -9,7 +9,6 @@ package.json
 docs
 packages
 scripts
-generator-eui
 cypress
 react-datepicker
 .eslintrc.js

@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import {
+  EuiPaddingSize,
   euiPaddingSize,
   logicalCSS,
   logicalTextAlignCSS,
@@ -16,6 +17,7 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../global_styling/mixins';
 
+import { EuiCardProps } from './card';
 const paddingKey = 'm';
 const halfPaddingKey = 's';
 
@@ -25,8 +27,12 @@ const halfPaddingKey = 's';
  * 4. Ensures the contents always stretch no matter the flex layout
  */
 
-export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCardStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiCardProps['paddingSize']
+) => {
   const { euiTheme } = euiThemeContext;
+  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
   const spacing = euiPaddingSize(euiThemeContext, paddingKey);
   const halfSpacing = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
@@ -142,6 +148,13 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
         position: relative;
         overflow: hidden;
 
+        /* Padding based sizing & negative margins */
+        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
+        ${logicalCSS('left', `-${paddingAmount}`)}
+        ${logicalCSS('top', `-${paddingAmount}`)}
+        /* Ensure the parent is only as tall as the image */
+        ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
+
         /* Match border radius */
         ${logicalCSS(
           'border-top-left-radius',
@@ -168,6 +181,11 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         ${logicalCSS('top', '50%')}
         ${logicalCSS('left', '50%')}
+        /* Important needed to override current Sass styles on .euiIcon */
+        transform: translate(
+          -50%,
+          calc(-50% + -${paddingAmount})
+        ) !important; /* stylelint-disable-line declaration-no-important */
       `,
 
       layout: {
@@ -180,6 +198,19 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
       },
     },
   };
+};
+
+// Static per-size generators so `useEuiMemoizedStyles` can share them across instances
+export const euiCardStylesByPadding: Record<
+  EuiPaddingSize,
+  (euiThemeContext: UseEuiTheme) => ReturnType<typeof euiCardStyles>
+> = {
+  none: (euiThemeContext) => euiCardStyles(euiThemeContext, 'none'),
+  xs: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xs'),
+  s: (euiThemeContext) => euiCardStyles(euiThemeContext, 's'),
+  m: (euiThemeContext) => euiCardStyles(euiThemeContext, 'm'),
+  l: (euiThemeContext) => euiCardStyles(euiThemeContext, 'l'),
+  xl: (euiThemeContext) => euiCardStyles(euiThemeContext, 'xl'),
 };
 
 export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
@@ -220,12 +251,20 @@ export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCardBetaBadgeStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCardBetaBadgeStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiCardProps['paddingSize']
+) => {
+  const { euiTheme } = euiThemeContext;
+  const padding = euiPaddingSize(euiThemeContext, paddingSize!);
+
   return {
     hasBetaBadge: css`
       position: relative;
       /* Ensure badges are visible outside of the whole card */
       overflow: visible;
+      /* Increase top padding to make room */
+      ${logicalCSS('padding-top', `calc(${padding} + ${euiTheme.size.s})`)}
     `,
 
     euiCard__betaBadgeAnchor: css`
@@ -239,6 +278,7 @@ export const euiCardBetaBadgeStyles = ({ euiTheme }: UseEuiTheme) => {
       z-index: 3;
       /* Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller) */
       ${logicalCSS('min-width', `min(30%, ${euiTheme.base * 7}px)`)}
+      ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)}
     `,
 
     euiCard__betaBadge: css`
@@ -246,32 +286,3 @@ export const euiCardBetaBadgeStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
   };
 };
-
-/** Padding-dependent styles must stay outside the memoized theme styles. */
-export const euiCardPaddingStyles = (
-  { euiTheme }: UseEuiTheme,
-  padding: string | null
-) => ({
-  imagePadding: css`
-    /* Padding based sizing & negative margins */
-    ${logicalCSS('width', `calc(100% + (${padding} * 2))`)}
-    ${logicalCSS('left', `-${padding}`)}
-    ${logicalCSS('top', `-${padding}`)}
-    /* Ensure the parent is only as tall as the image */
-    ${logicalCSS('margin-bottom', `-${padding}`)}
-  `,
-  iconPadding: css`
-    /* Important needed to override current Sass styles on .euiIcon */
-    transform: translate(
-      -50%,
-      calc(-50% + -${padding})
-    ) !important; /* stylelint-disable-line declaration-no-important */
-  `,
-  betaBadgePadding: css`
-    /* Increase top padding to make room */
-    ${logicalCSS('padding-top', `calc(${padding} + ${euiTheme.size.s})`)}
-  `,
-  betaBadgeAnchorPadding: css`
-    ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)}
-  `,
-});

@@ -21,7 +21,6 @@ import {
   useEuiMemoizedStyles,
   cloneElementWithCss,
 } from '../../services';
-import { euiPaddingSize } from '../../global_styling';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 
@@ -36,8 +35,7 @@ import { EuiSpacer } from '../spacer';
 import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import {
   euiCardBetaBadgeStyles,
-  euiCardStyles,
-  euiCardPaddingStyles,
+  euiCardStylesByPadding,
   euiCardTextStyles,
 } from './card.styles';
 
@@ -173,11 +171,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   const euiThemeContext = useEuiTheme();
-  const styles = useEuiMemoizedStyles(euiCardStyles);
-  const paddingStyles = euiCardPaddingStyles(
-    euiThemeContext,
-    euiPaddingSize(euiThemeContext, paddingSize)
-  );
+  const styles = useEuiMemoizedStyles(euiCardStylesByPadding[paddingSize]);
   const cardStyles = [
     styles.card.euiCard,
     // Text alignment should always be left when horizontal
@@ -193,7 +187,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const mainStyles = [styles.main.euiCard__main, styles.main.layout[layout]];
 
   const textStyles = useEuiMemoizedStyles(euiCardTextStyles);
-  const betaStyles = useEuiMemoizedStyles(euiCardBetaBadgeStyles);
   const textCSS = [
     textStyles.euiCard__text,
     // Text alignment should always be left when horizontal
@@ -236,7 +229,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     if (isValidElement(image) || typeof image === 'string') {
       const imageStyles = [
         styles.image.euiCard__image,
-        paddingStyles.imagePadding,
         display === 'transparent' && styles.image.transparent,
       ];
       imageNode = (
@@ -254,7 +246,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     const iconStyles = [
       styles.icon.euiCard__icon,
       styles.icon.layout[layout],
-      imageNode && [styles.icon.withImage, paddingStyles.iconPadding],
+      imageNode && styles.icon.withImage,
     ];
     iconNode = cloneElementWithCss(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),
@@ -286,14 +278,11 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let optionalBetaBadgeID = '';
   let optionalBetaCSS;
   if (betaBadgeProps?.label) {
-    optionalBetaCSS = [betaStyles.hasBetaBadge, paddingStyles.betaBadgePadding];
+    const betaStyles = euiCardBetaBadgeStyles(euiThemeContext, paddingSize);
+    optionalBetaCSS = betaStyles.hasBetaBadge;
 
     const { anchorProps, ...cleanedBetaBadgeProps } = betaBadgeProps;
-    const anchorCSS = [
-      betaStyles.euiCard__betaBadgeAnchor,
-      paddingStyles.betaBadgeAnchorPadding,
-      anchorProps?.css,
-    ];
+    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor, anchorProps?.css];
     const badgeCSS = [betaStyles.euiCard__betaBadge, betaBadgeProps?.css];
 
     optionalBetaBadgeID = `${ariaId}BetaBadge`;

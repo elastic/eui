@@ -61,6 +61,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   checkableType = 'radio',
   label,
   labelProps,
+  name,
   checked,
   disabled,
   hasShadow,
@@ -99,6 +100,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   if (checkableType === 'radio') {
     checkableElement = (
       <EuiRadio
+        name={name}
         checked={checked}
         disabled={disabled}
         {...(rest as EuiRadioProps)}
@@ -108,6 +110,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     checkableElement = (
       <EuiCheckbox
         inputRef={inputEl}
+        name={name}
         checked={checked}
         disabled={disabled}
         {...rest}

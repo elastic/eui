@@ -18,7 +18,12 @@ jest.mock('../radio', () => ({ EuiRadio: 'eui_radio' }));
 describe('EuiRadioGroup', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiRadioGroup {...requiredProps} options={[]} onChange={() => {}} />
+      <EuiRadioGroup
+        {...requiredProps}
+        name="name"
+        options={[]}
+        onChange={() => {}}
+      />
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -28,6 +33,7 @@ describe('EuiRadioGroup', () => {
     test('options are rendered', () => {
       const { container } = render(
         <EuiRadioGroup
+          name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1' },
             { id: '2', label: 'Option #2', disabled: true },
@@ -57,6 +63,7 @@ describe('EuiRadioGroup', () => {
     test('idSelected is rendered', () => {
       const { container } = render(
         <EuiRadioGroup
+          name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1' },
             { id: '2', label: 'Option #2' },
@@ -87,6 +94,7 @@ describe('EuiRadioGroup', () => {
     test('legend is rendered', () => {
       const { container } = render(
         <EuiRadioGroup
+          name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1' },
             { id: '2', label: 'Option #2' },

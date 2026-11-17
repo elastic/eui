@@ -47,13 +47,11 @@ const config = {
     '\\.(css|less|scss)$': '<rootDir>/scripts/jest/mocks/style_mock.js',
   },
   setupFiles: [
-    '<rootDir>/scripts/jest/setup/enzyme.js',
     '<rootDir>/scripts/jest/setup/throw_on_console_error.js',
     '<rootDir>/scripts/jest/setup/mocks.js',
   ],
   setupFilesAfterEnv: [
     '<rootDir>/scripts/jest/setup/polyfills.js',
-    '<rootDir>/scripts/jest/setup/unmount_enzyme.js',
     '<rootDir>/scripts/jest/setup/matchers.js',
   ],
   coverageDirectory: '<rootDir>/reports/jest-coverage',
@@ -67,10 +65,7 @@ const config = {
     }],
   },
   transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
-  snapshotSerializers: [
-    '<rootDir>/node_modules/enzyme-to-json/serializer',
-    '<rootDir>/scripts/jest/setup/emotion',
-  ],
+  snapshotSerializers: ['<rootDir>/scripts/jest/setup/emotion'],
   // react version and user permissions aware cache directory
   cacheDirectory: `${getCacheDirectory()}_react-${reactVersion}`,
   reporters: [

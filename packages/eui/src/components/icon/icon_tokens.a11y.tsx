@@ -74,7 +74,7 @@ describe('EuiIcons', () => {
     const TokenGrid = () => (
       <div>
         {TokenIcons.map((glyph) => (
-          <EuiIcon className="eui-alignMiddle" type={glyph} />
+          <EuiIcon className="eui-alignMiddle" type={glyph} title={glyph} />
         ))}
       </div>
     );
@@ -82,8 +82,8 @@ describe('EuiIcons', () => {
     it('has zero violations on first render', () => {
       cy.mount(<TokenGrid />);
       cy.get('div[data-cy-root]')
-        .find('svg', { timeout: 5000 })
-        .should('have.length', 53);
+        .find('svg > title', { timeout: 5000 })
+        .should('have.length', TokenIcons.length);
       cy.checkAxe();
     });
   });
