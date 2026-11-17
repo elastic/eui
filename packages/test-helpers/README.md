@@ -60,6 +60,7 @@ their own version at runtime.
 | `EuiCheckboxObject` | [src/components/form/checkbox/README.md](src/components/form/checkbox/README.md) |
 | `EuiSwitchObject` | [src/components/form/switch/README.md](src/components/form/switch/README.md) |
 | `EuiFieldTextObject` | [src/components/form/field_text/README.md](src/components/form/field_text/README.md) |
+| `EuiFormRowObject` | [src/components/form/form_row/README.md](src/components/form/form_row/README.md) |
 | `EuiSelectObject` | [src/components/form/select/README.md](src/components/form/select/README.md) |
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
 | `EuiFlyoutObject` | [src/components/flyout/README.md](src/components/flyout/README.md) |
