@@ -8,19 +8,22 @@
 
 const copyToClipboard = () => {
   return cy.window().then((window) => {
+    const selectedText = window.getSelection()?.toString() ?? '';
     const clipboardData = new window.DataTransfer();
-    clipboardData.setData(
-      'text/plain',
-      window.getSelection()?.toString() ?? ''
-    );
-    const copyEvent = new window.ClipboardEvent('copy');
+    const copyEvent = new window.ClipboardEvent('copy', {
+      bubbles: true,
+      cancelable: true,
+    });
     Object.defineProperty(copyEvent, 'clipboardData', {
       value: clipboardData,
     });
 
     window.document.dispatchEvent(copyEvent);
 
-    return clipboardData.getData('text/plain');
+    // Browsers ignore `clipboardData` changes unless the copy is canceled
+    return copyEvent.defaultPrevented
+      ? clipboardData.getData('text/plain')
+      : selectedText;
   });
 };
 
