@@ -11,6 +11,7 @@ exports[`EuiCheckbox renders 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="empty"
         role="presentation"
@@ -38,6 +39,7 @@ exports[`EuiCheckbox renders props: checked 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-selected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="check"
         role="presentation"
@@ -64,6 +66,7 @@ exports[`EuiCheckbox renders props: disabled 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-disabled-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="empty"
         role="presentation"
@@ -90,6 +93,7 @@ exports[`EuiCheckbox renders props: label 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="empty"
         role="presentation"
@@ -123,6 +127,7 @@ exports[`EuiCheckbox renders props: labelProps 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="empty"
         role="presentation"
@@ -156,6 +161,7 @@ exports[`EuiCheckbox renders props: readOnly 1`] = `
       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiCheckbox__icon-check"
         data-euiicon-type="empty"
         role="presentation"

@@ -59,6 +59,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
             Tag
           </span>
           <span
+            aria-hidden="true"
             color="inherit"
             data-euiicon-type="chevronSingleDown"
           />

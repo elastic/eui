@@ -19,6 +19,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-selected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="dot"
       />
@@ -45,6 +46,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -82,6 +84,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -107,6 +110,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -139,6 +143,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -164,6 +169,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -196,6 +202,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -221,6 +228,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-disabled-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -254,6 +262,7 @@ exports[`EuiRadioGroup props value is propagated to radios 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />
@@ -279,6 +288,7 @@ exports[`EuiRadioGroup props value is propagated to radios 1`] = `
       class="euiRadio__circle emotion-euiRadio__circle-unselected"
     >
       <span
+        aria-hidden="true"
         class="emotion-euiRadio__icon"
         data-euiicon-type="empty"
       />

@@ -8,6 +8,7 @@ exports[`EuiLoadingElastic is rendered 1`] = `
   role="progressbar"
 >
   <span
+    aria-hidden="true"
     data-euiicon-type="logoElastic"
   />
 </span>
@@ -20,6 +21,7 @@ exports[`EuiLoadingElastic size l is rendered 1`] = `
   role="progressbar"
 >
   <span
+    aria-hidden="true"
     data-euiicon-type="logoElastic"
   />
 </span>
@@ -32,6 +34,7 @@ exports[`EuiLoadingElastic size m is rendered 1`] = `
   role="progressbar"
 >
   <span
+    aria-hidden="true"
     data-euiicon-type="logoElastic"
   />
 </span>
@@ -44,6 +47,7 @@ exports[`EuiLoadingElastic size xl is rendered 1`] = `
   role="progressbar"
 >
   <span
+    aria-hidden="true"
     data-euiicon-type="logoElastic"
   />
 </span>
@@ -56,6 +60,7 @@ exports[`EuiLoadingElastic size xxl is rendered 1`] = `
   role="progressbar"
 >
   <span
+    aria-hidden="true"
     data-euiicon-type="logoElastic"
   />
 </span>

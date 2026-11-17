@@ -59,6 +59,7 @@ exports[`EuiFilterButton props iconType and iconSide renders 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
     >
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="user"
       />

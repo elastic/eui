@@ -30,6 +30,7 @@ exports[`EuiTablePagination renders 1`] = `
                 10
               </span>
               <span
+                aria-hidden="true"
                 color="inherit"
                 data-euiicon-type="chevronSingleDown"
               />
@@ -252,6 +253,7 @@ exports[`EuiTablePagination renders 1`] = `
                     class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
                   >
                     <span
+                      aria-hidden="true"
                       class="euiContextMenu__icon emotion-euiContextMenu__icon"
                       color="inherit"
                       data-euiicon-type="check"
@@ -277,6 +279,7 @@ exports[`EuiTablePagination renders 1`] = `
                     class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
                   >
                     <span
+                      aria-hidden="true"
                       class="euiContextMenu__icon emotion-euiContextMenu__icon"
                       color="inherit"
                       data-euiicon-type="empty"
@@ -302,6 +305,7 @@ exports[`EuiTablePagination renders 1`] = `
                     class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
                   >
                     <span
+                      aria-hidden="true"
                       class="euiContextMenu__icon emotion-euiContextMenu__icon"
                       color="inherit"
                       data-euiicon-type="empty"

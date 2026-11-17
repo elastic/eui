@@ -91,6 +91,7 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
           class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="apps"
         />
@@ -127,6 +128,7 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
           class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="apps"
         />
@@ -604,6 +606,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
           class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
         />
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="apps"
         />

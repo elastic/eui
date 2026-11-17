@@ -23,6 +23,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -44,6 +45,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -101,6 +103,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -123,6 +126,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -180,6 +184,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -201,6 +206,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -258,6 +264,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -280,6 +287,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -337,6 +345,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -358,6 +367,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -415,6 +425,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -437,6 +448,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -494,6 +506,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -515,6 +528,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -572,6 +586,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -594,6 +609,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -651,6 +667,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for multi
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -672,6 +689,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for multi
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -729,6 +747,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for singl
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -751,6 +770,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for singl
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -808,6 +828,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -829,6 +850,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -886,6 +908,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -908,6 +931,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -965,6 +989,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -986,6 +1011,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1043,6 +1069,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1065,6 +1092,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1122,6 +1150,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1143,6 +1172,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1200,6 +1230,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1222,6 +1253,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1279,6 +1311,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1300,6 +1333,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1357,6 +1391,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1379,6 +1414,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1436,6 +1472,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1457,6 +1494,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1514,6 +1552,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1536,6 +1575,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1595,6 +1635,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1617,6 +1658,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1676,6 +1718,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1699,6 +1742,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1756,6 +1800,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1777,6 +1822,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1834,6 +1880,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1856,6 +1903,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1913,6 +1961,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1934,6 +1983,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -1991,6 +2041,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2013,6 +2064,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2071,6 +2123,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2093,6 +2146,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2151,6 +2205,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2172,6 +2227,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2229,6 +2285,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2251,6 +2308,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2311,6 +2369,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
@@ -2333,6 +2392,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="bolt"
         />
