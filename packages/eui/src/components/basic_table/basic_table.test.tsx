@@ -25,6 +25,8 @@ import {
   EuiTableActionsColumnType,
 } from './table_types';
 
+const tableCaption = 'Test table';
+
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
     expect(getItemId({ id: 5 })).toBeUndefined();
@@ -70,7 +72,11 @@ const basicItems = [
 
 describe('EuiBasicTable', () => {
   shouldRenderCustomStyles(
-    <EuiBasicTable items={basicItems} columns={basicColumns} />
+    <EuiBasicTable
+      tableCaption={tableCaption}
+      items={basicItems}
+      columns={basicColumns}
+    />
   );
 
   it('renders (bare-bones)', () => {
@@ -79,7 +85,9 @@ describe('EuiBasicTable', () => {
       items: basicItems,
       columns: basicColumns,
     };
-    const { container } = render(<EuiBasicTable {...props} />);
+    const { container } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -90,7 +98,9 @@ describe('EuiBasicTable', () => {
         items: [],
         columns: basicColumns,
       };
-      const { getByText } = render(<EuiBasicTable {...props} />);
+      const { getByText } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getByText('No items found')).toBeTruthy();
     });
@@ -101,7 +111,9 @@ describe('EuiBasicTable', () => {
         columns: basicColumns,
         noItemsMessage: 'where my items at?',
       };
-      const { getByText } = render(<EuiBasicTable {...props} />);
+      const { getByText } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getByText('where my items at?')).toBeTruthy();
     });
@@ -116,7 +128,9 @@ describe('EuiBasicTable', () => {
           </p>
         ),
       };
-      const { getByRole } = render(<EuiBasicTable {...props} />);
+      const { getByRole } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getByRole('link')).toBeTruthy();
     });
@@ -128,7 +142,9 @@ describe('EuiBasicTable', () => {
       columns: basicColumns,
       loading: true,
     };
-    const { container } = render(<EuiBasicTable {...props} />);
+    const { container } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy(); // Used by several Kibana tests as an assertion
     expect(container.querySelector('tbody')?.className).toContain(
@@ -155,7 +171,7 @@ describe('EuiBasicTable', () => {
         },
       };
       const { getByTestSubject } = render(
-        <EuiBasicTable<BasicItem> {...props} />
+        <EuiBasicTable<BasicItem> tableCaption={tableCaption} {...props} />
       );
 
       expect(getByTestSubject('row-1')).toBeTruthy();
@@ -173,7 +189,9 @@ describe('EuiBasicTable', () => {
           onClick: () => {},
         },
       };
-      const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { getAllByTestSubject } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getAllByTestSubject('row')).toHaveLength(3);
     });
@@ -194,7 +212,9 @@ describe('EuiBasicTable', () => {
           };
         },
       };
-      const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { getByTestSubject } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getByTestSubject('cell-1-name')).toBeTruthy();
       expect(getByTestSubject('cell-2-name')).toBeTruthy();
@@ -211,7 +231,9 @@ describe('EuiBasicTable', () => {
           onClick: () => {},
         },
       };
-      const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { getAllByTestSubject } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getAllByTestSubject('cell')).toHaveLength(3);
     });
@@ -226,7 +248,9 @@ describe('EuiBasicTable', () => {
         '1': <div>Expanded row</div>,
       },
     };
-    const { getByText } = render(<EuiBasicTable {...props} />);
+    const { getByText } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('Expanded row')).toBeTruthy();
   });
@@ -242,7 +266,9 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const { container, getByRole } = render(<EuiBasicTable {...props} />);
+    const { container, getByRole } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByRole('list')).toBeTruthy();
     expect(
@@ -261,7 +287,9 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const { container } = render(<EuiBasicTable {...props} />);
+    const { container } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(
       container.querySelector('[aria-current="page"]')?.textContent
@@ -281,7 +309,7 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const { getByTestSubject, getByText } = render(
-      <EuiBasicTable {...props} />
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByTestSubject('tablePaginationPopoverButton')).toBeTruthy();
@@ -302,7 +330,7 @@ describe('EuiBasicTable', () => {
       error: 'no can do',
     };
     const { getByText, queryByTestSubject, queryByRole } = render(
-      <EuiBasicTable {...props} />
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByText('no can do')).toBeTruthy();
@@ -322,7 +350,9 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const { queryByTestSubject } = render(<EuiBasicTable {...props} />);
+    const { queryByTestSubject } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(queryByTestSubject('tablePaginationPopoverButton')).toBeFalsy();
   });
@@ -343,7 +373,7 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const { container, getByTestSubject } = render(
-      <EuiBasicTable {...props} />
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByTestSubject('tableHeaderSortButton')).toBeTruthy();
@@ -367,7 +397,7 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const { container, queryByTestSubject } = render(
-      <EuiBasicTable {...props} />
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
     );
 
     expect(queryByTestSubject('tableHeaderSortButton')).toBeFalsy();
@@ -388,7 +418,7 @@ describe('EuiBasicTable', () => {
       onChange: () => {},
     };
     const { container, getByTestSubject } = render(
-      <EuiBasicTable {...props} />
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
     );
 
     expect(getByTestSubject('tableHeaderSortButton')).toBeTruthy();
@@ -409,7 +439,7 @@ describe('EuiBasicTable', () => {
           initialSelected: [basicItems[0]],
         },
       };
-      render(<EuiBasicTable {...props} />);
+      render(<EuiBasicTable tableCaption={tableCaption} {...props} />);
 
       expect(getCheckboxAt(1).checked).toBeTruthy();
       expect(getCheckboxAt(2).checked).toBeFalsy();
@@ -425,7 +455,7 @@ describe('EuiBasicTable', () => {
           selected: [basicItems[1]],
         },
       };
-      render(<EuiBasicTable {...props} />);
+      render(<EuiBasicTable tableCaption={tableCaption} {...props} />);
 
       expect(getCheckboxAt(1).checked).toBeFalsy();
       expect(getCheckboxAt(2).checked).toBeTruthy();
@@ -441,7 +471,7 @@ describe('EuiBasicTable', () => {
           selected: [],
         },
       };
-      render(<EuiBasicTable {...props} />);
+      render(<EuiBasicTable tableCaption={tableCaption} {...props} />);
 
       expect(getCheckboxAt(1).checked).toBeFalsy();
       expect(getCheckboxAt(2).checked).toBeFalsy();
@@ -458,7 +488,9 @@ describe('EuiBasicTable', () => {
           selected: [{ id: 'notvalid', name: 'notInItems' }],
         },
       };
-      const { container } = render(<EuiBasicTable {...props} />);
+      const { container } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(onSelectionChange).toHaveBeenCalledWith([]);
       expect(container.querySelectorAll('[checked]')).toHaveLength(0);
@@ -475,7 +507,9 @@ describe('EuiBasicTable', () => {
             initialSelected: [],
           },
         };
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
         expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
 
         fireEvent.click(getByTestSubject('checkboxSelectAll'));
@@ -496,7 +530,9 @@ describe('EuiBasicTable', () => {
             initialSelected: basicItems,
           },
         };
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
         expect(getByTestSubject('checkboxSelectAll')).toBeChecked();
 
         fireEvent.click(getByTestSubject('checkboxSelectAll'));
@@ -517,7 +553,9 @@ describe('EuiBasicTable', () => {
             initialSelected: [],
           },
         };
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
         expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
 
         fireEvent.click(getCheckboxAt(1));
@@ -569,7 +607,9 @@ describe('EuiBasicTable', () => {
       ],
       onChange: () => {},
     };
-    const { getByText } = render(<EuiBasicTable {...props} />);
+    const { getByText } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('Total users: 3')).toBeTruthy();
     expect(getByText('Total ages: 63')).toBeTruthy();
@@ -588,7 +628,9 @@ describe('EuiBasicTable', () => {
         },
       ],
     };
-    const { getByText } = render(<EuiBasicTable {...props} />);
+    const { getByText } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(getByText('NAME1')).toBeTruthy();
     expect(getByText('NAME2')).toBeTruthy();
@@ -628,7 +670,9 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { container, getByText } = render(<EuiBasicTable {...props} />);
+      const { container, getByText } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       // Numbers should be right aligned
       expect(
@@ -662,7 +706,9 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { queryByText } = render(<EuiBasicTable {...props} />);
+      const { queryByText } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(queryByText('Yes')).toBeFalsy();
       expect(queryByText('Online')).toBeTruthy();
@@ -732,7 +778,9 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { getAllByText, container } = render(<EuiBasicTable {...props} />);
+      const { getAllByText, container } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
 
       expect(getAllByText('Delete')).toHaveLength(basicItems.length);
       expect(
@@ -752,7 +800,7 @@ describe('EuiBasicTable', () => {
         ],
       };
       const { getAllByText, getAllByTestSubject, container } = render(
-        <EuiBasicTable {...props} />
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
       );
 
       expect(getAllByText('Edit')).toHaveLength(2);
@@ -789,7 +837,7 @@ describe('EuiBasicTable', () => {
         responsiveBreakpoint: true, // Needs to be in mobile to render customAction cell CSS
       };
       const { queryByTestSubject, container } = render(
-        <EuiBasicTable {...props} />
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
       );
 
       expect(queryByTestSubject('customAction-1')).toBeInTheDocument();
@@ -829,7 +877,9 @@ describe('EuiBasicTable', () => {
             },
           ],
         };
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
 
         expect(getByTestSubject('deleteAction-1')).toHaveAttribute(
           'aria-disabled',
@@ -860,7 +910,9 @@ describe('EuiBasicTable', () => {
             },
           ],
         };
-        const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getAllByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
 
         getAllByTestSubject('euiCollapsedItemActionsButton').forEach(
           (button) => {
@@ -879,6 +931,7 @@ describe('EuiBasicTable', () => {
       it('defaults to false', () => {
         const { getByText } = render(
           <EuiBasicTable
+            tableCaption={tableCaption}
             {...defaultProps}
             columns={[
               ...basicColumns,
@@ -897,6 +950,7 @@ describe('EuiBasicTable', () => {
       it('makes the column cells stick to the right when column has `sticky = true` and the table is scrollable', () => {
         const { getByText } = render(
           <EuiBasicTable
+            tableCaption={tableCaption}
             {...defaultProps}
             columns={[
               ...basicColumns,
@@ -922,14 +976,21 @@ describe('EuiBasicTable', () => {
   describe('scrollableInline', () => {
     it('updates table width styles when enabled', () => {
       const { getByRole, rerender } = render(
-        <EuiBasicTable items={[]} columns={[]} />
+        <EuiBasicTable tableCaption={tableCaption} items={[]} columns={[]} />
       );
       let table = getByRole('table');
 
       expect(table).toHaveStyleRule('inline-size', '100%');
       expect(table).not.toHaveStyleRule('min-inline-size');
 
-      rerender(<EuiBasicTable items={[]} columns={[]} scrollableInline />);
+      rerender(
+        <EuiBasicTable
+          tableCaption={tableCaption}
+          items={[]}
+          columns={[]}
+          scrollableInline
+        />
+      );
       table = getByRole('table');
 
       expect(table).toHaveStyleRule('inline-size', 'auto');
@@ -998,7 +1059,9 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const { container } = render(<EuiBasicTable {...props} />);
+    const { container } = render(
+      <EuiBasicTable tableCaption={tableCaption} {...props} />
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -1011,7 +1074,9 @@ describe('EuiBasicTable', () => {
         columns: basicColumns,
         panelled: true,
       };
-      const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { getByTestSubject } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
       const { euiTheme } = renderHook(useEuiTheme).result.current;
 
       const wrapper = getByTestSubject('euiBasicTablePanelledWrapper');
@@ -1031,7 +1096,9 @@ describe('EuiBasicTable', () => {
         columns: basicColumns,
       };
 
-      const { queryByTestSubject } = render(<EuiBasicTable {...props} />);
+      const { queryByTestSubject } = render(
+        <EuiBasicTable tableCaption={tableCaption} {...props} />
+      );
       expect(queryByTestSubject('euiBasicTablePanelledWrapper')).toBeNull();
     });
   });

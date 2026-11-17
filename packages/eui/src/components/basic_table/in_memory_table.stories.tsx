@@ -256,8 +256,12 @@ export const KitchenSink: Story = {
   },
   // Don't pass the default Storybook action listener for `onChange`,
   // or the automatic uncontrolled pagination & sorting won't work
-  render: ({ onChange, ...args }: EuiInMemoryTableProps<User>) => (
-    <EuiInMemoryTable {...args} />
+  render: ({
+    onChange,
+    tableCaption,
+    ...args
+  }: EuiInMemoryTableProps<User>) => (
+    <EuiInMemoryTable tableCaption={tableCaption} {...args} />
   ),
 };
 
@@ -291,6 +295,7 @@ const Toolbar = () => {
 
 const PanelledDemo = ({
   panelled: panelledProp,
+  tableCaption,
   ...rest
 }: EuiInMemoryTableProps<User>) => {
   const [panelled, setPanelled] = useState<boolean>(panelledProp ?? false);
@@ -324,6 +329,7 @@ const PanelledDemo = ({
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiInMemoryTable
+        tableCaption={tableCaption}
         {...rest}
         panelled={panelled}
         childrenBetween={toolbarPanelVisible && <Toolbar />}
