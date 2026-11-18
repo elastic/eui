@@ -7,11 +7,16 @@ set -euo pipefail
 source .buildkite/scripts/common/utils.sh
 
 FLAKY_REPEAT="${FLAKY_REPEAT:-25}"
+# The whole suite is 36 helpers, so it repeats fewer times to fit the step timeout.
+FLAKY_REPEAT_ALL="${FLAKY_REPEAT_ALL:-5}"
 BASE_BRANCH="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
 HELPERS_DIR="packages/test-helpers/src/playwright/components"
 COMPONENTS_DIR="packages/eui/src/components"
 # Shared files every helper depends on — a change here affects all specs.
-SHARED_REGEXP='^packages/test-helpers/(playwright\.config\.ts|package\.json|src/(index|selectors|storybook)\.ts|src/playwright/base_object\.ts)$'
+SHARED_REGEXP='^packages/test-helpers/(playwright\.config\.ts|package\.json|src/storybook\.ts|src/playwright/base_object\.ts)$'
+# Registries every helper is listed in. Adding a helper only adds lines here, which
+# affects nothing else, so they count as shared only when an existing line changes.
+REGISTRY_REGEXP='^packages/test-helpers/src/(index|selectors)\.ts$'
 
 echo "+++ Determining components changed against ${BASE_BRANCH}"
 retry 3 git fetch -q origin "${BASE_BRANCH}"
@@ -39,9 +44,19 @@ changed_files="$(git diff --name-only "${base_sha}" HEAD)"
 # `packages/test-helpers/src/components/<name>`. Helpers are enumerated by their
 # `object.ts` so nested helpers resolve to their real (leaf) directory rather
 # than an over-broad first-level parent.
-if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}"; then
-  echo "Shared test-helpers file changed — running all helper specs."
+registry_files="$(grep -E "${REGISTRY_REGEXP}" <<< "${changed_files}" || true)"
+registry_edited=false
+if [[ -n "${registry_files}" ]]; then
+  # Removed lines are the ones starting with a single '-' (not the '---' header).
+  if git diff -U0 "${base_sha}" HEAD -- ${registry_files} | grep -qE '^-[^-]'; then
+    registry_edited=true
+  fi
+fi
+
+if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}" || [[ "${registry_edited}" == true ]]; then
+  echo "Shared test-helpers file changed — running all helper specs ${FLAKY_REPEAT_ALL}×."
   affected="src/playwright/components"
+  FLAKY_REPEAT="${FLAKY_REPEAT_ALL}"
 else
   affected=""
   while IFS= read -r object_file; do
