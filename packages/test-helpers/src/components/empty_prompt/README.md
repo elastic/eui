@@ -22,7 +22,7 @@ Set `data-test-subj` on `<EuiEmptyPrompt>`. EUI spreads it onto the panel, which
 | `action(name)` | `Locator` for the action with exactly this accessible name, a button or a link. |
 | `getTitle()` | The title text, or an empty string without `title`. |
 | `getBody()` | The body text, or an empty string without `body`. |
-| `getActions()` | The labels of the actions, in order, for a single action and for an array. A label is the `aria-label` when set, otherwise the text. |
+| `getActions()` | The labels of the actions, in order, for a single action and for an array. A label is the `aria-labelledby` text, else `aria-label`, else the text. |
 | `clickAction(name)` | Click the action with this name. What follows is up to the consumer. |
 
 ## Deliberately excluded

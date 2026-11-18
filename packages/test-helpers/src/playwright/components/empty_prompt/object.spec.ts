@@ -80,6 +80,40 @@ test.describe('EuiEmptyPromptObject', () => {
     await prompt.clickAction('Create visualization');
   });
 
+  test('reads a single action wrapped in text', async ({ page }) => {
+    await page.goto(PAGE_TEMPLATE_URL);
+    const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
+    await page
+      .locator('.euiEmptyPrompt__content > :last-child')
+      .evaluate((action) => {
+        const text = action.ownerDocument.createElement('div');
+        text.className = 'euiText';
+        action.replaceWith(text);
+        text.append(action);
+      });
+
+    expect(await prompt.getActions()).toEqual(['Create visualization']);
+    await expect(prompt.action('Create visualization')).toHaveCount(1);
+  });
+
+  test('reads labels set through aria attributes', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
+    await page.locator('.euiEmptyPrompt__actions').evaluate((actions) => {
+      const [first, second] = Array.from(actions.querySelectorAll('button, a'));
+      first.setAttribute('aria-label', 'Upgrade now');
+      const label = actions.ownerDocument.createElement('span');
+      label.id = 'trial-label';
+      label.textContent = 'Trial';
+      actions.append(label);
+      second.setAttribute('aria-labelledby', 'trial-label');
+    });
+
+    expect(await prompt.getActions()).toEqual(['Upgrade now', 'Trial']);
+    await expect(prompt.action('Upgrade now')).toHaveCount(1);
+    await expect(prompt.action('Trial')).toHaveCount(1);
+  });
+
   test('exposes the footer', async ({ page }) => {
     await page.goto(PLAYGROUND_URL);
     const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);

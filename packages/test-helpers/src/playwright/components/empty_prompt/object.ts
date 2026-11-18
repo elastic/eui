@@ -18,9 +18,6 @@ import { EuiEmptyPromptSelectors } from '../../../components/empty_prompt/select
  * `testSubj` must be set on `EuiEmptyPrompt` itself, EUI spreads it onto the
  * panel.
  */
-/** The content children that are never actions: the title, the body and the spacer. */
-const NON_ACTION_BLOCKS = '.euiTitle, .euiText, .euiSpacer';
-
 export class EuiEmptyPromptObject extends BaseObject {
   constructor(
     scope: ObjectScope,
@@ -61,32 +58,24 @@ export class EuiEmptyPromptObject extends BaseObject {
   }
 
   /**
-   * The labels of the actions, in order. A single action renders directly in
-   * the content, an array inside the actions wrapper, so both are read from
-   * the content children that are not the title, the body or a spacer. The
-   * label is the `aria-label` when set, otherwise the text, so it matches
-   * the name `action()` looks up.
+   * The labels of the actions, in order, for a single action and for an
+   * array. A label is the accessible name as far as attributes go, the
+   * `aria-labelledby` text, then `aria-label`, then the text.
    */
   async getActions(): Promise<string[]> {
     await this.root.waitFor({ state: 'attached' });
-    return this.root
-      .locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR)
-      .evaluate((content, selectors) => {
-        const actions = Array.from(content.children).flatMap((child) => {
-          if (child.matches(selectors.ACTIONS_SELECTOR)) {
-            return Array.from(child.querySelectorAll('button, a'));
-          }
-          if (child.matches(selectors.NON_ACTION_BLOCKS)) {
-            return [];
-          }
-          return child.matches('button, a')
-            ? [child]
-            : Array.from(child.querySelectorAll('button, a'));
-        });
-        return actions.map((action) =>
-          (action.getAttribute('aria-label') ?? action.textContent ?? '').trim()
-        );
-      }, { ...EuiEmptyPromptSelectors, NON_ACTION_BLOCKS });
+    return this.actions.evaluateAll((actions) =>
+      actions.map((action) => {
+        const labelledBy = action.getAttribute('aria-labelledby');
+        const label = labelledBy
+          ? labelledBy
+              .split(/\s+/)
+              .map((id) => action.ownerDocument.getElementById(id)?.textContent ?? '')
+              .join(' ')
+          : action.getAttribute('aria-label') ?? action.textContent ?? '';
+        return label.trim();
+      })
+    );
   }
 
   /** Click the action with this name. What follows is up to the consumer. */
@@ -95,13 +84,23 @@ export class EuiEmptyPromptObject extends BaseObject {
   }
 
   /**
-   * The content children that hold the actions: a single action itself, or
-   * the actions wrapper. The title, the body and the spacer are skipped.
+   * The content child that holds the actions: a single action itself, or the
+   * actions wrapper. EUI puts a large spacer before it when there is a title
+   * or a body, otherwise it is the only child. The title and the body are
+   * never it, so a link in the body is not an action.
    */
   private get actionBlocks(): Locator {
     return this.root
       .locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR)
-      .locator(`:scope > :not(${NON_ACTION_BLOCKS})`);
+      .locator(
+        ':scope > .euiSpacer--l + *, :scope > :only-child:not(.euiTitle):not(.euiText)'
+      );
+  }
+
+  /** The buttons and links in the action block, in DOM order. */
+  private get actions(): Locator {
+    const blocks = this.actionBlocks;
+    return blocks.and(this.root.locator('button, a')).or(blocks.locator('button, a'));
   }
 
   private async textOf(element: Locator): Promise<string> {
