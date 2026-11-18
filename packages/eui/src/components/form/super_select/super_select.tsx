@@ -123,6 +123,7 @@ const EuiSuperSelectInner = <T = string,>(
 ) => {
   const styles = useEuiMemoizedStyles(euiSuperSelectStyles);
   const itemNodes = useRef<Array<HTMLButtonElement | null>>([]);
+  const listboxRef = useRef<HTMLDivElement>(null);
   const isMounted = useRef(false);
   const controlButtonRef = useRef<HTMLButtonElement>(null);
   const [describedById] = useState(() =>
@@ -135,9 +136,25 @@ const EuiSuperSelectInner = <T = string,>(
     itemNodes.current[index] = node;
   };
 
-  const focusItemAt = useCallback((index: number) => {
-    itemNodes.current[index]?.focus();
-  }, []);
+  const focusItemAt = useCallback(
+    (index: number, focusOptions?: FocusOptions) => {
+      const item = itemNodes.current[index];
+      item?.focus(focusOptions);
+
+      // Initial focus should reveal the selected option inside the list only.
+      const listbox = listboxRef.current;
+      if (item && listbox && focusOptions?.preventScroll) {
+        const itemBounds = item.getBoundingClientRect();
+        const listBounds = listbox.getBoundingClientRect();
+        if (itemBounds.top < listBounds.top) {
+          listbox.scrollTop += itemBounds.top - listBounds.top;
+        } else if (itemBounds.bottom > listBounds.bottom) {
+          listbox.scrollTop += itemBounds.bottom - listBounds.bottom;
+        }
+      }
+    },
+    []
+  );
 
   const openPopover = useCallback(() => {
     const indexOfSelected = options.findIndex(
@@ -165,7 +182,7 @@ const EuiSuperSelectInner = <T = string,>(
           return;
         }
 
-        focusItemAt(initialIndex);
+        focusItemAt(initialIndex, { preventScroll: true });
 
         if (onFocus) {
           onFocus();
@@ -180,7 +197,7 @@ const EuiSuperSelectInner = <T = string,>(
 
     // Refocus back to the toggling control button on popover close
     requestAnimationFrame(() => {
-      controlButtonRef.current?.focus();
+      controlButtonRef.current?.focus({ preventScroll: true });
     });
 
     if (onBlur) {
@@ -367,6 +384,7 @@ const EuiSuperSelectInner = <T = string,>(
             aria-describedby={describedById}
             css={styles.euiSuperSelect__listbox}
             className="euiSuperSelect__listbox eui-scrollBar"
+            ref={listboxRef}
             role="listbox"
             aria-activedescendant={ariaActiveDescendant}
             tabIndex={0}
