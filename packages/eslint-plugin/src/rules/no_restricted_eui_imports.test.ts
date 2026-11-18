@@ -31,8 +31,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       errors: [
         {
           // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
-          message:
-            'For client-side, please use `useEuiTheme` instead.',
+          message: 'For client-side, please use `useEuiTheme` instead.',
         },
       ],
     },
@@ -41,8 +40,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       errors: [
         {
           // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
-          message:
-            'For client-side, please use `useEuiTheme` instead.',
+          message: 'For client-side, please use `useEuiTheme` instead.',
         },
       ],
     },

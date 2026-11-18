@@ -108,8 +108,9 @@ const getUpcomingEuiVersion = async (
   if (!euiWorkspace) return undefined;
 
   const workspaceDir = path.join(rootWorkspaceDir, euiWorkspace.location);
-  const { changelogMap, hasChanges } =
-    await collateChangelogFiles(workspaceDir);
+  const { changelogMap, hasChanges } = await collateChangelogFiles(
+    workspaceDir
+  );
   if (!hasChanges) return undefined;
 
   return getUpcomingVersion(
@@ -219,8 +220,9 @@ export const stepUpdateVersions = async (
 
     // @next -> @previous, @previous cleared. Nightly still cherry-picks both
     // until the following release, covering the Kibana upgrade merge window.
-    const kibanaPrepCommitsPath =
-      await rotateKibanaPrepCommits(rootWorkspaceDir);
+    const kibanaPrepCommitsPath = await rotateKibanaPrepCommits(
+      rootWorkspaceDir
+    );
     if (kibanaPrepCommitsPath) {
       filesToCommit.push(kibanaPrepCommitsPath);
     }

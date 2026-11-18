@@ -450,8 +450,14 @@ ruleTester.run('no-nested-interactive-element', NoNestedInteractiveElement, {
         </EuiButton>
       `,
       errors: [
-        { messageId: 'nestedInteractive', data: { componentName: 'EuiButton', elementName: 'EuiLink' } },
-        { messageId: 'nestedInteractive', data: { componentName: 'EuiLink', elementName: 'button' } },
+        {
+          messageId: 'nestedInteractive',
+          data: { componentName: 'EuiButton', elementName: 'EuiLink' },
+        },
+        {
+          messageId: 'nestedInteractive',
+          data: { componentName: 'EuiLink', elementName: 'button' },
+        },
       ],
       languageOptions,
     },

@@ -25,7 +25,9 @@ export const EmptySnippet = ({ radioUseCaseId }: Props) => {
   const iconPath = isDarkTheme ? example.iconDark : example.iconLight;
   const icon2xPath = isDarkTheme ? example.iconDark2x : example.iconLight2x;
   const src = iconPath ? USE_CASE_IMAGE_URLS[iconPath as string] : undefined;
-  const src2x = icon2xPath ? USE_CASE_IMAGE_URLS[icon2xPath as string] : undefined;
+  const src2x = icon2xPath
+    ? USE_CASE_IMAGE_URLS[icon2xPath as string]
+    : undefined;
 
   // Conditionally set the `icon` prop if a non-standard icon is needed
   // See EuiEmptyPrompt docs to learn more about custom icon usage
@@ -40,7 +42,7 @@ export const EmptySnippet = ({ radioUseCaseId }: Props) => {
         src={src ?? ''}
         srcSet={src2x ? `${src} 1x, ${src2x} 2x` : undefined}
       />
-    )
+    );
   }
 
   const snippet = convertToJsxString(

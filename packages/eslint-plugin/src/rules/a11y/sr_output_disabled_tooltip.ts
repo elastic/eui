@@ -75,8 +75,13 @@ export const ScreenReaderOutputDisabledTooltip =
               node: openingElement,
               messageId: 'requireDisableScreenReader',
               fix: (fixer) => {
-                const lastAttr = openingElement.attributes[openingElement.attributes.length - 1];
-                const insertPosition = lastAttr ? lastAttr.range[1] : openingElement.name.range[1];
+                const lastAttr =
+                  openingElement.attributes[
+                    openingElement.attributes.length - 1
+                  ];
+                const insertPosition = lastAttr
+                  ? lastAttr.range[1]
+                  : openingElement.name.range[1];
 
                 return fixer.insertTextAfterRange(
                   [insertPosition, insertPosition],

@@ -8,11 +8,11 @@ export const MakeHighContrastColorPreview = () => {
   return (
     <div
       css={css`
-            padding: ${euiTheme.size.base};
-            border-radius: ${euiTheme.border.radius.small};
-            background: pink;
-            color: ${makeHighContrastColor('white')('pink')};
-          `}
+        padding: ${euiTheme.size.base};
+        border-radius: ${euiTheme.border.radius.small};
+        background: pink;
+        color: ${makeHighContrastColor('white')('pink')};
+      `}
     >
       {chroma
         .contrast(makeHighContrastColor('white')('pink'), 'pink')

@@ -20,14 +20,11 @@ const languageOptions = {
 
 const ruleTester = new RuleTester();
 
-ruleTester.run(
-  'no-nested-copy-tooltip',
-  NoNestedCopyTooltip,
-  {
-    valid: [
-      // No `beforeMessage`, child is a tooltip
-      {
-        code: dedent`
+ruleTester.run('no-nested-copy-tooltip', NoNestedCopyTooltip, {
+  valid: [
+    // No `beforeMessage`, child is a tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text">
             {(copy) => (
@@ -38,11 +35,11 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-      },
-      // `beforeMessage` but child is not a tooltip
-      {
-        code: dedent`
+      languageOptions,
+    },
+    // `beforeMessage` but child is not a tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage="Click to copy">
             {(copy) => (
@@ -51,11 +48,11 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-      },
-      // `beforeMessage` with block body that returns a non-tooltip element
-      {
-        code: dedent`
+      languageOptions,
+    },
+    // `beforeMessage` with block body that returns a non-tooltip element
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage="Click to copy">
             {(copy) => {
@@ -64,22 +61,22 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-      },
-      // Unrelated component
-      {
-        code: dedent`
+      languageOptions,
+    },
+    // Unrelated component
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiToolTip content="Copy me" beforeMessage="Click to copy">
             <EuiButton>Copy</EuiButton>
           </EuiToolTip>
         )
       `,
-        languageOptions,
-      },
-      // Statically empty `beforeMessage` — no EuiCopy tooltip, child is not redundant
-      {
-        code: dedent`
+      languageOptions,
+    },
+    // Statically empty `beforeMessage` — no EuiCopy tooltip, child is not redundant
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage="">
             {(copy) => (
@@ -90,11 +87,11 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-      },
-      // Statically falsy `beforeMessage` expression — no EuiCopy tooltip
-      {
-        code: dedent`
+      languageOptions,
+    },
+    // Statically falsy `beforeMessage` expression — no EuiCopy tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage={null}>
             {(copy) => (
@@ -105,13 +102,13 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-      },
-    ],
-    invalid: [
-      // Implicit arrow return of a tooltip
-      {
-        code: dedent`
+      languageOptions,
+    },
+  ],
+  invalid: [
+    // Implicit arrow return of a tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage="Click to copy">
             {(copy) => (
@@ -122,12 +119,12 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-      // `beforeMessage` as an expression, tooltip as first child
-      {
-        code: dedent`
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+    // `beforeMessage` as an expression, tooltip as first child
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy textToCopy="some text" beforeMessage={message}>
             {(copy) => (
@@ -138,12 +135,12 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-      // Block body with explicit return of a tooltip
-      {
-        code: dedent`
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+    // Block body with explicit return of a tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
             {(copy) => {
@@ -156,12 +153,12 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-      // Function expression (not an arrow) returning a tooltip
-      {
-        code: dedent`
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+    // Function expression (not an arrow) returning a tooltip
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
             {function (copy) {
@@ -174,12 +171,12 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-      // Block body with an early return before the tooltip return
-      {
-        code: dedent`
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+    // Block body with an early return before the tooltip return
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
             {(copy) => {
@@ -193,12 +190,12 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-      // Leading JSX comment before the render prop is skipped
-      {
-        code: dedent`
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+    // Leading JSX comment before the render prop is skipped
+    {
+      code: dedent`
         const MyComponent = () => (
           <EuiCopy beforeMessage="Click to copy" textToCopy="some text">
             {/* copy action */}
@@ -210,9 +207,8 @@ ruleTester.run(
           </EuiCopy>
         )
       `,
-        languageOptions,
-        errors: [{ messageId: 'redundantTooltipWrapper' }],
-      },
-    ],
-  }
-);
+      languageOptions,
+      errors: [{ messageId: 'redundantTooltipWrapper' }],
+    },
+  ],
+});

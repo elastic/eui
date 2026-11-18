@@ -15,7 +15,10 @@ const getUnorderedListStyles = ({ euiTheme }: UseEuiTheme) => css`
   list-style: disc;
 `;
 
-export const UnorderedList = ({ children, ...restProps }: HTMLAttributes<HTMLUListElement>) => {
+export const UnorderedList = ({
+  children,
+  ...restProps
+}: HTMLAttributes<HTMLUListElement>) => {
   const styles = useEuiMemoizedStyles(getUnorderedListStyles);
 
   return (

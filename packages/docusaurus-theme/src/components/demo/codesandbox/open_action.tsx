@@ -100,13 +100,10 @@ export const createOpenInCodeSandboxAction =
       const codeSandboxFiles = Object.entries({
         ...files,
         ...extraFiles,
-      }).reduce(
-        (acc, [file, content]) => {
-          acc[file] = { content };
-          return acc;
-        },
-        {} as Record<string, { content: unknown }>
-      );
+      }).reduce((acc, [file, content]) => {
+        acc[file] = { content };
+        return acc;
+      }, {} as Record<string, { content: unknown }>);
 
       return getParameters({
         files: {

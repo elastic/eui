@@ -201,7 +201,11 @@ function getDescendantRoots(node: TSESTree.JSXElement): TSESTree.Node[] {
 
   // `getContentRoots` also adds supported `children={...}` content based on
   // the component name, so descendants are traversed the same way as targets.
-  return getContentRoots(node, componentName, getComponentContentProps(componentName));
+  return getContentRoots(
+    node,
+    componentName,
+    getComponentContentProps(componentName)
+  );
 }
 
 function shouldSkipNestedScanElement(element: TSESTree.JSXElement): boolean {
@@ -238,7 +242,11 @@ export const NoNestedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
         // is itself scanned.
         const reported = new Set<TSESTree.JSXElement>();
 
-        for (const root of getContentRoots(node, componentName, target.contentProps)) {
+        for (const root of getContentRoots(
+          node,
+          componentName,
+          target.contentProps
+        )) {
           walkJsxChildren(
             root,
             (leaf) => {

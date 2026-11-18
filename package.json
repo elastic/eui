@@ -17,7 +17,9 @@
     "release": "node scripts/release",
     "release:prep": "bash scripts/release_prep.sh",
     "release:publish": "bash scripts/release_publish.sh",
-    "clean": "node scripts/clean.mjs"
+    "clean": "node scripts/clean.mjs",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs,cjs}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,cjs}\""
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "chalk": "^4.1.0",
     "chokidar": "^4.0.3",
     "pre-push": "^0.1.4",
+    "prettier": "^2.8.8",
     "rimraf": "^6.0.1"
   },
   "dependencies": {

@@ -43,7 +43,11 @@ export default () => {
   ];
 
   const button = (
-    <EuiButton iconType="chevronSingleDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButton
+      iconType="chevronSingleDown"
+      iconSide="right"
+      onClick={onButtonClick}
+    >
       Click to show a single panel
     </EuiButton>
   );
