@@ -100,6 +100,25 @@ const rotateKibanaPrepCommits = async (
   return filePath;
 };
 
+const getUpcomingEuiVersion = async (
+  rootWorkspaceDir: string,
+  workspaces: Array<YarnWorkspace>
+): Promise<string | undefined> => {
+  const euiWorkspace = workspaces.find(({ name }) => name === '@elastic/eui');
+  if (!euiWorkspace) return undefined;
+
+  const workspaceDir = path.join(rootWorkspaceDir, euiWorkspace.location);
+  const { changelogMap, hasChanges } = await collateChangelogFiles(
+    workspaceDir
+  );
+  if (!hasChanges) return undefined;
+
+  return getUpcomingVersion(
+    await getWorkspacePackageVersion(workspaceDir),
+    getVersionTypeFromChangelog(changelogMap)
+  );
+};
+
 /**
  * Update version numbers and yearly changelogs based on workspace
  * changelog files.
@@ -121,6 +140,7 @@ export const stepUpdateVersions = async (
   const changedWorkspaces: YarnWorkspace[] = [];
   const rootWorkspaceDir = getRootWorkspaceDir();
   const snapshotId = getUniqueSnapshotId();
+  const euiVersion = await getUpcomingEuiVersion(rootWorkspaceDir, workspaces);
 
   for (const workspace of workspaces) {
     logger.debug(`Calculating changes in ${workspace.name}`);
@@ -159,7 +179,8 @@ export const stepUpdateVersions = async (
         workspaceDir,
         changelog,
         newVersion,
-        workspace.name
+        workspace.name,
+        euiVersion
       );
       await deleteObsoleteChangelogs(processedChangelogFiles);
 
@@ -199,8 +220,9 @@ export const stepUpdateVersions = async (
 
     // @next -> @previous, @previous cleared. Nightly still cherry-picks both
     // until the following release, covering the Kibana upgrade merge window.
-    const kibanaPrepCommitsPath =
-      await rotateKibanaPrepCommits(rootWorkspaceDir);
+    const kibanaPrepCommitsPath = await rotateKibanaPrepCommits(
+      rootWorkspaceDir
+    );
     if (kibanaPrepCommitsPath) {
       filesToCommit.push(kibanaPrepCommitsPath);
     }

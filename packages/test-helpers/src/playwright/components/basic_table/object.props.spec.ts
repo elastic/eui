@@ -26,7 +26,9 @@ const EMPTY_TABLE_URL = storyUrl(
 );
 
 test.describe('EuiBasicTableObject (empty)', () => {
-  test('rows excludes the "no items found" placeholder row', async ({ page }) => {
+  test('rows excludes the "no items found" placeholder row', async ({
+    page,
+  }) => {
     await page.goto(EMPTY_TABLE_URL);
     await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
     const table = new EuiBasicTableObject(page, TEST_SUBJ);

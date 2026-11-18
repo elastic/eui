@@ -81,8 +81,15 @@ class EuiVisColorStoreImpl implements _EuiVisColorStore {
 export class EuiVisColorStore {
   private static instance: EuiVisColorStoreImpl;
 
-  static getInstance(defaultColors: _EuiThemeVisColors): EuiVisColorStoreImpl {
+  static getInstance(defaultColors?: _EuiThemeVisColors): EuiVisColorStoreImpl {
     if (!this.instance) {
+      if (!defaultColors) {
+        throw new Error(
+          'EuiVisColorStore was accessed before it was initialized with default colors. ' +
+            'Import a theme package (e.g. `@elastic/eui-theme-borealis`) or `@elastic/eui` first.'
+        );
+      }
+
       this.instance = new EuiVisColorStoreImpl({
         defaultColors,
       });

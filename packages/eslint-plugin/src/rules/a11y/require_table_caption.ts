@@ -36,7 +36,7 @@ export const RequireTableCaption = ESLintUtils.RuleCreator.withoutDocs({
           context.report({
             node,
             messageId: 'missingTableCaption',
-            data: { component }
+            data: { component },
           });
         }
       },
@@ -46,7 +46,9 @@ export const RequireTableCaption = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     type: 'problem',
     docs: {
-      description: `Ensure ${TABLE_COMPONENTS.join(', ')} have a \`${TABLE_CAPTION_PROP}\` prop for accessibility.`,
+      description: `Ensure ${TABLE_COMPONENTS.join(
+        ', '
+      )} have a \`${TABLE_CAPTION_PROP}\` prop for accessibility.`,
     },
     schema: [],
     messages: {

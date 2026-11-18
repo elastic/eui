@@ -1251,6 +1251,9 @@ export const typeToPathMap = {
   logoElastic: withMetadata(() => import('./assets/logo_elastic'), {
     category: 'elasticLogo',
   }),
+  logoElasticMono: withMetadata(() => import('./assets/logo_elastic_mono'), {
+    category: 'elasticLogo',
+  }),
   logoElasticStack: withMetadata(() => import('./assets/logo_elastic_stack'), {
     category: 'elasticLogo',
   }),
@@ -1658,6 +1661,9 @@ export const typeToPathMap = {
   }),
   productML: withMetadata(() => import('./assets/product_ml'), {
     synonyms: ['machine learning', 'ml', 'product', 'model', 'ai'],
+  }),
+  productNightshift: withMetadata(() => import('./assets/product_nightshift'), {
+    synonyms: ['nightshift', 'night', 'shift', 'moon'],
   }),
   productStreamsClassic: withMetadata(
     () => import('./assets/product_streams_classic'),

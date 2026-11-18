@@ -54,7 +54,7 @@ const sharedSideNavItems = [
           {
             name: 'Emphasized branch',
             id: 'emphasized_branch',
-            icon: <EuiIcon type="faceHappy" />,
+            icon: <EuiIcon type="faceHappy" aria-hidden={true} />,
             emphasize: true,
             items: [
               {
@@ -110,7 +110,7 @@ const sharedSideNavItems = [
             id: 'disabled_branch',
             href: '#',
             disabled: true,
-            icon: <EuiIcon type="faceSad" />,
+            icon: <EuiIcon type="faceSad" aria-hidden={true} />,
           },
         ],
       },
@@ -118,7 +118,7 @@ const sharedSideNavItems = [
   },
   {
     name: 'Root item with icon and truncation',
-    icon: <EuiIcon type="logoElastic" />,
+    icon: <EuiIcon type="logoElastic" aria-hidden={true} />,
     id: 'root_4',
     items: [
       {
@@ -180,7 +180,7 @@ export const RenderItem: Story = {
       {
         name: 'Kibana',
         id: 'kibana',
-        icon: <EuiIcon size="m" type="logoKibana" />,
+        icon: <EuiIcon size="m" type="logoKibana" aria-hidden={true} />,
         items: [
           {
             name: 'Observability',
@@ -197,7 +197,7 @@ export const RenderItem: Story = {
       {
         name: 'Security',
         id: 'security',
-        icon: <EuiIcon size="m" type="logoSecurity" />,
+        icon: <EuiIcon size="m" type="logoSecurity" aria-hidden={true} />,
         renderItem: ({ children }) => (
           <EuiText color="success">{children}</EuiText>
         ),

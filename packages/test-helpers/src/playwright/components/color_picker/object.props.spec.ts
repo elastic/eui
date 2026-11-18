@@ -46,14 +46,19 @@ test.describe('EuiColorPickerObject with a custom button', () => {
   test.describe('secondaryInputDisplay="none"', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(
-        storyUrl(STORY_ID, `data-test-subj:${TEST_SUBJ};secondaryInputDisplay:none`)
+        storyUrl(
+          STORY_ID,
+          `data-test-subj:${TEST_SUBJ};secondaryInputDisplay:none`
+        )
       );
       colorPicker = new EuiColorPickerObject(page, TEST_SUBJ);
       await colorPicker.locator.waitFor({ state: 'visible' });
     });
 
     test('setColor throws a descriptive error', async () => {
-      await expect(colorPicker.setColor('#0000ff')).rejects.toThrow(/secondaryInputDisplay/);
+      await expect(colorPicker.setColor('#0000ff')).rejects.toThrow(
+        /secondaryInputDisplay/
+      );
     });
   });
 });

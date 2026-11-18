@@ -16,7 +16,7 @@ import React, {
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import {
   euiStepStyles,
   euiStepContentStyles,
@@ -65,17 +65,16 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
 }) => {
   const classes = classNames('euiStep', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiStepStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiStepStyles);
   const cssStyles = [styles.euiStep, styles[titleSize]];
 
-  const contentStyles = euiStepContentStyles(euiTheme);
+  const contentStyles = useEuiMemoizedStyles(euiStepContentStyles);
   const cssContentStyles = [
     contentStyles.euiStep__content,
     contentStyles[titleSize],
   ];
 
-  const titleStyles = euiStepTitleStyles(euiTheme);
+  const titleStyles = useEuiMemoizedStyles(euiStepTitleStyles);
   const cssStepTitleStyles = [
     titleStyles.euiStep__title,
     status === 'disabled' && titleStyles.isDisabled,

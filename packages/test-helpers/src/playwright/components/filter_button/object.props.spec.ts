@@ -21,13 +21,19 @@ test.describe('EuiFilterButtonObject', () => {
       `data-test-subj:${TEST_SUBJ};hasActiveFilters:!false;isSelected:!true`
     );
 
-    test('carries the isSelected class, not the hasActiveFilters class', async ({ page }) => {
+    test('carries the isSelected class, not the hasActiveFilters class', async ({
+      page,
+    }) => {
       await page.goto(SELECTED_URL);
       await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
       const filterButton = new EuiFilterButtonObject(page, TEST_SUBJ);
 
-      await expect(filterButton.locator).toHaveClass(/euiFilterButton-isSelected/);
-      await expect(filterButton.locator).not.toHaveClass(/euiFilterButton-hasActiveFilters/);
+      await expect(filterButton.locator).toHaveClass(
+        /euiFilterButton-isSelected/
+      );
+      await expect(filterButton.locator).not.toHaveClass(
+        /euiFilterButton-hasActiveFilters/
+      );
     });
   });
 });

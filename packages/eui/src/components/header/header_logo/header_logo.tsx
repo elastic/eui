@@ -29,6 +29,13 @@ export type EuiHeaderLogoProps = CommonProps &
     rel?: string;
     target?: string;
     iconTitle?: string;
+    /**
+     * Whether to use the monochromatic outlined version of the logo.
+     */
+    logoMono?: boolean;
+    /**
+     * Only symbol or horizontal logo version with trademark.
+     */
     logoType?: 'glyph' | 'horizontal';
   };
 
@@ -39,6 +46,7 @@ export const EuiHeaderLogo = ({
   target,
   className,
   logoType = 'glyph',
+  logoMono = false,
   ...rest
 }: EuiHeaderLogoProps) => {
   // Keep this to prevent legacy runtime `iconType` props from being forwarded to the anchor.
@@ -69,7 +77,7 @@ export const EuiHeaderLogo = ({
           aria-label={iconTitle}
           className="euiHeaderLogo__icon"
           size="l"
-          type="logoElastic"
+          type={logoMono ? 'logoElasticMono' : 'logoElastic'}
         />
       )}
       {logoType === 'horizontal' && (
@@ -77,6 +85,7 @@ export const EuiHeaderLogo = ({
           title={iconTitle}
           style={{ maxHeight: euiTheme.size.l, width: 'auto' }}
           className="euiHeaderLogo__image"
+          mono={logoMono}
         />
       )}
     </a>

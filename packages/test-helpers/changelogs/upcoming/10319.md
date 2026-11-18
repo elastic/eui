@@ -1,0 +1,1 @@
+- Added `EuiFormRowObject` with `label`, `errors`, `helpTexts`, `getLabel()`, `getHelpTexts()`, `getErrors()` and `isInvalid()`

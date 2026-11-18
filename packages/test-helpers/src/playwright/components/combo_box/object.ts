@@ -83,7 +83,10 @@ export class EuiComboBoxObject extends BaseObject {
     // Poll rather than assert once: an asPlainText selection is committed via
     // the consumer's onChange, which can land a tick after the click.
     await expect
-      .poll(() => this.getSelectedOptions().then((options) => [...options].sort()), { timeout })
+      .poll(
+        () => this.getSelectedOptions().then((options) => [...options].sort()),
+        { timeout }
+      )
       .toEqual(sortedTarget);
   }
 
@@ -106,7 +109,9 @@ export class EuiComboBoxObject extends BaseObject {
     // The typed value equals the resulting pill/input label, so membership is
     // an exact check.
     for (const label of labels) {
-      await expect.poll(() => this.getSelectedOptions(), { timeout }).toContain(label);
+      await expect
+        .poll(() => this.getSelectedOptions(), { timeout })
+        .toContain(label);
     }
   }
 

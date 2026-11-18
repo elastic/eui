@@ -1,5 +1,5 @@
-import { createSerializer, matchers } from "@emotion/jest";
-import { replaceEmotionPrefix } from '../../../src/test'
+import { createSerializer, matchers } from '@emotion/jest';
+import { replaceEmotionPrefix } from '../../../src/test';
 
 expect.extend(matchers);
 

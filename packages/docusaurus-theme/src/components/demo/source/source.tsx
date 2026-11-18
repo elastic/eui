@@ -15,7 +15,11 @@ export interface DemoSourceProps extends PropsWithChildren {
   isActive?: boolean;
 }
 
-export const DemoSource = ({ children, filename, isActive = false }: DemoSourceProps) => {
+export const DemoSource = ({
+  children,
+  filename,
+  isActive = false,
+}: DemoSourceProps) => {
   const demoContext = useDemoContext();
 
   useEffect(() => {
@@ -33,4 +37,4 @@ export const DemoSource = ({ children, filename, isActive = false }: DemoSourceP
   }, [children]);
 
   return null;
-}
+};

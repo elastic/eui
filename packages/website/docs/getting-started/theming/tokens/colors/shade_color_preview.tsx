@@ -13,5 +13,5 @@ export const ShadeColorPreview = () => {
     >
       <strong>background: {euiTheme.colors.lightShade}</strong>
     </div>
-  )
-}
+  );
+};

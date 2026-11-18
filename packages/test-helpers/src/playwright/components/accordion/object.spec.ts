@@ -13,7 +13,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testAccordion';
 
-const PLAYGROUND_URL = storyUrl('layout-euiaccordion--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'layout-euiaccordion--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiAccordionObject', () => {
   let accordion: EuiAccordionObject;

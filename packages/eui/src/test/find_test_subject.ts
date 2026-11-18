@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ReactWrapper, ShallowWrapper } from 'enzyme';
+import type { ReactWrapper, ShallowWrapper } from 'enzyme';
 
 /**
  * Find node which matches a specific test subject selector. Returns ReactWrappers around DOM element,

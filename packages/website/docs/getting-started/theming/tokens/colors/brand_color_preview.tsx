@@ -13,5 +13,5 @@ export const BrandColorPreview = () => {
     >
       <strong>background: {euiTheme.colors.warning}</strong>
     </div>
-  )
-}
+  );
+};

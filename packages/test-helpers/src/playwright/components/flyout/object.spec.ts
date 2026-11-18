@@ -13,7 +13,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testFlyout';
 
-const PLAYGROUND_URL = storyUrl('layout-euiflyout-euiflyout--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'layout-euiflyout-euiflyout--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiFlyoutObject', () => {
   let flyout: EuiFlyoutObject;

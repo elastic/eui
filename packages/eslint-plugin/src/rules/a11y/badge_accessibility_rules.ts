@@ -17,7 +17,10 @@ export const EuiBadgeAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
         let iconOnClick, onClick, iconOnClickAriaLabel, onClickAriaLabel;
 
         for (const attr of openingElement.attributes) {
-          if (attr.type === 'JSXAttribute' && attr.name.type === 'JSXIdentifier') {
+          if (
+            attr.type === 'JSXAttribute' &&
+            attr.name.type === 'JSXIdentifier'
+          ) {
             switch (attr.name.name) {
               case 'iconOnClick':
                 iconOnClick = attr;
@@ -50,7 +53,8 @@ export const EuiBadgeAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
           context.report({
             node: iconOnClick,
             messageId: 'sameCallback',
-            fix: fixer => fixer.removeRange([iconOnClick.range[0], iconOnClick.range[1]]),
+            fix: (fixer) =>
+              fixer.removeRange([iconOnClick.range[0], iconOnClick.range[1]]),
           });
         }
 
@@ -59,7 +63,11 @@ export const EuiBadgeAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
           context.report({
             node: iconOnClickAriaLabel,
             messageId: 'iconOnClickAriaLabelWithoutIconOnClick',
-            fix: fixer => fixer.removeRange([iconOnClickAriaLabel.range[0], iconOnClickAriaLabel.range[1]]),
+            fix: (fixer) =>
+              fixer.removeRange([
+                iconOnClickAriaLabel.range[0],
+                iconOnClickAriaLabel.range[1],
+              ]),
           });
         }
 
@@ -68,7 +76,11 @@ export const EuiBadgeAccessibilityRules = ESLintUtils.RuleCreator.withoutDocs({
           context.report({
             node: onClickAriaLabel,
             messageId: 'onClickAriaLabelWithoutOnClick',
-            fix: fixer => fixer.removeRange([onClickAriaLabel.range[0], onClickAriaLabel.range[1]]),
+            fix: (fixer) =>
+              fixer.removeRange([
+                onClickAriaLabel.range[0],
+                onClickAriaLabel.range[1],
+              ]),
           });
         }
       },
