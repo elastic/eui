@@ -67,7 +67,7 @@ const config = {
       },
     ],
   },
-  transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!(uuid|storybook|@faker-js)/)'],
   snapshotSerializers: ['<rootDir>/scripts/jest/setup/emotion'],
   // react version and user permissions aware cache directory
   cacheDirectory: `${getCacheDirectory()}_react-${reactVersion}`,

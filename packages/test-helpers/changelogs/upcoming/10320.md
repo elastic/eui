@@ -1,0 +1,2 @@
+- Added `EuiButtonObject`, `EuiButtonEmptyObject` and `EuiButtonIconObject` with `click()`, `getText()`, `isDisabled()` and `isLoading()`
+- Added `EuiLinkObject` with `click()`, `getText()`, `isDisabled()` and `getHref()`
