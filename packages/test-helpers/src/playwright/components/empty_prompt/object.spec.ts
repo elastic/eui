@@ -42,9 +42,10 @@ test.describe('EuiEmptyPromptObject', () => {
   });
 
   test('returns empty strings without title and body', async ({ page }) => {
-    await page.goto(`${PLAYGROUND_URL};body:`);
+    await page.goto(`${PLAYGROUND_URL};title:;body:`);
     const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
 
+    expect(await prompt.getTitle()).toBe('');
     expect(await prompt.getBody()).toBe('');
   });
 

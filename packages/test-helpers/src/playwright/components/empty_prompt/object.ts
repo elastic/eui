@@ -18,6 +18,9 @@ import { EuiEmptyPromptSelectors } from '../../../components/empty_prompt/select
  * `testSubj` must be set on `EuiEmptyPrompt` itself, EUI spreads it onto the
  * panel.
  */
+/** The content children that are never actions: the title, the body and the spacer. */
+const NON_ACTION_BLOCKS = '.euiTitle, .euiText, .euiSpacer';
+
 export class EuiEmptyPromptObject extends BaseObject {
   constructor(
     scope: ObjectScope,
@@ -60,7 +63,9 @@ export class EuiEmptyPromptObject extends BaseObject {
   /**
    * The labels of the actions, in order. A single action renders directly in
    * the content, an array inside the actions wrapper, so both are read from
-   * the content children that are not the title, the body or a spacer.
+   * the content children that are not the title, the body or a spacer. The
+   * label is the `aria-label` when set, otherwise the text, so it matches
+   * the name `action()` looks up.
    */
   async getActions(): Promise<string[]> {
     await this.root.waitFor({ state: 'attached' });
@@ -71,15 +76,17 @@ export class EuiEmptyPromptObject extends BaseObject {
           if (child.matches(selectors.ACTIONS_SELECTOR)) {
             return Array.from(child.querySelectorAll('button, a'));
           }
-          if (child.matches('.euiTitle, .euiText, .euiSpacer')) {
+          if (child.matches(selectors.NON_ACTION_BLOCKS)) {
             return [];
           }
           return child.matches('button, a')
             ? [child]
             : Array.from(child.querySelectorAll('button, a'));
         });
-        return actions.map((action) => (action.textContent ?? '').trim());
-      }, EuiEmptyPromptSelectors);
+        return actions.map((action) =>
+          (action.getAttribute('aria-label') ?? action.textContent ?? '').trim()
+        );
+      }, { ...EuiEmptyPromptSelectors, NON_ACTION_BLOCKS });
   }
 
   /** Click the action with this name. What follows is up to the consumer. */
@@ -94,7 +101,7 @@ export class EuiEmptyPromptObject extends BaseObject {
   private get actionBlocks(): Locator {
     return this.root
       .locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR)
-      .locator(':scope > :not(.euiTitle):not(.euiText):not(.euiSpacer)');
+      .locator(`:scope > :not(${NON_ACTION_BLOCKS})`);
   }
 
   private async textOf(element: Locator): Promise<string> {
