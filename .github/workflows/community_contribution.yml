@@ -1,10 +1,11 @@
 name: "Community contribution"
 on:
   pull_request_target:
-    types: [opened, reopened]
+    types: [opened, reopened, edited]
 
 jobs:
   community-pr-message:
+    if: ${{ github.event.action != 'edited' || (github.event.pull_request.state == 'closed' && !github.event.pull_request.merged) }}
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -54,13 +55,28 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           PR_BODY: ${{ github.event.pull_request.body }}
+          ACTION: ${{ github.event.action }}
+          SENDER_LOGIN: ${{ github.event.sender.login }}
+          USER_TYPE: ${{ github.event.pull_request.user.type }}
         run: |
           set -euo pipefail
 
-          gh pr comment "$PR_NUMBER" --body "👋 Since this is a community submitted pull request, a Buildkite build has not been started automatically. Would an Elastic organization member please verify the contents of this pull request and kick off a build manually?"
-          gh pr edit "$PR_NUMBER" --add-label "community contribution"
-
           guidelines='https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/README.md'
+          help_wanted='https://github.com/elastic/eui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22'
+          new_issue='https://github.com/elastic/eui/issues/new/choose'
+          marker='<!-- community-contribution-autoclose -->'
+
+          # Authors without write access can't reopen a pull request the bot closed, so the bot reopens it after an edit
+          if [[ "$ACTION" == edited ]]; then
+            closed_by=$(gh api "repos/$GH_REPO/issues/$PR_NUMBER" --jq '.closed_by.login // ""')
+            auto_closed=$(gh api --paginate "repos/$GH_REPO/issues/$PR_NUMBER/comments" \
+              --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | contains("<!-- community-contribution-autoclose -->"))) | .id')
+            if [[ "$closed_by" != "github-actions[bot]" || -z "$auto_closed" ]]; then
+              echo "Not closed by this workflow; nothing to do."
+              exit 0
+            fi
+          fi
+
           issue_numbers=$(
             printf '%s\n' "$PR_BODY" \
               | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?)[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
@@ -69,15 +85,12 @@ jobs:
               || true
           )
 
-          if [[ -z "$issue_numbers" ]]; then
-            gh pr comment "$PR_NUMBER" --body "We don't accept community contributions without a linked issue labelled \"help wanted\". Please file or link one first. See our [contribution guidelines]($guidelines)."
-            exit 0
-          fi
-
           has_help_wanted=false
           inspected=0
           for issue_number in $issue_numbers; do
-            is_help_wanted=$(gh issue view "$issue_number" --json labels --jq 'any(.labels[]; .name == "help wanted")' 2>/dev/null) || continue
+            # The issues endpoint also returns pull requests
+            is_help_wanted=$(gh api "repos/$GH_REPO/issues/$issue_number" \
+              --jq '.pull_request == null and .state == "open" and any(.labels[]; .name == "help wanted")' 2>/dev/null) || continue
             inspected=$((inspected + 1))
             if [[ "$is_help_wanted" == true ]]; then
               has_help_wanted=true
@@ -85,11 +98,55 @@ jobs:
             fi
           done
 
-          if [[ "$inspected" -eq 0 ]]; then
-            echo "::warning::Could not read linked issues; skipping help wanted comment."
+          if [[ -n "$issue_numbers" && "$inspected" -eq 0 ]]; then
+            if [[ "$ACTION" == edited ]]; then
+              echo "::warning::Could not read linked issues; leaving the pull request closed."
+              exit 0
+            fi
+            echo "::warning::Could not read linked issues; leaving the pull request open."
+            has_help_wanted=true
+          fi
+
+          # Only the author or someone with write access can reopen, so a reopen by anyone else is a maintainer override.
+          # Bot pull requests don't link issues, so they're never closed.
+          if [[ "$USER_TYPE" == Bot || ( "$ACTION" == reopened && "$SENDER_LOGIN" != "$USER_LOGIN" ) ]]; then
+            has_help_wanted=true
+          fi
+
+          if [[ "$has_help_wanted" != true && "$ACTION" == edited ]]; then
+            echo "Still no open help wanted issue; leaving the pull request closed."
             exit 0
           fi
 
           if [[ "$has_help_wanted" != true ]]; then
-            gh pr comment "$PR_NUMBER" --body "We don't accept community contributions for issues not labelled \"help wanted\". Please read our [contribution guidelines]($guidelines)."
+            if [[ -z "$issue_numbers" ]]; then
+              reason="This pull request isn't linked to an issue."
+            else
+              reason="None of the issues this pull request closes is open and labelled \`help wanted\`."
+            fi
+
+            body=$(cat <<EOF
+          $marker
+          👋 Thanks for your interest in contributing to EUI! We only accept community pull requests for open issues labelled [\`help wanted\`]($help_wanted), so we're closing this one. $reason
+
+          To get it reviewed:
+
+          1. Find an open issue labelled \`help wanted\`. If the issue you're working on doesn't have that label, comment on it with your proposed solution. We'll add the label if we agree.
+          2. Edit this pull request's description to link that issue with a closing keyword, e.g. \`Fixes #123\`, \`Closes #123\` or \`Resolves #123\`. Mentions like "related to #123", closed issues and pull requests don't count.
+
+          We'll reopen this pull request automatically once its description links an open \`help wanted\` issue. If the label is added after your last edit, edit the description again to rerun the check.
+
+          If you need a capability that doesn't have an issue yet, [open one]($new_issue) and wait for us to discuss it before writing code. Opening an issue isn't enough on its own: we add \`help wanted\` only once we've agreed on the change and want it contributed. See our [contribution guidelines]($guidelines) for details.
+          EOF
+            )
+
+            gh pr close "$PR_NUMBER" --comment "$body"
+            exit 0
           fi
+
+          if [[ "$ACTION" == edited ]]; then
+            gh pr reopen "$PR_NUMBER"
+          fi
+
+          gh pr comment "$PR_NUMBER" --body "👋 Since this is a community submitted pull request, a Buildkite build has not been started automatically. Would an Elastic organization member please verify the contents of this pull request and kick off a build manually?"
+          gh pr edit "$PR_NUMBER" --add-label "community contribution"
