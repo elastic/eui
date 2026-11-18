@@ -1251,6 +1251,9 @@ export const typeToPathMap = {
   logoElastic: withMetadata(() => import('./assets/logo_elastic'), {
     category: 'elasticLogo',
   }),
+  logoElasticMono: withMetadata(() => import('./assets/logo_elastic_mono'), {
+    category: 'elasticLogo',
+  }),
   logoElasticStack: withMetadata(() => import('./assets/logo_elastic_stack'), {
     category: 'elasticLogo',
   }),

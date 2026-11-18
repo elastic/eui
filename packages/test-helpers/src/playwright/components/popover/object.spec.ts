@@ -29,12 +29,16 @@ test.describe('EuiPopoverObject', () => {
   });
 
   test.describe('open', () => {
-    test('opens a closed popover and returns once the panel is open', async ({ page }) => {
+    test('opens a closed popover and returns once the panel is open', async ({
+      page,
+    }) => {
       await expect(page.locator(PANEL)).toHaveCount(0);
 
       await popover.open();
 
-      expect(await page.locator(PANEL).getAttribute('data-popover-open')).toBe('true');
+      expect(await page.locator(PANEL).getAttribute('data-popover-open')).toBe(
+        'true'
+      );
       await expect(popover.locator).toHaveAttribute('aria-expanded', 'true');
     });
 
@@ -47,7 +51,9 @@ test.describe('EuiPopoverObject', () => {
   });
 
   test.describe('close', () => {
-    test('closes an open popover and returns once the panel is removed', async ({ page }) => {
+    test('closes an open popover and returns once the panel is removed', async ({
+      page,
+    }) => {
       await popover.open();
 
       await popover.close();

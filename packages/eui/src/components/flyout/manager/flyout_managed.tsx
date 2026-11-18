@@ -361,7 +361,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     };
 
-    // Update width in manager state when it changes
+    // Update width in manager state when it changes. Maximize and restore
+    // write the new width before paint (see `EuiFlyoutComponent`), so this
+    // only runs on measurements, never on the toggle itself.
     useEffect(() => {
       if (isActive && width) {
         setFlyoutWidth(flyoutId, width);

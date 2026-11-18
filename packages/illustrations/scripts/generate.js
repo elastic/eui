@@ -112,7 +112,9 @@ const collectIllustrations = () => {
   }
 
   if (errors.length) {
-    throw new Error(`Illustration SVGs are invalid:\n  - ${errors.join('\n  - ')}`);
+    throw new Error(
+      `Illustration SVGs are invalid:\n  - ${errors.join('\n  - ')}`
+    );
   }
 
   return illustrations.sort((a, b) => a.id.localeCompare(b.id));
@@ -170,7 +172,10 @@ const main = () => {
     );
   }
 
-  fs.writeFileSync(path.join(outputDir, 'index.ts'), renderIndex(illustrations));
+  fs.writeFileSync(
+    path.join(outputDir, 'index.ts'),
+    renderIndex(illustrations)
+  );
 
   const names = illustrations.map(({ id }) => id).join(', ') || '(none)';
   console.log(

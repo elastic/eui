@@ -192,6 +192,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--emphasized emotion-euiSideNavItem-trunk-emphasized"
         >
           <button
+            aria-expanded="false"
             class="euiSideNavItemButton emotion-euiSideNavItemButton-emphasized-trunk"
             type="button"
           >
@@ -204,6 +205,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
                 C
               </span>
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleRight"
               />
             </span>
@@ -265,6 +267,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem-hasChildItems emotion-euiSideNavItem-trunk"
         >
           <button
+            aria-expanded="true"
             class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-trunk"
             type="button"
           >
@@ -278,6 +281,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                 C
               </span>
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </span>
@@ -289,6 +293,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
               class="euiSideNavItem euiSideNavItem--branch euiSideNavItem-hasChildItems emotion-euiSideNavItem-branch"
             >
               <button
+                aria-expanded="true"
                 class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-branch"
                 type="button"
               >
@@ -302,6 +307,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                     D
                   </span>
                   <span
+                    aria-hidden="true"
                     data-euiicon-type="chevronSingleDown"
                   />
                 </span>
@@ -444,6 +450,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
           class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <button
+            aria-expanded="false"
             class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
             type="button"
           >
@@ -457,6 +464,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
                 C
               </span>
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleRight"
               />
             </span>
@@ -518,6 +526,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem-hasChildItems emotion-euiSideNavItem-trunk"
         >
           <button
+            aria-expanded="true"
             class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-trunk"
             type="button"
           >
@@ -531,6 +540,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
                 C
               </span>
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </span>

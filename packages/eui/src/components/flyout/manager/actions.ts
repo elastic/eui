@@ -31,6 +31,10 @@ export const ACTION_CLOSE_ALL = `${PREFIX}/closeAll` as const;
 export const ACTION_SET_ACTIVE = `${PREFIX}/setActive` as const;
 /** Dispatched when an active flyout's pixel width changes (for responsive layout). */
 export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
+/** Dispatched when a flyout is maximized to fill its container, or restored. */
+export const ACTION_SET_MAXIMIZED = `${PREFIX}/setMaximized` as const;
+/** Dispatched by a maximized flyout to record the width it restores to. */
+export const ACTION_SET_RESTORED_WIDTH = `${PREFIX}/setRestoredWidth` as const;
 /** Dispatched when a flyout's `resizable` prop changes. */
 export const ACTION_SET_RESIZABLE = `${PREFIX}/setResizable` as const;
 /** Dispatched to set a flyout's menu pagination. */
@@ -94,6 +98,22 @@ export interface SetWidthAction extends BaseAction {
   type: typeof ACTION_SET_WIDTH;
   flyoutId: string;
   width: number;
+}
+
+/** Sets whether a flyout is maximized to fill its container. */
+export interface SetMaximizedAction extends BaseAction {
+  type: typeof ACTION_SET_MAXIMIZED;
+  flyoutId: string;
+  maximized: boolean;
+  width?: number;
+  restoredWidth?: number;
+}
+
+/** Record the width a maximized flyout restores to. */
+export interface SetRestoredWidthAction extends BaseAction {
+  type: typeof ACTION_SET_RESTORED_WIDTH;
+  flyoutId: string;
+  restoredWidth: number;
 }
 
 /** Update whether a flyout is resizable. */
@@ -172,6 +192,8 @@ export type Action =
   | CloseAllFlyoutsAction
   | SetActiveFlyoutAction
   | SetWidthAction
+  | SetMaximizedAction
+  | SetRestoredWidthAction
   | SetResizableAction
   | SetPaginationAction
   | SetLayoutModeAction
@@ -251,6 +273,42 @@ export const setFlyoutResizable = (
   type: ACTION_SET_RESIZABLE,
   flyoutId,
   resizable,
+});
+
+/**
+ * Maximizes a flyout to fill its container, or restores it. The declared
+ * `size` is left untouched.
+ * - Optional `width` is the width the flyout paints after the toggle. A
+ *   sibling clamps against the stored width, so the flag and the width change
+ *   in the same update. When restoring without it, the width recorded while
+ *   maximized is used.
+ * - Optional `restoredWidth` is the width a maximized flyout restores to.
+ *   When maximizing without it, the current width is used.
+ * - Child flyouts can't be maximized; the action is ignored for them.
+ * - A flyout that doesn't set `flyoutMenuProps.showMaximizeButton` restores
+ *   itself right away.
+ */
+export const setFlyoutMaximized = (
+  flyoutId: string,
+  maximized: boolean,
+  width?: number,
+  restoredWidth?: number
+): SetMaximizedAction => ({
+  type: ACTION_SET_MAXIMIZED,
+  flyoutId,
+  maximized,
+  width,
+  restoredWidth,
+});
+
+/** Records the width a maximized flyout restores to. */
+export const setFlyoutRestoredWidth = (
+  flyoutId: string,
+  restoredWidth: number
+): SetRestoredWidthAction => ({
+  type: ACTION_SET_RESTORED_WIDTH,
+  flyoutId,
+  restoredWidth,
 });
 
 /**

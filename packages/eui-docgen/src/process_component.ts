@@ -63,7 +63,11 @@ export interface ProcessComponent {
   componentExtends: Array<string>;
 }
 
-export const processComponent = ({ componentDoc, filePath, componentExtends }: ProcessComponent): ProcessedComponent => {
+export const processComponent = ({
+  componentDoc,
+  filePath,
+  componentExtends,
+}: ProcessComponent): ProcessedComponent => {
   const props: Record<string, ProcessedComponentProp> = {};
   for (const [propName, prop] of Object.entries(componentDoc.props)) {
     props[propName] = processProp(prop);

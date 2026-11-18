@@ -31,13 +31,33 @@ All deprecations still must follow our [deprecation process](../../wiki/eui-team
 
 ### `@elastic/eui/no-deprecated-icon-aliases`
 
-Disallows deprecated EUI icon aliases in static JSX props on components imported
-from `@elastic/eui`. The rule checks props ending in `IconType`, the `type` prop
-on `EuiIcon` and `EuiIconTip`, and component-specific icon props such as
-`timelineAvatar`, `icon`, `logo`, `iconLeft`, and `iconRight`. It automatically
-replaces deprecated aliases with their supported icon handles.
+Disallows deprecated EUI icon aliases that still render. It automatically
+replaces them with their supported icon handles.
+
+The rule checks static icon names, including both branches of `? :` and the
+operands of `&&`, `||`, and `??`, in:
+
+- JSX props ending in `IconType` on any component, so wrappers that forward
+  them to EUI are covered
+- the `type` prop on `EuiIcon` and `EuiIconTip`, and component-specific icon
+  props such as `timelineAvatar`, `icon`, `logo`, `iconLeft`, and `iconRight` on
+  components imported from `@elastic/eui`
+- `iconType` keys in object literals, such as context menu items and table
+  actions. Other keys, like `icon` or `triggerIconType`, are skipped because they
+  often hold non-EUI values.
 
 See the full table of icon replacements here: https://github.com/elastic/eui/issues/9561
+
+### `@elastic/eui/no-removed-icons`
+
+Disallows icon names that were removed from EUI. `EuiIcon` treats an unknown
+name as an image URL, so a removed name renders as a broken image without a
+console error. It checks the same props as
+`@elastic/eui/no-deprecated-icon-aliases` and automatically replaces removed
+names with their supported icon handles.
+
+It's a separate rule so it can be an error while deprecated aliases stay
+warnings.
 
 ### `@elastic/eui/no-css-color`
 

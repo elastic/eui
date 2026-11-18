@@ -149,7 +149,9 @@ export const useApplyFlyoutLayoutMode = () => {
       return LAYOUT_MODE_SIDE_BY_SIDE;
     }
 
-    const isFillParent = parentFlyout?.size === 'fill';
+    // A maximized main makes room for its child the way a `fill` main does
+    const isFillParent =
+      parentFlyout?.size === 'fill' || !!parentFlyout?.maximized;
     const isFillChild = childFlyout?.size === 'fill';
     const hasFill = isFillParent || isFillChild;
 
@@ -233,6 +235,7 @@ export const useApplyFlyoutLayoutMode = () => {
     parentWidth,
     childWidth,
     parentFlyout?.size,
+    parentFlyout?.maximized,
     parentFlyout?.resizable,
     parentFlyout?.minWidth,
     childFlyout?.size,

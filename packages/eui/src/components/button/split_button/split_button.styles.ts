@@ -20,10 +20,7 @@ const primaryDisabledSelector = `.euiSplitButtonActionPrimary:is(${euiDisabledSe
 const secondaryDisabledSelector = `.euiSplitButtonActionSecondary:is(${euiDisabledSelector})`;
 const hasAllDisabledActionsSelector = `:has(${primaryDisabledSelector}):has(${secondaryDisabledSelector})`;
 
-export const euiSplitButtonStyles = (
-  euiThemeContext: UseEuiTheme,
-  backgroundColor: string
-) => {
+export const euiSplitButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const buttonSizeMap = euiButtonSizeMap(euiThemeContext);
@@ -48,7 +45,7 @@ export const euiSplitButtonStyles = (
       max-inline-size: fit-content;
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.border.radius.control};
-      background-color: ${backgroundColor};
+      background-color: var(--euiSplitButtonBackgroundColor);
 
       &:where([data-size='s']) {
         block-size: ${buttonSizeMap.s.height};
@@ -91,7 +88,12 @@ export const euiSplitButtonStyles = (
   };
 };
 
-export const euiSplitButtonActionStyles = (
+export const euiSplitButtonActionStyles = (euiThemeContext: UseEuiTheme) => ({
+  s: _euiSplitButtonActionSizeStyles(euiThemeContext, 's'),
+  m: _euiSplitButtonActionSizeStyles(euiThemeContext, 'm'),
+});
+
+const _euiSplitButtonActionSizeStyles = (
   euiThemeContext: UseEuiTheme,
   size: 's' | 'm'
 ) => {
@@ -134,17 +136,15 @@ export const euiSplitButtonActionStyles = (
   };
 };
 
-export const euiSplitButtonDividerStyles = (
-  euiThemeContext: UseEuiTheme,
-  color: string
-) => {
+export const euiSplitButtonDividerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
     divider: css`
       block-size: calc(100% - ${euiTheme.size.s});
       /* uses a border to ensure proper rendering in Windows high contrast themes */
-      border-inline-start: ${euiTheme.border.width.thin} solid ${color};
+      border-inline-start: ${euiTheme.border.width.thin} solid
+        var(--euiSplitButtonDividerColor);
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)};
 
       &:where(

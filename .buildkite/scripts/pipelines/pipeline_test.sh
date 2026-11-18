@@ -41,76 +41,72 @@ if is_eui_test_type "$TEST_TYPE" && should_skip_eui_tests; then
   exit 0
 fi
 
-DOCKER_OPTIONS=(
-  -i --rm
-  --env GIT_COMMITTER_NAME=test
-  --env GIT_COMMITTER_EMAIL=test
-  --env HOME=/tmp
-  --env BUILDKITE_BRANCH
-  --env BUILDKITE_BUILD_ID
-  --env BUILDKITE_BUILD_NUMBER
-  --env BUILDKITE_BUILD_URL
-  --env BUILDKITE_COMMIT
-  --env BUILDKITE_JOB_ID
-  --env BUILDKITE_MESSAGE
-  --env CI=true
-  --env PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
-  --env NODE_OPTIONS=--dns-result-order=ipv4first
-  --user="$(id -u):$(id -g)"
-  --volume="$(pwd):/app"
-  --workdir=/app
-)
+set +u
+source ~/.bash_profile
+nvm install
+set -u
+corepack enable
+
+export GIT_COMMITTER_NAME=test
+export GIT_COMMITTER_EMAIL=test
+export CI=true
+export PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
+export NODE_OPTIONS=--dns-result-order=ipv4first
 
 COMMAND=""
 
 case $TEST_TYPE in
   lint)
     echo "[TASK]: Running linters"
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui lint"
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui lint"
     ;;
 
   unit:ts)
     echo "[TASK]: Running .ts and .js unit tests"
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --testMatch=non-react"
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --testMatch=non-react"
     ;;
 
   unit:tsx:17)
     echo "[TASK]: Running Jest .tsx tests against React 17"
-    DOCKER_OPTIONS+=(--env BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=jest_token_react17 "${buildkite_analytics_vault}")")
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --react-version=17 --testMatch=react"
+    BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=jest_token_react17 "${buildkite_analytics_vault}")"
+    export BUILDKITE_ANALYTICS_TOKEN
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --react-version=17 --testMatch=react"
     ;;
 
   unit:tsx)
     echo "[TASK]: Running Jest .tsx tests against React 18"
-    DOCKER_OPTIONS+=(--env BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=jest_token_react18 "${buildkite_analytics_vault}")")
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --testMatch=react"
+    BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=jest_token_react18 "${buildkite_analytics_vault}")"
+    export BUILDKITE_ANALYTICS_TOKEN
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui test-unit --node-options=--max_old_space_size=2048 --testMatch=react"
     ;;
 
   cypress:17)
     echo "[TASK]: Running Cypress tests against React 17"
-    DOCKER_OPTIONS+=(--env BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react17 "${buildkite_analytics_vault}")")
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui test-cypress --node-options=--max_old_space_size=2048 --react-version=17"
+    BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react17 "${buildkite_analytics_vault}")"
+    export BUILDKITE_ANALYTICS_TOKEN
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui test-cypress --node-options=--max_old_space_size=2048 --react-version=17"
     ;;
 
   cypress:18)
     echo "[TASK]: Running Cypress tests against React 18"
-    DOCKER_OPTIONS+=(--env BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react18 "${buildkite_analytics_vault}")")
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui test-cypress --node-options=--max_old_space_size=2048"
+    BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react18 "${buildkite_analytics_vault}")"
+    export BUILDKITE_ANALYTICS_TOKEN
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui test-cypress --node-options=--max_old_space_size=2048"
     ;;
 
   cypress:a11y)
     echo "[TASK]: Running Cypress accessibility tests against React 18"
-    COMMAND="/opt/yarn*/bin/yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
+    COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
     ;;
 
   test-helpers)
     echo "[TASK]: Running EUI test-helpers validation tests"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && yarn workspace @elastic/eui build-storybook && yarn workspace @elastic/eui-test-helpers exec playwright install chromium && yarn workspace @elastic/eui-test-helpers exec playwright test ${PLAYWRIGHT_ARGS:-}"
+    COMMAND="yarn && yarn workspace @elastic/eui build:workspaces && yarn workspace @elastic/eui build-storybook && yarn workspace @elastic/eui-test-helpers exec playwright install chromium && yarn workspace @elastic/eui-test-helpers exec playwright test ${PLAYWRIGHT_ARGS:-}"
     ;;
 
   pkg:lint)
     echo "[TASK]: Linting all workspaces except @elastic/eui"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+    COMMAND="yarn && yarn workspace @elastic/eui build:workspaces && \
       yarn workspaces foreach -A -pi \
         --exclude '@elastic/eui' \
         --exclude '@elastic/eui-monorepo' \
@@ -119,7 +115,7 @@ case $TEST_TYPE in
 
   pkg:unit)
     echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
-    COMMAND="/opt/yarn*/bin/yarn && yarn workspace @elastic/eui build:workspaces && \
+    COMMAND="yarn && yarn workspace @elastic/eui build:workspaces && \
       yarn workspaces foreach -A -pi \
         --exclude '@elastic/eui' \
         --exclude '@elastic/eui-monorepo' \
@@ -133,4 +129,4 @@ case $TEST_TYPE in
     ;;
 esac
 
-docker run "${DOCKER_OPTIONS[@]}" "${DOCKER_BASE_IMAGE}" bash -c "${COMMAND}"
+bash -c "${COMMAND}"

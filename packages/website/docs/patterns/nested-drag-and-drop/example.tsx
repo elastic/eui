@@ -580,7 +580,10 @@ const DraggablePanel = memo(function DraggablePanel({
               isOpen={isPopoverOpen}
               closePopover={() => setIsPopoverOpen(false)}
               button={
-                <EuiToolTip content={moreActionsLabel} disableScreenReaderOutput>
+                <EuiToolTip
+                  content={moreActionsLabel}
+                  disableScreenReaderOutput
+                >
                   <EuiButtonIcon
                     aria-label={moreActionsLabel}
                     iconType="ellipsis"
@@ -649,7 +652,11 @@ const DraggablePanel = memo(function DraggablePanel({
               </span>
               {hasChildren && (
                 <span css={iconStyles}>
-                  <EuiIcon type={isExpanded ? 'chevronSingleDown' : 'chevronSingleRight'} />
+                  <EuiIcon
+                    type={
+                      isExpanded ? 'chevronSingleDown' : 'chevronSingleRight'
+                    }
+                  />
                 </span>
               )}
               <EuiText size="s" component="span">

@@ -2,6 +2,7 @@
 
 agents:
   provider: gcp
+  image: family/eui-ubuntu-2204
   machineType: c4d-standard-4
   preemptible: true
   diskType: hyperdisk-balanced

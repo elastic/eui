@@ -60,49 +60,47 @@ function isToolTipElement(element: TSESTree.JSXElement): boolean {
   return name.type === 'JSXIdentifier' && name.name === TOOLTIP;
 }
 
-export const NoNestedCopyTooltip = ESLintUtils.RuleCreator.withoutDocs(
-  {
-    create(context) {
-      return {
-        JSXElement(node) {
-          const { openingElement } = node;
+export const NoNestedCopyTooltip = ESLintUtils.RuleCreator.withoutDocs({
+  create(context) {
+    return {
+      JSXElement(node) {
+        const { openingElement } = node;
 
-          if (
-            openingElement.name.type !== 'JSXIdentifier' ||
-            openingElement.name.name !== COPY
-          ) {
-            return;
-          }
+        if (
+          openingElement.name.type !== 'JSXIdentifier' ||
+          openingElement.name.name !== COPY
+        ) {
+          return;
+        }
 
-          // A statically empty/falsy `beforeMessage` renders no `EuiCopy`
-          // tooltip, so a child `EuiToolTip` is not redundant — skip those.
-          if (!hasMeaningfulAttr(openingElement, BEFORE_MESSAGE)) return;
+        // A statically empty/falsy `beforeMessage` renders no `EuiCopy`
+        // tooltip, so a child `EuiToolTip` is not redundant — skip those.
+        if (!hasMeaningfulAttr(openingElement, BEFORE_MESSAGE)) return;
 
-          const rootElement = getRenderPropRootElement(node);
+        const rootElement = getRenderPropRootElement(node);
 
-          if (!rootElement || !isToolTipElement(rootElement)) return;
+        if (!rootElement || !isToolTipElement(rootElement)) return;
 
-          context.report({
-            node: rootElement,
-            messageId: 'redundantTooltipWrapper',
-          });
-        },
-      };
-    },
-    meta: {
-      type: 'problem',
-      docs: {
-        description: `Disallow wrapping the ${COPY} render-prop child in an ${TOOLTIP} when \`${BEFORE_MESSAGE}\` is set`,
+        context.report({
+          node: rootElement,
+          messageId: 'redundantTooltipWrapper',
+        });
       },
-      schema: [],
-      messages: {
-        redundantTooltipWrapper: [
-          `${COPY} already wraps its child in an ${TOOLTIP} and uses \`${BEFORE_MESSAGE}\` as that tooltip's content.`,
-          `Wrapping the child in another ${TOOLTIP} creates a nested, conflicting tooltip.`,
-          `Remove the ${TOOLTIP} wrapper and move its message into the \`${BEFORE_MESSAGE}\` prop instead.`,
-        ].join(' '),
-      },
+    };
+  },
+  meta: {
+    type: 'problem',
+    docs: {
+      description: `Disallow wrapping the ${COPY} render-prop child in an ${TOOLTIP} when \`${BEFORE_MESSAGE}\` is set`,
     },
-    defaultOptions: [],
-  }
-);
+    schema: [],
+    messages: {
+      redundantTooltipWrapper: [
+        `${COPY} already wraps its child in an ${TOOLTIP} and uses \`${BEFORE_MESSAGE}\` as that tooltip's content.`,
+        `Wrapping the child in another ${TOOLTIP} creates a nested, conflicting tooltip.`,
+        `Remove the ${TOOLTIP} wrapper and move its message into the \`${BEFORE_MESSAGE}\` prop instead.`,
+      ].join(' '),
+    },
+  },
+  defaultOptions: [],
+});

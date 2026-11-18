@@ -100,7 +100,7 @@ const Header = () => {
       }}
       popoverButton={
         <EuiHeaderSectionItemButton aria-label="Sitewide search">
-          <EuiIcon type="magnify" size="m" />
+          <EuiIcon type="magnify" size="m" aria-hidden={true} />
         </EuiHeaderSectionItemButton>
       }
       emptyMessage={
@@ -334,7 +334,7 @@ const HeaderAppMenu = () => {
       notification="1"
       onClick={onMenuButtonClick}
     >
-      <EuiIcon type="apps" size="m" />
+      <EuiIcon type="apps" size="m" aria-hidden={true} />
     </EuiHeaderSectionItemButton>
   );
 
@@ -352,15 +352,15 @@ const HeaderAppMenu = () => {
         data-test-subj="cy-apps-menu"
       >
         <EuiKeyPadMenuItem label="Discover">
-          <EuiIcon type="discoverApp" size="l" />
+          <EuiIcon type="discoverApp" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
 
         <EuiKeyPadMenuItem label="Dashboard">
-          <EuiIcon type="dashboardApp" size="l" />
+          <EuiIcon type="dashboardApp" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
 
         <EuiKeyPadMenuItem label="Dev Tools">
-          <EuiIcon type="devToolsApp" size="l" />
+          <EuiIcon type="devToolsApp" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
       </EuiKeyPadMenu>
     </EuiPopover>

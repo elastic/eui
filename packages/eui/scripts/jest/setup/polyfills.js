@@ -1,4 +1,7 @@
-import { MutationObserver, MutationNotifier } from '../polyfills/mutation_observer';
+import {
+  MutationObserver,
+  MutationNotifier,
+} from '../polyfills/mutation_observer';
 
 // polyfill window.MutationObserver and intersect jsdom's relevant methods
 // from https://github.com/aurelia/pal-nodejs
@@ -14,12 +17,14 @@ afterAll(() => {
 beforeAll(() => {
   if (typeof window === 'undefined') return; // SSR tests
 
-  Object.defineProperty(window, 'MutationObserver', { value: MutationObserver });
+  Object.defineProperty(window, 'MutationObserver', {
+    value: MutationObserver,
+  });
   patchNotifyChange(window);
 
   function patchNotifyChange(window) {
     const notifyInstance = MutationNotifier.getInstance();
-    const notify = function(node) {
+    const notify = function (node) {
       notifyInstance.notifyChanged(node);
     };
 
@@ -46,7 +51,7 @@ beforeAll(() => {
 
   function intersectMethod(proto, methodName, intersect) {
     const orig = proto[methodName];
-    proto[methodName] = function(...args) {
+    proto[methodName] = function (...args) {
       const ret = orig.apply(this, args);
       intersect(this);
       return ret;

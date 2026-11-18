@@ -5,12 +5,7 @@ const { parseArgs } = require('util');
 const chokidar = require('chokidar');
 const chalk = require('chalk');
 const minimatch = require('minimatch');
-const {
-  IGNORE_BUILD,
-  IGNORE_TESTS,
-  IGNORE_TESTENV,
-  IGNORE_PACKAGES,
-} = require('./constants');
+const { IGNORE_BUILD, IGNORE_TESTS, IGNORE_TESTENV } = require('./constants');
 const kibanaWatch = require('../packages/eui/scripts/kibana_watch');
 
 const { values: args } = parseArgs({
@@ -288,7 +283,6 @@ const IGNORED_FILES = [
   ...IGNORE_BUILD,
   ...IGNORE_TESTS,
   ...IGNORE_TESTENV,
-  ...IGNORE_PACKAGES,
 ];
 
 (async () => {
