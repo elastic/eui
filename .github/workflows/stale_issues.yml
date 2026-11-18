@@ -33,8 +33,8 @@ jobs:
     steps:
       - uses: actions/stale@v10
         with:
-          stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our roadmap, it''s unlikely that we''ll pick this issue up. We would sincerely appreciate a PR/community contribution if this is something that matters to you! If not, and there is no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
-          close-issue-message: '❌ Per our previous message, this issue is auto-closing after having been open and inactive for a year. If you strongly feel this is still a high-priority issue, or are interested in contributing, please leave a comment or open a new issue linking to this one for context.'
+          stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our roadmap, it''s unlikely that we''ll pick this issue up. If it matters to you, leave a comment with your use case. If you''d like to contribute and this issue isn''t labelled `help wanted`, comment with a proposed solution and wait for us to add the label before opening a pull request; we close community pull requests for issues without it. See our [contribution guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/README.md). If there''s no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
+          close-issue-message: '❌ Per our previous message, this issue is auto-closing after having been open and inactive for a year. If you strongly feel this is still a high-priority issue, please leave a comment or open a new issue linking to this one for context. If you''d like to contribute, comment with a proposed solution and wait for us to reopen it with the `help wanted` label before opening a pull request.'
           days-before-issue-stale: 180
           days-before-close: 180
           stale-issue-label: 'stale-issue'
