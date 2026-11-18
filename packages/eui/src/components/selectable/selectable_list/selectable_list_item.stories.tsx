@@ -118,7 +118,7 @@ export const SingleSelection: Story = {
     showIcons: true,
     // @ts-expect-error - custom storybook-only variant of `checked` control
     checkedSingle: 'on',
-    prepend: <EuiIcon type="info" />,
+    prepend: <EuiIcon type="info" aria-hidden={true} />,
     append: <EuiBadge color="hollow">Badge</EuiBadge>,
   },
   render: function Render(args) {

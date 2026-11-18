@@ -265,7 +265,11 @@ const StatefulCloneDraggables = ({
                       <EuiFlexItem>Draggable item {idx + 1}</EuiFlexItem>
                       <EuiFlexItem grow={false}>
                         {isItemRemovable ? (
-                          <EuiIcon type="trash" color="danger" />
+                          <EuiIcon
+                            type="trash"
+                            color="danger"
+                            aria-label="Will be removed"
+                          />
                         ) : (
                           <EuiButtonIcon
                             iconType="cross"

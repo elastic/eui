@@ -430,9 +430,11 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
         <span
+          aria-hidden="true"
           data-euiicon-type="calendar"
         />
         <span
+          aria-hidden="true"
           data-euiicon-type="chevronSingleDown"
         />
       </button>

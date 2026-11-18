@@ -42,6 +42,7 @@ export const useColumnSorting = ({
         color="text"
         className="euiDataGridHeaderCell__sortingArrow"
         data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+        aria-hidden={true}
       />
     ) : null;
   }, [id, isColumnSorted, sortedColumn]);

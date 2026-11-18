@@ -22,6 +22,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
           Sorting
         </span>
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="chevronSingleDown"
         />

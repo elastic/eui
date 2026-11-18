@@ -64,6 +64,7 @@ exports[`EuiInlineEditTitle renders 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -104,6 +105,7 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -144,6 +146,7 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -184,6 +187,7 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -224,6 +228,7 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -264,6 +269,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -304,6 +310,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
         </h1>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />

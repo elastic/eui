@@ -142,6 +142,7 @@ describe('EuiDataGridCellPopoverActions', () => {
           class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
+            aria-hidden="true"
             color="inherit"
             data-euiicon-type="star"
           />

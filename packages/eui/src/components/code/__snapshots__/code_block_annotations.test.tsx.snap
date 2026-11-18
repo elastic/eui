@@ -15,6 +15,7 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
         data-test-subj="euiCodeBlockAnnotationIcon"
       >
         <span
+          aria-hidden="true"
           color="ghost"
           data-euiicon-type="AnnotationInfoIcon"
         />

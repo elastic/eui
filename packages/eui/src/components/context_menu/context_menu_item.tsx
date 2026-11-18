@@ -140,6 +140,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         className="euiContextMenu__icon"
         css={styles.euiContextMenu__icon}
         color="inherit" // forces the icon to inherit its parent color
+        aria-hidden={true}
       />
     ) : (
       // Assume it's already an instance of an icon.
@@ -154,6 +155,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
       size="m"
       className="euiContextMenu__arrow"
       css={styles.euiContextMenuItem__arrow}
+      aria-hidden={true}
     />
   );
 

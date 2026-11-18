@@ -33,7 +33,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton
             isDisabled
             quantity={6}
-            icon={<EuiIcon type="dot" color="success" />}
+            icon={<EuiIcon type="dot" color="success" aria-hidden={true} />}
           >
             Content
           </EuiFacetButton>
@@ -76,7 +76,9 @@ describe('EuiFacetButton', () => {
     describe('icon', () => {
       it('is rendered', () => {
         const { container } = render(
-          <EuiFacetButton icon={<EuiIcon type="dot" />}>Content</EuiFacetButton>
+          <EuiFacetButton icon={<EuiIcon type="dot" aria-hidden={true} />}>
+            Content
+          </EuiFacetButton>
         );
 
         expect(container.firstChild).toMatchSnapshot();
