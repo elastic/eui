@@ -7,8 +7,6 @@ set -euo pipefail
 source .buildkite/scripts/common/utils.sh
 
 FLAKY_REPEAT="${FLAKY_REPEAT:-25}"
-# The whole suite is 36 helpers, so it repeats fewer times to fit the step timeout.
-FLAKY_REPEAT_ALL="${FLAKY_REPEAT_ALL:-5}"
 BASE_BRANCH="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
 HELPERS_DIR="packages/test-helpers/src/playwright/components"
 COMPONENTS_DIR="packages/eui/src/components"
@@ -54,9 +52,8 @@ if [[ -n "${registry_files}" ]]; then
 fi
 
 if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}" || [[ "${registry_edited}" == true ]]; then
-  echo "Shared test-helpers file changed — running all helper specs ${FLAKY_REPEAT_ALL}×."
+  echo "Shared test-helpers file changed — running all helper specs."
   affected="src/playwright/components"
-  FLAKY_REPEAT="${FLAKY_REPEAT_ALL}"
 else
   affected=""
   while IFS= read -r object_file; do
