@@ -363,7 +363,6 @@ export const useDataGridColumnSelector = (
     ) : null;
   }, [
     styles,
-    availableColumns.length,
     numberOfHiddenFields,
     orderedVisibleColumns.length,
     allowColumnHiding,
