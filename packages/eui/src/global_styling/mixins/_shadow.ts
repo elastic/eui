@@ -42,13 +42,13 @@ export interface EuiShadowCustomColor {
 /** @deprecated use euiShadowHover/useEuiShadowHover instead */
 export const useEuiSlightShadowHover = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiSlightShadowHover(euiThemeContext, options);
+  return euiShadowHover(euiThemeContext, 'base', options);
 };
 
 /** @deprecated - useEuiShadow instead */
 export const useEuiShadowFlat = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiShadowFlat(euiThemeContext, options);
+  return euiShadowXSmall(euiThemeContext, options);
 };
 
 export const useEuiShadow = (
