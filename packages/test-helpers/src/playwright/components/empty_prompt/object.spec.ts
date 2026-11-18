@@ -96,6 +96,18 @@ test.describe('EuiEmptyPromptObject', () => {
     await expect(prompt.action('Create visualization')).toHaveCount(1);
   });
 
+  test('reads actions passed as a fragment', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);
+    // A fragment renders its elements as content children, without the wrapper
+    await page.locator('.euiEmptyPrompt__actions').evaluate((actions) => {
+      actions.replaceWith(...Array.from(actions.querySelectorAll('button, a')));
+    });
+
+    expect(await prompt.getActions()).toEqual(['Upgrade', 'Start a trial']);
+    await expect(prompt.action('Start a trial')).toHaveCount(1);
+  });
+
   test('reads labels set through aria attributes', async ({ page }) => {
     await page.goto(PLAYGROUND_URL);
     const prompt = new EuiEmptyPromptObject(page, TEST_SUBJ);

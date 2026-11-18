@@ -84,16 +84,17 @@ export class EuiEmptyPromptObject extends BaseObject {
   }
 
   /**
-   * The content child that holds the actions: a single action itself, or the
-   * actions wrapper. EUI puts a large spacer before it when there is a title
-   * or a body, otherwise it is the only child. The title and the body are
-   * never it, so a link in the body is not an action.
+   * The content children that hold the actions: a single action itself, the
+   * actions wrapper, or the elements of a fragment. EUI puts a large spacer
+   * before them when there is a title or a body, otherwise they are all the
+   * children but the title and the body. A link in the body is never one.
    */
   private get actionBlocks(): Locator {
     return this.root
       .locator(EuiEmptyPromptSelectors.CONTENT_SELECTOR)
       .locator(
-        ':scope > .euiSpacer--l + *, :scope > :only-child:not(.euiTitle):not(.euiText)'
+        ':scope > .euiSpacer--l ~ *, ' +
+          ':scope:not(:has(> .euiSpacer--l)) > :not(.euiTitle):not(.euiText)'
       );
   }
 
