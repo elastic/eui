@@ -116,6 +116,7 @@ case $TEST_TYPE in
   pkg:unit)
     echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
     COMMAND="yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn test-unit && \
       yarn workspaces foreach -A -pi \
         --exclude '@elastic/eui' \
         --exclude '@elastic/eui-monorepo' \

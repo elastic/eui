@@ -19,7 +19,8 @@
     "release:publish": "bash scripts/release_publish.sh",
     "clean": "node scripts/clean.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs,cjs}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,cjs}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,cjs}\"",
+    "test-unit": "node --test \"scripts/**/*.test.{js,mjs}\""
   },
   "repository": {
     "type": "git",
