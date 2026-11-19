@@ -10,6 +10,7 @@ exports[`EuiRadio is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-unselected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="empty"
     />
@@ -32,6 +33,7 @@ exports[`EuiRadio props checked is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-selected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="dot"
     />
@@ -55,6 +57,7 @@ exports[`EuiRadio props disabled is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-disabled-unselected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="empty"
     />
@@ -78,6 +81,7 @@ exports[`EuiRadio props label is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-unselected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="empty"
     />
@@ -108,6 +112,7 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-unselected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="empty"
     />
@@ -138,6 +143,7 @@ exports[`EuiRadio props value is rendered 1`] = `
     class="euiRadio__circle emotion-euiRadio__circle-unselected"
   >
     <span
+      aria-hidden="true"
       class="emotion-euiRadio__icon"
       data-euiicon-type="empty"
     />

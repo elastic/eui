@@ -215,7 +215,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
             {...provided.dragHandleProps}
             aria-label={dragHandleAriaLabel}
           >
-            <EuiIcon type="dragVertical" color="subdued" />
+            <EuiIcon type="dragVertical" color="subdued" aria-hidden={true} />
           </EuiFlexItem>
         </EuiFlexGroup>
       )}

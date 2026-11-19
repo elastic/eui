@@ -22,7 +22,9 @@ const getParagraphStyles = () => css`
   }
 `;
 
-export const Paragraph = ({ children }: HTMLAttributes<HTMLParagraphElement>) => {
+export const Paragraph = ({
+  children,
+}: HTMLAttributes<HTMLParagraphElement>) => {
   const styles = useEuiMemoizedStyles(getParagraphStyles);
 
   return (

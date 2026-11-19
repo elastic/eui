@@ -72,7 +72,7 @@ export const EuiTimeZoneDisplay: React.FC<EuiTimeZoneDisplayProps> = ({
   const label = !name ? utc : `${utc} (${name})`;
   const nameDisplay = (
     <>
-      <EuiIcon type="globe" color={color} />
+      <EuiIcon type="globe" color={color} aria-hidden={true} />
       <EuiText component="span" color={color} size="s">
         {label}
       </EuiText>

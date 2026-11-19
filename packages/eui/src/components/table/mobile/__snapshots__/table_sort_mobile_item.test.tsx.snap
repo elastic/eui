@@ -14,6 +14,7 @@ exports[`EuiTableSortMobileItem is rendered 1`] = `
       class="euiListItemLayout__prepend emotion-euiListItemLayout__prepend"
     >
       <span
+        aria-hidden="true"
         class="euiContextMenu__icon emotion-euiContextMenu__icon"
         color="inherit"
         data-euiicon-type="empty"

@@ -251,6 +251,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
                     >
                       <span
+                        aria-hidden="true"
                         class="emotion-euiCheckbox__icon-check"
                         data-euiicon-type="empty"
                         role="presentation"
@@ -306,6 +307,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                     your name
                   </span>
                   <span
+                    aria-hidden="true"
                     class="euiTableSortIcon"
                     data-euiicon-type="sortUp"
                   />
@@ -429,6 +431,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
                     >
                       <span
+                        aria-hidden="true"
                         class="emotion-euiCheckbox__icon-check"
                         data-euiicon-type="empty"
                         role="presentation"
@@ -586,6 +589,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
                     >
                       <span
+                        aria-hidden="true"
                         class="emotion-euiCheckbox__icon-check"
                         data-euiicon-type="empty"
                         role="presentation"
@@ -743,6 +747,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                       class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
                     >
                       <span
+                        aria-hidden="true"
                         class="emotion-euiCheckbox__icon-check"
                         data-euiicon-type="empty"
                         role="presentation"
@@ -980,6 +985,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 3
               </span>
               <span
+                aria-hidden="true"
                 color="inherit"
                 data-euiicon-type="chevronSingleDown"
               />

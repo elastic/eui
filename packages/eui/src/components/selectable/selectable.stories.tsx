@@ -206,7 +206,7 @@ export const WithSearchAndGroups: Story = {
       {
         label: 'Group 2',
         isGroupLabel: true,
-        prepend: <EuiIcon type="warning" />,
+        prepend: <EuiIcon type="warning" aria-hidden={true} />,
         append: (
           <EuiFlexItem css={{ alignItems: 'flex-end' }}>
             <EuiLink>append</EuiLink>

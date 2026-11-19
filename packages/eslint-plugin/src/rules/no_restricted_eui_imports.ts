@@ -17,12 +17,14 @@ type Option = {
 const DEFAULT_RESTRICTED_IMPORT_OPTIONS: Option[] = [
   {
     patterns: ['@elastic/eui/dist/eui_theme_*\\.json'],
-    message:
-      'For client-side, please use `useEuiTheme` instead.',
+    message: 'For client-side, please use `useEuiTheme` instead.',
   },
 ];
 
-export const NoRestrictedEuiImports: TSESLint.RuleModule<never, Readonly<Option>[]> = {
+export const NoRestrictedEuiImports: TSESLint.RuleModule<
+  never,
+  Readonly<Option>[]
+> = {
   create(context) {
     const userOptions = context.options || [];
     const options = [...DEFAULT_RESTRICTED_IMPORT_OPTIONS, ...userOptions];

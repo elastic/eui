@@ -85,7 +85,13 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
 
   return (
     <span css={cssStyles} className={classes} {...rest}>
-      <EuiIcon role="presentation" css={iconStyles} type={iconType} size="m" />
+      <EuiIcon
+        role="presentation"
+        css={iconStyles}
+        type={iconType}
+        size="m"
+        aria-hidden={true}
+      />
     </span>
   );
 };

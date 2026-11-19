@@ -19,11 +19,17 @@ const meta: Meta<EuiTabProps> = {
   argTypes: {
     append: {
       control: 'boolean',
-      mapping: { true: <EuiIcon type="faceHappy" />, false: undefined },
+      mapping: {
+        true: <EuiIcon type="faceHappy" aria-hidden={true} />,
+        false: undefined,
+      },
     },
     prepend: {
       control: 'boolean',
-      mapping: { true: <EuiIcon type="faceHappy" />, false: undefined },
+      mapping: {
+        true: <EuiIcon type="faceHappy" aria-hidden={true} />,
+        false: undefined,
+      },
     },
   },
   args: {

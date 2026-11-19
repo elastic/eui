@@ -17,9 +17,14 @@ const buildProgram = (files: Array<string>) => {
   return ts.createProgram(files, options);
 };
 
-const getFiles = (euiPath: string): Array<string> => (
-  glob.sync(path.join(euiPath, 'src/!(test)/**/!(*.spec|*.test|*.stories|*.styles|*.a11y).{ts,tsx}'), { absolute: true })
-);
+const getFiles = (euiPath: string): Array<string> =>
+  glob.sync(
+    path.join(
+      euiPath,
+      'src/!(test)/**/!(*.spec|*.test|*.stories|*.styles|*.a11y).{ts,tsx}'
+    ),
+    { absolute: true }
+  );
 
 const main = async () => {
   const distPath = path.resolve(__dirname, '../dist');
@@ -67,16 +72,19 @@ const main = async () => {
       results[processedComponent.displayName] = processedComponent;
     }
 
-    const distFilePath = path.join(distPath, fileRelativePath)
+    const distFilePath = path
+      .join(distPath, fileRelativePath)
       .replace(/.tsx?$/, '.json');
     await fs.mkdir(path.dirname(distFilePath), { recursive: true });
     await fs.writeFile(distFilePath, JSON.stringify(results, null, 2));
 
-    process.stdout.write(`\x1b[2KProcessed ${i}/${files.length} files - ${fileRelativePath}\r`);
+    process.stdout.write(
+      `\x1b[2KProcessed ${i}/${files.length} files - ${fileRelativePath}\r`
+    );
     i++;
   }
 
-  console.log('\n🎉 Docgen generation done')
-}
+  console.log('\n🎉 Docgen generation done');
+};
 
 main();

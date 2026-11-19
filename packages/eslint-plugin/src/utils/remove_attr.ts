@@ -1,4 +1,4 @@
-import { type TSESTree, type TSESLint} from '@typescript-eslint/utils';
+import { type TSESTree, type TSESLint } from '@typescript-eslint/utils';
 
 /**
  * Computes the removal range for a JSX attribute, including a preceding space
@@ -26,9 +26,7 @@ import { type TSESTree, type TSESLint} from '@typescript-eslint/utils';
 
 export function removeAttribute<
   TContext extends TSESLint.RuleContext<string, unknown[]>
->(
-  context: TContext,
-  attr: TSESTree.JSXAttribute) {
+>(context: TContext, attr: TSESTree.JSXAttribute) {
   const { sourceCode } = context;
   const start = attr.range[0];
   const before = sourceCode.text[start - 1];

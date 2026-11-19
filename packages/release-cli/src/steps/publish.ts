@@ -13,7 +13,10 @@ import { type ReleaseOptions } from '../release';
 import { getRootWorkspaceDir, getWorkspacePackageJson } from '../workspace';
 import { yarnPack, YarnWorkspace } from '../yarn_utils';
 import { npmExecPublish } from '../npm_utils';
-import { emitPublishedPackagesFile, type PublishedPackages } from '../published_packages_file';
+import {
+  emitPublishedPackagesFile,
+  type PublishedPackages,
+} from '../published_packages_file';
 
 /**
  * Publish changed packages to the registry
@@ -59,7 +62,9 @@ export const stepPublish = async (
       // We pack packages using yarn pack and publish using npm publish
       // to be able to use npm trusted publishing and more
       const packDetails = await yarnPack(workspace.name);
-      logger.info(`[${workspace.name}] Package successfully packed to "${packDetails.output}" with ${packDetails.files.length} files included`);
+      logger.info(
+        `[${workspace.name}] Package successfully packed to "${packDetails.output}" with ${packDetails.files.length} files included`
+      );
 
       npmExecPublish({
         packageArchivePath: packDetails.output,
@@ -102,7 +107,9 @@ export const stepPublish = async (
               .join(' ')}`
         );
       } else {
-        logger.error('No packages were published before this error occurred. Please try again');
+        logger.error(
+          'No packages were published before this error occurred. Please try again'
+        );
       }
 
       return;

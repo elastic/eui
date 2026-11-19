@@ -78,7 +78,7 @@ ruleTester.run('tooltip-focusable-anchor', TooltipFocusableAnchor, {
           </EuiToolTip>
         )
       `,
-      languageOptions
+      languageOptions,
     },
   ],
   invalid: [
@@ -96,7 +96,7 @@ ruleTester.run('tooltip-focusable-anchor', TooltipFocusableAnchor, {
           messageId: 'requiresFocusableAnchor',
           data: {
             element: 'span',
-            toolTipComponent: 'EuiToolTip'
+            toolTipComponent: 'EuiToolTip',
           },
         },
       ],
@@ -115,7 +115,7 @@ ruleTester.run('tooltip-focusable-anchor', TooltipFocusableAnchor, {
           messageId: 'requiresFocusableAnchor',
           data: {
             element: 'EuiText',
-            toolTipComponent: 'EuiToolTip'
+            toolTipComponent: 'EuiToolTip',
           },
         },
       ],
@@ -134,7 +134,7 @@ ruleTester.run('tooltip-focusable-anchor', TooltipFocusableAnchor, {
           messageId: 'requiresFocusableAnchor',
           data: {
             element: 'div',
-            toolTipComponent: 'EuiToolTip'
+            toolTipComponent: 'EuiToolTip',
           },
         },
       ],
@@ -153,7 +153,7 @@ ruleTester.run('tooltip-focusable-anchor', TooltipFocusableAnchor, {
           messageId: 'requiresFocusableAnchor',
           data: {
             element: 'EuiBadge',
-            toolTipComponent: 'EuiToolTip'
+            toolTipComponent: 'EuiToolTip',
           },
         },
       ],

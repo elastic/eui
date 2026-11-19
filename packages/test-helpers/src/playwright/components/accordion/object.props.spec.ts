@@ -32,7 +32,10 @@ test.describe('EuiAccordionObject', () => {
       await expect(parent.content).toHaveCount(1);
 
       // Scoped to the parent object, so the child is resolved inside its subtree.
-      const child = new EuiAccordionObject(parent, `${PARENT_TEST_SUBJ}--child`);
+      const child = new EuiAccordionObject(
+        parent,
+        `${PARENT_TEST_SUBJ}--child`
+      );
       await expect(child.trigger).toHaveCount(1);
       await expect(child.trigger).toHaveText(/Child accordion/);
     });

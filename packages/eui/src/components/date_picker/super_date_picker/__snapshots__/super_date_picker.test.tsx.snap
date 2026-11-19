@@ -28,9 +28,11 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -77,6 +79,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -114,9 +117,11 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -163,6 +168,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -194,6 +200,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
             class="euiFormPrepend euiFormControlLayout__prepend css-1t6a8ry-side-uncompressed-empty-primary-isInteractive"
           >
             <span
+              aria-hidden="true"
               data-euiicon-type="refreshTime"
             />
             <span
@@ -244,6 +251,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
             disabled=""
           >
             <span
+              aria-hidden="true"
               data-euiicon-type="refreshTime"
             />
             <span
@@ -319,9 +327,11 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
               disabled=""
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -370,6 +380,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -407,9 +418,11 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -435,6 +448,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -472,9 +486,11 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -537,9 +553,11 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -585,6 +603,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -626,9 +645,11 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -675,6 +696,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -712,9 +734,11 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -761,6 +785,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -799,9 +824,11 @@ exports[`EuiSuperDatePicker renders 1`] = `
               data-test-subj="superDatePickerToggleQuickMenuButton"
             >
               <span
+                aria-hidden="true"
                 data-euiicon-type="calendar"
               />
               <span
+                aria-hidden="true"
                 data-euiicon-type="chevronSingleDown"
               />
             </button>
@@ -848,6 +875,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />
@@ -889,9 +917,11 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
                 data-test-subj="superDatePickerToggleQuickMenuButton"
               >
                 <span
+                  aria-hidden="true"
                   data-euiicon-type="calendar"
                 />
                 <span
+                  aria-hidden="true"
                   data-euiicon-type="chevronSingleDown"
                 />
               </button>
@@ -963,6 +993,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         class="emotion-euiButtonDisplayContent"
       >
         <span
+          aria-hidden="true"
           color="inherit"
           data-euiicon-type="refresh"
         />

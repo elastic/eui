@@ -1,5 +1,5 @@
 import { EuiBadgeAccessibilityRules } from './badge_accessibility_rules';
-import { RuleTester } from "@typescript-eslint/rule-tester";
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
 const languageOptions = {
   parserOptions: {

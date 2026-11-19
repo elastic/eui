@@ -22,7 +22,7 @@ test.describe('EuiContextMenuObject', () => {
       `data-test-subj:${TEST_SUBJ}`
     );
 
-    test('items resolves to the panel\'s items', async ({ page }) => {
+    test("items resolves to the panel's items", async ({ page }) => {
       await page.goto(PANEL_URL);
       await page.getByTestId(TEST_SUBJ).waitFor({ state: 'visible' });
       const contextMenu = new EuiContextMenuObject(page, TEST_SUBJ);

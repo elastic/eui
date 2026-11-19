@@ -91,6 +91,7 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
         <EuiIcon
           css={styles.input.euiRadio__icon}
           type={checked ? 'dot' : 'empty'} // Note that the icon does explicitly need to be empty for Windows high contrast themes
+          aria-hidden={true}
         />
         <input
           css={styles.input.euiRadio__input}

@@ -311,7 +311,11 @@ export const useDataGridColumnSelector = (
                               {...provided.dragHandleProps}
                               aria-label={`${label} ${dragHandleAriaLabel}`}
                             >
-                              <EuiIcon type="dragVertical" color="subdued" />
+                              <EuiIcon
+                                type="dragVertical"
+                                color="subdued"
+                                aria-hidden={true}
+                              />
                             </EuiFlexItem>
                           )}
                         </EuiFlexGroup>
@@ -363,7 +367,6 @@ export const useDataGridColumnSelector = (
     ) : null;
   }, [
     styles,
-    availableColumns.length,
     numberOfHiddenFields,
     orderedVisibleColumns.length,
     allowColumnHiding,

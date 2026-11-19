@@ -58,14 +58,14 @@ export const Playground: Story = {
       {
         label: 'Item One',
         id: 'item_one',
-        icon: <EuiIcon type="folder" />,
-        iconWhenExpanded: <EuiIcon type="folderOpen" />,
+        icon: <EuiIcon type="folder" aria-hidden={true} />,
+        iconWhenExpanded: <EuiIcon type="folderOpen" aria-hidden={true} />,
         isExpanded: true,
         children: [
           {
             label: 'Item A',
             id: 'item_a',
-            icon: <EuiIcon type="document" />,
+            icon: <EuiIcon type="document" aria-hidden={true} />,
           },
           {
             label: 'Item B',

@@ -292,6 +292,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           className="euiBadge__icon"
           css={iconCssStyles}
           color="inherit" // forces the icon to inherit its parent color
+          aria-hidden={true}
         />
       );
     }

@@ -20,7 +20,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testSelectable';
 
-const WITH_SEARCH_URL = storyUrl('forms-euiselectable--with-search', `data-test-subj:${TEST_SUBJ}`);
+const WITH_SEARCH_URL = storyUrl(
+  'forms-euiselectable--with-search',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiSelectableObject (searchable)', () => {
   let selectable: EuiSelectableObject;
@@ -46,7 +49,9 @@ test.describe('EuiSelectableObject (searchable)', () => {
 
       await selectable.search('');
 
-      await expect(selectable.options.filter({ hasText: 'Titan' })).not.toHaveCount(0);
+      await expect(
+        selectable.options.filter({ hasText: 'Titan' })
+      ).not.toHaveCount(0);
     });
   });
 });
