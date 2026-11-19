@@ -386,6 +386,36 @@ describe('FieldValueSelectionFilter', () => {
       .should('contain.text', 'bug');
   });
 
+  it('sets aria-expanded from the popover state, not from active filters', () => {
+    const props: FieldValueSelectionFilterProps = {
+      ...requiredProps,
+      index: 0,
+      onChange: () => {},
+      query: Query.parse('tag:bug'),
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        options: staticOptions,
+      },
+    };
+
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('.euiFilterButton')
+      .should('have.class', 'euiFilterButton-hasActiveFilters')
+      .should('have.attr', 'aria-expanded', 'false');
+
+    cy.get('.euiFilterButton').click();
+    cy.get('.euiPopover__panel').should('exist');
+    cy.get('.euiFilterButton').should('have.attr', 'aria-expanded', 'true');
+
+    cy.realPress('Escape');
+    cy.get('.euiPopover__panel').should('not.exist');
+    cy.get('.euiFilterButton')
+      .should('have.class', 'euiFilterButton-hasActiveFilters')
+      .should('have.attr', 'aria-expanded', 'false');
+  });
+
   it('has inactive filters, fields in options', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,

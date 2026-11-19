@@ -77,6 +77,53 @@ describe('EuiFilterButton', () => {
       });
     });
 
+    describe('aria-expanded', () => {
+      it('follows `isSelected` on collapsible buttons', () => {
+        const { getByRole, rerender } = render(
+          <EuiFilterButton iconType="chevronSingleDown" isSelected={false}>
+            Status
+          </EuiFilterButton>
+        );
+        expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+
+        rerender(
+          <EuiFilterButton iconType="chevronSingleDown" isSelected>
+            Status
+          </EuiFilterButton>
+        );
+        expect(getByRole('button')).toHaveAttribute('aria-expanded', 'true');
+      });
+
+      it('is not inferred from `hasActiveFilters`', () => {
+        const { getByRole, rerender } = render(
+          <EuiFilterButton
+            iconType="chevronSingleDown"
+            isSelected={false}
+            hasActiveFilters
+          >
+            Status
+          </EuiFilterButton>
+        );
+        expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+
+        rerender(
+          <EuiFilterButton iconType="chevronSingleDown" hasActiveFilters>
+            Status
+          </EuiFilterButton>
+        );
+        expect(getByRole('button')).not.toHaveAttribute('aria-expanded');
+      });
+
+      it('is not rendered on non-collapsible buttons', () => {
+        const { getByRole } = render(
+          <EuiFilterButton isSelected hasActiveFilters>
+            Status
+          </EuiFilterButton>
+        );
+        expect(getByRole('button')).not.toHaveAttribute('aria-expanded');
+      });
+    });
+
     describe('isDisabled', () => {
       it('renders', () => {
         const { container, getByTestSubject } = render(
