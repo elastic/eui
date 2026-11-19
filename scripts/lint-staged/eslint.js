@@ -20,7 +20,7 @@ const eslintTask = (cwd, args = []) => {
     } catch (error) {
       if (
         error.code === 'MODULE_NOT_FOUND' &&
-        error.message.includes('@elastic/eslint-plugin-eui/')
+        /@elastic[\\/]eslint-plugin-eui[\\/]/.test(error.message)
       ) {
         error.message +=
           '\n\nRun `yarn workspace @elastic/eui build:workspaces` first.';
@@ -32,7 +32,7 @@ const eslintTask = (cwd, args = []) => {
     if (!lintable.length) return [];
 
     const fileArgs = lintable.map((file) =>
-      JSON.stringify(path.relative(cwd, file))
+      JSON.stringify(path.relative(cwd, file).split(path.sep).join('/'))
     );
 
     return `eslint --fix ${[...args, ...fileArgs].join(' ')}`;

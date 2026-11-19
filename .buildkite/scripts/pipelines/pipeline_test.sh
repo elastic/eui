@@ -12,6 +12,8 @@ buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 # the heavy EUI jobs (lint, unit:*, cypress:*) exit early below.
 # The lightweight per-package jobs always run.
 NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin|illustrations)/)'
+# EUI lints its source with the local ESLint plugin, so plugin changes still need EUI lint.
+NON_EUI_LINT_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|illustrations)/)'
 
 is_eui_test_type() {
   case "$1" in
@@ -21,6 +23,9 @@ is_eui_test_type() {
 }
 
 should_skip_eui_tests() {
+  local paths_regexp="$NON_EUI_PATHS_REGEXP"
+  [[ "$TEST_TYPE" == "lint" ]] && paths_regexp="$NON_EUI_LINT_PATHS_REGEXP"
+
   local base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
   git fetch --no-tags --quiet origin "$base_branch" 2>/dev/null || return 1
 
@@ -31,7 +36,7 @@ should_skip_eui_tests() {
   changed=$(git diff --name-only "$merge_base" HEAD 2>/dev/null) || return 1
 
   [[ -n "$changed" ]] || return 1
-  echo "$changed" | grep -qvE "$NON_EUI_PATHS_REGEXP" && return 1
+  echo "$changed" | grep -qvE "$paths_regexp" && return 1
 
   return 0
 }
