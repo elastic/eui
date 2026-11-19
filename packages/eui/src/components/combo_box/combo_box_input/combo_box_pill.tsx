@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { AriaAttributes, MouseEventHandler } from 'react';
+import React, { AriaAttributes, MouseEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../../services';
@@ -19,7 +19,14 @@ import { EuiComboBoxOptionAppendPrepend } from '../utils';
 import { euiComboBoxPillStyles } from './combo_box_pill.styles';
 
 export interface EuiComboBoxPillProps<T> extends CommonProps {
+  /**
+   * The plain text label. Used for the badge `title` and accessible names.
+   */
   children?: string;
+  /**
+   * Custom content to render instead of `children` within the pill.
+   */
+  content?: ReactNode;
   className?: string;
   color?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -32,6 +39,7 @@ export const EuiComboBoxPill = <T,>({
   children,
   className,
   color = 'hollow',
+  content: customContent,
   onClick,
   onClickAriaLabel,
   onClose,
@@ -51,14 +59,14 @@ export const EuiComboBoxPill = <T,>({
         }
       : {};
 
-  const content = (
+  const pillContent = (
     <EuiComboBoxOptionAppendPrepend
       option={option}
       classNamePrefix="euiComboBoxPill"
     >
       {/* .euiBadge__text normally text truncates, but because we set it to flex
           to align prepend/append, it breaks and we need to restore it manually */}
-      <span className="eui-textTruncate">{children}</span>
+      <span className="eui-textTruncate">{customContent ?? children}</span>
     </EuiComboBoxOptionAppendPrepend>
   );
 
@@ -83,7 +91,7 @@ export const EuiComboBoxPill = <T,>({
             {...onClickProps}
             {...rest}
           >
-            {content}
+            {pillContent}
           </EuiBadge>
         )}
       </EuiI18n>
@@ -100,7 +108,7 @@ export const EuiComboBoxPill = <T,>({
       {...rest}
       {...onClickProps}
     >
-      {content}
+      {pillContent}
     </EuiBadge>
   );
 };

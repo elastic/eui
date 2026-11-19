@@ -779,6 +779,47 @@ export default () => {
 };
 ```
 
+### Custom pill content
+
+Use the `renderPill` prop to customize what is displayed inside selected option pills. It receives the `option` and the `defaultContent` (the option's `label`), so you can customize only some options and fall back to the default for the rest.
+
+Only the content between the pill's `prepend` and `append` is replaced. The pill's color, remove button, tooltip, and keyboard behavior are unchanged, and the pill `title`, remove button label, and screen reader announcements continue to use `option.label`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, EuiIcon } from '@elastic/eui';
+
+const options = [
+  { label: 'steps.search.output' },
+  { label: 'foreach.item._id' },
+  { label: 'Free text' },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[0], options[2]]);
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={setSelected}
+      renderPill={(option, defaultContent) =>
+        option.label.includes('.') ? (
+          <>
+            <EuiIcon type="database" size="s" aria-hidden="true" />{' '}
+            <code>{option.label}</code>
+          </>
+        ) : (
+          defaultContent
+        )
+      }
+    />
+  );
+};
+```
+
 ## Tooltips
 
 You can add tooltips to the options by passing `toolTipContent`. Use `toolTipProps` to pass additional `EuiToolTipProps` to the tooltip.

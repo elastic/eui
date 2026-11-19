@@ -57,6 +57,10 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   onOpenListClick: () => void;
   onRemoveOption: OptionHandler<T>;
   placeholder?: string;
+  renderPill?: (
+    option: EuiComboBoxOptionOption<T>,
+    defaultContent: ReactNode
+  ) => ReactNode;
   rootId: ReturnType<typeof htmlIdGenerator>;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
@@ -185,7 +189,8 @@ export class EuiComboBoxInput<T> extends Component<
     // Don't render the single pill selection while searching
     if (this.props.singleSelection && this.props.searchValue) return null;
 
-    const { selectedOptions, isDisabled, onRemoveOption } = this.props;
+    const { selectedOptions, isDisabled, onRemoveOption, renderPill } =
+      this.props;
     if (!selectedOptions || !selectedOptions.length) return null;
 
     return selectedOptions.map((option) => {
@@ -214,6 +219,7 @@ export class EuiComboBoxInput<T> extends Component<
           onClick={onClick}
           onClickAriaLabel={onClick ? 'Change' : undefined}
           {...rest}
+          content={renderPill ? renderPill(option, label) : undefined}
         >
           {label}
         </EuiComboBoxPill>

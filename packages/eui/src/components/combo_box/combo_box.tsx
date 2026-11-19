@@ -15,6 +15,7 @@ import React, {
   FocusEventHandler,
   HTMLAttributes,
   KeyboardEventHandler,
+  ReactNode,
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
@@ -115,6 +116,20 @@ export interface _EuiComboBoxProps<T>
    * Sets the placeholder of the input
    */
   placeholder?: string;
+  /**
+   * Optional custom render function for the content of selected option pills.
+   * Only replaces the content between the pill's `prepend` and `append`; the
+   * pill itself, its remove button, tooltip, and keyboard behavior are unchanged.
+   * The pill `title`, remove button label, and screen reader announcements
+   * continue to use `option.label`.
+   *
+   * Receives the `option` and the `defaultContent` (the option's `label`), so
+   * that only some options can be customized.
+   */
+  renderPill?: (
+    option: EuiComboBoxOptionOption<T>,
+    defaultContent: ReactNode
+  ) => ReactNode;
   /**
    *  The height of each option in pixels. When using a custom render (`renderOption` prop) it's recommended to set it explicitly.
    * `auto` will disable virtualization, enabling text to wrap onto multiple lines.
@@ -785,6 +800,7 @@ export class EuiComboBox<T> extends Component<
       options,
       placeholder,
       renderOption,
+      renderPill,
       rowHeight,
       selectedOptions,
       singleSelection,
@@ -953,6 +969,7 @@ export class EuiComboBox<T> extends Component<
                     onOpenListClick={this.onOpenListClick}
                     onRemoveOption={this.onRemoveOption}
                     placeholder={placeholder}
+                    renderPill={renderPill}
                     rootId={this.rootId}
                     searchValue={searchValue}
                     selectedOptions={selectedOptions}

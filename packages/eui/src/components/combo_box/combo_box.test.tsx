@@ -106,6 +106,54 @@ describe('EuiComboBox', () => {
   });
 
   describe('props', () => {
+    describe('renderPill', () => {
+      const options = [{ label: 'Titan' }, { label: 'Pandora' }];
+
+      it('renders custom content inside the pill and passes the default content', () => {
+        const renderPill = jest.fn((option, defaultContent) =>
+          option.label === 'Titan' ? (
+            <em data-test-subj="customPill">{option.label}!</em>
+          ) : (
+            defaultContent
+          )
+        );
+        const { getAllByTestSubject, getByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options}
+            renderPill={renderPill}
+          />
+        );
+
+        const pills = getAllByTestSubject('euiComboBoxPill');
+        expect(getByTestSubject('customPill')).toHaveTextContent('Titan!');
+        expect(pills[0]).toContainElement(getByTestSubject('customPill'));
+        expect(pills[1]).toHaveTextContent('Pandora');
+        expect(renderPill).toHaveBeenCalledWith(options[1], 'Pandora');
+      });
+
+      it('keeps the pill title, remove button label, and removal behavior', () => {
+        const onChange = jest.fn();
+        const { getByTestSubject, getByLabelText } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[0]]}
+            onChange={onChange}
+            renderPill={() => <span>Custom</span>}
+          />
+        );
+
+        expect(getByTestSubject('euiComboBoxPill')).toHaveAttribute(
+          'title',
+          'Titan'
+        );
+        fireEvent.click(
+          getByLabelText('Remove Titan from selection in this group')
+        );
+        expect(onChange).toHaveBeenCalledWith([]);
+      });
+    });
+
     describe('option.prepend & option.append', () => {
       const options = [
         { label: '1', prepend: <span data-test-subj="prepend">Pre</span> },
