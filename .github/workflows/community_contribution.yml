@@ -54,7 +54,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          PR_BODY: ${{ github.event.pull_request.body }}
           ACTION: ${{ github.event.action }}
           SENDER_LOGIN: ${{ github.event.sender.login }}
           USER_TYPE: ${{ github.event.pull_request.user.type }}
@@ -69,36 +68,46 @@ jobs:
           # Authors without write access can't reopen a pull request the bot closed, so the bot reopens it after an edit
           if [[ "$ACTION" == edited ]]; then
             closed_by=$(gh api "repos/$GH_REPO/issues/$PR_NUMBER" --jq '.closed_by.login // ""')
+            # The stale workflow also closes as github-actions[bot], so the bot's latest comment must be this workflow's
             auto_closed=$(gh api --paginate "repos/$GH_REPO/issues/$PR_NUMBER/comments" \
-              --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | contains("<!-- community-contribution-autoclose -->"))) | .id')
-            if [[ "$closed_by" != "github-actions[bot]" || -z "$auto_closed" ]]; then
+              --jq '.[] | select(.user.login == "github-actions[bot]") | .body | contains("<!-- community-contribution-autoclose -->")' \
+              | tail -n 1)
+            if [[ "$closed_by" != "github-actions[bot]" || "$auto_closed" != true ]]; then
               echo "Not closed by this workflow; nothing to do."
               exit 0
             fi
           fi
 
+          # The event payload can be older than an edit made while this run was queued
+          pr_body=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER" --jq '.body // ""')
+
           issue_numbers=$(
-            printf '%s\n' "$PR_BODY" \
-              | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?)[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
+            printf '%s\n' "$pr_body" \
+              | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?):?[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
               | grep -oE '[0-9]+$' \
               | sort -u \
               || true
           )
 
           has_help_wanted=false
-          inspected=0
+          failed=0
           for issue_number in $issue_numbers; do
             # The issues endpoint also returns pull requests
-            is_help_wanted=$(gh api "repos/$GH_REPO/issues/$issue_number" \
-              --jq '.pull_request == null and .state == "open" and any(.labels[]; .name == "help wanted")' 2>/dev/null) || continue
-            inspected=$((inspected + 1))
-            if [[ "$is_help_wanted" == true ]]; then
-              has_help_wanted=true
-              break
+            if result=$(gh api "repos/$GH_REPO/issues/$issue_number" \
+              --jq '.pull_request == null and .state == "open" and any(.labels[]; .name == "help wanted")' 2>&1); then
+              if [[ "$result" == true ]]; then
+                has_help_wanted=true
+                break
+              fi
+            else
+              case "$result" in
+                *"HTTP 404"* | *"HTTP 410"*) ;;
+                *) failed=$((failed + 1)) ;;
+              esac
             fi
           done
 
-          if [[ -n "$issue_numbers" && "$inspected" -eq 0 ]]; then
+          if [[ "$has_help_wanted" != true && "$failed" -gt 0 ]]; then
             if [[ "$ACTION" == edited ]]; then
               echo "::warning::Could not read linked issues; leaving the pull request closed."
               exit 0
