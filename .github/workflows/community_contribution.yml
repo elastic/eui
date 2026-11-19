@@ -6,6 +6,9 @@ on:
 jobs:
   community-pr-message:
     if: ${{ github.event.action != 'edited' || (github.event.pull_request.state == 'closed' && !github.event.pull_request.merged) }}
+    concurrency:
+      group: community-contribution-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -67,7 +70,8 @@ jobs:
 
           # Authors without write access can't reopen a pull request the bot closed, so the bot reopens it after an edit
           if [[ "$ACTION" == edited ]]; then
-            closed_by=$(gh api "repos/$GH_REPO/issues/$PR_NUMBER" --jq '.closed_by.login // ""')
+            # A queued run can start after an earlier one already reopened the pull request
+            closed_by=$(gh api "repos/$GH_REPO/issues/$PR_NUMBER" --jq 'if .state == "closed" then .closed_by.login // "" else "" end')
             # The stale workflow also closes as github-actions[bot], so the bot's latest comment must be this workflow's
             auto_closed=$(gh api --paginate "repos/$GH_REPO/issues/$PR_NUMBER/comments" \
               --jq '.[] | select(.user.login == "github-actions[bot]") | .body | contains("<!-- community-contribution-autoclose -->")' \
