@@ -164,8 +164,6 @@ describe('EuiToolTip', () => {
 
     cy.get('[data-test-subj="toggleToolTipB"]').trigger('mouseover');
     cy.contains('Tooltip B').should('exist');
-    // The still-focused trigger A keeps its content in a hidden description,
-    // so check that tooltip A itself is no longer shown
     cy.get('[data-test-subj="tooltipA"]').should('not.exist');
   });
 

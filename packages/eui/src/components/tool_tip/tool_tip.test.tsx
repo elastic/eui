@@ -505,7 +505,7 @@ describe('EuiToolTip', () => {
       beforeEach(() => jest.useFakeTimers());
       afterEach(() => jest.useRealTimers());
 
-      it('removes the hidden description of a trigger focused without `:focus-visible`', () => {
+      it('keeps the hidden description inside the anchor, so it leaves the document with it', () => {
         const { container, getByTestSubject } = render(
           <EuiToolTip content="Tooltip content" id="toolTipId">
             <button data-test-subj="anchor">Trigger</button>
@@ -514,20 +514,17 @@ describe('EuiToolTip', () => {
         const anchor = getByTestSubject('anchor');
 
         act(() => anchor.focus());
-        expect(
-          document.getElementById('toolTipId-description')
-        ).toBeInTheDocument();
+        const description = document.getElementById('toolTipId-description');
+        expect(description).toBeInTheDocument();
+        expect(anchor.closest('.euiToolTipAnchor')).toContainElement(
+          description
+        );
 
-        act(() => {
-          container.remove();
-          jest.advanceTimersByTime(100);
-        });
-        expect(
-          document.getElementById('toolTipId-description')
-        ).not.toBeInTheDocument();
+        act(() => container.remove());
+        expect(description).not.toBeInTheDocument();
       });
 
-      it('removes the tooltip and does not leave a hidden description when the trigger was focused with `:focus-visible`', () => {
+      it('removes the tooltip, and leaves no hidden description in the document, when the trigger was focused with `:focus-visible`', () => {
         const { container, getByTestSubject, queryByRole } = render(
           <EuiToolTip content="Tooltip content" id="toolTipId">
             <button data-test-subj="anchor">Trigger</button>

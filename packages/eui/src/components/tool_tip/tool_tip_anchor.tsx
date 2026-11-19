@@ -11,6 +11,7 @@ import React, {
   HTMLAttributes,
   forwardRef,
   type FocusEvent as ReactFocusEvent,
+  type ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -31,6 +32,10 @@ export type EuiToolTipAnchorProps = Omit<
      * while the trigger has focus but the tooltip is not visible
      */
     descriptionId?: string;
+    /**
+     * Content of the hidden tooltip description, rendered when `descriptionId` is set
+     */
+    description?: ReactNode;
   };
 
 export const EuiToolTipAnchor = forwardRef<
@@ -49,6 +54,7 @@ export const EuiToolTipAnchor = forwardRef<
       display,
       isVisible,
       descriptionId,
+      description,
       ...rest
     },
     ref
@@ -99,6 +105,11 @@ export const EuiToolTipAnchor = forwardRef<
             ? classNames(describedById, children.props['aria-describedby'])
             : children.props['aria-describedby'],
         })}
+        {descriptionId && (
+          <span id={descriptionId} hidden>
+            {description}
+          </span>
+        )}
       </span>
     );
   }
