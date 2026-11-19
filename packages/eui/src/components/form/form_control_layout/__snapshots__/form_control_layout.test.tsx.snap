@@ -32,6 +32,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
         type="button"
       >
         <span
+          aria-hidden="true"
           class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
           data-euiicon-type="cross"
         />
@@ -71,6 +72,7 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
         type="button"
       >
         <span
+          aria-hidden="true"
           class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
           data-euiicon-type="cross"
         />
@@ -227,6 +229,7 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
         role="progressbar"
       />
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="warning"
       />
@@ -272,6 +275,7 @@ exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
       class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
     >
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="warning"
       />

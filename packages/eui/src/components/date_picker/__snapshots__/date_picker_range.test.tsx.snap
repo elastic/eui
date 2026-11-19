@@ -1393,6 +1393,7 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
+          aria-hidden="true"
           color="danger"
           data-euiicon-type="warning"
         />

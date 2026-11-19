@@ -469,6 +469,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="primary"
                     data-euiicon-type="check"
@@ -540,6 +541,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="text"
                     data-euiicon-type="empty"
@@ -591,6 +593,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="text"
                     data-euiicon-type="empty"
@@ -642,6 +645,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="text"
                     data-euiicon-type="empty"

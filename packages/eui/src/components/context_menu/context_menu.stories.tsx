@@ -69,7 +69,9 @@ const panels: EuiContextMenuProps['panels'] = [
       },
       {
         name: 'Pass an icon as a component to customize it',
-        icon: <EuiIcon type="trash" size="m" color="danger" />,
+        icon: (
+          <EuiIcon type="trash" size="m" color="danger" aria-hidden={true} />
+        ),
         onClick: noop,
       },
       {

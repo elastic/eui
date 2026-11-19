@@ -7,10 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiShadowXSmall,
-  euiSlightShadowHover,
-} from '@elastic/eui-theme-common';
+import { euiShadowXSmall, euiShadowHover } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
@@ -40,7 +37,7 @@ export const euiResizableCollapseButtonStyles = (
         ${euiShadowXSmall(euiThemeContext)}
 
         &:focus {
-          ${euiSlightShadowHover(euiThemeContext)}
+          ${euiShadowHover(euiThemeContext)}
         }
       `,
       horizontal: {

@@ -256,6 +256,7 @@ export const EuiSideNavItem = <
         rel={rel}
         target={target}
         onClick={childrenOnly ? toggleItemOpen : onClick}
+        aria-expanded={childrenOnly ? itemIsOpen : undefined}
         {...rest}
       >
         <span
@@ -283,6 +284,7 @@ export const EuiSideNavItem = <
             <EuiIcon
               type={itemIsOpen ? 'chevronSingleDown' : 'chevronSingleRight'}
               size="s"
+              aria-hidden={true}
             />
           )}
         </span>

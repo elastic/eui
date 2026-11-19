@@ -11,6 +11,7 @@ exports[`EuiLoadingLogo is rendered 1`] = `
     class="emotion-euiLoadingLogo__icon"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -28,6 +29,7 @@ exports[`EuiLoadingLogo logo is rendered 1`] = `
     class="emotion-euiLoadingLogo__icon"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoElastic"
     />
   </span>
@@ -44,6 +46,7 @@ exports[`EuiLoadingLogo size l is rendered 1`] = `
     class="emotion-euiLoadingLogo__icon"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -60,6 +63,7 @@ exports[`EuiLoadingLogo size m is rendered 1`] = `
     class="emotion-euiLoadingLogo__icon"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoKibana"
     />
   </span>
@@ -76,6 +80,7 @@ exports[`EuiLoadingLogo size xl is rendered 1`] = `
     class="emotion-euiLoadingLogo__icon"
   >
     <span
+      aria-hidden="true"
       data-euiicon-type="logoKibana"
     />
   </span>

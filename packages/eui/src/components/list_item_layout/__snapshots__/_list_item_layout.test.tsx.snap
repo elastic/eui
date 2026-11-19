@@ -9,6 +9,7 @@ exports[`EuiListItemLayout is rendered as anchor element 1`] = `
     class="euiListItemLayout__content emotion-euiListItemLayout__content"
   >
     <span
+      aria-hidden="true"
       class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="text"
       data-euiicon-type="empty"
@@ -31,6 +32,7 @@ exports[`EuiListItemLayout is rendered as button element 1`] = `
     class="euiListItemLayout__content emotion-euiListItemLayout__content"
   >
     <span
+      aria-hidden="true"
       class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="text"
       data-euiicon-type="empty"
@@ -53,6 +55,7 @@ exports[`EuiListItemLayout is rendered as div element 1`] = `
     class="euiListItemLayout__content emotion-euiListItemLayout__content"
   >
     <span
+      aria-hidden="true"
       class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="text"
       data-euiicon-type="empty"
@@ -75,6 +78,7 @@ exports[`EuiListItemLayout is rendered as li element 1`] = `
     class="euiListItemLayout__content emotion-euiListItemLayout__content"
   >
     <span
+      aria-hidden="true"
       class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
       color="text"
       data-euiicon-type="empty"

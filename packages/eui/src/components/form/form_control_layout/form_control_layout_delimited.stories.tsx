@@ -39,7 +39,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="chevronSingleRight" />,
+        icon: <EuiIcon type="chevronSingleRight" aria-label="to" />,
         text: '+',
       },
     },
@@ -178,7 +178,7 @@ export const KitchenSink: Story = {
         <EuiFormControlLayoutDelimited
           prepend="Merge"
           startControl={<EuiFieldNumber controlOnly placeholder="0" />}
-          delimiter={<EuiIcon type="merge" />}
+          delimiter={<EuiIcon type="merge" aria-label="to" />}
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />
         <EuiFormControlLayoutDelimited
