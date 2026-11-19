@@ -45,10 +45,13 @@ changed_files="$(git diff --name-only "${base_sha}" HEAD)"
 registry_files="$(grep -E "${REGISTRY_REGEXP}" <<< "${changed_files}" || true)"
 registry_edited=false
 if [[ -n "${registry_files}" ]]; then
-  # Removed lines are the ones starting with a single '-' (not the '---' header).
-  if git diff -U0 "${base_sha}" HEAD -- ${registry_files} | grep -qE '^-[^-]'; then
-    registry_edited=true
-  fi
+  # numstat prints "added<TAB>deleted<TAB>file" per file, so any non-zero deletion
+  # count means an existing line changed. No pipe, so pipefail cannot bite.
+  while IFS=$'\t' read -r _added deleted _file; do
+    if [[ "${deleted}" != "0" ]]; then
+      registry_edited=true
+    fi
+  done < <(git diff --numstat "${base_sha}" HEAD -- ${registry_files})
 fi
 
 if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}" || [[ "${registry_edited}" == true ]]; then
