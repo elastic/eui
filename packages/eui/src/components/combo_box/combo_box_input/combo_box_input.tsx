@@ -9,6 +9,7 @@
 import React, {
   Component,
   FocusEventHandler,
+  MouseEvent,
   KeyboardEventHandler,
   RefCallback,
   ReactNode,
@@ -23,6 +24,9 @@ import {
   RenderWithEuiStylesMemoizer,
 } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiBadge } from '../../badge';
+import { EuiI18n } from '../../i18n';
+import { EuiPopover } from '../../popover';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -61,6 +65,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
+  selectionDisplay?: 'wrap' | 'collapse';
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
   value?: string;
   prepend?: EuiFormControlLayoutProps['prepend'];
@@ -76,7 +81,17 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
 interface EuiComboBoxInputState {
   inputWidth: number;
   hasFocus: boolean;
+  /** Number of pills that fit when `selectionDisplay="collapse"`. `undefined` renders all pills. */
+  visibleCount?: number;
+  isCollapsedPopoverOpen: boolean;
 }
+
+// Space always kept free for the text input and the "+N" badge when collapsing
+const COLLAPSE_INPUT_MIN_WIDTH = 12;
+const COLLAPSE_BADGE_WIDTH = 40;
+const COLLAPSE_BADGE_COMPRESSED_WIDTH = 36;
+// A lone pill may shrink (truncate) to fit, but not below this width
+const COLLAPSE_PILL_MIN_WIDTH = 64;
 
 export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputProps<T>,
@@ -85,9 +100,85 @@ export class EuiComboBoxInput<T> extends Component<
   state: EuiComboBoxInputState = {
     inputWidth: 2,
     hasFocus: false,
+    isCollapsedPopoverOpen: false,
   };
 
   private widthUtils?: CanvasTextUtils;
+  private wrapRef = React.createRef<HTMLDivElement>();
+  private resizeObserver?: ResizeObserver;
+
+  componentDidMount() {
+    if (typeof ResizeObserver !== 'undefined' && this.wrapRef.current) {
+      this.resizeObserver = new ResizeObserver(this.updateVisibleCount);
+      this.resizeObserver.observe(this.wrapRef.current);
+    }
+    this.updateVisibleCount();
+  }
+
+  componentWillUnmount() {
+    this.resizeObserver?.disconnect();
+  }
+
+  get isCollapsed() {
+    const { selectionDisplay, singleSelection } = this.props;
+    return selectionDisplay === 'collapse' && !singleSelection;
+  }
+
+  /**
+   * Measures the (always rendered) pills and works out how many fit on a
+   * single row, leaving room for the input and the "+N" badge
+   */
+  updateVisibleCount = () => {
+    const wrap = this.wrapRef.current;
+    let visibleCount: number | undefined;
+
+    if (this.isCollapsed && wrap) {
+      const pills = Array.from(wrap.children).filter((el) =>
+        el.classList.contains('euiComboBoxPill')
+      ) as HTMLElement[];
+      const style = window.getComputedStyle(wrap);
+      const gap = parseFloat(style.columnGap) || 0;
+      const available =
+        wrap.clientWidth -
+        (parseFloat(style.paddingLeft) || 0) -
+        (parseFloat(style.paddingRight) || 0);
+      const badgeWidth = this.props.compressed
+        ? COLLAPSE_BADGE_COMPRESSED_WIDTH
+        : COLLAPSE_BADGE_WIDTH;
+
+      // Skip when not laid out (e.g. hidden or unit tests) to avoid hiding everything
+      if (available > 0 && pills.length) {
+        const widths = pills.map((pill) => pill.offsetWidth);
+        const total = widths.length;
+        visibleCount = 0;
+
+        for (let count = total; count >= 1; count--) {
+          const used = widths
+            .slice(0, count)
+            .reduce((sum, width) => sum + width + gap, 0);
+          const needed =
+            used + COLLAPSE_INPUT_MIN_WIDTH + (count < total ? badgeWidth : 0);
+          if (needed <= available) {
+            visibleCount = count;
+            break;
+          }
+          // Even a single pill doesn't fit: it can shrink to fit if that
+          // leaves it a usable width, otherwise only the badge is shown
+          if (
+            count === 1 &&
+            available - badgeWidth - COLLAPSE_INPUT_MIN_WIDTH - gap >=
+              COLLAPSE_PILL_MIN_WIDTH
+          ) {
+            visibleCount = 1;
+          }
+        }
+      }
+    }
+
+    if (visibleCount !== this.state.visibleCount) {
+      this.setState({ visibleCount });
+    }
+  };
 
   inputRefCallback = (el: HTMLInputElement) => {
     this.widthUtils = new CanvasTextUtils({ container: el });
@@ -110,6 +201,7 @@ export class EuiComboBoxInput<T> extends Component<
     if (prevProps.searchValue !== this.props.searchValue) {
       this.updateInputSize(this.props.searchValue);
     }
+    this.updateVisibleCount();
   }
 
   onFocus: FocusEventHandler<HTMLInputElement> = (event) => {
@@ -188,7 +280,10 @@ export class EuiComboBoxInput<T> extends Component<
     const { selectedOptions, isDisabled, onRemoveOption } = this.props;
     if (!selectedOptions || !selectedOptions.length) return null;
 
-    return selectedOptions.map((option) => {
+    const { visibleCount } = this.state;
+    const isCollapsed = this.isCollapsed;
+
+    const pills = selectedOptions.map((option, index) => {
       const {
         key,
         label,
@@ -210,6 +305,11 @@ export class EuiComboBoxInput<T> extends Component<
           option={option}
           onClose={pillOnClose}
           key={key ?? label.toLowerCase()}
+          className={
+            isCollapsed && visibleCount != null && index >= visibleCount
+              ? 'euiComboBoxPill--collapsed'
+              : undefined
+          }
           color={color}
           onClick={onClick}
           onClickAriaLabel={onClick ? 'Change' : undefined}
@@ -219,6 +319,98 @@ export class EuiComboBoxInput<T> extends Component<
         </EuiComboBoxPill>
       );
     });
+
+    if (!isCollapsed || visibleCount == null) return pills;
+
+    const hiddenOptions = selectedOptions.slice(visibleCount);
+    if (!hiddenOptions.length) return pills;
+
+    return [...pills, this.renderCollapsedBadge(hiddenOptions)];
+  };
+
+  closeCollapsedPopover = () => {
+    this.setState({ isCollapsedPopoverOpen: false });
+  };
+
+  toggleCollapsedPopover = (event: MouseEvent<HTMLButtonElement>) => {
+    // Don't let the click bubble to the control, which would open the options list
+    event.stopPropagation();
+    this.setState(({ isCollapsedPopoverOpen }) => ({
+      isCollapsedPopoverOpen: !isCollapsedPopoverOpen,
+    }));
+  };
+
+  renderCollapsedBadge = (hiddenOptions: Array<EuiComboBoxOptionOption<T>>) => {
+    const { isDisabled, onRemoveOption, singleSelection } = this.props;
+    const labels = hiddenOptions.map((option) => option.label);
+
+    const badge = (
+      <EuiI18n
+        token="euiComboBoxInput.collapsedSelections"
+        default="{count} more selected: {labels}"
+        values={{ count: hiddenOptions.length, labels: labels.join(', ') }}
+      >
+        {(collapsedSelections: string) => (
+          <EuiBadge
+            color="default"
+            data-test-subj="comboBoxCollapsedBadge"
+            onClick={this.toggleCollapsedPopover}
+            onClickAriaLabel={collapsedSelections}
+            aria-haspopup="true"
+            aria-expanded={this.state.isCollapsedPopoverOpen}
+          >
+            +{hiddenOptions.length}
+          </EuiBadge>
+        )}
+      </EuiI18n>
+    );
+
+    return (
+      <EuiPopover
+        key="euiComboBoxCollapsedBadge"
+        className="euiComboBoxCollapsedBadge"
+        aria-label="Hidden selections"
+        button={badge}
+        isOpen={this.state.isCollapsedPopoverOpen}
+        closePopover={this.closeCollapsedPopover}
+        anchorPosition="downLeft"
+        panelPaddingSize="s"
+        panelProps={{ 'data-test-subj': 'comboBoxCollapsedPopover' }}
+      >
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => (
+            // Clicks in the popover (rendered in a portal) bubble through the React
+            // tree to the control - stop them so they don't open the options list
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+            <div
+              css={stylesMemoizer(euiComboBoxInputStyles).collapsedList}
+              className="euiComboBoxCollapsedList"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {hiddenOptions.map((option) => {
+                const { key, label, color, onClick } = option;
+                return (
+                  <EuiComboBoxPill
+                    option={option}
+                    onClose={
+                      isDisabled || singleSelection || onClick
+                        ? undefined
+                        : onRemoveOption
+                    }
+                    key={key ?? label.toLowerCase()}
+                    color={color}
+                    onClick={onClick}
+                    onClickAriaLabel={onClick ? 'Change' : undefined}
+                  >
+                    {label}
+                  </EuiComboBoxPill>
+                );
+              })}
+            </div>
+          )}
+        </RenderWithEuiStylesMemoizer>
+      </EuiPopover>
+    );
   };
 
   render() {
@@ -285,7 +477,7 @@ export class EuiComboBoxInput<T> extends Component<
       );
     }
 
-    const isInGroup = singleSelection && (prepend || append);
+    const isInGroup = !!(prepend || append);
     const showPlaceholder =
       placeholder && !selectedOptions?.length && !searchValue;
 
@@ -330,6 +522,7 @@ export class EuiComboBoxInput<T> extends Component<
           const cssStyles = [
             styles.euiComboBoxInputWrapper,
             !singleSelection && styles.multiSelect,
+            this.isCollapsed && styles.collapsed,
             compressed ? styles.compressed : styles.uncompressed,
             ...(this.asPlainText || showPlaceholder
               ? [
@@ -345,6 +538,9 @@ export class EuiComboBoxInput<T> extends Component<
           const formLayoutStyles = [
             styles.formLayout.euiComboBox__formControlLayout,
             !singleSelection && styles.formLayout.multiSelect,
+            !singleSelection &&
+              compressed &&
+              styles.formLayout.multiSelectCompressed,
           ];
 
           return (
@@ -362,6 +558,7 @@ export class EuiComboBoxInput<T> extends Component<
               css={formLayoutStyles}
             >
               <div
+                ref={this.wrapRef}
                 css={cssStyles}
                 className={wrapClasses}
                 data-test-subj="comboBoxInput"

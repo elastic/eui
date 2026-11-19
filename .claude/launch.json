@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "start",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
+      "port": 3000
+    }
+  ]
+}

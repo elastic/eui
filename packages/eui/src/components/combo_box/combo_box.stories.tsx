@@ -15,8 +15,10 @@ import {
   hideStorybookControls,
 } from '../../../.storybook/utils';
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
+import { EuiButtonIcon } from '../button';
 import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
+import { EuiFormRow, EuiRange } from '../form';
 import { EuiLink } from '../link';
 
 import { EuiComboBoxOptionMatcher } from './types';
@@ -40,6 +42,7 @@ const meta: Meta<EuiComboBoxProps<{}>> = {
   // @ts-ignore typescript shenanigans
   component: EuiComboBox,
   argTypes: {
+    selectionDisplay: { control: 'radio', options: ['wrap', 'collapse'] },
     singleSelection: {
       control: 'radio',
       options: [false, true, 'asPlainText'],
@@ -392,6 +395,71 @@ export const IconsAndManyOptionsSelected: Story = {
     selectedOptions: options,
   },
   render: (args) => <StatefulComboBox {...args} />,
+};
+
+const ResizableComboBox = (args: EuiComboBoxProps<{}>) => {
+  const [width, setWidth] = useState(480);
+
+  return (
+    <>
+      <EuiFormRow label="Width (px)" display="rowCompressed">
+        <EuiRange
+          min={280}
+          max={820}
+          step={10}
+          value={width}
+          onChange={(e) => setWidth(Number(e.currentTarget.value))}
+          showValue
+          compressed
+          aria-label="Combo box width"
+        />
+      </EuiFormRow>
+      <div style={{ inlineSize: width, maxInlineSize: '100%' }}>
+        <StatefulComboBox {...args} fullWidth />
+      </div>
+    </>
+  );
+};
+
+const manyOptions = [
+  'docs-checkout-*',
+  'audit-payments-*',
+  'events-2026.11.*',
+  'logs-nginx-*',
+  'metrics-system-*',
+  'traces-apm-*',
+  'profiling-*',
+].map((label) => ({ label }));
+
+export const MultiSelectWithPrependAndAppend: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'prepend',
+        'append',
+        'compressed',
+        'selectionDisplay',
+        'options',
+        'selectedOptions',
+      ],
+    },
+  },
+  args: {
+    singleSelection: false,
+    prepend: 'Documents',
+    append: <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />,
+    options: manyOptions,
+    selectedOptions: manyOptions,
+  },
+  render: (args) => <ResizableComboBox {...args} />,
+};
+
+export const MultiSelectCollapse: Story = {
+  ...MultiSelectWithPrependAndAppend,
+  args: {
+    ...MultiSelectWithPrependAndAppend.args,
+    selectionDisplay: 'collapse',
+  },
 };
 
 /**
