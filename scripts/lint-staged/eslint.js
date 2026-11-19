@@ -18,12 +18,14 @@ const eslintTask = (cwd, args = []) => {
         files.map((file) => eslint.isPathIgnored(file))
       );
     } catch (error) {
-      if (!error.message.startsWith('Failed to load plugin')) throw error;
-      throw new Error(
-        `${
-          error.message.split('\n')[0]
-        }\nRun \`yarn workspace @elastic/eui build:workspaces\` first.`
-      );
+      if (
+        error.code === 'MODULE_NOT_FOUND' &&
+        error.message.includes('@elastic/eslint-plugin-eui/')
+      ) {
+        error.message +=
+          '\n\nRun `yarn workspace @elastic/eui build:workspaces` first.';
+      }
+      throw error;
     }
     const lintable = files.filter((_, index) => !ignored[index]);
 
