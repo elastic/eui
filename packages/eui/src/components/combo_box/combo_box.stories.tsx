@@ -20,6 +20,7 @@ import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
 import { EuiFormRow, EuiRange } from '../form';
 import { EuiLink } from '../link';
+import { EuiToolTip } from '../tool_tip';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
@@ -446,11 +447,15 @@ export const MultiSelectWithPrependAndAppend: Story = {
   },
   args: {
     singleSelection: false,
-    prepend: 'Documents',
-    append: <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />,
+    prepend: <span>Documents</span>,
+    append: (
+      <EuiToolTip content="Copy">
+        <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />
+      </EuiToolTip>
+    ),
     options: manyOptions,
     selectedOptions: manyOptions,
-  },
+  } as unknown as EuiComboBoxProps<{}>,
   render: (args) => <ResizableComboBox {...args} />,
 };
 
@@ -458,7 +463,7 @@ export const MultiSelectCollapse: Story = {
   ...MultiSelectWithPrependAndAppend,
   args: {
     ...MultiSelectWithPrependAndAppend.args,
-    selectionDisplay: 'collapse',
+    selectionDisplay: 'collapse' as EuiComboBoxProps<{}>['selectionDisplay'],
   },
 };
 
