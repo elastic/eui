@@ -12,9 +12,19 @@ const eslintTask = (cwd, args = []) => {
   const eslint = new ESLint({ cwd });
 
   return async (files) => {
-    const ignored = await Promise.all(
-      files.map((file) => eslint.isPathIgnored(file))
-    );
+    let ignored;
+    try {
+      ignored = await Promise.all(
+        files.map((file) => eslint.isPathIgnored(file))
+      );
+    } catch (error) {
+      if (!error.message.startsWith('Failed to load plugin')) throw error;
+      throw new Error(
+        `${
+          error.message.split('\n')[0]
+        }\nRun \`yarn workspace @elastic/eui build:workspaces\` first.`
+      );
+    }
     const lintable = files.filter((_, index) => !ignored[index]);
 
     if (!lintable.length) return [];
