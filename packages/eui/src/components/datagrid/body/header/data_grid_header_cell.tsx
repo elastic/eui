@@ -143,6 +143,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                           styles.euiDataGridHeaderCell__actions.action,
                           styles.euiDataGridHeaderCell__actions.start,
                         ]}
+                        aria-hidden={true}
                       />
                     </span>
                   )}

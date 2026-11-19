@@ -13,6 +13,9 @@ import {
   ACTION_SET_ACTIVE,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
+  ACTION_SET_MAXIMIZED,
+  ACTION_SET_RESTORED_WIDTH,
+  ACTION_SET_RESIZABLE,
   ACTION_SET_PAGINATION,
   ACTION_SET_ACTIVITY_STAGE,
   ACTION_GO_BACK,
@@ -123,8 +126,16 @@ export function flyoutManagerReducer(
     // - For a `child` flyout, attach it to the most recent session; if no
     //   session exists, do nothing (invalid child without a parent).
     case ACTION_ADD: {
-      const { flyoutId, title, level, size, historyKey, iconType, minWidth } =
-        action;
+      const {
+        flyoutId,
+        title,
+        level,
+        size,
+        historyKey,
+        iconType,
+        minWidth,
+        resizable,
+      } = action;
 
       const isDuplicate = state.flyouts.some((f) => f.flyoutId === flyoutId);
       const isIdempotentChild =
@@ -142,6 +153,7 @@ export function flyoutManagerReducer(
         flyoutId,
         size,
         minWidth,
+        resizable,
         activityStage: STAGE_OPENING,
       };
       const newFlyouts: EuiManagedFlyoutState[] = isIdempotentChild
@@ -381,8 +393,83 @@ export function flyoutManagerReducer(
     // calculations, e.g., deciding stacked vs side-by-side.
     case ACTION_SET_WIDTH: {
       const { flyoutId, width } = action;
+      // The resize observer often reports a width already written before paint
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (!target || target.width === width) {
+        return state;
+      }
       const updatedFlyouts = state.flyouts.map((flyout) =>
         flyout.flyoutId === flyoutId ? { ...flyout, width } : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Toggle whether a main flyout paints at the full width of its container.
+    // `size` is left alone: changing it would re-register the flyout.
+    // A child is never maximized: its main would treat it as a `fill` sibling.
+    case ACTION_SET_MAXIMIZED: {
+      const { flyoutId, maximized, width, restoredWidth } = action;
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (
+        !target ||
+        target.level === LEVEL_CHILD ||
+        !!target.maximized === maximized
+      ) {
+        return state;
+      }
+
+      // The sibling clamps against the stored width, so it must match the
+      // flag. Without widths from the caller, fall back to the ones the store
+      // already has: the width painted now is the one to restore to, and
+      // restoring paints the width recorded while maximized.
+      let updatedFlyout: EuiManagedFlyoutState;
+      if (maximized) {
+        updatedFlyout = {
+          ...target,
+          maximized,
+          width: width ?? target.width,
+          restoredWidth: restoredWidth ?? target.width,
+        };
+      } else {
+        updatedFlyout = {
+          ...target,
+          maximized,
+          width: width ?? target.restoredWidth ?? target.width,
+          restoredWidth: undefined,
+        };
+      }
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? updatedFlyout : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Record the width a maximized flyout restores to. Ignored once restored.
+    case ACTION_SET_RESTORED_WIDTH: {
+      const { flyoutId, restoredWidth } = action;
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (
+        !target ||
+        !target.maximized ||
+        target.restoredWidth === restoredWidth
+      ) {
+        return state;
+      }
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? { ...flyout, restoredWidth } : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Update whether a flyout is resizable. No-op if unchanged or missing.
+    case ACTION_SET_RESIZABLE: {
+      const { flyoutId, resizable } = action;
+      const target = state.flyouts.find((f) => f.flyoutId === flyoutId);
+      if (!target || !!target.resizable === resizable) {
+        return state;
+      }
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? { ...flyout, resizable } : flyout
       );
       return { ...state, flyouts: updatedFlyouts };
     }

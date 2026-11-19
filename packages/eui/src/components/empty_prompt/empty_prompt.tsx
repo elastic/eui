@@ -125,7 +125,12 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     return (
       <div className="euiEmptyPrompt__icon" css={iconStyles}>
         {iconType ? (
-          <EuiIcon type={iconType} size="xxl" color={iconColor} />
+          <EuiIcon
+            type={iconType}
+            size="xxl"
+            color={iconColor}
+            aria-hidden={true}
+          />
         ) : (
           icon
         )}

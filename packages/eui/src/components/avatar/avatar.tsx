@@ -21,6 +21,7 @@ import {
   useEuiPaletteColorBlindBehindText,
 } from '../../services/color';
 import { toInitials, useEuiMemoizedStyles, useEuiTheme } from '../../services';
+import { MAX_INITIALS, toGraphemes } from '../../services/string/to_initials';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 
@@ -44,6 +45,7 @@ type _EuiAvatarContent = ExclusiveUnion<
     {
       /**
        * Custom initials (max 2 characters).
+       * Characters are counted as graphemes, so an emoji sequence such as 👍🏽 counts as one.
        * By default will take the first character (of each word).
        */
       initials?: string;
@@ -260,8 +262,8 @@ export const checkValidColor = (color: EuiAvatarProps['color']) => {
 };
 
 function checkValidInitials(initials: EuiAvatarProps['initials']) {
-  // Must be a string of 1 or 2 characters
-  if (initials && initials.length > 2) {
+  // Must be a string of 1 or 2 characters, counted as graphemes
+  if (initials && toGraphemes(initials).length > MAX_INITIALS) {
     console.warn(
       'EuiAvatar only accepts a max of 2 characters for the initials as a string. It is displaying only the first 2 characters.'
     );

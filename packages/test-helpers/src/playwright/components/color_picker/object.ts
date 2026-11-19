@@ -97,7 +97,9 @@ export class EuiColorPickerObject extends BaseObject {
   }
 
   private async secondaryInput(): Promise<Locator> {
-    const input = this.panel.locator(EuiColorPickerSelectors.SECONDARY_INPUT_SELECTOR);
+    const input = this.panel.locator(
+      EuiColorPickerSelectors.SECONDARY_INPUT_SELECTOR
+    );
     if ((await input.count()) === 0) {
       throw new Error(
         `EuiColorPicker "${this.testSubj}" uses a custom button and its panel has no hex input. ` +

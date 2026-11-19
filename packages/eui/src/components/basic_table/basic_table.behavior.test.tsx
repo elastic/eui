@@ -12,6 +12,8 @@ import { render } from '../../test/rtl';
 
 import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
 
+const tableCaption = 'Test table';
+
 describe('EuiBasicTable', () => {
   describe('behavior', () => {
     describe('selected items', () => {
@@ -35,7 +37,9 @@ describe('EuiBasicTable', () => {
       };
 
       test('check the select all checkbox when all are selected', () => {
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
 
         fireEvent.click(getByTestSubject('checkboxSelectRow-1'));
         fireEvent.click(getByTestSubject('checkboxSelectRow-2'));
@@ -43,14 +47,18 @@ describe('EuiBasicTable', () => {
       });
 
       test('uncheck the select all checkbox when some are selected', () => {
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
 
         fireEvent.click(getByTestSubject('checkboxSelectRow-1'));
         expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
       });
 
       test('are all selected when the select all checkbox is checked', () => {
-        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        const { getByTestSubject } = render(
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
+        );
 
         fireEvent.click(getByTestSubject('checkboxSelectAll'));
         expect(getByTestSubject('checkboxSelectRow-1')).toBeChecked();
@@ -59,12 +67,14 @@ describe('EuiBasicTable', () => {
 
       test('select all checkbox becomes unchecked when selected items are deleted', () => {
         const { getByTestSubject, rerender } = render(
-          <EuiBasicTable {...props} />
+          <EuiBasicTable tableCaption={tableCaption} {...props} />
         );
         fireEvent.click(getByTestSubject('checkboxSelectAll'));
         expect(getByTestSubject('checkboxSelectAll')).toBeChecked();
 
-        rerender(<EuiBasicTable {...props} items={[]} />);
+        rerender(
+          <EuiBasicTable tableCaption={tableCaption} {...props} items={[]} />
+        );
         expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
       });
     });

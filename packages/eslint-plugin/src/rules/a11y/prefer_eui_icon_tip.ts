@@ -26,8 +26,7 @@ export const PreferEuiIconTip = ESLintUtils.RuleCreator.withoutDocs({
 
         // Find first JSX child
         const firstChild = node.children.find(
-          (child): child is TSESTree.JSXElement =>
-            child.type === 'JSXElement'
+          (child): child is TSESTree.JSXElement => child.type === 'JSXElement'
         );
 
         if (
@@ -37,7 +36,7 @@ export const PreferEuiIconTip = ESLintUtils.RuleCreator.withoutDocs({
         ) {
           context.report({
             node: firstChild,
-            messageId: 'preferEuiIconTip'
+            messageId: 'preferEuiIconTip',
           });
         }
       },
@@ -46,7 +45,7 @@ export const PreferEuiIconTip = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     type: 'suggestion',
     docs: {
-      description: `Prefer using ${ICON_TIP_COMPONENT} over <${TOOLTIP_COMPONENT}><${ICON_COMPONENT}/></${TOOLTIP_COMPONENT}>, as it delivers better accessibility and improved support for assistive technologies.`
+      description: `Prefer using ${ICON_TIP_COMPONENT} over <${TOOLTIP_COMPONENT}><${ICON_COMPONENT}/></${TOOLTIP_COMPONENT}>, as it delivers better accessibility and improved support for assistive technologies.`,
     },
     schema: [],
     messages: {

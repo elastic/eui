@@ -62,7 +62,7 @@ const config: Config = {
 
   // SWC ignores `babel.config.js`; keep Rspack but use Emotion's JSX runtime.
   future: {
-    experimental_faster: {
+    faster: {
       swcJsLoader: false,
       swcJsMinimizer: true,
       swcHtmlMinimizer: true,

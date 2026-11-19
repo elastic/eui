@@ -40,7 +40,7 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
   if (!(await isWorkingTreeClean())) {
     throw new ValidationError(
       'Git working tree is dirty. Please clean up your working tree' +
-      ' from any uncommited changes and try again.',
+        ' from any uncommited changes and try again.',
       `To clean local changes and restore the branch to remote state,` +
         ` please run:\n  ${chalk.yellowBright(
           `git reset --hard upstream/${currentBranch}`

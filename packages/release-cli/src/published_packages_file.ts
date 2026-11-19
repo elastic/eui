@@ -20,7 +20,9 @@ export type PublishedPackages = PublishedPackage[];
 const RELEASE_DIR_NAME = '.release';
 const PUBLISHED_PACKAGES_FILE_NAME = 'published_packages.json';
 
-export const emitPublishedPackagesFile = async (packages: PublishedPackages) => {
+export const emitPublishedPackagesFile = async (
+  packages: PublishedPackages
+) => {
   const rootDir = getRootWorkspaceDir();
   const releaseDir = path.join(rootDir, RELEASE_DIR_NAME);
   const publishedPackagesFile = path.join(

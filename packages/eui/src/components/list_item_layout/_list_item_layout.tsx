@@ -537,6 +537,7 @@ export const EuiListItemLayout = forwardRef<
             className="euiListItemLayout__icon"
             color={color}
             type={icon}
+            aria-hidden={true}
           />
         );
       }

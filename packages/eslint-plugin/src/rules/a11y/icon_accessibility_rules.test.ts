@@ -70,7 +70,7 @@ ruleTester.run('EuiIconAccessibilityRules', EuiIconAccessibilityRules, {
         )
       `,
       languageOptions,
-    }
+    },
   ],
   invalid: [
     // Missing accessible name -> autofix adds aria-hidden={true}

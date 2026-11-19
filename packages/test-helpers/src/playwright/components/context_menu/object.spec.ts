@@ -13,7 +13,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testContextMenu';
 
-const PLAYGROUND_URL = storyUrl('navigation-euicontextmenu-euicontextmenu--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'navigation-euicontextmenu-euicontextmenu--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiContextMenuObject', () => {
   let contextMenu: EuiContextMenuObject;
@@ -25,15 +28,21 @@ test.describe('EuiContextMenuObject', () => {
   });
 
   test.describe('items', () => {
-    test('resolves to the current panel\'s items', async () => {
-      await expect(contextMenu.items.filter({ hasText: 'Handle an onClick' })).toHaveCount(1);
+    test("resolves to the current panel's items", async () => {
+      await expect(
+        contextMenu.items.filter({ hasText: 'Handle an onClick' })
+      ).toHaveCount(1);
     });
 
-    test('resolves to only the new panel\'s items after navigating, not both during the transition', async () => {
+    test("resolves to only the new panel's items after navigating, not both during the transition", async () => {
       await contextMenu.items.filter({ hasText: 'Nest panels' }).click();
 
-      await expect(contextMenu.items.filter({ hasText: 'PDF reports' })).toHaveCount(1);
-      await expect(contextMenu.items.filter({ hasText: 'Handle an onClick' })).toHaveCount(0);
+      await expect(
+        contextMenu.items.filter({ hasText: 'PDF reports' })
+      ).toHaveCount(1);
+      await expect(
+        contextMenu.items.filter({ hasText: 'Handle an onClick' })
+      ).toHaveCount(0);
     });
   });
 });

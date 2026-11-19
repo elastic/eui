@@ -32,10 +32,14 @@ const getTokenColor = (
   color: number | string
 ) => {
   const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
-  // use inside function as they are not returning constants,
-  // but internally depend on EUI_VIS_COLOR_STORE to update per theme
-  const visColors = euiPaletteColorBlind();
-  const visColorsBehindText = euiPaletteColorBlindBehindText();
+  // Pass the theme's vis colors explicitly rather than letting these fall back to
+  // EUI_VIS_COLOR_STORE - the store is only updated in an effect, so on the first
+  // render it can still hold the previous theme's palette. Memoized styles are not
+  // regenerated for a store update, so those colors would stay stale.
+  const visColors = euiPaletteColorBlind({ colors: euiTheme.colors.vis });
+  const visColorsBehindText = euiPaletteColorBlindBehindText({
+    colors: euiTheme.colors.vis,
+  });
 
   const isVizColor = typeof color === 'number';
 

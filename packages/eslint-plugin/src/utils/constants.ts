@@ -59,7 +59,7 @@ export const NON_INTERACTIVE_HTML_TAGS = [
   'th',
   'thead',
   'tr',
-  'ul'
+  'ul',
 ];
 
 /**
@@ -118,7 +118,7 @@ export const INTERACTIVE_EUI_COMPONENTS = [
   'EuiSwitch',
   'EuiTab',
   'EuiTextArea',
-  'EuiTreeView'
+  'EuiTreeView',
 ];
 
 /**
@@ -136,15 +136,17 @@ export const INTERACTIVE_EUI_COMPONENTS = [
  *   focusable.
  * - `EuiListGroupItem` renders an `<li>` unless it has an action.
  */
-export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<string, string[]> =
-  {
-    EuiBadge: ['iconOnClick', 'onClick', 'href'],
-    EuiBetaBadge: ['tooltipContent', 'onClick', 'href'],
-    EuiCard: ['onClick', 'href', 'selectable'],
-    EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
-    EuiHeaderLogo: ['href'],
-    EuiListGroupItem: ['onClick', 'href'],
-  };
+export const CONDITIONALLY_INTERACTIVE_EUI_COMPONENTS: Record<
+  string,
+  string[]
+> = {
+  EuiBadge: ['iconOnClick', 'onClick', 'href'],
+  EuiBetaBadge: ['tooltipContent', 'onClick', 'href'],
+  EuiCard: ['onClick', 'href', 'selectable'],
+  EuiContextMenuItem: ['onClick', 'href', 'toolTipContent'],
+  EuiHeaderLogo: ['href'],
+  EuiListGroupItem: ['onClick', 'href'],
+};
 
 /**
  * Native HTML elements that are focusable only when given one of the listed

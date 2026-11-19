@@ -134,7 +134,8 @@ export const updateChangelogContent = async (
   packageRootDir: string,
   upcomingChangelog: string,
   version: string,
-  packageName: string
+  packageName: string,
+  euiVersion?: string
 ) => {
   if (!upcomingChangelog) {
     throw new Error('Cannot update changelog - no changes found');
@@ -154,7 +155,8 @@ export const updateChangelogContent = async (
 
   let latestVersionHeading = `## [\`v${version}\`](${getChangelogReleaseUrl(
     packageName,
-    version
+    version,
+    euiVersion
   )})`;
   if (version.includes('-backport')) {
     latestVersionHeading +=

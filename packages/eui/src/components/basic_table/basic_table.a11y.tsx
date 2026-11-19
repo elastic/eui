@@ -40,7 +40,7 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
+    github: faker.internet.username(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {

@@ -50,7 +50,9 @@ test.describe('EuiDraggableObject', () => {
       await expect(items.nth(1)).toHaveAttribute('data-test-subj', ITEM_1);
     });
 
-    test('the item keeps its own data-test-subj after moving', async ({ page }) => {
+    test('the item keeps its own data-test-subj after moving', async ({
+      page,
+    }) => {
       const item1 = new EuiDraggableObject(page, ITEM_1);
 
       await item1.reorder(1);

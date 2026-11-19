@@ -59,7 +59,11 @@ export const Playground: Story = {
     return (
       <EuiCard
         onClick={onClick ? action('onClick') : undefined}
-        icon={icon ? <EuiIcon type="logoElastic" size="xxl" /> : undefined}
+        icon={
+          icon ? (
+            <EuiIcon type="logoElastic" size="xxl" aria-hidden={true} />
+          ) : undefined
+        }
         selectable={
           selectable ? { onClick: selectableOnClick, isSelected } : undefined
         }

@@ -128,8 +128,10 @@ export const EuiFormAppendPrepend: FunctionComponent<
   const isDisabled =
     _isDisabled || disabled || (!isButton && formLayoutIsDisabled);
 
-  const iconLeft = _iconLeft && <EuiIcon type={_iconLeft} />;
-  const iconRight = _iconRight && <EuiIcon type={_iconRight} />;
+  const iconLeft = _iconLeft && <EuiIcon type={_iconLeft} aria-hidden={true} />;
+  const iconRight = _iconRight && (
+    <EuiIcon type={_iconRight} aria-hidden={true} />
+  );
 
   const cssStyles = [
     styles.side,

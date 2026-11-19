@@ -22,7 +22,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testSelectable';
 
-const PLAYGROUND_URL = storyUrl('forms-euiselectable--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'forms-euiselectable--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 const SINGLE_SELECTION_URL = storyUrl(
   'forms-euiselectable--single-selection',
   `data-test-subj:${TEST_SUBJ}`
@@ -47,10 +50,9 @@ test.describe('EuiSelectableObject', () => {
     test('locates an option by its exact label and checks it', async () => {
       await selectable.selectOption('Dione');
 
-      await expect(selectable.options.filter({ hasText: 'Dione' })).toHaveAttribute(
-        'aria-checked',
-        'true'
-      );
+      await expect(
+        selectable.options.filter({ hasText: 'Dione' })
+      ).toHaveAttribute('aria-checked', 'true');
     });
 
     test('does not match on a label that is a substring of another option', async () => {
@@ -74,10 +76,9 @@ test.describe('EuiSelectableObject', () => {
     test('is a no-op when the option is already checked', async () => {
       await selectable.selectOption('Mimas');
 
-      await expect(selectable.options.filter({ hasText: 'Mimas' })).toHaveAttribute(
-        'aria-checked',
-        'true'
-      );
+      await expect(
+        selectable.options.filter({ hasText: 'Mimas' })
+      ).toHaveAttribute('aria-checked', 'true');
     });
   });
 
@@ -94,10 +95,9 @@ test.describe('EuiSelectableObject', () => {
       await selectable.selectOption('Dione');
       await selectable.selectOption('Dione');
 
-      await expect(selectable.options.filter({ hasText: 'Dione' })).toHaveAttribute(
-        'aria-selected',
-        'true'
-      );
+      await expect(
+        selectable.options.filter({ hasText: 'Dione' })
+      ).toHaveAttribute('aria-selected', 'true');
     });
   });
 });

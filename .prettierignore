@@ -1,0 +1,18 @@
+.yarn
+**/node_modules
+packages/*/dist
+packages/*/lib
+packages/*/es
+packages/*/optimize
+packages/*/test-env
+packages/*/types
+packages/*/build
+packages/*/.docusaurus
+packages/*/storybook-static
+packages/*/coverage
+packages/*/reports
+packages/eui/eui.d.ts
+packages/illustrations/src/generated
+packages/eui/src/components/date_picker/react-datepicker
+# Uses import attributes, which Prettier 2 can't parse
+packages/eui/.storybook/vrt.ts

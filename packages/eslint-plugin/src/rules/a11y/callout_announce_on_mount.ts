@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {  ESLintUtils } from '@typescript-eslint/utils';
+import { ESLintUtils } from '@typescript-eslint/utils';
 import { isInConditionalRendering } from '../../utils/is_in_conditional_rendering';
 import { hasSpread } from '../../utils/has_spread';
 
@@ -17,27 +17,37 @@ export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
     return {
       JSXElement(node) {
         const { openingElement } = node;
-        if (openingElement.name.type !== 'JSXIdentifier' ||
-            openingElement.name.name !== CALLOUT_COMPONENT) {
+        if (
+          openingElement.name.type !== 'JSXIdentifier' ||
+          openingElement.name.name !== CALLOUT_COMPONENT
+        ) {
           return;
         }
-        if (openingElement.attributes.some(attr =>
-          attr.type === 'JSXAttribute' &&
-          attr.name.type === 'JSXIdentifier' &&
-          attr.name.name === 'announceOnMount'
-        )) {
+        if (
+          openingElement.attributes.some(
+            (attr) =>
+              attr.type === 'JSXAttribute' &&
+              attr.name.type === 'JSXIdentifier' &&
+              attr.name.name === 'announceOnMount'
+          )
+        ) {
           return;
         }
         if (isInConditionalRendering(node)) {
           context.report({
             node: openingElement,
             messageId: 'missingAnnounceOnMount',
-            fix: hasSpread(openingElement.attributes) ? undefined : (fixer) => {
-              return fixer.insertTextAfterRange(
-                [openingElement.name.range[1], openingElement.name.range[1]],
-                ' announceOnMount'
-              );
-            },
+            fix: hasSpread(openingElement.attributes)
+              ? undefined
+              : (fixer) => {
+                  return fixer.insertTextAfterRange(
+                    [
+                      openingElement.name.range[1],
+                      openingElement.name.range[1],
+                    ],
+                    ' announceOnMount'
+                  );
+                },
           });
         }
       },
@@ -46,7 +56,7 @@ export const CallOutAnnounceOnMount = ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     type: 'problem',
     docs: {
-      description: `Ensure ${CALLOUT_COMPONENT} components that are conditionally rendered have announceOnMount prop for better accessibility`
+      description: `Ensure ${CALLOUT_COMPONENT} components that are conditionally rendered have announceOnMount prop for better accessibility`,
     },
     fixable: 'code',
     schema: [],

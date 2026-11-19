@@ -19,11 +19,9 @@ const IGNORE_TESTENV = [
   '**/*.testenv.tsx',
   '**/*.testenv.ts',
 ];
-const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js'];
 
 module.exports = {
   IGNORE_BUILD,
   IGNORE_TESTS,
   IGNORE_TESTENV,
-  IGNORE_PACKAGES,
 };

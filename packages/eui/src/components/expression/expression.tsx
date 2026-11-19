@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
+import { useEuiI18n } from '../i18n';
 
 import {
   euiExpressionStyles,
@@ -143,6 +144,10 @@ export const EuiExpression: FunctionComponent<
   ];
 
   const iconStyles = useEuiMemoizedStyles(euiExpressionIconStyles);
+  const invalidIconLabel = useEuiI18n(
+    'euiExpression.invalid',
+    'Invalid expression'
+  );
   const cssIconStyles = [
     iconStyles.euiExpression__icon,
     display === 'columns' && iconStyles.columns,
@@ -185,6 +190,7 @@ export const EuiExpression: FunctionComponent<
           type="warning"
           css={cssIconStyles}
           color={calculatedColor}
+          aria-label={invalidIconLabel}
         />
       )}
     </Component>

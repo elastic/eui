@@ -81,8 +81,8 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiModal__closeIcon: css`
       position: absolute;
-      inset-inline-end: ${euiTheme.size.xs};
-      inset-block-start: ${euiTheme.size.xs};
+      inset-inline-end: ${euiTheme.size.m};
+      inset-block-start: ${euiTheme.size.m};
       z-index: 3;
     `,
   };

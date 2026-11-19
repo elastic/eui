@@ -214,6 +214,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -240,6 +241,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
       Content
     </span>
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -256,6 +258,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />

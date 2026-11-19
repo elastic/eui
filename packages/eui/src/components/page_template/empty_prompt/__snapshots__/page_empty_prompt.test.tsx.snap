@@ -17,6 +17,7 @@ exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
           class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-horizontal"
         >
           <span
+            aria-hidden="true"
             color="subdued"
             data-euiicon-type="warning"
           />

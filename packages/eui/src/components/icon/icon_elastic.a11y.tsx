@@ -40,7 +40,7 @@ describe('EuiIcons', () => {
     const ElasticGrid = () => (
       <div>
         {ElasticLogos.map((glyph) => (
-          <EuiIcon className="eui-alignMiddle" type={glyph} />
+          <EuiIcon className="eui-alignMiddle" type={glyph} title={glyph} />
         ))}
       </div>
     );
@@ -48,8 +48,8 @@ describe('EuiIcons', () => {
     it('has zero violations on first render', () => {
       cy.mount(<ElasticGrid />);
       cy.get('div[data-cy-root]')
-        .find('svg', { timeout: 5000 })
-        .should('have.length', 19);
+        .find('svg > title', { timeout: 5000 })
+        .should('have.length', ElasticLogos.length);
       cy.checkAxe();
     });
   });

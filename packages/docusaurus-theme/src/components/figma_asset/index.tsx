@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
-  IframeHTMLAttributes,
-  ImgHTMLAttributes,
-  useMemo,
-} from 'react';
+import { IframeHTMLAttributes, ImgHTMLAttributes, useMemo } from 'react';
 import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -75,7 +71,7 @@ export const FigmaAsset = (props: FigmaAssetProps) => {
   // Imported assets are already resolved URLs; only site-root paths need useBaseUrl.
   const imageSrc = imageSrcString?.startsWith('/')
     ? baseImageSrc
-    : (imageSrcString ?? '');
+    : imageSrcString ?? '';
   const styles = useEuiMemoizedStyles(getFigmaAssetStyles);
 
   const embedSrc = useMemo(() => {
@@ -106,12 +102,17 @@ export const FigmaAsset = (props: FigmaAssetProps) => {
     );
   }
 
-  const { url: _url, title: _title, type: _type, src: _src, ...imgRest } =
-    props;
+  const {
+    url: _url,
+    title: _title,
+    type: _type,
+    src: _src,
+    ...imgRest
+  } = props;
 
   if (typeof props.src !== 'string') {
     throw new Error(
-      'FigmaAsset: `src` must be a URL string. Import SVGs with `!url-loader!` (e.g. `import asset from \'!url-loader!./assets/foo.svg\'`), not as a bare `.svg` module (SVGR returns a React component).'
+      "FigmaAsset: `src` must be a URL string. Import SVGs with `!url-loader!` (e.g. `import asset from '!url-loader!./assets/foo.svg'`), not as a bare `.svg` module (SVGR returns a React component)."
     );
   }
 

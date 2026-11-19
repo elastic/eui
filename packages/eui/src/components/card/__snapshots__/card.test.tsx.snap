@@ -867,6 +867,7 @@ exports[`EuiCard props icon 1`] = `
       class="euiCard__top emotion-euiCard__top-vertical"
     >
       <span
+        aria-hidden="true"
         class="myIconClass euiCard__icon emotion-euiCard__icon-vertical"
         data-euiicon-type="apmApp"
       />

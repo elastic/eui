@@ -54,7 +54,7 @@ const KeyPadMenu = () => {
           isSelected={selectedID === keypadButtonId__1}
           onClick={() => setSelectedID(keypadButtonId__1)}
         >
-          <EuiIcon type="grid" size="l" />
+          <EuiIcon type="grid" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem
           data-test-subj="cy-keypad-button-2"
@@ -63,7 +63,7 @@ const KeyPadMenu = () => {
           isSelected={selectedID === keypadButtonId__2}
           onClick={() => setSelectedID(keypadButtonId__2)}
         >
-          <EuiIcon type="grid" size="l" />
+          <EuiIcon type="grid" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem
           data-test-subj="cy-keypad-button-3"
@@ -72,7 +72,7 @@ const KeyPadMenu = () => {
           isSelected={selectedID === keypadButtonId__3}
           onClick={() => setSelectedID(keypadButtonId__3)}
         >
-          <EuiIcon type="grid" size="l" />
+          <EuiIcon type="grid" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem
           data-test-subj="cy-keypad-link-1"
@@ -82,7 +82,7 @@ const KeyPadMenu = () => {
           isSelected={selectedID === keypadButtonId__4}
           onClick={() => setSelectedID(keypadButtonId__4)}
         >
-          <EuiIcon type="link" size="l" />
+          <EuiIcon type="link" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem
           data-test-subj="cy-keypad-link-2"
@@ -92,7 +92,7 @@ const KeyPadMenu = () => {
           isSelected={selectedID === keypadButtonId__5}
           onClick={() => setSelectedID(keypadButtonId__5)}
         >
-          <EuiIcon type="link" size="l" />
+          <EuiIcon type="link" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
         <EuiKeyPadMenuItem
           data-test-subj="cy-keypad-link-3"
@@ -101,7 +101,7 @@ const KeyPadMenu = () => {
           isDisabled
           isSelected={selectedID === keypadButtonId__6}
         >
-          <EuiIcon type="link" size="l" />
+          <EuiIcon type="link" size="l" aria-hidden={true} />
         </EuiKeyPadMenuItem>
       </EuiKeyPadMenu>
     </div>

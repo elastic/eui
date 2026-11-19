@@ -270,6 +270,31 @@ describe('EuiToolTip', () => {
       fireEvent.mouseOut(getByTestSubject('trigger'));
       expect(onMouseOut).toHaveBeenCalledTimes(1);
     });
+
+    it('calls `anchorProps` mouse enter and leave callbacks and still toggles the tooltip', () => {
+      const onMouseEnter = jest.fn();
+      const onMouseLeave = jest.fn();
+      const { getByTestSubject, queryByRole } = render(
+        <EuiToolTip
+          content="content"
+          anchorProps={{
+            'data-test-subj': 'anchor',
+            onMouseEnter,
+            onMouseLeave,
+          }}
+        >
+          <button />
+        </EuiToolTip>
+      );
+
+      fireEvent.mouseEnter(getByTestSubject('anchor'));
+      expect(onMouseEnter).toHaveBeenCalledTimes(1);
+      expect(queryByRole('tooltip')).toBeInTheDocument();
+
+      fireEvent.mouseLeave(getByTestSubject('anchor'));
+      expect(onMouseLeave).toHaveBeenCalledTimes(1);
+      expect(queryByRole('tooltip')).not.toBeInTheDocument();
+    });
   });
 
   describe('aria-describedby', () => {
@@ -599,6 +624,7 @@ describe('EuiToolTip', () => {
           return (
             <>
               <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+                {/* eslint-disable-next-line @elastic/eui/tooltip-focusable-anchor -- intentionally not focusable */}
                 <span>Not focusable</span>
               </EuiToolTip>
               <button data-test-subj="trigger" onClick={showToolTip}>

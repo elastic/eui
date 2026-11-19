@@ -23,12 +23,13 @@ export const tooltipMarkdownRenderer: FunctionComponent<
   return (
     <span>
       <EuiToolTip content={content}>
-        <span>
+        <span tabIndex={0}>
           <strong>{children}</strong>
           <EuiIcon
             type="question"
             // This is to offset the tooltip icon, which isn't perfectly centered
             css={{ transform: 'translateY(-1px)' }}
+            aria-hidden={true}
           />
         </span>
       </EuiToolTip>

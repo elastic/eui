@@ -77,7 +77,7 @@ export const cli = () => {
             description:
               'Use npm auth token instead of the regular npm user authentication and one-time passwords (OTP). Use in CI only!',
             default: false,
-          })
+          });
       },
       async (argv) => {
         const {

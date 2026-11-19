@@ -139,7 +139,7 @@ describe('EuiSideNav', () => {
         {
           name: 'Kibana',
           id: 'kibana-1',
-          icon: <EuiIcon type="logoKibana" />,
+          icon: <EuiIcon type="logoKibana" aria-hidden={true} />,
           isSelected: false,
           items: [
             {
@@ -228,7 +228,7 @@ describe('EuiSideNav', () => {
         {
           name: 'Elasticsearch',
           id: 'elasticsearch-1',
-          icon: <EuiIcon type="logoElasticsearch" />,
+          icon: <EuiIcon type="logoElasticsearch" aria-hidden={true} />,
           isSelected: false,
           items: [
             {
@@ -261,7 +261,7 @@ describe('EuiSideNav', () => {
         {
           name: 'Kibana',
           id: 'kibana-1',
-          icon: <EuiIcon type="logoKibana" />,
+          icon: <EuiIcon type="logoKibana" aria-hidden={true} />,
           isSelected: false,
           items: [
             {
@@ -283,13 +283,13 @@ describe('EuiSideNav', () => {
                     {
                       name: 'Time stuff',
                       id: 'time-stuff-1',
-                      icon: <EuiIcon type="clock" />,
+                      icon: <EuiIcon type="clock" aria-hidden={true} />,
                       isSelected: true,
                     },
                     {
                       name: 'Lion stuff',
                       id: 'lion-stuff-1',
-                      icon: <EuiIcon type="stats" />,
+                      icon: <EuiIcon type="stats" aria-hidden={true} />,
                       isSelected: false,
                     },
                   ],
@@ -321,7 +321,7 @@ describe('EuiSideNav', () => {
         {
           name: 'Logstash',
           id: 'logstash-1',
-          icon: <EuiIcon type="logoLogstash" />,
+          icon: <EuiIcon type="logoLogstash" aria-hidden={true} />,
           isSelected: false,
           items: [
             {

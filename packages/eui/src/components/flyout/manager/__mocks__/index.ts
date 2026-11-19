@@ -30,6 +30,8 @@ export const createMockFunctions = (): Omit<
   closeAllFlyouts: mockCloseAllFlyouts,
   setActiveFlyout: jest.fn(),
   setFlyoutWidth: jest.fn(),
+  setFlyoutMaximized: jest.fn(),
+  setFlyoutResizable: jest.fn(),
   setPagination: jest.fn(),
   goBack: jest.fn(),
   goToFlyout: jest.fn(),

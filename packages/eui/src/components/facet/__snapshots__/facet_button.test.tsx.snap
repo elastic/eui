@@ -31,6 +31,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       class="euiFacetButton__icon"
       data-euiicon-type="dot"
     />
@@ -55,6 +56,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       class="euiFacetButton__icon emotion-euiFacetButton__disabled"
       color="success"
       data-euiicon-type="dot"

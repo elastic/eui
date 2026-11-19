@@ -32,7 +32,9 @@ function getSyntheticInteractiveElementName(
   return null;
 }
 
-function shouldSkipTooltipContentElement(element: TSESTree.JSXElement): boolean {
+function shouldSkipTooltipContentElement(
+  element: TSESTree.JSXElement
+): boolean {
   const elementName = getElementName(element.openingElement);
 
   if (!elementName) return true;
@@ -85,10 +87,14 @@ export const TooltipNoInteractiveContent = ESLintUtils.RuleCreator.withoutDocs({
             expression,
             (leaf) => {
               if (found || leaf.type !== 'JSXElement') return;
-              const syntheticElementName = getSyntheticInteractiveElementName(leaf);
+              const syntheticElementName =
+                getSyntheticInteractiveElementName(leaf);
               const elementName =
                 syntheticElementName ?? getElementName(leaf.openingElement);
-              if (!elementName || (!syntheticElementName && !isInteractiveElement(leaf))) {
+              if (
+                !elementName ||
+                (!syntheticElementName && !isInteractiveElement(leaf))
+              ) {
                 return;
               }
 

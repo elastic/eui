@@ -13,6 +13,7 @@ exports[`EuiHealth is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         data-euiicon-type="dot"
       />
     </div>
@@ -34,6 +35,7 @@ exports[`EuiHealth props color #000000 is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="#000000"
         data-euiicon-type="dot"
       />
@@ -56,6 +58,7 @@ exports[`EuiHealth props color accent is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="accent"
         data-euiicon-type="dot"
       />
@@ -78,6 +81,7 @@ exports[`EuiHealth props color accentSecondary is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="accentSecondary"
         data-euiicon-type="dot"
       />
@@ -100,6 +104,7 @@ exports[`EuiHealth props color danger is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="dot"
       />
@@ -122,6 +127,7 @@ exports[`EuiHealth props color default is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="default"
         data-euiicon-type="dot"
       />
@@ -144,6 +150,7 @@ exports[`EuiHealth props color ghost is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="ghost"
         data-euiicon-type="dot"
       />
@@ -166,6 +173,7 @@ exports[`EuiHealth props color inherit is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="dot"
       />
@@ -188,6 +196,7 @@ exports[`EuiHealth props color neutral is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="neutral"
         data-euiicon-type="dot"
       />
@@ -210,6 +219,7 @@ exports[`EuiHealth props color primary is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="primary"
         data-euiicon-type="dot"
       />
@@ -232,6 +242,7 @@ exports[`EuiHealth props color risk is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="risk"
         data-euiicon-type="dot"
       />
@@ -254,6 +265,7 @@ exports[`EuiHealth props color subdued is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="subdued"
         data-euiicon-type="dot"
       />
@@ -276,6 +288,7 @@ exports[`EuiHealth props color success is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="success"
         data-euiicon-type="dot"
       />
@@ -298,6 +311,7 @@ exports[`EuiHealth props color text is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="text"
         data-euiicon-type="dot"
       />
@@ -320,6 +334,7 @@ exports[`EuiHealth props color warning is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="warning"
         data-euiicon-type="dot"
       />
@@ -342,6 +357,7 @@ exports[`EuiHealth props textSize inherit is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="success"
         data-euiicon-type="dot"
       />
@@ -364,6 +380,7 @@ exports[`EuiHealth props textSize m is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="success"
         data-euiicon-type="dot"
       />
@@ -386,6 +403,7 @@ exports[`EuiHealth props textSize s is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="success"
         data-euiicon-type="dot"
       />
@@ -408,6 +426,7 @@ exports[`EuiHealth props textSize xs is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
+        aria-hidden="true"
         color="success"
         data-euiicon-type="dot"
       />

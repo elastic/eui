@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { type TSESTree, type TSESLint} from '@typescript-eslint/utils';
+import { type TSESTree, type TSESLint } from '@typescript-eslint/utils';
 
 export function findAttrValue<
   TContext extends TSESLint.RuleContext<string, unknown[]>
@@ -29,9 +29,8 @@ export function extractAttrValue<
   TContext extends TSESLint.RuleContext<string, unknown[]>
 >(
   context: TContext,
-  attr: TSESTree.JSXAttribute | undefined,
+  attr: TSESTree.JSXAttribute | undefined
 ): string | undefined {
-
   if (!attr?.value) {
     return undefined;
   }

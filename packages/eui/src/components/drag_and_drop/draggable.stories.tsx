@@ -101,7 +101,7 @@ export const Interactive: Story = {
                 {...provided.dragHandleProps}
                 aria-label="Drag Handle"
               >
-                <EuiIcon type="dragVertical" />
+                <EuiIcon type="dragVertical" aria-hidden={true} />
               </EuiPanel>
             </EuiFlexItem>
             <EuiFlexItem grow={true}>

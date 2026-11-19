@@ -25,6 +25,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
             Rows per page: 6
           </span>
           <span
+            aria-hidden="true"
             color="inherit"
             data-euiicon-type="chevronSingleDown"
           />
@@ -627,6 +628,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
+                  aria-hidden="true"
                   color="inherit"
                   data-euiicon-type="table"
                 />
@@ -1072,6 +1074,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
+                  aria-hidden="true"
                   color="inherit"
                   data-euiicon-type="table"
                 />
@@ -1773,6 +1776,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
+                  aria-hidden="true"
                   color="inherit"
                   data-euiicon-type="table"
                 />
@@ -2216,6 +2220,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
+                  aria-hidden="true"
                   color="inherit"
                   data-euiicon-type="table"
                 />
