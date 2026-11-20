@@ -32,7 +32,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
     // 4. High contrast modes should not rely on background-color to indicate focus state, but on border width
     euiResizableButton: css`
-      z-index: 1;
+      z-index: ${Number(euiTheme.levels.content) + 1};
       flex-shrink: 0;
       display: flex;
       justify-content: center;

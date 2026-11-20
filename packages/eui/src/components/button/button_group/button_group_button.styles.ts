@@ -139,7 +139,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:has(:focus-visible) {
         /* ensure to keep focus outline over selected sibling wrappers */
-        z-index: 1;
+        z-index: ${Number(euiTheme.levels.content) + 1};
       }
     `,
     // Text wrapper
