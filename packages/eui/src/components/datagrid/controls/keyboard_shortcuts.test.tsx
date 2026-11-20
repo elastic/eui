@@ -15,6 +15,7 @@ import {
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
 import { testByReactVersion } from '../../../test/internal';
+import { EuiThemeProvider } from '../../../services';
 
 import { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
 
@@ -55,13 +56,43 @@ describe('useDataGridKeyboardShortcuts', () => {
       const text = title?.closest('.euiText');
 
       expect(text).toContainElement(description);
+      expect(text).toHaveAttribute('tabindex', '0');
       expect(text).toHaveStyleRule('font-size', '1.0000rem', {
-        target: /^\.[\w-]+ dt$/,
+        target: /\.euiDescriptionList dt$/,
       });
       expect(description).toHaveStyleRule('font-size', '1.0000rem');
       expect(baseElement).toMatchSnapshot();
     }
   );
+
+  it('uses the same font size for titles and descriptions with a custom medium scale', async () => {
+    const KeyboardShortcuts = () => {
+      const { keyboardShortcuts } = useDataGridKeyboardShortcuts();
+      return <>{keyboardShortcuts}</>;
+    };
+
+    const { getByTestSubject, getByText } = render(
+      <EuiThemeProvider modify={{ font: { scale: { m: 1.5 } } }}>
+        <KeyboardShortcuts />
+      </EuiThemeProvider>
+    );
+
+    fireEvent.click(getByTestSubject('dataGridKeyboardShortcutsButton'));
+    await waitForEuiPopoverOpen();
+
+    const title = getByText('Up arrow').closest('dt');
+    const description = getByText('Move one cell up');
+    const text = title?.closest('.euiText');
+
+    expect(text).toContainElement(description);
+    expect(text).toHaveStyleRule('font-size', '1.5000rem', {
+      target: /^\.[\w-]+ dt$/,
+    });
+    expect(text).toHaveStyleRule('font-size', '1.0000rem', {
+      target: /\.euiDescriptionList dt$/,
+    });
+    expect(description).toHaveStyleRule('font-size', '1.0000rem');
+  });
 
   it('labels the copy shortcut as Cmd on Mac', async () => {
     setPlatform('MacIntel');
