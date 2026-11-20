@@ -38,7 +38,7 @@ describe('useDataGridKeyboardShortcuts', () => {
       setPlatform('Win32');
 
       const { result } = renderHook(() => useDataGridKeyboardShortcuts());
-      const { baseElement, getByTestSubject, rerender } = render(
+      const { baseElement, getByTestSubject, getByText, rerender } = render(
         <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
       );
 
@@ -50,6 +50,15 @@ describe('useDataGridKeyboardShortcuts', () => {
       );
       await waitForEuiPopoverOpen();
 
+      const title = getByText('Up arrow').closest('dt');
+      const description = getByText('Move one cell up');
+      const text = title?.closest('.euiText');
+
+      expect(text).toContainElement(description);
+      expect(text).toHaveStyleRule('font-size', '1.0000rem', {
+        target: /^\.[\w-]+ dt$/,
+      });
+      expect(description).toHaveStyleRule('font-size', '1.0000rem');
       expect(baseElement).toMatchSnapshot();
     }
   );
