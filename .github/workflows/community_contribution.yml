@@ -9,6 +9,7 @@ jobs:
     concurrency:
       group: community-contribution-${{ github.event.pull_request.number }}
       cancel-in-progress: false
+      queue: max
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -84,10 +85,12 @@ jobs:
 
           # The event payload can be older than an edit made while this run was queued
           pr_body=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER" --jq '.body // ""')
+          # GitHub ignores closing keywords in HTML comments, like the PR template's example
+          pr_body=$(printf '%s' "$pr_body" | perl -0pe 's/<!--.*?-->//gs')
 
           issue_numbers=$(
             printf '%s\n' "$pr_body" \
-              | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?):?[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
+              | grep -oiE '\b(close[sd]?|fix(e[sd])?|resolve[sd]?):?[[:space:]]+(https://github\.com/elastic/eui/issues/|#|elastic/eui#)[0-9]+' \
               | grep -oE '[0-9]+$' \
               | sort -u \
               || true
