@@ -28,7 +28,7 @@ export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
-      column-gap: ${euiTheme.size.s};
+      column-gap: ${euiTheme.size.xs};
       ${logicalCSS('padding-right', euiTheme.size.xs)}
 
       /* Keep this right-aligned if hasRoomForGridControls is hiding dataControls */
@@ -40,7 +40,8 @@ export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: ${euiTheme.size.xxs};
+      gap: ${euiTheme.size.xs};
+      ${logicalCSS('padding-left', euiTheme.size.xs)}
     `,
   };
 };
