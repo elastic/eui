@@ -64,7 +64,7 @@ export const text_colors: _EuiThemeTextColors = {
   /* New colors */
   textParagraph: SEMANTIC_COLORS.shade110,
   textHeading: SEMANTIC_COLORS.shade140,
-  textSubdued: SEMANTIC_COLORS.shade95,
+  textSubdued: SEMANTIC_COLORS.shade90,
   textDisabled: SEMANTIC_COLORS.shade70,
   textInverse: SEMANTIC_COLORS.plainLight,
   textInk: SEMANTIC_COLORS.plainDark,
