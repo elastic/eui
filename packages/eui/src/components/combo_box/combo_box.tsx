@@ -125,6 +125,13 @@ export interface _EuiComboBoxProps<T>
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
+   * Controls how selections are displayed when `singleSelection` is not enabled:
+   * `wrap`: the control grows to show every selection;
+   * `collapse`: the control stays on a single row, and selections that don't fit
+   * fold into a "+N" badge. Hovering or focusing the badge lists the hidden values.
+   */
+  selectionDisplay?: 'wrap' | 'collapse';
+  /**
    * Display matching options by:
    * `startsWith`: moves items that start with search value to top of the list;
    * `none`: don't change the sort order of initial object
@@ -144,12 +151,12 @@ export interface _EuiComboBoxProps<T>
    */
   optionMatcher?: EuiComboBoxOptionMatcher<T>;
   /**
-   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming before input.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming after input.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
@@ -234,6 +241,7 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    selectionDisplay: 'wrap' as const,
     prepend: undefined,
     append: undefined,
     sortMatchesBy: 'none' as const,
@@ -788,6 +796,7 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      selectionDisplay,
       prepend,
       sortMatchesBy,
       delimiter,
@@ -957,9 +966,10 @@ export class EuiComboBox<T> extends Component<
                     searchValue={searchValue}
                     selectedOptions={selectedOptions}
                     singleSelection={singleSelection}
+                    selectionDisplay={selectionDisplay}
                     value={value}
-                    append={singleSelection ? append : undefined}
-                    prepend={singleSelection ? prepend : undefined}
+                    append={append}
+                    prepend={prepend}
                     isLoading={isLoading}
                     isInvalid={markAsInvalid}
                     autoFocus={autoFocus}

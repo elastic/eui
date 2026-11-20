@@ -190,7 +190,7 @@ export const euiFormControlLayoutSideNodeStyles = (
   const _buttonPadding = (size: EuiButtonDisplaySizes) =>
     logicalCSS('padding-horizontal', buttonSizes[size].padding);
 
-  const dividerStyles = (side: 'start' | 'end', compressed?: boolean) => {
+  const dividerStyles = (side: 'start' | 'end') => {
     return `
       position: relative;
       ${`margin-inline-${side}`}: -${euiTheme.border.width.thin};
@@ -200,7 +200,9 @@ export const euiFormControlLayoutSideNodeStyles = (
         position: absolute;
         inset-inline-${side}: 0;
         z-index: ${side === 'end' ? 1 : 0};
-        block-size: ${compressed ? euiTheme.size.base : euiTheme.size.l};
+        /* Stretch to the full height of the control, leaving vertical padding.
+           Equals the previous fixed size (24px / 16px) on single-row controls */
+        inset-block: ${euiTheme.size.s};
         inline-size: ${euiTheme.border.width.thin};
         pointer-events: none;
         border-inline-${side}: 
@@ -347,10 +349,10 @@ export const euiFormControlLayoutSideNodeStyles = (
         }
       `,
       append: `
-       ${dividerStyles('start', true)}
+       ${dividerStyles('start')}
       `,
       prepend: `
-        ${dividerStyles('end', true)}
+        ${dividerStyles('end')}
       `,
     },
     disabled: css`

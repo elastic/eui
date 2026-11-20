@@ -143,6 +143,113 @@ describe('EuiComboBox', () => {
       });
     });
 
+    describe('prepend & append', () => {
+      it('renders with multiple selections', () => {
+        const { getByText } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[0]]}
+            prepend="Prepend"
+            append="Append"
+          />
+        );
+        expect(getByText('Prepend')).toBeInTheDocument();
+        expect(getByText('Append')).toBeInTheDocument();
+      });
+    });
+
+    describe('selectionDisplay="collapse"', () => {
+      const clientWidth = Object.getOwnPropertyDescriptor(
+        Element.prototype,
+        'clientWidth'
+      )!;
+      const offsetWidth = Object.getOwnPropertyDescriptor(
+        HTMLElement.prototype,
+        'offsetWidth'
+      )!;
+
+      beforeAll(() => {
+        // jsdom has no layout: fake a 400px wide control with 100px pills
+        Object.defineProperty(Element.prototype, 'clientWidth', {
+          configurable: true,
+          get: () => 400,
+        });
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+          configurable: true,
+          get: () => 100,
+        });
+      });
+      afterAll(() => {
+        Object.defineProperty(Element.prototype, 'clientWidth', clientWidth);
+        Object.defineProperty(
+          HTMLElement.prototype,
+          'offsetWidth',
+          offsetWidth
+        );
+      });
+
+      it('folds selections that do not fit into a +N badge', () => {
+        const { getByTestSubject, container } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+        expect(badge).toHaveTextContent(/^\+\d+$/);
+        const hidden = container.querySelectorAll(
+          '.euiComboBoxPill--collapsed'
+        );
+        expect(`+${hidden.length}`).toBe(badge.textContent);
+        expect(badge).toHaveAttribute(
+          'aria-label',
+          expect.stringContaining('more selected')
+        );
+      });
+
+      it('lists the hidden selections in a popover where they can be removed', async () => {
+        const onChange = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onChange={onChange}
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        const pill = popover.querySelector('.euiComboBoxPill')!;
+        fireEvent.click(pill.querySelector('button')!);
+
+        expect(onChange).toHaveBeenCalledTimes(1);
+      });
+
+      it('does not render a badge when every selection fits', () => {
+        const { queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 2)}
+            selectionDisplay="collapse"
+          />
+        );
+        expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull();
+      });
+
+      it('shows every selection by default', () => {
+        const { queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+          />
+        );
+        expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull();
+      });
+    });
+
     describe('singleSelection', () => {
       it('does not show or allow selecting more than one option', async () => {
         const onChange = jest.fn();
