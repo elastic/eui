@@ -20,6 +20,12 @@ const KeyboardShortcuts = () => {
 };
 
 describe('Data grid keyboard shortcuts', () => {
+  afterEach(() => {
+    cy.document().then((document) => {
+      document.getElementById('keyboard-shortcuts-consumer-override')?.remove();
+    });
+  });
+
   it('can be reached, scrolled, and closed with the keyboard', () => {
     cy.viewport(1000, 400);
     cy.realMount(<KeyboardShortcuts />);
@@ -85,6 +91,5 @@ describe('Data grid keyboard shortcuts', () => {
     cy.contains('dt', 'Up arrow')
       .should('have.css', 'font-size', '19px')
       .and('have.css', 'line-height', '23px');
-    cy.get('#keyboard-shortcuts-consumer-override').invoke('remove');
   });
 });

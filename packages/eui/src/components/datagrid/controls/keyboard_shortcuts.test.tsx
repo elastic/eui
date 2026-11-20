@@ -19,6 +19,8 @@ import { EuiThemeProvider } from '../../../services';
 
 import { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
 
+const shortcutTitleSelector = /^\.[\w-]+ :where\(\.euiDescriptionList\) dt$/;
+
 const setPlatform = (platform: string) => {
   Object.defineProperty(navigator, 'platform', {
     configurable: true,
@@ -62,7 +64,7 @@ describe('useDataGridKeyboardShortcuts', () => {
       expect(text).toContainElement(description);
       expect(text).toHaveAttribute('tabindex', '0');
       expect(text).toHaveStyleRule('font-size', '1.0000rem', {
-        target: ':where(.euiDescriptionList) dt',
+        target: shortcutTitleSelector,
       });
       expect(description).toHaveStyleRule('font-size', '1.0000rem');
       expect(baseElement).toMatchSnapshot();
@@ -93,10 +95,10 @@ describe('useDataGridKeyboardShortcuts', () => {
       target: /^\.[\w-]+ dt$/,
     });
     expect(text).toHaveStyleRule('font-size', '1.0000rem', {
-      target: ':where(.euiDescriptionList) dt',
+      target: shortcutTitleSelector,
     });
     expect(text).toHaveStyleRule('line-height', '1.4286rem', {
-      target: ':where(.euiDescriptionList) dt',
+      target: shortcutTitleSelector,
     });
     expect(description).toHaveStyleRule('font-size', '1.0000rem');
     expect(description).toHaveStyleRule('line-height', '1.4286rem');
