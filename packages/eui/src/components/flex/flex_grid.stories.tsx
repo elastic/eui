@@ -34,10 +34,10 @@ type Story = StoryObj<EuiFlexGridProps>;
 
 const flexItem = (
   <EuiFlexItem
-    css={{
-      backgroundColor: 'rgba(0, 119, 204, 0.1)',
+    css={({ euiTheme }) => ({
+      backgroundColor: euiTheme.colors.backgroundLightPrimary,
       ':first-child': { minHeight: '5em' },
-    }}
+    })}
   >
     Flex item
   </EuiFlexItem>

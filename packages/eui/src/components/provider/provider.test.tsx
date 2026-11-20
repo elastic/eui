@@ -125,6 +125,7 @@ describe('EuiProvider', () => {
             utility: utilityCache,
           }}
         >
+          {/* eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color */}
           <div css={{ color: 'red', label: 'test' }} />
         </EuiProvider>
       );

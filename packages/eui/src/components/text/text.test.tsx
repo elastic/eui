@@ -56,6 +56,7 @@ describe('EuiText', () => {
         <EuiText
           {...requiredProps}
           color="#fff"
+          // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
           style={{ backgroundColor: '#000' }}
         >
           <p>Content</p>

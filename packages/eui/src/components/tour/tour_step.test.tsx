@@ -156,6 +156,7 @@ describe('EuiTourStep', () => {
       <EuiTourStep
         {...props}
         className="goesOnAnchor"
+        // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
         style={{ color: 'blue' }}
         panelClassName="goesOnPopover"
         panelStyle={{ color: 'red' }}

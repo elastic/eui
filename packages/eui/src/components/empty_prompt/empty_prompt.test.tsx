@@ -126,6 +126,7 @@ describe('EuiEmptyPrompt', () => {
         const { container } = render(
           <EuiEmptyPrompt
             style={{
+              // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
               background: 'yellow',
               minWidth: '200px',
               maxWidth: '600px',
