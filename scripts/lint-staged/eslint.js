@@ -22,8 +22,17 @@ const eslintTask = (cwd, args = []) => {
         error.code === 'MODULE_NOT_FOUND' &&
         /@elastic[\\/]eslint-plugin-eui[\\/]/.test(error.message)
       ) {
-        error.message +=
-          '\n\nRun `yarn workspace @elastic/eui build:workspaces` first.';
+        // lint-staged doesn't catch errors from task functions, so a thrown error
+        // would bury the hint under a stack trace. Exiting before the write
+        // flushes can drop the hint when stderr is a pipe.
+        const [message] = error.message.split('\n');
+        await new Promise((resolve) =>
+          process.stderr.write(
+            `${message}\n\nRun \`yarn workspace @elastic/eui build:workspaces\` first.\n`,
+            resolve
+          )
+        );
+        process.exit(1);
       }
       throw error;
     }
