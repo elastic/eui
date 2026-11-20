@@ -8,6 +8,8 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 
+import { useEuiMemoizedStyles } from '../../../services';
+
 import { EuiI18n } from '../../i18n';
 import { EuiButton, Props } from '../../button/button';
 import { euiCardSelectStyles } from './card_select.styles';
@@ -22,7 +24,7 @@ export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
   children,
   ...rest
 }) => {
-  const styles = euiCardSelectStyles();
+  const styles = useEuiMemoizedStyles(euiCardSelectStyles);
   const baseCSS = [styles.euiCardSelect];
 
   const child = euiCardSelectableText(
