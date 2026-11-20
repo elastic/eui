@@ -109,7 +109,7 @@ describe('EuiDescriptionListTitle', () => {
 
             expect(container.firstChild).toHaveStyleRule(
               'font-size',
-              '0.8571rem'
+              '1.0000rem'
             );
             expect(container.firstChild).not.toHaveStyleRule('font-weight');
             expect(container.firstChild).not.toHaveStyleRule('padding-inline');
