@@ -39,9 +39,12 @@ describe('useDataGridKeyboardShortcuts', () => {
       setPlatform('Win32');
 
       const { result } = renderHook(() => useDataGridKeyboardShortcuts());
-      const { baseElement, getByTestSubject, getByText, rerender } = render(
-        <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
-      );
+      const { baseElement, getByTestSubject, getByText, getByRole, rerender } =
+        render(
+          <div data-test-subj="hookRoot">
+            {result.current.keyboardShortcuts}
+          </div>
+        );
 
       renderHookAct(() => {
         fireEvent.click(getByTestSubject('dataGridKeyboardShortcutsButton'));
@@ -55,10 +58,11 @@ describe('useDataGridKeyboardShortcuts', () => {
       const description = getByText('Move one cell up');
       const text = title?.closest('.euiText');
 
+      expect(text).toBe(getByRole('region', { name: 'Keyboard shortcuts' }));
       expect(text).toContainElement(description);
       expect(text).toHaveAttribute('tabindex', '0');
       expect(text).toHaveStyleRule('font-size', '1.0000rem', {
-        target: /\.euiDescriptionList dt$/,
+        target: ':where(.euiDescriptionList) dt',
       });
       expect(description).toHaveStyleRule('font-size', '1.0000rem');
       expect(baseElement).toMatchSnapshot();
@@ -89,9 +93,13 @@ describe('useDataGridKeyboardShortcuts', () => {
       target: /^\.[\w-]+ dt$/,
     });
     expect(text).toHaveStyleRule('font-size', '1.0000rem', {
-      target: /\.euiDescriptionList dt$/,
+      target: ':where(.euiDescriptionList) dt',
+    });
+    expect(text).toHaveStyleRule('line-height', '1.4286rem', {
+      target: ':where(.euiDescriptionList) dt',
     });
     expect(description).toHaveStyleRule('font-size', '1.0000rem');
+    expect(description).toHaveStyleRule('line-height', '1.4286rem');
   });
 
   it('labels the copy shortcut as Cmd on Mac', async () => {

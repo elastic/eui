@@ -74,7 +74,9 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
             </h2>
           </div>
           <div
+            aria-labelledby="generated-id"
             class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-s-euiDataGrid__keyboardShortcuts"
+            role="region"
             tabindex="0"
           >
             <dl
@@ -340,7 +342,9 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
             </h2>
           </div>
           <div
+            aria-labelledby="generated-id"
             class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-s-euiDataGrid__keyboardShortcuts"
+            role="region"
             tabindex="0"
           >
             <dl
