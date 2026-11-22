@@ -17,7 +17,7 @@ import classNames from 'classnames';
 
 import range from 'lodash/range';
 
-import { useEuiTheme, isEvenlyDivisibleBy } from '../../../services';
+import { useEuiMemoizedStyles, isEvenlyDivisibleBy } from '../../../services';
 
 import { EuiRangeLevels } from './range_levels';
 import { EuiRangeTicks } from './range_ticks';
@@ -98,8 +98,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     return sequence;
   }, [showTicks, ticks, min, max, tickInterval, step, trackWidth]);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeTrackStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeTrackStyles);
   const cssStyles = [
     styles.euiRangeTrack,
     disabled && styles.disabled,

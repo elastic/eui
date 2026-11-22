@@ -15,7 +15,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import {
   EuiResizeObserver,
@@ -73,7 +73,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
   const classes = classNames('euiRangeSlider', className);
 
   const euiTheme = useEuiTheme();
-  const styles = euiRangeSliderStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeSliderStyles);
   const cssStyles = [
     styles.euiRangeSlider,
     showTicks && styles.hasTicks,
