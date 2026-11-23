@@ -12,6 +12,8 @@ buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 # the heavy EUI jobs (lint, unit:*, cypress:*) exit early below.
 # The lightweight per-package jobs always run.
 NON_EUI_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|eslint-plugin|illustrations)/)'
+# EUI lints its source with the local ESLint plugin, so plugin changes still need EUI lint.
+NON_EUI_LINT_PATHS_REGEXP='^(\.github/|wiki/|packages/(website|docusaurus-[^/]+|illustrations)/)'
 
 is_eui_test_type() {
   case "$1" in
@@ -21,6 +23,9 @@ is_eui_test_type() {
 }
 
 should_skip_eui_tests() {
+  local paths_regexp="$NON_EUI_PATHS_REGEXP"
+  [[ "$TEST_TYPE" == "lint" ]] && paths_regexp="$NON_EUI_LINT_PATHS_REGEXP"
+
   local base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
   git fetch --no-tags --quiet origin "$base_branch" 2>/dev/null || return 1
 
@@ -31,7 +36,7 @@ should_skip_eui_tests() {
   changed=$(git diff --name-only "$merge_base" HEAD 2>/dev/null) || return 1
 
   [[ -n "$changed" ]] || return 1
-  echo "$changed" | grep -qvE "$NON_EUI_PATHS_REGEXP" && return 1
+  echo "$changed" | grep -qvE "$paths_regexp" && return 1
 
   return 0
 }
@@ -52,6 +57,23 @@ export GIT_COMMITTER_EMAIL=test
 export CI=true
 export PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
 export NODE_OPTIONS=--dns-result-order=ipv4first
+
+# The CI image ships whichever Chrome is latest, and Cypress 13.17.0 breaks on
+# Chrome 158+ ("* is not a valid URL", cypress-io/cypress#35195, fixed in
+# Cypress 16.3.0). Download an exact Chrome for Testing build for Cypress jobs
+# and point test-cypress at it. Remove this once Cypress is upgraded.
+PINNED_CHROME_VERSION="157.0.8103.78"
+
+install_pinned_chrome() {
+  echo "[CHROME]: Installing pinned Chrome ${PINNED_CHROME_VERSION}"
+  local output
+  output="$(npx --yes @puppeteer/browsers@2 install "chrome@${PINNED_CHROME_VERSION}" --path "${HOME}/.cache/chrome-pinned")"
+  echo "${output}"
+  # Output format: "chrome@<version> <path-to-binary>"
+  CYPRESS_BROWSER_PATH="$(echo "${output}" | tail -n 1 | sed 's/^[^ ]* //')"
+  export CYPRESS_BROWSER_PATH
+  "${CYPRESS_BROWSER_PATH}" --version
+}
 
 COMMAND=""
 
@@ -81,6 +103,7 @@ case $TEST_TYPE in
     ;;
 
   cypress:17)
+    install_pinned_chrome
     echo "[TASK]: Running Cypress tests against React 17"
     BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react17 "${buildkite_analytics_vault}")"
     export BUILDKITE_ANALYTICS_TOKEN
@@ -88,6 +111,7 @@ case $TEST_TYPE in
     ;;
 
   cypress:18)
+    install_pinned_chrome
     echo "[TASK]: Running Cypress tests against React 18"
     BUILDKITE_ANALYTICS_TOKEN="$(retry 5 vault read -field=cypress_token_react18 "${buildkite_analytics_vault}")"
     export BUILDKITE_ANALYTICS_TOKEN
@@ -95,6 +119,7 @@ case $TEST_TYPE in
     ;;
 
   cypress:a11y)
+    install_pinned_chrome
     echo "[TASK]: Running Cypress accessibility tests against React 18"
     COMMAND="yarn --cwd packages/eui && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui cypress install && yarn --cwd packages/eui run test-cypress-a11y --node-options=--max_old_space_size=2048"
     ;;
@@ -116,6 +141,7 @@ case $TEST_TYPE in
   pkg:unit)
     echo "[TASK]: Running unit tests for all workspaces except @elastic/eui"
     COMMAND="yarn && yarn workspace @elastic/eui build:workspaces && \
+      yarn test-unit && \
       yarn workspaces foreach -A -pi \
         --exclude '@elastic/eui' \
         --exclude '@elastic/eui-monorepo' \

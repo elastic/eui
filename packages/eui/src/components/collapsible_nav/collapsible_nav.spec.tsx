@@ -15,13 +15,15 @@ import React, { useState } from 'react';
 import { EuiCollapsibleNav } from './collapsible_nav';
 import { EuiHeader, EuiHeaderSectionItemButton } from '../header';
 import { EuiIcon } from '../icon';
+import { useEuiTheme } from '../../services';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { euiTheme } = useEuiTheme();
 
   return (
     <EuiHeader
-      style={{ zIndex: 1001 }}
+      style={{ zIndex: Number(euiTheme.levels.header) + 1 }}
       position="fixed"
       sections={[
         {
