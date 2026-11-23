@@ -34,12 +34,6 @@ const isA11y = argv.hasOwnProperty('a11y');
 const theme = argv.theme;
 const reactVersion = argv['react-version'];
 
-// CI can pin a specific Chrome build by setting CYPRESS_BROWSER_PATH to its
-// binary; otherwise Cypress uses whichever `chrome` it finds on the system.
-const cypressBrowser = process.env.CYPRESS_BROWSER_PATH
-  ? `"${process.env.CYPRESS_BROWSER_PATH}"`
-  : 'chrome';
-
 const info = chalk.white;
 const log = chalk.grey;
 
@@ -47,7 +41,7 @@ const log = chalk.grey;
 // and whether to run component tests or axe checks.
 const testParams = isDev
   ? 'open --component'
-  : `run --component --browser ${cypressBrowser} ${
+  : `run --component --browser chrome ${
       isA11y ? '--spec="./src/**/*.a11y.tsx"' : '--spec="./src/**/*.spec.tsx"'
     }`;
 
