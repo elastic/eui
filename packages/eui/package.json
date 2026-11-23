@@ -158,7 +158,7 @@
     "cypress": "^15.21.2",
     "cypress-axe": "^1.7.0",
     "cypress-plugin-tab": "^1.0.5",
-    "cypress-real-events": "^1.7.0",
+    "cypress-real-events": "1.7.0",
     "dedent": "^0.7.0",
     "dts-generator": "^3.0.0",
     "eslint": "^8.41.0",

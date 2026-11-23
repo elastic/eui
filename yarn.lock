@@ -7378,7 +7378,7 @@ __metadata:
     cypress: "npm:^15.21.2"
     cypress-axe: "npm:^1.7.0"
     cypress-plugin-tab: "npm:^1.0.5"
-    cypress-real-events: "npm:^1.7.0"
+    cypress-real-events: "npm:1.7.0"
     dedent: "npm:^0.7.0"
     diff-match-patch: "npm:^1.0.5"
     dts-generator: "npm:^3.0.0"
@@ -17413,12 +17413,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-real-events@npm:^1.7.0":
-  version: 1.15.1
-  resolution: "cypress-real-events@npm:1.15.1"
+"cypress-real-events@npm:1.7.0":
+  version: 1.7.0
+  resolution: "cypress-real-events@npm:1.7.0"
   peerDependencies:
-    cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x || ^14.x || ^15.x || ^16.x
-  checksum: 10c0/4d6e83eea4e2f57b1839c72a5ae76bb2dd9d8371f0cace2b23dd9abf200bb80714fe97c3a546e01ca693b9eb01809e0ca5eec8b3c3d5d93fe40cf1ac6d060d5c
+    cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x
+  checksum: 10c0/fa7df58a62656013bc4fb814862dcda05d460c3de0a1a942faf4454f320b5415dfa2ff3a28de420ce530f84cc07be484e0d1899bbbc562382cfa2c030ee9c8a9
   languageName: node
   linkType: hard
 
