@@ -123,6 +123,7 @@ export const EuiTreeViewItem: FunctionComponent<EuiTreeViewItemProps> = memo(
                 className="euiTreeView__expansionArrow"
                 size={display === 'compressed' ? 's' : 'm'}
                 type={isExpanded ? 'chevronSingleDown' : 'chevronSingleRight'}
+                aria-hidden={true}
               />
             ) : (
               <span

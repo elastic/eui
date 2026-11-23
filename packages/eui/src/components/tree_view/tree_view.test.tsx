@@ -21,20 +21,22 @@ const items = [
   {
     label: 'Item One',
     id: 'item_one',
-    icon: <EuiIcon type="folder" />,
-    iconWhenExpanded: <EuiIcon type="folderOpen" />,
+    icon: <EuiIcon type="folder" aria-hidden={true} />,
+    iconWhenExpanded: <EuiIcon type="folderOpen" aria-hidden={true} />,
     isExpanded: true,
     children: [
       {
         label: 'Item A',
         id: 'item_a',
-        icon: <EuiIcon type="document" />,
+        icon: <EuiIcon type="document" aria-hidden={true} />,
       },
       {
         label: 'Item B',
         id: 'item_b',
-        icon: <EuiIcon type="chevronSingleRight" />,
-        iconWhenExpanded: <EuiIcon type="chevronSingleDown" />,
+        icon: <EuiIcon type="chevronSingleRight" aria-hidden={true} />,
+        iconWhenExpanded: (
+          <EuiIcon type="chevronSingleDown" aria-hidden={true} />
+        ),
         children: [
           {
             label: 'A Cloud',
@@ -52,8 +54,10 @@ const items = [
       {
         label: 'Item C',
         id: 'item_c',
-        icon: <EuiIcon type="chevronSingleRight" />,
-        iconWhenExpanded: <EuiIcon type="chevronSingleDown" />,
+        icon: <EuiIcon type="chevronSingleRight" aria-hidden={true} />,
+        iconWhenExpanded: (
+          <EuiIcon type="chevronSingleDown" aria-hidden={true} />
+        ),
         children: [
           {
             label: 'Another Cloud',

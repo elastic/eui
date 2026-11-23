@@ -154,8 +154,8 @@ export const EuiSwitch: FunctionComponent<
         <span css={bodyStyles} className="euiSwitch__body">
           {!(compressed || mini) && (
             <span css={iconsStyles} className="euiSwitch__icons">
-              <EuiIcon type="check" size="m" />
-              <EuiIcon type="cross" size="m" />
+              <EuiIcon type="check" size="m" aria-hidden={true} />
+              <EuiIcon type="cross" size="m" aria-hidden={true} />
             </span>
           )}
         </span>

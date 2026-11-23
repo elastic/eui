@@ -33,7 +33,6 @@ const MULTI_URL = storyUrl(
   `data-test-subj:${TEST_SUBJ}`
 );
 
-
 test.describe('EuiButtonGroupObject', () => {
   test('lists the options', async ({ page }) => {
     await page.goto(SINGLE_URL);
@@ -46,9 +45,7 @@ test.describe('EuiButtonGroupObject', () => {
     ]);
   });
 
-  test('falls back to the text when aria-label is blank', async ({
-    page,
-  }) => {
+  test('falls back to the text when aria-label is blank', async ({ page }) => {
     await page.goto(SINGLE_URL);
     const group = new EuiButtonGroupObject(page, TEST_SUBJ);
 

@@ -50,7 +50,7 @@ module.exports = {
     'react-hooks',
     '@emotion',
     'deprecation',
-    '@elastic/eui'
+    '@elastic/eui',
   ],
   rules: {
     'deprecation/deprecation': 'warn',

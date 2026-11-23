@@ -7,7 +7,18 @@ export const SizesTable = () => {
 
   return (
     <ThemeValuesTable
-      items={['xxs', 'xs', 's', 'm', 'base', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl'].map((size) => ({
+      items={[
+        'xxs',
+        'xs',
+        's',
+        'm',
+        'base',
+        'l',
+        'xl',
+        'xxl',
+        'xxxl',
+        'xxxxl',
+      ].map((size) => ({
         id: size,
         token: `size.${size}`,
         value: euiTheme.size[size],
@@ -15,10 +26,10 @@ export const SizesTable = () => {
       render={(size) => (
         <div
           css={css`
-                    ${logicalSizeCSS(size.value, size.value)}
-                    border-radius: min(25%, ${euiTheme.border.radius.small});
-                    background: ${euiTheme.colors.mediumShade};
-                  `}
+            ${logicalSizeCSS(size.value, size.value)}
+            border-radius: min(25%, ${euiTheme.border.radius.small});
+            background: ${euiTheme.colors.mediumShade};
+          `}
         />
       )}
       sampleColumnProps={{
@@ -26,4 +37,4 @@ export const SizesTable = () => {
       }}
     />
   );
-}
+};

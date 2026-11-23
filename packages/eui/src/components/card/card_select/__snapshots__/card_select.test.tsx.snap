@@ -78,6 +78,7 @@ exports[`EuiCardSelect props isSelected 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="check"
     />

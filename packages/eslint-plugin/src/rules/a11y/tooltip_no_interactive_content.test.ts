@@ -166,7 +166,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -181,7 +185,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiButton', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiButton',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -196,7 +204,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiFieldText', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiFieldText',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -211,12 +223,16 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'a', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'a',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
     {
-      name: 'native `<a href=\"\">` in content',
+      name: 'native `<a href="">` in content',
       code: dedent`
         <EuiToolTip content={<a href="">link</a>}>
           <EuiButton>Hover</EuiButton>
@@ -226,7 +242,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'a', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'a',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -241,7 +261,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'button', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'button',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -256,7 +280,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'input', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'input',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -271,7 +299,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'select', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'select',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -286,7 +318,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'textarea', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'textarea',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -299,7 +335,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiButton', componentName: 'EuiIconTip', propName: 'content' },
+          data: {
+            elementName: 'EuiButton',
+            componentName: 'EuiIconTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -314,7 +354,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'title' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'title',
+          },
         },
       ],
     },
@@ -329,7 +373,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -344,7 +392,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -359,7 +411,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },
@@ -375,7 +431,11 @@ ruleTester.run('tooltip-no-interactive-content', TooltipNoInteractiveContent, {
       errors: [
         {
           messageId: 'noInteractiveContent',
-          data: { elementName: 'EuiLink', componentName: 'EuiToolTip', propName: 'content' },
+          data: {
+            elementName: 'EuiLink',
+            componentName: 'EuiToolTip',
+            propName: 'content',
+          },
         },
       ],
     },

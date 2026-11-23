@@ -214,6 +214,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
             color={notificationColor}
             type="dot"
             size="l"
+            aria-hidden={true}
           />
         );
       } else if (notification) {

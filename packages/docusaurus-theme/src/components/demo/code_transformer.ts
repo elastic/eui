@@ -41,4 +41,4 @@ export const demoCodeTransformer = (code: string) => {
 
   // If the demo is more than just JSX wrap in an immediately invoked function expression
   return `(() => { ${code} })()`;
-}
+};

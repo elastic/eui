@@ -35,6 +35,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -60,6 +61,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -91,6 +93,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -116,6 +119,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -147,6 +151,7 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -199,6 +204,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -232,6 +238,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -258,6 +265,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -291,6 +299,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -317,6 +326,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -377,6 +387,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -403,6 +414,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -429,6 +441,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -455,6 +468,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -481,6 +495,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -507,6 +522,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -560,6 +576,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -586,6 +603,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -612,6 +630,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -638,6 +657,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -664,6 +684,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -690,6 +711,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -743,6 +765,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -775,6 +798,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -807,6 +831,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -839,6 +864,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -871,6 +897,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -903,6 +930,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -962,6 +990,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -988,6 +1017,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1014,6 +1044,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1040,6 +1071,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1066,6 +1098,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1092,6 +1125,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1145,6 +1179,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1171,6 +1206,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1197,6 +1233,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1223,6 +1260,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1249,6 +1287,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1275,6 +1314,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1328,6 +1368,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1354,6 +1395,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1380,6 +1422,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1406,6 +1449,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1432,6 +1476,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1458,6 +1503,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1505,6 +1551,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1530,6 +1577,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1555,6 +1603,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1580,6 +1629,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1605,6 +1655,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1630,6 +1681,7 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
           class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
         >
           <span
+            aria-hidden="true"
             class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
             color="text"
             data-euiicon-type="empty"
@@ -1682,6 +1734,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1711,6 +1764,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1740,6 +1794,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1769,6 +1824,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1798,6 +1854,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1827,6 +1884,7 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1883,6 +1941,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1909,6 +1968,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1935,6 +1995,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1961,6 +2022,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -1987,6 +2049,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2013,6 +2076,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2064,6 +2128,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2096,6 +2161,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2128,6 +2194,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2160,6 +2227,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2192,6 +2260,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2224,6 +2293,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2435,6 +2505,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2461,6 +2532,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2487,6 +2559,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2513,6 +2586,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2539,6 +2613,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2565,6 +2640,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2617,6 +2693,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2643,6 +2720,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2669,6 +2747,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2695,6 +2774,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2721,6 +2801,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2747,6 +2828,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2800,6 +2882,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2826,6 +2909,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2852,6 +2936,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"
@@ -2878,6 +2963,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             class="euiListItemLayout__content euiSelectableListItem__content emotion-euiListItemLayout__content"
           >
             <span
+              aria-hidden="true"
               class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
               color="text"
               data-euiicon-type="empty"

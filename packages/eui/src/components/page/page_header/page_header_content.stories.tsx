@@ -119,7 +119,11 @@ export const LegacyChildrenOnly: Story = {
           <EuiFlexItem>
             <EuiFlexGroup>
               <EuiFlexGroup gutterSize="m" alignItems="center">
-                <EuiIcon type="logoKibana" size="original" />
+                <EuiIcon
+                  type="logoKibana"
+                  size="original"
+                  aria-label="Kibana"
+                />
                 <EuiTitle size="l">
                   <h1>Page title</h1>
                 </EuiTitle>

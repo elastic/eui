@@ -30,6 +30,7 @@ exports[`PaginationBar renders 1`] = `
               5
             </span>
             <span
+              aria-hidden="true"
               color="inherit"
               data-euiicon-type="chevronSingleDown"
             />

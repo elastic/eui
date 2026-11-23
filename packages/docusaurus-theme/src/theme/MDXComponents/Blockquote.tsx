@@ -27,9 +27,7 @@ export const Blockquote = ({ children }: HTMLAttributes<HTMLQuoteElement>) => {
 
   return (
     <EuiText size="m" css={styles}>
-      <blockquote>
-        {children}
-      </blockquote>
+      <blockquote>{children}</blockquote>
     </EuiText>
   );
 };

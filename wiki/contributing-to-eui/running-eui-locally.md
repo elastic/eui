@@ -43,6 +43,14 @@ yarn
 
 Remember to run `yarn` whenever you're switching branches to ensure all dependencies are installed and have correct versions.
 
+`yarn` also sets up a pre-commit hook that formats and lints staged files. Linting `packages/eui` uses the local ESLint plugin, so build it before your first commit there:
+
+```shell
+yarn workspace @elastic/eui build:workspaces
+```
+
+The hook replaces any Git hooks you had configured for this repository. To restore them, run `git config --unset core.hooksPath`.
+
 ## Running
 
 ### Storybook

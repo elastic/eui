@@ -18,6 +18,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
           class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
         >
           <span
+            aria-hidden="true"
             class="emotion-euiCheckbox__icon-check"
             data-euiicon-type="empty"
             role="presentation"
@@ -59,6 +60,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
             Sorting
           </span>
           <span
+            aria-hidden="true"
             color="inherit"
             data-euiicon-type="chevronSingleDown"
           />

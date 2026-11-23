@@ -69,13 +69,3 @@ Because the search index is generated in build time, it means that searching is 
 ## Links
 
 For external links, we use `<a>` tag to open them in a new tab, while for internal links (between documentation pages) we use [relative file paths](https://docusaurus.io/docs/markdown-features/links) as recommended by Docusaurus. 
-
-## Troubleshooting
-
-### The dev server failing after pushing to remote
-
-Currently, we build some dependencies on pre-push necessary to run the tests with the latest state. This can cause some build folders to be removed and the server to fail.
-
-To fix it, you have to remove all dependencies and build folders, reinstall and rebuild. You can do it with this command from the root directory:
-
-`yarn clean && yarn && yarn workspace @elastic/eui-website build:workspaces && yarn workspace @elastic/eui-website start`

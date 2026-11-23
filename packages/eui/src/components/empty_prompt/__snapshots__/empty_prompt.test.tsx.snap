@@ -13,6 +13,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
     >
       <span
+        aria-hidden="true"
         color="subdued"
         data-euiicon-type="chevronSingleUp"
       />
@@ -330,6 +331,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
     >
       <span
+        aria-hidden="true"
         color="subdued"
         data-euiicon-type="chevronSingleUp"
       />
@@ -352,6 +354,7 @@ exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
       class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-vertical"
     >
       <span
+        aria-hidden="true"
         color="danger"
         data-euiicon-type="chevronSingleUp"
       />

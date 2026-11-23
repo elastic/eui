@@ -91,6 +91,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
           type={iconType}
           size={iconSize}
           color="inherit" // forces the icon to inherit its parent color
+          aria-hidden={true}
         />
       );
     }

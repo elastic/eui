@@ -171,5 +171,5 @@ const InvalidIcon = ({
     return null;
   }
 
-  return <EuiIcon size="m" color="danger" type="warning" />;
+  return <EuiIcon size="m" color="danger" type="warning" aria-hidden={true} />;
 };
