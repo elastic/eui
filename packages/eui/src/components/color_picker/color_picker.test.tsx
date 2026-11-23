@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent, waitFor } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -191,6 +192,57 @@ describe('EuiColorPicker', () => {
     fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
     expect(onFocusHandler).toHaveBeenCalled();
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+  });
+
+  test('popover color selector is shown when the dropdown button is clicked', async () => {
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} aria-label="Color" />
+    );
+    const toggleButton = getByTestSubject('euiColorPickerToggle');
+
+    expect(toggleButton).toHaveAttribute(
+      'aria-label',
+      'Open color selection dialog'
+    );
+
+    await act(async () => {
+      await userEvent.click(toggleButton);
+    });
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+    expect(toggleButton).toHaveAttribute(
+      'aria-label',
+      'Close color selection dialog'
+    );
+  });
+
+  test('popover color selector is closed once and input is focused when the dropdown button is clicked while open', async () => {
+    const onBlurHandler = jest.fn();
+    const { getByTestSubject, queryByTestSubject } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        onBlur={onBlurHandler}
+        aria-label="Color"
+      />
+    );
+    const input = getByTestSubject('euiColorPickerAnchor');
+    const toggleButton = getByTestSubject('euiColorPickerToggle');
+
+    await act(async () => {
+      await userEvent.click(input);
+    });
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+
+    await act(async () => {
+      await userEvent.click(toggleButton);
+    });
+    expect(onBlurHandler).toHaveBeenCalledTimes(1);
+    expect(input).toHaveFocus();
+
+    await waitFor(() => {
+      expect(
+        queryByTestSubject('euiColorPickerPopover')
+      ).not.toBeInTheDocument();
+    });
   });
 
   test('popover color selector is hidden when the ESC key pressed', async () => {

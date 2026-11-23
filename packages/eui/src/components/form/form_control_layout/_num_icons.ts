@@ -28,7 +28,7 @@ export const getIconAffordanceStyles = ({
   clear?: EuiFormControlLayoutIconsProps['clear'] | boolean;
   isLoading?: boolean;
   isInvalid?: boolean;
-  isDropdown?: boolean;
+  isDropdown?: EuiFormControlLayoutIconsProps['isDropdown'];
 }) => {
   const cssVariables = {
     '--euiFormControlLeftIconsCount': 0,

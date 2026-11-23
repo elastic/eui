@@ -54,15 +54,19 @@ exports[`EuiColorPicker color empty string 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -123,15 +127,19 @@ exports[`EuiColorPicker color null 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -191,15 +199,19 @@ exports[`EuiColorPicker color valid string 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -259,15 +271,19 @@ exports[`EuiColorPicker compressed 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -383,15 +399,19 @@ exports[`EuiColorPicker fullWidth 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -671,15 +691,19 @@ exports[`EuiColorPicker isClearable 1`] = `
             data-euiicon-type="cross"
           />
         </button>
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -740,15 +764,19 @@ exports[`EuiColorPicker placeholder 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -825,15 +853,19 @@ exports[`EuiColorPicker prepend and append 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
     <div
@@ -966,15 +998,19 @@ exports[`EuiColorPicker renders 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>
@@ -1034,15 +1070,19 @@ exports[`EuiColorPicker showAlpha 1`] = `
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+        <button
+          aria-label="Open color selection dialog"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
+          data-test-subj="euiColorPickerToggle"
+          tabindex="-1"
+          type="button"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
             data-euiicon-type="chevronSingleDown"
           />
-        </span>
+        </button>
       </div>
     </div>
   </div>

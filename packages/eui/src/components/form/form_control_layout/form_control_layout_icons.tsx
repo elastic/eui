@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../services';
+import { isObject } from '../../../services/predicate';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -35,6 +36,12 @@ export type IconShape = DistributiveOmit<
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
+export type DropdownIconShape = Omit<
+  IconShape,
+  'color' | 'disabled' | 'onClick' | 'ref' | 'side' | 'size' | 'type'
+> &
+  Required<Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>>;
+
 export const isIconShape = (
   icon: EuiFormControlLayoutIconsProps['icon']
 ): icon is IconShape => {
@@ -48,7 +55,7 @@ export interface EuiFormControlLayoutIconsProps {
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
   isInvalid?: boolean;
-  isDropdown?: boolean;
+  isDropdown?: boolean | DropdownIconShape;
   compressed?: boolean;
   isDisabled?: boolean;
 }
@@ -128,8 +135,11 @@ const DropdownIcon = ({
     return null;
   }
 
+  const dropdownIconProps = isObject(isDropdown) ? isDropdown : undefined;
+
   return (
     <EuiFormControlLayoutCustomIcon
+      {...dropdownIconProps}
       size="m"
       disabled={isDisabled}
       type="chevronSingleDown"

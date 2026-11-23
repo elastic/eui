@@ -55,6 +55,20 @@ describe('getIconAffordanceStyles', () => {
     `);
   });
 
+  test('dropdown configuration object', () => {
+    const styles = getIconAffordanceStyles({
+      isDropdown: {
+        'aria-label': 'Toggle options',
+        onClick: () => {},
+      },
+    });
+    expect(styles).toMatchInlineSnapshot(`
+      {
+        "--euiFormControlRightIconsCount": 1,
+      }
+    `);
+  });
+
   test('left icon', () => {
     const styles = getIconAffordanceStyles({
       icon: 'magnify',

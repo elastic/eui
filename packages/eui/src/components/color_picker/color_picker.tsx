@@ -227,6 +227,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     openLabel,
     closeLabel,
     ariaLabel,
+    openButtonLabel,
+    closeButtonLabel,
   ] = useEuiI18n(
     [
       'euiColorPicker.popoverLabel',
@@ -238,6 +240,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'euiColorPicker.openLabel',
       'euiColorPicker.closeLabel',
       'euiColorPicker.ariaLabel',
+      'euiColorPicker.openButtonLabel',
+      'euiColorPicker.closeButtonLabel',
     ],
     [
       'Color selection dialog',
@@ -249,6 +253,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Press the escape key to close the popover',
       'Press the down key to open a popover containing color options',
       'Select a color',
+      'Open color selection dialog',
+      'Close color selection dialog',
     ]
   );
 
@@ -591,6 +597,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     });
   } else {
     const colorStyle = chromaColor ? chromaColor.css() : undefined;
+    const dropdownIcon = {
+      'aria-label': isColorSelectorShown ? closeButtonLabel : openButtonLabel,
+      'data-test-subj': 'euiColorPickerToggle',
+      onClick: isColorSelectorShown ? handleFinalSelection : showColorSelector,
+      tabIndex: -1,
+    };
+
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
@@ -620,7 +633,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         append={append}
         isInvalid={isInvalid}
         isDisabled={disabled}
-        isDropdown
+        isDropdown={dropdownIcon}
         inputId={id}
       >
         <EuiFieldText
