@@ -615,8 +615,9 @@ describe('EuiListItemLayout', () => {
 
         expect(element).toHaveAttribute('aria-checked', 'true');
         expect(checkbox).toBeInTheDocument();
+        expect(checkbox).toHaveClass('euiCheckboxControl-isChecked');
         expect(
-          element.querySelector('[data-euiicon-type="check"]')
+          element.querySelector('.euiCheckbox__stroke')
         ).toBeInTheDocument();
       });
 
@@ -637,8 +638,9 @@ describe('EuiListItemLayout', () => {
 
         expect(element).toHaveAttribute('aria-checked', 'false');
         expect(checkbox).toBeInTheDocument();
+        expect(checkbox).not.toHaveClass('euiCheckboxControl-isChecked');
         expect(
-          element.querySelector('[data-euiicon-type="empty"]')
+          element.querySelector('.euiCheckbox__stroke')
         ).toBeInTheDocument();
       });
 
