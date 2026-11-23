@@ -37,8 +37,8 @@ export type IconShape = DistributiveOmit<
 };
 
 export type DropdownIconShape = Omit<
-  IconShape,
-  'color' | 'disabled' | 'onClick' | 'ref' | 'side' | 'size' | 'type'
+  EuiFormControlLayoutCustomIconProps,
+  'type' | 'size' | 'disabled' | 'color' | 'onClick'
 > &
   Required<Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>>;
 
