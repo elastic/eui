@@ -344,6 +344,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
     // Wrapper around EuiDataGrid
     euiDataGrid__focusWrap: css`
       ${logicalCSS('height', '100%')}
+      ${logicalCSS('min-width', '0')}
     `,
   };
 };

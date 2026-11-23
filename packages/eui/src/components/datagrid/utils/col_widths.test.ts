@@ -52,6 +52,16 @@ describe('useDefaultColumnWidth', () => {
     ).toEqual(225); // 1000 - (50 * 2) / 4
   });
 
+  it('rounds down so unsized columns never sum past the grid width', () => {
+    const controlColumns = [{ id: 'rowNumber', width: 40 }] as any;
+    const columns = [{ id: 'A' }, { id: 'B' }, { id: 'C' }];
+    const { result } = renderHook(() =>
+      useDefaultColumnWidth(729, controlColumns, [], columns)
+    );
+    expect(result.current).toEqual(229); // (729 - 40) / 3 = 229.67
+    expect(40 + result.current! * columns.length).toBeLessThanOrEqual(729);
+  });
+
   it('returns a minimum column width of 100px regardless of grid width / number of columns', () => {
     const columns = [{ id: 'A' }, { id: 'B' }, { id: 'C' }, { id: 'D' }];
     expect(
