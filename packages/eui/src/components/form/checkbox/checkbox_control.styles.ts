@@ -23,7 +23,6 @@ export const euiCheckboxControlStyles = (euiThemeContext: UseEuiTheme) => {
     colors: { selected, selectedIcon, unselected },
   } = euiFormCustomControlVariables(euiThemeContext);
 
-  // The motion study suggested fast; normal lets the fill and stroke read more clearly.
   const speed = euiTheme.animation.normal;
   const ease = euiTheme.animation.resistance;
 

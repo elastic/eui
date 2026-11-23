@@ -1,5 +1,15 @@
 [
   {
+    "version": "123.5.0",
+    "changes": [
+      {
+        "token": "euiExpression.invalid",
+        "changeType": "added",
+        "value": "Invalid expression"
+      }
+    ]
+  },
+  {
     "version": "123.4.0",
     "changes": [
       {

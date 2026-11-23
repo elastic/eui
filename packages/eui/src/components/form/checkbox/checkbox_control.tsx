@@ -100,7 +100,6 @@ export const EuiCheckboxControl: FunctionComponent<EuiCheckboxControlProps> = ({
           height="16"
           aria-hidden="true"
         >
-          {/* Path from the motion study, drawn left to right. */}
           <path d="M3.6 8.6 6.7 11.5 12.5 4.9" pathLength={1} />
         </svg>
       ) : (
