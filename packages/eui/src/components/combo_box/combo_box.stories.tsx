@@ -447,7 +447,7 @@ export const MultiSelectWithPrependAndAppend: Story = {
   },
   args: {
     singleSelection: false,
-    prepend: <span>Documents</span>,
+    prepend: 'Documents',
     append: (
       <EuiToolTip content="Copy">
         <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />

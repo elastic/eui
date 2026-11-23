@@ -200,8 +200,6 @@ export const euiFormControlLayoutSideNodeStyles = (
         position: absolute;
         inset-inline-${side}: 0;
         z-index: ${side === 'end' ? 1 : 0};
-        /* Stretch to the full height of the control, leaving vertical padding.
-           Equals the previous fixed size (24px / 16px) on single-row controls */
         inset-block: ${euiTheme.size.s};
         inline-size: ${euiTheme.border.width.thin};
         pointer-events: none;
