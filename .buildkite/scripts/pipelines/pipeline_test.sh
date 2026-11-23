@@ -56,6 +56,9 @@ export GIT_COMMITTER_NAME=test
 export GIT_COMMITTER_EMAIL=test
 export CI=true
 export PLAYWRIGHT_ARGS="${PLAYWRIGHT_ARGS:-}"
+if [[ "${BUILDKITE_PARALLEL_JOB_COUNT:-1}" -gt 1 ]]; then
+  PLAYWRIGHT_ARGS+=" --shard=$((BUILDKITE_PARALLEL_JOB + 1))/${BUILDKITE_PARALLEL_JOB_COUNT}"
+fi
 export NODE_OPTIONS=--dns-result-order=ipv4first
 
 COMMAND=""

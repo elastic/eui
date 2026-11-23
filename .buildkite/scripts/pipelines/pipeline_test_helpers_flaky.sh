@@ -83,6 +83,7 @@ cat <<YAML | buildkite-agent pipeline upload
 steps:
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":playwright: Flake detection (${FLAKY_REPEAT}× affected specs)"
+    parallelism: 3
     agents:
       provider: gcp
       image: family/eui-ubuntu-2204

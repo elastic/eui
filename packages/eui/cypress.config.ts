@@ -62,9 +62,6 @@ export default defineConfig({
 
       return config;
     },
-    // Cypress 14+ compiles each spec on demand by default, which grows the
-    // config process's heap past CI's 2GB limit; bundle once like Cypress 13.
-    justInTimeCompile: false,
     specPattern: ['./src/**/*.spec.tsx', './src/**/*.a11y.tsx'], // scripts/cypress.js splits this using the CLI --spec argument
     video: false,
     videoCompression: 32, // more time to process, but a smaller file to upload as an artifact
