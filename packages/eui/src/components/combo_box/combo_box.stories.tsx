@@ -444,6 +444,7 @@ export const MultiSelectWithPrependAndAppend: Story = {
         'selectedOptions',
       ],
     },
+    vrt: { selector: '#story-wrapper .euiComboBox' },
   },
   args: {
     singleSelection: false,
