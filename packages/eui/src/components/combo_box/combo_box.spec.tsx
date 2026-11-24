@@ -497,6 +497,152 @@ describe('EuiComboBox', () => {
     });
   });
 
+  describe('selectionDisplay="collapse"', () => {
+    const labels = [
+      'docs-checkout-*',
+      'audit-payments-*',
+      'events-2026.11.*',
+      'logs-nginx-*',
+      'metrics-system-*',
+      'traces-apm-*',
+      'profiling-*',
+    ];
+    const collapseOptions = labels.map((label) => ({ label }));
+
+    const ResizableCollapseComboBox = () => {
+      const [width, setWidth] = useState(700);
+      return (
+        <>
+          <EuiButton data-test-subj="narrow" onClick={() => setWidth(300)}>
+            Narrow
+          </EuiButton>
+          <EuiButton data-test-subj="default" onClick={() => setWidth(700)}>
+            Default
+          </EuiButton>
+          <EuiButton data-test-subj="wide" onClick={() => setWidth(1400)}>
+            Wide
+          </EuiButton>
+          <div style={{ inlineSize: width }}>
+            <EuiComboBox
+              aria-label="Collapsing combo box"
+              fullWidth
+              options={collapseOptions}
+              selectedOptions={collapseOptions}
+              selectionDisplay="collapse"
+            />
+          </div>
+        </>
+      );
+    };
+
+    const visiblePills =
+      '[data-test-subj="euiComboBoxPill"]:not(.euiComboBoxPill--collapsed)';
+
+    // Number of selections folded into the "+N" badge (0 without a badge).
+    // Only compared relative to other widths, so it doesn't depend on fonts.
+    const getHiddenCount = () =>
+      cy.get('body').then(($body) => {
+        const badge = $body.find('[data-test-subj="comboBoxCollapsedBadge"]');
+        return badge.length ? Number(badge.text().slice(1)) : 0;
+      });
+
+    it('recalculates the hidden selections when the control is resized', () => {
+      cy.mount(<ResizableCollapseComboBox />);
+
+      getHiddenCount().then((atDefault) => {
+        cy.get('[data-test-subj="narrow"]').click();
+        cy.get(visiblePills).should('exist');
+        getHiddenCount().should('be.greaterThan', atDefault);
+
+        // Going back to the same width gives the same result again
+        cy.get('[data-test-subj="default"]').click();
+        getHiddenCount().should('equal', atDefault);
+
+        // A very wide control fits every selection
+        cy.get('[data-test-subj="wide"]').click();
+        getHiddenCount().should('equal', 0);
+        cy.get(visiblePills).should('have.length', labels.length);
+      });
+    });
+
+    it('shows the pills on a single row without overflowing the control', () => {
+      cy.mount(<ResizableCollapseComboBox />);
+      cy.get('[data-test-subj="narrow"]').click();
+
+      cy.get('[data-test-subj="comboBoxInput"]').then(($wrap) => {
+        const wrapRect = $wrap[0].getBoundingClientRect();
+        cy.get(visiblePills)
+          .should('have.length.greaterThan', 0)
+          .each(($pill) => {
+            const rect = $pill[0].getBoundingClientRect();
+            expect(rect.right).to.be.at.most(wrapRect.right + 1);
+            expect(rect.top).to.be.at.least(wrapRect.top - 1);
+            expect(rect.bottom).to.be.at.most(wrapRect.bottom + 1);
+          });
+      });
+    });
+
+    it('truncates the last visible pill to use the remaining space', () => {
+      // A short pill and one that is much wider than the control, so this
+      // doesn't depend on the exact font metrics
+      cy.mount(
+        <div style={{ inlineSize: 360 }}>
+          <EuiComboBox
+            aria-label="Collapsing combo box"
+            fullWidth
+            options={collapseOptions}
+            selectedOptions={[
+              collapseOptions[1],
+              {
+                label:
+                  'a-very-long-selection-label-that-is-much-wider-than-the-control-*',
+              },
+            ]}
+            selectionDisplay="collapse"
+          />
+        </div>
+      );
+
+      // Both pills are shown, the second one truncated, and nothing is folded
+      cy.get(visiblePills).should('have.length', 2);
+      cy.get('[data-test-subj="comboBoxCollapsedBadge"]').should('not.exist');
+
+      cy.get(visiblePills)
+        .first()
+        .find('.eui-textTruncate')
+        .should(($text) => {
+          expect($text[0].scrollWidth).to.equal($text[0].clientWidth);
+        });
+
+      cy.get('.euiComboBoxPill--shrinkable').then(($pill) => {
+        expect($pill.outerWidth()).to.be.at.least(64);
+        const text = $pill.find('.eui-textTruncate')[0];
+        expect(text.scrollWidth).to.be.greaterThan(text.clientWidth);
+      });
+    });
+
+    it('opens and closes the hidden selections with the keyboard', () => {
+      cy.mount(<ResizableCollapseComboBox />);
+      cy.get('[data-test-subj="narrow"]').click();
+
+      cy.get('[data-test-subj="comboBoxSearchInput"]').focus();
+      cy.realPress(['Shift', 'Tab']);
+      cy.get('[data-test-subj="comboBoxCollapsedBadge"]').should('have.focus');
+
+      cy.realPress('Enter');
+      cy.get('[data-test-subj="comboBoxCollapsedPopover"]')
+        .should('be.visible')
+        .and('contain.html', 'euiComboBoxPill');
+      cy.focused()
+        .closest('[data-test-subj="comboBoxCollapsedPopover"]')
+        .should('exist');
+
+      cy.realPress('Escape');
+      cy.get('[data-test-subj="comboBoxCollapsedPopover"]').should('not.exist');
+      cy.get('[data-test-subj="comboBoxCollapsedBadge"]').should('have.focus');
+    });
+  });
+
   describe('z-index regression testing', () => {
     it('displays the dropdown list above any inherited z-indices from parents', () => {
       cy.mount(
