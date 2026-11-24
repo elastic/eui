@@ -12,7 +12,7 @@
 
 import React, { FunctionComponent, useState } from 'react';
 
-import { EuiFlyout, EuiPopover, EuiButton } from '../index';
+import { EuiFlyout, EuiPopover, EuiButton, EuiButtonIcon } from '../index';
 
 import {
   EuiComboBox,
@@ -540,27 +540,35 @@ describe('EuiComboBox', () => {
 
     // Number of selections folded into the "+N" badge (0 without a badge).
     // Only compared relative to other widths, so it doesn't depend on fonts.
-    const getHiddenCount = () =>
-      cy.get('body').then(($body) => {
-        const badge = $body.find('[data-test-subj="comboBoxCollapsedBadge"]');
-        return badge.length ? Number(badge.text().slice(1)) : 0;
-      });
+    const countHidden = ($body: JQuery<HTMLElement>) => {
+      const badge = $body.find('[data-test-subj="comboBoxCollapsedBadge"]');
+      return badge.length ? Number(badge.text().slice(1)) : 0;
+    };
+    // Assertions have to run inside `should` callbacks to be retried while
+    // the ResizeObserver updates the count
+    const assertHiddenCount = (assertion: (count: number) => void) =>
+      cy.get('body').should(($body) => assertion(countHidden($body)));
 
     it('recalculates the hidden selections when the control is resized', () => {
       cy.mount(<ResizableCollapseComboBox />);
 
-      getHiddenCount().then((atDefault) => {
+      // The count at the initial width is calculated synchronously on mount
+      cy.get('body').then(($body) => {
+        const atDefault = countHidden($body);
+
         cy.get('[data-test-subj="narrow"]').click();
         cy.get(visiblePills).should('exist');
-        getHiddenCount().should('be.greaterThan', atDefault);
+        assertHiddenCount((count) =>
+          expect(count).to.be.greaterThan(atDefault)
+        );
 
         // Going back to the same width gives the same result again
         cy.get('[data-test-subj="default"]').click();
-        getHiddenCount().should('equal', atDefault);
+        assertHiddenCount((count) => expect(count).to.equal(atDefault));
 
         // A very wide control fits every selection
         cy.get('[data-test-subj="wide"]').click();
-        getHiddenCount().should('equal', 0);
+        assertHiddenCount((count) => expect(count).to.equal(0));
         cy.get(visiblePills).should('have.length', labels.length);
       });
     });
@@ -579,6 +587,24 @@ describe('EuiComboBox', () => {
             expect(rect.top).to.be.at.least(wrapRect.top - 1);
             expect(rect.bottom).to.be.at.most(wrapRect.bottom + 1);
           });
+
+        // Containment alone would also pass for a wrapped second row: the pills
+        // and the input have to be vertically centered on the same line
+        const centers = [
+          ...Array.from(
+            $wrap[0].querySelectorAll<HTMLElement>(
+              '[data-test-subj="euiComboBoxPill"]:not(.euiComboBoxPill--collapsed)'
+            )
+          ),
+          $wrap[0].querySelector<HTMLElement>(
+            '[data-test-subj="comboBoxSearchInput"]'
+          )!,
+        ].map((el) => {
+          const rect = el.getBoundingClientRect();
+          return (rect.top + rect.bottom) / 2;
+        });
+        expect(centers.length).to.be.greaterThan(1);
+        expect(Math.max(...centers) - Math.min(...centers)).to.be.at.most(2);
       });
     });
 
@@ -621,6 +647,63 @@ describe('EuiComboBox', () => {
       });
     });
 
+    it('keeps the width reserved for the search input when the last pill truncates', () => {
+      cy.mount(
+        <div style={{ inlineSize: 420 }}>
+          <EuiComboBox
+            aria-label="Collapsing combo box"
+            fullWidth
+            options={collapseOptions}
+            selectedOptions={[
+              collapseOptions[1],
+              {
+                label:
+                  'a-very-long-selection-label-that-is-much-wider-than-the-control-*',
+              },
+            ]}
+            selectionDisplay="collapse"
+          />
+        </div>
+      );
+      cy.get('[data-test-subj="comboBoxSearchInput"]').type('abcdef');
+
+      cy.get('.euiComboBoxPill--shrinkable').should(($pill) => {
+        const text = $pill.find('.eui-textTruncate')[0];
+        expect(text.scrollWidth).to.be.greaterThan(text.clientWidth);
+      });
+      // Only the pill shrinks: the input keeps the width it asked for
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(($input) => {
+        const reserved = parseFloat($input[0].style.inlineSize);
+        expect(reserved).to.be.greaterThan(12);
+        expect($input[0].getBoundingClientRect().width).to.be.closeTo(
+          reserved,
+          1
+        );
+      });
+    });
+
+    it('keeps a long search query from running under the icons', () => {
+      cy.mount(<ResizableCollapseComboBox />);
+      cy.get('[data-test-subj="narrow"]').click();
+      cy.get('[data-test-subj="comboBoxSearchInput"]').type(
+        'a-very-long-search-query-that-is-wider-than-the-whole-control-and-keeps-going'
+      );
+
+      // The input ends where the content area of the control ends, so it
+      // doesn't run into the space reserved for the clear and toggle icons
+      cy.get('[data-test-subj="comboBoxInput"]').should(($wrap) => {
+        const input = $wrap[0].querySelector<HTMLElement>(
+          '[data-test-subj="comboBoxSearchInput"]'
+        )!;
+        const contentRight =
+          $wrap[0].getBoundingClientRect().right -
+          parseFloat(getComputedStyle($wrap[0]).paddingRight);
+        expect(input.getBoundingClientRect().right).to.be.at.most(
+          contentRight + 1
+        );
+      });
+    });
+
     it('opens and closes the hidden selections with the keyboard', () => {
       cy.mount(<ResizableCollapseComboBox />);
       cy.get('[data-test-subj="narrow"]').click();
@@ -640,6 +723,96 @@ describe('EuiComboBox', () => {
       cy.realPress('Escape');
       cy.get('[data-test-subj="comboBoxCollapsedPopover"]').should('not.exist');
       cy.get('[data-test-subj="comboBoxCollapsedBadge"]').should('have.focus');
+    });
+  });
+
+  describe('prepend and append with multiple selections', () => {
+    const pills = [
+      'docs-checkout-*',
+      'audit-payments-*',
+      'events-2026.11.*',
+      'logs-nginx-*',
+      'metrics-system-*',
+      'traces-apm-*',
+      'profiling-*',
+      'docs-checkout-payments-system-*',
+    ].map((label) => ({ label }));
+
+    const mountCombobox = (
+      width: number,
+      selectionDisplay: 'wrap' | 'collapse',
+      props: Pick<EuiComboBoxProps<{}>, 'prepend' | 'append'>
+    ) =>
+      cy.mount(
+        <div style={{ inlineSize: width }}>
+          <EuiComboBox
+            aria-label="Combo box with sides"
+            fullWidth
+            options={pills}
+            selectedOptions={pills}
+            selectionDisplay={selectionDisplay}
+            {...props}
+          />
+        </div>
+      );
+
+    const side = (name: 'prepend' | 'append') =>
+      cy.get(`.euiFormControlLayout__${name}`);
+
+    (['wrap', 'collapse'] as const).forEach((selectionDisplay) => {
+      describe(`selectionDisplay="${selectionDisplay}"`, () => {
+        it('keeps the sides at their content width when there is room', () => {
+          mountCombobox(480, selectionDisplay, {
+            prepend: 'Documents',
+            append: (
+              <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />
+            ),
+          });
+
+          // The label is not cut off, even with many pills
+          side('prepend').should(($side) => {
+            expect($side[0].scrollWidth).to.equal($side[0].clientWidth);
+          });
+          // A single icon button doesn't get a wider area than it needs
+          side('append').should(($side) => {
+            expect($side.outerWidth()).to.be.at.most(48);
+          });
+        });
+
+        it('keeps room for the input and truncates long sides when the control is narrow', () => {
+          mountCombobox(320, selectionDisplay, {
+            prepend: 'A rather long prepend label',
+            append: 'Another long append label',
+          });
+
+          cy.get('.euiFormControlLayout__childrenWrapper').should(($center) => {
+            expect($center.outerWidth()).to.be.at.least(127);
+          });
+
+          // The labels are truncated inside the sides
+          const hasTruncatedContent = ($side: JQuery<HTMLElement>) =>
+            Array.from($side[0].querySelectorAll<HTMLElement>('*')).some(
+              (el) => el.scrollWidth > el.clientWidth
+            );
+          side('prepend').should(($side) => {
+            expect(hasTruncatedContent($side)).to.equal(true);
+          });
+          side('append').should(($side) => {
+            expect(hasTruncatedContent($side)).to.equal(true);
+          });
+
+          // The input is still inside the control
+          cy.get('[data-test-subj="comboBoxInput"]').then(($wrap) => {
+            cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+              ($input) => {
+                expect($input[0].getBoundingClientRect().right).to.be.at.most(
+                  $wrap[0].getBoundingClientRect().right
+                );
+              }
+            );
+          });
+        });
+      });
     });
   });
 
