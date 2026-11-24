@@ -291,6 +291,36 @@ describe('EuiColorPicker', () => {
     });
   });
 
+  test('closes on an outside click and calls onBlur once when focus leaves afterwards', async () => {
+    const user = userEvent.setup();
+    const onBlurHandler = jest.fn();
+    const { getByRole } = render(
+      <>
+        <EuiColorPicker
+          aria-label="Color"
+          onBlur={onBlurHandler}
+          onChange={onChange}
+        />
+        {/* Like another picker's chevron: keeps focus on mousedown, moves it on click */}
+        <button
+          type="button"
+          onMouseDown={(event) => event.preventDefault()}
+          onClick={() => getByRole('textbox', { name: 'Other' }).focus()}
+        >
+          Outside
+        </button>
+        <input aria-label="Other" />
+      </>
+    );
+
+    await act(() => user.click(getByRole('textbox', { name: 'Color' })));
+    await waitForEuiPopoverOpen();
+    await act(() => user.click(getByRole('button', { name: 'Outside' })));
+
+    await waitForEuiPopoverClose();
+    expect(onBlurHandler).toHaveBeenCalledTimes(1);
+  });
+
   test('popover color selector is hidden when the ESC key pressed', async () => {
     const onBlurHandler = jest.fn();
     const { getByTestSubject } = render(
