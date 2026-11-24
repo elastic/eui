@@ -29,6 +29,7 @@ const meta: Meta<EuiFilePickerProps> = {
     fullWidth: false,
     isInvalid: false,
     isLoading: false,
+    multiple: false,
     id: '',
     name: '',
   },

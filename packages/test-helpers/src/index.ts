@@ -44,5 +44,10 @@ export { EuiEmptyPromptObject } from './playwright/components/empty_prompt/objec
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
 export { EuiToolTipObject } from './playwright/components/tool_tip/object';
+export { EuiTextAreaObject } from './playwright/components/form/text_area/object';
+export { EuiFieldNumberObject } from './playwright/components/form/field_number/object';
+export { EuiFieldPasswordObject } from './playwright/components/form/field_password/object';
+export { EuiRadioGroupObject } from './playwright/components/form/radio_group/object';
+export { EuiFilePickerObject } from './playwright/components/form/file_picker/object';
 
 export { selectors } from './selectors';
