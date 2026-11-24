@@ -7,6 +7,7 @@
  */
 
 const { execSync } = require('child_process');
+const { globSync } = require('glob');
 const chalk = require('chalk');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
@@ -37,13 +38,22 @@ const reactVersion = argv['react-version'];
 const info = chalk.white;
 const log = chalk.grey;
 
+const getSpecs = () => {
+  const pattern = isA11y ? './src/**/*.a11y.tsx' : './src/**/*.spec.tsx';
+  const shard = Number(process.env.BUILDKITE_PARALLEL_JOB ?? 0);
+  const shardCount = Number(process.env.BUILDKITE_PARALLEL_JOB_COUNT ?? 1);
+  if (shardCount === 1) return pattern;
+  return globSync(pattern)
+    .sort()
+    .filter((_, i) => i % shardCount === shard)
+    .join(',');
+};
+
 // compile dev and a11y options for how to run tests (headless, local UI)
 // and whether to run component tests or axe checks.
 const testParams = isDev
   ? 'open --component'
-  : `run --component --browser chrome ${
-      isA11y ? '--spec="./src/**/*.a11y.tsx"' : '--spec="./src/**/*.spec.tsx"'
-    }`;
+  : `run --component --browser chrome --spec="${getSpecs()}"`;
 
 const cypressCommandParts = [
   'cross-env', // windows support
