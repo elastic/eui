@@ -9,6 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent,
   ReactElement,
   cloneElement,
   useEffect,
@@ -603,6 +604,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'aria-label': isColorSelectorShown ? closeButtonLabel : openButtonLabel,
       'data-test-subj': 'euiColorPickerToggle',
       onClick: isColorSelectorShown ? handleFinalSelection : showColorSelector,
+      onMouseDown: (event: MouseEvent<HTMLButtonElement>) => {
+        // Keep focus on the input while opening the color selector
+        event.preventDefault();
+      },
       tabIndex: -1,
     };
 

@@ -195,11 +195,18 @@ describe('EuiColorPicker', () => {
   });
 
   test('popover color selector is shown when the dropdown button is clicked', async () => {
+    const onBlurHandler = jest.fn();
     const { getByTestSubject } = render(
-      <EuiColorPicker onChange={onChange} aria-label="Color" />
+      <EuiColorPicker
+        onChange={onChange}
+        onBlur={onBlurHandler}
+        aria-label="Color"
+      />
     );
+    const input = getByTestSubject('euiColorPickerAnchor');
     const toggleButton = getByTestSubject('euiColorPickerToggle');
 
+    input.focus();
     expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
     expect(toggleButton).toHaveAttribute('aria-haspopup', 'dialog');
     expect(toggleButton).toHaveAttribute(
@@ -211,6 +218,8 @@ describe('EuiColorPicker', () => {
       await userEvent.click(toggleButton);
     });
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+    expect(input).toHaveFocus();
+    expect(onBlurHandler).not.toHaveBeenCalled();
     expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
     expect(toggleButton).toHaveAttribute(
       'aria-label',
