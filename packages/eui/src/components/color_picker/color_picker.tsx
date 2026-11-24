@@ -605,8 +605,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'data-test-subj': 'euiColorPickerToggle',
       onClick: isColorSelectorShown ? handleFinalSelection : showColorSelector,
       onMouseDown: (event: MouseEvent<HTMLButtonElement>) => {
-        // Keep focus on the input while opening the color selector
+        // Ensure the input owns focus before opening the color selector
         event.preventDefault();
+        inputRef?.focus();
       },
       tabIndex: -1,
     };

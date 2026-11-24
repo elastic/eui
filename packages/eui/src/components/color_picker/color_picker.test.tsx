@@ -11,7 +11,11 @@ import { act, fireEvent, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { render } from '../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../test/rtl';
 import { euiPaletteColorBlind, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
@@ -225,6 +229,36 @@ describe('EuiColorPicker', () => {
       'aria-label',
       'Close color selection dialog'
     );
+  });
+
+  test('restores input focus on Escape when opened from another focused control', async () => {
+    const { container, getByTestSubject } = render(
+      <>
+        <input aria-label="Unrelated input" data-test-subj="unrelatedInput" />
+        <EuiColorPicker onChange={onChange} aria-label="Color" />
+      </>
+    );
+    const unrelatedInput = getByTestSubject('unrelatedInput');
+    const input = getByTestSubject('euiColorPickerAnchor');
+
+    unrelatedInput.focus();
+    await act(async () => {
+      await userEvent.click(getByTestSubject('euiColorPickerToggle'));
+    });
+    await waitForEuiPopoverOpen();
+    expect(input).toHaveFocus();
+
+    fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+    const saturation = getByTestSubject('euiSaturation');
+    expect(saturation).toHaveFocus();
+
+    fireEvent.keyDown(container, {
+      key: keys.ESCAPE,
+    });
+    await waitForEuiPopoverClose();
+    await waitFor(() => {
+      expect(input).toHaveFocus();
+    });
   });
 
   test('popover color selector is closed once and input is focused when the dropdown button is clicked while open', async () => {
