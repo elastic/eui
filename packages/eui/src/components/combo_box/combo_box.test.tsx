@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { createEvent, fireEvent, waitFor } from '@testing-library/react';
 import { render, showEuiComboBoxOptions } from '../../test/rtl';
 import {
   shouldRenderCustomStyles,
@@ -81,6 +81,7 @@ describe('EuiComboBox', () => {
     async () => {
       const { baseElement } = render(
         <EuiComboBox
+          aria-label="Multiple selection with prepend and append"
           options={options}
           data-test-subj="alsoGetsAppliedToOptionsList"
         />
@@ -94,6 +95,7 @@ describe('EuiComboBox', () => {
   it('renders selectedOptions as pills', () => {
     const { getAllByTestSubject } = render(
       <EuiComboBox
+        aria-label="Multiple selection with existing layout"
         options={options}
         selectedOptions={[options[2], options[4]]}
       />
@@ -132,6 +134,7 @@ describe('EuiComboBox', () => {
       test('renders in single selection', () => {
         const { getByTestSubject, queryByTestSubject } = render(
           <EuiComboBox
+            aria-label="Combobox with append button"
             options={options}
             selectedOptions={[options[0]]}
             singleSelection={{ asPlainText: true }}
@@ -144,17 +147,58 @@ describe('EuiComboBox', () => {
     });
 
     describe('prepend & append', () => {
-      it('renders with multiple selections', () => {
+      it('renders with multiple selections when selectionDisplay is explicit', () => {
         const { getByText } = render(
           <EuiComboBox
+            aria-label="Multiple selection with prepend and append"
             options={options}
             selectedOptions={[options[0]]}
+            selectionDisplay="wrap"
             prepend="Prepend"
             append="Append"
           />
         );
         expect(getByText('Prepend')).toBeInTheDocument();
         expect(getByText('Append')).toBeInTheDocument();
+      });
+
+      it('preserves the previous layout when selectionDisplay is omitted', () => {
+        const { queryByText } = render(
+          <EuiComboBox
+            aria-label="Multiple selection without append or prepend"
+            options={options}
+            selectedOptions={[options[0]]}
+            prepend="Prepend"
+            append="Append"
+          />
+        );
+
+        expect(queryByText('Prepend')).not.toBeInTheDocument();
+        expect(queryByText('Append')).not.toBeInTheDocument();
+      });
+
+      it('keeps combo box navigation attributes and keys on the input', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with append button"
+            options={options}
+            selectionDisplay="wrap"
+            append={
+              <button type="button" data-test-subj="appendButton">
+                Append
+              </button>
+            }
+          />
+        );
+        const appendButton = getByTestSubject('appendButton');
+        const input = getByTestSubject('comboBoxSearchInput');
+
+        fireEvent.keyDown(appendButton, { key: keys.ARROW_DOWN });
+
+        expect(appendButton).not.toHaveAttribute('aria-expanded');
+        expect(appendButton).not.toHaveAttribute('aria-controls');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+        expect(input).toHaveAttribute('aria-controls', '');
       });
     });
 
@@ -207,12 +251,69 @@ describe('EuiComboBox', () => {
           'aria-label',
           expect.stringContaining('more selected')
         );
+        expect(badge).toHaveAttribute('aria-haspopup', 'dialog');
+      });
+
+      it('prevents the +N trigger from submitting a form', () => {
+        const { getByTestSubject } = render(
+          <form>
+            <EuiComboBox
+              aria-label="Combobox inside a form"
+              options={options}
+              selectedOptions={options.slice(0, 6)}
+              selectionDisplay="collapse"
+            />
+          </form>
+        );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+        const clickEvent = createEvent.click(badge);
+
+        fireEvent(badge, clickEvent);
+
+        expect(clickEvent.defaultPrevented).toBe(true);
+      });
+
+      it('merges custom option classes and forwards option props to overflow pills', async () => {
+        const selectedOptions = options.slice(0, 6).map((option, index) =>
+          index === 5
+            ? {
+                ...option,
+                className: 'custom-pill',
+                'aria-label': 'Custom hidden selection',
+                'data-test-subj': 'customHiddenSelection',
+                disabled: true,
+                onClick: jest.fn(),
+              }
+            : option
+        );
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with custom overflow selection"
+            options={options}
+            selectedOptions={selectedOptions}
+            selectionDisplay="collapse"
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        const hiddenPill = popover.querySelector<HTMLElement>(
+          '[data-test-subj="customHiddenSelection"]'
+        );
+
+        expect(hiddenPill).toHaveClass('custom-pill');
+        expect(hiddenPill).toHaveAttribute(
+          'aria-label',
+          'Custom hidden selection'
+        );
+        expect(hiddenPill).toBeDisabled();
       });
 
       it('lists the hidden selections in a popover where they can be removed', async () => {
         const onChange = jest.fn();
         const { getByTestSubject, findByTestSubject } = render(
           <EuiComboBox
+            aria-label="Combobox with removable overflow selections"
             options={options}
             selectedOptions={options.slice(0, 6)}
             selectionDisplay="collapse"
@@ -222,10 +323,69 @@ describe('EuiComboBox', () => {
 
         fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
         const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        expect(popover).toHaveAttribute('role', 'dialog');
+        expect(popover).toHaveAttribute('aria-label', 'Hidden selections');
         const pill = popover.querySelector('.euiComboBoxPill')!;
         fireEvent.click(pill.querySelector('button')!);
 
         expect(onChange).toHaveBeenCalledTimes(1);
+      });
+
+      it('does not commit a search draft when focus enters the hidden selections dialog', async () => {
+        const onCreateOption = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with a search draft"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onCreateOption={onCreateOption}
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.change(input, { target: { value: 'Draft' } });
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        fireEvent.blur(input, { relatedTarget: popover });
+
+        expect(onCreateOption).not.toHaveBeenCalled();
+      });
+
+      it('returns focus to the input when removing the last hidden selection', async () => {
+        const StatefulComboBox = () => {
+          const [selectedOptions, setSelectedOptions] = React.useState<
+            EuiComboBoxOptionOption[]
+          >(options.slice(0, 6));
+          return (
+            <EuiComboBox
+              aria-label="Combobox with removable overflow selections"
+              options={options}
+              selectedOptions={selectedOptions}
+              selectionDisplay="collapse"
+              onChange={setSelectedOptions}
+            />
+          );
+        };
+        const { getByTestSubject, findByTestSubject, queryByTestSubject } =
+          render(<StatefulComboBox />);
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        for (let i = 0; i < 6; i++) {
+          const currentPopover = queryByTestSubject('comboBoxCollapsedPopover');
+          const removeButton = currentPopover?.querySelector(
+            '.euiComboBoxPill button'
+          );
+          if (!removeButton) break;
+          fireEvent.click(removeButton);
+        }
+
+        await waitFor(() =>
+          expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull()
+        );
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveFocus();
       });
 
       it('does not render a badge when every selection fits', () => {

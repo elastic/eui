@@ -92,6 +92,7 @@ const COLLAPSE_BADGE_WIDTH = 40;
 const COLLAPSE_BADGE_COMPRESSED_WIDTH = 36;
 // A lone pill may shrink (truncate) to fit, but not below this width
 const COLLAPSE_PILL_MIN_WIDTH = 64;
+const COLLAPSED_SINGLE_PILL_CLASS = 'euiComboBoxInputWrap--collapsedSinglePill';
 
 export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputProps<T>,
@@ -105,6 +106,7 @@ export class EuiComboBoxInput<T> extends Component<
 
   private widthUtils?: CanvasTextUtils;
   private wrapRef = React.createRef<HTMLDivElement>();
+  private searchInputRef: HTMLInputElement | null = null;
   private resizeObserver?: ResizeObserver;
 
   componentDidMount() {
@@ -142,22 +144,59 @@ export class EuiComboBoxInput<T> extends Component<
         wrap.clientWidth -
         (parseFloat(style.paddingLeft) || 0) -
         (parseFloat(style.paddingRight) || 0);
-      const badgeWidth = this.props.compressed
-        ? COLLAPSE_BADGE_COMPRESSED_WIDTH
-        : COLLAPSE_BADGE_WIDTH;
+      const badge = wrap.querySelector<HTMLElement>(
+        '.euiComboBoxCollapsedBadge .euiBadge'
+      );
+      const measuredBadgeWidth =
+        badge &&
+        Math.max(badge.offsetWidth, badge.getBoundingClientRect().width);
+      const badgeWidth =
+        measuredBadgeWidth ||
+        (this.props.compressed
+          ? COLLAPSE_BADGE_COMPRESSED_WIDTH
+          : COLLAPSE_BADGE_WIDTH);
+      const input = wrap.querySelector<HTMLInputElement>('.euiComboBox__input');
+      const inputWidthFromStyle = parseFloat(input?.style.inlineSize ?? '');
+      const inputWidth = Number.isFinite(inputWidthFromStyle)
+        ? Math.max(COLLAPSE_INPUT_MIN_WIDTH, inputWidthFromStyle)
+        : COLLAPSE_INPUT_MIN_WIDTH;
 
       // Skip when not laid out (e.g. hidden or unit tests) to avoid hiding everything
       if (available > 0 && pills.length) {
-        const widths = pills.map((pill) => pill.offsetWidth);
+        const hasShrinkingPill = wrap.classList.contains(
+          COLLAPSED_SINGLE_PILL_CLASS
+        );
+        if (hasShrinkingPill) {
+          wrap.classList.remove(COLLAPSED_SINGLE_PILL_CLASS);
+        }
+
+        let widths: number[];
+        try {
+          widths = pills.map((pill) =>
+            Math.max(pill.offsetWidth, pill.getBoundingClientRect().width)
+          );
+        } finally {
+          if (hasShrinkingPill) {
+            wrap.classList.add(COLLAPSED_SINGLE_PILL_CLASS);
+          }
+        }
+
         const total = widths.length;
+        const prefixWidths = [0];
+        widths.forEach((width) => {
+          prefixWidths.push(prefixWidths[prefixWidths.length - 1] + width);
+        });
         visibleCount = 0;
 
-        for (let count = total; count >= 1; count--) {
-          const used = widths
-            .slice(0, count)
-            .reduce((sum, width) => sum + width + gap, 0);
+        for (let count = total; count >= 0; count--) {
+          const hasHiddenOptions = count < total;
+          const precedingItems = count + Number(hasHiddenOptions);
           const needed =
-            used + COLLAPSE_INPUT_MIN_WIDTH + (count < total ? badgeWidth : 0);
+            prefixWidths[count] +
+            (hasHiddenOptions ? badgeWidth : 0) +
+            gap * precedingItems +
+            inputWidth;
+
           if (needed <= available) {
             visibleCount = count;
             break;
@@ -166,21 +205,46 @@ export class EuiComboBoxInput<T> extends Component<
           // leaves it a usable width, otherwise only the badge is shown
           if (
             count === 1 &&
-            available - badgeWidth - COLLAPSE_INPUT_MIN_WIDTH - gap >=
+            available -
+              (hasHiddenOptions ? badgeWidth : 0) -
+              inputWidth -
+              gap * precedingItems >=
               COLLAPSE_PILL_MIN_WIDTH
           ) {
             visibleCount = 1;
+            break;
           }
         }
       }
     }
 
-    if (visibleCount !== this.state.visibleCount) {
-      this.setState({ visibleCount });
+    const hasHiddenOptions =
+      this.isCollapsed &&
+      visibleCount != null &&
+      visibleCount < this.props.selectedOptions.length;
+    const shouldClosePopover =
+      this.state.isCollapsedPopoverOpen && !hasHiddenOptions;
+
+    if (visibleCount !== this.state.visibleCount || shouldClosePopover) {
+      const stateUpdate: Pick<
+        EuiComboBoxInputState,
+        'visibleCount' | 'isCollapsedPopoverOpen'
+      > = {
+        visibleCount,
+        isCollapsedPopoverOpen: this.state.isCollapsedPopoverOpen,
+      };
+      if (shouldClosePopover) {
+        stateUpdate.isCollapsedPopoverOpen = false;
+      }
+
+      this.setState(stateUpdate, () => {
+        if (shouldClosePopover) this.searchInputRef?.focus();
+      });
     }
   };
 
   inputRefCallback = (el: HTMLInputElement) => {
+    this.searchInputRef = el;
     this.widthUtils = new CanvasTextUtils({ container: el });
     this.props.inputRef?.(el);
   };
@@ -277,48 +341,18 @@ export class EuiComboBoxInput<T> extends Component<
     // Don't render the single pill selection while searching
     if (this.props.singleSelection && this.props.searchValue) return null;
 
-    const { selectedOptions, isDisabled, onRemoveOption } = this.props;
+    const { selectedOptions } = this.props;
     if (!selectedOptions || !selectedOptions.length) return null;
 
     const { visibleCount } = this.state;
     const isCollapsed = this.isCollapsed;
 
-    const pills = selectedOptions.map((option, index) => {
-      const {
-        key,
-        label,
-        color,
-        onClick,
-        append,
-        prepend,
-        truncationProps,
-        toolTipContent,
-        toolTipProps,
-        ...rest
-      } = option;
-      const pillOnClose =
-        isDisabled || this.props.singleSelection || onClick
-          ? undefined
-          : onRemoveOption;
-      return (
-        <EuiComboBoxPill
-          option={option}
-          onClose={pillOnClose}
-          key={key ?? label.toLowerCase()}
-          className={
-            isCollapsed && visibleCount != null && index >= visibleCount
-              ? 'euiComboBoxPill--collapsed'
-              : undefined
-          }
-          color={color}
-          onClick={onClick}
-          onClickAriaLabel={onClick ? 'Change' : undefined}
-          {...rest}
-        >
-          {label}
-        </EuiComboBoxPill>
-      );
-    });
+    const pills = selectedOptions.map((option, index) =>
+      this.renderPill(
+        option,
+        isCollapsed && visibleCount != null && index >= visibleCount
+      )
+    );
 
     if (!isCollapsed || visibleCount == null) return pills;
 
@@ -334,14 +368,39 @@ export class EuiComboBoxInput<T> extends Component<
 
   toggleCollapsedPopover = (event: MouseEvent<HTMLButtonElement>) => {
     // Don't let the click bubble to the control, which would open the options list
+    event.preventDefault();
     event.stopPropagation();
     this.setState(({ isCollapsedPopoverOpen }) => ({
       isCollapsedPopoverOpen: !isCollapsedPopoverOpen,
     }));
   };
 
-  renderCollapsedBadge = (hiddenOptions: Array<EuiComboBoxOptionOption<T>>) => {
+  renderPill = (option: EuiComboBoxOptionOption<T>, isCollapsed = false) => {
+    const { key, label, color, onClick, className, ...rest } = option;
     const { isDisabled, onRemoveOption, singleSelection } = this.props;
+
+    return (
+      <EuiComboBoxPill
+        option={option}
+        onClose={
+          isDisabled || singleSelection || onClick ? undefined : onRemoveOption
+        }
+        key={key ?? label.toLowerCase()}
+        className={classNames(
+          className,
+          isCollapsed && 'euiComboBoxPill--collapsed'
+        )}
+        color={color}
+        onClick={onClick}
+        onClickAriaLabel={onClick ? 'Change' : undefined}
+        {...rest}
+      >
+        {label}
+      </EuiComboBoxPill>
+    );
+  };
+
+  renderCollapsedBadge = (hiddenOptions: Array<EuiComboBoxOptionOption<T>>) => {
     const labels = hiddenOptions.map((option) => option.label);
 
     const badge = (
@@ -356,7 +415,7 @@ export class EuiComboBoxInput<T> extends Component<
             data-test-subj="comboBoxCollapsedBadge"
             onClick={this.toggleCollapsedPopover}
             onClickAriaLabel={collapsedSelections}
-            aria-haspopup="true"
+            aria-haspopup="dialog"
             aria-expanded={this.state.isCollapsedPopoverOpen}
           >
             +{hiddenOptions.length}
@@ -366,50 +425,40 @@ export class EuiComboBoxInput<T> extends Component<
     );
 
     return (
-      <EuiPopover
-        key="euiComboBoxCollapsedBadge"
-        className="euiComboBoxCollapsedBadge"
-        aria-label="Hidden selections"
-        button={badge}
-        isOpen={this.state.isCollapsedPopoverOpen}
-        closePopover={this.closeCollapsedPopover}
-        anchorPosition="downLeft"
-        panelPaddingSize="s"
-        panelProps={{ 'data-test-subj': 'comboBoxCollapsedPopover' }}
+      <EuiI18n
+        key="euiComboBoxCollapsedSelectionsDialog"
+        token="euiComboBoxInput.collapsedSelectionsDialog"
+        default="Hidden selections"
       >
-        <RenderWithEuiStylesMemoizer>
-          {(stylesMemoizer) => (
-            // Clicks in the popover (rendered in a portal) bubble through the React
-            // tree to the control - stop them so they don't open the options list
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
-            <div
-              css={stylesMemoizer(euiComboBoxInputStyles).collapsedList}
-              className="euiComboBoxCollapsedList"
-              onClick={(event) => event.stopPropagation()}
-            >
-              {hiddenOptions.map((option) => {
-                const { key, label, color, onClick } = option;
-                return (
-                  <EuiComboBoxPill
-                    option={option}
-                    onClose={
-                      isDisabled || singleSelection || onClick
-                        ? undefined
-                        : onRemoveOption
-                    }
-                    key={key ?? label.toLowerCase()}
-                    color={color}
-                    onClick={onClick}
-                    onClickAriaLabel={onClick ? 'Change' : undefined}
-                  >
-                    {label}
-                  </EuiComboBoxPill>
-                );
-              })}
-            </div>
-          )}
-        </RenderWithEuiStylesMemoizer>
-      </EuiPopover>
+        {(collapsedSelectionsDialog: string) => (
+          <EuiPopover
+            key="euiComboBoxCollapsedBadge"
+            className="euiComboBoxCollapsedBadge"
+            aria-label={collapsedSelectionsDialog}
+            button={badge}
+            isOpen={this.state.isCollapsedPopoverOpen}
+            closePopover={this.closeCollapsedPopover}
+            anchorPosition="downLeft"
+            panelPaddingSize="s"
+            panelProps={{ 'data-test-subj': 'comboBoxCollapsedPopover' }}
+          >
+            <RenderWithEuiStylesMemoizer>
+              {(stylesMemoizer) => (
+                // Clicks in the popover (rendered in a portal) bubble through the React
+                // tree to the control - stop them so they don't open the options list
+                // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+                <div
+                  css={stylesMemoizer(euiComboBoxInputStyles).collapsedList}
+                  className="euiComboBoxCollapsedList"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  {hiddenOptions.map((option) => this.renderPill(option))}
+                </div>
+              )}
+            </RenderWithEuiStylesMemoizer>
+          </EuiPopover>
+        )}
+      </EuiI18n>
     );
   };
 
@@ -506,6 +555,8 @@ export class EuiComboBoxInput<T> extends Component<
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
       'euiComboBox__inputWrap--plainText': this.asPlainText,
+      [COLLAPSED_SINGLE_PILL_CLASS]:
+        this.isCollapsed && this.state.visibleCount === 1,
     });
 
     return (

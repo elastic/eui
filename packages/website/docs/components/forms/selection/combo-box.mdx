@@ -1156,9 +1156,12 @@ export default () => {
 ```
 </Demo>
 
-### Single selection with prepended label
+### Prepend and append with multi-select
 
-`append` and `prepend` props only work if`singleSelection` prop is not set to `false` to avoid multi-lines that makes combobox height greater than that of `append` and `prepend`.
+Set `selectionDisplay` explicitly to enable `prepend` and `append` on a
+multi-select combobox. Use `selectionDisplay="collapse"` to keep selections on
+one row and expose overflow in a popover; `selectionDisplay="wrap"` lets
+selections wrap onto additional rows.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -1203,14 +1206,14 @@ export default () => {
   const [selectedOptions, setSelected] = useState([options[2]]);
 
   const onChange = (selectedOptions) => {
-    // We should only get back either 0 or 1 options.
     setSelected(selectedOptions);
   };
 
   return (
     <EuiComboBox
       prepend="Prepend"
-      singleSelection={{ asPlainText: true }}
+      append="Append"
+      selectionDisplay="collapse"
       options={options}
       selectedOptions={selectedOptions}
       onChange={onChange}

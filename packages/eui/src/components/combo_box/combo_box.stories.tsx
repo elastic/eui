@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, waitFor, within, expect } from 'storybook/test';
+import { fireEvent, userEvent, waitFor, within, expect } from 'storybook/test';
 
 import {
   enableFunctionToggleControls,
@@ -17,12 +17,13 @@ import {
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiButtonIcon } from '../button';
 import { EuiCode } from '../code';
+import { EuiCopy } from '../copy';
 import { EuiFlexItem } from '../flex';
 import { EuiFormRow, EuiRange } from '../form';
 import { EuiLink } from '../link';
 import { EuiToolTip } from '../tool_tip';
 
-import { EuiComboBoxOptionMatcher } from './types';
+import { EuiComboBoxOptionMatcher, EuiComboBoxOptionOption } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
 const options = [
@@ -398,7 +399,15 @@ export const IconsAndManyOptionsSelected: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
-const ResizableComboBox = (args: EuiComboBoxProps<{}>) => {
+type AppendRenderer = (
+  selectedOptions: Array<EuiComboBoxOptionOption<{}>>,
+  append: EuiComboBoxProps<{}>['append']
+) => EuiComboBoxProps<{}>['append'];
+
+const ResizableComboBox = ({
+  appendRenderer,
+  ...args
+}: EuiComboBoxProps<{}> & { appendRenderer?: AppendRenderer }) => {
   const [width, setWidth] = useState(480);
 
   return (
@@ -406,7 +415,7 @@ const ResizableComboBox = (args: EuiComboBoxProps<{}>) => {
       <EuiFormRow label="Width (px)" display="rowCompressed">
         <EuiRange
           min={280}
-          max={820}
+          max={1000}
           step={10}
           value={width}
           onChange={(e) => setWidth(Number(e.currentTarget.value))}
@@ -416,11 +425,29 @@ const ResizableComboBox = (args: EuiComboBoxProps<{}>) => {
         />
       </EuiFormRow>
       <div style={{ inlineSize: width, maxInlineSize: '100%' }}>
-        <StatefulComboBox {...args} fullWidth />
+        <StatefulComboBox {...args} appendRenderer={appendRenderer} fullWidth />
       </div>
     </>
   );
 };
+
+const appendCopyButton: AppendRenderer = (selectedOptions, append) => (
+  <>
+    {append}
+    <EuiCopy textToCopy={selectedOptions.map(({ label }) => label).join(', ')}>
+      {(copy) => (
+        <EuiToolTip content="Copy selected options" disableScreenReaderOutput>
+          <EuiButtonIcon
+            iconType="copy"
+            size="xs"
+            aria-label="Copy selected options"
+            onClick={copy}
+          />
+        </EuiToolTip>
+      )}
+    </EuiCopy>
+  </>
+);
 
 const manyOptions = [
   'docs-checkout-*',
@@ -449,23 +476,78 @@ export const MultiSelectWithPrependAndAppend: Story = {
   args: {
     singleSelection: false,
     prepend: 'Documents',
-    append: (
-      <EuiToolTip content="Copy">
-        <EuiButtonIcon iconType="copy" size="xs" aria-label="Copy" />
-      </EuiToolTip>
-    ),
+    selectionDisplay: 'wrap',
     options: manyOptions,
     selectedOptions: manyOptions,
-  } as unknown as EuiComboBoxProps<{}>,
-  render: (args) => <ResizableComboBox {...args} />,
+  },
+  render: (args) => (
+    <ResizableComboBox {...args} appendRenderer={appendCopyButton} />
+  ),
 };
 
 export const MultiSelectCollapse: Story = {
   ...MultiSelectWithPrependAndAppend,
   args: {
     ...MultiSelectWithPrependAndAppend.args,
-    selectionDisplay: 'collapse' as EuiComboBoxProps<{}>['selectionDisplay'],
+    selectionDisplay: 'collapse',
   },
+  play: playDecorator(async ({ bodyElement, step }) => {
+    const canvas = within(bodyElement);
+    const widthSlider = canvas.getByRole('slider', {
+      name: 'Combo box width',
+    });
+
+    await step('open the hidden selections with the keyboard', async () => {
+      const input = canvas.getByRole('combobox');
+      input.focus();
+      await userEvent.tab({ shift: true });
+
+      const badge = canvas.getByTestSubject('comboBoxCollapsedBadge');
+      expect(badge).toHaveFocus();
+      await userEvent.keyboard('{Enter}');
+
+      const dialog = await canvas.findByRole('dialog', {
+        name: 'Hidden selections',
+      });
+      await waitFor(() =>
+        expect(dialog.contains(document.activeElement)).toBe(true)
+      );
+
+      await userEvent.keyboard('{Escape}');
+      await waitFor(() => expect(dialog).not.toBeInTheDocument());
+      expect(badge).toHaveFocus();
+    });
+
+    await step(
+      'recalculate overflow as the mounted control resizes',
+      async () => {
+        const getHiddenCount = () => {
+          const badge = canvas.queryByTestSubject('comboBoxCollapsedBadge');
+          return badge ? Number(badge.textContent?.slice(1)) : 0;
+        };
+        const initialCount = getHiddenCount();
+
+        fireEvent.change(widthSlider, { target: { value: '280' } });
+        await waitFor(() => {
+          expect(getHiddenCount()).toBeGreaterThan(initialCount);
+        });
+        const narrowCount = getHiddenCount();
+
+        fireEvent.change(widthSlider, { target: { value: '1000' } });
+        await waitFor(() => expect(getHiddenCount()).toBeLessThan(narrowCount));
+
+        fireEvent.change(widthSlider, { target: { value: '480' } });
+        await waitFor(() =>
+          expect(
+            canvas.getByTestSubject('comboBoxCollapsedBadge')
+          ).toBeVisible()
+        );
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }
+    );
+  }),
 };
 
 /**
@@ -476,9 +558,15 @@ const StatefulComboBox = ({
   singleSelection,
   onCreateOption,
   onChange,
+  append,
+  appendRenderer,
   ...args
-}: EuiComboBoxProps<{}>) => {
+}: EuiComboBoxProps<{}> & { appendRenderer?: AppendRenderer }) => {
   const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  useEffect(() => {
+    setSelectedOptions(args.selectedOptions);
+  }, [args.selectedOptions]);
+
   const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
     options,
     ...args
@@ -507,6 +595,9 @@ const StatefulComboBox = ({
           : Boolean(singleSelection)
       }
       {...args}
+      append={
+        appendRenderer ? appendRenderer(selectedOptions ?? [], append) : append
+      }
       selectedOptions={selectedOptions}
       onChange={handleOnChange}
       onCreateOption={onCreateOption ? _onCreateOption : undefined}

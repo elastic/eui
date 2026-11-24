@@ -1859,14 +1859,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 842,
+        "line": 864,
         "column": 8,
-        "index": 24775
+        "index": 25482
       },
       "end": {
-        "line": 845,
+        "line": 867,
         "column": 9,
-        "index": 24894
+        "index": 25601
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -7630,5 +7630,41 @@
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
+  },
+  {
+    "token": "euiComboBoxInput.collapsedSelections",
+    "defString": "{count} more selected: {labels}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 407,
+        "column": 6,
+        "index": 12809
+      },
+      "end": {
+        "line": 411,
+        "column": 7,
+        "index": 13004
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_input.tsx"
+  },
+  {
+    "token": "euiComboBoxInput.collapsedSelectionsDialog",
+    "defString": "Hidden selections",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 428,
+        "column": 6,
+        "index": 13472
+      },
+      "end": {
+        "line": 432,
+        "column": 7,
+        "index": 13634
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_input.tsx"
   }
 ]

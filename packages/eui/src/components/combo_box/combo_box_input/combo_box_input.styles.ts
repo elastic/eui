@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { logicalCSS, mathWithUnits } from '../../../global_styling';
+import {
+  logicalCSS,
+  logicalCSSWithFallback,
+  mathWithUnits,
+} from '../../../global_styling';
 import {
   euiFormControlStyles,
   euiFormControlDefaultShadow,
@@ -74,11 +78,14 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* When even a single pill doesn't fit, let it shrink (and truncate) so it
-         never runs under the clear/dropdown icons or the badge */
       .euiComboBoxPill:not(.euiComboBoxPill--collapsed) {
-        flex-shrink: 1;
+        flex-shrink: 0;
         ${logicalCSS('min-width', '0')}
+      }
+
+      &.euiComboBoxInputWrap--collapsedSinglePill
+        .euiComboBoxPill:not(.euiComboBoxPill--collapsed) {
+        flex-shrink: 1;
       }
 
       .euiComboBoxPill--collapsed {
@@ -91,15 +98,15 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     collapsedList: css`
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
+      ${logicalCSS('width', 'max-content')}
+      ${logicalCSS('max-width', 'min(300px, calc(100vw - 32px))')}
       gap: ${euiTheme.size.xs};
       ${logicalCSS('max-height', '240px')}
-      overflow-block: auto;
+      ${logicalCSSWithFallback('overflow-y', 'auto')}
 
-      /* The pill's default max-width is relative to its container, which
-         shrinks to fit the pills - use a fixed max width instead */
       .euiComboBoxPill {
-        ${logicalCSS('max-width', '300px')}
+        ${logicalCSS('max-width', '100%')}
       }
     `,
     uncompressed: `
@@ -175,7 +182,15 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         > .euiFormControlLayout__prepend,
         > .euiFormControlLayout__append {
           ${logicalCSS('height', 'auto')}
+          ${logicalCSS('max-width', '30%')}
+          ${logicalCSS('min-width', '0')}
+          flex-shrink: 1;
           align-self: stretch;
+
+          > * {
+            ${logicalCSS('max-width', '100%')}
+            ${logicalCSS('min-width', '0')}
+          }
         }
 
         ${sideContentTop(formVariables.controlHeight)}

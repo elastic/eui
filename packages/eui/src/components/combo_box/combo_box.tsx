@@ -128,7 +128,9 @@ export interface _EuiComboBoxProps<T>
    * Controls how selections are displayed when `singleSelection` is not enabled:
    * `wrap`: the control grows to show every selection;
    * `collapse`: the control stays on a single row, and selections that don't fit
-   * fold into a "+N" badge. Hovering or focusing the badge lists the hidden values.
+   * fold into a "+N" badge. Clicking or keyboard-activating the badge lists
+   * the hidden values. Set this prop explicitly to enable `prepend` and `append`
+   * on multi-select controls.
    */
   selectionDisplay?: 'wrap' | 'collapse';
   /**
@@ -241,7 +243,6 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
-    selectionDisplay: 'wrap' as const,
     prepend: undefined,
     append: undefined,
     sortMatchesBy: 'none' as const,
@@ -517,8 +518,15 @@ export class EuiComboBox<T> extends Component<
       relatedTarget &&
       this.comboBoxRefInstance &&
       this.comboBoxRefInstance.contains(relatedTarget);
+    const focusedInCollapsedPopover =
+      relatedTarget instanceof Element &&
+      !!relatedTarget.closest('[data-test-subj~="comboBoxCollapsedPopover"]');
 
-    if (!focusedInOptionsList && !focusedInInput) {
+    if (
+      !focusedInOptionsList &&
+      !focusedInInput &&
+      !focusedInCollapsedPopover
+    ) {
       this.props.onBlur?.(event);
       this.closeList();
       this.setState({ hasFocus: false });
@@ -542,6 +550,11 @@ export class EuiComboBox<T> extends Component<
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (this.props.isDisabled) return;
+    if (event.target !== this.searchInputRefInstance) {
+      this.props.onKeyDown?.(event);
+      return;
+    }
+
     event.persist(); // TODO: Remove once React 16 support is dropped
     switch (event.key) {
       case keys.ARROW_UP:
@@ -966,10 +979,18 @@ export class EuiComboBox<T> extends Component<
                     searchValue={searchValue}
                     selectedOptions={selectedOptions}
                     singleSelection={singleSelection}
-                    selectionDisplay={selectionDisplay}
+                    selectionDisplay={selectionDisplay ?? 'wrap'}
                     value={value}
-                    append={append}
-                    prepend={prepend}
+                    prepend={
+                      singleSelection || selectionDisplay != null
+                        ? prepend
+                        : undefined
+                    }
+                    append={
+                      singleSelection || selectionDisplay != null
+                        ? append
+                        : undefined
+                    }
                     isLoading={isLoading}
                     isInvalid={markAsInvalid}
                     autoFocus={autoFocus}
