@@ -127,10 +127,9 @@ export interface _EuiComboBoxProps<T>
   /**
    * Controls how selections are displayed when `singleSelection` is not enabled:
    * `wrap`: the control grows to show every selection;
-   * `collapse`: the control stays on a single row, and selections that don't fit
-   * fold into a "+N" badge. Clicking or keyboard-activating the badge lists
-   * the hidden values. Set this prop explicitly to enable `prepend` and `append`
-   * on multi-select controls.
+   * `collapse`: the control stays on a single row, the last visible selection is
+   * truncated to use the remaining space, and selections that don't fit fold into
+   * a "+N" badge. Clicking or keyboard-activating the badge lists the hidden values.
    */
   selectionDisplay?: 'wrap' | 'collapse';
   /**
@@ -249,6 +248,7 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
+    selectionDisplay: 'wrap' as 'wrap' | 'collapse',
     sortMatchesBy: 'none' as const,
     optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
@@ -990,18 +990,10 @@ export class EuiComboBox<T> extends Component<
                     searchValue={searchValue}
                     selectedOptions={selectedOptions}
                     singleSelection={singleSelection}
-                    selectionDisplay={selectionDisplay ?? 'wrap'}
+                    selectionDisplay={selectionDisplay}
                     value={value}
-                    prepend={
-                      singleSelection || selectionDisplay != null
-                        ? prepend
-                        : undefined
-                    }
-                    append={
-                      singleSelection || selectionDisplay != null
-                        ? append
-                        : undefined
-                    }
+                    prepend={prepend}
+                    append={append}
                     isLoading={isLoading}
                     isInvalid={markAsInvalid}
                     autoFocus={autoFocus}

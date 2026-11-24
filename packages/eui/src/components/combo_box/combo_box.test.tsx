@@ -147,13 +147,12 @@ describe('EuiComboBox', () => {
     });
 
     describe('prepend & append', () => {
-      it('renders with multiple selections when selectionDisplay is explicit', () => {
+      it('renders with multiple selections', () => {
         const { getByText } = render(
           <EuiComboBox
             aria-label="Multiple selection with prepend and append"
             options={options}
             selectedOptions={[options[0]]}
-            selectionDisplay="wrap"
             prepend="Prepend"
             append="Append"
           />
@@ -162,20 +161,23 @@ describe('EuiComboBox', () => {
         expect(getByText('Append')).toBeInTheDocument();
       });
 
-      it('preserves the previous layout when selectionDisplay is omitted', () => {
-        const { queryByText } = render(
-          <EuiComboBox
-            aria-label="Multiple selection without append or prepend"
-            options={options}
-            selectedOptions={[options[0]]}
-            prepend="Prepend"
-            append="Append"
-          />
-        );
-
-        expect(queryByText('Prepend')).not.toBeInTheDocument();
-        expect(queryByText('Append')).not.toBeInTheDocument();
-      });
+      it.each(['wrap', 'collapse'] as const)(
+        'renders with selectionDisplay="%s"',
+        (selectionDisplay) => {
+          const { getByText } = render(
+            <EuiComboBox
+              aria-label="Multiple selection with prepend and append"
+              options={options}
+              selectedOptions={[options[0]]}
+              selectionDisplay={selectionDisplay}
+              prepend="Prepend"
+              append="Append"
+            />
+          );
+          expect(getByText('Prepend')).toBeInTheDocument();
+          expect(getByText('Append')).toBeInTheDocument();
+        }
+      );
 
       it('keeps combo box navigation attributes and keys on the input', () => {
         const { getByTestSubject } = render(
