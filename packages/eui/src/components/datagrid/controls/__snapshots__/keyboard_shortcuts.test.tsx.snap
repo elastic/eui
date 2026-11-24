@@ -345,10 +345,8 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
             aria-labelledby="generated-id"
             class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-s-euiDataGrid__keyboardShortcuts"
             role="region"
-            tabindex="0"
           >
             <dl
-              aria-labelledby="generated-id"
               class="euiDescriptionList emotion-euiDescriptionList-column-center-s-s"
               data-type="column"
               style="grid-template-columns: auto auto;"

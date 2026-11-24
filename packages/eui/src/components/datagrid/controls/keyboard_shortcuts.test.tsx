@@ -62,7 +62,6 @@ describe('useDataGridKeyboardShortcuts', () => {
 
       expect(text).toBe(getByRole('region', { name: 'Keyboard shortcuts' }));
       expect(text).toContainElement(description);
-      expect(text).toHaveAttribute('tabindex', '0');
       expect(text).toHaveStyleRule('font-size', '1.0000rem', {
         target: shortcutTitleSelector,
       });
