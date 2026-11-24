@@ -14,6 +14,7 @@ import { EuiCode } from '../code';
 import { EuiFlexGroup } from '../flex';
 import { EuiSpacer } from '../spacer';
 
+import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { EuiBadge, EuiBadgeProps, COLORS } from './badge';
 import { EuiBadgeGroup } from './badge_group';
 
@@ -22,6 +23,7 @@ const meta: Meta<EuiBadgeProps> = {
   component: EuiBadge,
   argTypes: {
     iconType: { control: 'text' },
+    href: { control: 'text' },
   },
   args: {
     // Component defaults
@@ -30,6 +32,8 @@ const meta: Meta<EuiBadgeProps> = {
     color: 'default',
   },
 };
+
+enableFunctionToggleControls(meta, ['onClick', 'iconOnClick'], false);
 
 export default meta;
 type Story = StoryObj<EuiBadgeProps>;
