@@ -66,14 +66,14 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     multiSelect: css`
       flex-wrap: wrap;
     `,
-    // \`selectionDisplay="collapse"\`: single row, pills that don't fit are hidden
+    // `selectionDisplay="collapse"`: single row, pills that don't fit are hidden
     // (but stay rendered so they can be measured) and folded into a "+N" badge
     collapsed: css`
       position: relative;
       flex-wrap: nowrap;
       overflow: hidden;
 
-      /* The input keeps the width that \`getVisibleCount\` reserved for it, so only
+      /* The input keeps the width that getVisibleCount reserved for it, so only
          the last pill shrinks. Its maximum width is set inline, to keep a long
          query from running under the icons. */
       .euiComboBox__input {
@@ -95,7 +95,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Visible pills are shown in full (see \`getVisibleCount\`), except the last
+      /* Visible pills are shown in full (see getVisibleCount), except the last
          one, which may shrink below its content and truncate to use the remaining
          space */
       .euiComboBoxPill {
@@ -116,11 +116,11 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         pointer-events: none;
       }
 
-      /* Pills that don't fit stay in the DOM so \`updateVisibleCount\` can keep
+      /* Pills that don't fit stay in the DOM so updateVisibleCount can keep
          measuring them (to bring them back when there is more room).
-         \`display: none\` would remove their layout box and measure as 0, so they
-         are hidden with \`visibility\` and taken out of the flow with
-         \`position: absolute\` instead. \`visibility: hidden\` also keeps them out of
+         display: none would remove their layout box and measure as 0, so they
+         are hidden with visibility and taken out of the flow with
+         position: absolute instead. visibility: hidden also keeps them out of
          the tab order and the accessibility tree; the "+N" popover lists them. */
       .euiComboBoxPill--collapsed {
         position: absolute;
@@ -211,7 +211,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       multiSelect: css`
         ${logicalCSS('height', 'auto')}
 
-        /* The control has no definite height, so the sides' default \`height: 100%\`
+        /* The control has no definite height, so the sides' default height: 100%
            doesn't resolve. Let them stretch instead so prepend/append dividers
            span the full height of the control */
         > .euiFormControlLayout__prepend,
