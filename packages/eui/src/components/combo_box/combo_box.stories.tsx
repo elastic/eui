@@ -8,8 +8,9 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fireEvent, userEvent, waitFor, within, expect } from 'storybook/test';
+import { userEvent, waitFor, expect } from 'storybook/test';
 
+import { within } from '../../../.storybook/test';
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
@@ -451,6 +452,7 @@ const appendCopyButton: AppendRenderer = (selectedOptions, append) => (
 
 const manyOptions = [
   'docs-checkout-*',
+  'docs-checkout-payments-system-*',
   'audit-payments-*',
   'events-2026.11.*',
   'logs-nginx-*',
@@ -469,6 +471,10 @@ export const MultiSelectWithPrependAndAppend: Story = {
         'selectionDisplay',
         'options',
         'selectedOptions',
+        // Function toggles need their control (and its action mapping), otherwise
+        // the raw `true` arg is used as the callback
+        'onChange',
+        'onCreateOption',
       ],
     },
     vrt: { selector: '#story-wrapper .euiComboBox' },
@@ -491,61 +497,12 @@ export const MultiSelectCollapse: Story = {
     ...MultiSelectWithPrependAndAppend.args,
     selectionDisplay: 'collapse',
   },
-  play: playDecorator(async ({ bodyElement, step }) => {
+  // Behavior (keyboard, resizing) is covered by unit and Cypress tests. This only
+  // makes sure the overflow has been calculated before the screenshot is taken.
+  play: playDecorator(async ({ bodyElement }) => {
     const canvas = within(bodyElement);
-    const widthSlider = canvas.getByRole('slider', {
-      name: 'Combo box width',
-    });
-
-    await step('open the hidden selections with the keyboard', async () => {
-      const input = canvas.getByRole('combobox');
-      input.focus();
-      await userEvent.tab({ shift: true });
-
-      const badge = canvas.getByTestSubject('comboBoxCollapsedBadge');
-      expect(badge).toHaveFocus();
-      await userEvent.keyboard('{Enter}');
-
-      const dialog = await canvas.findByRole('dialog', {
-        name: 'Hidden selections',
-      });
-      await waitFor(() =>
-        expect(dialog.contains(document.activeElement)).toBe(true)
-      );
-
-      await userEvent.keyboard('{Escape}');
-      await waitFor(() => expect(dialog).not.toBeInTheDocument());
-      expect(badge).toHaveFocus();
-    });
-
-    await step(
-      'recalculate overflow as the mounted control resizes',
-      async () => {
-        const getHiddenCount = () => {
-          const badge = canvas.queryByTestSubject('comboBoxCollapsedBadge');
-          return badge ? Number(badge.textContent?.slice(1)) : 0;
-        };
-        const initialCount = getHiddenCount();
-
-        fireEvent.change(widthSlider, { target: { value: '280' } });
-        await waitFor(() => {
-          expect(getHiddenCount()).toBeGreaterThan(initialCount);
-        });
-        const narrowCount = getHiddenCount();
-
-        fireEvent.change(widthSlider, { target: { value: '1000' } });
-        await waitFor(() => expect(getHiddenCount()).toBeLessThan(narrowCount));
-
-        fireEvent.change(widthSlider, { target: { value: '480' } });
-        await waitFor(() =>
-          expect(
-            canvas.getByTestSubject('comboBoxCollapsedBadge')
-          ).toBeVisible()
-        );
-        if (document.activeElement instanceof HTMLElement) {
-          document.activeElement.blur();
-        }
-      }
+    await waitFor(() =>
+      expect(canvas.getByTestSubject('comboBoxCollapsedBadge')).toBeVisible()
     );
   }),
 };

@@ -249,8 +249,6 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
-    prepend: undefined,
-    append: undefined,
     sortMatchesBy: 'none' as const,
     optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
