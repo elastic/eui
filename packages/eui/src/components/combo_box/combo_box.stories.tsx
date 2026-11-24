@@ -16,13 +16,11 @@ import {
   hideStorybookControls,
 } from '../../../.storybook/utils';
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
-import { EuiButtonIcon } from '../button';
 import { EuiCode } from '../code';
 import { EuiCopy } from '../copy';
 import { EuiFlexItem } from '../flex';
-import { EuiFormRow, EuiRange } from '../form';
+import { EuiFormAppend, EuiFormRow, EuiRange } from '../form';
 import { EuiLink } from '../link';
-import { EuiToolTip } from '../tool_tip';
 
 import { EuiComboBoxOptionMatcher, EuiComboBoxOptionOption } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
@@ -401,8 +399,7 @@ export const IconsAndManyOptionsSelected: Story = {
 };
 
 type AppendRenderer = (
-  selectedOptions: Array<EuiComboBoxOptionOption<{}>>,
-  append: EuiComboBoxProps<{}>['append']
+  selectedOptions: Array<EuiComboBoxOptionOption<{}>>
 ) => EuiComboBoxProps<{}>['append'];
 
 const ResizableComboBox = ({
@@ -432,22 +429,20 @@ const ResizableComboBox = ({
   );
 };
 
-const appendCopyButton: AppendRenderer = (selectedOptions, append) => (
-  <>
-    {append}
-    <EuiCopy textToCopy={selectedOptions.map(({ label }) => label).join(', ')}>
-      {(copy) => (
-        <EuiToolTip content="Copy selected options" disableScreenReaderOutput>
-          <EuiButtonIcon
-            iconType="copy"
-            size="xs"
-            aria-label="Copy selected options"
-            onClick={copy}
-          />
-        </EuiToolTip>
-      )}
-    </EuiCopy>
-  </>
+const appendCopyButton: AppendRenderer = (selectedOptions) => (
+  <EuiCopy
+    textToCopy={selectedOptions.map(({ label }) => label).join(', ')}
+    beforeMessage="Copy selected options"
+  >
+    {(copy) => (
+      <EuiFormAppend
+        element="button"
+        iconLeft="copy"
+        aria-label="Copy selected options"
+        onClick={copy}
+      />
+    )}
+  </EuiCopy>
 );
 
 const manyOptions = [
@@ -466,7 +461,6 @@ export const MultiSelectWithPrependAndAppend: Story = {
     controls: {
       include: [
         'prepend',
-        'append',
         'compressed',
         'selectionDisplay',
         'options',
@@ -552,9 +546,7 @@ const StatefulComboBox = ({
           : Boolean(singleSelection)
       }
       {...args}
-      append={
-        appendRenderer ? appendRenderer(selectedOptions ?? [], append) : append
-      }
+      append={appendRenderer ? appendRenderer(selectedOptions ?? []) : append}
       selectedOptions={selectedOptions}
       onChange={handleOnChange}
       onCreateOption={onCreateOption ? _onCreateOption : undefined}
