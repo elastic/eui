@@ -380,6 +380,136 @@ describe('EuiGlobalToastList', () => {
       });
     });
 
+    describe('stacked', () => {
+      const toasts: Toast[] = [
+        { id: 'a', title: 'A', 'data-test-subj': 'toast-a' },
+        { id: 'b', title: 'B', 'data-test-subj': 'toast-b' },
+        { id: 'c', title: 'C', 'data-test-subj': 'toast-c' },
+        { id: 'd', title: 'D', 'data-test-subj': 'toast-d' },
+      ];
+
+      const stackItem = (toast: HTMLElement) =>
+        toast.closest('[data-test-subj="euiGlobalToastListStackItem"]');
+
+      it('stacks the three newest toasts by default', () => {
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+          />
+        );
+
+        expect(getByTestSubject('euiGlobalToastListStack')).toBeInTheDocument();
+        expect(stackItem(getByTestSubject('toast-a'))).toHaveAttribute(
+          'data-stack-hidden',
+          'true'
+        );
+        expect(stackItem(getByTestSubject('toast-d'))).toHaveAttribute(
+          'data-stack-front',
+          'true'
+        );
+      });
+
+      it('renders every toast when stacked is false', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            stacked={false}
+          />
+        );
+
+        expect(getByTestSubject('toast-a')).toBeInTheDocument();
+        expect(getByTestSubject('toast-d')).toBeInTheDocument();
+        expect(
+          queryByTestSubject('euiGlobalToastListStack')
+        ).not.toBeInTheDocument();
+      });
+
+      it('shows the three newest toasts and keeps the badge on the front one', () => {
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            stacked
+            showNotificationBadge
+          />
+        );
+
+        expect(stackItem(getByTestSubject('toast-a'))).toHaveAttribute(
+          'data-stack-hidden',
+          'true'
+        );
+        expect(stackItem(getByTestSubject('toast-b'))).not.toHaveAttribute(
+          'data-stack-hidden'
+        );
+        expect(stackItem(getByTestSubject('toast-b'))).toHaveAttribute(
+          'inert',
+          ''
+        );
+        expect(stackItem(getByTestSubject('toast-d'))).toHaveAttribute(
+          'data-stack-front',
+          'true'
+        );
+        expect(stackItem(getByTestSubject('toast-d'))).toContainElement(
+          getByTestSubject('euiGlobalToastListNotificationBadge')
+        );
+        expect(
+          getByTestSubject('euiGlobalToastListNotificationBadge')
+        ).toHaveTextContent('4');
+        expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
+      });
+
+      it('expands every toast on hover so each one can be used', () => {
+        const { getByRole, getByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            stacked
+          />
+        );
+
+        fireEvent.mouseEnter(getByRole('log'));
+
+        expect(stackItem(getByTestSubject('toast-a'))).not.toHaveAttribute(
+          'data-stack-hidden'
+        );
+        expect(stackItem(getByTestSubject('toast-a'))).not.toHaveAttribute(
+          'inert'
+        );
+        expect(stackItem(getByTestSubject('toast-c'))).not.toHaveAttribute(
+          'inert'
+        );
+        expect(getByTestSubject('euiGlobalToastListStack')).toHaveAttribute(
+          'data-expanded',
+          'true'
+        );
+      });
+
+      it('collapses again when the pointer leaves', () => {
+        const { getByRole, getByTestSubject } = render(
+          <EuiGlobalToastList
+            toasts={toasts}
+            dismissToast={() => {}}
+            toastLifeTimeMs={5}
+            stacked
+          />
+        );
+
+        fireEvent.mouseEnter(getByRole('log'));
+        fireEvent.mouseLeave(getByRole('log'));
+
+        expect(stackItem(getByTestSubject('toast-a'))).toHaveAttribute(
+          'data-stack-hidden',
+          'true'
+        );
+      });
+    });
+
     test('role', () => {
       const { queryByRole } = render(
         <EuiGlobalToastList
