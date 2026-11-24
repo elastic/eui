@@ -58,7 +58,6 @@ const meta: Meta<EuiFormControlLayoutProps> = {
         button: {
           'aria-label': 'Toggle options',
           onClick: action('onDropdownClick'),
-          tabIndex: -1,
         },
       },
     },
