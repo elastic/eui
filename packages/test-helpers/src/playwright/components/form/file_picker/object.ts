@@ -36,7 +36,9 @@ export class EuiFilePickerObject extends BaseObject {
    * Pick these files, paths or in-memory payloads, and wait for the picker to
    * show them. Pass several only to a picker with `multiple`.
    */
-  async setFiles(files: Parameters<Locator['setInputFiles']>[0]): Promise<void> {
+  async setFiles(
+    files: Parameters<Locator['setInputFiles']>[0]
+  ): Promise<void> {
     await this.root.setInputFiles(files);
     await expect(this.wrapper).toHaveClass(/euiFilePicker-hasFiles/);
   }

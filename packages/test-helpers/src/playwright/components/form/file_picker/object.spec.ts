@@ -40,7 +40,9 @@ test.describe('EuiFilePickerObject', () => {
     await expect(picker.prompt).toHaveText('logs.txt');
   });
 
-  test('setFiles picks several files on a multiple picker', async ({ page }) => {
+  test('setFiles picks several files on a multiple picker', async ({
+    page,
+  }) => {
     await page.goto(`${PLAYGROUND_URL};multiple:!true`);
     const picker = new EuiFilePickerObject(page, TEST_SUBJ);
 

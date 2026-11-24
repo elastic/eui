@@ -51,7 +51,9 @@ export class EuiRadioGroupObject extends BaseObject {
     const checkedItem = this.root
       .locator(EuiRadioGroupSelectors.ITEM_SELECTOR)
       .filter({
-        has: this.scope.locator(`${EuiRadioGroupSelectors.INPUT_SELECTOR}:checked`),
+        has: this.scope.locator(
+          `${EuiRadioGroupSelectors.INPUT_SELECTOR}:checked`
+        ),
       });
     if ((await checkedItem.count()) === 0) return null;
     const label = await checkedItem

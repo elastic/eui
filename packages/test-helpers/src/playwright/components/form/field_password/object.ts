@@ -58,7 +58,10 @@ export class EuiFieldPasswordObject extends BaseObject {
   async toggleVisibility(): Promise<void> {
     const masked = await this.isMasked();
     await this.visibilityToggle.click();
-    await expect(this.root).toHaveAttribute('type', masked ? 'text' : 'password');
+    await expect(this.root).toHaveAttribute(
+      'type',
+      masked ? 'text' : 'password'
+    );
   }
 
   /** EUI appends the toggle after any consumer `append` nodes, so it is the last button of the slot. */
