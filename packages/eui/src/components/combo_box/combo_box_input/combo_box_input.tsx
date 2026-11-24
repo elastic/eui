@@ -27,6 +27,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
+import { EuiResizeObserver } from '../../observer/resize_observer';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -40,7 +41,12 @@ import {
 } from '../types';
 import { EuiComboBoxOptionAppendPrepend } from '../utils';
 import { EuiComboBoxPill } from './combo_box_pill';
-import { euiComboBoxInputStyles } from './combo_box_input.styles';
+import { getVisibleCount } from './get_visible_count';
+import {
+  euiComboBoxInputStyles,
+  COLLAPSE_INPUT_MIN_WIDTH,
+  COLLAPSE_PILL_MIN_WIDTH,
+} from './combo_box_input.styles';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   compressed: boolean;
@@ -86,13 +92,24 @@ interface EuiComboBoxInputState {
   isCollapsedPopoverOpen: boolean;
 }
 
-// Space always kept free for the text input and the "+N" badge when collapsing
-const COLLAPSE_INPUT_MIN_WIDTH = 12;
-const COLLAPSE_BADGE_WIDTH = 40;
-const COLLAPSE_BADGE_COMPRESSED_WIDTH = 36;
-// A lone pill may shrink (truncate) to fit, but not below this width
-const COLLAPSE_PILL_MIN_WIDTH = 64;
-const COLLAPSED_SINGLE_PILL_CLASS = 'euiComboBoxInputWrap--collapsedSinglePill';
+/**
+ * Width an element would have without being shrunk. Content that is clipped
+ * (`overflow: hidden`) still counts towards `scrollWidth`, so this doesn't need
+ * the element to be unshrunk while measuring.
+ */
+const getNaturalWidth = (pill: HTMLElement) => {
+  const width = Math.max(pill.offsetWidth, pill.getBoundingClientRect().width);
+  const clipped = Math.max(
+    0,
+    ...Array.from(
+      pill.querySelectorAll<HTMLElement>(
+        '.euiBadge__content, .eui-textTruncate'
+      )
+    ).map((el) => el.scrollWidth - el.clientWidth)
+  );
+
+  return width + clipped;
+};
 
 export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputProps<T>,
@@ -105,21 +122,36 @@ export class EuiComboBoxInput<T> extends Component<
   };
 
   private widthUtils?: CanvasTextUtils;
-  private wrapRef = React.createRef<HTMLDivElement>();
+  private wrapRef: { current: HTMLDivElement | null } = { current: null };
   private searchInputRef: HTMLInputElement | null = null;
-  private resizeObserver?: ResizeObserver;
+  private resizeRefSource?: (node: HTMLElement | null) => void;
+  private wrapRefCallback?: (node: HTMLDivElement | null) => void;
 
   componentDidMount() {
-    if (typeof ResizeObserver !== 'undefined' && this.wrapRef.current) {
-      this.resizeObserver = new ResizeObserver(this.updateVisibleCount);
-      this.resizeObserver.observe(this.wrapRef.current);
-    }
     this.updateVisibleCount();
   }
 
-  componentWillUnmount() {
-    this.resizeObserver?.disconnect();
-  }
+  /**
+   * Combines our own ref with the one `EuiResizeObserver` hands out. The callback
+   * is only recreated when the observer's ref changes, so React doesn't detach
+   * and re-attach the observer on every render.
+   *
+   * Note: this caches the callback on the instance while rendering. That is a
+   * deliberate trade-off: it is a pure memoization (the same input always gives
+   * the same callback) and the only way to keep a stable ref in a class component
+   * that has to use the `EuiResizeObserver` render prop. It can be replaced with
+   * `useCombinedRefs` once this component is converted to a functional component.
+   */
+  getWrapRef = (resizeRef: (node: HTMLElement | null) => void) => {
+    if (!this.wrapRefCallback || this.resizeRefSource !== resizeRef) {
+      this.resizeRefSource = resizeRef;
+      this.wrapRefCallback = (node) => {
+        this.wrapRef.current = node;
+        resizeRef(node);
+      };
+    }
+    return this.wrapRefCallback;
+  };
 
   get isCollapsed() {
     const { selectionDisplay, singleSelection } = this.props;
@@ -144,17 +176,13 @@ export class EuiComboBoxInput<T> extends Component<
         wrap.clientWidth -
         (parseFloat(style.paddingLeft) || 0) -
         (parseFloat(style.paddingRight) || 0);
+      // The badge is always rendered (hidden when nothing is collapsed) so it can be measured
       const badge = wrap.querySelector<HTMLElement>(
-        '.euiComboBoxCollapsedBadge .euiBadge'
+        '.euiComboBoxCollapsedBadge .euiBadge, .euiComboBoxCollapsedBadgeMeasure'
       );
-      const measuredBadgeWidth =
-        badge &&
-        Math.max(badge.offsetWidth, badge.getBoundingClientRect().width);
-      const badgeWidth =
-        measuredBadgeWidth ||
-        (this.props.compressed
-          ? COLLAPSE_BADGE_COMPRESSED_WIDTH
-          : COLLAPSE_BADGE_WIDTH);
+      const badgeWidth = badge
+        ? Math.max(badge.offsetWidth, badge.getBoundingClientRect().width)
+        : 0;
       const input = wrap.querySelector<HTMLInputElement>('.euiComboBox__input');
       const inputWidthFromStyle = parseFloat(input?.style.inlineSize ?? '');
       const inputWidth = Number.isFinite(inputWidthFromStyle)
@@ -163,58 +191,17 @@ export class EuiComboBoxInput<T> extends Component<
 
       // Skip when not laid out (e.g. hidden or unit tests) to avoid hiding everything
       if (available > 0 && pills.length) {
-        const hasShrinkingPill = wrap.classList.contains(
-          COLLAPSED_SINGLE_PILL_CLASS
-        );
-        if (hasShrinkingPill) {
-          wrap.classList.remove(COLLAPSED_SINGLE_PILL_CLASS);
-        }
+        // Read-only: a shrunk pill clips its content, so add the clipped part
+        const widths = pills.map(getNaturalWidth);
 
-        let widths: number[];
-        try {
-          widths = pills.map((pill) =>
-            Math.max(pill.offsetWidth, pill.getBoundingClientRect().width)
-          );
-        } finally {
-          if (hasShrinkingPill) {
-            wrap.classList.add(COLLAPSED_SINGLE_PILL_CLASS);
-          }
-        }
-
-        const total = widths.length;
-        const prefixWidths = [0];
-        widths.forEach((width) => {
-          prefixWidths.push(prefixWidths[prefixWidths.length - 1] + width);
+        visibleCount = getVisibleCount({
+          widths,
+          available,
+          gap,
+          badgeWidth,
+          inputWidth,
+          pillMinWidth: COLLAPSE_PILL_MIN_WIDTH,
         });
-        visibleCount = 0;
-
-        for (let count = total; count >= 0; count--) {
-          const hasHiddenOptions = count < total;
-          const precedingItems = count + Number(hasHiddenOptions);
-          const needed =
-            prefixWidths[count] +
-            (hasHiddenOptions ? badgeWidth : 0) +
-            gap * precedingItems +
-            inputWidth;
-
-          if (needed <= available) {
-            visibleCount = count;
-            break;
-          }
-          // Even a single pill doesn't fit: it can shrink to fit if that
-          // leaves it a usable width, otherwise only the badge is shown
-          if (
-            count === 1 &&
-            available -
-              (hasHiddenOptions ? badgeWidth : 0) -
-              inputWidth -
-              gap * precedingItems >=
-              COLLAPSE_PILL_MIN_WIDTH
-          ) {
-            visibleCount = 1;
-            break;
-          }
-        }
       }
     }
 
@@ -261,11 +248,27 @@ export class EuiComboBoxInput<T> extends Component<
     this.setState({ inputWidth });
   };
 
-  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
+  componentDidUpdate(
+    prevProps: EuiComboBoxInputProps<T>,
+    prevState: EuiComboBoxInputState
+  ) {
     if (prevProps.searchValue !== this.props.searchValue) {
       this.updateInputSize(this.props.searchValue);
     }
-    this.updateVisibleCount();
+
+    // Only re-measure when something that affects the fit changed. Width changes
+    // of the control itself are handled by `EuiResizeObserver`.
+    const { props } = this;
+    if (
+      prevProps.selectedOptions !== props.selectedOptions ||
+      prevProps.compressed !== props.compressed ||
+      prevProps.selectionDisplay !== props.selectionDisplay ||
+      prevProps.singleSelection !== props.singleSelection ||
+      prevProps.placeholder !== props.placeholder ||
+      prevState.inputWidth !== this.state.inputWidth
+    ) {
+      this.updateVisibleCount();
+    }
   }
 
   onFocus: FocusEventHandler<HTMLInputElement> = (event) => {
@@ -350,14 +353,27 @@ export class EuiComboBoxInput<T> extends Component<
     const pills = selectedOptions.map((option, index) =>
       this.renderPill(
         option,
-        isCollapsed && visibleCount != null && index >= visibleCount
+        isCollapsed && visibleCount != null && index >= visibleCount,
+        isCollapsed && visibleCount != null && index === visibleCount - 1
       )
     );
 
-    if (!isCollapsed || visibleCount == null) return pills;
-
-    const hiddenOptions = selectedOptions.slice(visibleCount);
-    if (!hiddenOptions.length) return pills;
+    const hiddenOptions =
+      visibleCount == null ? [] : selectedOptions.slice(visibleCount);
+    if (!isCollapsed) return pills;
+    if (!hiddenOptions.length) {
+      // Keep a hidden badge in the DOM (widest possible label) for measuring
+      return [
+        ...pills,
+        <EuiBadge
+          key="euiComboBoxCollapsedBadgeMeasure"
+          className="euiComboBoxCollapsedBadgeMeasure"
+          aria-hidden
+        >
+          +{selectedOptions.length}
+        </EuiBadge>,
+      ];
+    }
 
     return [...pills, this.renderCollapsedBadge(hiddenOptions)];
   };
@@ -380,7 +396,11 @@ export class EuiComboBoxInput<T> extends Component<
     }));
   };
 
-  renderPill = (option: EuiComboBoxOptionOption<T>, isCollapsed = false) => {
+  renderPill = (
+    option: EuiComboBoxOptionOption<T>,
+    isCollapsed = false,
+    isLastVisible = false
+  ) => {
     const {
       key,
       label,
@@ -405,7 +425,8 @@ export class EuiComboBoxInput<T> extends Component<
         key={key ?? label.toLowerCase()}
         className={classNames(
           className,
-          isCollapsed && 'euiComboBoxPill--collapsed'
+          isCollapsed && 'euiComboBoxPill--collapsed',
+          isLastVisible && 'euiComboBoxPill--shrinkable'
         )}
         color={color}
         onClick={onClick}
@@ -572,8 +593,6 @@ export class EuiComboBoxInput<T> extends Component<
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
       'euiComboBox__inputWrap--plainText': this.asPlainText,
-      [COLLAPSED_SINGLE_PILL_CLASS]:
-        this.isCollapsed && this.state.visibleCount === 1,
     });
 
     return (
@@ -625,57 +644,65 @@ export class EuiComboBoxInput<T> extends Component<
               append={append}
               css={formLayoutStyles}
             >
-              <div
-                ref={this.wrapRef}
-                css={cssStyles}
-                className={wrapClasses}
-                data-test-subj="comboBoxInput"
-                onClick={onClick}
-                tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
-              >
-                {this.renderPills()}
-                <EuiComboBoxOptionAppendPrepend
-                  option={this.asPlainText ? selectedOptions?.[0] : undefined}
-                  classNamePrefix="euiComboBoxPlainTextSelection"
-                  marginSize="xxs"
-                >
-                  <input
-                    aria-activedescendant={focusedOptionId}
-                    aria-autocomplete="list"
-                    aria-controls={isListOpen ? rootId('listbox') : ''}
-                    aria-expanded={isListOpen}
-                    aria-label={ariaLabel}
-                    aria-labelledby={ariaLabelledby}
-                    aria-describedby={ariaDescribedby}
-                    aria-invalid={isInvalid}
-                    aria-haspopup="listbox"
-                    css={styles.euiComboBoxInput}
-                    className="euiComboBox__input"
-                    data-test-subj="comboBoxSearchInput"
-                    disabled={isDisabled}
-                    id={id}
-                    onBlur={this.onBlur}
-                    onChange={(event) => onChange(event.target.value)}
-                    onFocus={this.onFocus}
-                    onKeyDown={this.onKeyDown}
-                    ref={this.inputRefCallback}
-                    role="combobox"
-                    style={{
-                      inlineSize:
-                        this.asPlainText || showPlaceholder
-                          ? '100%'
-                          : this.state.inputWidth,
-                    }}
-                    placeholder={showPlaceholder ? placeholder : undefined}
-                    value={this.searchValue}
-                    autoFocus={autoFocus}
-                    autoComplete="off"
-                    // Force the menu to re-open on every input click - only necessary when plain text
-                    onClick={this.asPlainText ? (onFocus as any) : undefined} // Type shenanigans - event should be mostly the same
-                  />
-                </EuiComboBoxOptionAppendPrepend>
-                {removeOptionMessage}
-              </div>
+              <EuiResizeObserver onResize={this.updateVisibleCount}>
+                {(resizeRef) => (
+                  <div
+                    ref={this.getWrapRef(resizeRef)}
+                    css={cssStyles}
+                    className={wrapClasses}
+                    data-test-subj="comboBoxInput"
+                    onClick={onClick}
+                    tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
+                  >
+                    {this.renderPills()}
+                    <EuiComboBoxOptionAppendPrepend
+                      option={
+                        this.asPlainText ? selectedOptions?.[0] : undefined
+                      }
+                      classNamePrefix="euiComboBoxPlainTextSelection"
+                      marginSize="xxs"
+                    >
+                      <input
+                        aria-activedescendant={focusedOptionId}
+                        aria-autocomplete="list"
+                        aria-controls={isListOpen ? rootId('listbox') : ''}
+                        aria-expanded={isListOpen}
+                        aria-label={ariaLabel}
+                        aria-labelledby={ariaLabelledby}
+                        aria-describedby={ariaDescribedby}
+                        aria-invalid={isInvalid}
+                        aria-haspopup="listbox"
+                        css={styles.euiComboBoxInput}
+                        className="euiComboBox__input"
+                        data-test-subj="comboBoxSearchInput"
+                        disabled={isDisabled}
+                        id={id}
+                        onBlur={this.onBlur}
+                        onChange={(event) => onChange(event.target.value)}
+                        onFocus={this.onFocus}
+                        onKeyDown={this.onKeyDown}
+                        ref={this.inputRefCallback}
+                        role="combobox"
+                        style={{
+                          inlineSize:
+                            this.asPlainText || showPlaceholder
+                              ? '100%'
+                              : this.state.inputWidth,
+                        }}
+                        placeholder={showPlaceholder ? placeholder : undefined}
+                        value={this.searchValue}
+                        autoFocus={autoFocus}
+                        autoComplete="off"
+                        // Force the menu to re-open on every input click - only necessary when plain text
+                        onClick={
+                          this.asPlainText ? (onFocus as any) : undefined
+                        } // Type shenanigans - event should be mostly the same
+                      />
+                    </EuiComboBoxOptionAppendPrepend>
+                    {removeOptionMessage}
+                  </div>
+                )}
+              </EuiResizeObserver>
             </EuiFormControlLayout>
           );
         }}
