@@ -231,6 +231,12 @@ interface EuiComboBoxState<T> {
 
 const initialSearchValue = '';
 
+const FOREIGN_KEY_TARGET_SELECTOR = [
+  '.euiFormControlLayout__prepend',
+  '.euiFormControlLayout__append',
+  '[data-test-subj~="comboBoxCollapsedPopover"]',
+].join(', ');
+
 export class EuiComboBox<T> extends Component<
   _EuiComboBoxProps<T>,
   EuiComboBoxState<T>
@@ -550,7 +556,14 @@ export class EuiComboBox<T> extends Component<
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (this.props.isDisabled) return;
-    if (event.target !== this.searchInputRefInstance) {
+    // Keys pressed in consumer content (prepend/append) or the collapsed
+    // selections popover are not ours to handle. Other inner controls (pill
+    // remove buttons, clear button, ...) keep the regular handling below.
+    if (
+      event.target !== this.searchInputRefInstance &&
+      event.target instanceof Element &&
+      event.target.closest(FOREIGN_KEY_TARGET_SELECTOR)
+    ) {
       this.props.onKeyDown?.(event);
       return;
     }

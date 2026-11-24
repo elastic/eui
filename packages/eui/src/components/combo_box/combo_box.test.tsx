@@ -202,6 +202,33 @@ describe('EuiComboBox', () => {
       });
     });
 
+    describe('keyboard handling of inner controls', () => {
+      it('opens the list on Arrow Down from the clear and pill remove buttons', () => {
+        const { getByTestSubject, container } = render(
+          <EuiComboBox
+            aria-label="Combobox"
+            options={options}
+            selectedOptions={[options[0]]}
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+
+        fireEvent.keyDown(getByTestSubject('comboBoxClearButton'), {
+          key: keys.ARROW_DOWN,
+        });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+
+        fireEvent.keyDown(input, { key: keys.ESCAPE });
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+
+        fireEvent.keyDown(container.querySelector('.euiBadge button')!, {
+          key: keys.ARROW_DOWN,
+        });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+      });
+    });
+
     describe('selectionDisplay="collapse"', () => {
       const clientWidth = Object.getOwnPropertyDescriptor(
         Element.prototype,
