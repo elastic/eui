@@ -376,7 +376,19 @@ export class EuiComboBoxInput<T> extends Component<
   };
 
   renderPill = (option: EuiComboBoxOptionOption<T>, isCollapsed = false) => {
-    const { key, label, color, onClick, className, ...rest } = option;
+    const {
+      key,
+      label,
+      color,
+      onClick,
+      className,
+      append,
+      prepend,
+      truncationProps,
+      toolTipContent,
+      toolTipProps,
+      ...rest
+    } = option;
     const { isDisabled, onRemoveOption, singleSelection } = this.props;
 
     return (
