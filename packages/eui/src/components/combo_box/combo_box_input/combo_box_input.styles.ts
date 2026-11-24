@@ -182,9 +182,11 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         > .euiFormControlLayout__prepend,
         > .euiFormControlLayout__append {
           ${logicalCSS('height', 'auto')}
-          ${logicalCSS('max-width', '30%')}
-          ${logicalCSS('min-width', '0')}
-          flex-shrink: 1;
+          /* Sides keep their natural width so their content isn't cut off, but are
+             capped (and truncated) so that two long sides can't take the whole
+             row and push out the input and the "+N" badge */
+          ${logicalCSS('max-width', '40%')}
+          flex-shrink: 0;
           align-self: stretch;
 
           > * {
