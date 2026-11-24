@@ -598,6 +598,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   } else {
     const colorStyle = chromaColor ? chromaColor.css() : undefined;
     const dropdownIcon = {
+      'aria-expanded': isColorSelectorShown,
+      'aria-haspopup': 'dialog' as const,
       'aria-label': isColorSelectorShown ? closeButtonLabel : openButtonLabel,
       'data-test-subj': 'euiColorPickerToggle',
       onClick: isColorSelectorShown ? handleFinalSelection : showColorSelector,

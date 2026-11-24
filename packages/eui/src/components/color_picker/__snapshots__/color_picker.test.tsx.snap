@@ -55,6 +55,8 @@ exports[`EuiColorPicker color empty string 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -128,6 +130,8 @@ exports[`EuiColorPicker color null 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -200,6 +204,8 @@ exports[`EuiColorPicker color valid string 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -272,6 +278,8 @@ exports[`EuiColorPicker compressed 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -400,6 +408,8 @@ exports[`EuiColorPicker fullWidth 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -692,6 +702,8 @@ exports[`EuiColorPicker isClearable 1`] = `
           />
         </button>
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -765,6 +777,8 @@ exports[`EuiColorPicker placeholder 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -854,6 +868,8 @@ exports[`EuiColorPicker prepend and append 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -999,6 +1015,8 @@ exports[`EuiColorPicker renders 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"
@@ -1071,6 +1089,8 @@ exports[`EuiColorPicker showAlpha 1`] = `
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
           aria-label="Open color selection dialog"
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
           data-test-subj="euiColorPickerToggle"

@@ -200,6 +200,8 @@ describe('EuiColorPicker', () => {
     );
     const toggleButton = getByTestSubject('euiColorPickerToggle');
 
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
+    expect(toggleButton).toHaveAttribute('aria-haspopup', 'dialog');
     expect(toggleButton).toHaveAttribute(
       'aria-label',
       'Open color selection dialog'
@@ -209,6 +211,7 @@ describe('EuiColorPicker', () => {
       await userEvent.click(toggleButton);
     });
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
     expect(toggleButton).toHaveAttribute(
       'aria-label',
       'Close color selection dialog'
