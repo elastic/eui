@@ -249,6 +249,37 @@ describe('EuiCodeBlock', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    it('keeps the same code element when the content changes', () => {
+      const { container, rerender } = render(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {code}
+        </EuiCodeBlock>
+      );
+      const codeElement = container.querySelector('code');
+      expect(codeElement).toBeInTheDocument();
+
+      rerender(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {`${code}\nconsole.log('more');`}
+        </EuiCodeBlock>
+      );
+
+      expect(container.querySelector('code')).toBe(codeElement);
+    });
+
+    it('does not let a consumer style override the virtualized list size', () => {
+      const { container } = render(
+        <EuiCodeBlock isVirtualized overflowHeight={100} style={{ height: 10 }}>
+          {code}
+        </EuiCodeBlock>
+      );
+
+      const codeElement = container.querySelector('code')!;
+      expect(codeElement.style.height).toBe('');
+      expect(codeElement.style.blockSize).toMatch(/^\d+px$/);
+      expect(codeElement.style.blockSize).not.toBe('10px');
+    });
+
     it('requires overflowHeight', () => {
       // @ts-expect-error should expect overflowHeight
       render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
