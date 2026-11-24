@@ -267,17 +267,33 @@ describe('EuiCodeBlock', () => {
       expect(container.querySelector('code')).toBe(codeElement);
     });
 
-    it('does not let a consumer style override the virtualized list size', () => {
-      const { container } = render(
-        <EuiCodeBlock isVirtualized overflowHeight={100} style={{ height: 10 }}>
-          {code}
-        </EuiCodeBlock>
-      );
+    it('does not let a consumer height or blockSize override the virtualized list size', () => {
+      const getBlockSize = (style?: React.CSSProperties) => {
+        const { container, unmount } = render(
+          <EuiCodeBlock isVirtualized overflowHeight={100} style={style}>
+            {code}
+          </EuiCodeBlock>
+        );
+        const codeElement = container.querySelector('code')!;
+        const result = {
+          blockSize: codeElement.style.blockSize,
+          height: codeElement.style.height,
+        };
+        unmount();
+        return result;
+      };
 
-      const codeElement = container.querySelector('code')!;
-      expect(codeElement.style.height).toBe('');
-      expect(codeElement.style.blockSize).toMatch(/^\d+px$/);
-      expect(codeElement.style.blockSize).not.toBe('10px');
+      const baseline = getBlockSize();
+      expect(baseline.blockSize).toMatch(/^\d+px$/);
+
+      expect(getBlockSize({ height: 10 })).toEqual({
+        blockSize: baseline.blockSize,
+        height: '',
+      });
+      expect(getBlockSize({ blockSize: 5 })).toEqual({
+        blockSize: baseline.blockSize,
+        height: '',
+      });
     });
 
     it('requires overflowHeight', () => {
