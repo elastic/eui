@@ -1,3 +1,32 @@
+## [`v123.6.0`](https://github.com/elastic/eui/releases/v123.6.0)
+
+- Updated color token values: ([#10331](https://github.com/elastic/eui/pull/10331))
+  - `accentSecondary`
+  - `textAccentSecondary`
+  - `backgroundBaseAccentSecondary`
+  - `backgroundLightAccentSecondary`
+  - `backgroundFilledAccentSecondary`
+  - `borderBaseAccentSecondary`
+  - `borderStrongAccentSecondary`
+  - `vis.euiColorVis0`
+  - `vis.euiColorVis1`
+  - `vis.euiColorVisBehindText0`
+  - `vis.euiColorVisBehindText1`
+  - `vis.euiColorVisText0`
+  - `vis.euiColorVisText1`
+- Updated internal stacking layers in `EuiBreadcrumbs`, `EuiButtonGroup`, `EuiCard`, `EuiColorPicker`, `EuiDataGrid`, `EuiDatePicker`, `EuiFilterGroup`, `EuiFlyout`, `EuiFormControlLayout`, `EuiLoadingLogo`, `EuiModal`, `EuiPopover`, `EuiResizableContainer` and `EuiTour` to derive their `z-index` from `euiTheme.levels.content`, so they follow a customized `levels.content`. With the default theme the rendered values are unchanged. ([#10278](https://github.com/elastic/eui/pull/10278))
+- Updated `EuiBottomBar` to use `euiShadowXSmall` instead of `euiShadowFlat` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated `EuiPopoverPanel` to use `euiShadowXSmall` instead of `euiShadowFlat` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated `EuiResizableCollapseButton` to use `euiShadowHover` instead of `euiSlightShadowHover` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated the deprecated `useEuiShadowFlat` and `useEuiSlightShadowHover` hooks to use `euiShadowXSmall` and `euiShadowHover` ([#10267](https://github.com/elastic/eui/pull/10267))
+
+**Accessibility**
+
+- Hid decorative icons from screen readers in `EuiCheckbox`, `EuiRadio`, `EuiSwitch`, `EuiFormControlLayout`, `EuiButton`, `EuiButtonEmpty`, `EuiBadge`, `EuiContextMenuItem`, `EuiDataGrid`, `EuiTable`, `EuiEmptyPrompt`, `EuiHealth`, `EuiImage`, `EuiLoadingElastic`, `EuiLoadingLogo` and the `EuiMarkdownFormat` tooltip ([#10329](https://github.com/elastic/eui/pull/10329))
+- Added an accessible "Invalid expression" label to the `EuiExpression` invalid icon ([#10329](https://github.com/elastic/eui/pull/10329))
+- Fixed decorative icons being exposed to screen readers in `EuiHeaderLinks`, `EuiHeaderSectionItemButton`, `EuiSideNav` and `EuiTreeView` by adding `aria-hidden` ([#10328](https://github.com/elastic/eui/pull/10328))
+- Fixed collapsible `EuiSideNav` items not exposing their expanded state to screen readers ([#10328](https://github.com/elastic/eui/pull/10328))
+
 ## [`v123.5.0`](https://github.com/elastic/eui/releases/v123.5.0)
 
 - Updated `EuiFormRow` to vertically align `label` and `labelAppend` to the bottom of the label wrapper when they have different heights ([#10293](https://github.com/elastic/eui/pull/10293))
