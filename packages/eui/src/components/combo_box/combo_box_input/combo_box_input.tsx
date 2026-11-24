@@ -370,6 +370,11 @@ export class EuiComboBoxInput<T> extends Component<
     // Don't let the click bubble to the control, which would open the options list
     event.preventDefault();
     event.stopPropagation();
+
+    // Close the options list on opening the collapsed pill popover
+    if (this.props.isListOpen && !this.state.isCollapsedPopoverOpen) {
+      this.props.onCloseListClick();
+    }
     this.setState(({ isCollapsedPopoverOpen }) => ({
       isCollapsedPopoverOpen: !isCollapsedPopoverOpen,
     }));

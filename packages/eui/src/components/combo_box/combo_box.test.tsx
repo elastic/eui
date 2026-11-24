@@ -379,6 +379,50 @@ describe('EuiComboBox', () => {
         expect(onCreateOption).not.toHaveBeenCalled();
       });
 
+      it('closes the options list when opening the hidden selections', async () => {
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+
+        await findByTestSubject('comboBoxCollapsedPopover');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+      });
+
+      it('keeps the options list closed when closing the hidden selections', async () => {
+        const { getByTestSubject, findByTestSubject, queryByTestSubject } =
+          render(
+            <EuiComboBox
+              aria-label="Combobox with hidden selections"
+              options={options}
+              selectedOptions={options.slice(0, 6)}
+              selectionDisplay="collapse"
+            />
+          );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+
+        fireEvent.click(badge);
+        await findByTestSubject('comboBoxCollapsedPopover');
+        fireEvent.click(badge);
+
+        await waitFor(() =>
+          expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull()
+        );
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+      });
+
       it('returns focus to the input when removing the last hidden selection', async () => {
         const StatefulComboBox = () => {
           const [selectedOptions, setSelectedOptions] = React.useState<
