@@ -66,7 +66,6 @@ export const useDataGridKeyboardShortcuts = (): {
           tabIndex={0}
         >
           <EuiDescriptionList
-            aria-labelledby={titleId}
             type="column"
             columnWidths={['auto', 'auto']}
             align="center"
