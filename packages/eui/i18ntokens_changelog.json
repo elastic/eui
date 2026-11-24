@@ -1,20 +1,5 @@
 [
   {
-    "version": "123.5.0",
-    "changes": [
-      {
-        "token": "euiComboBoxInput.collapsedSelections",
-        "changeType": "added",
-        "value": "{count} more selected: {labels}"
-      },
-      {
-        "token": "euiComboBoxInput.collapsedSelectionsDialog",
-        "changeType": "added",
-        "value": "Hidden selections"
-      }
-    ]
-  },
-  {
     "version": "123.4.0",
     "changes": [
       {
