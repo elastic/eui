@@ -59,6 +59,11 @@ EUI's own tests don't use [Enzyme](https://enzymejs.github.io/enzyme/), and Enzy
 * DO use the `data-test-subj` attribute to mark parts of a component you want to `find` later.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T use snapshots, except for an initial `it renders` test. Prefer using specific assertions instead.
+* DO assert on what users get: rendered output, focus, ARIA state. A test should fail if the behavior breaks.
+* DON'T spy on internals. Those tests break on refactors and miss real bugs.
+* DO use Jest fake timers. DON'T wait on real time. With `userEvent`, use `userEvent.setup({ advanceTimers: jest.advanceTimersByTime })`, or interactions hang.
+* DO clean up shared state in `afterEach`, so a failing test doesn't affect others.
+* DO prefer `userEvent` over `fireEvent` in new tests.
 
 ### Anatomy of a test
 
