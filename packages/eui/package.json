@@ -3,7 +3,7 @@
   "description": "Elastic UI Component Library",
   "version": "123.6.0",
   "license": "SEE LICENSE IN LICENSE.txt",
-  "main": "lib",
+  "main": "es",
   "module": "es",
   "types": "eui.d.ts",
   "docker_image": "20.15.1",
@@ -18,7 +18,7 @@
   "scripts": {
     "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
-    "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
+    "build:clean": "rimraf dist es optimize test-env eui.d.ts",
     "build:i18ntokens": "node ./scripts/build_i18ntokens.mjs",
     "build:optimize-es": "node ./scripts/compile-eui.js --optimize-es-only",
     "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js",
@@ -221,7 +221,6 @@
   "files": [
     "dist",
     "es",
-    "lib",
     "licenses",
     "optimize",
     "src/**/*.scss",
