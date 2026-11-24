@@ -41,7 +41,7 @@ export const Playground: Story = {
       display: 'visible',
     },
   },
-  render: (args) => <StatefulRadioGroup {...args} />,
+  render: (args: EuiRadioGroupProps) => <StatefulRadioGroup {...args} />,
 };
 
 const StatefulRadioGroup = ({
