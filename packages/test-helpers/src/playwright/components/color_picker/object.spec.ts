@@ -43,7 +43,10 @@ test.describe('EuiColorPickerObject', () => {
 
     await colorPicker.locator.click();
 
-    await expect(colorPicker.panel).toHaveAttribute('data-popover-open', 'true');
+    await expect(colorPicker.panel).toHaveAttribute(
+      'data-popover-open',
+      'true'
+    );
     // The Playground story uses the default palette, so at least one swatch renders.
     await expect(colorPicker.swatches.first()).toBeVisible();
   });

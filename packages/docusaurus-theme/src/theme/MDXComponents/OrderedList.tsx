@@ -15,7 +15,10 @@ const getOrderedListStyles = ({ euiTheme }: UseEuiTheme) => css`
   list-style: decimal;
 `;
 
-export const OrderedList = ({ children, ...restProps }: HTMLAttributes<HTMLUListElement>) => {
+export const OrderedList = ({
+  children,
+  ...restProps
+}: HTMLAttributes<HTMLUListElement>) => {
   const styles = useEuiMemoizedStyles(getOrderedListStyles);
 
   return (

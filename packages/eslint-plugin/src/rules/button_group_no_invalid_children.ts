@@ -31,7 +31,7 @@ function isCustomComponent(name: string): boolean {
 }
 
 function reportInvalidWrapperChildren<
-  TContext extends TSESLint.RuleContext<string, unknown[]>,
+  TContext extends TSESLint.RuleContext<string, unknown[]>
 >(
   wrapper: TSESTree.JSXElement,
   wrapperName: string,
@@ -94,7 +94,7 @@ function reportInvalidWrapperChildren<
 }
 
 function validateEuiPopoverTrigger<
-  TContext extends TSESLint.RuleContext<string, unknown[]>,
+  TContext extends TSESLint.RuleContext<string, unknown[]>
 >(
   popover: TSESTree.JSXElement,
   context: TContext,
@@ -244,8 +244,8 @@ export const ButtonGroupNoInvalidChildren = ESLintUtils.RuleCreator.withoutDocs(
           const validButtons = isSegmented
             ? SEGMENTED_VALID_BUTTONS
             : isSelection
-              ? SELECTION_VALID_BUTTONS
-              : VALID_BUTTONS;
+            ? SELECTION_VALID_BUTTONS
+            : VALID_BUTTONS;
           const allowed = Array.from(validButtons).join(', ');
 
           const children = flatMap(node.children, (c) =>

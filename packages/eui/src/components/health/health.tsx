@@ -51,7 +51,7 @@ export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
     <div css={cssStyles} className={classes} {...rest}>
       <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
-          <EuiIcon type="dot" color={color} />
+          <EuiIcon type="dot" color={color} aria-hidden={true} />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>{children}</EuiFlexItem>
       </EuiFlexGroup>

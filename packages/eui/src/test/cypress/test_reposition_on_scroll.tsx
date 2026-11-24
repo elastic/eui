@@ -66,6 +66,7 @@ export const testRepositionOnScroll = ({
     providerProps
   );
 
+  cy.scrollTo(0, 0);
   cy.get(triggerSelector).click();
 
   // Wait for positioning to finish

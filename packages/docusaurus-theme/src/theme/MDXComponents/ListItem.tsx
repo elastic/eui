@@ -9,12 +9,13 @@
 import { HTMLAttributes } from 'react';
 import { EuiText } from '@elastic/eui';
 
-export const ListItem = ({ children, ...props }: HTMLAttributes<HTMLLIElement>) => {
+export const ListItem = ({
+  children,
+  ...props
+}: HTMLAttributes<HTMLLIElement>) => {
   return (
     <li>
-      <EuiText size="m">
-        {children}
-      </EuiText>
+      <EuiText size="m">{children}</EuiText>
     </li>
   );
 };

@@ -95,7 +95,7 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
               {openFullScreenInstructions}
             </p>
           </EuiScreenReaderOnly>
-          <EuiIcon type="fullScreen" color={iconColor} />
+          <EuiIcon type="fullScreen" color={iconColor} aria-hidden={true} />
         </div>
       )}
     </button>

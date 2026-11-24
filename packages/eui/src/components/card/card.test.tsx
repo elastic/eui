@@ -43,7 +43,9 @@ describe('EuiCard', () => {
         <EuiCard
           title="Card title"
           description="Card description"
-          icon={<EuiIcon className="myIconClass" type="apmApp" />}
+          icon={
+            <EuiIcon className="myIconClass" type="apmApp" aria-hidden={true} />
+          }
         />
       );
 

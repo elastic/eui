@@ -7,7 +7,11 @@ import * as dataTestSubjQueries from './data_test_subj_queries';
  * @see https://testing-library.com/docs/react-testing-library/setup#custom-render
  * @see https://testing-library.com/docs/react-testing-library/setup#add-custom-queries
  */
-declare const customRender: (ui: ReactElement, { queries: renderQueries, ...options }?: RenderOptions) => import("@testing-library/react").RenderResult<{
+declare const customRender: (
+  ui: ReactElement,
+  { queries: renderQueries, ...options }?: RenderOptions
+) => import('@testing-library/react').RenderResult<
+  {
     getByLabelText: typeof queries.getByLabelText;
     getAllByLabelText: typeof queries.getAllByLabelText;
     queryByLabelText: typeof queries.queryByLabelText;
@@ -56,13 +60,30 @@ declare const customRender: (ui: ReactElement, { queries: renderQueries, ...opti
     queryAllByTestId: typeof queries.queryAllByTestId;
     findByTestId: typeof queries.findByTestId;
     findAllByTestId: typeof queries.findAllByTestId;
-    queryByTestSubject: import("@testing-library/react").QueryBy<[import("@testing-library/react").Matcher]>;
-    queryAllByTestSubject: (container: HTMLElement, id: import("@testing-library/react").Matcher, options?: import("@testing-library/react").MatcherOptions | undefined) => HTMLElement[];
-    getByTestSubject: import("@testing-library/react").GetBy<[import("@testing-library/react").Matcher]>;
-    getAllByTestSubject: import("@testing-library/react").GetAllBy<[import("@testing-library/react").Matcher]>;
-    findAllByTestSubject: import("@testing-library/react").FindAllBy<[import("@testing-library/react").Matcher]>;
-    findByTestSubject: import("@testing-library/react").FindBy<[import("@testing-library/react").Matcher]>;
-}, HTMLElement, HTMLElement>;
+    queryByTestSubject: import('@testing-library/react').QueryBy<
+      [import('@testing-library/react').Matcher]
+    >;
+    queryAllByTestSubject: (
+      container: HTMLElement,
+      id: import('@testing-library/react').Matcher,
+      options?: import('@testing-library/react').MatcherOptions | undefined
+    ) => HTMLElement[];
+    getByTestSubject: import('@testing-library/react').GetBy<
+      [import('@testing-library/react').Matcher]
+    >;
+    getAllByTestSubject: import('@testing-library/react').GetAllBy<
+      [import('@testing-library/react').Matcher]
+    >;
+    findAllByTestSubject: import('@testing-library/react').FindAllBy<
+      [import('@testing-library/react').Matcher]
+    >;
+    findByTestSubject: import('@testing-library/react').FindBy<
+      [import('@testing-library/react').Matcher]
+    >;
+  },
+  HTMLElement,
+  HTMLElement
+>;
 export { customRender as render };
 /**
  * Custom screen util with EUI query helpers

@@ -90,7 +90,7 @@ export const Sections: Story = {
             notification="1"
             aria-label="Apps menu with 1 new app"
           >
-            <EuiIcon type="apps" size="m" />
+            <EuiIcon type="apps" size="m" aria-hidden={true} />
           </EuiHeaderSectionItemButton>,
         ],
       },
@@ -142,7 +142,7 @@ export const DarkThemeWithSitewideSearch: Story = {
             }}
             popoverButton={
               <EuiHeaderSectionItemButton aria-label="Sitewide search">
-                <EuiIcon type="magnify" size="m" />
+                <EuiIcon type="magnify" size="m" aria-hidden={true} />
               </EuiHeaderSectionItemButton>
             }
             popoverButtonBreakpoints={['xs', 's']}
@@ -163,7 +163,7 @@ export const DarkThemeWithSitewideSearch: Story = {
             notification={true}
             aria-label="Notifications: Updates available"
           >
-            <EuiIcon type="popper" size="m" />
+            <EuiIcon type="popper" size="m" aria-hidden={true} />
           </EuiHeaderSectionItemButton>,
         ],
       },
@@ -496,7 +496,7 @@ const ElasticNavigationPatternExample = () => {
       }}
       popoverButton={
         <EuiHeaderSectionItemButton aria-label="Sitewide search">
-          <EuiIcon type="magnify" size="m" />
+          <EuiIcon type="magnify" size="m" aria-hidden={true} />
         </EuiHeaderSectionItemButton>
       }
       popoverButtonBreakpoints={['xs', 's']}
@@ -540,7 +540,7 @@ const ElasticNavigationPatternExample = () => {
                 aria-label="Notifications: Updates available"
                 onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}
               >
-                <EuiIcon type="popper" size="m" />
+                <EuiIcon type="popper" size="m" aria-hidden={true} />
               </EuiHeaderSectionItemButton>,
               userMenu,
             ],

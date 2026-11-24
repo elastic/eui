@@ -15,17 +15,19 @@ export const getCurrentBranch = async () => {
   const result = await execPromise('git rev-parse --abbrev-ref HEAD');
 
   return result.stdout.trim();
-}
+};
 
 export const isWorkingTreeClean = async () => {
   const gitStatusResult = await execPromise('git status --porcelain');
 
   return gitStatusResult.stdout === '' && gitStatusResult.stderr === '';
-}
+};
 
 export const getRemoteHeadCommitHash = async (branchName: string) => {
   try {
-    const result = await execPromise(`git ls-remote --head --exit-code upstream refs/heads/${branchName}`);
+    const result = await execPromise(
+      `git ls-remote --head --exit-code upstream refs/heads/${branchName}`
+    );
     return result.stdout.split('\t')[0];
   } catch (err) {
     // https://git-scm.com/docs/git-ls-remote#Documentation/git-ls-remote.txt---exit-code
@@ -36,7 +38,7 @@ export const getRemoteHeadCommitHash = async (branchName: string) => {
 
     throw err;
   }
-}
+};
 
 export const getLocalHeadCommitHash = async () => {
   const result = await execPromise('git rev-parse HEAD');
@@ -46,7 +48,9 @@ export const getLocalHeadCommitHash = async () => {
 
 export const getCommitMessage = async (commitHash: string) => {
   // Well, technically this returns commit subject, but we don't care about the whole commit body
-  const result = await execPromise(`git log -1 --pretty=format:%s ${commitHash}`);
+  const result = await execPromise(
+    `git log -1 --pretty=format:%s ${commitHash}`
+  );
   return result.stdout.trim();
 };
 
@@ -62,9 +66,9 @@ export const getModifiedFiles = async () => {
 export const commitFiles = async (message: string, files: string[]) => {
   // This isn't the best at handling unusual formatting like messages with quotes
   return execPromise(`git commit ${files.join(' ')} -m "${message}"`);
-}
+};
 
 export const isFileAddedToGit = async (file: string) => {
   const result = await execPromise(`git ls-files --exclude-standard "${file}"`);
   return result.stdout.length > 0;
-}
+};

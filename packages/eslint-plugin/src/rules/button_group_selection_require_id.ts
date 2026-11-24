@@ -24,7 +24,7 @@ import {
 } from '../utils/button_group_constants';
 
 function checkButtonForId<
-  TContext extends TSESLint.RuleContext<string, unknown[]>,
+  TContext extends TSESLint.RuleContext<string, unknown[]>
 >(element: TSESTree.JSXElement, context: TContext): void {
   const name = getElementName(element.openingElement);
   if (name === null || !SELECTION_VALID_BUTTONS.has(name)) return;

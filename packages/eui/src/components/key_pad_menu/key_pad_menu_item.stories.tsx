@@ -33,6 +33,6 @@ type Story = StoryObj<EuiKeyPadMenuItemProps>;
 
 export const Playground: Story = {
   args: {
-    children: <EuiIcon type="faceHappy" size="l" />,
+    children: <EuiIcon type="faceHappy" size="l" aria-hidden={true} />,
   },
 };

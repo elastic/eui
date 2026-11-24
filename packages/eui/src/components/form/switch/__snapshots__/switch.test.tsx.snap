@@ -19,9 +19,11 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
         class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
+          aria-hidden="true"
           data-euiicon-type="check"
         />
         <span
+          aria-hidden="true"
           data-euiicon-type="cross"
         />
       </span>
@@ -60,9 +62,11 @@ exports[`EuiSwitch is rendered 1`] = `
         class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
+          aria-hidden="true"
           data-euiicon-type="check"
         />
         <span
+          aria-hidden="true"
           data-euiicon-type="cross"
         />
       </span>
@@ -99,9 +103,11 @@ exports[`EuiSwitch labelProps is rendered 1`] = `
         class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
+          aria-hidden="true"
           data-euiicon-type="check"
         />
         <span
+          aria-hidden="true"
           data-euiicon-type="cross"
         />
       </span>

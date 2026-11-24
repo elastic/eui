@@ -1,3 +1,53 @@
+## [`v123.6.0`](https://github.com/elastic/eui/releases/v123.6.0)
+
+- Updated color token values: ([#10331](https://github.com/elastic/eui/pull/10331))
+  - `accentSecondary`
+  - `textAccentSecondary`
+  - `backgroundBaseAccentSecondary`
+  - `backgroundLightAccentSecondary`
+  - `backgroundFilledAccentSecondary`
+  - `borderBaseAccentSecondary`
+  - `borderStrongAccentSecondary`
+  - `vis.euiColorVis0`
+  - `vis.euiColorVis1`
+  - `vis.euiColorVisBehindText0`
+  - `vis.euiColorVisBehindText1`
+  - `vis.euiColorVisText0`
+  - `vis.euiColorVisText1`
+- Updated internal stacking layers in `EuiBreadcrumbs`, `EuiButtonGroup`, `EuiCard`, `EuiColorPicker`, `EuiDataGrid`, `EuiDatePicker`, `EuiFilterGroup`, `EuiFlyout`, `EuiFormControlLayout`, `EuiLoadingLogo`, `EuiModal`, `EuiPopover`, `EuiResizableContainer` and `EuiTour` to derive their `z-index` from `euiTheme.levels.content`, so they follow a customized `levels.content`. With the default theme the rendered values are unchanged. ([#10278](https://github.com/elastic/eui/pull/10278))
+- Updated `EuiBottomBar` to use `euiShadowXSmall` instead of `euiShadowFlat` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated `EuiPopoverPanel` to use `euiShadowXSmall` instead of `euiShadowFlat` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated `EuiResizableCollapseButton` to use `euiShadowHover` instead of `euiSlightShadowHover` ([#10267](https://github.com/elastic/eui/pull/10267))
+- Updated the deprecated `useEuiShadowFlat` and `useEuiSlightShadowHover` hooks to use `euiShadowXSmall` and `euiShadowHover` ([#10267](https://github.com/elastic/eui/pull/10267))
+
+**Accessibility**
+
+- Hid decorative icons from screen readers in `EuiCheckbox`, `EuiRadio`, `EuiSwitch`, `EuiFormControlLayout`, `EuiButton`, `EuiButtonEmpty`, `EuiBadge`, `EuiContextMenuItem`, `EuiDataGrid`, `EuiTable`, `EuiEmptyPrompt`, `EuiHealth`, `EuiImage`, `EuiLoadingElastic`, `EuiLoadingLogo` and the `EuiMarkdownFormat` tooltip ([#10329](https://github.com/elastic/eui/pull/10329))
+- Added an accessible "Invalid expression" label to the `EuiExpression` invalid icon ([#10329](https://github.com/elastic/eui/pull/10329))
+- Fixed decorative icons being exposed to screen readers in `EuiHeaderLinks`, `EuiHeaderSectionItemButton`, `EuiSideNav` and `EuiTreeView` by adding `aria-hidden` ([#10328](https://github.com/elastic/eui/pull/10328))
+- Fixed collapsible `EuiSideNav` items not exposing their expanded state to screen readers ([#10328](https://github.com/elastic/eui/pull/10328))
+
+## [`v123.5.0`](https://github.com/elastic/eui/releases/v123.5.0)
+
+- Updated `EuiFormRow` to vertically align `label` and `labelAppend` to the bottom of the label wrapper when they have different heights ([#10293](https://github.com/elastic/eui/pull/10293))
+- Updated the `productNightshift` icon glyph. ([#10300](https://github.com/elastic/eui/pull/10300))
+- Added `logoMono` prop to the `EuiHeaderLogo` component to render a monochromatic Elastic logo version. ([#10291](https://github.com/elastic/eui/pull/10291))
+- Added `logoElasticMono` icon. ([#10291](https://github.com/elastic/eui/pull/10291))
+- Updated the `moon` icon glyph. ([#10279](https://github.com/elastic/eui/pull/10279))
+- Added the `primary` color option to `EuiNotificationBadge` and made it the default badge color for `EuiFilterButton`. ([#10237](https://github.com/elastic/eui/pull/10237))
+
+**Bug fixes**
+
+- Fixed `EuiSelectable` moving focus to the first option with a matching `label` when clicking an option that shares its label with other options ([#10303](https://github.com/elastic/eui/pull/10303))
+- Increased the spacing between the `EuiModal` close button and the corner of the modal ([#10292](https://github.com/elastic/eui/pull/10292))
+- Added spacing to `EuiModalBody` when it's the first element in a modal (no `EuiModalHeader`, or an `EuiConfirmModal` without a `title`) so its content doesn't overlap the close button ([#10292](https://github.com/elastic/eui/pull/10292))
+- Fixed `EuiFlyout` not returning focus to its trigger when the trigger is inside a focus trap shard, such as a fixed `EuiHeader` or the main flyout of a side-by-side child flyout ([#10283](https://github.com/elastic/eui/pull/10283))
+- Fixed `EuiFlyout` mutating the `includeSelectorInFocusTrap` array passed by consumers ([#10283](https://github.com/elastic/eui/pull/10283))
+
+**Accessibility**
+
+- Fixed `EuiMarkdownFormat` tooltip anchors not being keyboard focusable ([#10148](https://github.com/elastic/eui/pull/10148))
+
 ## [`v123.4.0`](https://github.com/elastic/eui/releases/v123.4.0)
 
 - Added the `productNightshift` icon. ([#10256](https://github.com/elastic/eui/pull/10256))

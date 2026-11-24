@@ -11,9 +11,11 @@ import { TSESTree } from '@typescript-eslint/utils';
 export function isInConditionalRendering(node: TSESTree.JSXElement): boolean {
   let parent: TSESTree.Node | undefined = node.parent;
   while (parent) {
-    if (parent.type === 'ConditionalExpression' ||
+    if (
+      parent.type === 'ConditionalExpression' ||
       parent.type === 'IfStatement' ||
-      (parent.type === 'LogicalExpression' && parent.operator === '&&')) {
+      (parent.type === 'LogicalExpression' && parent.operator === '&&')
+    ) {
       return true;
     }
     parent = parent.parent;

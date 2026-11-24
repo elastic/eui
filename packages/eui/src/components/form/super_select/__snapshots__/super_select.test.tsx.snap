@@ -255,6 +255,7 @@ exports[`EuiSuperSelect renders 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="text"
                     data-euiicon-type="empty"
@@ -277,6 +278,7 @@ exports[`EuiSuperSelect renders 1`] = `
                   class="euiListItemLayout__content emotion-euiListItemLayout__content"
                 >
                   <span
+                    aria-hidden="true"
                     class="euiListItemLayout__icon emotion-euiListItemLayout__icon"
                     color="text"
                     data-euiicon-type="empty"

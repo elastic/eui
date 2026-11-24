@@ -1,3 +1,21 @@
+## [`v8.3.0`](https://github.com/elastic/eui/releases/v123.6.0)
+
+- Updated the primitive `teal` color ramp to match new brand changes. ([#10331](https://github.com/elastic/eui/pull/10331))
+- Updated color token values: ([#10331](https://github.com/elastic/eui/pull/10331))
+  - `accentSecondary`
+  - `textAccentSecondary`
+  - `backgroundBaseAccentSecondary`
+  - `backgroundLightAccentSecondary`
+  - `backgroundFilledAccentSecondary`
+  - `borderBaseAccentSecondary`
+  - `borderStrongAccentSecondary`
+  - `vis.euiColorVis0`
+  - `vis.euiColorVis1`
+  - `vis.euiColorVisBehindText0`
+  - `vis.euiColorVisBehindText1`
+  - `vis.euiColorVisText0`
+  - `vis.euiColorVisText1`
+
 ## [`v8.2.0`](https://github.com/elastic/eui/releases/tag/v123.4.0)
 
 - Initialize the global vis color store with its default vis colors on import, so the palette functions in `@elastic/eui-theme-common` work without loading `@elastic/eui` ([#10247](https://github.com/elastic/eui/pull/10247))

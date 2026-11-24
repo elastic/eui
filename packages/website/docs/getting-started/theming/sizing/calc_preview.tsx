@@ -15,4 +15,4 @@ export const CalcPreview = () => {
       {`padding: calc(${euiTheme.size.base} * 2)`}
     </div>
   );
-}
+};

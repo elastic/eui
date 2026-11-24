@@ -172,6 +172,7 @@ const CellContents = ({
           className="euiTableSortIcon"
           type={isSortAscending ? 'sortUp' : 'sortDown'}
           size="m"
+          aria-hidden={true}
         />
       ) : canSort ? (
         <EuiIcon
@@ -179,6 +180,7 @@ const CellContents = ({
           type="sortable"
           size="m"
           color="subdued" // Tinted a bit further via CSS
+          aria-hidden={true}
         />
       ) : null}
     </EuiTableCellContent>

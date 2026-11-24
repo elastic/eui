@@ -23,7 +23,9 @@ const testSubjSelector = (testSubj: string): string =>
     .split(/\s+/)
     .map(
       (token) =>
-        `[data-test-subj~="${token.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"]`
+        `[data-test-subj~="${token
+          .replace(/\\/g, '\\\\')
+          .replace(/"/g, '\\"')}"]`
     )
     .join('');
 
@@ -63,7 +65,11 @@ export abstract class BaseObject {
 
   private componentVerified = false;
 
-  constructor(scope: ObjectScope, testSubj: string, componentSelector?: string) {
+  constructor(
+    scope: ObjectScope,
+    testSubj: string,
+    componentSelector?: string
+  ) {
     this.scope = scope instanceof BaseObject ? scope.locator : scope;
     this.root = this.scope.locator(testSubjSelector(testSubj));
     this.testSubj = testSubj;

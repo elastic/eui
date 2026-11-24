@@ -46,7 +46,10 @@ test.describe('EuiBasicTableObject', () => {
   test.describe('headerCells', () => {
     test('includes the selection checkbox cell so indexes line up with column()', async () => {
       const headerCount = await table.headerCells.count();
-      const firstRowCellCount = await table.rows.first().locator('> :is(td, th)').count();
+      const firstRowCellCount = await table.rows
+        .first()
+        .locator('> :is(td, th)')
+        .count();
 
       expect(headerCount).toBe(firstRowCellCount);
     });
@@ -72,7 +75,9 @@ test.describe('EuiBasicTableObject', () => {
     });
 
     test('rejects an unknown field', async () => {
-      await expect(table.cells('doesNotExist')).rejects.toThrow(/no column with field/);
+      await expect(table.cells('doesNotExist')).rejects.toThrow(
+        /no column with field/
+      );
     });
 
     test('the rejection message includes the original field, not an escaped regex', async () => {

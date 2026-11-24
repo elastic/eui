@@ -21,7 +21,10 @@ import { storyUrl } from '../../../storybook';
 
 const TEST_SUBJ = 'testFilterButton';
 
-const PLAYGROUND_URL = storyUrl('forms-euifilterbutton--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'forms-euifilterbutton--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiFilterButtonObject', () => {
   let filterButton: EuiFilterButtonObject;
@@ -34,7 +37,9 @@ test.describe('EuiFilterButtonObject', () => {
 
   test.describe('locator', () => {
     test('carries the hasActiveFilters class the Playground story sets', async () => {
-      await expect(filterButton.locator).toHaveClass(/euiFilterButton-hasActiveFilters/);
+      await expect(filterButton.locator).toHaveClass(
+        /euiFilterButton-hasActiveFilters/
+      );
     });
   });
 

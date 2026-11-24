@@ -12,9 +12,9 @@ const babelPlugin = require('./index');
 
 const transform = (input: string, options: object) => {
   const result = core.transform(input, options);
-  result.code = result.code.replace(/[\r\n]+/g, '\n')
+  result.code = result.code.replace(/[\r\n]+/g, '\n');
   return result;
-}
+};
 
 beforeEach(() => babelPlugin.clearImportCache());
 
@@ -1796,7 +1796,7 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => true }),
-                        readFileSync: filepath => {
+                        readFileSync: (filepath) => {
                           if (
                             filepath !==
                             path.resolve(
@@ -1902,7 +1902,7 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: filepath => {
+                        readFileSync: (filepath) => {
                           if (
                             filepath ===
                             path.resolve(process.cwd(), 'common.ts')
@@ -1961,7 +1961,7 @@ const FooComponent: React.SFC<Foo> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: filepath => {
+                        readFileSync: (filepath) => {
                           if (
                             filepath ===
                             path.resolve(process.cwd(), 'types', 'foo.ts')
@@ -2056,7 +2056,7 @@ const FooComponent: React.SFC<{foo: Foo}> = () => {
                       fs: {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
-                        readFileSync: filepath => {
+                        readFileSync: (filepath) => {
                           if (filepath.endsWith(`${path.sep}foo`)) {
                             return Buffer.from(`
                               export { Foo } from './Foo';
@@ -2541,7 +2541,7 @@ import something from './somewhere.txt';
           }
         );
 
-        expect(result.code).toBe("export {};");
+        expect(result.code).toBe('export {};');
       });
     });
   });

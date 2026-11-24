@@ -41,7 +41,7 @@ const customHeaderContent = (
         <EuiFlexGroup>
           <EuiFlexItem grow={2}>
             <EuiFlexGroup gutterSize="m">
-              <EuiIcon type="logoKibana" size="original" />
+              <EuiIcon type="logoKibana" size="original" aria-label="Kibana" />
               <EuiTitle size="l">
                 <h1>Page Title</h1>
               </EuiTitle>

@@ -167,7 +167,7 @@ export const Groups: Story = {
       {
         label: 'Group 2',
         isGroupLabel: true,
-        prepend: <EuiIcon type="warning" />,
+        prepend: <EuiIcon type="warning" aria-hidden={true} />,
         append: (
           <EuiFlexItem css={{ alignItems: 'flex-end' }}>
             <EuiLink>(append)</EuiLink>
@@ -212,7 +212,7 @@ type OptionAsRendered = Omit<EuiSelectableOption<MoonOptionData>, 'data'> &
   MoonOptionData;
 
 const sharedOptionProps = {
-  prepend: <EuiIcon type="info" />,
+  prepend: <EuiIcon type="info" aria-hidden={true} />,
   append: <EuiBadge color="hollow">Badge</EuiBadge>,
 };
 

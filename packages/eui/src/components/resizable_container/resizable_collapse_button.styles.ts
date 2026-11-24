@@ -7,10 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiShadowXSmall,
-  euiSlightShadowHover,
-} from '@elastic/eui-theme-common';
+import { euiShadowXSmall, euiShadowHover } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
@@ -26,7 +23,8 @@ export const euiResizableCollapseButtonStyles = (
 
   return {
     euiResizableCollapseButton: css`
-      z-index: 2; /* 1 higher than EuiResizableButton */
+      /* 1 higher than EuiResizableButton */
+      z-index: ${Number(euiTheme.levels.content) + 2};
       position: absolute;
 
       /* Remove animation inherited from EuiButtonIcon */
@@ -40,7 +38,7 @@ export const euiResizableCollapseButtonStyles = (
         ${euiShadowXSmall(euiThemeContext)}
 
         &:focus {
-          ${euiSlightShadowHover(euiThemeContext)}
+          ${euiShadowHover(euiThemeContext)}
         }
       `,
       horizontal: {

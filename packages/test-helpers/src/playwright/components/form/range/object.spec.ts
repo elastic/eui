@@ -20,7 +20,10 @@ import { storyUrl } from '../../../../storybook';
 
 const TEST_SUBJ = 'testRange';
 
-const PLAYGROUND_URL = storyUrl('forms-euirange--playground', `data-test-subj:${TEST_SUBJ}`);
+const PLAYGROUND_URL = storyUrl(
+  'forms-euirange--playground',
+  `data-test-subj:${TEST_SUBJ}`
+);
 
 test.describe('EuiRangeObject', () => {
   let range: EuiRangeObject;
@@ -47,7 +50,10 @@ test.describe('EuiRangeObject', () => {
 test.describe('EuiRangeObject against EuiDualRange', () => {
   // EuiDualRange is a separate component from EuiRange, not a variant of it.
   // Validated against its own story rather than assumed from EuiRange's.
-  const DUAL_RANGE_URL = storyUrl('forms-euidualrange--playground', `data-test-subj:${TEST_SUBJ}`);
+  const DUAL_RANGE_URL = storyUrl(
+    'forms-euidualrange--playground',
+    `data-test-subj:${TEST_SUBJ}`
+  );
 
   test('slider resolves to exactly one element', async ({ page }) => {
     await page.goto(DUAL_RANGE_URL);

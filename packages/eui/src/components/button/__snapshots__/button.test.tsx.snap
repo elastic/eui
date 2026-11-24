@@ -159,6 +159,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -185,6 +186,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
       Content
     </span>
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -201,6 +203,7 @@ exports[`EuiButton props iconSize m is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -222,6 +225,7 @@ exports[`EuiButton props iconSize s is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -243,6 +247,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="user"
     />

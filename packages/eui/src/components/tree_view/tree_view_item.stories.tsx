@@ -33,7 +33,7 @@ export const Playground: Story = {
   args: {
     id: 'id',
     label: 'Hello world',
-    icon: <EuiIcon type="folderOpen" />,
+    icon: <EuiIcon type="folderOpen" aria-hidden={true} />,
     children: '',
   },
 };

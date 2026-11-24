@@ -11,6 +11,7 @@ exports[`euiDataGridToolbarControl passes props to the underlying EuiButtonEmpty
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
+      aria-hidden="true"
       color="inherit"
       data-euiicon-type="sortable"
     />
