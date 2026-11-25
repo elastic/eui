@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
@@ -135,8 +136,36 @@ describe('EuiFormControlLayout', () => {
 
     test('isDropdown is rendered', () => {
       const { container } = render(<EuiFormControlLayout isDropdown />);
+      const dropdownIcon = container.querySelector(
+        '.euiFormControlLayoutCustomIcon'
+      );
 
+      expect(dropdownIcon?.tagName).toBe('SPAN');
       expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('isDropdown can be configured as an interactive button', async () => {
+      const onClick = jest.fn();
+      const { getByTestSubject } = render(
+        <EuiFormControlLayout
+          isDropdown={{
+            'aria-label': 'Toggle options',
+            'data-test-subj': 'dropdownButton',
+            onClick,
+            tabIndex: -1,
+          }}
+        />
+      );
+
+      const dropdownButton = getByTestSubject('dropdownButton');
+      expect(dropdownButton.tagName).toBe('BUTTON');
+      expect(dropdownButton).toHaveAccessibleName('Toggle options');
+      expect(dropdownButton).toHaveAttribute('tabindex', '-1');
+
+      await act(async () => {
+        await userEvent.click(dropdownButton);
+      });
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     test('iconsPosition', () => {

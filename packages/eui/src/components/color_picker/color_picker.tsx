@@ -9,6 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent,
   ReactElement,
   cloneElement,
   useEffect,
@@ -36,6 +37,7 @@ import {
 } from '../form';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
@@ -227,6 +229,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     openLabel,
     closeLabel,
     ariaLabel,
+    openButtonLabel,
+    closeButtonLabel,
   ] = useEuiI18n(
     [
       'euiColorPicker.popoverLabel',
@@ -238,6 +242,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'euiColorPicker.openLabel',
       'euiColorPicker.closeLabel',
       'euiColorPicker.ariaLabel',
+      'euiColorPicker.openButtonLabel',
+      'euiColorPicker.closeButtonLabel',
     ],
     [
       'Color selection dialog',
@@ -249,6 +255,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Press the escape key to close the popover',
       'Press the down key to open a popover containing color options',
       'Select a color',
+      'Open color selection dialog',
+      'Close color selection dialog',
     ]
   );
 
@@ -285,6 +293,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
   const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
+  const isClosingFromOutside = useRef(false);
 
   const prevColor = useRef(chromaColor ? chromaColor.rgba().join() : null);
   const [colorAsHsv, setColorAsHsv] = useState<ColorSpaces['hsv']>(
@@ -299,8 +308,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     return colorAsHsv;
   }, [chromaColor, colorAsHsv]);
 
+  const popoverRef = useRef<HTMLDivElement>(null);
   const saturationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
+
+  const focusTrapShards = inputRef
+    ? [prepend || append ? popoverRef : inputRef]
+    : undefined;
 
   const testSubjAnchor = classNames('euiColorPickerAnchor', dataTestSubj);
 
@@ -322,7 +336,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const handleOnBlur = () => {
     // `onBlur` also gets called when the popover is closing
     // so prevent a second `onBlur` if the popover is open
-    if (!isColorSelectorShown && onBlur) {
+    if (!isColorSelectorShown && !isClosingFromOutside.current && onBlur) {
       onBlur();
     }
   };
@@ -339,8 +353,18 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
+  const handleOutsideClick = (event: Event) => {
+    if ('button' in event && event.button !== 0) return;
+    const { target } = event;
+    if (target instanceof Node && popoverRef.current?.contains(target)) return;
+    if (isClosingFromOutside.current) return;
+    isClosingFromOutside.current = true;
+    closeColorSelector();
+  };
+
   const showColorSelector = () => {
     if (isColorSelectorShown || readOnly) return;
+    isClosingFromOutside.current = false;
     if (onFocus) {
       onFocus();
     }
@@ -363,6 +387,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
 
     closeColorSelector(true);
+  };
+
+  const openColorSelector = () => {
+    inputRef?.focus();
+    showColorSelector();
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -407,6 +436,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleColorInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    isClosingFromOutside.current = false;
     handleOnChange(event.target.value);
     const newColor = getChromaColor(event.target.value, showAlpha);
     if (newColor) {
@@ -591,6 +621,18 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     });
   } else {
     const colorStyle = chromaColor ? chromaColor.css() : undefined;
+    const dropdownIcon = {
+      'aria-expanded': isColorSelectorShown,
+      'aria-haspopup': 'dialog' as const,
+      'aria-label': isColorSelectorShown ? closeButtonLabel : openButtonLabel,
+      'data-test-subj': 'euiColorPickerToggle',
+      onClick: isColorSelectorShown ? handleFinalSelection : openColorSelector,
+      onMouseDown: (event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+      },
+      tabIndex: -1,
+    };
+
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
@@ -620,7 +662,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         append={append}
         isInvalid={isInvalid}
         isDisabled={disabled}
-        isDropdown
+        isDropdown={dropdownIcon}
         inputId={id}
       >
         <EuiFieldText
@@ -628,6 +670,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           onClick={handleInputActivity}
           onKeyDown={handleInputActivity}
           onBlur={handleOnBlur}
+          onFocus={() => {
+            isClosingFromOutside.current = false;
+          }}
           value={color ? color.toUpperCase() : HEX_FALLBACK}
           placeholder={!color ? placeholder || transparent : undefined}
           id={id}
@@ -678,29 +723,41 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       {composite}
     </div>
   ) : (
-    <EuiPopover
-      initialFocus={inputRef ?? undefined}
-      button={buttonOrInput}
-      isOpen={isColorSelectorShown}
-      closePopover={handleFinalSelection}
-      zIndex={popoverZIndex}
-      className="euiColorPicker__popoverAnchor"
-      panelClassName="euiColorPicker__popoverPanel"
-      display={button ? 'inline-block' : 'block'}
-      attachToAnchor={button ? false : true}
-      anchorPosition="downLeft"
-      panelPaddingSize="s"
-      tabIndex={-1}
-      aria-label={popoverLabel}
-      focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}
+    <EuiOutsideClickDetector
+      isDisabled={!isColorSelectorShown}
+      onOutsideClick={handleOutsideClick}
     >
-      <div
-        css={styles.euiColorPicker}
-        className={classes}
-        data-test-subj="euiColorPickerPopover"
+      <EuiPopover
+        initialFocus={inputRef ?? undefined}
+        button={buttonOrInput}
+        isOpen={isColorSelectorShown}
+        closePopover={handleFinalSelection}
+        zIndex={popoverZIndex}
+        className="euiColorPicker__popoverAnchor"
+        popoverRef={popoverRef}
+        panelClassName="euiColorPicker__popoverPanel"
+        display={button ? 'inline-block' : 'block'}
+        attachToAnchor={button ? false : true}
+        anchorPosition="downLeft"
+        panelPaddingSize="s"
+        tabIndex={-1}
+        aria-label={popoverLabel}
+        focusTrapProps={{
+          onClickOutside: handleOutsideClick,
+          clickOutsideDisables: false,
+          returnFocus: () =>
+            isClosingFromOutside.current ? false : { preventScroll: true },
+          shards: focusTrapShards,
+        }}
       >
-        {composite}
-      </div>
-    </EuiPopover>
+        <div
+          css={styles.euiColorPicker}
+          className={classes}
+          data-test-subj="euiColorPickerPopover"
+        >
+          {composite}
+        </div>
+      </EuiPopover>
+    </EuiOutsideClickDetector>
   );
 };
