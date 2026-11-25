@@ -308,6 +308,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     return colorAsHsv;
   }, [chromaColor, colorAsHsv]);
 
+  const popoverRef = useRef<HTMLDivElement>(null);
   const saturationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
@@ -350,6 +351,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const handleOutsideClick = (event: Event) => {
     if ('button' in event && event.button !== 0) return;
+    const { target } = event;
+    // Let the picker handle clicks on its own trigger.
+    if (target instanceof Node && popoverRef.current?.contains(target)) return;
+
     // Report blur once when an outside click dismisses the picker.
     if (isClosingFromOutside.current) return;
     isClosingFromOutside.current = true;
@@ -729,6 +734,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         closePopover={handleFinalSelection}
         zIndex={popoverZIndex}
         className="euiColorPicker__popoverAnchor"
+        popoverRef={popoverRef}
         panelClassName="euiColorPicker__popoverPanel"
         display={button ? 'inline-block' : 'block'}
         attachToAnchor={button ? false : true}
@@ -737,7 +743,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         tabIndex={-1}
         aria-label={popoverLabel}
         focusTrapProps={{
-          onClickOutside: undefined,
+          onClickOutside: handleOutsideClick,
+          clickOutsideDisables: false,
           returnFocus: () =>
             isClosingFromOutside.current ? false : { preventScroll: true },
           shards: inputRef ? [inputRef] : undefined,

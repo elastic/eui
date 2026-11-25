@@ -17,6 +17,7 @@ import {
   waitForEuiPopoverOpen,
 } from '../../test/rtl';
 import { euiPaletteColorBlind, keys } from '../../services';
+import { EuiSelect } from '../form';
 
 import { EuiColorPicker } from './color_picker';
 
@@ -301,24 +302,47 @@ describe('EuiColorPicker', () => {
           onBlur={onBlurHandler}
           onChange={onChange}
         />
-        {/* Like another picker's chevron: keeps focus on mousedown, moves it on click */}
-        <button
-          type="button"
-          onMouseDown={(event) => event.preventDefault()}
-          onClick={() => getByRole('textbox', { name: 'Other' }).focus()}
-        >
+        {/* Clicking Outside leaves focus in the color input. */}
+        <button type="button" onMouseDown={(event) => event.preventDefault()}>
           Outside
         </button>
         <input aria-label="Other" />
       </>
     );
+    const colorInput = getByRole('textbox', { name: 'Color' });
+    const otherInput = getByRole('textbox', { name: 'Other' });
 
-    await act(() => user.click(getByRole('textbox', { name: 'Color' })));
+    await act(() => user.click(colorInput));
     await waitForEuiPopoverOpen();
     await act(() => user.click(getByRole('button', { name: 'Outside' })));
 
     await waitForEuiPopoverClose();
+    expect(colorInput).toHaveFocus();
+    await act(() => user.click(otherInput));
+    expect(otherInput).toHaveFocus();
     expect(onBlurHandler).toHaveBeenCalledTimes(1);
+  });
+
+  test('closes when pressing a neighboring select', async () => {
+    const user = userEvent.setup();
+    const { getByRole } = render(
+      <>
+        <EuiColorPicker aria-label="Color" onChange={onChange} />
+        <EuiSelect
+          aria-label="Neighboring select"
+          options={[{ value: 'one', text: 'One' }]}
+        />
+      </>
+    );
+    const select = getByRole('combobox', { name: 'Neighboring select' });
+
+    await act(() => user.click(getByRole('textbox', { name: 'Color' })));
+    await waitForEuiPopoverOpen();
+
+    await act(() => user.pointer({ target: select, keys: '[MouseLeft>]' }));
+
+    await waitForEuiPopoverClose();
+    await act(() => user.pointer('[/MouseLeft]'));
   });
 
   test('popover color selector is hidden when the ESC key pressed', async () => {
