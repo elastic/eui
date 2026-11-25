@@ -43,7 +43,7 @@ import {
 } from './split_button.styles';
 
 type EuiSplitButtonCommonProps = EuiDisabledProps & {
-  size?: EuiButtonProps['size'];
+  size?: Exclude<EuiButtonProps['size'], 'xs'>;
   color?: EuiButtonProps['color'];
   fill?: EuiButtonProps['fill'];
   isLoading?: EuiButtonProps['isLoading'];

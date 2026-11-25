@@ -368,6 +368,17 @@ exports[`EuiButton props size s is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props size xs is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-xs-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  />
+</button>
+`;
+
 exports[`EuiButton props textProps is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-base-primary"
