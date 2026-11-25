@@ -27,6 +27,7 @@ import {
 } from '../../../.storybook/vrt';
 
 import { EuiAccordion } from '../accordion';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiButtonIcon } from '../button';
 import { EuiFieldNumber, EuiFormRow } from '../form';
 import { EuiSpacer } from '../spacer';
@@ -291,7 +292,11 @@ export const UnsizedColumnsInFixedHeightPanel: Story = {
             {
               id: 'rowNumber',
               width: 40,
-              headerCellRender: () => null,
+              headerCellRender: () => (
+                <EuiScreenReaderOnly>
+                  <span>Row number</span>
+                </EuiScreenReaderOnly>
+              ),
               rowCellRender: ({ rowIndex }) => rowIndex + 1,
             },
           ]}

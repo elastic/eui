@@ -342,9 +342,15 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       font-feature-settings: 'tnum' 1; /* Tabular numbers */
     `,
     // Wrapper around EuiDataGrid
-    euiDataGrid__focusWrap: css`
-      ${logicalCSS('height', '100%')}
-      ${logicalCSS('min-width', '0')}
-    `,
+    euiDataGrid__focusWrap: {
+      euiDataGrid__focusWrap: css`
+        ${logicalCSS('height', '100%')}
+      `,
+      // Lets an auto-width grid shrink inside flex parents. A fixed `width` is
+      // set on the inner grid, so a shrunk wrapper would let it spill over siblings
+      autoWidth: css`
+        ${logicalCSS('min-width', '0')}
+      `,
+    },
   };
 };

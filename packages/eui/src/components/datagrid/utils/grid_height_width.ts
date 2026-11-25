@@ -16,6 +16,7 @@ import {
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtilsType } from './row_heights';
 import { DataGridSortedContext } from './sorting';
@@ -172,71 +173,67 @@ export const useUnconstrainedHeight = ({
 
 /**
  * Returns the width available to the cells of the virtualize container,
- * excluding its vertical scroll bar, rounded down to a whole pixel.
+ * rounded down to a whole pixel.
  *
- * `clientWidth` alone is rounded to the nearest pixel, so it can be up to
- * half a pixel wider than the real content box. Columns sized from it would
+ * `clientWidth` is rounded to the nearest pixel, so it can be up to half a
+ * pixel wider than the real content box. Columns sized from it would
  * overflow, show a horizontal scroll bar, and (in a container whose height
  * is near the content height) toggle the vertical scroll bar endlessly.
  *
- * @param borderBoxWidth the fractional border-box width reported by a ResizeObserver
+ * @param contentBoxWidth the fractional content-box width reported by a ResizeObserver
  */
 export const getVirtualizeContainerContentWidth = (
-  virtualizeContainer: HTMLDivElement,
-  borderBoxWidth: number
-) => {
+  contentBoxWidth: number,
+  clientWidth: number
+) =>
   // Before the first ResizeObserver callback, fall back to the rounded width
-  if (!borderBoxWidth) return virtualizeContainer.clientWidth;
-  // offsetWidth and clientWidth are both rounded, so their difference is
-  // still the exact vertical scroll bar (plus border) width
-  const scrollBarAndBorderWidth =
-    virtualizeContainer.offsetWidth - virtualizeContainer.clientWidth;
-  return Math.max(Math.floor(borderBoxWidth - scrollBarAndBorderWidth), 0);
+  contentBoxWidth ? Math.floor(contentBoxWidth) : clientWidth;
+
+/**
+ * Observes the fractional content-box width of an element. The content box
+ * excludes scroll bars, so it also changes when a scroll bar appears or
+ * disappears, and it ignores CSS transforms.
+ */
+const useContentBoxWidth = (element: HTMLElement | null) => {
+  const [contentBoxWidth, setContentBoxWidth] = useState(0);
+
+  useEffect(() => {
+    if (!element || !hasResizeObserver) return;
+
+    const observer = new window.ResizeObserver(([entry]) => {
+      setContentBoxWidth(entry.contentBoxSize[0].inlineSize);
+    });
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [element]);
+
+  return contentBoxWidth;
 };
 
 /**
  * Returns the size of the cell container minus the scroll bar width.
- * To do so, this hook is listening for size changes of the container itself,
- * as well as pagination changes to make sure every update is caught.
- *
- * This is necessary because there is no callback/event fired by the browser
- * indicating the scroll bar state has changed.
- * @param resizeRef the wrapper element containging the data grid
- * @param pageSize the currently applied page size
+ * @param virtualizeContainer the scrolling element of the virtualized grid
+ * @param gridWidth the width of the wrapper element, used as a fallback
  */
 export const useVirtualizeContainerWidth = (
   virtualizeContainer: HTMLDivElement | null,
-  gridWidth: number,
-  pageSize: number | undefined
+  gridWidth: number
 ) => {
-  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
-  // Fractional layout width; unlike getBoundingClientRect() it ignores CSS transforms
-  const { width: borderBoxWidth } = useResizeObserver(virtualizeContainer);
+  useResizeObserver(virtualizeContainer);
+  const contentBoxWidth = useContentBoxWidth(virtualizeContainer);
 
   // re-render data grid on size changes
   const forceRender = useForceRender();
   useUpdateEffect(forceRender, [gridWidth, forceRender]);
 
-  // Read on every render: a scroll bar appearing doesn't change the border box,
-  // so the ResizeObserver alone wouldn't catch it
   const contentWidth = virtualizeContainer
-    ? getVirtualizeContainerContentWidth(virtualizeContainer, borderBoxWidth)
+    ? getVirtualizeContainerContentWidth(
+        contentBoxWidth,
+        virtualizeContainer.clientWidth
+      )
     : 0;
 
-  useEffect(() => {
-    if (contentWidth) {
-      setVirtualizeContainerWidth(contentWidth);
-    }
-  }, [contentWidth]);
-
-  useEffect(() => {
-    // wait for layout to settle, then re-render to measure the virtualize container
-    const timerId = setTimeout(forceRender, 100);
-
-    return () => clearTimeout(timerId);
-  }, [pageSize, virtualizeContainer, forceRender]);
-
-  // Use the content width of the virtualization container to take scroll bar into account
-  // If that's not possible, fall back to the width of the wrapper element
-  return virtualizeContainerWidth || gridWidth;
+  // If the virtualization container can't be measured yet, fall back to the width of the wrapper element
+  return contentWidth || gridWidth;
 };

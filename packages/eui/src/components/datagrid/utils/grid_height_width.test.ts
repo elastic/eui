@@ -8,27 +8,18 @@
 
 import { getVirtualizeContainerContentWidth } from './grid_height_width';
 
-const mockContainer = (offsetWidth: number, clientWidth: number) =>
-  ({ offsetWidth, clientWidth } as HTMLDivElement);
-
 describe('getVirtualizeContainerContentWidth', () => {
   it('rounds the fractional content width down instead of using the rounded clientWidth', () => {
-    // 740.625px scroller with an 11px vertical scroll bar: the real content
-    // width is 729.625px, while clientWidth rounds it up to 730px
-    expect(
-      getVirtualizeContainerContentWidth(mockContainer(741, 730), 740.625)
-    ).toEqual(729);
+    // A 729.625px content box reports a clientWidth of 730px
+    expect(getVirtualizeContainerContentWidth(729.625, 730)).toEqual(729);
   });
 
-  it('rounds the width down when there is no vertical scroll bar', () => {
-    expect(
-      getVirtualizeContainerContentWidth(mockContainer(501, 501), 500.6)
-    ).toEqual(500);
+  it('rounds down when a zoomed scroll bar leaves a fractional content width', () => {
+    // 500.4px container minus a 13.64px scroll bar at 110% zoom
+    expect(getVirtualizeContainerContentWidth(486.76, 487)).toEqual(486);
   });
 
-  it('falls back to clientWidth before the border-box width is known', () => {
-    expect(
-      getVirtualizeContainerContentWidth(mockContainer(501, 486), 0)
-    ).toEqual(486);
+  it('falls back to clientWidth before the content-box width is known', () => {
+    expect(getVirtualizeContainerContentWidth(0, 486)).toEqual(486);
   });
 });
