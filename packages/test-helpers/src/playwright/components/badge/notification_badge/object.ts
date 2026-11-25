@@ -30,8 +30,9 @@ export class EuiNotificationBadgeObject extends BaseObject {
     return (await this.root.innerText()).trim();
   }
 
-  /** The badge text as a number, `NaN` when it is not one. */
+  /** The badge text as a number, `NaN` when it is empty or not a number. */
   async getCount(): Promise<number> {
-    return Number(await this.getText());
+    const text = await this.getText();
+    return text === '' ? NaN : Number(text);
   }
 }
