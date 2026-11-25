@@ -7,6 +7,7 @@
  */
 
 import React, {
+  CSSProperties,
   HTMLAttributes,
   ReactNode,
   createContext,
@@ -53,9 +54,37 @@ const VirtualizedOuterElement = memo(
 );
 VirtualizedOuterElement.displayName = 'EuiCodeBlockVirtualizedOuterElement';
 
-// react-window's `style` must come after `codeProps`: it sets the block size
-// that establishes the list's scroll range, which a consumer `style` would
-// otherwise overwrite.
+// react-window owns the list's block size (which sets the scroll range) and
+// disables `pointerEvents` while scrolling. Consumer styles that constrain the
+// block size are dropped, and react-window's values come last so a consumer
+// reset such as `all: unset` can't clear them. Undefined values are skipped so
+// an idle list keeps the consumer's `pointerEvents`. The inline size doesn't
+// affect the scroll range, so a consumer `width`/`inlineSize` replaces the
+// list's default.
+const mergeListStyle = (
+  consumerStyle: CSSProperties | null | undefined,
+  listStyle: CSSProperties
+) => {
+  const {
+    height,
+    blockSize,
+    minHeight,
+    maxHeight,
+    minBlockSize,
+    maxBlockSize,
+    ...consumerRest
+  } = consumerStyle ?? {};
+  const hasConsumerInlineSize =
+    consumerRest.width != null || consumerRest.inlineSize != null;
+  const definedListStyle = Object.fromEntries(
+    Object.entries(logicalStyles(listStyle)).filter(
+      ([key, value]) =>
+        value !== undefined && !(hasConsumerInlineSize && key === 'inlineSize')
+    )
+  );
+  return { ...consumerRest, ...definedListStyle };
+};
+
 const VirtualizedInnerElement = memo(
   forwardRef<any, any>(({ style, ...props }, ref) => {
     const { codeProps, label } = useContext(VirtualizedElementPropsContext);
@@ -64,7 +93,7 @@ const VirtualizedInnerElement = memo(
         {label}
         <code
           {...codeProps}
-          style={logicalStyles(style)}
+          style={mergeListStyle(codeProps.style, style)}
           {...props}
           ref={ref}
         />
