@@ -56,9 +56,9 @@ VirtualizedOuterElement.displayName = 'EuiCodeBlockVirtualizedOuterElement';
 
 // react-window owns the list's block size (which sets the scroll range) and
 // disables `pointerEvents` while scrolling. Consumer styles that constrain the
-// block size are dropped, and react-window's values come last so a consumer
-// reset such as `all: unset` can't clear them. Undefined values are skipped so
-// an idle list keeps the consumer's `pointerEvents`. The inline size doesn't
+// block size and the `all` reset are dropped, and react-window's values come
+// last so a consumer property can't clear them. Undefined values are skipped
+// so an idle list keeps the consumer's `pointerEvents`. The inline size doesn't
 // affect the scroll range, so a consumer `width`/`inlineSize` replaces the
 // list's default.
 const mergeListStyle = (
@@ -66,6 +66,7 @@ const mergeListStyle = (
   listStyle: CSSProperties
 ) => {
   const {
+    all,
     height,
     blockSize,
     minHeight,

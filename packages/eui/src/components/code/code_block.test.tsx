@@ -342,11 +342,10 @@ describe('EuiCodeBlock', () => {
         );
       });
 
-      it('does not let a reset clear the list size', () => {
+      it('ignores a consumer all reset', () => {
         const { declarations } = renderCode({ all: 'unset' });
-        expect(declarations.indexOf('all')).toBeLessThan(
-          declarations.indexOf('block-size')
-        );
+        expect(declarations).not.toContain('all');
+        expect(declarations).toContain('block-size');
       });
 
       it.each([
@@ -376,6 +375,9 @@ describe('EuiCodeBlock', () => {
         expect(codeElement.style.blockSize).toBe(baseline);
         expect(codeElement.style.maxBlockSize).toBe('');
         expect(codeElement.style.minBlockSize).toBe('');
+        expect(codeElement.style.height).toBe('');
+        expect(codeElement.style.minHeight).toBe('');
+        expect(codeElement.style.maxHeight).toBe('');
       });
 
       it('renders when the style is null', () => {
