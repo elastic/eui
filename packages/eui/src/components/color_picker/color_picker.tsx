@@ -312,7 +312,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const saturationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
-  // Trap focus on the color picker popover and any controls added alongside it.
   const focusTrapShards = inputRef
     ? [prepend || append ? popoverRef : inputRef]
     : undefined;
@@ -357,10 +356,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const handleOutsideClick = (event: Event) => {
     if ('button' in event && event.button !== 0) return;
     const { target } = event;
-    // Let the picker handle clicks on its own trigger.
     if (target instanceof Node && popoverRef.current?.contains(target)) return;
-
-    // Report blur once when an outside click dismisses the picker.
     if (isClosingFromOutside.current) return;
     isClosingFromOutside.current = true;
     closeColorSelector();
@@ -632,7 +628,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'data-test-subj': 'euiColorPickerToggle',
       onClick: isColorSelectorShown ? handleFinalSelection : openColorSelector,
       onMouseDown: (event: MouseEvent<HTMLButtonElement>) => {
-        // Preserve focus until the user activates the button.
         event.preventDefault();
       },
       tabIndex: -1,
