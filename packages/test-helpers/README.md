@@ -64,7 +64,7 @@ their own version at runtime.
 | `EuiTextAreaObject` | [src/components/form/text_area/README.md](src/components/form/text_area/README.md) |
 | `EuiFieldNumberObject` | [src/components/form/field_number/README.md](src/components/form/field_number/README.md) |
 | `EuiFieldPasswordObject` | [src/components/form/field_password/README.md](src/components/form/field_password/README.md) |
-| `EuiRadioGroupObject` | [src/components/form/radio_group/README.md](src/components/form/radio_group/README.md) |
+| `EuiRadioGroupObject` | [src/components/form/radio/README.md](src/components/form/radio/README.md) |
 | `EuiFilePickerObject` | [src/components/form/file_picker/README.md](src/components/form/file_picker/README.md) |
 | `EuiFormRowObject` | [src/components/form/form_row/README.md](src/components/form/form_row/README.md) |
 | `EuiSelectObject` | [src/components/form/select/README.md](src/components/form/select/README.md) |

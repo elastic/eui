@@ -29,11 +29,13 @@ export class EuiTextAreaObject extends BaseObject {
 
   /**
    * Replace the text and wait for the textarea to hold exactly it. Fails if
-   * the app transforms the value, for example by trimming it.
+   * the app transforms the value, for example by trimming it. Browsers store
+   * `\r\n` as `\n`, so Windows line endings are normalized first.
    */
   async fill(text: string): Promise<void> {
-    await this.root.fill(text);
-    await expect(this.root).toHaveValue(text);
+    const normalized = text.replace(/\r\n/g, '\n');
+    await this.root.fill(normalized);
+    await expect(this.root).toHaveValue(normalized);
   }
 
   /** The current text of the textarea. */

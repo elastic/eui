@@ -43,6 +43,18 @@ test.describe('EuiRadioGroupObject', () => {
     await expect(group.input('Radio 2')).not.toBeChecked();
   });
 
+  test('getSelected works from a Locator scope', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const group = new EuiRadioGroupObject(
+      page.locator('#storybook-root'),
+      TEST_SUBJ
+    );
+
+    expect(await group.getSelected()).toBe('Radio 2');
+    await group.select('Radio 1');
+    expect(await group.getSelected()).toBe('Radio 1');
+  });
+
   test('getSelected is null without a selection', async ({ page }) => {
     await page.goto(`${PLAYGROUND_URL};idSelected:`);
     const group = new EuiRadioGroupObject(page, TEST_SUBJ);

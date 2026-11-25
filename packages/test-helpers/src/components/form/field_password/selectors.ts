@@ -18,6 +18,9 @@ export const EuiFieldPasswordSelectors = {
   /** The form control layout wrapping the input, the prepend and the append slots. */
   LAYOUT_SELECTOR: '.euiFormControlLayout',
 
-  /** The append slot. With `type="dual"` its last button is the visibility toggle. */
+  /** The append slot. With `type="dual"` EUI places the visibility toggle last in it. */
   APPEND_SELECTOR: '.euiFormControlLayout__append',
+
+  /** The eye button of a `type="dual"` field, an icon button inside its tooltip anchor. */
+  VISIBILITY_TOGGLE_SELECTOR: '.euiToolTipAnchor > .euiButtonIcon',
 };

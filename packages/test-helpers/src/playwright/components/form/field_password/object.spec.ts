@@ -48,12 +48,16 @@ test.describe('EuiFieldPasswordObject', () => {
     expect(await field.isMasked()).toBe(true);
   });
 
-  test('toggleVisibility finds the toggle after consumer append content', async ({
+  test('toggleVisibility skips a consumer append button, also from a Locator scope', async ({
     page,
   }) => {
-    await page.goto(`${PLAYGROUND_URL};type:dual;append:text`);
-    const field = new EuiFieldPasswordObject(page, TEST_SUBJ);
+    await page.goto(`${PLAYGROUND_URL};type:dual;append:button`);
+    const field = new EuiFieldPasswordObject(
+      page.locator('#storybook-root'),
+      TEST_SUBJ
+    );
 
+    await expect(page.getByRole('button', { name: 'Settings' })).toBeVisible();
     await field.toggleVisibility();
     expect(await field.isMasked()).toBe(false);
   });

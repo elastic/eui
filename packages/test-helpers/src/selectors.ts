@@ -46,7 +46,7 @@ import { EuiTreeViewSelectors } from './components/tree_view/selectors';
 import { EuiTextAreaSelectors } from './components/form/text_area/selectors';
 import { EuiFieldNumberSelectors } from './components/form/field_number/selectors';
 import { EuiFieldPasswordSelectors } from './components/form/field_password/selectors';
-import { EuiRadioGroupSelectors } from './components/form/radio_group/selectors';
+import { EuiRadioGroupSelectors } from './components/form/radio/selectors';
 import { EuiFilePickerSelectors } from './components/form/file_picker/selectors';
 
 /**

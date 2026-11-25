@@ -24,4 +24,4 @@ Set `data-test-subj` on `<EuiTextArea>`. EUI spreads it onto the native `<textar
 
 ## Deliberately excluded
 
-The `isClearable` button. `clear()` empties the textarea directly, the button is reachable through `selectors.textArea.CLEAR_BUTTON_TEST_SUBJ` when a test needs to click it. `icon`, `prepend` and `append` are consumer content outside the textarea, assert on them through `locator`.
+The `isClearable` button. `clear()` empties the textarea directly, the button is reachable through `selectors.textArea.CLEAR_BUTTON_TEST_SUBJ` when a test needs to click it. `icon` is decoration.

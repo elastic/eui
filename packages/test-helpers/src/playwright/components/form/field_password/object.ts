@@ -64,12 +64,19 @@ export class EuiFieldPasswordObject extends BaseObject {
     );
   }
 
-  /** EUI appends the toggle after any consumer `append` nodes, so it is the last button of the slot. */
+  /**
+   * The eye button lives in the append slot of the layout around the input.
+   * EUI places it after any consumer `append` nodes, so it is the last match.
+   */
   private get visibilityToggle(): Locator {
-    return this.scope
-      .locator(EuiFieldPasswordSelectors.LAYOUT_SELECTOR, { has: this.root })
+    return this.root
+      .locator(LAYOUT_ANCESTOR_XPATH)
       .locator(EuiFieldPasswordSelectors.APPEND_SELECTOR)
-      .getByRole('button')
+      .locator(EuiFieldPasswordSelectors.VISIBILITY_TOGGLE_SELECTOR)
       .last();
   }
 }
+
+/** Nearest ancestor carrying the exact `euiFormControlLayout` class token. */
+const LAYOUT_ANCESTOR_XPATH =
+  "xpath=ancestor::*[contains(concat(' ', normalize-space(@class), ' '), ' euiFormControlLayout ')][1]";

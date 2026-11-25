@@ -7,6 +7,7 @@ Playwright Component Object for [EuiFieldPassword](https://eui.elastic.co/docs/c
 ```ts
 import { EuiFieldPasswordObject } from '@elastic/eui-test-helpers';
 
+// <EuiFieldPassword type="dual" data-test-subj="myPassword" />
 const password = new EuiFieldPasswordObject(page, 'myPassword');
 await password.fill('hunter2');
 expect(await password.getValue()).toBe('hunter2');
@@ -16,7 +17,7 @@ expect(await password.isMasked()).toBe(false);
 
 Set `data-test-subj` on `<EuiFieldPassword>`. EUI spreads it onto the native `<input>`, which the component-type guard verifies. The input `type` is `password` while masked and `text` while shown.
 
-The eye button of a `type="dual"` field carries no test subject and an i18n label, so `toggleVisibility()` finds it as the last button of the append slot, where EUI places it after any consumer `append` content.
+The eye button of a `type="dual"` field carries no test subject and an i18n label, so `toggleVisibility()` finds it as the icon button in the append slot of the surrounding form control layout. EUI places it after any consumer `append` content.
 
 ## API
 

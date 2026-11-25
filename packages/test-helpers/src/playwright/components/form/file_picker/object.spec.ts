@@ -51,15 +51,30 @@ test.describe('EuiFilePickerObject', () => {
     await expect(picker.prompt).toHaveText('2 files selected');
   });
 
-  test('clear removes the files on both displays', async ({ page }) => {
+  test('clear removes the files on both displays, also from a Locator scope', async ({
+    page,
+  }) => {
     for (const display of ['large', 'default']) {
       await page.goto(`${PLAYGROUND_URL};display:${display}`);
-      const picker = new EuiFilePickerObject(page, TEST_SUBJ);
+      const picker = new EuiFilePickerObject(
+        page.locator('#storybook-root'),
+        TEST_SUBJ
+      );
 
       await picker.setFiles(file('logs.txt'));
       await picker.clear();
       expect(await picker.getFileNames()).toEqual([]);
       await expect(picker.prompt).toHaveText('Select or drag and drop a file');
     }
+  });
+
+  test('setFiles with an empty array clears the picker', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const picker = new EuiFilePickerObject(page, TEST_SUBJ);
+
+    await picker.setFiles(file('logs.txt'));
+    await picker.setFiles([]);
+    expect(await picker.getFileNames()).toEqual([]);
+    await expect(picker.prompt).toHaveText('Select or drag and drop a file');
   });
 });

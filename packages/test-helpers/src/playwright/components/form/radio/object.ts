@@ -9,7 +9,7 @@
 import { expect, type Locator } from '@playwright/test';
 
 import { BaseObject, type ObjectScope } from '../../../base_object';
-import { EuiRadioGroupSelectors } from '../../../../components/form/radio_group/selectors';
+import { EuiRadioGroupSelectors } from '../../../../components/form/radio/selectors';
 
 /**
  * Playwright Component Object for {@link
@@ -51,9 +51,10 @@ export class EuiRadioGroupObject extends BaseObject {
     const checkedItem = this.root
       .locator(EuiRadioGroupSelectors.ITEM_SELECTOR)
       .filter({
-        has: this.scope.locator(
-          `${EuiRadioGroupSelectors.INPUT_SELECTOR}:checked`
-        ),
+        // Page-relative so the filter also resolves under a `Locator` scope.
+        has: this.root
+          .page()
+          .locator(`${EuiRadioGroupSelectors.INPUT_SELECTOR}:checked`),
       });
     if ((await checkedItem.count()) === 0) return null;
     const label = await checkedItem

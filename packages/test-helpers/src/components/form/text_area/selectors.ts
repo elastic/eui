@@ -15,6 +15,6 @@ export const EuiTextAreaSelectors = {
   /** The `<textarea>` carrying the consumer's `data-test-subj`. */
   ROOT_SELECTOR: '.euiTextArea',
 
-  /** The clear button next to the textarea, rendered only with `isClearable` and a value. */
+  /** The clear button next to the textarea, rendered with `isClearable` even while empty. */
   CLEAR_BUTTON_TEST_SUBJ: 'clearTextAreaButton',
 };
