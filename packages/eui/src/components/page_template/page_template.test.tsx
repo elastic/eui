@@ -119,7 +119,7 @@ describe('EuiPageTemplate', () => {
         <EuiPageTemplate {...requiredProps}>
           <EuiPageTemplate.Sidebar />
           <EuiPageTemplate.Sidebar
-            // eslint-disable-next-line @elastic/eui/no-css-color -- the test asserts this literal color
+            // eslint-disable-next-line @elastic/eui/no-css-color -- test fixture for custom css; the color value is not asserted
             css={css`
               color: red;
             `}
