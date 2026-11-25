@@ -13,7 +13,7 @@ import { Props as EuiButtonProps } from '../button';
 
 export const EuiSplitButtonContext = createContext<
   EuiDisabledProps & {
-    size: NonNullable<EuiButtonProps['size']>;
+    size: Exclude<NonNullable<EuiButtonProps['size']>, 'xs'>;
     color: NonNullable<EuiButtonProps['color']>;
     fill: EuiButtonProps['fill'];
     isLoading?: EuiButtonProps['isLoading'];
