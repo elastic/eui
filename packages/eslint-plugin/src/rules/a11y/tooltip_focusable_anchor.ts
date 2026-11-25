@@ -17,21 +17,20 @@ const NON_INTERACTIVE_ELEMENTS = [
   'EuiText',
   'EuiImage',
   'EuiBadge',
-  'EuiBetaBadge'
+  'EuiBetaBadge',
 ];
 
-const INTERACTIVE_ATTRS = [
-  'tabIndex',
-  'href',
-  'onClick'
-];
+const INTERACTIVE_ATTRS = ['tabIndex', 'href', 'onClick'];
 
 export const TooltipFocusableAnchor = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     const isTooltipComponent = (node: TSESTree.JSXOpeningElement): boolean =>
-      node.name.type === 'JSXIdentifier' && node.name.name === TOOL_TIP_COMPONENT;
+      node.name.type === 'JSXIdentifier' &&
+      node.name.name === TOOL_TIP_COMPONENT;
 
-    const hasInteractiveAttribute = (node: TSESTree.JSXOpeningElement): boolean =>
+    const hasInteractiveAttribute = (
+      node: TSESTree.JSXOpeningElement
+    ): boolean =>
       node.attributes.some(
         (attr) =>
           attr.type === 'JSXAttribute' &&
@@ -65,38 +64,42 @@ export const TooltipFocusableAnchor = ESLintUtils.RuleCreator.withoutDocs({
 
         const childName = firstChild.name.name;
 
-        if (isNonInteractiveElement(childName) && !hasInteractiveAttribute(firstChild)) {
+        if (
+          isNonInteractiveElement(childName) &&
+          !hasInteractiveAttribute(firstChild)
+        ) {
           context.report({
             node: firstChild,
             messageId: 'requiresFocusableAnchor',
             data: {
               element: childName,
-              toolTipComponent: TOOL_TIP_COMPONENT
-            }
+              toolTipComponent: TOOL_TIP_COMPONENT,
+            },
           });
         }
-      }
+      },
     };
   },
   meta: {
     type: 'problem',
     docs: {
-      description: 'Ensure {{ toolTipComponent }} components are anchored to focusable elements'
+      description:
+        'Ensure {{ toolTipComponent }} components are anchored to focusable elements',
     },
     schema: [],
     messages: {
       requiresFocusableAnchor: [
         '{{ element }} inside {{ toolTipComponent }} must be focusable for accessibility.',
         'Option 1: Add tabIndex attribute to make the element keyboard focusable:',
-        '  <{{ toolTipComponent }} content=\'...\'>',
+        "  <{{ toolTipComponent }} content='...'>",
         '    <{{ element }} tabIndex={0}>...</{{ element }}>',
         '  </{{ toolTipComponent }}>',
         'Option 2 (Preferred): Use an interactive component instead:',
-        '  <{{ toolTipComponent }} content=\'...\'>',
+        "  <{{ toolTipComponent }} content='...'>",
         '    <EuiButton>...</EuiButton>',
-        '  </{{ toolTipComponent }}>'
-      ].join('\n')
-    }
+        '  </{{ toolTipComponent }}>',
+      ].join('\n'),
+    },
   },
-  defaultOptions: []
+  defaultOptions: [],
 });

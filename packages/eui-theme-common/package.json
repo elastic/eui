@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-common",
-  "version": "10.1.0",
+  "version": "10.2.0",
   "description": "EUI theme common",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -15,8 +15,7 @@
     "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
     "test": "yarn test-unit",
-    "test-unit": "jest ./src --passWithNoTests",
-    "pre-push": "yarn lint && yarn test"
+    "test-unit": "jest ./src --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -26,7 +25,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.202",
     "chroma-js": "^2.4.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.18.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
@@ -45,7 +44,6 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-local": "^1.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.7.0",

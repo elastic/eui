@@ -33,8 +33,8 @@ const render = ({ ...args }) => (
   <EuiHeader position="fixed">
     <EuiHeaderSection side="right">
       <EuiHeaderSectionItem>
-        <EuiHeaderSectionItemButton {...args}>
-          <EuiIcon type="magnify" size="m" />
+        <EuiHeaderSectionItemButton {...args} aria-label="Search">
+          <EuiIcon type="magnify" size="m" aria-hidden={true} />
         </EuiHeaderSectionItemButton>
       </EuiHeaderSectionItem>
       <EuiHeaderSectionItem>
@@ -43,8 +43,8 @@ const render = ({ ...args }) => (
         </EuiHeaderSectionItemButton>
       </EuiHeaderSectionItem>
       <EuiHeaderSectionItem>
-        <EuiHeaderSectionItemButton {...args}>
-          <EuiIcon type="apps" size="m" />
+        <EuiHeaderSectionItemButton {...args} aria-label="Apps">
+          <EuiIcon type="apps" size="m" aria-hidden={true} />
         </EuiHeaderSectionItemButton>
       </EuiHeaderSectionItem>
     </EuiHeaderSection>
@@ -87,8 +87,12 @@ const RenderWithAnimationRef: FunctionComponent = () => {
       </EuiHeaderSection>
       <EuiHeaderSection side="right">
         <EuiHeaderSectionItem>
-          <EuiHeaderSectionItemButton notification ref={buttonRef}>
-            <EuiIcon type="bell" size="m" />
+          <EuiHeaderSectionItemButton
+            notification
+            ref={buttonRef}
+            aria-label="Notifications"
+          >
+            <EuiIcon type="bell" size="m" aria-hidden={true} />
           </EuiHeaderSectionItemButton>
         </EuiHeaderSectionItem>
       </EuiHeaderSection>

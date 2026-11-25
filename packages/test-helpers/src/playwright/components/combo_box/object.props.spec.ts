@@ -25,7 +25,10 @@ import { storyUrl } from '../../../storybook';
 const TEST_SUBJ = 'testComboBox';
 
 const playgroundUrl = (extraArgs: string) =>
-  storyUrl('forms-euicombobox--playground', `data-test-subj:${TEST_SUBJ};${extraArgs}`);
+  storyUrl(
+    'forms-euicombobox--playground',
+    `data-test-subj:${TEST_SUBJ};${extraArgs}`
+  );
 
 const PLAIN_TEXT_STORY_URL = storyUrl('forms-euicombobox--as-plain-text');
 const ON_CREATE_OPTION_STORY_URL = storyUrl(
@@ -76,7 +79,9 @@ test.describe('EuiComboBoxObject — singleSelection=true', () => {
     await comboBox.setSelectedOptions(['Item 2']);
 
     await expect(
-      comboBox.locator.locator(EuiComboBoxSelectors.PILL_SELECTOR).locator('button')
+      comboBox.locator
+        .locator(EuiComboBoxSelectors.PILL_SELECTOR)
+        .locator('button')
     ).toHaveCount(0);
   });
 });
@@ -133,7 +138,9 @@ test.describe('EuiComboBoxObject — singleSelection=asPlainText', () => {
       .getByTestId(EuiComboBoxSelectors.OPTIONS_LIST_TOGGLE_BUTTON_TEST_SUBJ)
       .click();
     // Waits for React to process the toggle click before reading selection state.
-    await expect(page.getByTestId(TEST_SUBJ)).toHaveClass(/euiComboBox-isInvalid/);
+    await expect(page.getByTestId(TEST_SUBJ)).toHaveClass(
+      /euiComboBox-isInvalid/
+    );
     expect(await comboBox.getSelectedOptions()).toEqual([]);
   });
 });

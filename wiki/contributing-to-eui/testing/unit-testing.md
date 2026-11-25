@@ -1,6 +1,6 @@
 # Unit testing
 
-EUI unit tests run on Jest. New tests should be written with [React Testing Library (RTL)](https://testing-library.com/docs/react-testing-library/intro/). A subset of legacy tests still uses [Enzyme](https://enzymejs.github.io/enzyme/) and is being migrated — see [Legacy: Enzyme](#legacy-enzyme) below.
+EUI unit tests run on Jest and are written with [React Testing Library (RTL)](https://testing-library.com/docs/react-testing-library/intro/).
 
 ## Running tests
 
@@ -42,16 +42,15 @@ The [`packages/eui/src/test`](/packages/eui/src/test) module exports functions a
 
 ### Test helper naming pattern
 
-If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
+If the test helper uses libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
 
-## Legacy: Enzyme
+## Enzyme helpers for consumers
 
-EUI is migrating away from Enzyme. **Do not write new Enzyme tests** — use RTL (see [Test helpers](#test-helpers) above). The helpers below exist only to support existing Enzyme tests until the migration completes:
+EUI's own tests don't use [Enzyme](https://enzymejs.github.io/enzyme/), and Enzyme is not installed in this repo. Don't write Enzyme tests. The following helpers remain exported from `@elastic/eui/lib/test` for consuming projects that still use Enzyme:
 
 * `findTestSubject` helps you find DOM nodes in mounted components.
 * `takeMountedSnapshot` generates a snapshot of a mounted component.
-
-When touching a legacy Enzyme test, prefer porting it to RTL if the change is non-trivial.
+* `setupEuiEnzymeMatchers` (from `@elastic/eui/lib/test/enzyme`) registers the `toHaveEuiDisabledProp` matcher.
 
 ## Test design
 
@@ -60,6 +59,11 @@ When touching a legacy Enzyme test, prefer porting it to RTL if the change is no
 * DO use the `data-test-subj` attribute to mark parts of a component you want to `find` later.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T use snapshots, except for an initial `it renders` test. Prefer using specific assertions instead.
+* DO assert on what users get: rendered output, focus, ARIA state. A test should fail if the behavior breaks.
+* DON'T spy on internals. Those tests break on refactors and miss real bugs.
+* DO use Jest fake timers. DON'T wait on real time. With `userEvent`, use `userEvent.setup({ advanceTimers: jest.advanceTimersByTime })`, or interactions hang.
+* DO clean up shared state in `afterEach`, so a failing test doesn't affect others.
+* DO prefer `userEvent` over `fireEvent` in new tests.
 
 ### Anatomy of a test
 

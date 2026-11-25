@@ -47,7 +47,10 @@ export const runScriptOnWorkspaces = async (
   );
 };
 
-export const updateWorkspaceVersion = async (workspace: string, version: string) => {
+export const updateWorkspaceVersion = async (
+  workspace: string,
+  version: string
+) => {
   return execPromise(`yarn workspace ${workspace} version ${version}`);
 };
 
@@ -72,7 +75,7 @@ export interface YarnPackDetails {
   output: string;
 }
 
-export const yarnPack = async (workspace: string)=> {
+export const yarnPack = async (workspace: string) => {
   const result = await execPromise(`yarn workspace ${workspace} pack --json`);
   const rawDetails = JSON.parse(
     `[${result.stdout.replace(/\n/g, ',').slice(0, -1)}]`
@@ -98,7 +101,7 @@ export const yarnPack = async (workspace: string)=> {
   if (!details.base) {
     throw new Error(
       'yarn pack did not return the base path for the workspace. ' +
-        'This likely means that the command\'s JSON output changed format. ' +
+        "This likely means that the command's JSON output changed format. " +
         'Please check the current yarn pack API and update the code '
     );
   }
@@ -106,7 +109,7 @@ export const yarnPack = async (workspace: string)=> {
   if (!details.output) {
     throw new Error(
       'yarn pack did not return the path for the output tgz archive. ' +
-        'This likely means that the command\'s JSON output changed format. ' +
+        "This likely means that the command's JSON output changed format. " +
         'Please check the current yarn pack API and update the code '
     );
   }
@@ -151,9 +154,11 @@ export const getYarnRegistryServer = async () => {
     }
 
     return output;
-  }
+  };
 
-  const scopedOutput = await getOutput(`yarn config get 'npmScopes["elastic"].npmRegistryServer' --json`);
+  const scopedOutput = await getOutput(
+    `yarn config get 'npmScopes["elastic"].npmRegistryServer' --json`
+  );
   if (scopedOutput !== null) {
     return scopedOutput;
   }

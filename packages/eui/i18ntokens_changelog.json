@@ -1,5 +1,30 @@
 [
   {
+    "version": "123.6.0",
+    "changes": [
+      {
+        "token": "euiExpression.invalid",
+        "changeType": "added",
+        "value": "Invalid expression"
+      }
+    ]
+  },
+  {
+    "version": "123.4.0",
+    "changes": [
+      {
+        "token": "euiFlyoutMenu.maximize",
+        "changeType": "added",
+        "value": "Maximize"
+      },
+      {
+        "token": "euiFlyoutMenu.restore",
+        "changeType": "added",
+        "value": "Restore"
+      }
+    ]
+  },
+  {
     "version": "122.0.0",
     "changes": [
       {

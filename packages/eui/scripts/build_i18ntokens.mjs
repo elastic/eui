@@ -44,7 +44,9 @@ async function main() {
 
   await fs.writeFile(tokensChangelogPath, JSON.stringify(changelog, null, 2));
 
-  console.log('[i18ntokens] Updated i18ntokens.json and i18ntokens_changelog.json');
+  console.log(
+    '[i18ntokens] Updated i18ntokens.json and i18ntokens_changelog.json'
+  );
 }
 
 await main();

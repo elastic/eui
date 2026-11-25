@@ -16,6 +16,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
         class="euiRadio__circle emotion-euiRadio__circle-unselected"
       >
         <span
+          aria-hidden="true"
           class="emotion-euiRadio__icon"
           data-euiicon-type="empty"
         />
@@ -58,6 +59,7 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
           class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
         >
           <span
+            aria-hidden="true"
             class="emotion-euiCheckbox__icon-check"
             data-euiicon-type="empty"
             role="presentation"
@@ -100,6 +102,7 @@ exports[`EuiCheckableCard renders children 1`] = `
         class="euiRadio__circle emotion-euiRadio__circle-unselected"
       >
         <span
+          aria-hidden="true"
           class="emotion-euiRadio__icon"
           data-euiicon-type="empty"
         />
@@ -147,6 +150,7 @@ exports[`EuiCheckableCard renders disabled 1`] = `
         class="euiRadio__circle emotion-euiRadio__circle-disabled-unselected"
       >
         <span
+          aria-hidden="true"
           class="emotion-euiRadio__icon"
           data-euiicon-type="empty"
         />
@@ -187,6 +191,7 @@ exports[`EuiCheckableCard renders panel props 1`] = `
         class="euiRadio__circle emotion-euiRadio__circle-unselected"
       >
         <span
+          aria-hidden="true"
           class="emotion-euiRadio__icon"
           data-euiicon-type="empty"
         />

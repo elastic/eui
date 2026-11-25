@@ -146,7 +146,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
                       onClick={onMenuButtonClick}
                       {...popoverButtonRest}
                     >
-                      <EuiIcon type={iconType} size="m" />
+                      <EuiIcon type={iconType} size="m" aria-hidden={true} />
                     </EuiHeaderSectionItemButton>
                   )}
                 </EuiI18n>

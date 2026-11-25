@@ -346,12 +346,7 @@ class _Sizes extends Component<WithEuiThemeProps, State> {
 </Chart>`}
           >
             {(copy) => (
-              <EuiButton
-                fill
-                onClick={copy}
-                iconType="copy"
-                disabled={false}
-              >
+              <EuiButton fill onClick={copy} iconType="copy" disabled={false}>
                 {false
                   ? "Bad chart, don't copy"
                   : 'Copy code of current configuration'}

@@ -110,7 +110,7 @@ const Flyout = (props: EuiHeaderAlertProps) => {
             onClick={() => setIsFlyoutVisible(true)}
             notification={true}
           >
-            <EuiIcon type="bell" />
+            <EuiIcon type="bell" aria-hidden={true} />
           </EuiHeaderSectionItemButton>
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
@@ -150,7 +150,7 @@ const Popover = (props: any) => {
                 onClick={() => setIsPopoverVisible(true)}
                 notification={6}
               >
-                <EuiIcon type="popper" />
+                <EuiIcon type="popper" aria-hidden={true} />
               </EuiHeaderSectionItemButton>
             }
             isOpen={isPopoverVisible}

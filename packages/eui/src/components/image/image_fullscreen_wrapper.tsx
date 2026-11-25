@@ -93,7 +93,12 @@ export const EuiImageFullScreenWrapper: FunctionComponent<
           />
         </figure>
         {/* Must be outside the `figure` element in order to escape the translateY transition. see https://www.w3.org/TR/css-transforms-1/#transform-rendering */}
-        <EuiIcon type="fullScreenExit" color="ghost" css={cssIconStyles} />
+        <EuiIcon
+          type="fullScreenExit"
+          color="ghost"
+          css={cssIconStyles}
+          aria-hidden={true}
+        />
       </EuiFocusTrap>
     </EuiOverlayMask>
   );

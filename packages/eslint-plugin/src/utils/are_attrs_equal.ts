@@ -8,7 +8,9 @@
 
 const normalizeAttrString = (str?: string) => str?.trim().replace(/\s+/g, ' ');
 
-export const areAttrsEqual = (...strings: Array<string | undefined>): boolean => {
+export const areAttrsEqual = (
+  ...strings: Array<string | undefined>
+): boolean => {
   const [first, ...rest] = strings.map(normalizeAttrString);
   return rest.every((s) => s === first);
 };

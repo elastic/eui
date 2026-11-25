@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-borealis",
-  "version": "8.1.0",
+  "version": "8.3.0",
   "description": "A visual theme for EUI",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -18,8 +18,7 @@
     "lint-es": "eslint --cache \"src/**/*.ts\" --max-warnings 0",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
     "test": "yarn test-unit",
-    "test-unit": "jest ./src --passWithNoTests",
-    "pre-push": "yarn build:workspaces && yarn lint && yarn test"
+    "test-unit": "jest ./src --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -45,7 +44,6 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-local": "^1.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.7.0",

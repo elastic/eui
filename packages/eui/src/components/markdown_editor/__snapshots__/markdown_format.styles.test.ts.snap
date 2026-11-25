@@ -40,12 +40,12 @@ exports[`euiMarkdownFormat text colors accent 1`] = `
 exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #008B87;
+      border-inline-start-color: #00806B;
     }
 
     .euiHorizontalRule {
-      background-color: #008B87;
-      color: #008B87; /* ensure that firefox gets the currentColor */
+      background-color: #00806B;
+      color: #00806B; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -56,20 +56,20 @@ exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #008B87;
+      border-inline-start: 1px solid #00806B;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #008B87;
+      border-block: 1px solid #00806B;
 
       &:last-child {
-        border-inline-end: 1px solid #008B87;
+        border-inline-end: 1px solid #00806B;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #008B87;
+      border-block-start: 1px solid #00806B;
     }
   ;label:accentSecondary;"
 `;

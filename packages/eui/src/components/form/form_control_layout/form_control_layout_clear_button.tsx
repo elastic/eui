@@ -51,6 +51,7 @@ export const EuiFormControlLayoutClearButton: FunctionComponent<
         className="euiFormControlLayoutClearButton__icon"
         type="cross"
         size={size}
+        aria-hidden={true}
       />
     </button>
   );

@@ -407,6 +407,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
                 class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
               >
                 <span
+                  aria-hidden="true"
                   color="danger"
                   data-euiicon-type="warning"
                 />
@@ -805,6 +806,7 @@ exports[`EuiInlineEditForm read mode placeholder 1`] = `
         This is a placeholder.
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -836,6 +838,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -877,6 +880,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
         Hello World!
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -913,6 +917,7 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
         Hello World!
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />

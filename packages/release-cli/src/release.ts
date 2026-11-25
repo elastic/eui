@@ -17,7 +17,11 @@ import { stepBuildPackages } from './steps/build_packages';
 import { stepUpdateVersions } from './steps/update_versions';
 import { stepCheckWorkspaces } from './steps/check_workspaces';
 import { stepPublish } from './steps/publish';
-import { stepRunPreScripts, stepRunPostScripts, stepRunGlobalPostScripts } from './steps/run_pre_post_scripts';
+import {
+  stepRunPreScripts,
+  stepRunPostScripts,
+  stepRunGlobalPostScripts,
+} from './steps/run_pre_post_scripts';
 
 export const ReleaseType = ['official', 'snapshot'] as const;
 export type ReleaseType = (typeof ReleaseType)[number];
@@ -39,7 +43,9 @@ export const release = async (options: ReleaseOptions) => {
   const { dryRun, type, logger } = options;
 
   if (dryRun) {
-    logger.warning('--dry-run is enabled. No packages will be published to the npm registry');
+    logger.warning(
+      '--dry-run is enabled. No packages will be published to the npm registry'
+    );
   }
 
   // Process tag
@@ -54,8 +60,8 @@ export const release = async (options: ReleaseOptions) => {
     if (options.tag !== 'latest') {
       logger.warning(
         `A custom tag "${options.tag}" was provided for the official` +
-        ` release type. This should be used only for special releases like` +
-        ` backports. Stop here if you don't know what you're doing!`
+          ` release type. This should be used only for special releases like` +
+          ` backports. Stop here if you don't know what you're doing!`
       );
     }
   } else if (type === 'snapshot') {
@@ -68,20 +74,26 @@ export const release = async (options: ReleaseOptions) => {
       options.tag = 'snapshot';
     }
   } else {
-    throw new ValidationError('Unknown release type. Please choose `official` or `snapshot`');
+    throw new ValidationError(
+      'Unknown release type. Please choose `official` or `snapshot`'
+    );
   }
 
   if (options.useAuthToken) {
     logger.warning('Using npmjs auth token');
   } else if (options.skipPrompts) {
-    throw new ValidationError('Skipping prompts is not allowed when not using auth tokens');
+    throw new ValidationError(
+      'Skipping prompts is not allowed when not using auth tokens'
+    );
   }
 
   if (options.skipUpdateVersions) {
     logger.warning('--skip-update-versions is set');
 
     if (!options.workspaces?.length) {
-      throw new ValidationError('--workspaces must be set when --skip-update-version is used');
+      throw new ValidationError(
+        '--workspaces must be set when --skip-update-version is used'
+      );
     }
   }
 
@@ -118,13 +130,19 @@ export const release = async (options: ReleaseOptions) => {
 
   await stepInitChecks(options);
 
-  const changedWorkspaces = await stepUpdateVersions(options, currentWorkspaces);
+  const changedWorkspaces = await stepUpdateVersions(
+    options,
+    currentWorkspaces
+  );
 
   await stepBuildPackages(options, changedWorkspaces);
 
   await stepRunPreScripts(options, changedWorkspaces);
 
-  const publishableWorkspaces = await stepCheckWorkspaces(options, changedWorkspaces);
+  const publishableWorkspaces = await stepCheckWorkspaces(
+    options,
+    changedWorkspaces
+  );
 
   await stepPublish(options, publishableWorkspaces);
 

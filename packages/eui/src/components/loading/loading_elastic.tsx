@@ -34,7 +34,7 @@ export const EuiLoadingElastic: FunctionComponent<
       aria-label={ariaLabel || defaultLabel}
       {...rest}
     >
-      <EuiIcon type="logoElastic" size={size} />
+      <EuiIcon type="logoElastic" size={size} aria-hidden={true} />
     </span>
   );
 };

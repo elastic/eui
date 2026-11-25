@@ -17,7 +17,11 @@ import React, {
 } from 'react';
 import { css } from '@emotion/react';
 import { flushSync } from 'react-dom';
-import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import {
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+  useLatest,
+} from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { useResizeObserver } from '../../observer/resize_observer';
 import {
@@ -89,6 +93,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       level,
       size: sizeProp,
       minWidth,
+      resizable,
       historyKey,
       css: customCss,
       flyoutMenuProps: _flyoutMenuProps,
@@ -107,6 +112,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       closeFlyout,
       closeAllFlyouts,
       setFlyoutWidth,
+      setFlyoutResizable,
       goBack,
       historyItems: _historyItems,
       state: managerState,
@@ -236,6 +242,11 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       isBackgroundedMain ? closeFlyout(flyoutId) : closeAllFlyouts();
     }, [level, flyoutId, closeFlyout, closeAllFlyouts]);
 
+    // Toggling `resizable` must not re-register the flyout, because that closes
+    // its session, so registration reads it from a ref and the effect below
+    // keeps the manager up to date
+    const resizableRef = useLatest(resizable);
+
     // Register with flyout manager context when open, remove when closed
     // Using useLayoutEffect to run synchronously before DOM updates
     useLayoutEffect(() => {
@@ -246,7 +257,8 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
         size as string,
         level === LEVEL_MAIN ? historyKey : undefined,
         _flyoutMenuProps?.iconType,
-        typeof minWidth === 'number' ? minWidth : undefined
+        typeof minWidth === 'number' ? minWidth : undefined,
+        !!resizableRef.current
       );
 
       return () => {
@@ -278,7 +290,12 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       _flyoutMenuProps?.iconType,
       addFlyout,
       closeOwnFlyouts,
+      resizableRef,
     ]);
+
+    useLayoutEffect(() => {
+      setFlyoutResizable(flyoutId, !!resizable);
+    }, [flyoutId, resizable, setFlyoutResizable]);
 
     // Detect when flyout has been removed from manager state (e.g., via Back button)
     // and trigger onClose callback to notify the parent component
@@ -344,7 +361,9 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
       }
     };
 
-    // Update width in manager state when it changes
+    // Update width in manager state when it changes. Maximize and restore
+    // write the new width before paint (see `EuiFlyoutComponent`), so this
+    // only runs on measurements, never on the toggle itself.
     useEffect(() => {
       if (isActive && width) {
         setFlyoutWidth(flyoutId, width);
@@ -420,6 +439,7 @@ export const EuiManagedFlyout = forwardRef<HTMLElement, EuiManagedFlyoutProps>(
               onClose,
               size,
               minWidth,
+              resizable,
               flyoutMenuProps,
               onAnimationEnd,
               [PROPERTY_FLYOUT]: true,

@@ -19,6 +19,8 @@ If you are having a problem with EUI, [file an issue](https://github.com/elastic
 
 If you want to contribute a fix for an issue that affects you, comment on that issue with a proposed solution. We can discuss it there. If we agree, we will add the `help wanted` label.
 
+Opening an issue doesn't open it for contribution. Wait for the `help wanted` label before you start on a PR; PRs for issues without it are closed automatically.
+
 ## What not to contribute
 
 Unless agreed upon previously:
@@ -30,6 +32,8 @@ Unless agreed upon previously:
 ## How to contribute
 
 We do not assign issues to community members. Comment on the `help wanted` issue before you start so others know you are working on it.
+
+Link the issue in your PR description with a closing keyword, e.g. `Fixes #123`, `Closes #123` or `Resolves #123`. We automatically close community PRs that don't close an open `help wanted` issue. Mentions like "related to #123", closed issues and other PRs don't count. Edit the description of the closed PR to add the link, and we'll reopen it automatically.
 
 ## Typical change flow
 
@@ -79,6 +83,9 @@ A few labels carry behavior beyond categorization:
 - `skip-changelog` — bypasses the CI changelog check for all packages. See [Changelogs](./documenting/changelogs.md) for when this is acceptable.
 - `skip-changelog-<package-name>` — bypasses the check for a single package only (e.g. `skip-changelog-eslint-plugin-eui`).
 - `breaking change` — required for PRs introducing breaking changes; triggers an automated comment with extra due-diligence steps for the Kibana upgrade.
+- `libra-skip` — skips automatic [Libra](https://libra.kibana.dev) reviews.
+- `libra-review-draft` — lets Libra review a draft PR. Libra skips drafts otherwise.
+- `release` — marks release PRs. Libra skips them.
 
 ## Verifying your change
 

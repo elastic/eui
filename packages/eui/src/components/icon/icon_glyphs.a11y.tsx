@@ -199,14 +199,21 @@ describe('EuiIcons', () => {
     const GlyphGrid = () => (
       <div>
         {GlyphIcons.map((glyph) => (
-          <EuiIcon className="eui-alignMiddle" type={glyph} />
+          <EuiIcon
+            className="eui-alignMiddle"
+            type={glyph}
+            title={glyph === 'empty' ? undefined : glyph}
+            aria-hidden={glyph === 'empty' ? true : undefined}
+          />
         ))}
       </div>
     );
 
     it('has zero violations on first render', () => {
       cy.mount(<GlyphGrid />);
-      cy.get('svg[data-icon-type="wrench"]', { timeout: 5000 }).should('exist');
+      cy.get('div[data-cy-root]')
+        .find('svg > title', { timeout: 5000 })
+        .should('have.length', GlyphIcons.length - 1);
       cy.checkAxe();
     });
   });

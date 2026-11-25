@@ -21,7 +21,7 @@ import { Args, StoryContext } from '@storybook/react';
 import * as prettier from 'prettier';
 import tsParser from 'prettier/parser-typescript';
 
-import basePrettierConfig from '../../../../.prettierrc.json';
+import basePrettierConfig from '../../../../../../.prettierrc.json';
 import {
   ADDON_PARAMETER_KEY,
   EMOTION_LABEL_KEY,

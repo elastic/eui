@@ -1,6 +1,6 @@
 ---
 id: docs-and-changelog
-description: Reviews changelog entries, website docs and stories
+description: Reviews changelogs, docs, stories and prop JSDoc
 apply_to:
   - "packages/*/changelogs/upcoming/**"
   - "packages/website/docs/**"
@@ -8,9 +8,8 @@ apply_to:
   - "wiki/**"
 can_block: false
 ---
-Changelog entries must describe the consumer-visible effect accurately and use
-`**` subheadings for bug fixes, deprecations and breaking changes, per
-`packages/eui/changelogs/upcoming/_template.md`. Docs and stories should
-reflect new or changed props. Flag factual errors, examples that would not work
-as written, and breaking changes missing from the changelog; do not comment on
-tense, casing or prose style.
+Flag changelog entries that break the wiki's changelog rules (`wiki/contributing-to-eui/documenting/changelogs.md`) and missing breaking changes. Skip tense, verb choice and other wording.
+
+Flag docs, stories and JSDoc that are wrong or missing, as `AGENTS.md` defines. Suggest the text. Skip prose style.
+
+Only comment on changelogs, docs, stories, wiki and prop JSDoc.

@@ -64,9 +64,11 @@ export class EuiSelectableObject extends BaseObject {
   async selectOption(label: string): Promise<void> {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const labelText = new RegExp(`^${escaped}(\\s*\\..*)?$`);
-    const option = this.root
-      .getByRole('option')
-      .filter({ has: this.root.page().locator('.euiSelectableListItem__text', { hasText: labelText }) });
+    const option = this.root.getByRole('option').filter({
+      has: this.root
+        .page()
+        .locator('.euiSelectableListItem__text', { hasText: labelText }),
+    });
     const [ariaChecked, ariaSelected] = await Promise.all([
       option.getAttribute('aria-checked'),
       option.getAttribute('aria-selected'),

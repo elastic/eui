@@ -127,12 +127,13 @@ jobs:
         id: cherry_pick
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EUI_REF: ${{ inputs.eui_ref }}
         # language=bash
         run: |
           set -euo pipefail
 
-          content=$(gh api repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
-            --jq '.content' | base64 -d)
+          content=$(gh api -X GET repos/elastic/eui/contents/packages/release-cli/kibana-prep-commits \
+            -f ref="$EUI_REF" --jq '.content' | base64 -d)
 
           # @previous first, then @next. Unsectioned URLs count as @next.
           prep_commits=$(awk '

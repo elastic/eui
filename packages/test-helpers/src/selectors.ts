@@ -8,27 +8,46 @@
 
 import { EuiAccordionSelectors } from './components/accordion/selectors';
 import { EuiBasicTableSelectors } from './components/basic_table/selectors';
+import { EuiButtonSelectors } from './components/button/selectors';
+import { EuiButtonEmptySelectors } from './components/button/button_empty/selectors';
+import { EuiButtonGroupSelectors } from './components/button/button_group/selectors';
+import { EuiButtonIconSelectors } from './components/button/button_icon/selectors';
 import { EuiCallOutSelectors } from './components/call_out/selectors';
+import { EuiCardSelectors } from './components/card/selectors';
+import { EuiCheckboxSelectors } from './components/form/checkbox/selectors';
 import { EuiColorPickerSelectors } from './components/color_picker/selectors';
 import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
 import { EuiDataGridSelectors } from './components/datagrid/selectors';
 import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
+import { EuiEmptyPromptSelectors } from './components/empty_prompt/selectors';
 import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
+import { EuiFieldTextSelectors } from './components/form/field_text/selectors';
+import { EuiFormRowSelectors } from './components/form/form_row/selectors';
 import { EuiFilterButtonSelectors } from './components/filter_button/selectors';
 import { EuiFlyoutSelectors } from './components/flyout/selectors';
+import { EuiLinkSelectors } from './components/link/selectors';
+import { EuiMarkdownEditorSelectors } from './components/markdown_editor/selectors';
 import { EuiModalSelectors } from './components/modal/selectors';
 import { EuiPaginationSelectors } from './components/pagination/selectors';
 import { EuiPopoverSelectors } from './components/popover/selectors';
 import { EuiRangeSelectors } from './components/form/range/selectors';
 import { EuiSearchBarSelectors } from './components/search_bar/selectors';
+import { EuiSelectSelectors } from './components/form/select/selectors';
 import { EuiSelectableSelectors } from './components/selectable/selectors';
 import { EuiSideNavSelectors } from './components/side_nav/selectors';
 import { EuiSuperSelectSelectors } from './components/form/super_select/selectors';
+import { EuiSwitchSelectors } from './components/form/switch/selectors';
 import { EuiTableSelectors } from './components/table/selectors';
+import { EuiTabsSelectors } from './components/tabs/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
 import { EuiToolTipSelectors } from './components/tool_tip/selectors';
 import { EuiTreeViewSelectors } from './components/tree_view/selectors';
+import { EuiTextAreaSelectors } from './components/form/text_area/selectors';
+import { EuiFieldNumberSelectors } from './components/form/field_number/selectors';
+import { EuiFieldPasswordSelectors } from './components/form/field_password/selectors';
+import { EuiRadioGroupSelectors } from './components/form/radio/selectors';
+import { EuiFilePickerSelectors } from './components/form/file_picker/selectors';
 
 /**
  * Stable selectors of every Component Object, keyed by component.
@@ -39,25 +58,44 @@ import { EuiTreeViewSelectors } from './components/tree_view/selectors';
 export const selectors = {
   accordion: EuiAccordionSelectors,
   basicTable: EuiBasicTableSelectors,
+  button: EuiButtonSelectors,
+  buttonEmpty: EuiButtonEmptySelectors,
+  buttonGroup: EuiButtonGroupSelectors,
+  buttonIcon: EuiButtonIconSelectors,
   callOut: EuiCallOutSelectors,
+  card: EuiCardSelectors,
+  checkbox: EuiCheckboxSelectors,
   colorPicker: EuiColorPickerSelectors,
   comboBox: EuiComboBoxSelectors,
   contextMenu: EuiContextMenuSelectors,
   dataGrid: EuiDataGridSelectors,
   draggable: EuiDraggableSelectors,
+  emptyPrompt: EuiEmptyPromptSelectors,
   fieldSearch: EuiFieldSearchSelectors,
+  fieldText: EuiFieldTextSelectors,
   filterButton: EuiFilterButtonSelectors,
   flyout: EuiFlyoutSelectors,
+  formRow: EuiFormRowSelectors,
+  link: EuiLinkSelectors,
+  markdownEditor: EuiMarkdownEditorSelectors,
   modal: EuiModalSelectors,
   pagination: EuiPaginationSelectors,
   popover: EuiPopoverSelectors,
   range: EuiRangeSelectors,
   searchBar: EuiSearchBarSelectors,
+  select: EuiSelectSelectors,
   selectable: EuiSelectableSelectors,
   sideNav: EuiSideNavSelectors,
   superSelect: EuiSuperSelectSelectors,
+  switch: EuiSwitchSelectors,
   table: EuiTableSelectors,
+  tabs: EuiTabsSelectors,
   globalToastList: EuiGlobalToastListSelectors,
   toolTip: EuiToolTipSelectors,
   treeView: EuiTreeViewSelectors,
+  textArea: EuiTextAreaSelectors,
+  fieldNumber: EuiFieldNumberSelectors,
+  fieldPassword: EuiFieldPasswordSelectors,
+  radioGroup: EuiRadioGroupSelectors,
+  filePicker: EuiFilePickerSelectors,
 } as const;

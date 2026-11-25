@@ -234,6 +234,8 @@ export const CustomTimeZoneDisplay: Story = {
     start: '2025-01-01T00:00:00.000Z',
     timeZoneDisplayProps: {
       timeZone: 'America/Los_Angeles',
+      // Pin the offset reference date so the label doesn't change with DST
+      date: moment('2025-07-01T00:00:00.000Z'),
       customRender: ({ nameDisplay }) => (
         <>
           {nameDisplay}

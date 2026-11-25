@@ -18,6 +18,7 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
           class="euiCheckboxControl emotion-euiCheckboxControl-unselected"
         >
           <span
+            aria-hidden="true"
             class="emotion-euiCheckbox__icon-check"
             data-euiicon-type="empty"
             role="presentation"
@@ -59,6 +60,7 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
         class="euiRadio__circle emotion-euiRadio__circle-unselected"
       >
         <span
+          aria-hidden="true"
           class="emotion-euiRadio__icon"
           data-euiicon-type="empty"
         />

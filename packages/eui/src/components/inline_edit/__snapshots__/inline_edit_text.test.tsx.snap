@@ -62,6 +62,7 @@ exports[`EuiInlineEditText renders 1`] = `
         </div>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -102,6 +103,7 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
         </div>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -142,6 +144,7 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
         </div>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />
@@ -182,6 +185,7 @@ exports[`EuiInlineEditText text sizes renders xs 1`] = `
         </div>
       </span>
       <span
+        aria-hidden="true"
         color="inherit"
         data-euiicon-type="pencil"
       />

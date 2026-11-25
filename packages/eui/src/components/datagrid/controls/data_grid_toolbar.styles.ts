@@ -14,7 +14,8 @@ import { logicalCSS } from '../../../global_styling';
 export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiDataGrid__controls: css`
-      z-index: 2; /* Needs to sit above the content below it */
+      /* Needs to sit above the content below it */
+      z-index: ${Number(euiTheme.levels.content) + 2};
       position: relative;
       display: flex;
       justify-content: space-between;

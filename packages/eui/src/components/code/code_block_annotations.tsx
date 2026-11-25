@@ -64,7 +64,12 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
           css={cssButtonIconStyles}
           data-test-subj="euiCodeBlockAnnotationIcon"
         >
-          <EuiIcon type={AnnotationInfoIcon} size="s" color={iconColor} />
+          <EuiIcon
+            type={AnnotationInfoIcon}
+            size="s"
+            color={iconColor}
+            aria-hidden={true}
+          />
         </button>
       }
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask

@@ -53,7 +53,7 @@ const meta: Meta<EuiFormControlLayoutProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiIcon type="faceHappy" aria-hidden={true} />,
         text: 'Appended',
         undefined: undefined,
       },
@@ -62,7 +62,7 @@ const meta: Meta<EuiFormControlLayoutProps> = {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
       mapping: {
-        icon: <EuiIcon type="faceHappy" />,
+        icon: <EuiIcon type="faceHappy" aria-hidden={true} />,
         text: 'Prepended',
         undefined: undefined,
       },
@@ -699,7 +699,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            z-index: 1;
+                            z-index: ${Number(euiTheme.levels.content) + 1};
                             color: ${euiTheme.colors.textDisabled};
 
                             &:is(:hover, :active) {
@@ -764,9 +764,9 @@ export const AppendPrependAPIKitchenSink: Story = {
             id="textField-101"
             placeholder="Text field"
             prepend={[
-              <EuiIcon type="faceHappy" />,
+              <EuiIcon type="faceHappy" aria-hidden={true} />,
               'Prepended',
-              <EuiIcon type="faceSad" />,
+              <EuiIcon type="faceSad" aria-hidden={true} />,
               <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>,
             ]}
           />
@@ -775,10 +775,12 @@ export const AppendPrependAPIKitchenSink: Story = {
             {...childProps}
             id="textField-102"
             placeholder="Text field"
-            prepend={<EuiIcon type="vectorSquare" />}
+            prepend={<EuiIcon type="vectorSquare" aria-hidden={true} />}
             append={
               <EuiToolTip content="content">
-                <EuiText size="s">Tooltip</EuiText>
+                <EuiText size="s" tabIndex={0}>
+                  Tooltip
+                </EuiText>
               </EuiToolTip>
             }
           />
@@ -796,7 +798,7 @@ export const AppendPrependAPIKitchenSink: Story = {
               >
                 <EuiFlexGroup gutterSize="s" alignItems="center">
                   Appended
-                  <EuiIcon type="faceSad" size="s" />
+                  <EuiIcon type="faceSad" size="s" aria-hidden={true} />
                   <EuiNotificationBadge color="subdued">1</EuiNotificationBadge>
                 </EuiFlexGroup>
               </EuiButtonEmpty>
@@ -858,7 +860,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                     iconSide="right"
                     onClick={() => setPopoverOpenB(!isPopoverOpenB)}
                   >
-                    <EuiIcon type="calendar" />
+                    <EuiIcon type="calendar" aria-label="Calendar" />
                   </EuiButtonEmpty>
                 }
                 closePopover={() => setPopoverOpenB(false)}
@@ -885,7 +887,7 @@ export const AppendPrependAPIKitchenSink: Story = {
                     numActiveFilters={1}
                     onClick={() => setPopoverOpenB(!isPopoverOpenB)}
                   >
-                    <EuiIcon type="filter" />
+                    <EuiIcon type="filter" aria-label="Filter" />
                   </EuiFilterButton>
                 }
                 closePopover={() => setPopoverOpenB(false)}
@@ -983,11 +985,11 @@ export const AppendPrependAPIKitchenSink: Story = {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            z-index: 1;
+                            z-index: ${Number(euiTheme.levels.content) + 1};
                             color: ${euiTheme.colors.textDisabled};
                           `}
                         >
-                          <EuiIcon type="dragHorizontal" />
+                          <EuiIcon type="dragHorizontal" aria-hidden={true} />
 
                           <EuiToolTip
                             content="String"

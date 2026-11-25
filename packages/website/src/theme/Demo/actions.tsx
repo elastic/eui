@@ -11,7 +11,7 @@ import { createOpenInCodeSandboxAction } from '@elastic/eui-docusaurus-theme/com
 export const extraActions = [
   createOpenInCodeSandboxAction({
     dependencies: {
-      'react': '^18',
+      react: '^18',
       'react-dom': '^18',
       '@types/react': '^18',
       '@types/react-dom': '^18',
@@ -19,7 +19,7 @@ export const extraActions = [
       '@emotion/cache': 'latest',
       '@emotion/react': 'latest',
       '@emotion/css': 'latest',
-      'moment': 'latest',
+      moment: 'latest',
       'moment-timezone': 'latest',
       '@elastic/datemath': 'latest',
       '@elastic/eui': 'latest',

@@ -23,12 +23,10 @@ export const SitewideOption = () => {
           A. Label
         </span>
         <span className="euiSelectableTemplateSitewide__optionMetasList">
-          <span
-            className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--application">
+          <span className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--application">
             D. Meta
           </span>
-          <span
-            className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--deployment">
+          <span className="euiSelectableTemplateSitewide__optionMeta euiSelectableTemplateSitewide__optionMeta--deployment">
             Deployment
           </span>
           <span className="euiSelectableTemplateSitewide__optionMeta">

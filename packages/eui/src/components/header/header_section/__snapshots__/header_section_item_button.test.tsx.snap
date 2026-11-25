@@ -103,6 +103,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
+        aria-hidden="true"
         class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot emotion-euiHeaderSectionItemButton__notification-dot"
         color="accent"
         data-euiicon-type="dot"

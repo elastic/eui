@@ -19,14 +19,16 @@ export const getWorkspacePackageJson = async (workspaceDir: string) => {
   const packageJsonPath = getWorkspacePackageJsonPath(workspaceDir);
 
   try {
-    const packageJsonContent= await fs.readFile(packageJsonPath, 'utf8');
+    const packageJsonContent = await fs.readFile(packageJsonPath, 'utf8');
     return JSON.parse(packageJsonContent);
   } catch (err) {
-    const newErr =  new Error(`Unable to read package.json from ${packageJsonPath}`);
+    const newErr = new Error(
+      `Unable to read package.json from ${packageJsonPath}`
+    );
     newErr.stack = (err as Error).stack;
     throw newErr;
   }
-}
+};
 
 export const getWorkspacePackageVersion = async (workspaceDir: string) => {
   const packageJson = await getWorkspacePackageJson(workspaceDir);
