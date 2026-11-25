@@ -7,11 +7,13 @@ apply_to:
   - "packages/eui/src/global_styling/**"
   - "packages/eui-theme-borealis/**"
   - "packages/eui-theme-common/**"
+  - "packages/eui/src/**/*.scss"
+  - "packages/eui/src/**/*.css"
 can_block: false
 ---
-Check that styles use theme tokens and EUI mixins/functions instead of
-hard-coded values, work in light and dark color modes, in high contrast mode
-(`highContrastMode`) and in every shipped theme, respect `prefers-reduced-motion`, and keep style generation memoized
-(`useEuiMemoizedStyles`) rather than recomputed each render. Flag SCSS or
-global CSS additions that should be Emotion, and selector or specificity
-changes that could break consumers' overrides.
+Check that styles use theme tokens and EUI mixins, not hard-coded values. They
+must work in light, dark and high contrast modes and every shipped theme.
+Respect `prefers-reduced-motion`. Use `useEuiMemoizedStyles`. Flag new SCSS or
+global CSS, and selector or specificity changes that break consumer overrides.
+
+Only comment on files in `apply_to`.

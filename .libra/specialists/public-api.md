@@ -20,12 +20,18 @@ apply_to:
   - "packages/eslint-plugin/src/**"
 can_block: true
 ---
-Review for breaking changes to what Kibana and other consumers depend on:
-removed or renamed props, exports, tokens, CSS variables, ESLint rules or
-test-helper methods; changed `package.json` exports or peer dependencies; changed defaults;
-narrowed or broadened TypeScript types; changed DOM output or class names;
-props not forwarded (`...rest`, `ref`, `data-test-subj`, `className`).
-A breaking change is acceptable only when the PR documents it, ships a
-changelog entry, and carries the `breaking change` label (required by the wiki;
-it triggers the Kibana due-diligence comment); flag it otherwise. Prefer additive, deprecated-then-removed
-paths over silent behavior changes.
+Flag breaking changes missing from the changelog's `**Breaking changes**`
+section. Past entries show what counts:
+- Removed or renamed components, props, prop values, types, exports, icons, tokens, hooks or test helpers.
+- Changed defaults.
+- Narrowed types, newly required props, or widened types that break existing callbacks.
+- Changed targets of `ref`, `className` or `style`.
+- DOM, class name or attribute changes that consumers' selectors rely on.
+- Changed behavior consumers rely on, e.g. only one tooltip open at a time.
+- Added or changed third-party peer dependencies.
+- Style changes that break consumer layouts.
+- Rules added to or raised to `error` in the recommended ESLint config.
+
+When a replacement exists, the entry says what to use instead. Deprecate before removing. Flag a missing `breaking change` label.
+
+Only comment on files in `apply_to`.

@@ -6,10 +6,11 @@ apply_to:
   - "packages/eui/src/components/**/*.tsx"
   - "packages/eui/src/services/accessibility/**"
   - "packages/eui/src/services/focus_trap/**"
+  - "packages/eui/src/global_styling/mixins/_states.ts"
 can_block: false
 ---
-Check that interactive components remain operable by keyboard, manage and
-restore focus correctly (overlays, popovers, flyouts, modals, menus), expose
-accurate roles, states and accessible names, and do not rely on color alone, including in high contrast mode.
-Verify live-region and `aria-*` usage matches the WAI-ARIA pattern for the
-component. Report only concrete regressions or gaps introduced by the change.
+Check keyboard support, focus management and restoration, roles, states,
+accessible names and color-only cues. Include high contrast mode. Match the
+WAI-ARIA pattern for the component. Flag only regressions this PR introduces.
+
+Only comment on files in `apply_to`.

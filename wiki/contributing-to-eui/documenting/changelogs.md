@@ -27,4 +27,6 @@ Changes that do not impact consumers or end-users may use the `skip-changelog` l
 * Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...).
 * Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details.
 * Avoid documenting internal implementation changes that don't affect the public interface.
+* Don't document downstream effects, e.g. components that look different because a token changed.
+* Don't document version bumps between EUI's own packages.
 * Make sure the entry is as concise as can be.
