@@ -26,7 +26,7 @@ exports[`euiProgressStyles indeterminate div CSS colors primary 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS colors subdued 1`] = `
 "&::before {
-    background-color: #516381;
+    background-color: #5A6D8C;
   };;label:subdued;"
 `;
 
@@ -162,10 +162,10 @@ exports[`euiProgressStyles native progress CSS colors primary 1`] = `
 
 exports[`euiProgressStyles native progress CSS colors subdued 1`] = `
 "&::-webkit-progress-value {
-    background-color: #516381;
+    background-color: #5A6D8C;
   }
   &::-moz-progress-bar {
-    background-color: #516381;
+    background-color: #5A6D8C;
   };;label:subdued;"
 `;
 
