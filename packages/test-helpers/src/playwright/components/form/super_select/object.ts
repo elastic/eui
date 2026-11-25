@@ -74,12 +74,17 @@ export class EuiSuperSelectObject extends BaseObject {
 
   /**
    * The hidden input is a sibling of the control button; reach it through the
-   * `.euiSuperSelect` popover wrapper that contains this instance's button.
+   * `.euiSuperSelect` popover wrapper around this instance's button. Walking
+   * up from the button also works when `scope` is a `Locator`, where a
+   * `has: this.root` filter would never resolve.
    */
   private get hiddenInput(): Locator {
-    return this.scope
-      .locator(EuiSuperSelectSelectors.WRAPPER_SELECTOR)
-      .filter({ has: this.root })
+    return this.root
+      .locator(WRAPPER_ANCESTOR_XPATH)
       .locator(EuiSuperSelectSelectors.HIDDEN_INPUT_SELECTOR);
   }
 }
+
+/** Nearest ancestor carrying the exact `euiSuperSelect` class token. */
+const WRAPPER_ANCESTOR_XPATH =
+  "xpath=ancestor::*[contains(concat(' ', normalize-space(@class), ' '), ' euiSuperSelect ')][1]";
