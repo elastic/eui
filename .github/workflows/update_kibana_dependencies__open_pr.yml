@@ -43,27 +43,52 @@ concurrency:
   # A newer run for the same source PR supersedes the older run and reports
   # status for the latest commits.
   cancel-in-progress: ${{ !!inputs.source_pr_number }}
-permissions:
-  contents: read
-  id-token: write
-  pull-requests: write
+permissions: {}
 
 jobs:
-  open_pr:
-    name: Open PR
+  changelog:
+    name: Prepare nightly changelog without publishing credentials
+    if: ${{ inputs.nightly }}
     runs-on: ubuntu-24.04
-    outputs:
-      pr_url: ${{ steps.open_pr.outputs.pr_url }}
+    permissions:
+      contents: read # Read the snapshot; no Vault token or write access here.
     steps:
       - name: Checkout EUI snapshot
-        if: ${{ inputs.nightly }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ inputs.eui_ref }}
           persist-credentials: false
+      - name: Prepare changelog with the existing script
+        env:
+          EUI_REF: ${{ inputs.eui_ref }}
+        run: scripts/upcoming_changelogs.sh "$EUI_REF" > "$RUNNER_TEMP/kibana-changelog.md"
+      - name: Upload changelog text
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: kibana-changelog
+          path: ${{ runner.temp }}/kibana-changelog.md
+          if-no-files-found: error
+          retention-days: 1
+
+  open_pr:
+    name: Open PR
+    needs: changelog
+    if: ${{ !cancelled() && (needs.changelog.result == 'success' || needs.changelog.result == 'skipped') }}
+    runs-on: ubuntu-24.04
+    permissions:
+      id-token: write # Fetch the short-lived Kibana PR token from Vault.
+    outputs:
+      pr_url: ${{ steps.open_pr.outputs.pr_url }}
+    steps:
+      - name: Download nightly changelog text
+        if: ${{ inputs.nightly }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: kibana-changelog
+          path: ${{ runner.temp }}/kibana-changelog
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -96,7 +121,7 @@ jobs:
 
           if [[ "$NIGHTLY" == "true" ]]; then
             compare_url="https://github.com/elastic/eui/compare/$EUI_LAST_RELEASE...$EUI_REF"
-            changelog_entries="$(scripts/upcoming_changelogs.sh "$EUI_REF")"
+            changelog_entries="$(cat "$RUNNER_TEMP/kibana-changelog/kibana-changelog.md")"
 
             PR_BODY="$(
               printf '%s\n' \
@@ -207,15 +232,21 @@ jobs:
     # This job needs to be delayed so that GitHub can process the PR creation internally
     environment: delayed-1m
     needs: [open_pr]
+    permissions:
+      contents: read # Check out the trusted comment action.
+      id-token: write # Fetch the short-lived Kibana labeling token from Vault.
+      pull-requests: write # Update the source EUI PR status comment.
     steps:
-      - name: Checkout repository
-        # Checkout is needed to access the pr_bot_comment action
+      - name: Checkout trusted comment action
         if: ${{ inputs.source_pr_number }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -241,6 +272,7 @@ jobs:
           fi
       - name: Add a comment
         if: ${{ inputs.source_pr_number }}
+        # The action comes from the trusted workflow checkout above.
         uses: ./.github/actions/pr_bot_comment
         with:
           gh_token: ${{ github.token }}
@@ -258,16 +290,22 @@ jobs:
     runs-on: ubuntu-slim
     environment: delayed-2h
     needs: [open_pr, post_open_pr]
+    permissions:
+      contents: read # Check out the trusted CI status helper.
+      id-token: write # Fetch the short-lived token used to read Kibana checks.
     outputs:
       pending: ${{ steps.check_status.outputs.pending }}
       buildkite_url: ${{ steps.check_status.outputs.buildkite_url }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - name: Checkout trusted workflow code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -284,15 +322,21 @@ jobs:
     environment: delayed-2h
     needs: [open_pr, check_ci_status_1]
     if: ${{ needs.check_ci_status_1.outputs.pending == 'true' }}
+    permissions:
+      contents: read # Check out the trusted CI status helper.
+      id-token: write # Fetch the short-lived token used to read Kibana checks.
     outputs:
       buildkite_url: ${{ steps.check_status.outputs.buildkite_url }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - name: Checkout trusted workflow code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
       # Token cannot be reused in this job because it's short-lived
       - name: Fetch GitHub token
         id: ephemeral_token
-        uses: elastic/ci-gh-actions/fetch-github-token@v1.5.3
+        uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
         with:
           vault-instance: ci-prod
           vault-role: token-policy-6becee3e5a43
@@ -305,6 +349,9 @@ jobs:
         run: scripts/check_pr_status.sh "$PR_URL" fail
   report_status:
     name: Report CI status
+    permissions:
+      contents: read # Check out the trusted comment action.
+      pull-requests: write # Update the source EUI PR status comment.
     runs-on: ubuntu-slim
     needs: [open_pr, check_ci_status_1, check_ci_status_2]
     if: |
@@ -316,9 +363,12 @@ jobs:
         (needs.check_ci_status_2.result != 'skipped')
       )
     steps:
-      - name: Checkout repository
+      - name: Checkout trusted comment action
         if: ${{ inputs.source_pr_number }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
       - name: Compose comment body
         id: compose_comment_body
         env:
@@ -379,6 +429,7 @@ jobs:
           fi
       - name: Add a comment
         if: ${{ inputs.source_pr_number }}
+        # The action comes from the trusted workflow checkout above.
         uses: ./.github/actions/pr_bot_comment
         with:
           gh_token: ${{ github.token }}
