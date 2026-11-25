@@ -312,6 +312,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const saturationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
+  // Trap focus on the color picker popover and any controls added alongside it.
+  const focusTrapShards = inputRef
+    ? [prepend || append ? popoverRef : inputRef]
+    : undefined;
+
   const testSubjAnchor = classNames('euiColorPickerAnchor', dataTestSubj);
 
   const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
@@ -747,7 +752,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           clickOutsideDisables: false,
           returnFocus: () =>
             isClosingFromOutside.current ? false : { preventScroll: true },
-          shards: inputRef ? [inputRef] : undefined,
+          shards: focusTrapShards,
         }}
       >
         <div
