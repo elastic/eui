@@ -61,6 +61,11 @@ their own version at runtime.
 | `EuiCheckboxObject` | [src/components/form/checkbox/README.md](src/components/form/checkbox/README.md) |
 | `EuiSwitchObject` | [src/components/form/switch/README.md](src/components/form/switch/README.md) |
 | `EuiFieldTextObject` | [src/components/form/field_text/README.md](src/components/form/field_text/README.md) |
+| `EuiTextAreaObject` | [src/components/form/text_area/README.md](src/components/form/text_area/README.md) |
+| `EuiFieldNumberObject` | [src/components/form/field_number/README.md](src/components/form/field_number/README.md) |
+| `EuiFieldPasswordObject` | [src/components/form/field_password/README.md](src/components/form/field_password/README.md) |
+| `EuiRadioGroupObject` | [src/components/form/radio/README.md](src/components/form/radio/README.md) |
+| `EuiFilePickerObject` | [src/components/form/file_picker/README.md](src/components/form/file_picker/README.md) |
 | `EuiFormRowObject` | [src/components/form/form_row/README.md](src/components/form/form_row/README.md) |
 | `EuiSelectObject` | [src/components/form/select/README.md](src/components/form/select/README.md) |
 | `EuiPopoverObject` | [src/components/popover/README.md](src/components/popover/README.md) |
@@ -79,6 +84,7 @@ their own version at runtime.
 | `EuiButtonEmptyObject` | [src/components/button/button_empty/README.md](src/components/button/button_empty/README.md) |
 | `EuiButtonGroupObject` | [src/components/button/button_group/README.md](src/components/button/button_group/README.md) |
 | `EuiButtonIconObject` | [src/components/button/button_icon/README.md](src/components/button/button_icon/README.md) |
+| `EuiEmptyPromptObject` | [src/components/empty_prompt/README.md](src/components/empty_prompt/README.md) |
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |

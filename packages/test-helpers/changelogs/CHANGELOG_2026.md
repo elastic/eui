@@ -1,3 +1,10 @@
+## [`v2.5.0`](https://github.com/elastic/eui/releases/v123.6.0)
+
+- Added `EuiEmptyPromptObject` with `footer`, `action()`, `getTitle()`, `getBody()`, `getActions()` and `clickAction()` ([#10290](https://github.com/elastic/eui/pull/10290))
+- Added `EuiButtonObject`, `EuiButtonEmptyObject` and `EuiButtonIconObject` with `click()`, `getText()`, `isDisabled()` and `isLoading()` ([#10320](https://github.com/elastic/eui/pull/10320))
+- Added `EuiLinkObject` with `click()`, `getText()`, `isDisabled()` and `getHref()` ([#10320](https://github.com/elastic/eui/pull/10320))
+- Added `EuiFormRowObject` with `label`, `errors`, `helpTexts`, `getLabel()`, `getHelpTexts()`, `getErrors()` and `isInvalid()` ([#10319](https://github.com/elastic/eui/pull/10319))
+
 ## [`v2.4.0`](https://github.com/elastic/eui/releases/v123.5.0)
 
 - Added `EuiCheckboxObject` with `isChecked()`, `check()`, `uncheck()` and `toggle()` ([#10284](https://github.com/elastic/eui/pull/10284))

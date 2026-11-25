@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
@@ -40,6 +41,32 @@ export const Playground: Story = {
       display: 'visible',
     },
   },
+  render: (args: EuiRadioGroupProps) => <StatefulRadioGroup {...args} />,
+};
+
+const StatefulRadioGroup = ({
+  idSelected,
+  onChange,
+  ...rest
+}: EuiRadioGroupProps) => {
+  const [_idSelected, setIdSelected] = useState(idSelected);
+
+  useEffect(() => {
+    setIdSelected(idSelected);
+  }, [idSelected]);
+
+  const handleOnChange: EuiRadioGroupProps['onChange'] = (id, value) => {
+    setIdSelected(id);
+    onChange?.(id, value);
+  };
+
+  return (
+    <EuiRadioGroup
+      idSelected={_idSelected}
+      onChange={handleOnChange}
+      {...rest}
+    />
+  );
 };
 
 export const HighContrast: Story = {

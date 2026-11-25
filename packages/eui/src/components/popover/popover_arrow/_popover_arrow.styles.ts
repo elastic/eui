@@ -22,7 +22,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     // Wrapper
     euiPopoverArrowWrapper: css`
       position: absolute;
-      z-index: 1;
+      z-index: ${Number(euiTheme.levels.content) + 1};
       ${logicalSizeCSS(arrowSize)}
     `,
 

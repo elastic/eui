@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "123.5.0",
+  "version": "123.6.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -33,7 +33,6 @@
     "test": "yarn lint && yarn test-unit",
     "test-ci": "yarn test && yarn test-cypress",
     "test-unit": "node ./scripts/test-unit",
-    "test-staged": "yarn build:workspaces && yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/test-cypress",
     "test-cypress-dev": "yarn test-cypress --dev",
     "test-cypress-a11y": "yarn test-cypress --a11y",
@@ -43,7 +42,6 @@
     "build-storybook": "NODE_OPTIONS=--max-old-space-size=4096 storybook build",
     "serve-storybook": "http-server storybook-static --port 6006 --silent",
     "test-storybook": "test-storybook",
-    "pre-push": "yarn test-staged",
     "prerelease": "node ./scripts/prerelease.mjs"
   },
   "repository": {
@@ -157,10 +155,10 @@
     "buildkite-test-collector": "^1.7.2",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "cypress": "^13.17.0",
-    "cypress-axe": "^1.0.0",
+    "cypress": "^15.21.2",
+    "cypress-axe": "^1.7.0",
     "cypress-plugin-tab": "^1.0.5",
-    "cypress-real-events": "^1.7.0",
+    "cypress-real-events": "1.7.0",
     "dedent": "^0.7.0",
     "dts-generator": "^3.0.0",
     "eslint": "^8.41.0",
@@ -210,7 +208,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@elastic/eui-theme-borealis": "8.2.0",
+    "@elastic/eui-theme-borealis": "8.3.0",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^17.0 || ^18.0",

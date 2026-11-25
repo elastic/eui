@@ -40,8 +40,14 @@ export { EuiButtonObject } from './playwright/components/button/object';
 export { EuiButtonEmptyObject } from './playwright/components/button/button_empty/object';
 export { EuiButtonGroupObject } from './playwright/components/button/button_group/object';
 export { EuiButtonIconObject } from './playwright/components/button/button_icon/object';
+export { EuiEmptyPromptObject } from './playwright/components/empty_prompt/object';
 export { EuiColorPickerObject } from './playwright/components/color_picker/object';
 export { EuiTreeViewObject } from './playwright/components/tree_view/object';
 export { EuiToolTipObject } from './playwright/components/tool_tip/object';
+export { EuiTextAreaObject } from './playwright/components/form/text_area/object';
+export { EuiFieldNumberObject } from './playwright/components/form/field_number/object';
+export { EuiFieldPasswordObject } from './playwright/components/form/field_password/object';
+export { EuiRadioGroupObject } from './playwright/components/form/radio/object';
+export { EuiFilePickerObject } from './playwright/components/form/file_picker/object';
 
 export { selectors } from './selectors';

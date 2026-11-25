@@ -78,8 +78,8 @@ describe('useEuiPaletteColorBlind', () => {
     });
 
     expect(result.current).toEqual([
-      '#065B58',
-      '#009E99',
+      '#035749',
+      '#00927B',
       '#154399',
       '#2476F0',
       '#831652',
@@ -101,8 +101,8 @@ describe('useEuiPaletteColorBlind', () => {
     );
 
     expect(result.current).toEqual([
-      '#065B58',
-      '#009E99',
+      '#035749',
+      '#00927B',
       '#154399',
       '#2476F0',
       '#831652',

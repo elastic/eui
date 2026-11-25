@@ -11,7 +11,10 @@ BASE_BRANCH="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-main}"
 HELPERS_DIR="packages/test-helpers/src/playwright/components"
 COMPONENTS_DIR="packages/eui/src/components"
 # Shared files every helper depends on — a change here affects all specs.
-SHARED_REGEXP='^packages/test-helpers/(playwright\.config\.ts|package\.json|src/(index|selectors|storybook)\.ts|src/playwright/base_object\.ts)$'
+SHARED_REGEXP='^packages/test-helpers/(playwright\.config\.ts|package\.json|src/storybook\.ts|src/playwright/base_object\.ts)$'
+# Registries every helper is listed in. Adding a helper only adds lines here, which
+# affects nothing else, so they count as shared only when an existing line changes.
+REGISTRY_REGEXP='^packages/test-helpers/src/(index|selectors)\.ts$'
 
 echo "+++ Determining components changed against ${BASE_BRANCH}"
 retry 3 git fetch -q origin "${BASE_BRANCH}"
@@ -39,7 +42,19 @@ changed_files="$(git diff --name-only "${base_sha}" HEAD)"
 # `packages/test-helpers/src/components/<name>`. Helpers are enumerated by their
 # `object.ts` so nested helpers resolve to their real (leaf) directory rather
 # than an over-broad first-level parent.
-if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}"; then
+registry_files="$(grep -E "${REGISTRY_REGEXP}" <<< "${changed_files}" || true)"
+registry_edited=false
+if [[ -n "${registry_files}" ]]; then
+  # numstat prints "added<TAB>deleted<TAB>file" per file, so any non-zero deletion
+  # count means an existing line changed. No pipe, so pipefail cannot bite.
+  while IFS=$'\t' read -r _added deleted _file; do
+    if [[ "${deleted}" != "0" ]]; then
+      registry_edited=true
+    fi
+  done < <(git diff --numstat "${base_sha}" HEAD -- ${registry_files})
+fi
+
+if grep -qE "${SHARED_REGEXP}" <<< "${changed_files}" || [[ "${registry_edited}" == true ]]; then
   echo "Shared test-helpers file changed — running all helper specs."
   affected="src/playwright/components"
 else
@@ -68,6 +83,7 @@ cat <<YAML | buildkite-agent pipeline upload
 steps:
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":playwright: Flake detection (${FLAKY_REPEAT}× affected specs)"
+    parallelism: 3
     agents:
       provider: gcp
       image: family/eui-ubuntu-2204

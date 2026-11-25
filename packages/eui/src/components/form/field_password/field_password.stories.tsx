@@ -22,10 +22,17 @@ const meta: Meta<EuiFieldPasswordProps> = {
   argTypes: {
     append: {
       control: 'radio',
-      options: [undefined, 'icon', 'text'],
+      options: [undefined, 'icon', 'text', 'button'],
       mapping: {
         icon: <EuiFormAppend iconLeft="faceHappy" />,
         text: 'Appended',
+        button: (
+          <EuiFormAppend
+            iconLeft="gear"
+            aria-label="Settings"
+            onClick={() => {}}
+          />
+        ),
         undefined: undefined,
       },
     },

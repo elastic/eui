@@ -20,6 +20,7 @@ import { EuiComboBoxSelectors } from './components/combo_box/selectors';
 import { EuiContextMenuSelectors } from './components/context_menu/selectors';
 import { EuiDataGridSelectors } from './components/datagrid/selectors';
 import { EuiDraggableSelectors } from './components/drag_and_drop/selectors';
+import { EuiEmptyPromptSelectors } from './components/empty_prompt/selectors';
 import { EuiFieldSearchSelectors } from './components/form/field_search/selectors';
 import { EuiFieldTextSelectors } from './components/form/field_text/selectors';
 import { EuiFormRowSelectors } from './components/form/form_row/selectors';
@@ -42,6 +43,11 @@ import { EuiTabsSelectors } from './components/tabs/selectors';
 import { EuiGlobalToastListSelectors } from './components/toast/selectors';
 import { EuiToolTipSelectors } from './components/tool_tip/selectors';
 import { EuiTreeViewSelectors } from './components/tree_view/selectors';
+import { EuiTextAreaSelectors } from './components/form/text_area/selectors';
+import { EuiFieldNumberSelectors } from './components/form/field_number/selectors';
+import { EuiFieldPasswordSelectors } from './components/form/field_password/selectors';
+import { EuiRadioGroupSelectors } from './components/form/radio/selectors';
+import { EuiFilePickerSelectors } from './components/form/file_picker/selectors';
 
 /**
  * Stable selectors of every Component Object, keyed by component.
@@ -64,6 +70,7 @@ export const selectors = {
   contextMenu: EuiContextMenuSelectors,
   dataGrid: EuiDataGridSelectors,
   draggable: EuiDraggableSelectors,
+  emptyPrompt: EuiEmptyPromptSelectors,
   fieldSearch: EuiFieldSearchSelectors,
   fieldText: EuiFieldTextSelectors,
   filterButton: EuiFilterButtonSelectors,
@@ -86,4 +93,9 @@ export const selectors = {
   globalToastList: EuiGlobalToastListSelectors,
   toolTip: EuiToolTipSelectors,
   treeView: EuiTreeViewSelectors,
+  textArea: EuiTextAreaSelectors,
+  fieldNumber: EuiFieldNumberSelectors,
+  fieldPassword: EuiFieldPasswordSelectors,
+  radioGroup: EuiRadioGroupSelectors,
+  filePicker: EuiFilePickerSelectors,
 } as const;
