@@ -36,7 +36,7 @@ type Story = StoryObj<EuiFlexGroupProps>;
 const flexItem = (
   <EuiFlexItem
     css={({ euiTheme }) => ({
-      backgroundColor: euiTheme.colors.backgroundLightPrimary,
+      backgroundColor: euiTheme.colors.backgroundBasePrimary,
       ':first-child': { minHeight: '5em' },
     })}
   >

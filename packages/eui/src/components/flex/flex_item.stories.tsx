@@ -40,7 +40,7 @@ export const Playground: Story = {
     <EuiFlexGroup responsive={false}>
       <EuiFlexItem
         css={({ euiTheme }) => ({
-          backgroundColor: euiTheme.colors.backgroundLightPrimary,
+          backgroundColor: euiTheme.colors.backgroundBasePrimary,
         })}
         {...args}
       />

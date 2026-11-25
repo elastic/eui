@@ -12,6 +12,7 @@
 
 import React, { ComponentType, useRef, useState } from 'react';
 
+import { useEuiTheme } from '../../services';
 import { EuiPortal } from '../portal';
 
 import { EuiFocusTrap } from './focus_trap';
@@ -299,13 +300,14 @@ describe('EuiFocusTrap', () => {
     describe('scrollbar gap', () => {
       const ToggledFocusTrap = (focusTrapProps: any) => {
         const [isFocusTrapOpen, setIsFocusTrapOpen] = useState(false);
+        const { euiTheme } = useEuiTheme();
 
         return (
           <div
-            style={{ height: 2000 }}
-            css={({ euiTheme }) => ({
+            style={{
+              height: 2000,
               backgroundColor: euiTheme.colors.backgroundBaseSubdued,
-            })}
+            }}
           >
             <button
               data-test-subj="openFocusTrap"
