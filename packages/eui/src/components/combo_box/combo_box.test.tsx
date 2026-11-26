@@ -489,6 +489,29 @@ describe('EuiComboBox', () => {
         expect(onKeyDown).toHaveBeenCalledTimes(1);
       });
 
+      it('does not mark a search draft as invalid while the hidden selections are shown', async () => {
+        const { getByTestSubject, findByTestSubject, container } = render(
+          <EuiComboBox
+            aria-label="Combobox with a search draft"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.focus(input);
+        fireEvent.change(input, { target: { value: 'Draft' } });
+        expect(input).toHaveAttribute('aria-invalid', 'false');
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        await waitFor(() =>
+          expect(container.querySelector('.euiComboBox-isInvalid')).toBeNull()
+        );
+        expect(input).toHaveAttribute('aria-invalid', 'false');
+      });
+
       it('returns focus to the input when removing the last hidden selection', async () => {
         const StatefulComboBox = () => {
           const [selectedOptions, setSelectedOptions] = React.useState<

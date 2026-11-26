@@ -65,6 +65,8 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   onCloseListClick: () => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
+  /** Called when the hidden selections popover (`selectionDisplay="collapse"`) opens or closes */
+  onCollapsedPopoverToggle?: (isOpen: boolean) => void;
   onRemoveOption: OptionHandler<T>;
   placeholder?: string;
   rootId: ReturnType<typeof htmlIdGenerator>;
@@ -254,6 +256,11 @@ export class EuiComboBoxInput<T> extends Component<
   ) {
     if (prevProps.searchValue !== this.props.searchValue) {
       this.updateInputSize(this.props.searchValue);
+    }
+    if (
+      prevState.isCollapsedPopoverOpen !== this.state.isCollapsedPopoverOpen
+    ) {
+      this.props.onCollapsedPopoverToggle?.(this.state.isCollapsedPopoverOpen);
     }
 
     // Only re-measure when something that affects the fit changed. Width changes

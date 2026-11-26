@@ -222,6 +222,7 @@ export type EuiComboBoxProps<T> = Omit<
 interface EuiComboBoxState<T> {
   activeOptionIndex: number;
   hasFocus: boolean;
+  isCollapsedPopoverOpen: boolean;
   isListOpen: boolean;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   listOptionRefs: Array<HTMLLIElement | null>;
@@ -256,6 +257,7 @@ export class EuiComboBox<T> extends Component<
   state: EuiComboBoxState<T> = {
     activeOptionIndex: -1,
     hasFocus: false,
+    isCollapsedPopoverOpen: false,
     isListOpen: false,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
@@ -736,6 +738,10 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
+  onCollapsedPopoverToggle = (isCollapsedPopoverOpen: boolean) => {
+    this.setState({ isCollapsedPopoverOpen });
+  };
+
   onOptionListScroll = () => {
     this.searchInputRefInstance?.focus();
   };
@@ -840,6 +846,7 @@ export class EuiComboBox<T> extends Component<
     const {
       activeOptionIndex,
       hasFocus,
+      isCollapsedPopoverOpen,
       isListOpen,
       searchValue,
       matchingOptions,
@@ -851,9 +858,13 @@ export class EuiComboBox<T> extends Component<
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
+    // The options list is closed while the hidden selections are shown, which
+    // doesn't make a draft in the input invalid
     const markAsInvalid = !!(
       isInvalid ||
-      ((hasFocus === false || isListOpen === false) && searchValue)
+      ((hasFocus === false || isListOpen === false) &&
+        searchValue &&
+        !isCollapsedPopoverOpen)
     );
 
     const classes = classNames('euiComboBox', className, {
@@ -986,6 +997,7 @@ export class EuiComboBox<T> extends Component<
                     onCloseListClick={this.closeList}
                     onFocus={this.onComboBoxFocus}
                     onOpenListClick={this.onOpenListClick}
+                    onCollapsedPopoverToggle={this.onCollapsedPopoverToggle}
                     onRemoveOption={this.onRemoveOption}
                     placeholder={placeholder}
                     rootId={this.rootId}
