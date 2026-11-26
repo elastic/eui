@@ -472,6 +472,7 @@ export const MultiSelectWithPrependAndAppend: Story = {
         // the raw `true` arg is used as the callback
         'onChange',
         'onCreateOption',
+        'isDisabled',
       ],
     },
     vrt: { selector: '#story-wrapper .euiComboBox' },

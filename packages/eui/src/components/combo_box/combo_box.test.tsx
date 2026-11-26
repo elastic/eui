@@ -576,6 +576,26 @@ describe('EuiComboBox', () => {
         expect(getByTestSubject('comboBoxSearchInput')).toHaveFocus();
       });
 
+      it('disables the +N trigger when disabled', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            isDisabled
+          />
+        );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+
+        expect(badge).toHaveTextContent(/^\+\d+$/);
+        expect(badge).toBeDisabled();
+        expect(badge).not.toHaveAttribute('aria-haspopup');
+        expect(badge).not.toHaveAttribute('aria-expanded');
+
+        fireEvent.click(badge);
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+      });
+
       it('does not render a badge when every selection fits', () => {
         const { queryByTestSubject } = render(
           <EuiComboBox

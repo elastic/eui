@@ -278,6 +278,14 @@ export class EuiComboBoxInput<T> extends Component<
       this.props.onCollapsedPopoverToggle?.(this.state.isCollapsedPopoverOpen);
     }
 
+    if (
+      !prevProps.isDisabled &&
+      this.props.isDisabled &&
+      this.state.isCollapsedPopoverOpen
+    ) {
+      this.closeCollapsedPopover();
+    }
+
     // Only re-measure when something that affects the fit changed. Width changes
     // of the control itself are handled by `EuiResizeObserver`, but it can't see
     // icons (loading, invalid, clear button, ...) being added: they change the
@@ -478,6 +486,8 @@ export class EuiComboBoxInput<T> extends Component<
   };
 
   renderCollapsedBadge = (hiddenOptions: Array<EuiComboBoxOptionOption<T>>) => {
+    const { isDisabled } = this.props;
+
     const badge = (
       <EuiI18n
         token="euiComboBoxInput.collapsedSelections"
@@ -490,8 +500,11 @@ export class EuiComboBoxInput<T> extends Component<
             data-test-subj="comboBoxCollapsedBadge"
             onClick={this.toggleCollapsedPopover}
             onClickAriaLabel={collapsedSelections}
-            aria-haspopup="dialog"
-            aria-expanded={this.state.isCollapsedPopoverOpen}
+            isDisabled={isDisabled}
+            {...(!isDisabled && {
+              'aria-haspopup': 'dialog',
+              'aria-expanded': this.state.isCollapsedPopoverOpen,
+            })}
           >
             +{hiddenOptions.length}
           </EuiBadge>

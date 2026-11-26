@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import {
+  euiDisabledSelector,
   logicalCSS,
   logicalCSSWithFallback,
   mathWithUnits,
@@ -92,6 +93,10 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
           line-height: ${pillLineHeight};
           ${logicalCSS('margin-vertical', '1px')}
           margin-inline: 0;
+
+          &:is(${euiDisabledSelector}) {
+            border-color: ${euiTheme.components.badgeBorderColorHollow};
+          }
         }
       }
 
