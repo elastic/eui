@@ -4,6 +4,8 @@ enabled: true
 # EUI PRs are frequently opened as drafts for early feedback; review them on
 # request by adding the bypass label rather than on every push.
 review_drafts: false
+# Don't reply to comments on findings. A maintainer's response is final.
+disable_comment_follow_ups: true
 skip_labels:
   - libra-skip
   # Release PRs only bump versions and collate changelogs.
