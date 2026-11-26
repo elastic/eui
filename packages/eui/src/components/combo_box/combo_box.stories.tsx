@@ -433,6 +433,9 @@ const appendCopyButton: AppendRenderer = (selectedOptions) => (
   <EuiCopy
     textToCopy={selectedOptions.map(({ label }) => label).join(', ')}
     beforeMessage="Copy selected options"
+    // The button has the same accessible name, so don't announce it twice. A
+    // successful copy is still announced by the live region of `EuiCopy`.
+    tooltipProps={{ disableScreenReaderOutput: true }}
   >
     {(copy) => (
       <EuiFormAppend
