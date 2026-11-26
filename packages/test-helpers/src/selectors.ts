@@ -7,6 +7,9 @@
  */
 
 import { EuiAccordionSelectors } from './components/accordion/selectors';
+import { EuiBadgeSelectors } from './components/badge/selectors';
+import { EuiNotificationBadgeSelectors } from './components/badge/notification_badge/selectors';
+import { EuiHealthSelectors } from './components/health/selectors';
 import { EuiBasicTableSelectors } from './components/basic_table/selectors';
 import { EuiButtonSelectors } from './components/button/selectors';
 import { EuiButtonEmptySelectors } from './components/button/button_empty/selectors';
@@ -57,6 +60,9 @@ import { EuiFilePickerSelectors } from './components/form/file_picker/selectors'
  */
 export const selectors = {
   accordion: EuiAccordionSelectors,
+  badge: EuiBadgeSelectors,
+  notificationBadge: EuiNotificationBadgeSelectors,
+  health: EuiHealthSelectors,
   basicTable: EuiBasicTableSelectors,
   button: EuiButtonSelectors,
   buttonEmpty: EuiButtonEmptySelectors,

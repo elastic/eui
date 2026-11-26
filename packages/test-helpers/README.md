@@ -88,6 +88,9 @@ their own version at runtime.
 | `EuiColorPickerObject` | [src/components/color_picker/README.md](src/components/color_picker/README.md) |
 | `EuiTreeViewObject` | [src/components/tree_view/README.md](src/components/tree_view/README.md) |
 | `EuiToolTipObject` | [src/components/tool_tip/README.md](src/components/tool_tip/README.md) |
+| `EuiBadgeObject` | [src/components/badge/README.md](src/components/badge/README.md) |
+| `EuiNotificationBadgeObject` | [src/components/badge/notification_badge/README.md](src/components/badge/notification_badge/README.md) |
+| `EuiHealthObject` | [src/components/health/README.md](src/components/health/README.md) |
 
 ### Selectors
 
