@@ -811,6 +811,28 @@ describe('EuiComboBox', () => {
     const side = (name: 'prepend' | 'append') =>
       cy.get(`.euiFormControlLayout__${name}`);
 
+    it('lets a combo box without prepend and append shrink with its container', () => {
+      cy.mount(
+        <div style={{ inlineSize: 100 }} data-test-subj="column">
+          <EuiComboBox
+            aria-label="Combo box without prepend and append"
+            fullWidth
+            options={pills}
+          />
+        </div>
+      );
+
+      // The minimum width for the center only applies to controls with sides
+      cy.get('[data-test-subj="column"]').should(($column) => {
+        const center = $column[0].querySelector(
+          '.euiFormControlLayout__childrenWrapper'
+        )!;
+        expect(center.getBoundingClientRect().right).to.be.at.most(
+          $column[0].getBoundingClientRect().right + 1
+        );
+      });
+    });
+
     (['wrap', 'collapse'] as const).forEach((selectionDisplay) => {
       describe(`selectionDisplay="${selectionDisplay}"`, () => {
         it('keeps the sides at their content width when there is room', () => {

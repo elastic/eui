@@ -210,7 +210,8 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       // Allow the form control to expand to any height to accommodate multiple rows of pills
       multiSelect: css`
         ${logicalCSS('height', 'auto')}
-
+      `,
+      multiSelectGroup: css`
         /* The control has no definite height, so the sides' default height: 100%
            doesn't resolve. Let them stretch instead so prepend/append dividers
            span the full height of the control */

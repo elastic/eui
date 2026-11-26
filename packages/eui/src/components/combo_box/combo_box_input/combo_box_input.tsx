@@ -665,6 +665,7 @@ export class EuiComboBoxInput<T> extends Component<
           const formLayoutStyles = [
             styles.formLayout.euiComboBox__formControlLayout,
             !singleSelection && styles.formLayout.multiSelect,
+            !singleSelection && isInGroup && styles.formLayout.multiSelectGroup,
             !singleSelection &&
               compressed &&
               styles.formLayout.multiSelectCompressed,
