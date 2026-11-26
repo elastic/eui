@@ -69,9 +69,10 @@ export type EuiFormControlLayoutProps = CommonProps &
     readOnly?: boolean;
     isInvalid?: boolean;
     /**
-     * Controls the adding of and visibility of a down arrow icon
+     * Controls the adding of and visibility of a down arrow icon. Pass an object
+     * to configure the icon as an interactive button.
      */
-    isDropdown?: boolean;
+    isDropdown?: EuiFormControlLayoutIconsProps['isDropdown'];
     /**
      * Connects the prepend and append labels to the input
      */

@@ -9,7 +9,13 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiYScroll, logicalCSS, mathWithUnits } from '../../../global_styling';
+import {
+  euiFontSize,
+  euiOutline,
+  euiYScroll,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 
 export const euiDataGridKeyboardShortcutsStyles = (
   euiThemeContext: UseEuiTheme
@@ -26,8 +32,16 @@ export const euiDataGridKeyboardShortcutsStyles = (
       padding: ${euiTheme.size.m};
       ${euiYScroll(euiThemeContext)}
 
+      &:focus-visible {
+        ${euiOutline(euiThemeContext, 'inset')}
+      }
+
       .euiDescriptionList {
         row-gap: 0; /* Row spacing handled by default EuiText dd/dt styles */
+      }
+
+      & :where(.euiDescriptionList) dt {
+        ${euiFontSize(euiThemeContext, 's')}
       }
     `,
   };

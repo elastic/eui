@@ -7,10 +7,15 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent, waitFor } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { render } from '../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../test/rtl';
 import { euiPaletteColorBlind, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
@@ -191,6 +196,130 @@ describe('EuiColorPicker', () => {
     fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
     expect(onFocusHandler).toHaveBeenCalled();
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+  });
+
+  test('popover color selector is shown when the dropdown button is clicked', async () => {
+    const onBlurHandler = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        onBlur={onBlurHandler}
+        aria-label="Color"
+      />
+    );
+    const input = getByTestSubject('euiColorPickerAnchor');
+    const toggleButton = getByTestSubject('euiColorPickerToggle');
+
+    input.focus();
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
+    expect(toggleButton).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(toggleButton).toHaveAttribute(
+      'aria-label',
+      'Open color selection dialog'
+    );
+
+    await act(async () => {
+      await userEvent.click(toggleButton);
+    });
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+    expect(input).toHaveFocus();
+    expect(onBlurHandler).not.toHaveBeenCalled();
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
+    expect(toggleButton).toHaveAttribute(
+      'aria-label',
+      'Close color selection dialog'
+    );
+  });
+
+  test('restores input focus on Escape when opened from another focused control', async () => {
+    const { container, getByTestSubject } = render(
+      <>
+        <input aria-label="Unrelated input" data-test-subj="unrelatedInput" />
+        <EuiColorPicker onChange={onChange} aria-label="Color" />
+      </>
+    );
+    const unrelatedInput = getByTestSubject('unrelatedInput');
+    const input = getByTestSubject('euiColorPickerAnchor');
+
+    unrelatedInput.focus();
+    await act(async () => {
+      await userEvent.click(getByTestSubject('euiColorPickerToggle'));
+    });
+    await waitForEuiPopoverOpen();
+    expect(input).toHaveFocus();
+
+    fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+    const saturation = getByTestSubject('euiSaturation');
+    expect(saturation).toHaveFocus();
+
+    fireEvent.keyDown(container, {
+      key: keys.ESCAPE,
+    });
+    await waitForEuiPopoverClose();
+    await waitFor(() => {
+      expect(input).toHaveFocus();
+    });
+  });
+
+  test('popover color selector is closed once and input is focused when the dropdown button is clicked while open', async () => {
+    const onBlurHandler = jest.fn();
+    const { getByTestSubject, queryByTestSubject } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        onBlur={onBlurHandler}
+        aria-label="Color"
+      />
+    );
+    const input = getByTestSubject('euiColorPickerAnchor');
+    const toggleButton = getByTestSubject('euiColorPickerToggle');
+
+    await act(async () => {
+      await userEvent.click(input);
+    });
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+
+    await act(async () => {
+      await userEvent.click(toggleButton);
+    });
+    expect(onBlurHandler).toHaveBeenCalledTimes(1);
+    expect(input).toHaveFocus();
+
+    await waitFor(() => {
+      expect(
+        queryByTestSubject('euiColorPickerPopover')
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  test('closes on an outside click and calls onBlur once when focus leaves afterwards', async () => {
+    const user = userEvent.setup();
+    const onBlurHandler = jest.fn();
+    const { getByRole } = render(
+      <>
+        <EuiColorPicker
+          aria-label="Color"
+          onBlur={onBlurHandler}
+          onChange={onChange}
+        />
+        {/* Clicking Outside leaves focus in the color input. */}
+        <button type="button" onMouseDown={(event) => event.preventDefault()}>
+          Outside
+        </button>
+        <input aria-label="Other" />
+      </>
+    );
+    const colorInput = getByRole('textbox', { name: 'Color' });
+    const otherInput = getByRole('textbox', { name: 'Other' });
+
+    await act(() => user.click(colorInput));
+    await waitForEuiPopoverOpen();
+    await act(() => user.click(getByRole('button', { name: 'Outside' })));
+
+    await waitForEuiPopoverClose();
+    expect(colorInput).toHaveFocus();
+    await act(() => user.click(otherInput));
+    expect(otherInput).toHaveFocus();
+    expect(onBlurHandler).toHaveBeenCalledTimes(1);
   });
 
   test('popover color selector is hidden when the ESC key pressed', async () => {

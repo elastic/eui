@@ -49,6 +49,18 @@ const meta: Meta<EuiFormControlLayoutProps> = {
   title: 'Forms/EuiForm/EuiFormControlLayout',
   component: EuiFormControlLayout,
   argTypes: {
+    isDropdown: {
+      control: 'radio',
+      // `false` and `true` are passed through as-is, `button` is mapped
+      // to the object API that renders an interactive dropdown button
+      options: [false, true, 'button'],
+      mapping: {
+        button: {
+          'aria-label': 'Toggle options',
+          onClick: action('onDropdownClick'),
+        },
+      },
+    },
     append: {
       control: 'radio',
       options: [undefined, 'icon', 'text'],
