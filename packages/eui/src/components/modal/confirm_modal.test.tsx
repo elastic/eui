@@ -112,6 +112,52 @@ describe('EuiConfirmModal', () => {
     expect(onCancel).toHaveBeenCalledTimes(0);
   });
 
+  describe('confirmButtonProps and cancelButtonProps', () => {
+    it('passes props to the confirm and cancel buttons', () => {
+      const { getByTestSubject } = render(
+        <EuiConfirmModal
+          onCancel={() => {}}
+          onConfirm={() => {}}
+          cancelButtonText="Cancel Button Text"
+          confirmButtonText="Confirm Button Text"
+          confirmButtonProps={{ 'data-action': 'confirm' }}
+          cancelButtonProps={{ 'data-action': 'cancel' }}
+        />
+      );
+
+      expect(getByTestSubject('confirmModalConfirmButton')).toHaveAttribute(
+        'data-action',
+        'confirm'
+      );
+      expect(getByTestSubject('confirmModalCancelButton')).toHaveAttribute(
+        'data-action',
+        'cancel'
+      );
+    });
+
+    it('forwards buttonRef from the button props', () => {
+      const confirmRef = React.createRef<HTMLButtonElement>();
+      const cancelRef = React.createRef<HTMLButtonElement>();
+      const { getByTestSubject } = render(
+        <EuiConfirmModal
+          onCancel={() => {}}
+          onConfirm={() => {}}
+          cancelButtonText="Cancel"
+          confirmButtonText="Confirm"
+          confirmButtonProps={{ buttonRef: confirmRef }}
+          cancelButtonProps={{ buttonRef: cancelRef }}
+        />
+      );
+
+      expect(confirmRef.current).toBe(
+        getByTestSubject('confirmModalConfirmButton')
+      );
+      expect(cancelRef.current).toBe(
+        getByTestSubject('confirmModalCancelButton')
+      );
+    });
+  });
+
   describe('onCancel', () => {
     test('triggerd by click', () => {
       const { getByTestSubject } = render(
