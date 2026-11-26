@@ -24,7 +24,7 @@ import {
 } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiModalStyles } from './modal.styles';
 
 import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
@@ -112,8 +112,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
 
   const classes = classnames('euiModal--confirmation', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiModalStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiModalStyles);
   const cssStyles = [styles.confirmation];
 
   let modalTitle;
