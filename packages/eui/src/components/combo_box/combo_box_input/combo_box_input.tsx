@@ -279,7 +279,9 @@ export class EuiComboBoxInput<T> extends Component<
     }
 
     // Only re-measure when something that affects the fit changed. Width changes
-    // of the control itself are handled by `EuiResizeObserver`.
+    // of the control itself are handled by `EuiResizeObserver`, but it can't see
+    // icons (loading, invalid, clear button, ...) being added: they change the
+    // padding, and with it the space for the pills, not the size of the control.
     const { props } = this;
     if (
       prevProps.selectedOptions !== props.selectedOptions ||
@@ -287,6 +289,12 @@ export class EuiComboBoxInput<T> extends Component<
       prevProps.selectionDisplay !== props.selectionDisplay ||
       prevProps.singleSelection !== props.singleSelection ||
       prevProps.placeholder !== props.placeholder ||
+      prevProps.isLoading !== props.isLoading ||
+      prevProps.isInvalid !== props.isInvalid ||
+      prevProps.isDisabled !== props.isDisabled ||
+      prevProps.noIcon !== props.noIcon ||
+      prevProps.hasSelectedOptions !== props.hasSelectedOptions ||
+      !!prevProps.onClear !== !!props.onClear ||
       prevState.inputWidth !== this.state.inputWidth
     ) {
       this.updateVisibleCount();

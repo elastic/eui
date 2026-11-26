@@ -704,6 +704,58 @@ describe('EuiComboBox', () => {
       });
     });
 
+    it('recalculates the hidden selections when an icon changes the available width', () => {
+      // Icons (e.g. loading or invalid) add padding to the control. That changes
+      // the space for the pills without changing the size of the control itself
+      const IconCombobox = ({ width }: { width: number }) => {
+        const [isLoading, setLoading] = useState(false);
+        const [placeholder, setPlaceholder] = useState<string>();
+        return (
+          <>
+            <EuiButton
+              data-test-subj="showIcon"
+              onClick={() => setLoading(true)}
+            >
+              Loading
+            </EuiButton>
+            {/* Re-measures without changing the layout (not shown with selections) */}
+            <EuiButton
+              data-test-subj="remeasure"
+              onClick={() => setPlaceholder('placeholder')}
+            >
+              Re-measure
+            </EuiButton>
+            <div style={{ inlineSize: width }}>
+              <EuiComboBox
+                aria-label="Collapsing combo box"
+                fullWidth
+                isLoading={isLoading}
+                placeholder={placeholder}
+                options={collapseOptions}
+                selectedOptions={collapseOptions}
+                selectionDisplay="collapse"
+              />
+            </div>
+          </>
+        );
+      };
+
+      // The widths at which a pill stops fitting depend on the fonts, so check a
+      // range that is wider than one pill
+      Cypress._.range(400, 640, 8).forEach((width) => {
+        cy.mount(<IconCombobox width={width} />);
+        cy.get('[data-test-subj="showIcon"]').click();
+        cy.get('body').then(($body) => {
+          const afterIcon = countHidden($body);
+
+          cy.get('[data-test-subj="remeasure"]').click();
+          assertHiddenCount((count) =>
+            expect(count, `hidden count at ${width}px`).to.equal(afterIcon)
+          );
+        });
+      });
+    });
+
     it('opens and closes the hidden selections with the keyboard', () => {
       cy.mount(<ResizableCollapseComboBox />);
       cy.get('[data-test-subj="narrow"]').click();
