@@ -1,0 +1,60 @@
+name: Check PR author
+
+on:
+  workflow_call:
+    inputs:
+      user_login:
+        description: Login of the pull request author
+        required: true
+        type: string
+    outputs:
+      is_member:
+        description: Whether the author is a member of the elastic organization, "true" or "false"
+        value: ${{ jobs.membership.outputs.is_member }}
+
+permissions: {}
+
+jobs:
+  membership:
+    name: Check Elastic org membership
+    runs-on: ubuntu-24.04
+    permissions:
+      id-token: write # Required for OIDC (Vault ephemeral token)
+    outputs:
+      is_member: ${{ steps.org_membership.outputs.is_member }}
+    env:
+      USER_LOGIN: ${{ inputs.user_login }}
+    steps:
+      - name: Fetch ephemeral GitHub token
+        id: fetch_ephemeral_token
+        uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
+        with:
+          vault-instance: ci-prod
+          vault-role: token-policy-7c76c3b2363a
+      - name: Check for org membership
+        # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
+        id: org_membership
+        env:
+          GH_TOKEN: ${{ steps.fetch_ephemeral_token.outputs.token }}
+        run: |
+          set -euo pipefail
+          HTTP_CODE=$(curl -sS -o /dev/null -w "%{http_code}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/orgs/elastic/members/$USER_LOGIN")
+
+          case "$HTTP_CODE" in
+            204)
+              echo "Elastic org member"
+              echo "is_member=true" >> "$GITHUB_OUTPUT"
+              ;;
+            404)
+              echo "Not an Elastic org member"
+              echo "is_member=false" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::Unexpected membership API status: ${HTTP_CODE:-empty}"
+              exit 1
+              ;;
+          esac
