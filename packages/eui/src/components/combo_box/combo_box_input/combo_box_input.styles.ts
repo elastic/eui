@@ -141,6 +141,8 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSSWithFallback('overflow-y', 'auto')}
 
       .euiComboBoxPill {
+        /* prevent pills from collapsing */
+        flex-shrink: 0;
         ${logicalCSS('max-width', '100%')}
       }
     `,
