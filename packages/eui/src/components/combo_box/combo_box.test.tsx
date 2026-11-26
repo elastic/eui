@@ -16,6 +16,7 @@ import {
 import { requiredProps } from '../../test';
 
 import { keys } from '../../services';
+import { EuiPopover } from '../popover';
 import { EuiComboBox } from './combo_box';
 import type { EuiComboBoxOptionOption } from './types';
 
@@ -201,6 +202,43 @@ describe('EuiComboBox', () => {
         expect(appendButton).not.toHaveAttribute('aria-controls');
         expect(input).toHaveAttribute('aria-expanded', 'false');
         expect(input).toHaveAttribute('aria-controls', '');
+      });
+    });
+
+    describe('keys pressed in portals', () => {
+      it('leaves keys pressed in a popover rendered by the append alone', async () => {
+        const onKeyDown = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with an append popover"
+            options={options}
+            onKeyDown={onKeyDown}
+            append={
+              <EuiPopover
+                button={<button type="button">Open</button>}
+                isOpen
+                closePopover={() => {}}
+              >
+                <textarea data-test-subj="portalTextarea" />
+              </EuiPopover>
+            }
+          />
+        );
+        const textarea = await findByTestSubject('portalTextarea');
+        // The popover is rendered in a portal, not inside the combo box
+        expect(getByTestSubject('comboBoxInput').contains(textarea)).toBe(
+          false
+        );
+
+        const event = createEvent.keyDown(textarea, { key: keys.ARROW_DOWN });
+        fireEvent(textarea, event);
+
+        expect(event.defaultPrevented).toBe(false);
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+        expect(onKeyDown).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -423,6 +461,32 @@ describe('EuiComboBox', () => {
           'aria-expanded',
           'false'
         );
+      });
+
+      it('leaves keys pressed on the +N trigger alone', () => {
+        const onKeyDown = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onKeyDown={onKeyDown}
+          />
+        );
+
+        const event = createEvent.keyDown(
+          getByTestSubject('comboBoxCollapsedBadge'),
+          { key: keys.ARROW_DOWN }
+        );
+        fireEvent(getByTestSubject('comboBoxCollapsedBadge'), event);
+
+        expect(event.defaultPrevented).toBe(false);
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+        expect(onKeyDown).toHaveBeenCalledTimes(1);
       });
 
       it('returns focus to the input when removing the last hidden selection', async () => {

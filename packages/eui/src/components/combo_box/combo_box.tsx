@@ -233,7 +233,7 @@ const initialSearchValue = '';
 const FOREIGN_KEY_TARGET_SELECTOR = [
   '.euiFormControlLayout__prepend',
   '.euiFormControlLayout__append',
-  '[data-test-subj~="comboBoxCollapsedPopover"]',
+  '.euiComboBoxCollapsedBadge',
 ].join(', ');
 
 export class EuiComboBox<T> extends Component<
@@ -557,10 +557,12 @@ export class EuiComboBox<T> extends Component<
     // Keys pressed in consumer content (prepend/append) or the collapsed
     // selections popover are not ours to handle. Other inner controls (pill
     // remove buttons, clear button, ...) keep the regular handling below.
+    const target = event.target as Node;
     if (
-      event.target !== this.searchInputRefInstance &&
-      event.target instanceof Element &&
-      event.target.closest(FOREIGN_KEY_TARGET_SELECTOR)
+      target !== this.searchInputRefInstance &&
+      (!event.currentTarget.contains(target) ||
+        (target instanceof Element &&
+          target.closest(FOREIGN_KEY_TARGET_SELECTOR)))
     ) {
       this.props.onKeyDown?.(event);
       return;
