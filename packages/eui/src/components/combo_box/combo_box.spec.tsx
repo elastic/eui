@@ -811,6 +811,13 @@ describe('EuiComboBox', () => {
     const side = (name: 'prepend' | 'append') =>
       cy.get(`.euiFormControlLayout__${name}`);
 
+    // The labels truncate inside the sides, so the side element itself doesn't
+    // overflow. Check the content of the side instead.
+    const hasTruncatedContent = ($side: JQuery<HTMLElement>) =>
+      Array.from($side[0].querySelectorAll<HTMLElement>('*')).some(
+        (el) => el.scrollWidth > el.clientWidth
+      );
+
     it('lets a combo box without prepend and append shrink with its container', () => {
       cy.mount(
         <div style={{ inlineSize: 100 }} data-test-subj="column">
@@ -845,7 +852,7 @@ describe('EuiComboBox', () => {
 
           // The label is not cut off, even with many pills
           side('prepend').should(($side) => {
-            expect($side[0].scrollWidth).to.equal($side[0].clientWidth);
+            expect(hasTruncatedContent($side)).to.equal(false);
           });
           // A single icon button doesn't get a wider area than it needs
           side('append').should(($side) => {
@@ -864,10 +871,6 @@ describe('EuiComboBox', () => {
           });
 
           // The labels are truncated inside the sides
-          const hasTruncatedContent = ($side: JQuery<HTMLElement>) =>
-            Array.from($side[0].querySelectorAll<HTMLElement>('*')).some(
-              (el) => el.scrollWidth > el.clientWidth
-            );
           side('prepend').should(($side) => {
             expect(hasTruncatedContent($side)).to.equal(true);
           });
