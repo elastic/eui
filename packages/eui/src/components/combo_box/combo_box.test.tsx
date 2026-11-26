@@ -512,6 +512,34 @@ describe('EuiComboBox', () => {
         expect(input).toHaveAttribute('aria-invalid', 'false');
       });
 
+      it('does not duplicate the id and data-test-subj of hidden selections', async () => {
+        const selectedOptions = options.slice(0, 6).map((option, index) =>
+          index === 5
+            ? {
+                ...option,
+                id: 'hidden-selection',
+                'data-test-subj': 'hiddenSelection',
+              }
+            : option
+        ) as EuiComboBoxOptionOption[];
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={selectedOptions}
+            selectionDisplay="collapse"
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        expect(document.querySelectorAll('#hidden-selection')).toHaveLength(1);
+        expect(
+          document.querySelectorAll('[data-test-subj="hiddenSelection"]')
+        ).toHaveLength(1);
+      });
+
       it('returns focus to the input when removing the last hidden selection', async () => {
         const StatefulComboBox = () => {
           const [selectedOptions, setSelectedOptions] = React.useState<

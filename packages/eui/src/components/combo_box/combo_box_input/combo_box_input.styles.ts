@@ -73,8 +73,11 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       flex-wrap: nowrap;
       overflow: hidden;
 
-      /* Always leave room to type, see \`getVisibleCount\` */
+      /* The input keeps the width that \`getVisibleCount\` reserved for it, so only
+         the last pill shrinks. Its maximum width is set inline, to keep a long
+         query from running under the icons. */
       .euiComboBox__input {
+        flex-shrink: 0;
         ${logicalCSS('min-width', `${COLLAPSE_INPUT_MIN_WIDTH}px`)}
       }
 
@@ -100,6 +103,8 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('min-width', '0')}
       }
 
+      /* The only item that shrinks. The fit calculation already guarantees that it
+         stays wide enough. */
       .euiComboBoxPill--shrinkable {
         flex-shrink: 1;
       }
@@ -212,17 +217,27 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
         > .euiFormControlLayout__prepend,
         > .euiFormControlLayout__append {
           ${logicalCSS('height', 'auto')}
-          /* Sides keep their natural width so their content isn't cut off, but are
-             capped (and truncated) so that two long sides can't take the whole
-             row and push out the input and the "+N" badge */
-          ${logicalCSS('max-width', '40%')}
-          flex-shrink: 0;
           align-self: stretch;
+          /* The sides keep their natural width and only give up space (truncating
+             their content) when the center would otherwise drop below its minimum
+             width, so how far they can shrink is limited by that minimum. */
+          flex-shrink: 1;
 
           > * {
             ${logicalCSS('max-width', '100%')}
             ${logicalCSS('min-width', '0')}
           }
+        }
+
+        /* The center (pills and input) starts from no width, so the full width of
+           all pills isn't counted as overflow that the sides would have to absorb.
+           It keeps enough room for the input, the "+N" badge and the icons. */
+        > .euiFormControlLayout__childrenWrapper {
+          flex: 1 1 0%;
+          ${logicalCSS(
+            'min-width',
+            mathWithUnits(euiTheme.size.xxxxl, (x) => x * 2)
+          )}
         }
 
         ${sideContentTop(formVariables.controlHeight)}

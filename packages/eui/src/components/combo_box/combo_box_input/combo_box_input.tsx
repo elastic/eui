@@ -91,6 +91,11 @@ interface EuiComboBoxInputState {
   hasFocus: boolean;
   /** Number of pills that fit when `selectionDisplay="collapse"`. `undefined` renders all pills. */
   visibleCount?: number;
+  /**
+   * Space taken by the "+N" badge and its gap, only set when selections are
+   * hidden. Used to calculate the input width to prevent overflow.
+   */
+  collapsedBadgeSpace?: number;
   isCollapsedPopoverOpen: boolean;
 }
 
@@ -167,6 +172,7 @@ export class EuiComboBoxInput<T> extends Component<
   updateVisibleCount = () => {
     const wrap = this.wrapRef.current;
     let visibleCount: number | undefined;
+    let badgeAndGapWidth = 0;
 
     if (this.isCollapsed && wrap) {
       const pills = Array.from(wrap.children).filter((el) =>
@@ -178,13 +184,15 @@ export class EuiComboBoxInput<T> extends Component<
         wrap.clientWidth -
         (parseFloat(style.paddingLeft) || 0) -
         (parseFloat(style.paddingRight) || 0);
-      // The badge is always rendered (hidden when nothing is collapsed) so it can be measured
+      // A hidden badge with the widest possible label is always rendered, so the
+      // result doesn't depend on which count is currently shown
       const badge = wrap.querySelector<HTMLElement>(
-        '.euiComboBoxCollapsedBadge .euiBadge, .euiComboBoxCollapsedBadgeMeasure'
+        '.euiComboBoxCollapsedBadgeMeasure'
       );
       const badgeWidth = badge
         ? Math.max(badge.offsetWidth, badge.getBoundingClientRect().width)
         : 0;
+      badgeAndGapWidth = badgeWidth + gap;
       const input = wrap.querySelector<HTMLInputElement>('.euiComboBox__input');
       const inputWidthFromStyle = parseFloat(input?.style.inlineSize ?? '');
       const inputWidth = Number.isFinite(inputWidthFromStyle)
@@ -214,12 +222,19 @@ export class EuiComboBoxInput<T> extends Component<
     const shouldClosePopover =
       this.state.isCollapsedPopoverOpen && !hasHiddenOptions;
 
-    if (visibleCount !== this.state.visibleCount || shouldClosePopover) {
+    const collapsedBadgeSpace = hasHiddenOptions ? badgeAndGapWidth : undefined;
+
+    if (
+      visibleCount !== this.state.visibleCount ||
+      collapsedBadgeSpace !== this.state.collapsedBadgeSpace ||
+      shouldClosePopover
+    ) {
       const stateUpdate: Pick<
         EuiComboBoxInputState,
-        'visibleCount' | 'isCollapsedPopoverOpen'
+        'visibleCount' | 'collapsedBadgeSpace' | 'isCollapsedPopoverOpen'
       > = {
         visibleCount,
+        collapsedBadgeSpace,
         isCollapsedPopoverOpen: this.state.isCollapsedPopoverOpen,
       };
       if (shouldClosePopover) {
@@ -365,24 +380,24 @@ export class EuiComboBoxInput<T> extends Component<
       )
     );
 
+    if (!isCollapsed) return pills;
+
+    // Hidden badge with the widest possible label (every selection hidden), only
+    // rendered so that its width can be measured
+    const measureBadge = (
+      <EuiBadge
+        key="euiComboBoxCollapsedBadgeMeasure"
+        className="euiComboBoxCollapsedBadgeMeasure"
+      >
+        +{selectedOptions.length}
+      </EuiBadge>
+    );
+
     const hiddenOptions =
       visibleCount == null ? [] : selectedOptions.slice(visibleCount);
-    if (!isCollapsed) return pills;
-    if (!hiddenOptions.length) {
-      // Keep a hidden badge in the DOM (widest possible label) for measuring
-      return [
-        ...pills,
-        <EuiBadge
-          key="euiComboBoxCollapsedBadgeMeasure"
-          className="euiComboBoxCollapsedBadgeMeasure"
-          aria-hidden
-        >
-          +{selectedOptions.length}
-        </EuiBadge>,
-      ];
-    }
+    if (!hiddenOptions.length) return [...pills, measureBadge];
 
-    return [...pills, this.renderCollapsedBadge(hiddenOptions)];
+    return [...pills, measureBadge, this.renderCollapsedBadge(hiddenOptions)];
   };
 
   closeCollapsedPopover = () => {
@@ -419,6 +434,8 @@ export class EuiComboBoxInput<T> extends Component<
       truncationProps,
       toolTipContent,
       toolTipProps,
+      id,
+      'data-test-subj': dataTestSubj,
       ...rest
     } = option;
     const { isDisabled, onRemoveOption, singleSelection } = this.props;
@@ -439,6 +456,13 @@ export class EuiComboBoxInput<T> extends Component<
         onClick={onClick}
         onClickAriaLabel={onClick ? 'Change' : undefined}
         {...rest}
+        // Hidden pills are only measured. The interactive copy is in the "+N"
+        // popover, so don't duplicate the identity of the option on this one.
+        // Only pass the props that are set, as `undefined` would replace the
+        // default `data-test-subj` of the pill.
+        {...(!isCollapsed && id !== undefined && { id })}
+        {...(!isCollapsed &&
+          dataTestSubj !== undefined && { 'data-test-subj': dataTestSubj })}
       >
         {label}
       </EuiComboBoxPill>
@@ -695,6 +719,13 @@ export class EuiComboBoxInput<T> extends Component<
                             this.asPlainText || showPlaceholder
                               ? '100%'
                               : this.state.inputWidth,
+                          // A long query can't be wider than what is left of
+                          // the row after the "+N" badge
+                          ...(this.state.collapsedBadgeSpace
+                            ? {
+                                maxInlineSize: `calc(100% - ${this.state.collapsedBadgeSpace}px)`,
+                              }
+                            : {}),
                         }}
                         placeholder={showPlaceholder ? placeholder : undefined}
                         value={this.searchValue}
