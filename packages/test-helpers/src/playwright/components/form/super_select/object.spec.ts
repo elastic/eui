@@ -65,4 +65,14 @@ test.describe('EuiSuperSelectObject', () => {
       expect(await superSelect.getSelectedValue()).toBe('option-2');
     });
   });
+
+  test('getSelectedValue works from a Locator scope', async ({ page }) => {
+    await page.goto(PLAYGROUND_URL);
+    const scoped = new EuiSuperSelectObject(
+      page.locator('#storybook-root'),
+      TEST_SUBJ
+    );
+
+    expect(await scoped.getSelectedValue()).toBe('option-1');
+  });
 });

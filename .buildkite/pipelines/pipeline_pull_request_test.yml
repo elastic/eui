@@ -50,6 +50,7 @@ steps:
     label: ":cypress: Cypress tests on React 17"
     env:
       TEST_TYPE: 'cypress:17'
+    parallelism: 3
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
@@ -61,6 +62,7 @@ steps:
     label: ":cypress: Cypress tests on React 18"
     env:
       TEST_TYPE: 'cypress:18'
+    parallelism: 3
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
@@ -72,6 +74,7 @@ steps:
     label: ":axe: Cypress accessibility (a11y) tests on React 18"
     env:
       TEST_TYPE: 'cypress:a11y'
+    parallelism: 3
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"

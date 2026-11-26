@@ -8,7 +8,7 @@ exports[`euiProgressStyles indeterminate div CSS colors accent 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS colors accentSecondary 1`] = `
 "&::before {
-    background-color: #008B87;
+    background-color: #00806B;
   };;label:accentSecondary;"
 `;
 
@@ -38,13 +38,13 @@ exports[`euiProgressStyles indeterminate div CSS colors success 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS colors vis0 1`] = `
 "&::before {
-    background-color: #16C5C0;
+    background-color: #00BDA0;
   };;label:vis0;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS colors vis1 1`] = `
 "&::before {
-    background-color: #A6EDEA;
+    background-color: #93F0D9;
   };;label:vis1;"
 `;
 
@@ -135,10 +135,10 @@ exports[`euiProgressStyles native progress CSS colors accent 1`] = `
 
 exports[`euiProgressStyles native progress CSS colors accentSecondary 1`] = `
 "&::-webkit-progress-value {
-    background-color: #008B87;
+    background-color: #00806B;
   }
   &::-moz-progress-bar {
-    background-color: #008B87;
+    background-color: #00806B;
   };;label:accentSecondary;"
 `;
 
@@ -180,19 +180,19 @@ exports[`euiProgressStyles native progress CSS colors success 1`] = `
 
 exports[`euiProgressStyles native progress CSS colors vis0 1`] = `
 "&::-webkit-progress-value {
-    background-color: #16C5C0;
+    background-color: #00BDA0;
   }
   &::-moz-progress-bar {
-    background-color: #16C5C0;
+    background-color: #00BDA0;
   };;label:vis0;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors vis1 1`] = `
 "&::-webkit-progress-value {
-    background-color: #A6EDEA;
+    background-color: #93F0D9;
   }
   &::-moz-progress-bar {
-    background-color: #A6EDEA;
+    background-color: #93F0D9;
   };;label:vis1;"
 `;
 

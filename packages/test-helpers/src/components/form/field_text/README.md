@@ -24,4 +24,4 @@ Set `data-test-subj` on `<EuiFieldText>`. EUI spreads it onto the native `<input
 
 ## Deliberately excluded
 
-`prepend`, `append` and `icon`. They are consumer content outside the input, assert on them through `locator`. `EuiFieldNumber`, `EuiFieldPassword` and `EuiTextArea` are different inputs, Playwright handles them natively. Use `EuiFieldSearchObject` for the search variant since it submits on Enter.
+`prepend`, `append` and `icon`. They are consumer content outside the input, assert on them through `locator`. Use `EuiFieldSearchObject`, `EuiFieldNumberObject`, `EuiFieldPasswordObject` and `EuiTextAreaObject` for the other inputs.
