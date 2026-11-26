@@ -63,11 +63,14 @@ export interface EuiConfirmModalProps
     Omit<
       EuiButtonPropsForButton,
       | 'children'
+      | 'element'
       | 'color'
       | 'fill'
       | 'isLoading'
       | 'isDisabled'
       | 'disabled'
+      | 'autoFocus'
+      | 'isSelected'
       | 'onClick'
     >;
   /**
@@ -77,7 +80,15 @@ export interface EuiConfirmModalProps
   cancelButtonProps?: DataAttributeProps &
     Omit<
       EuiButtonEmptyPropsForButton,
-      'children' | 'color' | 'onClick' | 'flush' | 'href' | 'target' | 'rel'
+      | 'children'
+      | 'color'
+      | 'flush'
+      | 'href'
+      | 'target'
+      | 'rel'
+      | 'autoFocus'
+      | 'isSelected'
+      | 'onClick'
     >;
   className?: string;
   /**
