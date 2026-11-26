@@ -25,7 +25,10 @@ addons.setConfig({
         if (process.env.NODE_ENV === 'development') return true;
         // Storybook only accepts string literals in the tags,
         // handling this centrally via a map doesn't work :(
-        return !item.tags?.includes('vrt-only');
+        return (
+          !item.tags?.includes('vrt-only') &&
+          !item.tags?.includes('internal-tool')
+        );
       },
     },
   },

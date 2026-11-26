@@ -211,7 +211,9 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
   <Example.Description>
     ### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
 
-    The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
+    The following colors should be used in categorically seried visualizations and graphics.
+    `euiColorVis0` to `euiColorVis9` make up the default color-blind safe palette.
+    `euiColorVis10` and `euiColorVis11` are opt-in (`euiPaletteColorBlind({ extended: true })`) and can be hard to tell apart from the blues for people with deuteranopia, so pair them with other cues such as labels or patterns.
     They are meant to be contrasted against the value of `colors.backgroundBasePlain` for the current theme.
 
     See the [Data visualization text colors](#dataVisText) section for a note about text colors.

@@ -56,6 +56,19 @@ describe('useEuiPaletteColorBlind', () => {
     ]);
   });
 
+  it('should append the extended colors when `extended` is true', () => {
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlind({ extended: true }),
+      { wrapper: RenderContainer }
+    );
+
+    expect(result.current).toHaveLength(12);
+    expect(result.current.slice(10)).toEqual([
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
+    ]);
+  });
+
   it('should return high contrast mode colors in LIGHT mode', () => {
     const Wrapper = (props: PropsWithChildren) => (
       <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
@@ -77,6 +90,31 @@ describe('useEuiPaletteColorBlind', () => {
       '#AD7E00',
     ]);
   });
+
+  it('should return extended high contrast mode colors in LIGHT mode', () => {
+    const Wrapper = (props: PropsWithChildren) => (
+      <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
+    );
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlind({ extended: true }),
+      { wrapper: Wrapper }
+    );
+
+    expect(result.current).toEqual([
+      '#035749',
+      '#00927B',
+      '#154399',
+      '#2476F0',
+      '#831652',
+      '#D13680',
+      '#7F1F27',
+      '#DA3737',
+      '#6A4906',
+      '#AD7E00',
+      '#52357E',
+      '#925CDA',
+    ]);
+  });
 });
 
 describe('useEuiPaletteColorBlindBehindText', () => {
@@ -96,6 +134,19 @@ describe('useEuiPaletteColorBlindBehindText', () => {
       colorVis.euiColorVisBehindText7,
       colorVis.euiColorVisBehindText8,
       colorVis.euiColorVisBehindText9,
+    ]);
+  });
+
+  it('should append the extended colors when `extended` is true', () => {
+    const { result } = renderHook(
+      () => useEuiPaletteColorBlindBehindText({ extended: true }),
+      { wrapper: RenderContainer }
+    );
+
+    expect(result.current).toHaveLength(12);
+    expect(result.current.slice(10)).toEqual([
+      colorVis.euiColorVis10,
+      colorVis.euiColorVis11,
     ]);
   });
 });

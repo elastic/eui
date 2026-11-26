@@ -64,6 +64,7 @@ const preview: Preview = {
           'Editors & Syntax',
           'Utilities',
           '*',
+          'Tools',
         ],
       },
     },
