@@ -470,13 +470,11 @@ export class EuiComboBoxInput<T> extends Component<
   };
 
   renderCollapsedBadge = (hiddenOptions: Array<EuiComboBoxOptionOption<T>>) => {
-    const labels = hiddenOptions.map((option) => option.label);
-
     const badge = (
       <EuiI18n
         token="euiComboBoxInput.collapsedSelections"
-        default="{count} more selected: {labels}"
-        values={{ count: hiddenOptions.length, labels: labels.join(', ') }}
+        default="Show {count} hidden selections"
+        values={{ count: hiddenOptions.length }}
       >
         {(collapsedSelections: string) => (
           <EuiBadge

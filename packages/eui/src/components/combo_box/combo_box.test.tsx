@@ -316,7 +316,7 @@ describe('EuiComboBox', () => {
         expect(`+${hidden.length}`).toBe(badge.textContent);
         expect(badge).toHaveAttribute(
           'aria-label',
-          expect.stringContaining('more selected')
+          `Show ${hidden.length} hidden selections`
         );
         expect(badge).toHaveAttribute('aria-haspopup', 'dialog');
       });
