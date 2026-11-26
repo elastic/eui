@@ -515,7 +515,10 @@ export class EuiComboBoxInput<T> extends Component<
             closePopover={this.closeCollapsedPopover}
             anchorPosition="downLeft"
             panelPaddingSize="s"
-            panelProps={{ 'data-test-subj': 'comboBoxCollapsedPopover' }}
+            panelProps={{
+              className: 'euiComboBoxCollapsedPopover',
+              'data-test-subj': 'comboBoxCollapsedPopover',
+            }}
           >
             <RenderWithEuiStylesMemoizer>
               {(stylesMemoizer) => (

@@ -526,7 +526,7 @@ export class EuiComboBox<T> extends Component<
       this.comboBoxRefInstance.contains(relatedTarget);
     const focusedInCollapsedPopover =
       relatedTarget instanceof Element &&
-      !!relatedTarget.closest('[data-test-subj~="comboBoxCollapsedPopover"]');
+      !!relatedTarget.closest('.euiComboBoxCollapsedPopover');
 
     if (
       !focusedInOptionsList &&
