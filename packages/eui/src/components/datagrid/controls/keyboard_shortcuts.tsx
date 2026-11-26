@@ -60,10 +60,11 @@ export const useDataGridKeyboardShortcuts = (): {
         <EuiText
           css={styles.euiDataGrid__keyboardShortcuts}
           className="euiDataGrid__keyboardShortcuts"
-          size="xs"
+          size="s"
+          role="region"
+          aria-labelledby={titleId}
         >
           <EuiDescriptionList
-            aria-labelledby={titleId}
             type="column"
             columnWidths={['auto', 'auto']}
             align="center"

@@ -35,9 +35,6 @@ export const euiDescriptionListDescriptionStyles = (
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
       `,
-      compressedNormal: css`
-        ${euiFontSize(euiThemeContext, 'xs')}
-      `,
     },
 
     // Nested inline styles for type and font
