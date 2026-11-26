@@ -49,5 +49,8 @@ export { EuiFieldNumberObject } from './playwright/components/form/field_number/
 export { EuiFieldPasswordObject } from './playwright/components/form/field_password/object';
 export { EuiRadioGroupObject } from './playwright/components/form/radio/object';
 export { EuiFilePickerObject } from './playwright/components/form/file_picker/object';
+export { EuiBadgeObject } from './playwright/components/badge/object';
+export { EuiNotificationBadgeObject } from './playwright/components/badge/notification_badge/object';
+export { EuiHealthObject } from './playwright/components/health/object';
 
 export { selectors } from './selectors';

@@ -33,7 +33,7 @@ export const EuiDescriptionListDescription: FunctionComponent<
     ? [
         textStyle === 'reverse'
           ? styles.fontStyles.compressed
-          : styles.fontStyles.compressedNormal,
+          : styles.fontStyles.normal,
       ]
     : [styles.fontStyles[textStyle]];
 
