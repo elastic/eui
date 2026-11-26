@@ -279,16 +279,21 @@ describe('EuiComboBox', () => {
         'offsetWidth'
       )!;
 
+      let controlWidth = 400;
+
       beforeAll(() => {
         // jsdom has no layout: fake a 400px wide control with 100px pills
         Object.defineProperty(Element.prototype, 'clientWidth', {
           configurable: true,
-          get: () => 400,
+          get: () => controlWidth,
         });
         Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
           configurable: true,
           get: () => 100,
         });
+      });
+      afterEach(() => {
+        controlWidth = 400;
       });
       afterAll(() => {
         Object.defineProperty(Element.prototype, 'clientWidth', clientWidth);
@@ -596,7 +601,7 @@ describe('EuiComboBox', () => {
         expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
       });
 
-      it('closes the +N popover and clears aria-controls when becoming disabled', () => {
+      it('closes the +N popover for good when becoming disabled', () => {
         const props = {
           options,
           selectedOptions: options.slice(0, 6),
@@ -605,16 +610,34 @@ describe('EuiComboBox', () => {
         const { getByTestSubject, queryByTestSubject, rerender } = render(
           <EuiComboBox {...props} />
         );
+        const hiddenCount = () =>
+          Number(
+            getByTestSubject('comboBoxCollapsedBadge').textContent!.slice(1)
+          );
+        const hiddenBefore = hiddenCount();
         fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
         expect(
           getByTestSubject('comboBoxCollapsedPopover')
         ).toBeInTheDocument();
 
+        // Change the fit while disabling, so the visible count is recalculated
+        controlWidth = 250;
         rerender(<EuiComboBox {...props} isDisabled />);
+
+        expect(hiddenCount()).toBeGreaterThan(hiddenBefore);
 
         expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
         expect(getByTestSubject('comboBoxCollapsedBadge')).not.toHaveAttribute(
           'aria-controls'
+        );
+
+        // A stale open state would show up again when enabling
+        rerender(<EuiComboBox {...props} />);
+
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+        expect(getByTestSubject('comboBoxCollapsedBadge')).toHaveAttribute(
+          'aria-expanded',
+          'false'
         );
       });
 
