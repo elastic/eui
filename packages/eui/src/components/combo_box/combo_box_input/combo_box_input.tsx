@@ -229,21 +229,19 @@ export class EuiComboBoxInput<T> extends Component<
       collapsedBadgeSpace !== this.state.collapsedBadgeSpace ||
       shouldClosePopover
     ) {
-      const stateUpdate: Pick<
-        EuiComboBoxInputState,
-        'visibleCount' | 'collapsedBadgeSpace' | 'isCollapsedPopoverOpen'
-      > = {
-        visibleCount,
-        collapsedBadgeSpace,
-        isCollapsedPopoverOpen: this.state.isCollapsedPopoverOpen,
-      };
-      if (shouldClosePopover) {
-        stateUpdate.isCollapsedPopoverOpen = false;
-      }
-
-      this.setState(stateUpdate, () => {
-        if (shouldClosePopover) this.searchInputRef?.focus();
-      });
+      // Build on the latest state: writing the open state from a stale
+      // snapshot would overwrite a close that is already queued
+      this.setState(
+        (prevState) => ({
+          ...prevState,
+          visibleCount,
+          collapsedBadgeSpace,
+          ...(shouldClosePopover && { isCollapsedPopoverOpen: false }),
+        }),
+        () => {
+          if (shouldClosePopover) this.searchInputRef?.focus();
+        }
+      );
     }
   };
 
@@ -520,11 +518,14 @@ export class EuiComboBoxInput<T> extends Component<
       >
         {(collapsedSelectionsDialog: string) => (
           <EuiPopover
-            key="euiComboBoxCollapsedBadge"
+            // Remount when toggling disabled: EuiPopover can't clean up
+            // `aria-controls` on a trigger that is no longer focusable
+            // TODO: could be replaced by using hasAriaDisabled is EuiBadge supported it
+            key={isDisabled ? 'disabled' : 'enabled'}
             className="euiComboBoxCollapsedBadge"
             aria-label={collapsedSelectionsDialog}
             button={badge}
-            isOpen={this.state.isCollapsedPopoverOpen}
+            isOpen={this.state.isCollapsedPopoverOpen && !isDisabled}
             closePopover={this.closeCollapsedPopover}
             anchorPosition="downLeft"
             panelPaddingSize="s"

@@ -596,6 +596,28 @@ describe('EuiComboBox', () => {
         expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
       });
 
+      it('closes the +N popover and clears aria-controls when becoming disabled', () => {
+        const props = {
+          options,
+          selectedOptions: options.slice(0, 6),
+          selectionDisplay: 'collapse' as const,
+        };
+        const { getByTestSubject, queryByTestSubject, rerender } = render(
+          <EuiComboBox {...props} />
+        );
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        expect(
+          getByTestSubject('comboBoxCollapsedPopover')
+        ).toBeInTheDocument();
+
+        rerender(<EuiComboBox {...props} isDisabled />);
+
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+        expect(getByTestSubject('comboBoxCollapsedBadge')).not.toHaveAttribute(
+          'aria-controls'
+        );
+      });
+
       it('does not render a badge when every selection fits', () => {
         const { queryByTestSubject } = render(
           <EuiComboBox
