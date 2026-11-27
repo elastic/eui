@@ -15,6 +15,17 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
+import { useEuiTheme, useCombinedRefs } from '../../services';
+import {
+  EuiButtonColor,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonPropsForButton,
+} from '../button';
+import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
+import { DataAttributeProps } from '../common';
+import { EuiText } from '../text';
+
 import { EuiModal, EuiModalProps } from './modal';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModalHeader } from './modal_header';
@@ -23,13 +34,7 @@ import {
   EuiModalHeaderTitleProps,
 } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
-
-import { useEuiTheme } from '../../services';
 import { euiModalStyles } from './modal.styles';
-
-import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
-
-import { EuiText } from '../text';
 
 export interface EuiConfirmModalProps
   extends Omit<EuiModalProps, 'children' | 'onClose' | 'title'> {
@@ -50,6 +55,41 @@ export interface EuiConfirmModalProps
   ) => void;
   onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;
+  /**
+   * Passes additional props to the confirm button that aren't covered by
+   * `confirmButtonText`, `buttonColor`, `isLoading`, `confirmButtonDisabled` and `onConfirm`.
+   */
+  confirmButtonProps?: DataAttributeProps &
+    Omit<
+      EuiButtonPropsForButton,
+      | 'children'
+      | 'element'
+      | 'color'
+      | 'fill'
+      | 'isLoading'
+      | 'isDisabled'
+      | 'disabled'
+      | 'autoFocus'
+      | 'isSelected'
+      | 'onClick'
+    >;
+  /**
+   * Passes additional props to the cancel button that aren't covered by
+   * `cancelButtonText` and `onCancel`.
+   */
+  cancelButtonProps?: DataAttributeProps &
+    Omit<
+      EuiButtonEmptyPropsForButton,
+      | 'children'
+      | 'color'
+      | 'flush'
+      | 'href'
+      | 'target'
+      | 'rel'
+      | 'autoFocus'
+      | 'isSelected'
+      | 'onClick'
+    >;
   className?: string;
   /**
    * Allows focusing either the confirm or cancel button on modal initialization.
@@ -84,6 +124,8 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   cancelButtonText,
   confirmButtonText,
   confirmButtonDisabled,
+  confirmButtonProps,
+  cancelButtonProps,
   className,
   buttonColor = 'primary',
   defaultFocusedButton,
@@ -92,6 +134,15 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
 }) => {
   const cancelButtonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
+
+  const cancelRef = useCombinedRefs([
+    cancelButtonRef,
+    cancelButtonProps?.buttonRef,
+  ]);
+  const confirmRef = useCombinedRefs([
+    confirmButtonRef,
+    confirmButtonProps?.buttonRef,
+  ]);
 
   useEffect(() => {
     // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
@@ -158,20 +209,22 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
       <EuiModalFooter>
         <EuiButtonEmpty
           data-test-subj="confirmModalCancelButton"
+          {...cancelButtonProps}
           onClick={onCancel}
-          buttonRef={cancelButtonRef}
+          buttonRef={cancelRef}
         >
           {cancelButtonText}
         </EuiButtonEmpty>
 
         <EuiButton
           data-test-subj="confirmModalConfirmButton"
-          onClick={onConfirm}
-          isLoading={isLoading}
-          fill
-          buttonRef={confirmButtonRef}
+          {...confirmButtonProps}
           color={buttonColor}
+          isLoading={isLoading}
           isDisabled={confirmButtonDisabled}
+          fill
+          onClick={onConfirm}
+          buttonRef={confirmRef}
         >
           {confirmButtonText}
         </EuiButton>
