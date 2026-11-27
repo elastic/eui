@@ -32,7 +32,7 @@ import { useEuiButtonCommonProps } from './use_button_common_props';
 export const COLORS = BUTTON_COLORS;
 export type EuiButtonColor = _EuiExtendedButtonColor;
 
-export const SIZES = ['s', 'm'] as const;
+export const SIZES = ['xs', 's', 'm'] as const;
 export type EuiButtonSize = (typeof SIZES)[number];
 
 interface BaseProps extends EuiDisabledProps {
@@ -53,7 +53,7 @@ interface BaseProps extends EuiDisabledProps {
    */
   color?: EuiButtonColor;
   /**
-   * Use size `s` in confined spaces
+   * Use size `s` or `xs` in confined spaces
    */
   size?: EuiButtonSize;
 }
@@ -101,6 +101,7 @@ export const EuiButton: FunctionComponent<Props> = ({
   id,
   onClick: _onClick,
   isSelected: _isSelected,
+  iconSize: _iconSize,
   ...rest
 }) => {
   const {
@@ -142,6 +143,7 @@ export const EuiButton: FunctionComponent<Props> = ({
       className={classes}
       css={cssStyles}
       size={size}
+      iconSize={size === 'xs' ? 's' : _iconSize}
       isDisabled={isDisabled}
       hasAriaDisabled={hasAriaDisabled}
       fullWidth={fullWidth}

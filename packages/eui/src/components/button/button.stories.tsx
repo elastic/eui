@@ -110,6 +110,13 @@ const renderButtons = (button: React.JSX.Element) => {
           )}
         </EuiFlexGroup>
       </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup direction="column" gutterSize="s">
+          {EXTENDED_BUTTON_COLORS.map((color) =>
+            React.cloneElement(button, { key: color, size: 'xs', color })
+          )}
+        </EuiFlexGroup>
+      </EuiFlexItem>
     </>
   );
 };
