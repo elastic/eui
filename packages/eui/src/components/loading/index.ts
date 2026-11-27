@@ -14,3 +14,5 @@ export type { EuiLoadingSpinnerProps } from './loading_spinner';
 export { EuiLoadingSpinner } from './loading_spinner';
 export type { EuiLoadingLogoProps } from './loading_logo';
 export { EuiLoadingLogo } from './loading_logo';
+export type { EuiShimmeringTextProps } from './loading_shimmer_text';
+export { EuiShimmeringText } from './loading_shimmer_text';
