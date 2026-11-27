@@ -8,6 +8,7 @@ on:
     # to run at a different time of the hour."
     # Source: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule
     - cron: '5 3 * * 1-5'
+  # This dispatcher does not check out PR code; downstream publishing is hardened separately.
   pull_request_target:
     types: [labeled]
   workflow_dispatch:
@@ -24,6 +25,8 @@ on:
         description: Kibana PR body
         default: This PR updates EUI dependencies in Kibana
         type: string
+permissions: {}
+
 jobs:
   # Triggers the `release.yml` workflow to publish a snapshot.
   # We dispatch (instead of `workflow_call`) so `release.yml` stays the top-level
@@ -32,13 +35,17 @@ jobs:
   # Kibana integration chain after publishing.
   trigger_release:
     name: Trigger snapshot release
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-24.04
     if: >-
       (github.event_name != 'pull_request_target' || github.event.label.name == 'ci:regression-integration-test-kibana') &&
       (github.event_name != 'schedule' || github.repository == 'elastic/eui')
     permissions:
-      actions: write
-      contents: read
+      actions: write # Dispatch release.yml; this job never executes PR code.
+      contents: read # Resolve the candidate ref to an immutable commit SHA.
     steps:
       - name: Dispatch release workflow
         env:
@@ -52,6 +59,7 @@ jobs:
         # language=bash
         run: |
           set -euo pipefail
+          RELEASE_REF="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RELEASE_REF" --jq .sha)"
           workflow_args=(
             "-f" "release_ref=$RELEASE_REF"
             "-f" "type=snapshot"
@@ -79,4 +87,4 @@ jobs:
           fi
 
           # This job has no checkout, so gh cannot infer the repository.
-          gh workflow run release.yml --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"
+          gh workflow run release.yml --ref main --repo "$GITHUB_REPOSITORY" "${workflow_args[@]}"
