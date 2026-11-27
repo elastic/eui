@@ -60,10 +60,6 @@ jobs:
         run: |
           set -euo pipefail
           RELEASE_REF="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RELEASE_REF" --jq .sha)"
-          if [[ ! "$RELEASE_REF" =~ ^[0-9a-f]{40}$ ]]; then
-            echo '::error::Could not resolve candidate commit'
-            exit 1
-          fi
           workflow_args=(
             "-f" "release_ref=$RELEASE_REF"
             "-f" "type=snapshot"
