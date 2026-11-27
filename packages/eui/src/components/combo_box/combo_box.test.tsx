@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { createEvent, fireEvent, waitFor } from '@testing-library/react';
 import { render, showEuiComboBoxOptions } from '../../test/rtl';
 import {
   shouldRenderCustomStyles,
@@ -16,6 +16,7 @@ import {
 import { requiredProps } from '../../test';
 
 import { keys } from '../../services';
+import { EuiPopover } from '../popover';
 import { EuiComboBox } from './combo_box';
 import type { EuiComboBoxOptionOption } from './types';
 
@@ -81,6 +82,7 @@ describe('EuiComboBox', () => {
     async () => {
       const { baseElement } = render(
         <EuiComboBox
+          aria-label="Multiple selection with prepend and append"
           options={options}
           data-test-subj="alsoGetsAppliedToOptionsList"
         />
@@ -94,6 +96,7 @@ describe('EuiComboBox', () => {
   it('renders selectedOptions as pills', () => {
     const { getAllByTestSubject } = render(
       <EuiComboBox
+        aria-label="Multiple selection with existing layout"
         options={options}
         selectedOptions={[options[2], options[4]]}
       />
@@ -132,6 +135,7 @@ describe('EuiComboBox', () => {
       test('renders in single selection', () => {
         const { getByTestSubject, queryByTestSubject } = render(
           <EuiComboBox
+            aria-label="Combobox with append button"
             options={options}
             selectedOptions={[options[0]]}
             singleSelection={{ asPlainText: true }}
@@ -140,6 +144,522 @@ describe('EuiComboBox', () => {
 
         expect(getByTestSubject('prepend')).toBeInTheDocument();
         expect(queryByTestSubject('append')).not.toBeInTheDocument();
+      });
+    });
+
+    describe('prepend & append', () => {
+      it('renders with multiple selections', () => {
+        const { getByText } = render(
+          <EuiComboBox
+            aria-label="Multiple selection with prepend and append"
+            options={options}
+            selectedOptions={[options[0]]}
+            prepend="Prepend"
+            append="Append"
+          />
+        );
+        expect(getByText('Prepend')).toBeInTheDocument();
+        expect(getByText('Append')).toBeInTheDocument();
+      });
+
+      it.each(['wrap', 'collapse'] as const)(
+        'renders with selectionDisplay="%s"',
+        (selectionDisplay) => {
+          const { getByText } = render(
+            <EuiComboBox
+              aria-label="Multiple selection with prepend and append"
+              options={options}
+              selectedOptions={[options[0]]}
+              selectionDisplay={selectionDisplay}
+              prepend="Prepend"
+              append="Append"
+            />
+          );
+          expect(getByText('Prepend')).toBeInTheDocument();
+          expect(getByText('Append')).toBeInTheDocument();
+        }
+      );
+
+      it('keeps combo box navigation attributes and keys on the input', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with append button"
+            options={options}
+            selectionDisplay="wrap"
+            append={
+              <button type="button" data-test-subj="appendButton">
+                Append
+              </button>
+            }
+          />
+        );
+        const appendButton = getByTestSubject('appendButton');
+        const input = getByTestSubject('comboBoxSearchInput');
+
+        fireEvent.keyDown(appendButton, { key: keys.ARROW_DOWN });
+
+        expect(appendButton).not.toHaveAttribute('aria-expanded');
+        expect(appendButton).not.toHaveAttribute('aria-controls');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+        expect(input).toHaveAttribute('aria-controls', '');
+      });
+    });
+
+    describe('keys pressed in portals', () => {
+      it('leaves keys pressed in a popover rendered by the append alone', async () => {
+        const onKeyDown = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with an append popover"
+            options={options}
+            onKeyDown={onKeyDown}
+            append={
+              <EuiPopover
+                button={<button type="button">Open</button>}
+                isOpen
+                closePopover={() => {}}
+              >
+                <textarea data-test-subj="portalTextarea" />
+              </EuiPopover>
+            }
+          />
+        );
+        const textarea = await findByTestSubject('portalTextarea');
+        // The popover is rendered in a portal, not inside the combo box
+        expect(getByTestSubject('comboBoxInput').contains(textarea)).toBe(
+          false
+        );
+
+        const event = createEvent.keyDown(textarea, { key: keys.ARROW_DOWN });
+        fireEvent(textarea, event);
+
+        expect(event.defaultPrevented).toBe(false);
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+        expect(onKeyDown).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('keyboard handling of inner controls', () => {
+      it('opens the list on Arrow Down from the clear and pill remove buttons', () => {
+        const { getByTestSubject, container } = render(
+          <EuiComboBox
+            aria-label="Combobox"
+            options={options}
+            selectedOptions={[options[0]]}
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+
+        fireEvent.keyDown(getByTestSubject('comboBoxClearButton'), {
+          key: keys.ARROW_DOWN,
+        });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+
+        fireEvent.keyDown(input, { key: keys.ESCAPE });
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+
+        fireEvent.keyDown(container.querySelector('.euiBadge button')!, {
+          key: keys.ARROW_DOWN,
+        });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+      });
+    });
+
+    describe('selectionDisplay="collapse"', () => {
+      const clientWidth = Object.getOwnPropertyDescriptor(
+        Element.prototype,
+        'clientWidth'
+      )!;
+      const offsetWidth = Object.getOwnPropertyDescriptor(
+        HTMLElement.prototype,
+        'offsetWidth'
+      )!;
+
+      let controlWidth = 400;
+
+      beforeAll(() => {
+        // jsdom has no layout: fake a 400px wide control with 100px pills
+        Object.defineProperty(Element.prototype, 'clientWidth', {
+          configurable: true,
+          get: () => controlWidth,
+        });
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+          configurable: true,
+          get: () => 100,
+        });
+      });
+      afterEach(() => {
+        controlWidth = 400;
+      });
+      afterAll(() => {
+        Object.defineProperty(Element.prototype, 'clientWidth', clientWidth);
+        Object.defineProperty(
+          HTMLElement.prototype,
+          'offsetWidth',
+          offsetWidth
+        );
+      });
+
+      it('folds selections that do not fit into a +N badge', () => {
+        const { getByTestSubject, container } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+        expect(badge).toHaveTextContent(/^\+\d+$/);
+        const hidden = container.querySelectorAll(
+          '.euiComboBoxPill--collapsed'
+        );
+        expect(`+${hidden.length}`).toBe(badge.textContent);
+        expect(badge).toHaveAttribute(
+          'aria-label',
+          `Show ${hidden.length} hidden selections`
+        );
+        expect(badge).toHaveAttribute('aria-haspopup', 'dialog');
+      });
+
+      it('prevents the +N trigger from submitting a form', () => {
+        const { getByTestSubject } = render(
+          <form>
+            <EuiComboBox
+              aria-label="Combobox inside a form"
+              options={options}
+              selectedOptions={options.slice(0, 6)}
+              selectionDisplay="collapse"
+            />
+          </form>
+        );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+        const clickEvent = createEvent.click(badge);
+
+        fireEvent(badge, clickEvent);
+
+        expect(clickEvent.defaultPrevented).toBe(true);
+      });
+
+      it('merges custom option classes and forwards option props to overflow pills', async () => {
+        const selectedOptions = options.slice(0, 6).map((option, index) =>
+          index === 5
+            ? {
+                ...option,
+                className: 'custom-pill',
+                'aria-label': 'Custom hidden selection',
+                'data-test-subj': 'customHiddenSelection',
+                disabled: true,
+                onClick: jest.fn(),
+              }
+            : option
+        );
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with custom overflow selection"
+            options={options}
+            selectedOptions={selectedOptions}
+            selectionDisplay="collapse"
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        const hiddenPill = popover.querySelector<HTMLElement>(
+          '[data-test-subj="customHiddenSelection"]'
+        );
+
+        expect(hiddenPill).toHaveClass('custom-pill');
+        expect(hiddenPill).toHaveAttribute(
+          'aria-label',
+          'Custom hidden selection'
+        );
+        expect(hiddenPill).toBeDisabled();
+      });
+
+      it('lists the hidden selections in a popover where they can be removed', async () => {
+        const onChange = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with removable overflow selections"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onChange={onChange}
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        expect(popover).toHaveAttribute('role', 'dialog');
+        expect(popover).toHaveAttribute('aria-label', 'Hidden selections');
+        const pill = popover.querySelector('.euiComboBoxPill')!;
+        fireEvent.click(pill.querySelector('button')!);
+
+        expect(onChange).toHaveBeenCalledTimes(1);
+      });
+
+      it('does not commit a search draft when focus enters the hidden selections dialog', async () => {
+        const onCreateOption = jest.fn();
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with a search draft"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onCreateOption={onCreateOption}
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.change(input, { target: { value: 'Draft' } });
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+
+        const popover = await findByTestSubject('comboBoxCollapsedPopover');
+        fireEvent.blur(input, { relatedTarget: popover });
+
+        expect(onCreateOption).not.toHaveBeenCalled();
+      });
+
+      it('closes the options list when opening the hidden selections', async () => {
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+        expect(input).toHaveAttribute('aria-expanded', 'true');
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+
+        await findByTestSubject('comboBoxCollapsedPopover');
+        expect(input).toHaveAttribute('aria-expanded', 'false');
+      });
+
+      it('keeps the options list closed when closing the hidden selections', async () => {
+        const { getByTestSubject, findByTestSubject, queryByTestSubject } =
+          render(
+            <EuiComboBox
+              aria-label="Combobox with hidden selections"
+              options={options}
+              selectedOptions={options.slice(0, 6)}
+              selectionDisplay="collapse"
+            />
+          );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+
+        fireEvent.click(badge);
+        await findByTestSubject('comboBoxCollapsedPopover');
+        fireEvent.click(badge);
+
+        await waitFor(() =>
+          expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull()
+        );
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+      });
+
+      it('leaves keys pressed on the +N trigger alone', () => {
+        const onKeyDown = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            onKeyDown={onKeyDown}
+          />
+        );
+
+        const event = createEvent.keyDown(
+          getByTestSubject('comboBoxCollapsedBadge'),
+          { key: keys.ARROW_DOWN }
+        );
+        fireEvent(getByTestSubject('comboBoxCollapsedBadge'), event);
+
+        expect(event.defaultPrevented).toBe(false);
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+        expect(onKeyDown).toHaveBeenCalledTimes(1);
+      });
+
+      it('does not mark a search draft as invalid while the hidden selections are shown', async () => {
+        const { getByTestSubject, findByTestSubject, container } = render(
+          <EuiComboBox
+            aria-label="Combobox with a search draft"
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+          />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.focus(input);
+        fireEvent.change(input, { target: { value: 'Draft' } });
+        expect(input).toHaveAttribute('aria-invalid', 'false');
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        await waitFor(() =>
+          expect(container.querySelector('.euiComboBox-isInvalid')).toBeNull()
+        );
+        expect(input).toHaveAttribute('aria-invalid', 'false');
+      });
+
+      it('does not duplicate the id and data-test-subj of hidden selections', async () => {
+        const selectedOptions = options.slice(0, 6).map((option, index) =>
+          index === 5
+            ? {
+                ...option,
+                id: 'hidden-selection',
+                'data-test-subj': 'hiddenSelection',
+              }
+            : option
+        ) as EuiComboBoxOptionOption[];
+        const { getByTestSubject, findByTestSubject } = render(
+          <EuiComboBox
+            aria-label="Combobox with hidden selections"
+            options={options}
+            selectedOptions={selectedOptions}
+            selectionDisplay="collapse"
+          />
+        );
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        expect(document.querySelectorAll('#hidden-selection')).toHaveLength(1);
+        expect(
+          document.querySelectorAll('[data-test-subj="hiddenSelection"]')
+        ).toHaveLength(1);
+      });
+
+      it('returns focus to the input when removing the last hidden selection', async () => {
+        const StatefulComboBox = () => {
+          const [selectedOptions, setSelectedOptions] = React.useState<
+            EuiComboBoxOptionOption[]
+          >(options.slice(0, 6));
+          return (
+            <EuiComboBox
+              aria-label="Combobox with removable overflow selections"
+              options={options}
+              selectedOptions={selectedOptions}
+              selectionDisplay="collapse"
+              onChange={setSelectedOptions}
+            />
+          );
+        };
+        const { getByTestSubject, findByTestSubject, queryByTestSubject } =
+          render(<StatefulComboBox />);
+
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        await findByTestSubject('comboBoxCollapsedPopover');
+
+        for (let i = 0; i < 6; i++) {
+          const currentPopover = queryByTestSubject('comboBoxCollapsedPopover');
+          const removeButton = currentPopover?.querySelector(
+            '.euiComboBoxPill button'
+          );
+          if (!removeButton) break;
+          fireEvent.click(removeButton);
+        }
+
+        await waitFor(() =>
+          expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull()
+        );
+        expect(getByTestSubject('comboBoxSearchInput')).toHaveFocus();
+      });
+
+      it('disables the +N trigger when disabled', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+            selectionDisplay="collapse"
+            isDisabled
+          />
+        );
+        const badge = getByTestSubject('comboBoxCollapsedBadge');
+
+        expect(badge).toHaveTextContent(/^\+\d+$/);
+        expect(badge).toBeDisabled();
+        expect(badge).not.toHaveAttribute('aria-haspopup');
+        expect(badge).not.toHaveAttribute('aria-expanded');
+
+        fireEvent.click(badge);
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+      });
+
+      it('closes the +N popover for good when becoming disabled', () => {
+        const props = {
+          options,
+          selectedOptions: options.slice(0, 6),
+          selectionDisplay: 'collapse' as const,
+        };
+        const { getByTestSubject, queryByTestSubject, rerender } = render(
+          <EuiComboBox {...props} />
+        );
+        const hiddenCount = () =>
+          Number(
+            getByTestSubject('comboBoxCollapsedBadge').textContent!.slice(1)
+          );
+        const hiddenBefore = hiddenCount();
+        fireEvent.click(getByTestSubject('comboBoxCollapsedBadge'));
+        expect(
+          getByTestSubject('comboBoxCollapsedPopover')
+        ).toBeInTheDocument();
+
+        // Change the fit while disabling, so the visible count is recalculated
+        controlWidth = 250;
+        rerender(<EuiComboBox {...props} isDisabled />);
+
+        expect(hiddenCount()).toBeGreaterThan(hiddenBefore);
+
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+        expect(getByTestSubject('comboBoxCollapsedBadge')).not.toHaveAttribute(
+          'aria-controls'
+        );
+
+        // A stale open state would show up again when enabling
+        rerender(<EuiComboBox {...props} />);
+
+        expect(queryByTestSubject('comboBoxCollapsedPopover')).toBeNull();
+        expect(getByTestSubject('comboBoxCollapsedBadge')).toHaveAttribute(
+          'aria-expanded',
+          'false'
+        );
+      });
+
+      it('does not render a badge when every selection fits', () => {
+        const { queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 2)}
+            selectionDisplay="collapse"
+          />
+        );
+        expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull();
+      });
+
+      it('shows every selection by default', () => {
+        const { queryByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={options.slice(0, 6)}
+          />
+        );
+        expect(queryByTestSubject('comboBoxCollapsedBadge')).toBeNull();
       });
     });
 

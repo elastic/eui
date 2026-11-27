@@ -125,6 +125,14 @@ export interface _EuiComboBoxProps<T>
    */
   singleSelection: boolean | EuiComboBoxSingleSelectionShape;
   /**
+   * Controls how selections are displayed when `singleSelection` is not enabled:
+   * `wrap`: the control grows to show every selection;
+   * `collapse`: the control stays on a single row, the last visible selection is
+   * truncated to use the remaining space, and selections that don't fit fold into
+   * a "+N" badge. Clicking or keyboard-activating the badge lists the hidden values.
+   */
+  selectionDisplay?: 'wrap' | 'collapse';
+  /**
    * Display matching options by:
    * `startsWith`: moves items that start with search value to top of the list;
    * `none`: don't change the sort order of initial object
@@ -144,12 +152,12 @@ export interface _EuiComboBoxProps<T>
    */
   optionMatcher?: EuiComboBoxOptionMatcher<T>;
   /**
-   * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming before input.
    * `string` | `ReactElement` or an array of these
    */
   prepend?: EuiFormControlLayoutProps['prepend'];
   /**
-   * Creates an input group with element(s) coming after input. It won't show if `singleSelection` is set to `false`.
+   * Creates an input group with element(s) coming after input.
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
@@ -214,6 +222,7 @@ export type EuiComboBoxProps<T> = Omit<
 interface EuiComboBoxState<T> {
   activeOptionIndex: number;
   hasFocus: boolean;
+  isCollapsedPopoverOpen: boolean;
   isListOpen: boolean;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   listOptionRefs: Array<HTMLLIElement | null>;
@@ -221,6 +230,12 @@ interface EuiComboBoxState<T> {
 }
 
 const initialSearchValue = '';
+
+const FOREIGN_KEY_TARGET_SELECTOR = [
+  '.euiFormControlLayout__prepend',
+  '.euiFormControlLayout__append',
+  '.euiComboBoxCollapsedBadge',
+].join(', ');
 
 export class EuiComboBox<T> extends Component<
   _EuiComboBoxProps<T>,
@@ -234,8 +249,7 @@ export class EuiComboBox<T> extends Component<
     options: [],
     selectedOptions: [],
     singleSelection: false,
-    prepend: undefined,
-    append: undefined,
+    selectionDisplay: 'wrap' as 'wrap' | 'collapse',
     sortMatchesBy: 'none' as const,
     optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
@@ -243,6 +257,7 @@ export class EuiComboBox<T> extends Component<
   state: EuiComboBoxState<T> = {
     activeOptionIndex: -1,
     hasFocus: false,
+    isCollapsedPopoverOpen: false,
     isListOpen: false,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
@@ -509,8 +524,15 @@ export class EuiComboBox<T> extends Component<
       relatedTarget &&
       this.comboBoxRefInstance &&
       this.comboBoxRefInstance.contains(relatedTarget);
+    const focusedInCollapsedPopover =
+      relatedTarget instanceof Element &&
+      !!relatedTarget.closest('.euiComboBoxCollapsedPopover');
 
-    if (!focusedInOptionsList && !focusedInInput) {
+    if (
+      !focusedInOptionsList &&
+      !focusedInInput &&
+      !focusedInCollapsedPopover
+    ) {
       this.props.onBlur?.(event);
       this.closeList();
       this.setState({ hasFocus: false });
@@ -534,6 +556,20 @@ export class EuiComboBox<T> extends Component<
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (this.props.isDisabled) return;
+    // Keys pressed in consumer content (prepend/append) or the collapsed
+    // selections popover are not ours to handle. Other inner controls (pill
+    // remove buttons, clear button, ...) keep the regular handling below.
+    const target = event.target as Node;
+    if (
+      target !== this.searchInputRefInstance &&
+      (!event.currentTarget.contains(target) ||
+        (target instanceof Element &&
+          target.closest(FOREIGN_KEY_TARGET_SELECTOR)))
+    ) {
+      this.props.onKeyDown?.(event);
+      return;
+    }
+
     event.persist(); // TODO: Remove once React 16 support is dropped
     switch (event.key) {
       case keys.ARROW_UP:
@@ -702,6 +738,10 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
+  onCollapsedPopoverToggle = (isCollapsedPopoverOpen: boolean) => {
+    this.setState({ isCollapsedPopoverOpen });
+  };
+
   onOptionListScroll = () => {
     this.searchInputRefInstance?.focus();
   };
@@ -788,6 +828,7 @@ export class EuiComboBox<T> extends Component<
       rowHeight,
       selectedOptions,
       singleSelection,
+      selectionDisplay,
       prepend,
       sortMatchesBy,
       delimiter,
@@ -805,6 +846,7 @@ export class EuiComboBox<T> extends Component<
     const {
       activeOptionIndex,
       hasFocus,
+      isCollapsedPopoverOpen,
       isListOpen,
       searchValue,
       matchingOptions,
@@ -816,9 +858,13 @@ export class EuiComboBox<T> extends Component<
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
+    // The options list is closed while the hidden selections are shown, which
+    // doesn't make a draft in the input invalid
     const markAsInvalid = !!(
       isInvalid ||
-      ((hasFocus === false || isListOpen === false) && searchValue)
+      ((hasFocus === false || isListOpen === false) &&
+        searchValue &&
+        !isCollapsedPopoverOpen)
     );
 
     const classes = classNames('euiComboBox', className, {
@@ -951,15 +997,17 @@ export class EuiComboBox<T> extends Component<
                     onCloseListClick={this.closeList}
                     onFocus={this.onComboBoxFocus}
                     onOpenListClick={this.onOpenListClick}
+                    onCollapsedPopoverToggle={this.onCollapsedPopoverToggle}
                     onRemoveOption={this.onRemoveOption}
                     placeholder={placeholder}
                     rootId={this.rootId}
                     searchValue={searchValue}
                     selectedOptions={selectedOptions}
                     singleSelection={singleSelection}
+                    selectionDisplay={selectionDisplay}
                     value={value}
-                    append={singleSelection ? append : undefined}
-                    prepend={singleSelection ? prepend : undefined}
+                    prepend={prepend}
+                    append={append}
                     isLoading={isLoading}
                     isInvalid={markAsInvalid}
                     autoFocus={autoFocus}

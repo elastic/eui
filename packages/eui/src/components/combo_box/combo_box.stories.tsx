@@ -6,20 +6,23 @@
  * Side Public License, v 1.
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, waitFor, within, expect } from 'storybook/test';
+import { userEvent, waitFor, expect } from 'storybook/test';
 
+import { within } from '../../../.storybook/test';
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
 import { VRT_SELECTORS, playDecorator } from '../../../.storybook/vrt';
 import { EuiCode } from '../code';
+import { EuiCopy } from '../copy';
 import { EuiFlexItem } from '../flex';
+import { EuiFormAppend, EuiFormRow, EuiRange } from '../form';
 import { EuiLink } from '../link';
 
-import { EuiComboBoxOptionMatcher } from './types';
+import { EuiComboBoxOptionMatcher, EuiComboBoxOptionOption } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
 const options = [
@@ -40,6 +43,7 @@ const meta: Meta<EuiComboBoxProps<{}>> = {
   // @ts-ignore typescript shenanigans
   component: EuiComboBox,
   argTypes: {
+    selectionDisplay: { control: 'radio', options: ['wrap', 'collapse'] },
     singleSelection: {
       control: 'radio',
       options: [false, true, 'asPlainText'],
@@ -394,6 +398,113 @@ export const IconsAndManyOptionsSelected: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+type AppendRenderer = (
+  selectedOptions: Array<EuiComboBoxOptionOption<{}>>
+) => EuiComboBoxProps<{}>['append'];
+
+const ResizableComboBox = ({
+  appendRenderer,
+  ...args
+}: EuiComboBoxProps<{}> & { appendRenderer?: AppendRenderer }) => {
+  const [width, setWidth] = useState(480);
+
+  return (
+    <>
+      <EuiFormRow label="Width (px)" display="rowCompressed">
+        <EuiRange
+          min={280}
+          max={1000}
+          step={10}
+          value={width}
+          onChange={(e) => setWidth(Number(e.currentTarget.value))}
+          showValue
+          compressed
+          aria-label="Combo box width"
+        />
+      </EuiFormRow>
+      <div style={{ inlineSize: width, maxInlineSize: '100%' }}>
+        <StatefulComboBox {...args} appendRenderer={appendRenderer} fullWidth />
+      </div>
+    </>
+  );
+};
+
+const appendCopyButton: AppendRenderer = (selectedOptions) => (
+  <EuiCopy
+    textToCopy={selectedOptions.map(({ label }) => label).join(', ')}
+    beforeMessage="Copy selected options"
+    // The button has the same accessible name, so don't announce it twice. A
+    // successful copy is still announced by the live region of `EuiCopy`.
+    tooltipProps={{ disableScreenReaderOutput: true }}
+  >
+    {(copy) => (
+      <EuiFormAppend
+        element="button"
+        iconLeft="copy"
+        aria-label="Copy selected options"
+        onClick={copy}
+      />
+    )}
+  </EuiCopy>
+);
+
+const manyOptions = [
+  'docs-checkout-*',
+  'docs-checkout-payments-system-*',
+  'audit-payments-*',
+  'events-2026.11.*',
+  'logs-nginx-*',
+  'metrics-system-*',
+  'traces-apm-*',
+  'profiling-*',
+].map((label) => ({ label }));
+
+export const MultiSelectWithPrependAndAppend: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'prepend',
+        'compressed',
+        'selectionDisplay',
+        'options',
+        'selectedOptions',
+        // Function toggles need their control (and its action mapping), otherwise
+        // the raw `true` arg is used as the callback
+        'onChange',
+        'onCreateOption',
+        'isDisabled',
+      ],
+    },
+    vrt: { selector: '#story-wrapper .euiComboBox' },
+  },
+  args: {
+    singleSelection: false,
+    prepend: 'Documents',
+    selectionDisplay: 'wrap',
+    options: manyOptions,
+    selectedOptions: manyOptions,
+  },
+  render: (args) => (
+    <ResizableComboBox {...args} appendRenderer={appendCopyButton} />
+  ),
+};
+
+export const MultiSelectCollapse: Story = {
+  ...MultiSelectWithPrependAndAppend,
+  args: {
+    ...MultiSelectWithPrependAndAppend.args,
+    selectionDisplay: 'collapse',
+  },
+  // Behavior (keyboard, resizing) is covered by unit and Cypress tests. This only
+  // makes sure the overflow has been calculated before the screenshot is taken.
+  play: playDecorator(async ({ bodyElement }) => {
+    const canvas = within(bodyElement);
+    await waitFor(() =>
+      expect(canvas.getByTestSubject('comboBoxCollapsedBadge')).toBeVisible()
+    );
+  }),
+};
+
 /**
  * Helpers
  */
@@ -402,9 +513,15 @@ const StatefulComboBox = ({
   singleSelection,
   onCreateOption,
   onChange,
+  append,
+  appendRenderer,
   ...args
-}: EuiComboBoxProps<{}>) => {
+}: EuiComboBoxProps<{}> & { appendRenderer?: AppendRenderer }) => {
   const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  useEffect(() => {
+    setSelectedOptions(args.selectedOptions);
+  }, [args.selectedOptions]);
+
   const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
     options,
     ...args
@@ -433,6 +550,7 @@ const StatefulComboBox = ({
           : Boolean(singleSelection)
       }
       {...args}
+      append={appendRenderer ? appendRenderer(selectedOptions ?? []) : append}
       selectedOptions={selectedOptions}
       onChange={handleOnChange}
       onCreateOption={onCreateOption ? _onCreateOption : undefined}

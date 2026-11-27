@@ -87,6 +87,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                 aria-expanded="true"
                 aria-haspopup="listbox"
                 aria-invalid="false"
+                aria-label="Multiple selection with prepend and append"
                 autocomplete="off"
                 class="euiComboBox__input emotion-euiComboBoxInput"
                 data-test-subj="comboBoxSearchInput"
