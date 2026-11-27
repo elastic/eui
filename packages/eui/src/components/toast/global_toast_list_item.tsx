@@ -15,6 +15,13 @@ import { euiGlobalToastListItemStyles } from './global_toast_list.styles';
 export interface EuiGlobalToastListItemProps extends CommonProps {
   isDismissed?: boolean;
   /**
+   * Plays the slide-in entrance. Stacked toasts skip it and let the group
+   * open as one motion instead.
+   *
+   * @default true
+   */
+  animateIn?: boolean;
+  /**
    * ReactElement to render as this component's content
    */
   children?: ReactElement;
@@ -22,13 +29,14 @@ export interface EuiGlobalToastListItemProps extends CommonProps {
 
 export const EuiGlobalToastListItem: FunctionComponent<
   EuiGlobalToastListItemProps
-> = ({ children, className, isDismissed }) => {
+> = ({ children, className, isDismissed, animateIn = true }) => {
   const styles = useEuiMemoizedStyles(euiGlobalToastListItemStyles);
 
   if (!children) return null;
 
   const cssStyles = [
     styles.euiGlobalToastListItem,
+    !animateIn && styles.noEntrance,
     isDismissed && styles.dismissed,
   ];
   const classes = classNames(

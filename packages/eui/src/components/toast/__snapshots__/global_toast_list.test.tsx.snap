@@ -20,127 +20,158 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     class="css-19mjubd-content"
   >
     <div
-      class="euiToast euiGlobalToastListItem euiToast--success emotion-euiToast-euiGlobalToastListItem"
-      data-test-subj="a"
-      id="a"
-      style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
+      class="css-4nrqte-stack"
+      data-test-subj="euiGlobalToastListStack"
+      style="height: 12px;"
     >
       <div
-        class="euiToastDecor css-1fcctx1-decor-hasAnimation"
-        role="presentation"
-      />
-      <p
-        class="emotion-euiScreenReaderOnly"
-      >
-        A new notification appears
-      </p>
-      <div
-        class="css-p34pdn-wrapper"
+        aria-hidden="true"
+        class="euiGlobalToastListItem css-1inwe1r-item-renderedToasts-euiGlobalToastListItem-noEntrance"
+        data-test-subj="euiGlobalToastListStackItem"
+        inert=""
+        style="z-index: 1; transform: translateY(-12px) scale(0.95); opacity: 1; pointer-events: none;"
       >
         <div
-          class="css-m4ni6e-body"
+          class="css-12k77y5-measure"
+          data-toast-measure="a"
         >
-          <span
-            aria-hidden="true"
-            class="css-5neova-icon-l-icon"
-            color="#008A5E"
-            data-euiicon-type="check"
-          />
           <div
-            class="css-1nzpgtc-content"
+            class="euiToast euiToast--success emotion-euiToast"
+            data-test-subj="a"
+            id="a"
+            style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
           >
-            <p
-              class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
-              data-test-subj="euiToastHeader__title"
-            >
-              A
-            </p>
-            <button
-              aria-label="Dismiss toast"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
-              data-test-subj="toastCloseButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="cross"
-              />
-            </button>
             <div
-              class="css-8nqosq-text"
-              data-test-subj="euiToastBody"
+              class="euiToastDecor css-1fcctx1-decor-hasAnimation"
+              role="presentation"
+            />
+            <p
+              class="emotion-euiScreenReaderOnly"
+            >
+              A new notification appears
+            </p>
+            <div
+              class="css-p34pdn-wrapper"
             >
               <div
-                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-                data-test-subj="euiToastText"
+                class="css-m4ni6e-body"
               >
-                a
+                <span
+                  aria-hidden="true"
+                  class="css-5neova-icon-l-icon"
+                  color="#008A5E"
+                  data-euiicon-type="check"
+                />
+                <div
+                  class="css-1nzpgtc-content"
+                >
+                  <p
+                    class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
+                    data-test-subj="euiToastHeader__title"
+                  >
+                    A
+                  </p>
+                  <button
+                    aria-label="Dismiss toast"
+                    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
+                    data-test-subj="toastCloseButton"
+                    type="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="cross"
+                    />
+                  </button>
+                  <div
+                    class="css-8nqosq-text"
+                    data-test-subj="euiToastBody"
+                  >
+                    <div
+                      class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                      data-test-subj="euiToastText"
+                    >
+                      a
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="euiToast euiGlobalToastListItem euiToast--danger emotion-euiToast-euiGlobalToastListItem"
-      data-test-subj="b"
-      id="b"
-      style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
-    >
       <div
-        class="euiToastDecor css-1fcctx1-decor-hasAnimation"
-        role="presentation"
-      />
-      <p
-        class="emotion-euiScreenReaderOnly"
-      >
-        A new notification appears
-      </p>
-      <div
-        class="css-p34pdn-wrapper"
+        class="euiGlobalToastListItem css-161dolf-item-front-renderedToasts-euiGlobalToastListItem-noEntrance"
+        data-stack-front="true"
+        data-test-subj="euiGlobalToastListStackItem"
+        style="z-index: 2; transform: translateY(0px) scale(1); opacity: 1; pointer-events: auto;"
       >
         <div
-          class="css-m4ni6e-body"
+          class="css-12k77y5-measure"
+          data-toast-measure="b"
         >
-          <span
-            aria-hidden="true"
-            class="css-5neova-icon-l-icon"
-            color="#C61E25"
-            data-euiicon-type="warning"
-          />
           <div
-            class="css-1nzpgtc-content"
+            class="euiToast euiToast--danger emotion-euiToast"
+            data-test-subj="b"
+            id="b"
+            style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
           >
-            <p
-              class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
-              data-test-subj="euiToastHeader__title"
-            >
-              B
-            </p>
-            <button
-              aria-label="Dismiss toast"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
-              data-test-subj="toastCloseButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="cross"
-              />
-            </button>
             <div
-              class="css-8nqosq-text"
-              data-test-subj="euiToastBody"
+              class="euiToastDecor css-1fcctx1-decor-hasAnimation"
+              role="presentation"
+            />
+            <p
+              class="emotion-euiScreenReaderOnly"
+            >
+              A new notification appears
+            </p>
+            <div
+              class="css-p34pdn-wrapper"
             >
               <div
-                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-                data-test-subj="euiToastText"
+                class="css-m4ni6e-body"
               >
-                b
+                <span
+                  aria-hidden="true"
+                  class="css-5neova-icon-l-icon"
+                  color="#C61E25"
+                  data-euiicon-type="warning"
+                />
+                <div
+                  class="css-1nzpgtc-content"
+                >
+                  <p
+                    class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
+                    data-test-subj="euiToastHeader__title"
+                  >
+                    B
+                  </p>
+                  <button
+                    aria-label="Dismiss toast"
+                    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
+                    data-test-subj="toastCloseButton"
+                    type="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="cross"
+                    />
+                  </button>
+                  <div
+                    class="css-8nqosq-text"
+                    data-test-subj="euiToastBody"
+                  >
+                    <div
+                      class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                      data-test-subj="euiToastText"
+                    >
+                      b
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -161,127 +192,158 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     class="css-19mjubd-content"
   >
     <div
-      class="euiToast euiGlobalToastListItem euiToast--success emotion-euiToast-euiGlobalToastListItem"
-      data-test-subj="a"
-      id="a"
-      style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
+      class="css-4nrqte-stack"
+      data-test-subj="euiGlobalToastListStack"
+      style="height: 12px;"
     >
       <div
-        class="euiToastDecor css-1fcctx1-decor-hasAnimation"
-        role="presentation"
-      />
-      <p
-        class="emotion-euiScreenReaderOnly"
-      >
-        A new notification appears
-      </p>
-      <div
-        class="css-p34pdn-wrapper"
+        aria-hidden="true"
+        class="euiGlobalToastListItem css-1inwe1r-item-renderedToasts-euiGlobalToastListItem-noEntrance"
+        data-test-subj="euiGlobalToastListStackItem"
+        inert=""
+        style="z-index: 1; transform: translateY(-12px) scale(0.95); opacity: 1; pointer-events: none;"
       >
         <div
-          class="css-m4ni6e-body"
+          class="css-12k77y5-measure"
+          data-toast-measure="a"
         >
-          <span
-            aria-hidden="true"
-            class="css-5neova-icon-l-icon"
-            color="#008A5E"
-            data-euiicon-type="check"
-          />
           <div
-            class="css-1nzpgtc-content"
+            class="euiToast euiToast--success emotion-euiToast"
+            data-test-subj="a"
+            id="a"
+            style="--euiToastTypeColor: #008A5E; --euiToastTypeBackgroundColor: #C9F3E3; --euiToastAnimationMs: 5ms;"
           >
-            <p
-              class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
-              data-test-subj="euiToastHeader__title"
-            >
-              A
-            </p>
-            <button
-              aria-label="Dismiss toast"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
-              data-test-subj="toastCloseButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="cross"
-              />
-            </button>
             <div
-              class="css-8nqosq-text"
-              data-test-subj="euiToastBody"
+              class="euiToastDecor css-1fcctx1-decor-hasAnimation"
+              role="presentation"
+            />
+            <p
+              class="emotion-euiScreenReaderOnly"
+            >
+              A new notification appears
+            </p>
+            <div
+              class="css-p34pdn-wrapper"
             >
               <div
-                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-                data-test-subj="euiToastText"
+                class="css-m4ni6e-body"
               >
-                a
+                <span
+                  aria-hidden="true"
+                  class="css-5neova-icon-l-icon"
+                  color="#008A5E"
+                  data-euiicon-type="check"
+                />
+                <div
+                  class="css-1nzpgtc-content"
+                >
+                  <p
+                    class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
+                    data-test-subj="euiToastHeader__title"
+                  >
+                    A
+                  </p>
+                  <button
+                    aria-label="Dismiss toast"
+                    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
+                    data-test-subj="toastCloseButton"
+                    type="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="cross"
+                    />
+                  </button>
+                  <div
+                    class="css-8nqosq-text"
+                    data-test-subj="euiToastBody"
+                  >
+                    <div
+                      class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                      data-test-subj="euiToastText"
+                    >
+                      a
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="euiToast euiGlobalToastListItem euiToast--danger emotion-euiToast-euiGlobalToastListItem"
-      data-test-subj="b"
-      id="b"
-      style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
-    >
       <div
-        class="euiToastDecor css-1fcctx1-decor-hasAnimation"
-        role="presentation"
-      />
-      <p
-        class="emotion-euiScreenReaderOnly"
-      >
-        A new notification appears
-      </p>
-      <div
-        class="css-p34pdn-wrapper"
+        class="euiGlobalToastListItem css-161dolf-item-front-renderedToasts-euiGlobalToastListItem-noEntrance"
+        data-stack-front="true"
+        data-test-subj="euiGlobalToastListStackItem"
+        style="z-index: 2; transform: translateY(0px) scale(1); opacity: 1; pointer-events: auto;"
       >
         <div
-          class="css-m4ni6e-body"
+          class="css-12k77y5-measure"
+          data-toast-measure="b"
         >
-          <span
-            aria-hidden="true"
-            class="css-5neova-icon-l-icon"
-            color="#C61E25"
-            data-euiicon-type="warning"
-          />
           <div
-            class="css-1nzpgtc-content"
+            class="euiToast euiToast--danger emotion-euiToast"
+            data-test-subj="b"
+            id="b"
+            style="--euiToastTypeColor: #C61E25; --euiToastTypeBackgroundColor: #FDDDD8; --euiToastAnimationMs: 5ms;"
           >
-            <p
-              class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
-              data-test-subj="euiToastHeader__title"
-            >
-              B
-            </p>
-            <button
-              aria-label="Dismiss toast"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
-              data-test-subj="toastCloseButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="cross"
-              />
-            </button>
             <div
-              class="css-8nqosq-text"
-              data-test-subj="euiToastBody"
+              class="euiToastDecor css-1fcctx1-decor-hasAnimation"
+              role="presentation"
+            />
+            <p
+              class="emotion-euiScreenReaderOnly"
+            >
+              A new notification appears
+            </p>
+            <div
+              class="css-p34pdn-wrapper"
             >
               <div
-                class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
-                data-test-subj="euiToastText"
+                class="css-m4ni6e-body"
               >
-                b
+                <span
+                  aria-hidden="true"
+                  class="css-5neova-icon-l-icon"
+                  color="#C61E25"
+                  data-euiicon-type="warning"
+                />
+                <div
+                  class="css-1nzpgtc-content"
+                >
+                  <p
+                    class="euiTitle emotion-euiTitle-xs-euiToastHeader-hasDismissButton"
+                    data-test-subj="euiToastHeader__title"
+                  >
+                    B
+                  </p>
+                  <button
+                    aria-label="Dismiss toast"
+                    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-dismissButton"
+                    data-test-subj="toastCloseButton"
+                    type="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="cross"
+                    />
+                  </button>
+                  <div
+                    class="css-8nqosq-text"
+                    data-test-subj="euiToastBody"
+                  >
+                    <div
+                      class="euiText euiToast__text emotion-euiText-s-euiTextColor-default"
+                      data-test-subj="euiToastText"
+                    >
+                      b
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

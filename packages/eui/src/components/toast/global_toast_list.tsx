@@ -7,11 +7,13 @@
  */
 
 import React, {
+  CSSProperties,
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -19,7 +21,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
@@ -40,6 +42,9 @@ export const SIDES = keysOf(sideToClassNameMap);
 export const TOAST_FADE_OUT_MS = 250;
 
 export const CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT = 3;
+
+/** How many toasts stay visible in the collapsed stack. The rest appear on hover. */
+export const STACK_VISIBLE_TOASTS = 3;
 
 export interface Toast extends EuiToastProps {
   id: string;
@@ -82,6 +87,17 @@ export interface EuiGlobalToastListProps extends CommonProps {
    * @default false
    */
   showNotificationBadge?: boolean;
+  /**
+   * Collapses the list into a stack of the three newest toasts at the bottom
+   * corner. The newest sits in front and carries the notification badge with
+   * the full count. Hovering or focusing the list expands every toast so each
+   * one can be dismissed. Clear all stays below the stack.
+   *
+   * Set to `false` for a vertical list of every toast.
+   *
+   * @default true
+   */
+  stacked?: boolean;
 }
 
 /**
@@ -96,12 +112,17 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   side = 'right',
   showClearAllButtonAt = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
   showNotificationBadge = false,
+  stacked = true,
   ...rest
 }) => {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
     [toastId: string]: boolean;
   }>({});
   const [toastsToDismiss, setToastsToDismiss] = useState<Toast[]>([]);
+  const [isStackExpanded, setIsStackExpanded] = useState(false);
+  const stackElement = useRef<HTMLDivElement | null>(null);
+  const toastHeightsRef = useRef<Record<string, number>>({});
+  const [toastHeights, setToastHeights] = useState<Record<string, number>>({});
 
   const prevToasts = useRef<Toast[]>([]);
 
@@ -110,6 +131,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const isScrollingToBottom = useRef(false);
   const isScrolledToBottom = useRef(true);
+  const isPinningScroll = useRef(false);
   const isUserInteracting = useRef(false);
 
   // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
@@ -119,6 +141,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const listElement = useRef<HTMLDivElement | null>(null);
 
+  const { euiTheme } = useEuiTheme();
   const styles = useEuiMemoizedStyles(euiGlobalToastListStyles);
   const cssStyles = [styles.euiGlobalToastList, styles[side]];
 
@@ -161,6 +184,8 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     // the list.
     isScrollingToBottom.current = false;
     isUserInteracting.current = true;
+    // Opening a long stack starts at the newest toast. Scrolling up opts out.
+    isScrolledToBottom.current = true;
 
     // Don't let toasts dismiss themselves while the user is interacting with them.
     for (const toastId in toastIdToTimerMap.current) {
@@ -169,9 +194,11 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         timer.pause();
       }
     }
+
+    setIsStackExpanded(true);
   }, []);
 
-  const onMouseLeave = useCallback(() => {
+  const resumeDismissTimers = useCallback(() => {
     isUserInteracting.current = false;
     for (const toastId in toastIdToTimerMap.current) {
       if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
@@ -181,7 +208,50 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     }
   }, []);
 
+  const onMouseLeave = useCallback(() => {
+    resumeDismissTimers();
+
+    if (listElement.current?.contains(document.activeElement)) {
+      return;
+    }
+    setIsStackExpanded(false);
+  }, [resumeDismissTimers]);
+
+  // Blurring a toast also resumes its timer. Don't collapse the stack when
+  // the pointer is still over the list.
+  const onToastBlur = useCallback(() => {
+    resumeDismissTimers();
+
+    const list = listElement.current;
+    if (list?.matches(':hover') || list?.contains(document.activeElement)) {
+      return;
+    }
+    setIsStackExpanded(false);
+  }, [resumeDismissTimers]);
+
+  const onFocusIn = useCallback(() => {
+    isScrolledToBottom.current = true;
+    setIsStackExpanded(true);
+  }, []);
+
+  const onFocusOut = useCallback((event: FocusEvent) => {
+    const next = event.relatedTarget;
+    if (next instanceof Node && listElement.current?.contains(next)) {
+      return;
+    }
+    if (listElement.current?.matches(':hover')) {
+      return;
+    }
+    setIsStackExpanded(false);
+  }, []);
+
   const onScroll = useCallback(() => {
+    // The open stack pins itself to the bottom while its height eases open.
+    // That write fires this handler and must not count as the user scrolling away.
+    if (isPinningScroll.current) {
+      isPinningScroll.current = false;
+      return;
+    }
     // Given that this method also gets invoked by the synthetic scroll that happens when a new toast gets added,
     // we want to evaluate if the scroll bottom has been reached only when the user is interacting with the toast,
     // this way we always retain the scroll position the user has set despite adding in new toasts.
@@ -233,6 +303,8 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       listenerEl.addEventListener('scroll', onScroll);
       listenerEl.addEventListener('mouseenter', onMouseEnter);
       listenerEl.addEventListener('mouseleave', onMouseLeave);
+      listenerEl.addEventListener('focusin', onFocusIn);
+      listenerEl.addEventListener('focusout', onFocusOut);
     }
 
     // componentWillUnmount
@@ -241,6 +313,8 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         listenerEl.removeEventListener('scroll', onScroll);
         listenerEl.removeEventListener('mouseenter', onMouseEnter);
         listenerEl.removeEventListener('mouseleave', onMouseLeave);
+        listenerEl.removeEventListener('focusin', onFocusIn);
+        listenerEl.removeEventListener('focusout', onFocusOut);
       }
       if (isScrollingAnimationFrame.current !== 0) {
         window.cancelAnimationFrame(isScrollingAnimationFrame.current);
@@ -256,7 +330,96 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         }
       }
     };
-  }, [onMouseEnter, onMouseLeave, onScroll]);
+  }, [onMouseEnter, onMouseLeave, onFocusIn, onFocusOut, onScroll]);
+
+  // Read each toast's natural height. The stack shell is clipped, so this
+  // node is what reports the full card size.
+  useLayoutEffect(() => {
+    if (!stacked) {
+      return;
+    }
+    const stack = stackElement.current;
+    if (!stack) {
+      return;
+    }
+
+    const read = () => {
+      const next = { ...toastHeightsRef.current };
+      const seen = new Set<string>();
+      let changed = false;
+      stack
+        .querySelectorAll<HTMLElement>('[data-toast-measure]')
+        .forEach((node) => {
+          const id = node.dataset.toastMeasure;
+          if (!id) {
+            return;
+          }
+          seen.add(id);
+          // Layout height, so the scale on the cards behind the front one
+          // does not shrink the number we animate back to.
+          const height = node.offsetHeight;
+          if (height > 0 && next[id] !== height) {
+            next[id] = height;
+            changed = true;
+          }
+        });
+      for (const id of Object.keys(next)) {
+        if (!seen.has(id)) {
+          delete next[id];
+          changed = true;
+        }
+      }
+      if (!changed) {
+        return;
+      }
+      toastHeightsRef.current = next;
+      setToastHeights(next);
+    };
+
+    read();
+    if (typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    const observer = new ResizeObserver(read);
+    stack
+      .querySelectorAll<HTMLElement>('[data-toast-measure]')
+      .forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [stacked, toasts]);
+
+  // While the pile is open, keep a list taller than the screen on the newest
+  // toast. The observer only runs when the stack box actually changes size,
+  // which is the open and close. Scrolling up opts out until the pointer returns.
+  useLayoutEffect(() => {
+    if (!stacked || !isStackExpanded) {
+      return;
+    }
+    const list = listElement.current;
+    const stack = stackElement.current;
+    if (!list || !stack) {
+      return;
+    }
+
+    const pinToBottom = () => {
+      if (!isScrolledToBottom.current) {
+        return;
+      }
+      const maxScroll = list.scrollHeight - list.clientHeight;
+      if (list.scrollTop === maxScroll) {
+        return;
+      }
+      isPinningScroll.current = true;
+      list.scrollTop = maxScroll;
+    };
+
+    pinToBottom();
+    if (typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    const observer = new ResizeObserver(pinToBottom);
+    observer.observe(stack);
+    return () => observer.disconnect();
+  }, [stacked, isStackExpanded]);
 
   // componentDidUpdate
   useEffect(() => {
@@ -299,38 +462,154 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     });
   }, [toastsToDismiss, dismissToastProp]);
 
-  const renderedToasts = useMemo(
-    () =>
-      toasts.map((toast) => {
-        const { text, toastLifeTimeMs: perToastLifeTimeMs, ...rest } = toast;
-        const effectiveLifeTimeMs = perToastLifeTimeMs ?? toastLifeTimeMs;
-        const onClose = () => dismissToast(toast);
+  const notificationBadge = useMemo(() => {
+    const badgeToast = stacked ? toasts[toasts.length - 1] : toasts[0];
+    const toastWasDismissed = toastIdToDismissedMap[badgeToast?.id] ?? false;
+    const isListEmpty = toasts.every((t) => toastIdToDismissedMap[t.id]);
 
-        return (
-          <EuiGlobalToastListItem
-            key={toast.id}
-            isDismissed={toastIdToDismissedMap[toast.id]}
-          >
-            <EuiToast
-              onClose={onClose}
-              onFocus={onMouseEnter}
-              onBlur={onMouseLeave}
-              {...rest}
-              animationMs={effectiveLifeTimeMs}
-              text={text}
-            />
-          </EuiGlobalToastListItem>
-        );
-      }),
-    [
-      toasts,
-      toastIdToDismissedMap,
-      dismissToast,
-      onMouseEnter,
-      onMouseLeave,
-      toastLifeTimeMs,
-    ]
-  );
+    return (
+      showNotificationBadge &&
+      toasts.length > 0 && (
+        <EuiNotificationBadge
+          className="euiGlobalToastList__countBadge"
+          css={[
+            styles.notificationBadge.notificationBadge,
+            toastWasDismissed && styles.notificationBadge.hasFadeOut,
+            isListEmpty && styles.notificationBadge.hasFadeOut,
+          ]}
+          size="m"
+          color="subdued"
+          data-test-subj="euiGlobalToastListNotificationBadge"
+        >
+          {toasts.length}
+        </EuiNotificationBadge>
+      )
+    );
+  }, [showNotificationBadge, stacked, toasts, toastIdToDismissedMap, styles]);
+
+  const renderedToasts = useMemo(() => {
+    const renderToast = (toast: Toast) => {
+      const { text, toastLifeTimeMs: perToastLifeTimeMs, ...toastRest } = toast;
+      const effectiveLifeTimeMs = perToastLifeTimeMs ?? toastLifeTimeMs;
+
+      return (
+        <EuiToast
+          onClose={() => dismissToast(toast)}
+          onFocus={onMouseEnter}
+          onBlur={onToastBlur}
+          {...toastRest}
+          animationMs={effectiveLifeTimeMs}
+          text={text}
+        />
+      );
+    };
+
+    if (!stacked) {
+      return toasts.map((toast) => (
+        <EuiGlobalToastListItem
+          key={toast.id}
+          isDismissed={toastIdToDismissedMap[toast.id]}
+        >
+          {renderToast(toast)}
+        </EuiGlobalToastListItem>
+      ));
+    }
+
+    const peek = Number.parseFloat(euiTheme.size.m);
+    const gap = Number.parseFloat(euiTheme.size.base);
+    const heights = toasts.map((toast) => toastHeights[toast.id] ?? 0);
+    const count = heights.length;
+    if (count === 0) {
+      return [];
+    }
+    const frontHeight = heights[count - 1] ?? 0;
+    const expandedOffsets = new Array<number>(count);
+    let cursor = 0;
+    for (let index = count - 1; index >= 0; index--) {
+      expandedOffsets[index] = cursor;
+      cursor += (heights[index] || frontHeight) + gap;
+    }
+    const expandedHeight = count > 0 ? cursor - gap : 0;
+    const collapsedHeight =
+      count > 0
+        ? frontHeight + peek * Math.min(STACK_VISIBLE_TOASTS - 1, count - 1)
+        : 0;
+    const stackHeight = isStackExpanded ? expandedHeight : collapsedHeight;
+
+    return [
+      <div
+        key="euiGlobalToastListStack"
+        ref={stackElement}
+        css={styles.stack}
+        data-test-subj="euiGlobalToastListStack"
+        data-expanded={isStackExpanded || undefined}
+        style={stackHeight > 0 ? { height: stackHeight } : undefined}
+      >
+        {toasts.map((toast, index) => {
+          // Newest toast is the front of the pile, sitting on the bottom edge.
+          const depth = count - 1 - index;
+          const isFront = depth === 0;
+          const isHidden = !isStackExpanded && depth >= STACK_VISIBLE_TOASTS;
+          const clampedDepth = Math.min(depth, STACK_VISIBLE_TOASTS - 1);
+          const lift = isStackExpanded
+            ? expandedOffsets[index]
+            : peek * clampedDepth;
+          const scale = isStackExpanded ? 1 : 1 - clampedDepth * 0.05;
+          const height =
+            isFront || isStackExpanded ? heights[index] : frontHeight;
+
+          return (
+            <EuiGlobalToastListItem
+              key={toast.id}
+              isDismissed={toastIdToDismissedMap[toast.id]}
+              animateIn={false}
+            >
+              <div
+                css={[styles.stackItem.item, isFront && styles.stackItem.front]}
+                style={
+                  {
+                    zIndex: count - depth,
+                    transform: `translateY(${-lift}px) scale(${scale})`,
+                    height: height > 0 ? height : undefined,
+                    opacity: isHidden ? 0 : 1,
+                    pointerEvents:
+                      !isFront && !isStackExpanded ? 'none' : 'auto',
+                  } as CSSProperties
+                }
+                data-test-subj="euiGlobalToastListStackItem"
+                data-stack-front={isFront || undefined}
+                data-stack-hidden={isHidden || undefined}
+                aria-hidden={(!isFront && !isStackExpanded) || undefined}
+                // @ts-expect-error - inert is not in the React TS defs yet
+                inert={!isFront && !isStackExpanded ? '' : undefined}
+              >
+                {isFront ? notificationBadge : null}
+                <div
+                  css={styles.stackItem.measure}
+                  data-toast-measure={toast.id}
+                >
+                  {renderToast(toast)}
+                </div>
+              </div>
+            </EuiGlobalToastListItem>
+          );
+        })}
+      </div>,
+    ];
+  }, [
+    stacked,
+    isStackExpanded,
+    toasts,
+    toastIdToDismissedMap,
+    dismissToast,
+    onMouseEnter,
+    onToastBlur,
+    toastLifeTimeMs,
+    styles,
+    notificationBadge,
+    euiTheme,
+    toastHeights,
+  ]);
 
   const clearAllButton = useMemo(() => {
     if (
@@ -382,29 +661,6 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   const classes = classNames('euiGlobalToastList', className);
 
   const hasContent = renderedToasts.length > 0 || clearAllButton != null;
-  const notificationBadge = useMemo(() => {
-    const toastWasDismissed = toastIdToDismissedMap[toasts[0]?.id] ?? false;
-    const isListEmpty = toasts.every((t) => toastIdToDismissedMap[t.id]);
-
-    return (
-      showNotificationBadge &&
-      toasts.length > 0 && (
-        <EuiNotificationBadge
-          className="euiGlobalToastList__countBadge"
-          css={[
-            styles.notificationBadge.notificationBadge,
-            toastWasDismissed && styles.notificationBadge.hasFadeOut,
-            isListEmpty && styles.notificationBadge.hasFadeOut,
-          ]}
-          size="m"
-          color="subdued"
-          data-test-subj="euiGlobalToastListNotificationBadge"
-        >
-          {toasts.length}
-        </EuiNotificationBadge>
-      )
-    );
-  }, [showNotificationBadge, toasts, toastIdToDismissedMap, styles]);
 
   return (
     <div
@@ -417,7 +673,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     >
       {hasContent && (
         <div css={styles.content}>
-          {notificationBadge}
+          {!stacked && notificationBadge}
           {renderedToasts}
           {clearAllButton}
         </div>

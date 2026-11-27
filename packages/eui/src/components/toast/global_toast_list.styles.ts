@@ -22,6 +22,9 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiToastWidth = euiTheme.base * 27.5; // 440px -> results in 360px toast width
 
+  // 500ms * 2. Height, lift, and fade share one curve so the pile fans open together.
+  const stackHoverTransition = `calc(${euiTheme.animation.extraSlow} * 2) ${euiTheme.animation.resistance}`;
+
   const showNotificationBadge = keyframes`
     from { opacity: 0; }
     to { opacity: 1; }
@@ -77,6 +80,43 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
     content: css`
       position: relative;
     `,
+    /**
+     * Toasts share this box and are anchored to its bottom edge.
+     * Hover grows the box with the same timing as each toast's fan-out.
+     */
+    stack: css`
+      position: relative;
+
+      &:not(:last-child) {
+        ${logicalCSS('margin-bottom', euiTheme.size.base)}
+      }
+
+      ${euiCanAnimate} {
+        transition: height ${stackHoverTransition};
+      }
+    `,
+    stackItem: {
+      item: css`
+        position: absolute;
+        transform-origin: bottom center;
+        ${logicalCSS('bottom', 0)}
+        ${logicalCSS('left', 0)}
+        ${logicalCSS('right', 0)}
+        overflow: hidden;
+
+        ${euiCanAnimate} {
+          transition: transform ${stackHoverTransition},
+            height ${stackHoverTransition}, opacity ${stackHoverTransition};
+        }
+      `,
+      /* The front card is fully visible, so its badge can sit on the corner. */
+      front: css`
+        overflow: visible;
+      `,
+      measure: css`
+        ${logicalCSS('height', 'auto')}
+      `,
+    },
     notificationBadge: {
       notificationBadge: css`
         position: absolute;
@@ -153,6 +193,13 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
       &:last-child {
         ${logicalCSS('margin-bottom', 0)}
       }
+    `,
+    // Grouped toasts fan out with the stack. They do not play their own entrance,
+    // and list-item margins must not shift the absolute position.
+    noEntrance: css`
+      animation: none;
+      ${logicalCSS('margin-vertical', 0)}
+      ${logicalCSS('margin-horizontal', 0)}
     `,
     // States
     dismissed: css`
