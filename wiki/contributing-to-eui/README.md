@@ -83,8 +83,9 @@ A few labels carry behavior beyond categorization:
 - `skip-changelog` — bypasses the CI changelog check for all packages. See [Changelogs](./documenting/changelogs.md) for when this is acceptable.
 - `skip-changelog-<package-name>` — bypasses the check for a single package only (e.g. `skip-changelog-eslint-plugin-eui`).
 - `breaking change` — required for PRs introducing breaking changes; triggers an automated comment with extra due-diligence steps for the Kibana upgrade.
-- `libra-skip` — skips automatic [Libra](https://libra.kibana.dev) reviews.
-- `libra-review-draft` — lets Libra review a draft PR. Libra skips drafts otherwise.
+- `libra-review` — opts a PR in to automatic [Libra](https://libra.kibana.dev) reviews. It's added automatically to PRs from Elastic org members. A maintainer adds it to a community PR to request a review.
+- `libra-skip` — skips automatic Libra reviews.
+- `libra-review-draft` — lets Libra review a draft PR, in addition to `libra-review`. Libra skips drafts otherwise.
 - `release` — marks release PRs. Libra skips them.
 
 ## Verifying your change

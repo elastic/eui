@@ -1,0 +1,36 @@
+name: AI review
+
+on:
+  # No checkout or PR code execution; the jobs only read org membership and add a label.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
+    types: [opened, reopened]
+
+permissions: {}
+
+concurrency:
+  group: ai-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  author:
+    name: Check PR author
+    permissions:
+      id-token: write # Required for OIDC (Vault ephemeral token)
+    uses: $/.github/workflows/check_pr_author.yml
+    with:
+      user_login: ${{ github.event.pull_request.user.login }}
+
+  libra:
+    name: Opt member pull requests in to Libra review
+    needs: author
+    if: ${{ needs.author.outputs.is_member == 'true' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      pull-requests: write # Add the libra-review label
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Add the libra-review label
+        run: gh pr edit "$PR_NUMBER" --add-label "libra-review"
