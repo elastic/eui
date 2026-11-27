@@ -30,7 +30,7 @@ jobs:
         uses: elastic/ci-gh-actions/fetch-github-token@2feb1c6f5086cf8e06f61ef35e275abed3456f7b # v1.5.3
         with:
           vault-instance: ci-prod
-          vault-role: token-policy-7c76c3b2363a
+          vault-role: token-policy-7be06106709a
       - name: Check for org membership
         # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
         id: org_membership
