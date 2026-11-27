@@ -249,6 +249,143 @@ describe('EuiCodeBlock', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    it('keeps the same code element when the content changes', () => {
+      const { container, rerender } = render(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {code}
+        </EuiCodeBlock>
+      );
+      const codeElement = container.querySelector('code');
+      expect(codeElement).toBeInTheDocument();
+
+      rerender(
+        <EuiCodeBlock isVirtualized overflowHeight="50%">
+          {`${code}\nconsole.log('more');`}
+        </EuiCodeBlock>
+      );
+
+      expect(container.querySelector('code')).toBe(codeElement);
+    });
+
+    it('does not let a consumer height or blockSize override the virtualized list size', () => {
+      const getBlockSize = (style?: React.CSSProperties) => {
+        const { container, unmount } = render(
+          <EuiCodeBlock isVirtualized overflowHeight={100} style={style}>
+            {code}
+          </EuiCodeBlock>
+        );
+        const codeElement = container.querySelector('code')!;
+        const result = {
+          blockSize: codeElement.style.blockSize,
+          height: codeElement.style.height,
+        };
+        unmount();
+        return result;
+      };
+
+      const baseline = getBlockSize();
+      expect(baseline.blockSize).toMatch(/^\d+px$/);
+
+      expect(getBlockSize({ height: 10 })).toEqual({
+        blockSize: baseline.blockSize,
+        height: '',
+      });
+      expect(getBlockSize({ blockSize: 5 })).toEqual({
+        blockSize: baseline.blockSize,
+        height: '',
+      });
+    });
+
+    describe('consumer style', () => {
+      const renderCode = (style: React.CSSProperties | null) => {
+        const { container } = render(
+          // @ts-expect-error JS consumers can pass null
+          <EuiCodeBlock isVirtualized overflowHeight={100} style={style}>
+            {code}
+          </EuiCodeBlock>
+        );
+        const codeElement = container.querySelector('code')!;
+        const declarations = codeElement
+          .getAttribute('style')!
+          .split(';')
+          .map((declaration) => declaration.trim().split(':')[0])
+          .filter(Boolean);
+        return { container, codeElement, declarations };
+      };
+
+      it('applies styles that do not conflict with the list', () => {
+        const { codeElement } = renderCode({ padding: 0 });
+        expect(codeElement.style.padding).toBe('0px');
+        expect(codeElement.style.blockSize).toMatch(/^\d+px$/);
+      });
+
+      it('does not convert consumer styles to logical properties', () => {
+        const { codeElement } = renderCode({ paddingLeft: 12 });
+        expect(codeElement.style.paddingLeft).toBe('12px');
+        expect(codeElement.style.paddingInlineStart).toBe('');
+      });
+
+      it('keeps the consumer pointerEvents while the list is idle', () => {
+        const { codeElement } = renderCode({ pointerEvents: 'none' });
+        expect(codeElement.style.pointerEvents).toBe('none');
+      });
+
+      it('lets react-window disable pointerEvents while scrolling', () => {
+        const { container } = renderCode({ pointerEvents: 'auto' });
+
+        fireEvent.scroll(container.querySelector('pre')!, {
+          target: { scrollTop: 50 },
+        });
+
+        expect(container.querySelector('code')!.style.pointerEvents).toBe(
+          'none'
+        );
+      });
+
+      it('ignores a consumer all reset', () => {
+        const { declarations } = renderCode({ all: 'unset' });
+        expect(declarations).not.toContain('all');
+        expect(declarations).toContain('block-size');
+      });
+
+      it.each([
+        ['width', { width: '50%' }, 'width'],
+        ['inlineSize', { inlineSize: '50%' }, 'inline-size'],
+      ])(
+        'lets a consumer %s replace the list inline size',
+        (_, style, prop) => {
+          const { codeElement, declarations } = renderCode(style);
+          expect(codeElement.getAttribute('style')).toContain(`${prop}: 50%`);
+          expect(
+            declarations.filter((d) => d === 'width' || d === 'inline-size')
+          ).toHaveLength(1);
+        }
+      );
+
+      it.each([
+        ['height', { height: 10 }],
+        ['maxHeight', { maxHeight: 10 }],
+        ['minHeight', { minHeight: 10 }],
+        ['blockSize', { blockSize: 10 }],
+        ['maxBlockSize', { maxBlockSize: 10 }],
+        ['minBlockSize', { minBlockSize: 10 }],
+      ])('ignores a consumer %s so the scroll range is kept', (_, style) => {
+        const baseline = renderCode({}).codeElement.style.blockSize;
+        const { codeElement } = renderCode(style);
+        expect(codeElement.style.blockSize).toBe(baseline);
+        expect(codeElement.style.maxBlockSize).toBe('');
+        expect(codeElement.style.minBlockSize).toBe('');
+        expect(codeElement.style.height).toBe('');
+        expect(codeElement.style.minHeight).toBe('');
+        expect(codeElement.style.maxHeight).toBe('');
+      });
+
+      it('renders when the style is null', () => {
+        const { codeElement } = renderCode(null);
+        expect(codeElement).toBeInTheDocument();
+      });
+    });
+
     it('requires overflowHeight', () => {
       // @ts-expect-error should expect overflowHeight
       render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
