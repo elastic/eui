@@ -228,6 +228,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
   post_open_pr:
     name: Post open PR
+    if: ${{ !cancelled() && needs.open_pr.result == 'success' }}
     runs-on: ubuntu-slim
     # This job needs to be delayed so that GitHub can process the PR creation internally
     environment: delayed-1m
@@ -287,6 +288,10 @@ jobs:
             **Kibana PR:** ${{ needs.open_pr.outputs.pr_url }}
   check_ci_status_1:
     name: Check CI status - attempt 1/2
+    if: >-
+      !cancelled() &&
+      needs.open_pr.result == 'success' &&
+      needs.post_open_pr.result == 'success'
     runs-on: ubuntu-slim
     environment: delayed-2h
     needs: [open_pr, post_open_pr]
@@ -321,7 +326,11 @@ jobs:
     runs-on: ubuntu-slim
     environment: delayed-2h
     needs: [open_pr, check_ci_status_1]
-    if: ${{ needs.check_ci_status_1.outputs.pending == 'true' }}
+    if: >-
+      !cancelled() &&
+      needs.open_pr.result == 'success' &&
+      needs.check_ci_status_1.result == 'success' &&
+      needs.check_ci_status_1.outputs.pending == 'true'
     permissions:
       contents: read # Check out the trusted CI status helper.
       id-token: write # Fetch the short-lived token used to read Kibana checks.
