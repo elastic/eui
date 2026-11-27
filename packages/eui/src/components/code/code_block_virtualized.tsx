@@ -8,6 +8,7 @@
 
 import React, {
   CSSProperties,
+  ComponentProps,
   HTMLAttributes,
   ReactNode,
   createContext,
@@ -26,11 +27,10 @@ import {
 } from '../auto_sizer';
 import { nodeToHtml } from './utils';
 
-type VirtualizedElementProps = {
-  preProps: HTMLAttributes<HTMLPreElement>;
-  codeProps: HTMLAttributes<HTMLElement>;
-  label: ReactNode;
-};
+type VirtualizedElementProps = Pick<
+  ComponentProps<typeof EuiCodeBlockVirtualized>,
+  'preProps' | 'codeProps' | 'label'
+>;
 
 // Context is required to pass props to react-window's outerElementType and
 // innerElementType, which must keep a stable identity or every row remounts.
@@ -117,7 +117,18 @@ export const EuiCodeBlockVirtualized = ({
   rowHeight: number;
   overflowHeight?: number | string;
   preProps: HTMLAttributes<HTMLPreElement>;
-  codeProps: HTMLAttributes<HTMLElement>;
+  codeProps: Omit<HTMLAttributes<HTMLElement>, 'style'> & {
+    style?: Omit<
+      CSSProperties,
+      | 'all'
+      | 'blockSize'
+      | 'minBlockSize'
+      | 'maxBlockSize'
+      | 'height'
+      | 'minHeight'
+      | 'maxHeight'
+    >;
+  };
 }) => {
   const elementProps = useMemo(
     () => ({ preProps, codeProps, label }),
