@@ -13,6 +13,7 @@
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 
 import { EuiFieldText, EuiTextArea } from '../../components';
+import { useEuiTheme } from '../../services';
 
 import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
 
@@ -232,6 +233,7 @@ describe('EuiPopover', () => {
   describe('closeOnScroll', () => {
     const ScrollAllTheThings = () => {
       const [isOpen, setIsOpen] = useState(true);
+      const { euiTheme } = useEuiTheme();
 
       return (
         <div style={{ display: 'flex' }}>
@@ -261,7 +263,12 @@ describe('EuiPopover', () => {
             style={{ height: 100, overflow: 'auto', width: 100, margin: 10 }}
             data-test-subj="scrollingSibling"
           >
-            <div style={{ height: 200, backgroundColor: 'pink' }} />
+            <div
+              style={{
+                height: 200,
+                backgroundColor: euiTheme.colors.backgroundBaseSubdued,
+              }}
+            />
           </div>
         </div>
       );

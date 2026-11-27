@@ -27,8 +27,10 @@ export const Playground: Story = {
     maxWidth: '100%',
     children: (
       <div
+        css={({ euiTheme }) => ({
+          backgroundColor: euiTheme.colors.backgroundBaseSubdued,
+        })}
         style={{
-          backgroundColor: 'gray',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

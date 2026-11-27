@@ -46,6 +46,7 @@ describe('EuiSkeletonRectangle', () => {
 
   it('correctly renders passed styles', () => {
     const { container } = render(
+      // eslint-disable-next-line @elastic/eui/no-css-color -- the snapshot asserts this literal color
       <EuiSkeletonRectangle style={{ backgroundColor: 'red' }} />
     );
 

@@ -125,6 +125,7 @@ describe('EuiProvider', () => {
             utility: utilityCache,
           }}
         >
+          {/* eslint-disable-next-line @elastic/eui/no-css-color -- test fixture for custom css; the color value is not asserted */}
           <div css={{ color: 'red', label: 'test' }} />
         </EuiProvider>
       );
