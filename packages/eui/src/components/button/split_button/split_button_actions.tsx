@@ -69,6 +69,7 @@ export const EuiSplitButtonActionPrimary: FunctionComponent<
   const actionButtonProps = {
     ...actionProps,
     fill,
+    minWidth: false,
   } as EuiButtonProps;
 
   const actionIconProps = {
