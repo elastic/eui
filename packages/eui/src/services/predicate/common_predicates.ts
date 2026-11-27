@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import moment from 'moment';
+import type { Moment } from 'moment';
 
 export const always = (_value?: any) => true;
 
@@ -24,14 +24,17 @@ export const isNil = (value: any): value is null | undefined => {
   return isUndefined(value) || isNull(value);
 };
 
-export const isMoment = (value: any) => {
-  return moment.isMoment(value);
+export const isMoment = (value: any): value is Moment => {
+  return value != null && value._isAMomentObject != null;
 };
 
 export const isDate = (value: any): value is Date => {
-  return moment.isDate(value);
+  return (
+    value instanceof Date ||
+    Object.prototype.toString.call(value) === '[object Date]'
+  );
 };
 
-export const isDateLike = (value: any): value is moment.Moment | Date => {
+export const isDateLike = (value: any): value is Moment | Date => {
   return isMoment(value) || isDate(value);
 };
