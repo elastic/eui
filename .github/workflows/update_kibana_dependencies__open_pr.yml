@@ -47,7 +47,7 @@ permissions: {}
 
 jobs:
   changelog:
-    name: Prepare nightly changelog without publishing credentials
+    name: Prepare nightly changelog
     if: ${{ inputs.nightly }}
     runs-on: ubuntu-24.04
     permissions:
@@ -58,7 +58,7 @@ jobs:
         with:
           ref: ${{ inputs.eui_ref }}
           persist-credentials: false
-      - name: Prepare changelog with the existing script
+      - name: Prepare changelog
         env:
           EUI_REF: ${{ inputs.eui_ref }}
         run: scripts/upcoming_changelogs.sh "$EUI_REF" > "$RUNNER_TEMP/kibana-changelog.md"
