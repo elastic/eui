@@ -12,9 +12,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { EuiIcon } from '../icon';
 import { EuiToken } from '../token';
 
-import { EuiTreeView, EuiTreeViewProps } from './tree_view';
+import { EuiTreeView } from './tree_view';
 
-const meta: Meta<EuiTreeViewProps> = {
+const meta: Meta<typeof EuiTreeView> = {
   title: 'Navigation/EuiTreeView/EuiTreeView',
   component: EuiTreeView,
   decorators: [
@@ -49,7 +49,7 @@ const meta: Meta<EuiTreeViewProps> = {
 };
 
 export default meta;
-type Story = StoryObj<EuiTreeViewProps>;
+type Story = StoryObj<typeof EuiTreeView>;
 
 export const Playground: Story = {
   args: {
