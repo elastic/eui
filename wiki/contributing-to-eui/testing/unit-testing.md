@@ -40,17 +40,19 @@ The [`packages/eui/src/test`](/packages/eui/src/test) module exports functions a
 * The exports within `test/rtl` (`render`, `screen`, and `within`) provide out-of-the-box `data-test-subj` querying. `render` provides automatic `EuiProvider` wrapping.
   * _Note:_ Unlike RTL's recommendation to [use `screen` for queries](https://testing-library.com/docs/queries/about/#using-queries), EUI prefers, for consistency, to destructure test queries from the `render()` API.
 
+In **consuming projects** (Kibana, Cloud UI, etc.), import test utilities from `@elastic/eui/test-env/test` (Jest) or `@elastic/eui/es/test` (ESM). Map `@elastic/eui` and `@elastic/eui/es/*` to `test-env` in your Jest resolver — see [Consuming EUI](../../consuming-eui/README.md#mapping-to-the-test-env-directory).
+
 ### Test helper naming pattern
 
 If the test helper uses libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
 
 ## Enzyme helpers for consumers
 
-EUI's own tests don't use [Enzyme](https://enzymejs.github.io/enzyme/), and Enzyme is not installed in this repo. Don't write Enzyme tests. The following helpers remain exported from `@elastic/eui/lib/test` for consuming projects that still use Enzyme:
+EUI's own tests don't use [Enzyme](https://enzymejs.github.io/enzyme/), and Enzyme is not installed in this repo. Don't write Enzyme tests. The following helpers remain exported from `@elastic/eui/test-env/test` for consuming projects that still use Enzyme:
 
 * `findTestSubject` helps you find DOM nodes in mounted components.
 * `takeMountedSnapshot` generates a snapshot of a mounted component.
-* `setupEuiEnzymeMatchers` (from `@elastic/eui/lib/test/enzyme`) registers the `toHaveEuiDisabledProp` matcher.
+* `setupEuiEnzymeMatchers` (from `@elastic/eui/test-env/test/enzyme`) registers the `toHaveEuiDisabledProp` matcher.
 
 ## Test design
 
