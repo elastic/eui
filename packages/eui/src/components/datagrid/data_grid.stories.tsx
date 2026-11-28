@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useRef, useEffect } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  type PropsWithChildren,
+} from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react-vite';
 import type { StoryContext } from 'storybook/internal/csf';
@@ -21,7 +26,11 @@ import {
   VRT_VARIANT_ATTRIBUTE,
 } from '../../../.storybook/vrt';
 
+import { EuiAccordion } from '../accordion';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiButtonIcon } from '../button';
+import { EuiFieldNumber, EuiFormRow } from '../form';
+import { EuiSpacer } from '../spacer';
 import { EuiIconTip, EuiToolTip } from '../tool_tip';
 
 import {
@@ -194,6 +203,110 @@ export const DraggableColumns: Story = {
 
     await fireEvent.focus(canvas.getByTestSubject('dataGridHeaderCell-name'));
   },
+};
+
+const FractionalWidthContainer = ({
+  initialWidth,
+  children,
+}: PropsWithChildren<{ initialWidth: number }>) => {
+  const [width, setWidth] = useState(initialWidth);
+
+  return (
+    <>
+      <EuiFormRow label="Container width (px)">
+        <EuiFieldNumber
+          value={width}
+          step={0.1}
+          onChange={(event) => setWidth(Number(event.target.value))}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      <div style={{ width }}>{children}</div>
+    </>
+  );
+};
+
+const renderPlainCellValue: EuiDataGridProps['renderCellValue'] = ({
+  rowIndex,
+  columnId,
+}) => `${columnId} ${rowIndex}`;
+
+/**
+ * A single unsized column fills the whole grid width. Scrollbars must not
+ * flicker or hang the tab at any fractional width, including while the
+ * accordion animates open. Needs always-visible (non-overlay) scrollbars.
+ */
+export const SingleColumnInAccordion: Story = {
+  parameters: {
+    controls: { include: [] },
+    vrt: { skip: true },
+  },
+  render: () => (
+    <FractionalWidthContainer initialWidth={500.6}>
+      <EuiAccordion id="singleColumnInAccordion" buttonContent="Query results">
+        <EuiDataGrid
+          aria-label="Single column data grid"
+          columns={[{ id: 'count' }]}
+          columnVisibility={{
+            visibleColumns: ['count'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={1}
+          renderCellValue={renderPlainCellValue}
+          toolbarVisibility={false}
+        />
+      </EuiAccordion>
+    </FractionalWidthContainer>
+  ),
+};
+
+/**
+ * Unsized columns plus a row number control column inside a fixed-height
+ * panel. Scrollbars must not flicker at any fractional width.
+ * Needs always-visible (non-overlay) scrollbars.
+ */
+export const UnsizedColumnsInFixedHeightPanel: Story = {
+  parameters: {
+    controls: { include: [] },
+    vrt: { skip: true },
+  },
+  render: () => (
+    <FractionalWidthContainer initialWidth={500.6}>
+      <div style={{ height: 160 }}>
+        <EuiDataGrid
+          aria-label="Unsized columns data grid"
+          columns={[
+            { id: 'customer_gender' },
+            { id: 'day_of_week_i' },
+            { id: 'total_quantity' },
+          ]}
+          columnVisibility={{
+            visibleColumns: [
+              'customer_gender',
+              'day_of_week_i',
+              'total_quantity',
+            ],
+            setVisibleColumns: () => {},
+          }}
+          leadingControlColumns={[
+            {
+              id: 'rowNumber',
+              width: 40,
+              headerCellRender: () => (
+                <EuiScreenReaderOnly>
+                  <span>Row number</span>
+                </EuiScreenReaderOnly>
+              ),
+              rowCellRender: ({ rowIndex }) => rowIndex + 1,
+            },
+          ]}
+          rowCount={3}
+          renderCellValue={renderPlainCellValue}
+          toolbarVisibility={false}
+        />
+      </div>
+    </FractionalWidthContainer>
+  ),
 };
 
 /**

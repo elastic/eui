@@ -249,8 +249,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
        */
       const virtualizeContainerWidth = useVirtualizeContainerWidth(
         outerGridRef.current,
-        gridWidth,
-        pagination?.pageSize
+        gridWidth
       );
 
       // compute the default column width from the container's width and count of visible columns

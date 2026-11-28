@@ -50,7 +50,11 @@ export const useDefaultColumnWidth = (
     if (unsizedColumnCount === 0) {
       return DEFAULT_COLUMN_WIDTH;
     }
-    return Math.max(widthToFill / unsizedColumnCount, DEFAULT_COLUMN_WIDTH);
+    // Fractional widths can sum past the container and add a horizontal scroll bar
+    return Math.max(
+      Math.floor(widthToFill / unsizedColumnCount),
+      DEFAULT_COLUMN_WIDTH
+    );
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 
   return defaultColumnWidth;

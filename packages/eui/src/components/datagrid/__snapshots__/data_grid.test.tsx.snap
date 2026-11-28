@@ -600,7 +600,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap-autoWidth-EuiDataGrid"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -1046,7 +1046,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap-autoWidth-EuiDataGrid"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -1748,7 +1748,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap-autoWidth-EuiDataGrid"
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -2192,7 +2192,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap-autoWidth-EuiDataGrid"
     data-focus-lock-disabled="disabled"
   >
     <div

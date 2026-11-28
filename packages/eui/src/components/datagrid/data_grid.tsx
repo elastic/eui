@@ -462,7 +462,11 @@ export const EuiDataGrid = memo(
             <EuiFocusTrap
               disabled={!isFullScreen}
               className="euiDataGrid__focusWrap"
-              css={styles.euiDataGrid__focusWrap}
+              css={[
+                styles.euiDataGrid__focusWrap.euiDataGrid__focusWrap,
+                (isFullScreen || width == null || width === '') &&
+                  styles.euiDataGrid__focusWrap.autoWidth,
+              ]}
             >
               <div
                 css={cssStyles}

@@ -16,6 +16,7 @@ import {
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtilsType } from './row_heights';
 import { DataGridSortedContext } from './sorting';
@@ -171,46 +172,68 @@ export const useUnconstrainedHeight = ({
 };
 
 /**
- * Returns the size of the cell container minus the scroll bar width.
- * To do so, this hook is listening for size changes of the container itself,
- * as well as pagination changes to make sure every update is caught.
+ * Returns the width available to the cells of the virtualize container,
+ * rounded down to a whole pixel.
  *
- * This is necessary because there is no callback/event fired by the browser
- * indicating the scroll bar state has changed.
- * @param resizeRef the wrapper element containging the data grid
- * @param pageSize the currently applied page size
+ * `clientWidth` is rounded to the nearest pixel, so it can be up to half a
+ * pixel wider than the real content box. Columns sized from it would
+ * overflow, show a horizontal scroll bar, and (in a container whose height
+ * is near the content height) toggle the vertical scroll bar endlessly.
+ *
+ * @param contentBoxWidth the fractional content-box width reported by a ResizeObserver
+ */
+export const getVirtualizeContainerContentWidth = (
+  contentBoxWidth: number,
+  clientWidth: number
+) =>
+  // Before the first ResizeObserver callback, fall back to the rounded width
+  contentBoxWidth ? Math.floor(contentBoxWidth) : clientWidth;
+
+/**
+ * Observes the fractional content-box width of an element. The content box
+ * excludes scroll bars, so it also changes when a scroll bar appears or
+ * disappears, and it ignores CSS transforms.
+ */
+const useContentBoxWidth = (element: HTMLElement | null) => {
+  const [contentBoxWidth, setContentBoxWidth] = useState(0);
+
+  useEffect(() => {
+    if (!element || !hasResizeObserver) return;
+
+    const observer = new window.ResizeObserver(([entry]) => {
+      setContentBoxWidth(entry.contentBoxSize[0].inlineSize);
+    });
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [element]);
+
+  return contentBoxWidth;
+};
+
+/**
+ * Returns the size of the cell container minus the scroll bar width.
+ * @param virtualizeContainer the scrolling element of the virtualized grid
+ * @param gridWidth the width of the wrapper element, used as a fallback
  */
 export const useVirtualizeContainerWidth = (
   virtualizeContainer: HTMLDivElement | null,
-  gridWidth: number,
-  pageSize: number | undefined
+  gridWidth: number
 ) => {
-  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
   useResizeObserver(virtualizeContainer);
+  const contentBoxWidth = useContentBoxWidth(virtualizeContainer);
 
   // re-render data grid on size changes
   const forceRender = useForceRender();
   useUpdateEffect(forceRender, [gridWidth, forceRender]);
 
-  useEffect(() => {
-    if (virtualizeContainer?.clientWidth) {
-      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
-    }
-  }, [virtualizeContainer?.clientWidth]);
+  const contentWidth = virtualizeContainer
+    ? getVirtualizeContainerContentWidth(
+        contentBoxWidth,
+        virtualizeContainer.clientWidth
+      )
+    : 0;
 
-  useEffect(() => {
-    // wait for layout to settle, then measure virtualize container
-    const timerId = setTimeout(() => {
-      if (virtualizeContainer?.clientWidth) {
-        const containerWidth = virtualizeContainer.clientWidth;
-        setVirtualizeContainerWidth(containerWidth);
-      }
-    }, 100);
-
-    return () => clearTimeout(timerId);
-  }, [pageSize, virtualizeContainer]);
-
-  // Use clientWidth of the virtualization container to take scroll bar into account
-  // If that's not possible, fall back to the width of the wrapper element
-  return virtualizeContainerWidth || gridWidth;
+  // If the virtualization container can't be measured yet, fall back to the width of the wrapper element
+  return contentWidth || gridWidth;
 };
