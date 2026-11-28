@@ -309,7 +309,7 @@ export class FieldValueSelectionFilter extends Component<
             <EuiFilterButton
               iconType="chevronSingleDown"
               iconSide="right"
-              isSelected={active}
+              isSelected={this.state.popoverOpen}
               hasActiveFilters={active}
               numActiveFilters={active ? activeItemsCount : undefined}
               grow
